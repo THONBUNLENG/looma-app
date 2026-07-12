@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../list_url.dart';
 
@@ -919,7 +920,28 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
             const SizedBox(width: 25),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  final cartItem = Map<String, dynamic>.from(widget.product);
+                  cartItem['quantity'] = quantity;
+                  cartItem['selectedSize'] = sizes[selectedSize];
+                  cartItem['selectedColorIndex'] = selectedColor;
+                  CartManager().addToCart(cartItem);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: TextWidget(
+                        "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
+                        color: Colors.white,
+                      ),
+                      backgroundColor: AppColor.successGreen,
+                      duration: const Duration(seconds: 2),
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isDark ? Colors.blueAccent : Colors.black,
                   padding: const EdgeInsets.symmetric(vertical: 16),

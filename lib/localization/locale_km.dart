@@ -22,6 +22,7 @@ const Map<String, String> khmer = {
   'items found': 'ទំនិញត្រូវបានរកឃើញ',
   'No items found for': 'មិនមានទំនិញសម្រាប់',
   'Add to Cart': 'បញ្ចូលក្នុងកន្ត្រក',
+  'Added to Cart': 'បានបញ្ចូលក្នុងកន្ត្រក',
   'View Cart': 'មើលកន្ត្រកទំនិញ',
   'Urban Explorer Pro': 'អ៊ើបាន អុិចផ្លរ័រ ប្រូ',
   'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.':
@@ -30,7 +31,14 @@ const Map<String, String> khmer = {
   "Description": "ការពិពណ៌នា",
   "Color": "ពណ៌",
   "Size": "ទំហំ",
-  "Quantity": "ចំនួន",
+  'Quantity': 'ចំនួន',
+  'Subtotal': 'តម្លៃទំនិញ',
+  'Delivery Fee': 'ថ្លៃដឹកជញ្ជូន',
+  'Total': 'សរុប',
+  'Proceed to Checkout': 'បន្តទៅកាន់ការទូទាត់',
+  'My Shopping Bag': 'កន្ត្រកទំនិញរបស់ខ្ញុំ',
+  "Looks like you haven't added anything to your bag yet.":
+      "ហាក់បីដូចជាអ្នកមិនទាន់បានបញ្ចូលទំនិញអ្វីទៅក្នុងកន្ត្រកនៅឡើយទេ។",
   'Total price': 'តម្លៃសរុប',
 
   'Classic School Backpack': 'កាបូបស្ពាយរៀនម៉ូដបុរាណ',

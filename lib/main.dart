@@ -5,6 +5,7 @@ import 'package:shopping_app/src/network/network_wrapper/network_wrapper.dart';
 import 'package:shopping_app/src/screen/splash_screen.dart';
 
 import 'manager/preferences_manager.dart';
+import 'manager/cart_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
 import 'localization/locale_ch.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SharedPrefUtil.init();
-
+  await CartManager().init();
   await translator.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

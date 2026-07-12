@@ -23,6 +23,7 @@ const Map<String, String> english = {
   'items found': 'items found',
   'No items found for': 'No items found for',
   'Add to Cart': 'Add to Cart',
+  'Added to Cart': 'Added to Cart',
   'View Cart': 'View Cart',
   'Urban Explorer Pro': 'Urban Explorer Pro',
   'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.':
@@ -33,7 +34,13 @@ const Map<String, String> english = {
   'Color': 'Color',
   'Size': 'Size',
   'Quantity': 'Quantity',
-
+  'Subtotal': 'Subtotal',
+  'Delivery Fee': 'Delivery Fee',
+  'Total': 'Total',
+  'Proceed to Checkout': 'Proceed to Checkout',
+  'My Shopping Bag': 'My Shopping Bag',
+  "Looks like you haven't added anything to your bag yet.":
+      "Looks like you haven't added anything to your bag yet.",
   'Total price': 'Total price',
   'Classic School Backpack': 'Classic School Backpack',
   'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.':
