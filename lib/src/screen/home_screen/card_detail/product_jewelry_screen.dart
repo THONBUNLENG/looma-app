@@ -4,34 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../list_url.dart';
 
-class ProductClothesScreen extends StatefulWidget {
+class ProductJewelryScreen extends StatefulWidget {
   final Map<String, dynamic> product;
 
-  const ProductClothesScreen({super.key, required this.product});
+  const ProductJewelryScreen({super.key, required this.product});
 
   @override
-  State<ProductClothesScreen> createState() => _ProductClothesScreenState();
+  State<ProductJewelryScreen> createState() => _ProductJewelryScreenState();
 }
 
-class _ProductClothesScreenState extends State<ProductClothesScreen> {
+class _ProductJewelryScreenState extends State<ProductJewelryScreen> {
   late PageController _pageController;
   Timer? _timer;
   int _currentPage = 0;
-
-  int selectedSize = 1;
-  int selectedColor = 0;
   int quantity = 1;
-
-  final List<String> sizes = ['S', 'M', 'L', 'XL'];
-  final List<Color> colors = [
-    const Color(0xFF6A8D92),
-    const Color(0xFF8B5E4D),
-    const Color(0xFF808080),
-    const Color(0xFFA9A9A9),
-  ];
 
   late bool isFavorite;
 
@@ -52,7 +43,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
 
   void _startTimer() {
     _timer?.cancel();
-
     int imageCount = 1;
     if (widget.product['images'] != null && widget.product['images'] is List) {
       imageCount = (widget.product['images'] as List).length;
@@ -94,7 +84,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
       images = List<String>.from(widget.product['images']);
     } else if (widget.product['image'] != null &&
         widget.product['image'].toString().isNotEmpty) {
-      images = List.generate(1, (index) => widget.product['image'].toString());
+      images = List.generate(4, (index) => widget.product['image'].toString());
     } else {
       images = [
         'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
@@ -145,24 +135,29 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                     },
                   ),
                 ),
-
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(12),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const CircleAvatar(
-                        backgroundColor: Colors.black26,
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Colors.white,
-                          size: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const CircleAvatar(
+                            backgroundColor: Colors.black26,
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
                         ),
-                      ),
+                        const CartBadge(showBackground: true, iconColor: Colors.white,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-
                 if (images.length > 1)
                   Positioned(
                     bottom: 20,
@@ -188,7 +183,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   ),
               ],
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
               child: Column(
@@ -206,8 +200,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                     children: [
                       Expanded(
                         child: TextWidget(
-                          (widget.product['title'] ?? 'Product Item')
-                              .toString(),
+                          (widget.product['title'] ?? 'Product Item').toString().tr,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: isDark ? Colors.white : Colors.black,
@@ -238,7 +231,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   Row(
                     children: [
                       _buildBadge(
-                        "${widget.product['sold'] ?? '0'} ${'sold'.tr}",
+                        "${widget.product['sold'] ?? '0'} ${"sold".tr}",
                         isDark,
                       ),
                       const SizedBox(width: 12),
@@ -249,7 +242,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                       ),
                       const SizedBox(width: 4),
                       TextWidget(
-                        "${widget.product['rating'] ?? '4.8'} (${widget.product['reviews'] ?? '0'} ${'reviews'.tr})",
+                        "${widget.product['rating'] ?? '4.8'} (${widget.product['reviews'] ?? '0'} ${"reviews".tr})",
                         color: isDark ? Colors.white70 : Colors.black54,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -257,7 +250,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                     ],
                   ),
                   const SizedBox(height: 30),
-
                   TextWidget(
                     "Description".tr,
                     fontSize: 18,
@@ -267,20 +259,12 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   const SizedBox(height: 10),
                   TextWidget(
                     (widget.product['description'] ??
-                            "Premium quality clothing designed for style and comfort.")
-                        .toString(),
+                            "Premium quality product designed for durability and comfort.")
+                        .toString()
+                        .tr,
                     color: isDark ? Colors.white60 : Colors.black54,
                     fontSize: 15,
                     lineHeight: 1.5,
-                  ),
-                  const SizedBox(height: 30),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: _buildSizeSelector(isDark)),
-                      const SizedBox(width: 20),
-                      Expanded(child: _buildColorSelector(isDark)),
-                    ],
                   ),
                   const SizedBox(height: 30),
                   TextWidget(
@@ -292,7 +276,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   const SizedBox(height: 15),
                   _buildQuantityStepper(isDark),
                   const SizedBox(height: 30),
-
                   _buildDeliveryReturns(isDark),
                   const Divider(height: 40),
                   _buildModelInfo(isDark),
@@ -303,7 +286,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   const Divider(height: 0),
                   _buildCollapsibleItem("Online exchange policy", isDark),
                   const SizedBox(height: 40),
-
                   _buildSimilarItems(isDark),
                   const SizedBox(height: 30),
                   const Divider(),
@@ -333,92 +315,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
         fontWeight: FontWeight.w600,
         color: isDark ? Colors.white70 : Colors.black87,
       ),
-    );
-  }
-
-  Widget _buildSizeSelector(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextWidget("Size".tr, fontSize: 16, fontWeight: FontWeight.bold),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: List.generate(sizes.length, (index) {
-            bool isSelected = selectedSize == index;
-            return GestureDetector(
-              onTap: () => setState(() => selectedSize = index),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                constraints: const BoxConstraints(minWidth: 45, minHeight: 45),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isSelected
-                      ? (isDark ? Colors.white : Colors.black)
-                      : Colors.transparent,
-                  border: Border.all(
-                    color: isSelected
-                        ? (isDark ? Colors.white : Colors.black)
-                        : Colors.grey.shade300,
-                    width: 1.5,
-                  ),
-                ),
-                child: IntrinsicWidth(
-                  child: Center(
-                    child: TextWidget(
-                      sizes[index],
-                      color: isSelected
-                          ? (isDark ? Colors.black : Colors.white)
-                          : (isDark ? Colors.white : Colors.black),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          }),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildColorSelector(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextWidget("Color".tr, fontSize: 16, fontWeight: FontWeight.bold),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 10,
-          children: List.generate(colors.length, (index) {
-            bool isSelected = selectedColor == index;
-            return GestureDetector(
-              onTap: () => setState(() => selectedColor = index),
-              child: Container(
-                width: 35,
-                height: 35,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colors[index],
-                  border: isSelected
-                      ? Border.all(color: AppColor.primaryColor, width: 3)
-                      : null,
-                  boxShadow: [
-                    if (isSelected)
-                      const BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
-                      ),
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
-      ],
     );
   }
 
@@ -533,7 +429,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
       shape: const Border(),
       children: [
         TextWidget(
-          "Model is 175 cm tall / 65 kg weight and is wearing size M.".tr,
+          "Premium jewelry crafted with high-quality materials and exquisite attention to detail.".tr,
           color: isDark ? Colors.white70 : Colors.black87,
           fontSize: 15,
           lineHeight: 1.4,
@@ -572,9 +468,9 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: justForYouData.length,
+            itemCount: jewelry.length > 10 ? 10 : jewelry.length,
             itemBuilder: (context, index) {
-              final item = justForYouData[index];
+              final item = jewelry[index];
               return _buildSimilarProductCard(item, isDark, index);
             },
           ),
@@ -598,7 +494,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: item),
+            builder: (context) => ProductJewelryScreen(product: item),
           ),
         );
       },
@@ -893,14 +789,6 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
             color: isDark ? Colors.white10 : Colors.grey.shade200,
           ),
         ),
-        boxShadow: [
-          if (!isDark)
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, -5),
-            ),
-        ],
       ),
       child: SafeArea(
         child: Row(
@@ -921,53 +809,91 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                 ),
               ],
             ),
-            const SizedBox(width: 25),
+            const SizedBox(width: 15),
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  final cartItem = Map<String, dynamic>.from(widget.product);
-                  cartItem['quantity'] = quantity;
-                  cartItem['selectedSize'] = sizes[selectedSize];
-                  cartItem['selectedColorIndex'] = selectedColor;
-                  CartManager().addToCart(cartItem);
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: TextWidget(
-                        "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
-                        color: Colors.white,
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: TextWidget(
+                              "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
+                              color: Colors.white,
+                            ),
+                            backgroundColor: AppColor.successGreen,
+                            duration: const Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: isDark ? Colors.white30 : Colors.grey.shade300),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                      backgroundColor: AppColor.successGreen,
-                      duration: const Duration(seconds: 2),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.add_shopping_cart, size: 18, color: isDark ? Colors.white : Colors.black87),
+                          TextWidget(
+                            "Add to Cart".tr,
+                            color: isDark ? Colors.white : Colors.black87,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.buttonColor,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
                   ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.shopping_bag_outlined, size: 20),
-                    const SizedBox(width: 10),
-                    TextWidget(
-                      "Add to Cart".tr,
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderConfirmScreen(items: [cartItem]),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.pink100Color,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.shopping_bag_outlined, size: 18),
+                          TextWidget(
+                            "Order Now".tr,
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -976,3 +902,5 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
     );
   }
 }
+
+

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/filter/filter_screen.dart';
 
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
 import '../../../../../constants/app_color.dart';
 import '../../../widget/text_widget.dart';
-
-import '../card/product_jewelry_screen.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
+import '../card_detail/product_jewelry_screen.dart';
 
 class AccessoriesScreen extends StatefulWidget {
   final String categoryName;
@@ -107,20 +107,8 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
           letterSpacing: 1.2,
         ),
         actions: [
-          IconButton(
-            icon: Badge(
-              label: TextWidget("0"),
-              child: Icon(Icons.shopping_bag_outlined, color: textColor),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ShoppingBagScreen(),
-                ),
-              );
-            },
-          ),
+          CartBadge(),
+          SizedBox(width: 8),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(115),
@@ -509,3 +497,4 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
     );
   }
 }
+

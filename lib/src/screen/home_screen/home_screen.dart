@@ -6,12 +6,11 @@ import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/notification_page.dart';
 import 'package:shopping_app/src/screen/home_screen/pick_up_your_style.dart';
 import 'package:shopping_app/src/screen/home_screen/shop_buy_item_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/shopping_bag/shopping_bag_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/Brands_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/top_sale_screen.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../list_url.dart';
-import '../profile_screen/story.dart';
 import 'categories_screen.dart';
 import 'flash_sale_screen.dart';
 import 'just_screen.dart';
@@ -77,55 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 14),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                IconButton(
-                  splashRadius: 24,
-                  icon: Icon(
-                    Icons.shopping_bag_outlined,
-                    color: isDark ? Colors.white : Colors.black,
-                    size: 30,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ShoppingBagScreen(),
-                      ),
-                    );
-                  },
-                ),
-
-                Positioned(
-                  right: 0,
-                  top: -2,
-                  child: Container(
-                    width: 22,
-                    height: 22,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        color: isDark ? const Color(0xFF121212) : Colors.white,
-                        width: 2,
-                      ),
-                    ),
-                    child: Center(
-                      child: TextWidget(
-                        '0',
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const CartBadge(),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(8),
@@ -159,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 8),
                 CategorySection(),
                 SizedBox(height: 12),
-                StoriesSection(),
+                ShopBuyItemScreen(categoryName: ''),
                 SizedBox(height: 20),
                 BrandsScreen(),
                 SizedBox(height: 25),
@@ -170,7 +121,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 FlashSalePopupTimer(child: TopSaleScreen()),
                 SizedBox(height: 25),
                 MostPopularSection(),
-                ShopBuyItemScreen(categoryName: ''),
                 SizedBox(height: 25),
                 JustForYouSection(justForYouData: justForYouData),
                 SizedBox(height: 30),
@@ -280,7 +230,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                             ),
                             const SizedBox(height: 4),
                             TextWidget(
-                              bannerData[index]["subtitle"]!.toUpperCase(),
+                              bannerData[index]["subtitle"]!.toUpperCase().tr,
                               color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 14,
                             ),
@@ -302,7 +252,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           child: TextWidget(
                             bannerData[index]["desc"]!
                                 .replaceAll('\n', ' ')
-                                .toUpperCase(),
+                                .toUpperCase().tr,
                             color: Colors.black,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,

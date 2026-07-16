@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import 'package:shopping_app/manager/callback_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../favorite/favorite_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../home_screen/menu/menu_screen.dart';
-import '../home_screen/order/order_screen.dart';
 import '../profile_screen/profile_screen.dart';
 import '../wallet/wallet_page.dart';
 
@@ -47,7 +47,6 @@ class MainHolderState extends State<MainHolder> {
       const HomeScreen(),
       const WishlistScreen(),
       const MyWalletPage(),
-      const OrderScreen(),
       const MenuScreen(
         categoryName: '',
         newItems: [],
@@ -124,12 +123,11 @@ class MainHolderState extends State<MainHolder> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(0, 'assets/icon/home.png', 'Home'),
-              _buildNavItem(1, 'assets/icon/like.png', 'Wishlist'),
-              _buildNavItem(2, 'assets/icon/payment.png', 'Wallet'),
-              _buildNavItem(3, 'assets/icon/order.png', 'Order'),
-              _buildNavItem(4, 'assets/icon/menu.png', 'Menu'),
-              _buildNavItem(5, 'assets/icon/profile.png', 'Me'),
+              _buildNavItem(0, 'assets/icon/home.png', 'Home'.tr),
+              _buildNavItem(1, 'assets/icon/like.png', 'Wishlist'.tr),
+              _buildNavItem(2, 'assets/icon/payment.png', 'Wallet'.tr),
+              _buildNavItem(3, 'assets/icon/menu.png', 'Menu'.tr),
+              _buildNavItem(4, 'assets/icon/profile.png', 'Me'.tr),
             ],
           ),
         ),

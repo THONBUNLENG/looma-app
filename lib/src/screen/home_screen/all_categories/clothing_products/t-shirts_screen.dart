@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_clothes_screen.dart';
+
 
 import '../../../../../constants/app_color.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import '../../../../widget/text_widget.dart';
+import '../../card_detail/product_clothes_screen.dart';
 import '../../filter/filter_screen.dart';
-import '../../shopping_bag/shopping_bag_screen.dart';
 
 class TshirtsScreen extends StatefulWidget {
   final String categoryName;
@@ -89,7 +90,7 @@ class _TshirtsScreenState extends State<TshirtsScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
@@ -119,56 +120,6 @@ class _TshirtsScreenState extends State<TshirtsScreen> {
     );
   }
 
-  Widget _buildCartIcon(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 14),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          IconButton(
-            splashRadius: 24,
-            icon: Icon(
-              Icons.shopping_bag_outlined,
-              color: isDark ? Colors.white : Colors.black,
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ShoppingBagScreen(),
-                ),
-              );
-            },
-          ),
-          Positioned(
-            right: 0,
-            top: -2,
-            child: Container(
-              width: 22,
-              height: 22,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(
-                  color: isDark ? const Color(0xFF121212) : Colors.white,
-                  width: 2,
-                ),
-              ),
-              child: Center(
-                child: TextWidget(
-                  '0',
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   PreferredSizeWidget _buildPromoBar(bool isDark) {
     return PreferredSize(
@@ -427,3 +378,4 @@ class _TshirtsScreenState extends State<TshirtsScreen> {
     );
   }
 }
+

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+import '../../../constants/string_extension.dart';
 import '../../widget/button_cus.dart';
 import '../../widget/text_form_cus.dart';
 
@@ -46,26 +47,26 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               children: [
                 SizedBox(height: 400),
-                Text(
-                  'Login',
-                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
+                TextWidget(
+                  'Login'.tr,
+                  fontSize: 50, fontWeight: FontWeight.w700,
                 ),
                 SizedBox(height: 8),
                 Row(
                   spacing: 8,
                   children: [
                     Text(
-                      'Good to see you back!',
+                      'Good to see you back!'.tr,
                       style: TextStyle(fontSize: 19),
                     ),
                     Image.asset('assets/icon/like1.png', width: 22),
                   ],
                 ),
                 SizedBox(height: 24),
-                TextFormCus(hintText: "Email"),
+                TextFormCus(hintText: "Email".tr),
                 SizedBox(height: 36),
                 ButtonCus(
-                  buttonName: "Next",
+                  buttonName: "Next".tr,
                   // onPressed: () {
                   //   Navigator.push(
                   //     context,
@@ -78,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                   child: TextButton(
                     onPressed: () => Navigator.pop(context),
                     child: TextWidget(
-                      "Cancel",
+                      "Cancel".tr,
                       fontSize: 16,
                       color: Colors.grey,
                     ),

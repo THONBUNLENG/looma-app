@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../widget/text_widget.dart';
 import '../notification_page.dart';
@@ -59,7 +59,9 @@ class _OrderScreenState extends State<OrderScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 90,
-          backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFF9F9F9),
+          backgroundColor: isDark
+              ? const Color(0xFF121212)
+              : const Color(0xFFF9F9F9),
           elevation: 0,
           centerTitle: true,
           leadingWidth: 70,
@@ -129,7 +131,9 @@ class _OrderScreenState extends State<OrderScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(100),
                         border: Border.all(
-                          color: isDark ? const Color(0xFF121212) : Colors.white,
+                          color: isDark
+                              ? const Color(0xFF121212)
+                              : Colors.white,
                           width: 2,
                         ),
                       ),
@@ -159,7 +163,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
                   ),
                   child: TextWidget(
-                    "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+                    "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
                     color: isDark ? Colors.white : Colors.black,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -171,9 +175,9 @@ class _OrderScreenState extends State<OrderScreen> {
                   unselectedLabelColor: Colors.grey,
                   indicatorSize: TabBarIndicatorSize.label,
                   labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                  tabs: const [
-                    Tab(text: "Active"),
-                    Tab(text: "Completed"),
+                  tabs: [
+                    Tab(text: "Active".tr),
+                    Tab(text: "Completed".tr),
                   ],
                 ),
               ],

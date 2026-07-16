@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/all_new_item_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/accessories_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/menu/search_menu_screen.dart';
@@ -74,7 +75,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "KIDS",
     "L.HOME",
     "LIFESTYLE",
-  ];
+  ].map((e) => e.tr).toList();
 
   final List<String> _menuWoman = [
     "New In",
@@ -83,7 +84,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Shoes",
     "Shop by collection",
     "SALE",
-  ];
+  ].map((e) => e.tr).toList();
 
   final List<String> _menuMan = [
     "New In",
@@ -92,7 +93,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Shoes",
     "Shop by collection",
     "SALE",
-  ];
+  ].map((e) => e.tr).toList();
 
   final List<String> _menuKids = [
     "New In",
@@ -101,7 +102,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Baby",
     "Toys",
     "SALE",
-  ];
+  ].map((e) => e.tr).toList();
 
   final List<String> _menuHome = [
     "New In",

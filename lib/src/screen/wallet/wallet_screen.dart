@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../model/wallet_card_model.dart';
 import '../../widget/text_widget.dart';
@@ -36,7 +37,7 @@ class WalletHeader extends StatelessWidget implements PreferredSizeWidget {
             children: [
               const SizedBox(width: 12),
               TextWidget(
-                'My Wallet',
+                'My Wallet'.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: iconColor,
@@ -48,7 +49,7 @@ class WalletHeader extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () => _handleTopUp(context),
                 icon: const Icon(Icons.add_circle_outline_rounded, size: 24),
                 color: iconColor,
-                tooltip: 'Top Up',
+                tooltip: 'Top Up'.tr,
               ),
 
               IconButton(
@@ -56,7 +57,7 @@ class WalletHeader extends StatelessWidget implements PreferredSizeWidget {
                 },
                 icon: const Icon(Icons.credit_card_rounded, size: 24),
                 color: iconColor,
-                tooltip: 'Add Card',
+                tooltip: 'Add Card'.tr,
               ),
 
               IconButton(

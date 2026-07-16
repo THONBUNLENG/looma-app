@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_bag_screen.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../../constants/app_color.dart';
 import '../../../widget/text_widget.dart';
+import '../card_detail/product_bag_screen.dart';
 import '../shopping_bag/shopping_bag_screen.dart';
 
 class JustForYouAll extends StatelessWidget {
@@ -124,7 +125,7 @@ class JustForYouAll extends StatelessWidget {
                   : const Color(0xFFF1F1F1),
             ),
             child: TextWidget(
-              "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+              "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
               color:
               isDark ? Colors.white : Colors.black,
               fontSize: 12,
@@ -272,7 +273,7 @@ class JustForYouAll extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         style: TextStyle(color: subTextColor, fontSize: 11),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -308,7 +309,7 @@ class JustForYouAll extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "No tote bags found",
+            "No results found".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -317,3 +318,4 @@ class JustForYouAll extends StatelessWidget {
     );
   }
 }
+

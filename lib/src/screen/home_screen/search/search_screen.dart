@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shopping_app/constants/app_color.dart';
-import 'package:shopping_app/src/screen/home_screen/search/visual_search_screen.dart'
-    hide allItems;
+import 'package:shopping_app/src/screen/home_screen/search/visual_search_screen.dart' hide allItems;
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../widget/show_dialog.dart';
-import '../../list_url.dart'; // ប្រាកដថាមាន allItems និង discoverProducts ក្នុងនេះ
-import '../card/product_shoes_screen.dart';
+import '../../list_url.dart';
+import '../card_detail/product_shoes_screen.dart';
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -401,3 +401,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+

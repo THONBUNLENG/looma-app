@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+import '../../../../constants/string_extension.dart';
 import '../../../widget/button.dart';
 import '../../../widget/show_dialog.dart';
 import 'edit_address.dart';
@@ -15,28 +17,17 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  final List<Map<String, dynamic>> addresses = [
-    {
-      "title": "Home",
-      "address": "61480 Sunbrook Park, PC 5679",
-      "isDefault": true,
-    },
-    {
-      "title": "Office",
-      "address": "6993 Meadow Valley Terra, PC 3637",
-      "isDefault": false,
-    },
-    {
-      "title": "Apartment",
-      "address": "21833 Clyde Gallagher, PC 4662",
-      "isDefault": false,
-    },
-    {
-      "title": "Parent's House",
-      "address": "5259 Blue Bill Park, PC 4627",
-      "isDefault": false,
-    },
-  ];
+  late List<Map<String, dynamic>> addresses;
+
+  @override
+  void initState() {
+    super.initState();
+    addresses = List<Map<String, dynamic>>.from(ProfileManager().addresses);
+  }
+
+  void _updateProfileManager() {
+    ProfileManager().saveAddresses(addresses);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +44,7 @@ class _AddressScreenState extends State<AddressScreen> {
         centerTitle: true,
         leading: BackButton(color: isDark ? Colors.white : Colors.black),
         title: TextWidget(
-          "Address",
+          "Address".tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 20,
@@ -71,11 +62,11 @@ class _AddressScreenState extends State<AddressScreen> {
               return await showDialog<bool>(
                 context: context,
                 builder: (context) => StatusDialog(
-                  title: "Delete Address",
+                  title: "Delete Address".tr,
                   message:
-                      "Are you sure you want to delete '${item['title']}'?",
-                  btn1Text: "Cancel",
-                  btn2Text: "Delete",
+                      "${"Are you sure you want to delete".tr} '${item['title']}'?",
+                  btn1Text: "Cancel".tr,
+                  btn2Text: "Delete".tr,
                   icon: Icons.delete_sweep_rounded,
                   iconColor: AppColor.mutedRed,
                   onBtn1Pressed: () => Navigator.of(context).pop(false),
@@ -85,6 +76,7 @@ class _AddressScreenState extends State<AddressScreen> {
             },
             onDismissed: (direction) {
               setState(() => addresses.removeAt(index));
+              _updateProfileManager();
               _showSuccessSnackBar(item['title']);
             },
             background: _buildDeleteBackground(),
@@ -111,6 +103,7 @@ class _AddressScreenState extends State<AddressScreen> {
             addresses[i]['isDefault'] = (i == index);
           }
         });
+        _updateProfileManager();
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -160,7 +153,7 @@ class _AddressScreenState extends State<AddressScreen> {
                   Row(
                     children: [
                       TextWidget(
-                        item['title'],
+                        (item['title'] as String).tr,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: isDark ? Colors.white : Colors.black,
@@ -201,6 +194,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           }
                           addresses[index] = result;
                         });
+                        _updateProfileManager();
                       }
                     }
                   },
@@ -212,13 +206,16 @@ class _AddressScreenState extends State<AddressScreen> {
                 ),
                 Radio<bool>(
                   value: true,
+                  // ignore: deprecated_member_use
                   groupValue: isDefault,
+                  // ignore: deprecated_member_use
                   onChanged: (val) {
                     setState(() {
                       for (var i = 0; i < addresses.length; i++) {
                         addresses[i]['isDefault'] = (i == index);
                       }
                     });
+                    _updateProfileManager();
                   },
                   activeColor: isDark ? Colors.white : Colors.black,
                   visualDensity: VisualDensity.compact,
@@ -241,7 +238,7 @@ class _AddressScreenState extends State<AddressScreen> {
         borderRadius: BorderRadius.circular(6),
       ),
       child: TextWidget(
-        "Default",
+        "Default".tr,
         fontSize: 10,
         color: isDark ? Colors.white : Colors.black54,
         fontWeight: FontWeight.bold,
@@ -276,7 +273,7 @@ class _AddressScreenState extends State<AddressScreen> {
         ),
       ),
       child: MyCustomButton(
-        text: 'Add New Address',
+        text: 'Add New Address'.tr,
         onPressed: () async {
           final result = await Navigator.push(
             context,
@@ -294,6 +291,7 @@ class _AddressScreenState extends State<AddressScreen> {
               }
               addresses.add(result);
             });
+            _updateProfileManager();
           }
         },
         width: double.infinity,
@@ -308,7 +306,7 @@ class _AddressScreenState extends State<AddressScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: TextWidget(
-          "Address '$title' deleted",
+          "${"Address".tr} '$title' ${"deleted".tr}",
           color: isDark ? Colors.black : Colors.white,
         ),
         behavior: SnackBarBehavior.floating,

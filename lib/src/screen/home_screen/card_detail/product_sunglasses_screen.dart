@@ -4,34 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../list_url.dart';
 
-class ProductLingerieScreen extends StatefulWidget {
+class ProductSunglassesScreen extends StatefulWidget {
   final Map<String, dynamic> product;
 
-  const ProductLingerieScreen({super.key, required this.product});
+  const ProductSunglassesScreen({super.key, required this.product});
 
   @override
-  State<ProductLingerieScreen> createState() => _ProductLingerieScreenState();
+  State<ProductSunglassesScreen> createState() =>
+      _ProductSunglassesScreenState();
 }
 
-class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
+class _ProductSunglassesScreenState extends State<ProductSunglassesScreen> {
   late PageController _pageController;
   Timer? _timer;
   int _currentPage = 0;
-
   int selectedSize = 1;
   int selectedColor = 0;
   int quantity = 1;
-
-  final List<String> sizes = ['S', 'M', 'L', 'XL'];
   final List<Color> colors = [
     const Color(0xFF6A8D92),
     const Color(0xFF8B5E4D),
     const Color(0xFF808080),
     const Color(0xFFA9A9A9),
   ];
+  final List<String> sizes = ['W', 'E'];
 
   late bool isFavorite;
 
@@ -59,9 +59,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
     } else if (widget.product['image'] != null) {
       imageCount = 4;
     }
-
     if (imageCount <= 1) return;
-
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       if (_pageController.hasClients) {
         int next = (_currentPage + 1) % imageCount;
@@ -78,8 +76,8 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
     if (price == null) return 0.0;
     if (price is num) return price.toDouble();
     return double.tryParse(
-      price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
-    ) ??
+          price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
+        ) ??
         0.0;
   }
 
@@ -94,13 +92,12 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
       images = List<String>.from(widget.product['images']);
     } else if (widget.product['image'] != null &&
         widget.product['image'].toString().isNotEmpty) {
-      images = List.generate(1, (index) => widget.product['image'].toString());
+      images = List.generate(4, (index) => widget.product['image'].toString());
     } else {
       images = [
         'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
       ];
     }
-
     return Scaffold(
       backgroundColor: bgColor,
       body: SingleChildScrollView(
@@ -136,7 +133,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                             alignment: Alignment.center,
                             child: CachedNetworkImage(
                               imageUrl:
-                              'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
+                                  'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -161,6 +158,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                     ),
                   ),
                 ),
+
                 if (images.length > 1)
                   Positioned(
                     bottom: 20,
@@ -262,7 +260,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                   const SizedBox(height: 10),
                   TextWidget(
                     (widget.product['description'] ??
-                        "Premium quality clothing designed for style and comfort.")
+                            "Premium quality eyewear designed for style and protection.")
                         .toString()
                         .tr,
                     color: isDark ? Colors.white60 : Colors.black54,
@@ -330,22 +328,55 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
     );
   }
 
+  Widget _buildColorSelector(bool isDark) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextWidget("Color".tr, fontSize: 16, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 10,
+          children: List.generate(colors.length, (index) {
+            bool isSelected = selectedColor == index;
+            return GestureDetector(
+              onTap: () => setState(() => selectedColor = index),
+              child: Container(
+                width: 35,
+                height: 35,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: colors[index],
+                  border: isSelected
+                      ? Border.all(color: AppColor.primaryColor, width: 3)
+                      : null,
+                  boxShadow: [
+                    if (isSelected)
+                      const BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 4,
+                        offset: Offset(0, 2),
+                      ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+
   Widget _buildSizeSelector(bool isDark) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextWidget(
-          "Size".tr,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: isDark ? Colors.white : Colors.black,
-        ),
+        TextWidget("Size".tr, fontSize: 16, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black),
         const SizedBox(height: 12),
         Wrap(
           spacing: 12,
           runSpacing: 12,
           children: List.generate(sizes.length, (index) {
-            final isSelected = selectedSize == index;
+            bool isSelected = selectedSize == index;
 
             return GestureDetector(
               onTap: () => setState(() => selectedSize = index),
@@ -374,49 +405,6 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                         : (isDark ? Colors.white70 : Colors.black87),
                     fontWeight: FontWeight.bold,
                   ),
-                ),
-              ),
-            );
-          }),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildColorSelector(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextWidget(
-          "Color".tr,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: isDark ? Colors.white : Colors.black,
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 12,
-          children: List.generate(colors.length, (index) {
-            bool isSelected = selectedColor == index;
-            return GestureDetector(
-              onTap: () => setState(() => selectedColor = index),
-              child: Container(
-                width: 35,
-                height: 35,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colors[index],
-                  border: isSelected
-                      ? Border.all(color: AppColor.primaryColor, width: 3)
-                      : null,
-                  boxShadow: [
-                    if (isSelected)
-                      const BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
-                      ),
-                  ],
                 ),
               ),
             );
@@ -537,7 +525,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
       shape: const Border(),
       children: [
         TextWidget(
-          "Premium quality fabrics with standard fitting sizes.".tr,
+          "High-quality lenses providing 100% UV protection and durable frames.".tr,
           color: isDark ? Colors.white70 : Colors.black87,
           fontSize: 15,
           lineHeight: 1.4,
@@ -576,9 +564,9 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: lingerie.length > 10 ? 10 : lingerie.length,
+            itemCount: sunglasses.length > 10 ? 10 : sunglasses.length,
             itemBuilder: (context, index) {
-              final item = lingerie[index];
+              final item = sunglasses[index];
               return _buildSimilarProductCard(item, isDark, index);
             },
           ),
@@ -588,10 +576,10 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
   }
 
   Widget _buildSimilarProductCard(
-      Map<String, dynamic> item,
-      bool isDark,
-      int index,
-      ) {
+    Map<String, dynamic> item,
+    bool isDark,
+    int index,
+  ) {
     final dynamic images = item['images'];
     final String imageUrl = images is List && images.isNotEmpty
         ? images.first.toString()
@@ -602,7 +590,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductLingerieScreen(product: item),
+            builder: (context) => ProductSunglassesScreen(product: item),
           ),
         );
       },
@@ -630,7 +618,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                           ),
                         ),
                         errorWidget: (context, url, error) =>
-                        const Icon(Icons.broken_image),
+                            const Icon(Icons.broken_image),
                       ),
                     ),
                   ),
@@ -810,10 +798,10 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
               imagePath: 'assets/icon/i_color/cash_on_delivery.png',
             ),
             _buildPaymentBox(
-                "PayPal",
-                 Colors.amber,
-                 isDark,
-                 imagePath: 'assets/icon/i_color/paypal.png',
+              "PayPal",
+              Colors.amber,
+              isDark,
+              imagePath: 'assets/icon/i_color/paypal.png',
             ),
             _buildPaymentBox(
               imagePath: 'assets/icon/i_color/ac.png',
@@ -866,29 +854,29 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
   }
 
   Widget _buildPaymentBox(
-      String label,
-      Color color,
-      bool isDark, {
-        String? imagePath,
-      }) {
+    String label,
+    Color color,
+    bool isDark, {
+    String? imagePath,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       height: 35,
       child: imagePath != null
           ? Image.asset(imagePath, fit: BoxFit.contain)
           : Center(
-        child: TextWidget(
-          label.tr,
-          color: color,
-          fontWeight: FontWeight.bold,
-          fontSize: 10,
-        ),
-      ),
+              child: TextWidget(
+                label.tr,
+                color: color,
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+              ),
+            ),
     );
   }
 
   Widget _buildBottomBar(double unitPrice, bool isDark) {
-    return Container(
+    return Container(  
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
@@ -917,44 +905,91 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                 ),
               ],
             ),
-            const SizedBox(width: 25),
+            const SizedBox(width: 15),
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  final cartItem = Map<String, dynamic>.from(widget.product);
-                  cartItem['quantity'] = quantity;
-                  cartItem['selectedSize'] = sizes[selectedSize];
-                  cartItem['selectedColorIndex'] = selectedColor;
-                  CartManager().addToCart(cartItem);
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: TextWidget(
-                        "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
-                        color: Colors.white,
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: TextWidget(
+                              "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
+                              color: Colors.white,
+                            ),
+                            backgroundColor: AppColor.successGreen,
+                            duration: const Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: isDark ? Colors.white30 : Colors.grey.shade300),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                      backgroundColor: AppColor.successGreen,
-                      duration: const Duration(seconds: 2),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.add_shopping_cart, size: 18, color: isDark ? Colors.white : Colors.black87),
+                          TextWidget(
+                            "Add to Cart".tr,
+                            color: isDark ? Colors.white : Colors.black87,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isDark ? Colors.blueAccent : Colors.black,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
                   ),
-                ),
-                child: TextWidget(
-                  "Add to Cart".tr,
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderConfirmScreen(items: [cartItem]),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.pink100Color,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.shopping_bag_outlined, size: 18),
+                          TextWidget(
+                            "Order Now".tr,
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

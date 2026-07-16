@@ -16,12 +16,12 @@ class FilterScreenState extends State<FilterScreen> {
   String selectedColor = 'Black';
 
   final List<String> sortOptions = [
-    'Recommend'.tr,
-    'New items'.tr,
-    'Discount (High First)'.tr,
-    'Discount (Low First)'.tr,
-    'Price (High First)'.tr,
-    'Price (Low First)'.tr,
+    'Recommend',
+    'New items',
+    'Discount (High First)',
+    'Discount (Low First)',
+    'Price (High First)',
+    'Price (Low First)',
   ];
 
   final List<String> sizes = [
@@ -37,7 +37,7 @@ class FilterScreenState extends State<FilterScreen> {
     '38',
     '39',
     '40',
-    'Free size'.tr,
+    'Free size',
     'XS',
     'XS-S',
     'S',
@@ -52,18 +52,18 @@ class FilterScreenState extends State<FilterScreen> {
   ];
 
   final Map<String, Color> colors = {
-    'Black'.tr: Colors.black,
-    'Brown'.tr: Colors.brown,
-    'White'.tr: Colors.white,
-    'Red'.tr: Colors.red,
-    'Blue'.tr: Colors.blue,
-    'Green'.tr: Colors.green,
-    'Cream'.tr: const Color(0xFFFFFDD0),
-    'Pink'.tr: Colors.pink,
-    'Yellow'.tr: Colors.yellow,
-    'Gray'.tr: Colors.grey,
-    'Purple'.tr: Colors.purple,
-    'Orange'.tr: Colors.orange,
+    'Black': Colors.black,
+    'Brown': Colors.brown,
+    'White': Colors.white,
+    'Red': Colors.red,
+    'Blue': Colors.blue,
+    'Green': Colors.green,
+    'Cream': const Color(0xFFFFFDD0),
+    'Pink': Colors.pink,
+    'Yellow': Colors.yellow,
+    'Gray': Colors.grey,
+    'Purple': Colors.purple,
+    'Orange': Colors.orange,
   };
 
   @override
@@ -91,25 +91,25 @@ class FilterScreenState extends State<FilterScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _sectionTitle('Sort by', primaryTextColor),
-            RadioGroup<String>(
-              groupValue: selectedSort,
-              onChanged: (val) {
-                if (val != null) setState(() => selectedSort = val);
-              },
-              child: Column(
-                children: sortOptions.map((option) {
-                  return RadioListTile<String>(
-                    title: TextWidget(
-                      option,
-                      color: primaryTextColor,
-                      fontSize: 16,
-                    ),
-                    value: option,
-                    activeColor: primaryTextColor,
-                    contentPadding: EdgeInsets.zero,
-                  );
-                }).toList(),
-              ),
+            Column(
+              children: sortOptions.map((option) {
+                return RadioListTile<String>(
+                  title: TextWidget(
+                    option.tr,
+                    color: primaryTextColor,
+                    fontSize: 16,
+                  ),
+                  value: option,
+                  // ignore: deprecated_member_use
+                  groupValue: selectedSort,
+                  // ignore: deprecated_member_use
+                  onChanged: (val) {
+                    if (val != null) setState(() => selectedSort = val);
+                  },
+                  activeColor: primaryTextColor,
+                  contentPadding: EdgeInsets.zero,
+                );
+              }).toList(),
             ),
 
             const SizedBox(height: 20),
@@ -151,7 +151,7 @@ class FilterScreenState extends State<FilterScreen> {
               ),
               itemCount: sizes.length,
               itemBuilder: (context, i) => _selectableButton(
-                sizes[i],
+                sizes[i].tr,
                 selectedSize == sizes[i],
                 isDark,
                 () => setState(() => selectedSize = sizes[i]),
@@ -174,7 +174,7 @@ class FilterScreenState extends State<FilterScreen> {
                 if (i < colors.length) {
                   String key = colors.keys.elementAt(i);
                   return _colorButton(
-                    key,
+                    key.tr,
                     colors[key]!,
                     selectedColor == key,
                     isDark,
@@ -300,6 +300,8 @@ class FilterScreenState extends State<FilterScreen> {
                 setState(() {
                   selectedSort = 'Recommend';
                   priceRange = const RangeValues(0, 2800);
+                  selectedSize = '22';
+                  selectedColor = 'Black';
                 });
               },
               style: OutlinedButton.styleFrom(

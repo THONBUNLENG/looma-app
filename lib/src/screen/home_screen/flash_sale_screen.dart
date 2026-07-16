@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../list_url.dart';
@@ -58,14 +59,14 @@ class _FlashSalePopupTimerState extends State<FlashSalePopupTimer> {
                     ),
                     const SizedBox(height: 16),
                     TextWidget(
-                      "Flash Sale",
+                      "Flash Sale".tr,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white : Colors.black,
                     ),
                     const SizedBox(height: 10),
                     TextWidget(
-                      "Get discount up to 50% today only.",
+                      "Get discount up to 50% today only.".tr,
                       textAlign: TextAlign.center,
                       fontSize: 15,
                       color: isDark ? Colors.white70 : Colors.black87,
@@ -93,7 +94,7 @@ class _FlashSalePopupTimerState extends State<FlashSalePopupTimer> {
                           );
                         },
                         child: TextWidget(
-                          "Learn More",
+                          "Learn More".tr,
                           color: isDark ? Colors.black : Colors.white,
                           fontSize: 14,
                         ),

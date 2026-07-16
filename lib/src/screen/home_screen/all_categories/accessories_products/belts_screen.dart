@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_bag_screen.dart';
+
 
 import '../../../../../constants/app_color.dart';
 import '../../../../widget/text_widget.dart';
+import '../../card_detail/product_bag_screen.dart';
 import '../../filter/filter_screen.dart';
 import '../../shopping_bag/shopping_bag_screen.dart';
 
@@ -176,7 +177,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -346,7 +347,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           ),
           const SizedBox(height: 4),
           TextWidget(
-            item['title'] ?? 'Classic Belt',
+            item['title']?.toString().tr ?? 'Classic Belt'.tr,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             fontSize: 15,
@@ -365,7 +366,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
                 fontWeight: FontWeight.bold,
               ),
               Text(
-                " | ${item['sold'] ?? '0'} sold",
+                " | ${item['sold'] ?? '0'} ${'sold'.tr}",
                 style: TextStyle(color: subTextColor, fontSize: 11),
               ),
             ],
@@ -394,7 +395,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "No results found for '$_searchQuery'",
+            "${'No results found for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -403,3 +404,4 @@ class _BeltsScreenState extends State<BeltsScreen> {
     );
   }
 }
+

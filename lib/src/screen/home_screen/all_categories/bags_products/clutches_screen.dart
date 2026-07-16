@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_bag_screen.dart';
 
 import '../../../../../constants/app_color.dart';
 import '../../../../widget/text_widget.dart';
+import '../../card_detail/product_bag_screen.dart';
 import '../../filter/filter_screen.dart';
 import '../../shopping_bag/shopping_bag_screen.dart';
 
@@ -428,3 +428,4 @@ class _ClutchesScreenState extends State<ClutchesScreen> {
     );
   }
 }
+

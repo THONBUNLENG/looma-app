@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class PickStyleSection extends StatelessWidget {
@@ -69,7 +70,7 @@ class PickStyleSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TextWidget(
-            "Pick Up Your Style",
+            "Pick Up Your Style".tr,
             fontSize: 32,
             fontWeight: FontWeight.w900,
             color: textColor,
@@ -88,8 +89,8 @@ class PickStyleSection extends StatelessWidget {
               final item = styleBanners[index];
 
               return _StyleCard(
-                title: item['title']!,
-                subtitle: item['subtitle']!,
+                title: item['title']!.tr,
+                subtitle: item['subtitle']!.tr,
                 image: item['image']!,
                 isDark: isDark,
               );

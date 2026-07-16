@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
-import 'package:shopping_app/src/screen/home_screen/shopping_bag/checkout_payment_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class ShoppingBagScreen extends StatefulWidget {
@@ -17,13 +17,27 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
   List<Map<String, dynamic>> get _cartItems => CartManager().cartItems;
 
   double get _subtotal => CartManager().subtotal;
-  double get _deliveryFee => _cartItems.isEmpty ? 0.0 : 2.00;
+  double get _deliveryFee => _subtotal == 0 ? 0.0 : 2.00;
   double get _total => _subtotal + _deliveryFee;
 
   void _updateQuantity(int index, int delta) {
     setState(() {
       CartManager().updateQuantity(index, delta);
     });
+  }
+
+  void _toggleSelection(int index) {
+    setState(() {
+      CartManager().toggleSelection(index);
+    });
+  }
+
+  void _selectAll(bool? selected) {
+    if (selected != null) {
+      setState(() {
+        CartManager().selectAll(selected);
+      });
+    }
   }
 
   void _removeItem(int index) {
@@ -123,101 +137,149 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
 
   Widget _buildCartList(bool isDark) {
     final cartItemsList = _cartItems;
-    return ListView.builder(
-      padding: const EdgeInsets.all(20),
-      itemCount: cartItemsList.length,
-      itemBuilder: (context, index) {
-        final item = cartItemsList[index];
-        final uniqueKey = item['id']?.toString() ?? item['title']?.toString() ?? index.toString();
-        
-        return Dismissible(
-          key: Key(uniqueKey),
-          direction: DismissDirection.endToStart,
-          background: Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.only(right: 20),
-            margin: const EdgeInsets.only(bottom: 20),
-            decoration: BoxDecoration(
-              color: Colors.redAccent.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Icon(Icons.delete_sweep_outlined, color: Colors.redAccent, size: 30),
-          ),
-          onDismissed: (_) => _removeItem(index),
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                if (!isDark)
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.03),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
-                  ),
-              ],
-            ),
+    return Column(
+      children: [
+        if (cartItemsList.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: _getImage(item).isNotEmpty 
-                    ? CachedNetworkImage(
-                        imageUrl: _getImage(item),
-                        width: 90,
-                        height: 110,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(color: Colors.grey[200]),
-                        errorWidget: (context, url, error) => const Icon(Icons.broken_image),
-                      )
-                    : Container(
-                        width: 90,
-                        height: 110,
-                        color: Colors.grey[200],
-                        child: const Icon(Icons.image_not_supported),
-                      ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                        item['title'] ?? 'Product',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      TextWidget(
-                        _getDetails(item),
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.primaryColor,
-                          ),
-                          _buildQuantityController(index, isDark),
-                        ],
-                      ),
-                    ],
+                SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: Checkbox(
+                    value: CartManager().isAllSelected,
+                    onChanged: _selectAll,
+                    activeColor: AppColor.primaryColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                   ),
+                ),
+                const SizedBox(width: 12),
+                TextWidget(
+                  "Select All".tr,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),
           ),
-        );
-      },
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            itemCount: cartItemsList.length,
+            itemBuilder: (context, index) {
+              final item = cartItemsList[index];
+              final uniqueKey = item['id']?.toString() ?? item['title']?.toString() ?? index.toString();
+              final isSelected = item['isSelected'] ?? true;
+
+              return Dismissible(
+                key: Key(uniqueKey),
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.only(right: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Icon(Icons.delete_sweep_outlined, color: Colors.redAccent, size: 30),
+                ),
+                onDismissed: (_) => _removeItem(index),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: Checkbox(
+                        value: isSelected,
+                        onChanged: (value) => _toggleSelection(index),
+                        activeColor: AppColor.primaryColor,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            if (!isDark)
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.03),
+                                blurRadius: 10,
+                                offset: const Offset(0, 5),
+                              ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: _getImage(item).isNotEmpty
+                                  ? CachedNetworkImage(
+                                      imageUrl: _getImage(item),
+                                      width: 90,
+                                      height: 110,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) => Container(color: Colors.grey[200]),
+                                      errorWidget: (context, url, error) => const Icon(Icons.broken_image),
+                                    )
+                                  : Container(
+                                      width: 90,
+                                      height: 110,
+                                      color: Colors.grey[200],
+                                      child: const Icon(Icons.image_not_supported),
+                                    ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    item['title'] ?? 'Product',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  TextWidget(
+                                    _getDetails(item),
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextWidget(
+                                        "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColor.primaryColor,
+                                      ),
+                                      _buildQuantityController(index, isDark),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -314,14 +376,20 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
               width: double.infinity,
               height: 60,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CheckoutPaymentScreen()),
-                  );
-                },
+                onPressed: _subtotal > 0
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderConfirmScreen(
+                              items: _cartItems.where((e) => e['isSelected'] == true).toList(),
+                            ),
+                          ),
+                        );
+                      }
+                    : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.buttonColor,
+                  backgroundColor: _subtotal > 0 ? AppColor.pink100Color : Colors.grey,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   elevation: 0,
                 ),
@@ -329,7 +397,7 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextWidget(
-                      "Proceed to Checkout".tr,
+                      "Order Now".tr,
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

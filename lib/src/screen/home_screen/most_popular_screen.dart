@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/app_color.dart';
 import '../list_url.dart';
+import 'all_popular_items_screen.dart';
 
 class MostPopularSection extends StatelessWidget {
   const MostPopularSection({super.key});
@@ -19,17 +21,26 @@ class MostPopularSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextWidget(
-                "Most Popular",
+                "Most Popular".tr,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: isDark ? Colors.white : Colors.black,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllPopularItemsScreen(
+                        items: popularItems,
+                      ),
+                    ),
+                  );
+                },
                 child: Row(
                   children: [
                     TextWidget(
-                      "SEE MORE",
+                      "SEE MORE".tr,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white70 : Colors.black54,

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/src/network/shared_preferences/shared_preferences.dart';
 
-class CartManager {
+class CartManager extends ChangeNotifier {
   static final CartManager _instance = CartManager._internal();
   factory CartManager() => _instance;
   CartManager._internal();
@@ -34,15 +34,36 @@ class CartManager {
       _cartItems[existingIndex]['quantity'] = (_cartItems[existingIndex]['quantity'] ?? 1) + (product['quantity'] ?? 1);
     } else {
       // Add new item
+      product['isSelected'] = true;
       _cartItems.add(product);
     }
     await _saveToPrefs();
+    notifyListeners();
   }
+
+  Future<void> toggleSelection(int index) async {
+    if (index >= 0 && index < _cartItems.length) {
+      _cartItems[index]['isSelected'] = !(_cartItems[index]['isSelected'] ?? true);
+      await _saveToPrefs();
+      notifyListeners();
+    }
+  }
+
+  Future<void> selectAll(bool selected) async {
+    for (var item in _cartItems) {
+      item['isSelected'] = selected;
+    }
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
+  bool get isAllSelected => _cartItems.isNotEmpty && _cartItems.every((item) => item['isSelected'] == true);
 
   Future<void> removeFromCart(int index) async {
     if (index >= 0 && index < _cartItems.length) {
       _cartItems.removeAt(index);
       await _saveToPrefs();
+      notifyListeners();
     }
   }
 
@@ -52,6 +73,7 @@ class CartManager {
       if (newQuantity > 0) {
         _cartItems[index]['quantity'] = newQuantity;
         await _saveToPrefs();
+        notifyListeners();
       }
     }
   }
@@ -59,6 +81,7 @@ class CartManager {
   Future<void> clearCart() async {
     _cartItems.clear();
     await _saveToPrefs();
+    notifyListeners();
   }
 
   Future<void> _saveToPrefs() async {
@@ -68,7 +91,10 @@ class CartManager {
 
   int get cartCount => _cartItems.length;
 
+  int get totalQuantity => _cartItems.fold(0, (sum, item) => sum + (item['quantity'] as int? ?? 1));
+
   double get subtotal => _cartItems.fold(0.0, (sum, item) {
+        if (item['isSelected'] == false) return sum;
         final price = _parsePrice(item['price']);
         final quantity = item['quantity'] ?? 1;
         return sum + (price * quantity);

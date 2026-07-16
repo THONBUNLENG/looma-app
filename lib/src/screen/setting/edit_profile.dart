@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
+
+import '../../../constants/string_extension.dart';
 
 
 class EditProfileScreen extends StatefulWidget {
@@ -11,14 +14,31 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final TextEditingController dateController = TextEditingController(
-    text: '12/27/1995',
-  );
-  final TextEditingController phoneController = TextEditingController();
+  late TextEditingController nameController;
+  late TextEditingController fullNameController;
+  late TextEditingController emailController;
+  late TextEditingController dateController;
+  late TextEditingController phoneController;
 
   String? selectedGender = 'Male';
   final List<String> genderOptions = ['Male', 'Female', 'Other'];
-  Map<String, String> selectedCountry = countries[0];
+  late Map<String, String> selectedCountry;
+
+  @override
+  void initState() {
+    super.initState();
+    final profile = ProfileManager();
+    nameController = TextEditingController(text: profile.name);
+    fullNameController = TextEditingController(text: profile.name);
+    emailController = TextEditingController(text: profile.email);
+    dateController = TextEditingController(text: '12/27/1995');
+    phoneController = TextEditingController(text: profile.phone.replaceAll(RegExp(r'^\+\d+\s*'), ''));
+    
+    selectedCountry = countries.firstWhere(
+      (c) => profile.phone.startsWith(c['code']!),
+      orElse: () => countries[0],
+    );
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final theme = Theme.of(context);
@@ -121,7 +141,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: TextWidget(
-          'Edit Profile',
+          'Edit Profile'.tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
         ),
@@ -161,20 +181,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ],
             ),
             const SizedBox(height: 24),
-            _buildInputField(hint: 'Andrew Ainsley'),
-            _buildInputField(hint: 'Andrew'),
+            _buildInputField(hint: 'Full Name'.tr, controller: fullNameController),
+            _buildInputField(hint: 'Name'.tr, controller: nameController),
             _buildInputField(
-              hint: 'Date of Birth',
+              hint: 'Date of Birth'.tr,
               controller: dateController,
               suffixIcon: Icons.calendar_month_outlined,
               onTap: () => _selectDate(context),
             ),
             _buildInputField(
-              hint: 'andrew_ainsley@yourdomain.com',
+              hint: 'Email'.tr,
+              controller: emailController,
               suffixIcon: Icons.email_outlined,
             ),
             _buildInputField(
-              hint: selectedCountry["name"]!,
+              hint: selectedCountry["name"]!.tr,
               suffixIcon: Icons.arrow_drop_down,
               onTap: _showCountryPicker,
             ),
@@ -315,7 +336,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   value: item,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(item),
+                    child: Text(item.tr),
                   ),
                 ),
           )
@@ -328,14 +349,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
 
   Widget _buildUpdateButton() {
-    final isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       width: double.infinity,
       height: 58,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          ProfileManager().updateProfile(
+            name: fullNameController.text,
+            email: emailController.text,
+            phone: "${selectedCountry['code']} ${phoneController.text}",
+          );
+          Navigator.pop(context);
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: isDark ? Colors.white : Colors.black,
           foregroundColor: isDark ? Colors.black : Colors.white,
@@ -344,7 +370,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         child: TextWidget(
-          'Continue',
+          'Continue'.tr,
           fontWeight: FontWeight.bold,
           fontSize: 18,
         ),

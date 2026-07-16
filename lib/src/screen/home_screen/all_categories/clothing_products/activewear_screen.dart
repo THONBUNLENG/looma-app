@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_clothes_screen.dart';
 
 import '../../../../../constants/app_color.dart';
 import '../../../../widget/text_widget.dart';
+import '../../card_detail/product_clothes_screen.dart';
 import '../../filter/filter_screen.dart';
 import '../../shopping_bag/shopping_bag_screen.dart';
 
@@ -183,7 +183,7 @@ class _ActivewearScreenState extends State<ActivewearScreen> {
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -359,7 +359,7 @@ class _ActivewearScreenState extends State<ActivewearScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Performance Gear',
+                  (item['title'] ?? 'Performance Gear').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -383,7 +383,7 @@ class _ActivewearScreenState extends State<ActivewearScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -419,8 +419,8 @@ class _ActivewearScreenState extends State<ActivewearScreen> {
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No activewear available"
-                : "No results found for '$_searchQuery'",
+                ? "No results found".tr
+                : "${'No results found for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -429,3 +429,4 @@ class _ActivewearScreenState extends State<ActivewearScreen> {
     );
   }
 }
+

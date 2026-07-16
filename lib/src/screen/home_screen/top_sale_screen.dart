@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../list_url.dart';
-import 'card/product_clothes_screen.dart';
+import 'card_detail/product_clothes_screen.dart';
 import 'flash_sale/flash_sale_discount_screen.dart';
 
 class TopSaleScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class TopSaleScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextWidget(
-                "Top Sale",
+                "Top Sale".tr,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: isDark ? AppColor.white : AppColor.black,
@@ -34,14 +35,14 @@ class TopSaleScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          FlashSaleDiscountScreen(imageUrl: AutofillHints.impp),
+                          FlashSaleDiscountScreen(imageUrl: flashSaleImages[0]),
                     ),
                   );
                 },
                 child: Row(
                   children: [
                     TextWidget(
-                      "SEE MORE",
+                      "SEE MORE".tr,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white70 : Colors.black54,
@@ -199,7 +200,7 @@ class TopSaleItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             TextWidget(
-              title,
+              title.tr,
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: isDark ? Colors.white : Colors.black87,
@@ -219,3 +220,4 @@ class TopSaleItemCard extends StatelessWidget {
     );
   }
 }
+

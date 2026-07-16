@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../constants/app_color.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import '../../../widget/text_widget.dart';
-import '../card/product_gift_screen.dart';
+import '../card_detail/product_gift_screen.dart';
 import '../filter/filter_screen.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
 
 class GiftScreen extends StatefulWidget {
   final String categoryName;
@@ -102,20 +102,8 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
           letterSpacing: 1.2,
         ),
         actions: [
-          IconButton(
-            icon: Badge(
-              label: TextWidget("0"),
-              child: Icon(Icons.shopping_bag_outlined, color: textColor),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ShoppingBagScreen(),
-                ),
-              );
-            },
-          ),
+          CartBadge(),
+          SizedBox(width: 8),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(115),
@@ -523,3 +511,4 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
     );
   }
 }
+

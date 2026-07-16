@@ -4,7 +4,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../../constants/app_color.dart';
 import '../../../../widget/text_widget.dart';
-import '../../card/product_shoes_screen.dart';
+import '../../card_detail/product_shoes_screen.dart';
 import '../../filter/filter_screen.dart';
 import '../../shopping_bag/shopping_bag_screen.dart';
 
@@ -450,3 +450,4 @@ class _LoafersScreenState extends State<LoafersScreen> {
     );
   }
 }
+

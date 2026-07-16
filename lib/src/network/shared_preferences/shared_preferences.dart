@@ -25,4 +25,5 @@ class PrefKey {
   static const String token = 'auth_token';
   static const String userId = 'user_id';
   static const String cartItems = 'cart_items';
+  static const String wishlistItems = 'wishlist_items';
 }

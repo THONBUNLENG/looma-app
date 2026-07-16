@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/boots_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/flats_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/heels_screen.dart';
@@ -8,6 +9,7 @@ import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_product
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/slippers_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/sneakers_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/shoes_products/sports_screen.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/app_color.dart';
@@ -200,6 +202,9 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : AppColor.black,
         ),
+        actions: const [
+          CartBadge(),
+        ],
       ),
       body: Column(
         children: [
@@ -339,7 +344,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
             ),
           ),
           title: TextWidget(
-            title,
+            title.tr,
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white : AppColor.black,
@@ -374,7 +379,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextWidget(
-                          subName,
+                          subName.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: isDark ? Colors.white70 : AppColor.black,
@@ -433,7 +438,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
               child: Row(
                 children: [
                   TextWidget(
-                    'Just for You',
+                    'Just for You'.tr,
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                     color: isDark ? Colors.white : AppColor.black,

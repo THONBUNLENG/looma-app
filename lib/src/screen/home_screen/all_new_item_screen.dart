@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import '../../../constants/color.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import '../../widget/text_widget.dart';
-import 'card/product_clothes_screen.dart';
+import 'card_detail/product_clothes_screen.dart';
 import 'filter/filter_screen.dart';
 
 class AllNewItemScreen extends StatelessWidget {
@@ -31,12 +33,16 @@ class AllNewItemScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          categoryName.toUpperCase(),
+          categoryName.toUpperCase().tr,
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
           letterSpacing: 1.2,
         ),
+        actions: const [
+          CartBadge(),
+          SizedBox(width: 8),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(64),
           child: _buildSearchBar(context, isDark),
@@ -59,7 +65,7 @@ class AllNewItemScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 TextWidget(
-                  "${newItems.length} items found",
+                  "${newItems.length} ${'items found'.tr}",
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: textColor.withValues(alpha: 0.7),
@@ -385,3 +391,4 @@ class AllNewItemScreen extends StatelessWidget {
     );
   }
 }
+

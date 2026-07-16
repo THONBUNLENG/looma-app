@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../list_url.dart';
+import 'all_brands_screen.dart';
 
 class BrandsScreen extends StatelessWidget {
   const BrandsScreen({super.key});
@@ -14,11 +16,32 @@ class BrandsScreen extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: TextWidget(
-            "Brands",
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextWidget(
+                "Brands".tr,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AllBrandsScreen(),
+                    ),
+                  );
+                },
+                child: TextWidget(
+                  "SEE MORE".tr,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
+              ),
+            ],
           ),
         ),
         SizedBox(
@@ -54,7 +77,6 @@ class BrandsCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Column(

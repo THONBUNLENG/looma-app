@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/app_color.dart';
-import '../card/product_clothes_screen.dart';
+import '../card_detail/product_clothes_screen.dart';
 import '../filter/filter_screen.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
+
 
 class FlashSaleDiscountScreen extends StatefulWidget {
   final String imageUrl;
@@ -25,14 +27,14 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  final List<String> filters = const [
+    final List<String> filters = [
     "All",
     "10%",
     "20%",
     "30%",
     "40%",
     "50%",
-  ];
+  ].map((e) => e.tr).toList();
 
   @override
   void dispose() {
@@ -74,39 +76,14 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          "Flash Sale",
+          "Flash Sale".tr,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: textColor,
         ),
-        actions: [
-          IconButton(
-            icon: Badge(
-              label: TextWidget(
-                "0",
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
-              backgroundColor: Colors.red,
-              largeSize: 18,
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                color: textColor,
-                size: 26,
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ShoppingBagScreen(),
-                ),
-              );
-            },
-          ),
-          const SizedBox(width: 8),
+        actions: const [
+          CartBadge(),
+          SizedBox(width: 8),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(125),
@@ -1635,3 +1612,4 @@ final Map<String, List<Map<String, String>>> discountProducts = {
     }
   ],
 };
+

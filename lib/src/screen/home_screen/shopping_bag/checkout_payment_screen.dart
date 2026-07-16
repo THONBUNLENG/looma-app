@@ -66,7 +66,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
                     margin: const EdgeInsets.only(bottom: 15),
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                     decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
+                      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: isSelected ? AppColor.primaryColor : Colors.transparent,
@@ -75,7 +75,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
                       boxShadow: [
                         if (!isDark)
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.03),
+                            color: Colors.black.withValues(alpha: 0.03),
                             blurRadius: 10,
                             offset: const Offset(0, 5),
                           ),
@@ -133,7 +133,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.grey.withOpacity(0.3), style: BorderStyle.solid),
+                  border: Border.all(color: Colors.grey.withValues(alpha: 0.3), style: BorderStyle.solid),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

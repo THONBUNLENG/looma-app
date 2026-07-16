@@ -4,31 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../list_url.dart';
 
-class ProductBagScreen extends StatefulWidget {
+class ProductCosmeticsScreen extends StatefulWidget {
   final Map<String, dynamic> product;
 
-  const ProductBagScreen({super.key, required this.product});
+  const ProductCosmeticsScreen({super.key, required this.product});
 
   @override
-  State<ProductBagScreen> createState() => _ProductBagScreenState();
+  State<ProductCosmeticsScreen> createState() => _ProductCosmeticsScreenState();
 }
 
-class _ProductBagScreenState extends State<ProductBagScreen> {
+class _ProductCosmeticsScreenState extends State<ProductCosmeticsScreen> {
   late PageController _pageController;
   Timer? _timer;
   int _currentPage = 0;
-  int selectedColor = 0;
   int quantity = 1;
-
-  final List<Color> colors = [
-    const Color(0xFF6A8D92),
-    const Color(0xFF8B5E4D),
-    const Color(0xFF808080),
-    const Color(0xFFA9A9A9),
-  ];
 
   late bool isFavorite;
 
@@ -49,9 +43,12 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
 
   void _startTimer() {
     _timer?.cancel();
-
-    final dynamic imagesData = widget.product['images'];
-    int imageCount = (imagesData is List) ? imagesData.length : 1;
+    int imageCount = 1;
+    if (widget.product['images'] != null && widget.product['images'] is List) {
+      imageCount = (widget.product['images'] as List).length;
+    } else if (widget.product['image'] != null) {
+      imageCount = 4;
+    }
 
     if (imageCount <= 1) return;
 
@@ -71,8 +68,8 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
     if (price == null) return 0.0;
     if (price is num) return price.toDouble();
     return double.tryParse(
-          price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
-        ) ??
+      price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
+    ) ??
         0.0;
   }
 
@@ -81,14 +78,16 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF121212) : Colors.white;
     final unitPrice = _parsePrice(widget.product['price']);
+
     List<String> images = [];
-    final dynamic pImages = widget.product['images'];
-    if (pImages is List && pImages.isNotEmpty) {
-      images = List<String>.from(pImages);
+    if (widget.product['images'] != null && widget.product['images'] is List) {
+      images = List<String>.from(widget.product['images']);
+    } else if (widget.product['image'] != null &&
+        widget.product['image'].toString().isNotEmpty) {
+      images = List.generate(4, (index) => widget.product['image'].toString());
     } else {
       images = [
-        widget.product['image']?.toString() ??
-            'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
+        'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
       ];
     }
 
@@ -122,8 +121,15 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                           placeholder: (context, url) => const Center(
                             child: CircularProgressIndicator(strokeWidth: 2),
                           ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.broken_image_outlined, size: 50),
+                          errorWidget: (context, url, error) => Container(
+                            color: isDark ? Colors.white10 : AppColor.grey100,
+                            alignment: Alignment.center,
+                            child: CachedNetworkImage(
+                              imageUrl:
+                              'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -132,16 +138,23 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(12),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const CircleAvatar(
-                        backgroundColor: Colors.black26,
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Colors.white,
-                          size: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const CircleAvatar(
+                            backgroundColor: Colors.black26,
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
                         ),
-                      ),
+                        const CartBadge(showBackground: true, iconColor: Colors.white,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -187,9 +200,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                     children: [
                       Expanded(
                         child: TextWidget(
-                          (widget.product['title'] ?? 'Product Item')
-                              .toString()
-                              .tr,
+                          (widget.product['title'] ?? 'Product Item').toString().tr,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: isDark ? Colors.white : Colors.black,
@@ -197,15 +208,21 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      IconButton(
-                        onPressed: () =>
-                            setState(() => isFavorite = !isFavorite),
-                        icon: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
-                          size: 28,
-                          color: isFavorite
-                              ? Colors.red
-                              : (isDark ? Colors.white : Colors.black),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isFavorite = !isFavorite;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          child: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            size: 28,
+                            color: isFavorite
+                                ? Colors.red
+                                : (isDark ? Colors.white : Colors.black),
+                          ),
                         ),
                       ),
                     ],
@@ -214,7 +231,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                   Row(
                     children: [
                       _buildBadge(
-                        "${widget.product['sold'] ?? '0'} ${'sold'.tr}",
+                        "${widget.product['sold'] ?? '0'} ${"sold".tr}",
                         isDark,
                       ),
                       const SizedBox(width: 12),
@@ -223,16 +240,16 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                         color: Colors.orange,
                         size: 20,
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: 4),
                       TextWidget(
-                        "${widget.product['rating'] ?? '4.8'} (${widget.product['reviews'] ?? '0'} ${'reviews'.tr})",
+                        "${widget.product['rating'] ?? '4.8'} (${widget.product['reviews'] ?? '0'} ${"reviews".tr})",
                         color: isDark ? Colors.white70 : Colors.black54,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 30),
                   TextWidget(
                     "Description".tr,
                     fontSize: 18,
@@ -242,23 +259,21 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                   const SizedBox(height: 10),
                   TextWidget(
                     (widget.product['description'] ??
-                            "Premium quality product designed for durability and comfort.")
+                        "Premium quality product designed for durability and comfort.")
                         .toString()
                         .tr,
-                    color: isDark ? Colors.white60 : Colors.black87,
+                    color: isDark ? Colors.white60 : Colors.black54,
                     fontSize: 15,
                     lineHeight: 1.5,
                   ),
-                  const SizedBox(height: 32),
-                  _buildColorSelector(isDark),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 30),
                   TextWidget(
                     "Quantity".tr,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 15),
                   _buildQuantityStepper(isDark),
                   const SizedBox(height: 30),
                   _buildDeliveryReturns(isDark),
@@ -300,44 +315,6 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
         fontWeight: FontWeight.w600,
         color: isDark ? Colors.white70 : Colors.black87,
       ),
-    );
-  }
-
-  Widget _buildColorSelector(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextWidget("Color".tr, fontSize: 16, fontWeight: FontWeight.bold),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 12,
-          children: List.generate(colors.length, (index) {
-            bool isSelected = selectedColor == index;
-            return GestureDetector(
-              onTap: () => setState(() => selectedColor = index),
-              child: Container(
-                width: 38,
-                height: 38,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colors[index],
-                  border: isSelected
-                      ? Border.all(color: AppColor.primaryColor, width: 3)
-                      : null,
-                  boxShadow: [
-                    if (isSelected)
-                      const BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
-                      ),
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
-      ],
     );
   }
 
@@ -452,7 +429,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
       shape: const Border(),
       children: [
         TextWidget(
-          "High-quality materials and craftsmanship.".tr,
+          "Premium jewelry crafted with high-quality materials and exquisite attention to detail.".tr,
           color: isDark ? Colors.white70 : Colors.black87,
           fontSize: 15,
           lineHeight: 1.4,
@@ -491,9 +468,9 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: bags.length > 10 ? 10 : bags.length,
+            itemCount: skincare .length > 10 ? 10 : skincare .length,
             itemBuilder: (context, index) {
-              final item = bags[index];
+              final item =skincare [index];
               return _buildSimilarProductCard(item, isDark, index);
             },
           ),
@@ -503,10 +480,10 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
   }
 
   Widget _buildSimilarProductCard(
-    Map<String, dynamic> item,
-    bool isDark,
-    int index,
-  ) {
+      Map<String, dynamic> item,
+      bool isDark,
+      int index,
+      ) {
     final dynamic images = item['images'];
     final String imageUrl = images is List && images.isNotEmpty
         ? images.first.toString()
@@ -517,7 +494,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductBagScreen(product: item),
+            builder: (context) => ProductCosmeticsScreen(product: item),
           ),
         );
       },
@@ -545,7 +522,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                           ),
                         ),
                         errorWidget: (context, url, error) =>
-                            const Icon(Icons.broken_image),
+                        const Icon(Icons.broken_image),
                       ),
                     ),
                   ),
@@ -781,24 +758,24 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
   }
 
   Widget _buildPaymentBox(
-    String label,
-    Color color,
-    bool isDark, {
-    String? imagePath,
-  }) {
+      String label,
+      Color color,
+      bool isDark, {
+        String? imagePath,
+      }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       height: 35,
       child: imagePath != null
           ? Image.asset(imagePath, fit: BoxFit.contain)
           : Center(
-              child: TextWidget(
-                label.tr,
-                color: color,
-                fontWeight: FontWeight.bold,
-                fontSize: 10,
-              ),
-            ),
+        child: TextWidget(
+          label.tr,
+          color: color,
+          fontWeight: FontWeight.bold,
+          fontSize: 10,
+        ),
+      ),
     );
   }
 
@@ -832,43 +809,91 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                 ),
               ],
             ),
-            const SizedBox(width: 25),
+            const SizedBox(width: 15),
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  final cartItem = Map<String, dynamic>.from(widget.product);
-                  cartItem['quantity'] = quantity;
-                  cartItem['selectedColorIndex'] = selectedColor;
-                  CartManager().addToCart(cartItem);
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: TextWidget(
-                        "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
-                        color: Colors.white,
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: TextWidget(
+                              "${'Added to Cart'.tr}: ${widget.product['title'] ?? 'Product Item'}",
+                              color: Colors.white,
+                            ),
+                            backgroundColor: AppColor.successGreen,
+                            duration: const Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: isDark ? Colors.white30 : Colors.grey.shade300),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                      backgroundColor: AppColor.successGreen,
-                      duration: const Duration(seconds: 2),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.add_shopping_cart, size: 18, color: isDark ? Colors.white : Colors.black87),
+                          TextWidget(
+                            "Add to Cart".tr,
+                            color: isDark ? Colors.white : Colors.black87,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isDark ? Colors.white : Colors.black,
-                  foregroundColor: isDark ? Colors.black : Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
                   ),
-                ),
-                child: TextWidget(
-                  "Add to Cart".tr,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final cartItem = Map<String, dynamic>.from(widget.product);
+                        cartItem['quantity'] = quantity;
+                        CartManager().addToCart(cartItem);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderConfirmScreen(items: [cartItem]),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.pink100Color,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.shopping_bag_outlined, size: 18),
+                          TextWidget(
+                            "Order Now".tr,
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -877,3 +902,5 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
     );
   }
 }
+
+

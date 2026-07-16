@@ -6,6 +6,8 @@ import 'package:shopping_app/src/screen/splash_screen.dart';
 
 import 'manager/preferences_manager.dart';
 import 'manager/cart_manager.dart';
+import 'manager/profile_manager.dart';
+import 'manager/wishlist_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
 import 'localization/locale_ch.dart';
@@ -19,6 +21,8 @@ Future<void> main() async {
 
   await SharedPrefUtil.init();
   await CartManager().init();
+  await WishlistManager().init();
+  await ProfileManager().init();
   await translator.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

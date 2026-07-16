@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/src/screen/home_screen/all_categories/all_categories_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/bag_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/gift.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/lingerie_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/toys.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/watch_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/style_product/style_product_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../list_url.dart';
@@ -192,7 +193,7 @@ class _CategorySectionState extends State<CategorySection> {
           Row(
             children: [
               TextWidget(
-                "Categories",
+                "Categories".tr,
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
                 color: isDark ? Colors.white : Colors.black,
@@ -204,27 +205,23 @@ class _CategorySectionState extends State<CategorySection> {
                 size: 20,
               ),
               const Spacer(),
-              TextButton.icon(
+              TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StyleProductScreen(imageUrl: ''),
+                      builder: (context) => const AllCategoriesScreen(),
                     ),
                   );
                 },
-                icon: Icon(
-                  Icons.dashboard_rounded,
-                  size: 20,
-                  color: isDark ? Colors.white : Colors.black,
-                ),
-                label: TextWidget(
-                  "Style",
+                child: TextWidget(
+                  "SEE MORE".tr,
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white70 : Colors.black54,
                 ),
               ),
+              const SizedBox(width: 4),
             ],
           ),
           const SizedBox(height: 20),
@@ -276,7 +273,7 @@ class _CategorySectionState extends State<CategorySection> {
                         ),
                         const SizedBox(height: 8),
                         TextWidget(
-                          item.title.toUpperCase(),
+                          item.title.toUpperCase().tr,
                           textAlign: TextAlign.center,
                           fontSize: 10,
                           fontWeight: FontWeight.w800,

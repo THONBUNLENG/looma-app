@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+import '../../../constants/string_extension.dart';
 import '../../widget/button.dart';
 import 'create_account.dart';
 import 'login_screen.dart';
@@ -61,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 TextWidget(
-                  "Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.",
+                  "Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.".tr,
                   textAlign: TextAlign.center,
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -73,7 +74,7 @@ class WelcomeScreen extends StatelessWidget {
                 const Spacer(),
 
                 MyCustomButton(
-                  text: "Let's get started",
+                  text: "Let's get started".tr,
                   width: double.infinity,
                   height: 60,
                   borderRadius: 18,
@@ -102,7 +103,7 @@ class WelcomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextWidget(
-                          "I already have an account",
+                          "I already have an account".tr,
                           fontSize: 14,
                           color: Colors.white,
                         ),

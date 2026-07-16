@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../list_url.dart';
 import 'all_new_item_screen.dart';
-import 'card/product_clothes_screen.dart';
+import 'card_detail/product_clothes_screen.dart';
 
 class NewItemsSection extends StatelessWidget {
   const NewItemsSection({super.key});
@@ -23,7 +24,7 @@ class NewItemsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextWidget(
-                "New Items",
+                "New Items".tr,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: isDark ? AppColor.white : AppColor.black,
@@ -43,7 +44,7 @@ class NewItemsSection extends StatelessWidget {
                 child: Row(
                   children: [
                     TextWidget(
-                      "SEE MORE",
+                      "SEE MORE".tr,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white70 : Colors.black54,
@@ -197,7 +198,7 @@ class NewItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             TextWidget(
-              title,
+              title.tr,
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: isDark ? Colors.white : Colors.black87,
@@ -217,3 +218,4 @@ class NewItemCard extends StatelessWidget {
     );
   }
 }
+

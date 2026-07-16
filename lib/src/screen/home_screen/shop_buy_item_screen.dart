@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/all_categories_screen.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/dresse_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/hoodies_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/jackets_screen.dart';
@@ -46,27 +46,27 @@ class ShopBuyItemScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextWidget(
-                "Shop by items",
+                "Shop by items".tr,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: isDark ? AppColor.white : AppColor.black,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AllCategoriesScreen(),
-                    ),
-                  );
-                },
-                child: TextWidget(
-                  "SEE MORE",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white70 : Colors.black54,
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => (),
+              //       ),
+              //     );
+              //   },
+              //   child: TextWidget(
+              //     "SEE MORE",
+              //     fontSize: 14,
+              //     fontWeight: FontWeight.bold,
+              //     color: isDark ? Colors.white70 : Colors.black54,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -195,7 +195,7 @@ class ShopBuyItemScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   TextWidget(
-                    item['title'],
+                    item['title'].toString().tr,
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: isDark ? Colors.white70 : Colors.grey[700],
@@ -230,14 +230,14 @@ class ShopBuyItemScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextWidget(
-                      'FREE DELIVERY\nON ORDERS\nOVER \$160+',
+                      'FREE DELIVERY\nON ORDERS\nOVER \$160+'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w900,
                       color: isDark ? Colors.white : Colors.black,
                     ),
                     const SizedBox(height: 8),
                     TextWidget(
-                      'T&Cs APPLY',
+                      'T&Cs APPLY'.tr,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white38 : Colors.black45,

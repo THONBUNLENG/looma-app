@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_clothes_screen.dart'; // Import Screen លម្អិត
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
+
+import 'card_detail/product_clothes_screen.dart';
 
 class JustForYouSection extends StatelessWidget {
   final List<Map<String, dynamic>> justForYouData;
@@ -21,7 +23,7 @@ class JustForYouSection extends StatelessWidget {
           child: Row(
             children: [
               TextWidget(
-                "Just For You",
+                "Just For You".tr,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: isDark ? Colors.white : Colors.black,
@@ -168,7 +170,7 @@ class JustForYouCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA PREMIUM",
+                  "LOOMA PREMIUM".tr,
                   fontSize: 10,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -176,7 +178,7 @@ class JustForYouCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 TextWidget(
-                  title,
+                  title.toString().tr,
                   fontSize: 15,
                   maxLines: 1,
                   fontWeight: FontWeight.w600,
@@ -193,7 +195,7 @@ class JustForYouCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     TextWidget(
-                      rating,
+                      rating.toString(),
                       color: subTextColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -205,7 +207,7 @@ class JustForYouCard extends StatelessWidget {
                         color: subTextColor.withValues(alpha: 0.2),
                       ),
                     ),
-                    TextWidget("$sold sold", color: subTextColor, fontSize: 11),
+                    TextWidget("${sold.toString()} ${'sold'.tr}", color: subTextColor, fontSize: 11),
                   ],
                 ),
                 const SizedBox(height: 6),
@@ -223,3 +225,4 @@ class JustForYouCard extends StatelessWidget {
     );
   }
 }
+

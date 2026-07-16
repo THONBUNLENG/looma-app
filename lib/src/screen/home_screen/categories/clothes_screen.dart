@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/src/screen/home_screen/card/product_clothes_screen.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/app_color.dart';
+import '../card_detail/product_clothes_screen.dart';
 import '../filter/filter_screen.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
+
 
 class ClothesScreen extends StatefulWidget {
   final String categoryName;
@@ -140,20 +141,8 @@ class _ClothesScreenState extends State<ClothesScreen>
           letterSpacing: 1.2,
         ),
         actions: [
-          IconButton(
-            icon: Badge(
-              label:  TextWidget("0"),
-              child: Icon(Icons.shopping_bag_outlined, color: textColor),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ShoppingBagScreen(),
-                ),
-              );
-            },
-          ),
+          CartBadge(),
+          SizedBox(width: 8),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(115),
@@ -540,3 +529,4 @@ class _ClothesScreenState extends State<ClothesScreen>
     );
   }
 }
+

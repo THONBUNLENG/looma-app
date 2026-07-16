@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/light_dark_theme/theme.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+import '../../../constants/string_extension.dart';
+import '../../../main.dart';
 import '../../widget/show_dialog.dart';
 import '../home_screen/order/order_screen.dart';
 import '../home_screen/shopping_bag/shopping_bag_screen.dart';
@@ -39,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
 
         title: TextWidget(
-          'Profile',
+          'Profile'.tr,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white : Colors.black,
@@ -55,8 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   splashRadius: 24,
                   icon: Icon(
                     Icons.shopping_bag_outlined,
-                    color:
-                    isDark ? Colors.white : Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                     size: 30,
                   ),
                   onPressed: () {
@@ -77,16 +78,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 22,
                     decoration: BoxDecoration(
                       color: Colors.red,
-                      borderRadius:
-                      BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(100),
                       border: Border.all(
-                        color: isDark
-                            ? const Color(0xFF121212)
-                            : Colors.white,
+                        color: isDark ? const Color(0xFF121212) : Colors.white,
                         width: 2,
                       ),
                     ),
-                    child:  Center(
+                    child: Center(
                       child: TextWidget(
                         '0',
                         color: Colors.white,
@@ -165,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/edit_profile.png',
-              "Edit Profile",
+              "Edit Profile".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -178,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/address.png',
-              "Address",
+              "Address".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -191,20 +189,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/order.png',
-              "My Orders",
+              "My Orders".tr,
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const OrderScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const OrderScreen()),
                 );
               },
             ),
             _buildProfileItem(
               context,
               'assets/icon/notification.png',
-              "Notification",
+              "Notification".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -217,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/payment.png',
-              "Payment",
+              "Payment".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -230,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/security.png',
-              "Security",
+              "Security".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -243,8 +239,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/language.png',
-              "Language",
-              trailingText: "English (US)",
+              "Language".tr,
+              trailingText: translator.currentLocale?.languageCode == 'en'
+                  ? "English (US)"
+                  : (translator.currentLocale?.languageCode == 'km'
+                        ? "Khmer"
+                        : "Chinese"),
               onTap: () {
                 Navigator.push(
                   context,
@@ -263,7 +263,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 24,
                 color: isDark ? Colors.white : Colors.black,
               ),
-              title: TextWidget("Dark Mode", fontWeight: FontWeight.w600),
+              title: TextWidget("Dark Mode".tr, fontWeight: FontWeight.w600),
               trailing: Switch(
                 value: isDark,
                 activeTrackColor: theme.primaryColor,
@@ -278,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/privacy_policy.png',
-              "Privacy Policy",
+              "Privacy Policy".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -291,7 +291,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/help_center.png',
-              "Help Center",
+              "Help Center".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -304,7 +304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildProfileItem(
               context,
               'assets/icon/invite_friends.png',
-              "Invite Friends",
+              "Invite Friends".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -324,7 +324,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Colors.red,
               ),
               title: TextWidget(
-                "Logout",
+                "Logout".tr,
                 color: Colors.red,
                 fontWeight: FontWeight.w600,
               ),
@@ -388,10 +388,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog(
       context: context,
       builder: (context) => StatusDialog(
-        title: "Logout",
-        message: "Are you sure you want to log out of your account?",
-        btn1Text: "Cancel",
-        btn2Text: "Logout",
+        title: "Logout".tr,
+        message: "Are you sure you want to log out of your account?".tr,
+        btn1Text: "Cancel".tr,
+        btn2Text: "Logout".tr,
         imagePath: 'assets/icon/i_color/Information.png',
         iconColor: Colors.red,
         onBtn1Pressed: () => Navigator.pop(context),
