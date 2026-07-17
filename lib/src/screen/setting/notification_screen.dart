@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -40,7 +41,7 @@ class _NotificationSettingsScreenState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Notification',
+          'Notification'.tr,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white : Colors.black,
@@ -55,7 +56,7 @@ class _NotificationSettingsScreenState
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
                 child: Text(
-                  entry.key.toUpperCase(),
+                  entry.key.tr.toUpperCase(),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -67,7 +68,7 @@ class _NotificationSettingsScreenState
               ...entry.value.map(
                     (item) => SwitchListTile(
                   title: Text(
-                    item['title'],
+                    item['title'].toString().tr,
                     style: TextStyle(
                       fontSize: 16,
                       color: isDark ? Colors.white : Colors.black87,

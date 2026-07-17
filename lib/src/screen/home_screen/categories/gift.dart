@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import '../../../widget/text_widget.dart';
@@ -95,7 +96,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -121,15 +122,15 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Birthday"),
-                  Tab(text: "Anniversary"),
-                  Tab(text: "Wedding"),
-                  Tab(text: "Baby"),
-                  Tab(text: "Valentine"),
-                  Tab(text: "Graduation"),
-                  Tab(text: "Personalized"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Birthday".tr),
+                  Tab(text: "Anniversary".tr),
+                  Tab(text: "Wedding".tr),
+                  Tab(text: "Baby".tr),
+                  Tab(text: "Valentine".tr),
+                  Tab(text: "Graduation".tr),
+                  Tab(text: "Personalized".tr),
                 ],
               ),
             ],
@@ -147,7 +148,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -203,7 +204,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...",
+                  hintText: "Search in ${widget.categoryName.tr}...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -252,7 +253,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
                   ),
                   const SizedBox(width: 8),
                   TextWidget(
-                    "Filter",
+                    "filter".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black,
@@ -433,7 +434,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -464,7 +465,7 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -501,8 +502,8 @@ class _GiftScreenState extends State<GiftScreen> with TickerProviderStateMixin {
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No gifts available"
-                : "No items found for '$_searchQuery'",
+                ? "No gifts available".tr
+                : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

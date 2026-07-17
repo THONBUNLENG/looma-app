@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
@@ -134,7 +135,7 @@ class _ClothesScreenState extends State<ClothesScreen>
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -160,27 +161,27 @@ class _ClothesScreenState extends State<ClothesScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Polos"),
-                  Tab(text: "Activewear"),
-                  Tab(text: "Jackets"),
-                  Tab(text: "Jeans"),
-                  Tab(text: "Joggers"),
-                  Tab(text: "Leggings"),
-                  Tab(text: "Pants"),
-                  Tab(text: "Shirts"),
-                  Tab(text: "Skirt"),
-                  Tab(text: "Suits"),
-                  Tab(text: "Sweatshirts"),
-                  Tab(text: "T-Shirts"),
-                  Tab(text: "Blouses"),
-                  Tab(text: "Cardigans"),
-                  Tab(text: "Coats"),
-                  Tab(text: "Dresses"),
-                  Tab(text: "Essential Hoodies"),
-                  Tab(text: "Shorts"),
-                  Tab(text: "Skirts"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Polos".tr),
+                  Tab(text: "Activewear".tr),
+                  Tab(text: "Jackets".tr),
+                  Tab(text: "Jeans".tr),
+                  Tab(text: "Joggers".tr),
+                  Tab(text: "Leggings".tr),
+                  Tab(text: "Pants".tr),
+                  Tab(text: "Shirts".tr),
+                  Tab(text: "Skirt".tr),
+                  Tab(text: "Suits".tr),
+                  Tab(text: "Sweatshirts".tr),
+                  Tab(text: "T-Shirts".tr),
+                  Tab(text: "Blouses".tr),
+                  Tab(text: "Cardigans".tr),
+                  Tab(text: "Coats".tr),
+                  Tab(text: "Dresses".tr),
+                  Tab(text: "Essential Hoodies".tr),
+                  Tab(text: "Shorts".tr),
+                  Tab(text: "Skirts".tr),
                 ],
               ),
             ],
@@ -198,7 +199,7 @@ class _ClothesScreenState extends State<ClothesScreen>
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -252,7 +253,7 @@ class _ClothesScreenState extends State<ClothesScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...",
+                  hintText: "Search in ${widget.categoryName.tr}...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search_rounded, size: 22, color: hintColor),
                   suffixIcon: _searchQuery.isNotEmpty
@@ -293,7 +294,7 @@ class _ClothesScreenState extends State<ClothesScreen>
                   ),
                   const SizedBox(width: 8),
                   TextWidget(
-                    "Filter",
+                    "filter".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color:isDark ? Colors.white : Colors.black,
@@ -483,7 +484,7 @@ class _ClothesScreenState extends State<ClothesScreen>
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -519,8 +520,8 @@ class _ClothesScreenState extends State<ClothesScreen>
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No clothes found in this category"
-                : "No items found for '$_searchQuery'",
+                ? "No clothes found in this category".tr
+                : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

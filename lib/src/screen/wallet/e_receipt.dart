@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/wallet/t_history.dart';
 
 import '../../../constants/app_color.dart';
@@ -24,7 +25,7 @@ class EReceiptScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'E-Receipt',
+          'E-Receipt'.tr,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white : Colors.black,
@@ -85,12 +86,12 @@ class EReceiptScreen extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  transaction.title,
+                  transaction.title.tr,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                subtitle: Text('Qty = 1', style: theme.textTheme.bodySmall),
+                subtitle: Text('${"Qty".tr} = 1', style: theme.textTheme.bodySmall),
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -98,8 +99,8 @@ class EReceiptScreen extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          'Color ',
+                        Text(
+                          '${"Color".tr} ',
                           style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                         Container(
@@ -112,8 +113,8 @@ class EReceiptScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Text(
-                      'Size = 40',
+                    Text(
+                      '${"Size".tr} = 40',
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
@@ -124,11 +125,11 @@ class EReceiptScreen extends StatelessWidget {
               context,
               child: Column(
                 children: [
-                  _buildRow(context, 'Amount', transaction.amount),
+                  _buildRow(context, 'Amount'.tr, transaction.amount),
                   const SizedBox(height: 12),
                   _buildRow(
                     context,
-                    'Promo',
+                    'Promo'.tr,
                     '- \$112.50',
                     valueColor: Colors.red,
                   ),
@@ -138,7 +139,7 @@ class EReceiptScreen extends StatelessWidget {
                         ? Colors.white10
                         : Colors.grey.withValues(alpha: 0.1),
                   ),
-                  _buildRow(context, 'Total', transaction.amount, isBold: true),
+                  _buildRow(context, 'Total'.tr, transaction.amount, isBold: true),
                 ],
               ),
             ),
@@ -146,24 +147,24 @@ class EReceiptScreen extends StatelessWidget {
               context,
               child: Column(
                 children: [
-                  _buildRow(context, 'Payment Methods', 'My E-Wallet'),
+                  _buildRow(context, 'Payment Methods'.tr, 'My E-Wallet'.tr),
                   const SizedBox(height: 12),
-                  _buildRow(context, 'Date', transaction.date),
+                  _buildRow(context, 'Date'.tr, transaction.date),
                   const SizedBox(height: 12),
                   _buildTransactionIdRow(
                     context,
-                    'Transaction ID',
+                    'Transaction ID'.tr,
                     'SK7263727399',
                   ),
                   const SizedBox(height: 12),
-                  _buildStatusRow(context, 'Status', 'Paid'),
+                  _buildStatusRow(context, 'Status'.tr, 'Paid'.tr),
                 ],
               ),
             ),
 
             _buildInfoCard(
               context,
-              child: _buildRow(context, 'Category', 'Orders'),
+              child: _buildRow(context, 'Category'.tr, 'Orders'.tr),
             ),
             const SizedBox(height: 30),
           ],

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 
-
 import '../../../../../constants/app_color.dart';
 import '../../../../widget/text_widget.dart';
 import '../../card_detail/product_clothes_screen.dart';
@@ -40,8 +39,8 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
       _filteredHoodies = widget.essentialHoodies
           .where(
             (item) => (item['title'] ?? '').toLowerCase().contains(
-                  query.toLowerCase(),
-                ),
+              query.toLowerCase(),
+            ),
           )
           .toList();
     });
@@ -61,25 +60,19 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
-        leading: BackButton(
-          color: isDark ? Colors.white : Colors.black,
-        ),
+        leading: BackButton(color: isDark ? Colors.white : Colors.black),
         toolbarHeight: 90,
-        backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFF9F9F9),
+        backgroundColor: isDark
+            ? const Color(0xFF121212)
+            : const Color(0xFFF9F9F9),
         elevation: 0,
         centerTitle: true,
         leadingWidth: 70,
         title: ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
             colors: isDark
-                ? const [
-                    Colors.white,
-                    Colors.white70,
-                  ]
-                : const [
-                    Colors.black,
-                    Colors.black54,
-                  ],
+                ? const [Colors.white, Colors.white70]
+                : const [Colors.black, Colors.black54],
           ).createShader(bounds),
           child: TextWidget(
             'LOOMA',
@@ -100,14 +93,18 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
             child: _filteredHoodies.isEmpty
                 ? _buildEmptyState(isDark)
                 : GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.60,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 20,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
                     ),
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.60,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 20,
+                        ),
                     itemCount: _filteredHoodies.length,
                     itemBuilder: (context, index) {
                       final item = _filteredHoodies[index];
@@ -177,14 +174,12 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
       child: Container(
         width: double.infinity,
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(
-          vertical: 4,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -195,7 +190,9 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
 
   Widget _buildSearchBar(BuildContext context, bool isDark) {
     final textColor = isDark ? Colors.white : Colors.black;
-    final searchBg = isDark ? Colors.white.withValues(alpha: 0.1) : AppColor.grey100;
+    final searchBg = isDark
+        ? Colors.white.withValues(alpha: 0.1)
+        : AppColor.grey100;
     final hintColor = isDark ? Colors.white60 : Colors.black45;
 
     return Padding(
@@ -288,7 +285,8 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-    final String imageUrl = (item['images'] != null && (item['images'] as List).isNotEmpty)
+    final String imageUrl =
+        (item['images'] != null && (item['images'] as List).isNotEmpty)
         ? item['images'][0]
         : (item['image'] ?? '');
 
@@ -308,7 +306,9 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: isDark ? Colors.white.withValues(alpha: 0.05) : AppColor.grey100,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : AppColor.grey100,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -352,7 +352,7 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -360,7 +360,7 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Essential Hoodie',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -370,7 +370,11 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const Icon(Icons.star_rounded, color: Colors.orange, size: 16),
+                    const Icon(
+                      Icons.star_rounded,
+                      color: Colors.orange,
+                      size: 16,
+                    ),
                     const SizedBox(width: 4),
                     TextWidget(
                       item['rating'] ?? '4.8',
@@ -380,11 +384,14 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: TextWidget("|", color: subTextColor.withValues(alpha: 0.3)),
+                      child: TextWidget(
+                        "|",
+                        color: subTextColor.withValues(alpha: 0.3),
+                      ),
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -413,15 +420,17 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            _searchQuery.isEmpty ? Icons.style_outlined : Icons.search_off_rounded,
+            _searchQuery.isEmpty
+                ? Icons.style_outlined
+                : Icons.search_off_rounded,
             size: 70,
             color: isDark ? Colors.white10 : Colors.grey[300],
           ),
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No hoodies available"
-                : "No results found for '$_searchQuery'",
+                ? "No hoodies available".tr
+                : "${'No results found for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -430,4 +439,3 @@ class _HoodiesScreenState extends State<HoodiesScreen> {
     );
   }
 }
-

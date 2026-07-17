@@ -183,7 +183,7 @@ class _ShirtsScreenState extends State<ShirtsScreen> {
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -351,7 +351,7 @@ class _ShirtsScreenState extends State<ShirtsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -359,7 +359,7 @@ class _ShirtsScreenState extends State<ShirtsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Classic Shirt',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -383,7 +383,7 @@ class _ShirtsScreenState extends State<ShirtsScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -418,7 +418,7 @@ class _ShirtsScreenState extends State<ShirtsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No shirts found" : "No results found for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No shirts found".tr : "${'No results found for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

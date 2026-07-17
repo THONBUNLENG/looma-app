@@ -75,7 +75,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "KIDS",
     "L.HOME",
     "LIFESTYLE",
-  ].map((e) => e.tr).toList();
+  ];
 
   final List<String> _menuWoman = [
     "New In",
@@ -84,7 +84,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Shoes",
     "Shop by collection",
     "SALE",
-  ].map((e) => e.tr).toList();
+  ];
 
   final List<String> _menuMan = [
     "New In",
@@ -93,7 +93,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Shoes",
     "Shop by collection",
     "SALE",
-  ].map((e) => e.tr).toList();
+  ];
 
   final List<String> _menuKids = [
     "New In",
@@ -102,7 +102,7 @@ class _MenuScreenState extends State<MenuScreen> {
     "Baby",
     "Toys",
     "SALE",
-  ].map((e) => e.tr).toList();
+  ];
 
   final List<String> _menuHome = [
     "New In",
@@ -288,7 +288,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     vertical: 8,
                   ),
                   title: TextWidget(
-                    currentItems[index],
+                    currentItems[index].tr,
                     fontSize: 18,
                     fontWeight: isSale ? FontWeight.w900 : FontWeight.bold,
                     color: isSale ? Colors.red : primaryColor,
@@ -412,7 +412,7 @@ class _MenuScreenState extends State<MenuScreen> {
             color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
           ),
           child: TextWidget(
-            "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+            "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
             color: isDark ? Colors.white : Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -448,7 +448,7 @@ class _MenuScreenState extends State<MenuScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextWidget(
-                  "What are you searching for?",
+                  "What are you searching for?".tr,
                   color: isDark ? Colors.white38 : Colors.black38,
                   fontSize: 14,
                 ),
@@ -483,7 +483,7 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
               child: Center(
                 child: TextWidget(
-                  _categories[index],
+                  _categories[index].tr,
                   fontWeight: FontWeight.w900,
                   fontSize: 13,
                   color: isActive ? active : inactive,

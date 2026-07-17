@@ -96,7 +96,7 @@ class _BagesScreenState extends State<BagesScreen>
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,

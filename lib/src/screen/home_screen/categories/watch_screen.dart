@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -58,7 +59,7 @@ class _WatchScreenState extends State<WatchScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName,
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: textColor,
@@ -77,7 +78,7 @@ class _WatchScreenState extends State<WatchScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: TextWidget(
-              "${filteredWatches.length} items found",
+              "${filteredWatches.length} ${"items found".tr}",
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: textColor,
@@ -113,7 +114,7 @@ class _WatchScreenState extends State<WatchScreen> {
                 },
                 style: TextStyle(color: textColor, fontSize: 14),
                 decoration: InputDecoration(
-                  hintText: "Search watches...",
+                  hintText: "Search watches...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search, size: 20, color: hintColor),
                   border: InputBorder.none,
@@ -137,7 +138,7 @@ class _WatchScreenState extends State<WatchScreen> {
                 Icon(Icons.tune, size: 20, color: textColor),
                 const SizedBox(width: 6),
                 TextWidget(
-                  "Filter",
+                  "filter".tr,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -301,7 +302,7 @@ class _WatchScreenState extends State<WatchScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -332,7 +333,7 @@ class _WatchScreenState extends State<WatchScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -368,7 +369,7 @@ class _WatchScreenState extends State<WatchScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "No watches found",
+            "No watches found".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

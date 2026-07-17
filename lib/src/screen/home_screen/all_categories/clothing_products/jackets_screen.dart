@@ -184,7 +184,7 @@ class _JacketsScreenState extends State<JacketsScreen> {
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -352,7 +352,7 @@ class _JacketsScreenState extends State<JacketsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -360,7 +360,7 @@ class _JacketsScreenState extends State<JacketsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Classic Jacket',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -384,7 +384,7 @@ class _JacketsScreenState extends State<JacketsScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -419,7 +419,7 @@ class _JacketsScreenState extends State<JacketsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No Jackets found" : "No results found for '$_searchQuery'",
+            _searchQuery.isEmpty ? 'No Jackets found'.tr : "${'No results found for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

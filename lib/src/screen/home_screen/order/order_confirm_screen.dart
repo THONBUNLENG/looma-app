@@ -108,7 +108,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: TextWidget(
-        title,
+        title.tr,
         fontSize: 16,
         fontWeight: FontWeight.bold,
         color: isDark ? Colors.white : Colors.black,

@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../constants/app_color.dart';
@@ -39,7 +40,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
               ),
               TextWidget(
-                "Select Country",
+                "Select Country".tr,
                 color: AppColor.black,
               ),
               const SizedBox(height: 10),
@@ -54,7 +55,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         style: const TextStyle(fontSize: 24),
                       ),
                       title: TextWidget(
-                        country["name"]!,
+                        country["name"]!.tr,
                         color: AppColor.black,
                       ),
                       trailing: TextWidget(
@@ -106,7 +107,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 children: [
                   const SizedBox(height: 68),
                   TextWidget(
-                    "Create\nAccount",
+                    "Create\nAccount".tr,
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
                     lineHeight: 1.1,
@@ -139,12 +140,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
                   const SizedBox(height: 40),
 
-                  _buildTextField(hint: "Email"),
+                  _buildTextField(hint: "Email".tr),
 
                   const SizedBox(height: 20),
 
                   _buildTextField(
-                    hint: "Password",
+                    hint: "Password".tr,
                     isPassword: true,
                     isObscured: _isObscured,
                     suffixAsset: _isObscured
@@ -158,7 +159,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   ),
                   const SizedBox(height: 20),
                   _buildTextField(
-                    hint: 'Enter your phone number',
+                    hint: 'Enter your phone number'.tr,
                     controller: phoneController,
                     prefix: GestureDetector(
                       onTap: _showCountryPicker,
@@ -187,7 +188,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   const SizedBox(height: 60),
 
                   MyCustomButton(
-                    text: "Done",
+                    text: "Done".tr,
                     width: double.infinity,
                     height: 60,
                     borderRadius: 15,
@@ -208,7 +209,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     child: TextButton(
                       onPressed: () => Navigator.pop(context),
                       child: TextWidget(
-                        "Cancel",
+                        "Cancel".tr,
                         fontSize: 16,
                         color: Colors.grey,
                       ),

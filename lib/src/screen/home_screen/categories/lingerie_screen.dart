@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -99,7 +100,7 @@ class _LingerieScreenState extends State<LingerieScreen>
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -125,16 +126,16 @@ class _LingerieScreenState extends State<LingerieScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Bodysuit"),
-                  Tab(text: "Nightwear"),
-                  Tab(text: "Panty"),
-                  Tab(text: "Shapewear"),
-                  Tab(text: "Socks"),
-                  Tab(text: "Tights"),
-                  Tab(text: "Bra"),
-                  Tab(text: "Bridal"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Bodysuit".tr),
+                  Tab(text: "Nightwear".tr),
+                  Tab(text: "Panty".tr),
+                  Tab(text: "Shapewear".tr),
+                  Tab(text: "Socks".tr),
+                  Tab(text: "Tights".tr),
+                  Tab(text: "Bra".tr),
+                  Tab(text: "Bridal".tr),
                 ],
               ),
             ],
@@ -152,7 +153,7 @@ class _LingerieScreenState extends State<LingerieScreen>
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -208,7 +209,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...",
+                  hintText: "Search in ${widget.categoryName.tr}...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -258,7 +259,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                   ),
                   const SizedBox(width: 8),
                   TextWidget(
-                    "Filter",
+                    "filter".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black,
@@ -423,7 +424,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -454,7 +455,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -491,8 +492,8 @@ class _LingerieScreenState extends State<LingerieScreen>
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No collection available"
-                : "No items found for '$_searchQuery'",
+                ? "No collection available".tr
+                : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

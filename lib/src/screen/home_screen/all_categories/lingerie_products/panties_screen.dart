@@ -341,7 +341,7 @@ class _PantiesScreenState extends State<PantiesScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                item['title'] ?? 'Lace Panty',
+                (item['title'] ?? 'Product').toString().tr,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

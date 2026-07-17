@@ -360,7 +360,7 @@ class _JoggersScreenState extends State<JoggersScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Comfort Joggers',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -419,7 +419,7 @@ class _JoggersScreenState extends State<JoggersScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No joggers found" : "No results found for '$_searchQuery'",
+            _searchQuery.isEmpty ? 'No joggers found' : 'No results found for \'$_searchQuery\'',
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

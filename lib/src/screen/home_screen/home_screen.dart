@@ -6,7 +6,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/notification_page.dart';
 import 'package:shopping_app/src/screen/home_screen/pick_up_your_style.dart';
 import 'package:shopping_app/src/screen/home_screen/shop_buy_item_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/Brands_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/brands_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/top_sale_screen.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
@@ -222,7 +222,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextWidget(
-                              bannerData[index]["title"]!.toUpperCase().tr,
+                               bannerData[index]["title"]!.tr.toUpperCase(),
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.w900,
@@ -230,7 +230,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                             ),
                             const SizedBox(height: 4),
                             TextWidget(
-                              bannerData[index]["subtitle"]!.toUpperCase().tr,
+                              bannerData[index]["subtitle"]!.tr.toUpperCase(),
                               color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 14,
                             ),
@@ -252,7 +252,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           child: TextWidget(
                             bannerData[index]["desc"]!
                                 .replaceAll('\n', ' ')
-                                .toUpperCase().tr,
+                                .tr.toUpperCase(),
                             color: Colors.black,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,

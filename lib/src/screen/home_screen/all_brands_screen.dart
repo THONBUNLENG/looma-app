@@ -3,7 +3,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../list_url.dart';
-import 'Brands_screen.dart';
+import 'brands_screen.dart';
 
 class AllBrandsScreen extends StatelessWidget {
   const AllBrandsScreen({super.key});
@@ -22,7 +22,7 @@ class AllBrandsScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          "ALL BRANDS".tr,
+          "ALL BRANDS".tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,

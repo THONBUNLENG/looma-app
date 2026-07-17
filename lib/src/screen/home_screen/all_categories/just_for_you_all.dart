@@ -10,7 +10,6 @@ import '../shopping_bag/shopping_bag_screen.dart';
 class JustForYouAll extends StatelessWidget {
   final String categoryName;
   final List<Map<String, dynamic>> justForYouData;
-
   const JustForYouAll({
     super.key,
     required this.categoryName,
@@ -21,30 +20,22 @@ class JustForYouAll extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF121212) : AppColor.white;
-
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
-        leading: BackButton(color: isDark ? Colors.white : Colors.black,),
+        leading: BackButton(color: isDark ? Colors.white : Colors.black),
         toolbarHeight: 90,
         backgroundColor: isDark
             ? const Color(0xFF121212)
             : const Color(0xFFF9F9F9),
         elevation: 0,
         centerTitle: true,
-
         leadingWidth: 70,
         title: ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
             colors: isDark
-                ? const [
-              Colors.white,
-              Colors.white70,
-            ]
-                : const [
-              Colors.black,
-              Colors.black54,
-            ],
+                ? const [Colors.white, Colors.white70]
+                : const [Colors.black, Colors.black54],
           ).createShader(bounds),
           child: TextWidget(
             'LOOMA',
@@ -66,8 +57,7 @@ class JustForYouAll extends StatelessWidget {
                   splashRadius: 24,
                   icon: Icon(
                     Icons.shopping_bag_outlined,
-                    color:
-                    isDark ? Colors.white : Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                     size: 30,
                   ),
                   onPressed: () {
@@ -79,7 +69,6 @@ class JustForYouAll extends StatelessWidget {
                     );
                   },
                 ),
-
                 Positioned(
                   right: 0,
                   top: -2,
@@ -88,16 +77,13 @@ class JustForYouAll extends StatelessWidget {
                     height: 22,
                     decoration: BoxDecoration(
                       color: Colors.red,
-                      borderRadius:
-                      BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(100),
                       border: Border.all(
-                        color: isDark
-                            ? const Color(0xFF121212)
-                            : Colors.white,
+                        color: isDark ? const Color(0xFF121212) : Colors.white,
                         width: 2,
                       ),
                     ),
-                    child:  Center(
+                    child: Center(
                       child: TextWidget(
                         '0',
                         color: Colors.white,
@@ -116,18 +102,13 @@ class JustForYouAll extends StatelessWidget {
           child: Container(
             width: double.infinity,
             alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(
-              vertical: 4,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 4),
             decoration: BoxDecoration(
-              color: isDark
-                  ? Colors.white10
-                  : const Color(0xFFF1F1F1),
+              color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
             ),
             child: TextWidget(
               "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
-              color:
-              isDark ? Colors.white : Colors.black,
+              color: isDark ? Colors.white : Colors.black,
               fontSize: 12,
               fontWeight: FontWeight.w700,
             ),
@@ -161,7 +142,6 @@ class JustForYouAll extends StatelessWidget {
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
     final String imageUrl =
         (item['images'] != null && (item['images'] as List).isNotEmpty)
         ? item['images'][0]
@@ -238,7 +218,7 @@ class JustForYouAll extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Classic Tote',
+                  (item['title'] ?? 'Classic Tote').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -254,40 +234,35 @@ class JustForYouAll extends StatelessWidget {
                       size: 16,
                     ),
                     const SizedBox(width: 4),
-                    Text(
+                    TextWidget(
                       item['rating'] ?? '4.7',
-                      style: TextStyle(
-                        color: subTextColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      color: subTextColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: Text(
+                      child: TextWidget(
                         "|",
-                        style: TextStyle(
-                          color: subTextColor.withValues(alpha: 0.3),
-                        ),
+                        color: subTextColor.withValues(alpha: 0.3),
                       ),
                     ),
                     Expanded(
-                      child: Text(
+                      child: TextWidget(
                         "${item['sold'] ?? '0'} ${'sold'.tr}",
-                        style: TextStyle(color: subTextColor, fontSize: 11),
+                        color: subTextColor,
+                        fontSize: 11,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(
+                TextWidget(
                   item['price'] ?? '\$0.00',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.primaryColor,
-                  ),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.primaryColor,
                 ),
               ],
             ),
@@ -318,4 +293,3 @@ class JustForYouAll extends StatelessWidget {
     );
   }
 }
-

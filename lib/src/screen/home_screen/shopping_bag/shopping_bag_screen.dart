@@ -241,7 +241,7 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   TextWidget(
-                                    item['title'] ?? 'Product',
+                                    (item['title'] ?? 'Product').toString().tr,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     maxLines: 1,
@@ -402,8 +402,6 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(width: 12),
-                    const Icon(Icons.arrow_forward, color: Colors.white),
                   ],
                 ),
               ),

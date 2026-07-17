@@ -46,7 +46,8 @@ import 'clothing_products/shorts_screen.dart';
 import 'clothing_products/skirts_screen.dart';
 import 'clothing_products/suits_screen.dart';
 import 'clothing_products/sweatshirts_screen.dart';
-import 'clothing_products/t-shirts_screen.dart';
+
+import 'clothing_products/t_shirts_screen.dart';
 import 'clothing_products/vest_screen.dart';
 import 'just_for_you_all.dart';
 import 'lingerie_products/bodysuits_screen.dart';
@@ -149,7 +150,6 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
           SocksScreen(categoryName: name, sockProducts: sockProducts),
       'tights': (name) =>
           TightsScreen(categoryName: name, tightsProducts: tightsProducts),
-
       // --- Accessories ---
       'jewelry': (name) =>
           JewelryScreen(categoryName: name, accessories: jewelry),
@@ -173,7 +173,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: TextWidget(
-            'Category "$subName" is coming soon!',
+            'Category "$subName" is coming soon!'.tr,
             color: Colors.white,
           ),
           backgroundColor: Colors.orange,
@@ -197,7 +197,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
         backgroundColor: isDark ? const Color(0xFF121212) : AppColor.white,
         elevation: 0,
         title: TextWidget(
-          'All CATEGORIES',
+          'All CATEGORIES'.tr.toUpperCase(),
           fontSize: 26,
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : AppColor.black,

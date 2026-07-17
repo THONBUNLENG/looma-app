@@ -1,228 +1,201 @@
 const Map<String, String> chinese = {
   'select language': '选择语言',
-  'Aww ..Snap. Your wish list is empty!': '哎呀... 您的愿望清单是空的！',
-  'Check out our latest arrivals and stay up to date with our latest styles!':
-      '查看最新新品，时刻掌握潮流动态！',
+  'Aww ..Snap. Your wish list is empty!': '啊..糟糕。您的愿望清单是空的！',
+  'Check out our latest arrivals and stay up to date with our latest styles!': '查看我们的最新到货，紧跟我们的最新款式！',
   'Start shopping': '开始购物',
   'wishlist': '愿望清单',
   'filter': '筛选',
-  'Spend \$160+ and enjoy Discount 15% + FREE Delivery!':
-      '消费满 \$160+ 即可享受 85 折优惠 + 免运费！',
-  "Search in Product item...": "搜索商品...",
-  "sold": "已售",
-  "All": "全部",
-  "Backpacks": "双肩包",
-  "Clutches": "手拿包",
-  "Handbags": "手提包",
-  "Messenger": "斜挎包",
-  "Tote": "托特包",
-  "Travel": "旅行包",
-  "Wallets": "钱包",
-  "items found": "件商品",
-  "No items found for": "未找到相关商品",
-  "Add to Cart": "加入购物车",
-  "View Cart": "查看购物车",
-  "Urban Explorer Pro": "都市探索者 Pro",
-  "A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.":
-      "一款专为城市通勤者和户外运动爱好者设计的高性能双肩包，采用防水外壳，并配备 15 英寸笔记本电脑隔层。",
-  "reviews": "评价",
-  "Description": "产品详情",
-  "Color": "颜色",
-  "Size": "尺寸",
-  "Quantity": "数量",
-  // Product Names
+  'Spend \$160+ and enjoy Discount 15% + FREE Delivery!': '消费满 \$160+ 即可享受 15% 折扣 + 免费送货！',
+  'Search in Product item...': '在商品中搜索...',
+  'sold': '已售',
+  'All': '全部',
+  'Backpacks': '背包',
+  'Clutches': '手包',
+  'Handbags': '手提包',
+  'Messenger': '邮差包',
+  'Tote': '托特包',
+  'Travel': '旅行',
+  'Wallets': '钱包',
+  'items found': '找到物品',
+  'No items found for': '没有找到相关物品',
+  'Add to Cart': '加入购物车',
+  'Added to Cart': '已加入购物车',
+  'View Cart': '查看购物车',
+  'Urban Explorer Pro': '都市探险者专业版',
+  'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.': '专为都市通勤者和户外爱好者设计的高性能背包，具有防水外壳和15英寸笔记本电脑隔层。',
+  'reviews': '评论',
+  'Description': '描述',
+  'Color': '颜色',
+  'Size': '尺寸',
+  'Quantity': '数量',
+  'Subtotal': '小计',
+  'Delivery Fee': '送货费',
+  'Total': '总计',
+  'Proceed to Checkout': '继续结账',
+  'My Shopping Bag': '我的购物袋',
+  "Looks like you haven't added anything to your bag yet.": '看起来您还没有在购物袋中添加任何东西。',
   'Total price': '总价',
-  'Classic School Backpack': '经典学生双肩包',
-  'Hiking Adventure Pack': '徒步探险背包',
+  'Classic School Backpack': '经典校园背包',
+  'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.': '简单、耐用且宽敞。非常适合学生和日常使用，配有加固背带和多个拉链袋。',
+  'Hiking Adventure Pack': '徒步探险包',
   'Professional Tech Bag': '专业科技包',
   'Vintage Canvas Rucksack': '复古帆布背包',
   'Anti-Theft Commuter Bag': '防盗通勤包',
   'Compact Daypack': '紧凑型日用包',
-  'Premium Leather Backpack': '优质皮革双肩包',
+  'Premium Leather Backpack': '优质皮革背包',
   'Casual Streetwear Pack': '休闲街头背包',
-  'Rugged Tactical Pack': '耐用战术背包',
+  'Rugged Tactical Pack': '耐用战术包',
   'Global Traveler 50L': '全球旅行者 50L',
   'Waterproof Sport Bag': '防水运动包',
-  'Minimalist Laptop Bag': '简约电脑包',
+  'Minimalist Laptop Bag': '极简笔记本电脑包',
   'Outdoor Trekking Pack': '户外徒步包',
   'Modern Urban Rucksack': '现代都市背包',
-  'Executive Business Pack': '商务精英包',
-  'Sleek All-Black Stealth': '时尚全黑隐形包',
-  'Lightweight Foldable Bag': '轻便可折叠包',
+  'Executive Business Pack': '行政商务包',
+  'Sleek All-Black Stealth': '时尚全黑隐形',
+  'Lightweight Foldable Bag': '轻便折叠包',
   'Classic Leather Messenger': '经典皮革邮差包',
-  'Designer Street Pack': '设计师街头包',
-  'Daily Grind Backpack': '日常通勤双肩包',
-  'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.':
-      '简约、耐用且容量大。非常适合学生和日常使用，配备加固肩带和多个拉链袋。',
-  'Premium quality product designed for durability and comfort.':
-      '优质产品，专为耐用和舒适而设计。',
-  // Clutches - Product Names
-  'Glitter Party Clutch': '闪亮聚会手拿包',
-  'Satin Evening Bag': '绸缎晚宴包',
-  'Luxury Pearl Clutch': '奢华珍珠手拿包',
-  'Velvet Envelope Clutch': '天鹅绒信封包',
-  'Golden Metal Frame Clutch': '金金属框手拿包',
-  'Classic Black Pouch': '经典黑色手包',
-  'Diamond Studded Bag': '镶钻晚宴包',
-  'Red Silk Clutch': '红色真丝手拿包',
-  'Vintage Floral Clutch': '复古花卉手拿包',
-  'Silver Hard Shell': '银色硬壳包',
-  'Elegant Lace Clutch': '优雅蕾丝手拿包',
-  'Embroidered Ethnic Bag': '刺绣民族风包',
-  'Matte Rose Gold': '哑光玫瑰金手包',
-  'Simple Leather Pouch': '简约真皮手包',
-  'Ostrich Feather Clutch': '鸵鸟羽毛手拿包',
-  'Royal Blue Satin': '皇室蓝绸缎包',
-  'Modern Geometric Clutch': '现代几何手拿包',
+  'Designer Street Pack': '设计师街头背包',
+  'Daily Grind Backpack': '日常通勤背包',
+  "Premium quality product designed for durability and comfort.": '高品质产品，专为耐用和舒适而设计。',
+  'Glitter Party Clutch': '闪粉派对手包',
+  'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.': '令人惊艳的闪粉手包，非常适合晚宴和婚礼。包括可拆卸链条肩带和紧凑的内部空间。',
+  'Satin Evening Bag': '缎面晚宴包',
+  'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.': '优雅的缎面质感，触感平滑。这款晚宴包为任何正式礼服增添了精致感。',
+  'Luxury Pearl Clutch': '奢华珍珠手包',
+  'Velvet Envelope Clutch': '天鹅绒信封手包',
+  'Golden Metal Frame Clutch': '金金属框架手包',
+  'Classic Black Pouch': '经典黑色小包',
+  'Diamond Studded Bag': '镶钻包',
+  'Red Silk Clutch': '红丝绸手包',
+  'Vintage Floral Clutch': '复古碎花手包',
+  'Silver Hard Shell': '银色硬壳',
+  'Elegant Lace Clutch': '优雅蕾丝手包',
+  'Embroidered Ethnic Bag': '刺绣民族包',
+  'Matte Rose Gold': '磨砂玫瑰金',
+  'Simple Leather Pouch': '简约皮革小包',
+  'Ostrich Feather Clutch': '鸵鸟毛手包',
+  'Royal Blue Satin': '宝蓝色缎面',
+  'Modern Geometric Clutch': '现代几何手包',
   'Crystal Bow Evening': '水晶蝴蝶结晚宴包',
-  'Minimalist Slate Clutch': '简约板岩色手拿包',
-
-  // Clutches - Descriptions
-  'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.':
-      '一款精美的闪亮手拿包，非常适合晚宴和婚礼。配备可拆卸链条肩带，内部空间紧凑，可收纳必需品。',
-  'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.':
-      '优雅的绸缎质地，触感顺滑。这款晚宴包能为任何礼服增添高贵感。',
-  // Product Names
-  'Luxury Leather Satchel': '豪华皮革手提包',
-  'Elegant Evening Clutch': '优雅晚宴包',
-  'Modern Designer Handbag': '现代设计师手提袋',
+  'Minimalist Slate Clutch': '极简板岩色手包',
+  'Luxury Leather Satchel': '奢华皮革小提包',
+  'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.': '优雅高品质皮革提包，设有多个隔层，方便有序收纳。非常适合正式和休闲场合。',
+  'Elegant Evening Clutch': '优雅晚宴手包',
+  'A sophisticated evening clutch designed with premium materials to complement your best outfits.': '采用优质材料设计的精致晚宴手包，可搭配您的最佳装扮。',
+  'Modern Designer Handbag': '现代设计师手提包',
   'Classic Beige Tote': '经典米色托特包',
-  'Sleek Maroon Purse': '时髦深红色手提包',
-  'Chic Gray Handbag': '别致灰色手提包',
-  'Vintage Tan Satchel': '复古棕色挎包',
-  'Midnight Black Carryall': '午夜黑大容量手提包',
+  'Sleek Maroon Purse': '时尚栗色钱包',
+  'Chic Gray Handbag': '雅致灰色手提包',
+  'Vintage Tan Satchel': '复古棕褐色提包',
+  'Midnight Black Carryall': '午夜黑大手提包',
   'Fashionista Pink Pouch': '时尚粉色小包',
-  'Executive Leather Brief': '行政级皮革公文包',
-  'Minimalist White Handbag': '简约白色手提包',
-  'Golden Chain Satchel': '金链条挎包',
+  'Executive Leather Brief': '行政皮革公文包',
+  'Minimalist White Handbag': '极简白色手提包',
+  'Golden Chain Satchel': '金链提包',
   'Soft Suede Tote': '柔软麂皮托特包',
   'Urban Style Handbag': '都市风格手提包',
-  'Casual Denim Purse': '休闲牛仔手包',
+  'Casual Denim Purse': '休闲牛仔钱包',
   'Crimson Luxury Tote': '深红奢华托特包',
-  'Floral Print Handbag': '印花手提包',
-  'Slate Blue Satchel': '石蓝色挎包',
+  'Floral Print Handbag': '碎花手提包',
+  'Slate Blue Satchel': '板岩蓝提包',
   'Classic Brown Pouch': '经典棕色小包',
-  'Pastel Green Handbag': '淡绿色手提包',
-  'Elegant Leather Satchel': '优雅皮革挎包',
-  'Urban Canvas Satchel': '都市帆布挎包',
+  'Pastel Green Handbag': '柔和绿色手提包',
+  'Elegant Leather Satchel': '优雅皮革提包',
+  'Urban Canvas Satchel': '都市帆布提包',
+  'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.': '轻便耐用，这款帆布提包是注重风格和功能的学生和日常通勤者的理想选择。',
   'Elite Business Briefcase': '精英商务公文包',
   'Vintage Rugged Messenger': '复古耐用邮差包',
   'Tactical Tech Bag': '战术科技包',
-  'Sleek Minimalist Crossbody': '时髦简约斜挎包',
-  'Premium Suede Satchel': '优质麂皮挎包',
+  'Sleek Minimalist Crossbody': '时尚极简斜挎包',
+  'Premium Suede Satchel': '优质麂皮提包',
   'Modern Denim Messenger': '现代牛仔邮差包',
-  'Heritage Tan Leather': '传承棕色皮革包',
-  'Compact Travel Pouch': '紧凑型旅行收纳包',
-  'Professional Laptop Bag': '专业电脑包',
-  'Rustic Hunter Leather': '粗犷猎人风格皮革包',
-  'Matte Black Commuter': '哑光黑通勤包',
+  'Heritage Tan Leather': '传承棕色皮革',
+  'Compact Travel Pouch': '紧凑型旅行包',
+  'Professional Laptop Bag': '专业笔记本电脑包',
+  'Rustic Hunter Leather': '乡村猎人皮革',
+  'Matte Black Commuter': '磨砂黑通勤包',
   'Executive Leather Case': '行政皮革箱',
   'Khaki Field Messenger': '卡其色野外邮差包',
-  'Midnight Navy Satchel': '午夜蓝挎包',
-  'Chic Gray Office Bag': '别致灰色办公包',
+  'Midnight Navy Satchel': '午夜蓝提包',
+  'Chic Gray Office Bag': '雅致灰色办公包',
   'Waterproof Sport Cross': '防水运动斜挎包',
-  'Dark Mocha Leather': '深摩卡色皮革包',
-  'Artisan Hand-Stitched': '匠人手工缝制包',
-
-  // Descriptions
-  'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.':
-      '优雅且高品质的皮革挎包，设有多个隔层，方便整理物品。非常适合正式和休闲场合。',
-  'A sophisticated evening clutch designed with premium materials to complement your best outfits.':
-      '一款采用优质材料设计的精致晚宴手拿包，为您最美的装扮锦上添花。',
-  'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.':
-      '这款帆布挎包轻便耐用，是注重风格与实用性的学生和日常通勤者的理想选择。',
-  // Product Names - Totes & Travel
+  'Dark Mocha Leather': '深摩卡色皮革',
+  'Artisan Hand-Stitched': '工匠手缝',
   'Eco-Friendly Cotton Tote': '环保棉质托特包',
-  'Minimalist Beige Canvas': '简约米色帆布包',
-  'Premium Black Leather Tote': '高级黑色皮革托特包',
-  'Summer Straw Beach Tote': '夏日草编沙滩包',
-  'Aesthetic Graphic Tote': '艺术图文托特包',
-  'Classic White Carryall': '经典白色大容量手提包',
+  'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.': '简单、耐用且可持续。这款 100% 有机棉托特包非常适合日常买菜或海滩旅行。',
+  'Minimalist Beige Canvas': '极简米色帆布',
+  'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.': '一款多功能帆布托特包，配有加固缝线，内部空间宽敞，可放置笔记本电脑和书籍。',
+  'Premium Black Leather Tote': '优质黑色皮革托特包',
+  'Summer Straw Beach Tote': '夏季草编海滩托特包',
+  'Aesthetic Graphic Tote': '美学图案托特包',
+  'Classic White Carryall': '经典白色大手提包',
   'Vintage Brown Suede Tote': '复古棕色麂皮托特包',
   'Modern Denim Daily Bag': '现代牛仔日常包',
-  'Soft Pastel Pink Tote': '柔和淡粉色托特包',
-  'Workaholic Laptop Tote': '办公电脑托特包',
-  'Artistic Floral Canvas': '艺术花卉帆布包',
-  'Gilded Executive Leather': '金色行政皮革包',
-  'Navy Striped Nautical': '海军蓝条纹航海包',
-  'Oversized Weekend Tote': '超大号周末旅行包',
+  'Soft Pastel Pink Tote': '柔和粉色托特包',
+  'Workaholic Laptop Tote': '工作狂笔记本电脑托特包',
+  'Artistic Floral Canvas': '艺术花卉帆布',
+  'Gilded Executive Leather': '镀金行政皮革',
+  'Navy Striped Nautical': '海军蓝条纹航海风格',
+  'Oversized Weekend Tote': '超大周末托特包',
   'Corduroy Texture Tote': '灯芯绒纹理托特包',
-  'Chic Gray Felt Tote': '别致灰色毛毡托特包',
+  'Chic Gray Felt Tote': '雅致灰色毛毡托特包',
   'Polka Dot Fashion Tote': '波点时尚托特包',
-  'Reusable Net Tote Bag': '环保网状购物袋',
-  'Khaki Utility Tote': '卡其色多功能托特包',
-  'Sleek Maroon Office Tote': '干练深红色办公托特包',
-  'Premium Hard-Shell Suitcase': '高级硬壳行李箱',
-  'Classic Brown Leather Duffel': '经典棕色皮革旅行袋',
-  'Urban Explorer Backpack': '都市探索者双肩包',
-  'Business Carry-On Trolley': '商务登机登机箱',
-  'Family Size Extra Large Luggage': '全家型特大号行李箱',
-  'Adventure Waterproof Duffel': '探险防水旅行袋',
-  'Vintage Tan Travel Case': '复古棕色旅行箱',
-  'Elite Metallic Silver Spinner': '精英金属银万向轮行李箱',
+  'Reusable Net Tote Bag': '可重复使用网状托特包',
+  'Khaki Utility Tote': '卡其色实用托特包',
+  'Sleek Maroon Office Tote': '时尚栗色办公托特包',
+  'Premium Hard-Shell Suitcase': '优质硬壳行李箱',
+  'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.': '耐用且轻便，这款硬壳行李箱配有 360 度旋转轮，让旅行倍感轻松。',
+  'Classic Brown Leather Duffel': '经典棕色皮革旅行包',
+  'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.': '一款时尚且宽敞的旅行包，采用优质皮革制成，非常适合周末度假。',
+  'Urban Explorer Backpack': '都市探险者背包',
+  'Business Carry-On Trolley': '商务登机行李箱',
+  'Family Size Extra Large Luggage': '家庭装特大行李箱',
+  'Adventure Waterproof Duffel': '探险防水旅行包',
+  'Vintage Tan Travel Case': '复古棕褐色旅行箱',
+  'Elite Metallic Silver Spinner': '精英金属银旋转行李箱',
   'Compact Overnight Bag': '紧凑型过夜包',
-  'Rugged Tactical Backpack': '坚固战术双肩包',
-  'Navy Blue Soft-Shell Luggage': '藏青色软壳行李箱',
+  'Rugged Tactical Backpack': '耐用战术背包',
+  'Navy Blue Soft-Shell Luggage': '海军蓝软壳行李箱',
   'Sporty Gym Travel Bag': '运动健身旅行包',
-  'Minimalist Tote Travel Bag': '简约托特旅行包',
+  'Minimalist Tote Travel Bag': '极简托特旅行包',
   'Titanium Series Carry-On': '钛金系列登机箱',
-  'Matte Black Rolling Bag': '哑光黑滚轮包',
-  'Canvas Weekend Explorer': '帆布周末探索包',
+  'Matte Black Rolling Bag': '磨砂黑拉杆包',
+  'Canvas Weekend Explorer': '帆布周末探险者',
   'Rose Gold Fashion Luggage': '玫瑰金时尚行李箱',
   'Heritage Brown Suitcase': '传承棕色行李箱',
-  'Modern Flight Case': '现代飞行箱',
+  'Modern Flight Case': '现代航空箱',
   'Professional Tech Travel Bag': '专业科技旅行包',
-
-  // Wallets
   'Classic Brown Leather Wallet': '经典棕色皮革钱包',
-  'Minimalist Slim Card Holder': '简约超薄卡夹',
-  'Premium Black Bifold': '高级黑色对折钱包',
-  'Vintage Tan Zipper Wallet': '复古棕色拉链钱包',
-  'Carbon Fiber RFID Blocker': '碳纤维 RFID 防盗钱包',
-  'Elegant Women\'s Clutch': '优雅女士手拿包',
+  'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.': '采用正宗牛皮手工制成，这款经典折叠钱包提供耐用性和永恒风格。',
+  'Minimalist Slim Card Holder': '极简超薄卡夹',
+  'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.': '非常适合现代极简主义者，这款超薄卡夹可让您的重要卡片井井有条，而不会显得臃肿。',
+  'Premium Black Bifold': '优质黑色折叠钱包',
+  'Vintage Tan Zipper Wallet': '复古棕褐色拉链钱包',
+  'Carbon Fiber RFID Blocker': '碳纤维 RFID 屏蔽钱包',
+  'Elegant Women\'s Clutch': '优雅女式手包',
   'Business Professional Wallet': '商务专业钱包',
-  'Casual Fabric Sport Wallet': '休闲布艺运动钱包',
+  'Casual Fabric Sport Wallet': '休闲面料运动钱包',
   'Luxury Suede Long Wallet': '奢华麂皮长款钱包',
   'Classic Coin Purse Edition': '经典硬币包版',
-  'Matte Navy Slim Fold': '哑光海军蓝薄款对折包',
-  'Distressed Retro Leather': '做旧复古皮革包',
-  'Sleek Metal Money Clip': '时尚金属钱夹',
+  'Matte Navy Slim Fold': '磨砂海军蓝薄折钱包',
+  'Distressed Retro Leather': '磨旧复古皮革',
+  'Sleek Metal Money Clip': '时尚金属钞票夹',
   'Soft Pebble Grain Wallet': '柔软荔枝纹钱包',
-  'Tactical EDC Wallet': '战术日常携带钱包',
+  'Tactical EDC Wallet': '战术 EDC 钱包',
   'Travel Passport Wallet': '旅行护照包',
   'Modern Buckle Wallet': '现代搭扣钱包',
-  'Grey Felt Minimalist': '灰色毛毡简约钱包',
-  'Gilded Executive Wallet': '金色行政钱包',
-
-  // Descriptions
-  'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.':
-      '简约、耐用且可持续。这款 100% 有机棉托特包非常适合日常购物或海边旅行。',
-  'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.':
-      '一款多功能帆布托特包，配有加固缝线，内部空间宽敞，可放置笔记本电脑和书籍。',
-  'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.':
-      '这款硬壳行李箱耐用且轻便，配备 360 度万向轮，让旅行轻松自如。',
-  'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.':
-      '一款采用优质皮革打造的时尚宽敞旅行袋，非常适合周末度假。',
-  'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.':
-      '采用纯正牛皮手工打造，这款经典对折钱包兼具耐用性与永恒风格。',
-  'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.':
-      '非常适合现代极简主义者，这款超薄卡夹可整齐收纳您的重要卡片，而不会显得臃肿。',
-
+  'Grey Felt Minimalist': '灰色毛毡极简主义',
+  'Gilded Executive Wallet': '镀金行政钱包',
   'Sort by': '排序方式',
   'Price Range': '价格范围',
-  'Free size': '均码',
   'Clear': '清除',
-  'APPLY': '确定',
-
-  // Sort Options
+  'APPLY': '应用',
   'Recommend': '推荐',
   'New items': '新品',
-  'Discount (High First)': '折扣 (从高到低)',
-  'Discount (Low First)': '折扣 (从低到高)',
-  'Price (High First)': '价格 (从高到低)',
-  'Price (Low First)': '价格 (从低到高)',
-
-  // Colors & Others
+  'Discount (High First)': '折扣（从高到低）',
+  'Discount (Low First)': '折扣（从低到高）',
+  'Price (High First)': '价格（从高到低）',
+  'Price (Low First)': '价格（从低到高）',
   'Black': '黑色',
   'Brown': '棕色',
   'White': '白色',
@@ -230,60 +203,58 @@ const Map<String, String> chinese = {
   'Blue': '蓝色',
   'Green': '绿色',
   'Cream': '奶油色',
-  'Pink': '粉红色',
+  'Pink': '粉色',
   'Yellow': '黄色',
   'Gray': '灰色',
   'Purple': '紫色',
   'Orange': '橙色',
   'Printed': '印花',
-  'Big Sale': '大促销',
+  'Free size': '均码',
+  'Big Sale': '大降价',
+  'BIG SALE': '大降价',
   'Up to 50%': '低至 5 折',
-  'HAPPENING\nNOW': '火热进行\n中',
-  'NEWS%': '新闻%',
-  'New Arrival': '新品上市',
-  'Spring Collection': '春季系列',
-  'Check\nOut': '立即\n查看',
-  'Office Gear': '办公装备',
-  'Get Organized': '井然有序',
-  'Shop\nEssentials': '购买\n必备品',
-  'Limited\nTime': '限时\n特惠',
-  'Up to 70% Off': '低至 3 折',
-  'FLASH SALE': '限时秒杀',
-  'NEW ARRIVALS': '新款上线',
-  'Summer Collection': '夏季系列',
-  'Shop\nNow': '立即\n购买',
-  'WEEKEND DEAL': '周末特惠',
-  'All Accessories': '所有配饰',
-  'Save\nBig': '巨额\n优惠',
-  'STYLE WEEK': '风尚周',
-  "Men's Urban Wear": '男士都市时装',
-  'Trend\nAlert': '潮流\n预警',
-  'UP TO 50%': '低至 5 折',
-  'Bags & Shoes': '包袋鞋履',
-  'Exclusive\nOffer': '专属\n特惠',
-  'TECH DEALS': '数码优惠',
-  'Phones & Gadgets': '手机与配件',
-  'Best\nPrice': '最佳\n价格',
-  'KIDS WORLD': '童装世界',
-  'Back to School': '返校季',
-  'Early\nAccess': '优先\n体验',
-  'LUXURY': '奢侈品',
-  'Jewelry & Watches': '珠宝腕表',
-  'Precious\nGift': '珍贵\n礼品',
-  'BEAUTY': '美妆',
-  'Makeup & Skincare': '美妆护肤',
-  'Glow\nToday': '今日\n焕彩',
-  'HOME DECOR': '家居装饰',
-  'Modern Interior': '现代室内设计',
-  'Upgrade\nLife': '升级\n生活',
-  'BIG SALE': '大促销',
-  // --------- Accessories - Jewelry -------------
+  'HAPPENING\nNOW': '正在\n进行',
+  'News%': '新折扣%',
+  "New Arrival": "新品上架",
+  "Spring Collection": "春季系列",
+  "Check\nOut": "去\n看看",
+  "Office Gear": "办公装备",
+  "Get Organized": "井井有条",
+  "Shop\nEssentials": "选购\n必需品",
+  "Limited\nTime": "限时\n优惠",
+  "Up to 70% Off": "低至 3 折",
+  "FLASH SALE": "闪购",
+  "NEW ARRIVALS": "新品上架",
+  "Summer Collection": "夏季系列",
+  "Shop\nNow": "立即\n选购",
+  "WEEKEND DEAL": "周末优惠",
+  "All Accessories": "所有配饰",
+  "Save\nBig": "大幅\n节省",
+  "STYLE WEEK": "风格周",
+  "Men's Urban Wear": "男士都市装",
+  "Trend\nAlert": "流行\n趋势",
+  "UP TO 50%": "低至 5 折",
+  "Bags & Shoes": "箱包和鞋子",
+  "Exclusive\nOffer": "专属\n优惠",
+  "TECH DEALS": "科技优惠",
+  "Phones & Gadgets": "手机和配件",
+  "Best\nPrice": "最佳\n价格",
+  "KIDS WORLD": "儿童世界",
+  "Back to School": "返校季",
+  "Early\nAccess": "抢先\n体验",
+  "LUXURY": "奢侈品",
+  "Jewelry & Watches": "珠宝和手表",
+  "Precious\nGift": "珍贵\n礼物",
+  "BEAUTY": "美容",
+  "Makeup & Skincare": "化妆品和护肤品",
+  "Glow\nToday": "焕发\n光彩",
+  "HOME DECOR": "家居装饰",
+  "Modern Interior": "现代内饰",
+  "Upgrade\nLife": "升级\n生活",
   'Diamond Engagement Ring': '钻石订婚戒指',
-  'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.':
-      '一件精致的 18k 白金订婚戒指，镶嵌一颗明亮式切割中心钻。象征着永恒的爱与承诺。',
+  'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.': '一款迷人的 18k 白金订婚戒指，镶嵌一颗明亮式切割中心钻石。象征爱与承诺。',
   'Gold Chain Necklace': '金链项链',
-  'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.':
-      '优雅的 14k 黄金项链，非常适合日常佩戴或叠搭，耐用且时尚。',
+  'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.': '优雅的 14k 黄金链项链，非常适合日常佩戴或与其他饰品叠戴。耐用且时尚。',
   'Sapphire Drop Earrings': '蓝宝石垂坠耳环',
   'Pearl Bracelet Set': '珍珠手链套装',
   'Emerald Stud Earrings': '祖母绿耳钉',
@@ -291,84 +262,74 @@ const Map<String, String> chinese = {
   'Silver Bangle Watch': '银色手镯表',
   'Rose Gold Hoop Earrings': '玫瑰金圆环耳环',
   'Ruby Pendant Necklace': '红宝石吊坠项链',
-  'Luxury Choker Set': '豪华颈链套装',
-  'Minimalist Silver Ring': '简约银戒',
+  'Luxury Choker Set': '奢华颈链套装',
+  'Minimalist Silver Ring': '极简银戒',
   'Celestial Moon Pendant': '月亮吊坠',
   'Classic Tennis Bracelet': '经典网球手链',
-  'Beaded Boho Necklace': '波西米亚串珠项链',
+  'Beaded Boho Necklace': '串珠波西米亚项链',
   'Amethyst Drop Earrings': '紫水晶垂坠耳环',
-  'Engraved Locket': '刻字小相框吊坠',
+  'Engraved Locket': '刻字小金盒',
   'Platinum Wedding Band': '铂金婚戒',
   'Turquoise Cuff Bracelet': '绿松石开口手镯',
-  'Designer Chandelier Earrings': '设计师款长垂坠耳环',
+  'Designer Chandelier Earrings': '设计师吊灯式耳环',
   'Ametrine Statement Ring': '紫黄晶戒',
-
-  // --------- Sunglasses -------------
   'Classic Aviator': '经典飞行员墨镜',
-  'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.':
-      '永恒的飞行员设计，配有偏光镜片，提供 100% 紫外线保护。轻便金属镜框，佩戴舒适。',
-  'Wayfarer Style': '徒步者风格墨镜',
-  'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.':
-      '现代哑光黑徒步者镜框。采用耐用的聚碳酸酯材料，提供高清晰度。',
-  'Cat Eye Fashion': '时尚猫眼墨镜',
-  'Sport Polarized': '运动偏光墨镜',
-  'Retro Round Lenses': '复古圆框眼镜',
-  'Luxury Gold Frame': '豪华金框眼镜',
+  'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.': '永恒的飞行员设计，配有偏光镜片，提供 100% 的紫外线防护。轻盈金属框架，全天舒适。',
+  'Wayfarer Style': '徒步旅行者风格',
+  'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.': '现代徒步旅行者框架，磨砂黑面。耐用聚碳酸酯材料，高清晰度。',
+  'Cat Eye Fashion': '猫眼时尚',
+  'Sport Polarized': '运动偏光',
+  'Retro Round Lenses': '复古圆镜片',
+  'Luxury Gold Frame': '奢华金框',
   'Modern Shield': '现代护目镜',
-  'Square Oversized': '大框方框墨镜',
-  'Clubmaster Classic': '经典派对达人墨镜',
-  'Mirrored Lenses': '反光镜片墨镜',
-  'Vintage Tortoise': '复古玳瑁镜框',
-  'Rimless Minimalist': '简约无框眼镜',
-  'Biker Goggles': '机车护目镜',
-  'Pink Pastel Frames': '粉色系镜框',
+  'Square Oversized': '方形超大款',
+  'Clubmaster Classic': '派对达人经典款',
+  'Mirrored Lenses': '反光镜片',
+  'Vintage Tortoise': '复古玳瑁',
+  'Rimless Minimalist': '无框极简',
+  'Biker Goggles': '骑行护目镜',
+  'Pink Pastel Frames': '粉色柔和框架',
   'Ocean Blue Shades': '海蓝色墨镜',
-  'Steampunk Round': '蒸汽朋克圆框眼镜',
-  'Wooden Bamboo Frame': '木制竹编镜框',
-  'Kids UV Protection': '儿童防紫外线墨镜',
-  'Gothic Rectangle': '哥特风长方形墨镜',
-  'Designer Gradient': '设计师渐变色墨镜',
-  'Polarized Night Vision': '偏光夜视镜',
-  'Futuristic Cyclops': '未来感单片眼镜',
-  'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.':
-      '特制黄色镜片，旨在减少眩光并提高夜间驾驶或弱光环境下的清晰度。',
-  'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.':
-      '大胆的单片环绕式设计，带来未来感外观，并为户外活动提供最大程度的防风保护。',
-  'Geometric Hexagon': '几何六角形墨镜',
-  'Rimless Diamond Cut': '无框钻石切面眼镜',
+  'Steampunk Round': '蒸汽朋克圆框',
+  'Wooden Bamboo Frame': '竹木框架',
+  'Kids UV Protection': '儿童防紫外线',
+  'Gothic Rectangle': '哥特矩形',
+  'Designer Gradient': '设计师渐变',
+  'Polarized Night Vision': '偏光夜视',
+  'Futuristic Cyclops': '未来派独眼巨人',
+  'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.': '特制的黄色镜片，旨在减少夜间驾驶或弱光条件下的眩光并提高清晰度。',
+  'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.': '大胆的单镜片环绕设计，提供未来感的外观和户外活动的最大防风保护。',
+  'Geometric Hexagon': '几何六边形',
+  'Rimless Diamond Cut': '无框钻石切割',
   'Urban Street Goggles': '都市街头护目镜',
-  'Boho Round Tint': '波西米亚圆框有色眼镜',
-  'Executive Carbon Fiber': '商务碳纤维眼镜',
-  'Emerald Green Shades': '祖母绿墨镜',
-  'Vintage Half-Rim': '复古半框眼镜',
-  'Titanium Ultra-Light': '超轻钛金属眼镜',
-
-  // --------- Hats -------------
+  'Boho Round Tint': '波西米亚圆色镜',
+  'Executive Carbon Fiber': '行政碳纤维',
+  'Emerald Green Shades': '翡翠绿墨镜',
+  'Vintage Half-Rim': '复古半框',
+  'Titanium Ultra-Light': '钛金超轻',
   'Classic Panama Hat': '经典巴拿马帽',
-  'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.':
-      '手工打造的夏季巴拿马帽，采用透气草料制成。非常适合海滩度假和阳光明媚的户外活动。',
-  'Vintage Fedora Hat': '复古软呢帽',
-  'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.':
-      '永恒的羊毛毡费多拉帽，配有经典缎带装饰。是正式场合或日常穿搭点睛之笔。',
+  'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.': '手工制作的夏季巴拿马帽，由透气草编成。非常适合海滩度假和晴朗的户外活动，兼具遮阳和风格。',
+  'Vintage Fedora Hat': '复古费多拉帽',
+  'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.': '永恒的羊毛毡费多拉帽，配有经典丝带。非常适合正式场合或为您的休闲装扮增添精致感。',
   'Urban Baseball Cap': '都市棒球帽',
   'Elegant Wide Brim': '优雅宽檐帽',
   'Casual Beanie Hat': '休闲针织帽',
-  'Stylish Bucket Hat': '潮流渔夫帽',
-  'Premium Sun Hat': '高档遮阳帽',
+  'Stylish Bucket Hat': '时尚渔夫帽',
+  'Premium Sun Hat': '优质遮阳帽',
   'Classic Cowboy Hat': '经典牛仔帽',
   'Wool Newsboy Cap': '羊毛报童帽',
   'Beret French Style': '法式贝雷帽',
   'Snapback Sports Cap': '平檐运动帽',
-  'Floral Summer Hat': '夏季花卉帽',
-  'Military Style Cap': '军旅风帽子',
-  'Safari Adventure Hat': '游猎探险帽',
-  'Luxury Top Hat': '奢华礼帽',
+  'Floral Summer Hat': '花卉夏日帽',
+  'Military Style Cap': '军帽',
+  'Safari Adventure Hat': '丛林探险帽',
+  'Luxury Top Hat': '奢华大礼帽',
   'Ribbed Knit Beanie': '罗纹针织帽',
-  'Straw Boater Hat': '草帽平顶帽',
-  'Mesh Trucker Cap': '网眼卡车帽',
+  'Straw Boater Hat': '草编平顶帽',
+  'Mesh Trucker Cap': '网眼卡车司机帽',
   'Leather Flat Cap': '皮革鸭舌帽',
-  'Designer Bowler Hat': '设计师款圆顶硬礼帽',
-  'Jewelry': '珠宝首饰',
+  'Designer Bowler Hat': '设计师圆顶硬礼帽',
+  'Jewelry': '珠宝',
   'Sunglasses': '太阳镜',
   'Hats': '帽子',
   'Belts': '腰带',
@@ -379,35 +340,33 @@ const Map<String, String> chinese = {
   'Edit': '编辑',
   'Order Confirm': '确认订单',
   'Receive Address': '收货地址',
-  'Delivery Methods': '配送方式',
-  'Payment Methods': '支付方式',
-  'Item summary': '商品清单',
-  'Item:': '商品数量:',
-  'Subtotal Amount:': '商品总额:',
-  'Total amount:': '总计金额:',
+  'Delivery Methods': '送货方式',
+  'Payment Methods': '付款方式',
+  'Item summary': '商品摘要',
+  'Item:': '商品：',
+  'Subtotal Amount:': '小计金额：',
+  'Total amount:': '总额：',
   'Order Now': '立即下单',
   'Cash On Delivery': '货到付款',
   'Bank transfer': '银行转账',
   'Promo Code': '优惠码',
-  'Enter Promo Code': '请输入优惠码',
+  'Enter Promo Code': '输入优惠码',
   'Apply': '应用',
-  'Free delivery សម្រាប់ អតិថិជននៅភ្នំពេញ រាល់ការ បញ្ជាទិញចាប់ពី 10\$ ឡើងទៅ': '金边客户消费满 \$10 以上免运费',
-  'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$': '消费 \$10 以下加收 \$1 运费',
   'Receive Address not found': '未找到收货地址',
   'Add New Address': '添加新地址',
-  'Home': '家庭',
+  'Home': '家',
   'Office': '办公室',
   'Apartment': '公寓',
   'Parent\'s House': '父母家',
   'Default': '默认',
   'Delete Address': '删除地址',
-  'Are you sure you want to delete': '您确定要删除',
+  'Are you sure you want to delete': '您确定要删除吗',
   'Cancel': '取消',
   'Delete': '删除',
   'Address': '地址',
   'deleted': '已删除',
   'Full Name': '全名',
-  'Name': '姓名',
+  'Name': '名称',
   'Date of Birth': '出生日期',
   'Email': '电子邮件',
   'Gender': '性别',
@@ -416,26 +375,28 @@ const Map<String, String> chinese = {
   'Other': '其他',
   'Continue': '继续',
   'Profile': '个人资料',
-  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.': '发现您最喜爱的时尚单品。轻松购物，享受全新的在线购衣体验。',
+  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.': '发现您喜爱的时尚单品。\n轻松购物，享受全新的在线服装体验。',
   'Let\'s get started': '让我们开始吧',
-  'Already have an account?': '已经有账号了？',
+  'Already have an account?': '已经有账号？',
   'I already have an account': '我已经有账号了',
   'Signup': '注册',
   'Login': '登录',
-  'Good to see you back!': '很高兴见到你回来！',
+  'Good to see you back!': '很高兴见到您回来！',
   'Next': '下一步',
   'SEE MORE': '查看更多',
+  'Brands': '品牌',
+  'ALL BRANDS': '所有品牌',
   'LOOMA CLOTHES': 'LOOMA 服装',
   'LOOMA SHOES': 'LOOMA 鞋履',
-  'LOOMA BAGS': 'LOOMA 包袋',
-  'LOOMA WATCH': 'LOOMA 腕表',
+  'LOOMA BAGS': 'LOOMA 箱包',
+  'LOOMA WATCH': 'LOOMA 手表',
   'LOOMA ACCESSORIES': 'LOOMA 配饰',
-  'LOOMA BEAUTY': 'LOOMA 美妆',
-  'LOOMA GIFTS': 'LOOMA 礼品',
+  'LOOMA BEAUTY': 'LOOMA 美容',
+  'LOOMA GIFTS': 'LOOMA 礼物',
   'LOOMA TOYS': 'LOOMA 玩具',
   'Clothes': '服装',
-  'Shoes': '鞋子',
-  'Bags': '包包',
+  'Shoes': '鞋履',
+  'Bags': '箱包',
   'Watch': '手表',
   'Accessories': '配饰',
   'Cosmetics': '化妆品',
@@ -443,1187 +404,1187 @@ const Map<String, String> chinese = {
   'Lingerie': '内衣',
   'Perfumes': '香水',
   'Toys': '玩具',
-  '18K Gold Emblem Velvet Loafer': '18K Gold Emblem Velvet Loafer', // TODO: Translate to Chinese
-  '18K Gold Zip Compression Jacket': '18K Gold Zip Compression Jacket', // TODO: Translate to Chinese
-  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.': 'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.', // TODO: Translate to Chinese
-  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.': 'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.', // TODO: Translate to Chinese
-  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.': 'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.', // TODO: Translate to Chinese
-  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.': 'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.', // TODO: Translate to Chinese
-  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.': 'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.', // TODO: Translate to Chinese
-  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.': 'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.', // TODO: Translate to Chinese
-  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.': 'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.', // TODO: Translate to Chinese
-  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.': 'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.', // TODO: Translate to Chinese
-  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.': 'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.', // TODO: Translate to Chinese
-  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.': 'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.', // TODO: Translate to Chinese
-  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.': 'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.', // TODO: Translate to Chinese
-  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.': 'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.', // TODO: Translate to Chinese
-  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.': 'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.', // TODO: Translate to Chinese
-  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.': 'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.', // TODO: Translate to Chinese
-  'A unique piece of home decor, individually signed by the artist.': 'A unique piece of home decor, individually signed by the artist.', // TODO: Translate to Chinese
-  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.': 'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.', // TODO: Translate to Chinese
-  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.': 'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.', // TODO: Translate to Chinese
-  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.': 'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.', // TODO: Translate to Chinese
-  'AHA Exfoliating Peel': 'AHA Exfoliating Peel', // TODO: Translate to Chinese
-  'Acid Blue Ripped Jeans': 'Acid Blue Ripped Jeans', // TODO: Translate to Chinese
-  'Acid Wash Retro Denim': 'Acid Wash Retro Denim', // TODO: Translate to Chinese
-  'Acid Wash Retro Pullover': 'Acid Wash Retro Pullover', // TODO: Translate to Chinese
-  'Acid Wash Street Tee': 'Acid Wash Street Tee', // TODO: Translate to Chinese
-  'Active Flex Trainer': 'Active Flex Trainer', // TODO: Translate to Chinese
-  'Active Sport Waist Pack': 'Active Sport Waist Pack', // TODO: Translate to Chinese
-  'Active Tech Polo': 'Active Tech Polo', // TODO: Translate to Chinese
-  'Active Trekking Sandals': 'Active Trekking Sandals', // TODO: Translate to Chinese
-  'Active-Dry Training Pants': 'Active-Dry Training Pants', // TODO: Translate to Chinese
-  'Aero Cushion Max': 'Aero Cushion Max', // TODO: Translate to Chinese
-  'Aero Glide Flats': 'Aero Glide Flats', // TODO: Translate to Chinese
-  'Aero Tech Blue': 'Aero Tech Blue', // TODO: Translate to Chinese
-  'Air Dynamic Performance Sneaker': 'Air Dynamic Performance Sneaker', // TODO: Translate to Chinese
-  'Alpine Hybrid Shell': 'Alpine Hybrid Shell', // TODO: Translate to Chinese
-  'American Flag Splicing Hoodie': 'American Flag Splicing Hoodie', // TODO: Translate to Chinese
-  'Animal Print Mesh Top': 'Animal Print Mesh Top', // TODO: Translate to Chinese
-  'Ankle Strap Platform': 'Ankle Strap Platform', // TODO: Translate to Chinese
-  'Ankle Suede Flat Boots': 'Ankle Suede Flat Boots', // TODO: Translate to Chinese
-  'Anniversary Silk Box': 'Anniversary Silk Box', // TODO: Translate to Chinese
-  'Anorak Streetwear Jacket': 'Anorak Streetwear Jacket', // TODO: Translate to Chinese
-  'Anti-Chafe Comfort Short': 'Anti-Chafe Comfort Short', // TODO: Translate to Chinese
-  'Anti-Frizz Smoothing Balm': 'Anti-Frizz Smoothing Balm', // TODO: Translate to Chinese
-  'Anti-Ladder Tech Sheer': 'Anti-Ladder Tech Sheer', // TODO: Translate to Chinese
-  'Anti-Odor Copper Blend': 'Anti-Odor Copper Blend', // TODO: Translate to Chinese
-  'Anti-Slip Bath Slippers': 'Anti-Slip Bath Slippers', // TODO: Translate to Chinese
-  'App-Controlled Smart Chess Board': 'App-Controlled Smart Chess Board', // TODO: Translate to Chinese
-  'Apricot Cuticle Oil': 'Apricot Cuticle Oil', // TODO: Translate to Chinese
-  'Arch Sculpt Brow Gel': 'Arch Sculpt Brow Gel', // TODO: Translate to Chinese
-  'Arctic Fur-Lined Winter Boot': 'Arctic Fur-Lined Winter Boot', // TODO: Translate to Chinese
-  'Arctic White Fleece Joggers': 'Arctic White Fleece Joggers', // TODO: Translate to Chinese
-  'Arctic White Puffer': 'Arctic White Puffer', // TODO: Translate to Chinese
-  'Argan Infusion Shampoo': 'Argan Infusion Shampoo', // TODO: Translate to Chinese
-  'Artisan Ceramic Vase': 'Artisan Ceramic Vase', // TODO: Translate to Chinese
-  'Artisan Chocolate Box': 'Artisan Chocolate Box', // TODO: Translate to Chinese
-  'Artisan Watercolor Paint Kit': 'Artisan Watercolor Paint Kit', // TODO: Translate to Chinese
-  'Asymmetric Drape Vest': 'Asymmetric Drape Vest', // TODO: Translate to Chinese
-  'Athletic Mesh Shorts': 'Athletic Mesh Shorts', // TODO: Translate to Chinese
-  'Audiophile Gold Edition Headphones': 'Audiophile Gold Edition Headphones', // TODO: Translate to Chinese
-  'Automatic Skeleton X': 'Automatic Skeleton X', // TODO: Translate to Chinese
-  'Aviation Pilot Watch': 'Aviation Pilot Watch', // TODO: Translate to Chinese
-  'Back-Seam Vintage Classic': 'Back-Seam Vintage Classic', // TODO: Translate to Chinese
-  'Back-Smoothing Bralette': 'Back-Smoothing Bralette', // TODO: Translate to Chinese
-  'Baggy Fit Hip-Hop Jeans': 'Baggy Fit Hip-Hop Jeans', // TODO: Translate to Chinese
-  'Baggy Y2K Street Jeans': 'Baggy Y2K Street Jeans', // TODO: Translate to Chinese
-  'Bakuchiol Retinol Alt': 'Bakuchiol Retinol Alt', // TODO: Translate to Chinese
-  'Bamboo Breathable Soft-cup': 'Bamboo Breathable Soft-cup', // TODO: Translate to Chinese
-  'Bamboo Charcoal Wash': 'Bamboo Charcoal Wash', // TODO: Translate to Chinese
-  'Bamboo Comfort Seamless': 'Bamboo Comfort Seamless', // TODO: Translate to Chinese
-  'Bamboo Cooling Chemise': 'Bamboo Cooling Chemise', // TODO: Translate to Chinese
-  'Bamboo Weave Slippers': 'Bamboo Weave Slippers', // TODO: Translate to Chinese
-  'Basic Navy 2-Pack': 'Basic Navy 2-Pack', // TODO: Translate to Chinese
-  'Batman: Legacy of the Dark Knight Game': 'Batman: Legacy of the Dark Knight Game', // TODO: Translate to Chinese
-  'Beaded Hair Band': 'Beaded Hair Band', // TODO: Translate to Chinese
-  'Beauty sleep starts here. Reduces hair frizz and skin irritation.': 'Beauty sleep starts here. Reduces hair frizz and skin irritation.', // TODO: Translate to Chinese
-  'Beginner Wooden Acoustic Guitar': 'Beginner Wooden Acoustic Guitar', // TODO: Translate to Chinese
-  'Beige Comfort Heels': 'Beige Comfort Heels', // TODO: Translate to Chinese
-  'Beige Sand Desert Hoodie': 'Beige Sand Desert Hoodie', // TODO: Translate to Chinese
-  'Bergamot & Sea Salt': 'Bergamot & Sea Salt', // TODO: Translate to Chinese
-  'Bermuda Formal Shorts': 'Bermuda Formal Shorts', // TODO: Translate to Chinese
-  'Biking Padded Shorts': 'Biking Padded Shorts', // TODO: Translate to Chinese
-  'Biotin Growth Elixir': 'Biotin Growth Elixir', // TODO: Translate to Chinese
-  'Birthday Cake Bundle': 'Birthday Cake Bundle', // TODO: Translate to Chinese
-  'Birthday Cupcake Set': 'Birthday Cupcake Set', // TODO: Translate to Chinese
-  'Birthday Dessert Pack': 'Birthday Dessert Pack', // TODO: Translate to Chinese
-  'Birthday Flower Set': 'Birthday Flower Set', // TODO: Translate to Chinese
-  'Birthday Photo Frame': 'Birthday Photo Frame', // TODO: Translate to Chinese
-  'Birthday Roses Basket': 'Birthday Roses Basket', // TODO: Translate to Chinese
-  'Birthday Sneakers': 'Birthday Sneakers', // TODO: Translate to Chinese
-  'Birthday Teddy Bear': 'Birthday Teddy Bear', // TODO: Translate to Chinese
-  'Black High-Waist Skinny': 'Black High-Waist Skinny', // TODO: Translate to Chinese
-  'Black Saffron': 'Black Saffron', // TODO: Translate to Chinese
-  'Black Tassel Loafers': 'Black Tassel Loafers', // TODO: Translate to Chinese
-  'Blue Dial Business': 'Blue Dial Business', // TODO: Translate to Chinese
-  'Blue Suede Block Heels': 'Blue Suede Block Heels', // TODO: Translate to Chinese
-  'Bluetooth Headphones': 'Bluetooth Headphones', // TODO: Translate to Chinese
-  'Bluetooth Retro Speaker': 'Bluetooth Retro Speaker', // TODO: Translate to Chinese
-  'Bluetooth Speaker': 'Bluetooth Speaker', // TODO: Translate to Chinese
-  'Bodycon Ribbed Mini': 'Bodycon Ribbed Mini', // TODO: Translate to Chinese
-  'Bohemian Rope Sandals': 'Bohemian Rope Sandals', // TODO: Translate to Chinese
-  'Boho Embroidered Blouse': 'Boho Embroidered Blouse', // TODO: Translate to Chinese
-  'Boho Floral Crown': 'Boho Floral Crown', // TODO: Translate to Chinese
-  'Boho Maxi Lace Dress': 'Boho Maxi Lace Dress', // TODO: Translate to Chinese
-  'Boho Tassel Scarf': 'Boho Tassel Scarf', // TODO: Translate to Chinese
-  'Bold Burgundy Fleece': 'Bold Burgundy Fleece', // TODO: Translate to Chinese
-  'Bold Color-Block Polo': 'Bold Color-Block Polo', // TODO: Translate to Chinese
-  'Bond Repair Serum': 'Bond Repair Serum', // TODO: Translate to Chinese
-  'Bonded Edge Sport Brief': 'Bonded Edge Sport Brief', // TODO: Translate to Chinese
-  'Botanical Facial Oil': 'Botanical Facial Oil', // TODO: Translate to Chinese
-  'Botanical Shine Pomade': 'Botanical Shine Pomade', // TODO: Translate to Chinese
-  'Braided Casual Belt': 'Braided Casual Belt', // TODO: Translate to Chinese
-  'Breathable Mesh Babydoll': 'Breathable Mesh Babydoll', // TODO: Translate to Chinese
-  'Breathable Mesh Padded Tech': 'Breathable Mesh Padded Tech', // TODO: Translate to Chinese
-  'Breathable Mesh Slip-ons': 'Breathable Mesh Slip-ons', // TODO: Translate to Chinese
-  'Breathable linen blend for maximum comfort.': 'Breathable linen blend for maximum comfort.', // TODO: Translate to Chinese
-  'Breathable linen blend shirt, perfect for warm weather and beach outings.': 'Breathable linen blend shirt, perfect for warm weather and beach outings.', // TODO: Translate to Chinese
-  'Bridal Lace Veil': 'Bridal Lace Veil', // TODO: Translate to Chinese
-  'Brightening Vit C Drop': 'Brightening Vit C Drop', // TODO: Translate to Chinese
-  'British Tan Tweed Suit': 'British Tan Tweed Suit', // TODO: Translate to Chinese
-  'Burgundy Fringe Loafers': 'Burgundy Fringe Loafers', // TODO: Translate to Chinese
-  'Burgundy Heritage Polo': 'Burgundy Heritage Polo', // TODO: Translate to Chinese
-  'Burgundy Luxe Fleece': 'Burgundy Luxe Fleece', // TODO: Translate to Chinese
-  'Burgundy Velvet Evening Coat': 'Burgundy Velvet Evening Coat', // TODO: Translate to Chinese
-  'Burgundy Velvet Gown': 'Burgundy Velvet Gown', // TODO: Translate to Chinese
-  'Burgundy Wine V-Neck': 'Burgundy Wine V-Neck', // TODO: Translate to Chinese
-  'Butter-soft fabric with 4-way stretch, perfect for yoga.': 'Butter-soft fabric with 4-way stretch, perfect for yoga.', // TODO: Translate to Chinese
-  'Butterfly Wing Clips': 'Butterfly Wing Clips', // TODO: Translate to Chinese
-  'Camo Field Jacket': 'Camo Field Jacket', // TODO: Translate to Chinese
-  'Camo Print Adventure': 'Camo Print Adventure', // TODO: Translate to Chinese
-  'Canvas Flat Sneakers': 'Canvas Flat Sneakers', // TODO: Translate to Chinese
-  'Canvas Webbed Belt': 'Canvas Webbed Belt', // TODO: Translate to Chinese
-  'Carbon Fiber Grey Tech': 'Carbon Fiber Grey Tech', // TODO: Translate to Chinese
-  'Carbon Fiber Runner': 'Carbon Fiber Runner', // TODO: Translate to Chinese
-  'Carbon Fiber Slim Wallet': 'Carbon Fiber Slim Wallet', // TODO: Translate to Chinese
-  'Carbon Fiber Sport': 'Carbon Fiber Sport', // TODO: Translate to Chinese
-  'Carbon Flex Pro': 'Carbon Flex Pro', // TODO: Translate to Chinese
-  'Care Bears: Caring Cuties Plush': 'Care Bears: Caring Cuties Plush', // TODO: Translate to Chinese
-  'Cargo Utility Shorts': 'Cargo Utility Shorts', // TODO: Translate to Chinese
-  'Cargo Utility Skirt': 'Cargo Utility Skirt', // TODO: Translate to Chinese
-  'Carpenter Utility Jeans': 'Carpenter Utility Jeans', // TODO: Translate to Chinese
-  'Cashmere Winter Overcoat': 'Cashmere Winter Overcoat', // TODO: Translate to Chinese
-  'Cashmere Winter Wrap': 'Cashmere Winter Wrap', // TODO: Translate to Chinese
-  'Cashmere-Blend Opaque': 'Cashmere-Blend Opaque', // TODO: Translate to Chinese
-  'Cashmere-Blend Sleep Socks': 'Cashmere-Blend Sleep Socks', // TODO: Translate to Chinese
-  'Casual Bomber Baseball Jacket': 'Casual Bomber Baseball Jacket', // TODO: Translate to Chinese
-  'Casual Canvas Loafers': 'Casual Canvas Loafers', // TODO: Translate to Chinese
-  'Casual Charcoal Hoodie - Premium': 'Casual Charcoal Hoodie - Premium', // TODO: Translate to Chinese
-  'Casual Charcoal Hoodie - Premium Cotton': 'Casual Charcoal Hoodie - Premium Cotton', // TODO: Translate to Chinese
-  'Casual Denim Sandals': 'Casual Denim Sandals', // TODO: Translate to Chinese
-  'Casual Denim Skirt Dress': 'Casual Denim Skirt Dress', // TODO: Translate to Chinese
-  'Casual Linen Shirt': 'Casual Linen Shirt', // TODO: Translate to Chinese
-  'Casual Linen Slippers': 'Casual Linen Slippers', // TODO: Translate to Chinese
-  'Casual Strappy Sandals': 'Casual Strappy Sandals', // TODO: Translate to Chinese
-  'Casual Suede Loafers': 'Casual Suede Loafers', // TODO: Translate to Chinese
-  'Celestial Highlighter': 'Celestial Highlighter', // TODO: Translate to Chinese
-  'Celestial Moon Lamp': 'Celestial Moon Lamp', // TODO: Translate to Chinese
-  'Ceramic Bonsai Planter': 'Ceramic Bonsai Planter', // TODO: Translate to Chinese
-  'Ceramic Nail File Set': 'Ceramic Nail File Set', // TODO: Translate to Chinese
-  'Ceramic White Edition': 'Ceramic White Edition', // TODO: Translate to Chinese
-  'Ceramide Night Balm': 'Ceramide Night Balm', // TODO: Translate to Chinese
-  'Chain Strap Crossbody Bag': 'Chain Strap Crossbody Bag', // TODO: Translate to Chinese
-  'Chain Strap Crossbody Bag - Pink Edition': 'Chain Strap Crossbody Bag - Pink Edition', // TODO: Translate to Chinese
-  'Chambray Everyday Shirt': 'Chambray Everyday Shirt', // TODO: Translate to Chinese
-  'Champagne Gold Metallic Espadrille': 'Champagne Gold Metallic Espadrille', // TODO: Translate to Chinese
-  'Champagne Satin Slip': 'Champagne Satin Slip', // TODO: Translate to Chinese
-  'Champagne Silk Blend Tux': 'Champagne Silk Blend Tux', // TODO: Translate to Chinese
-  'Chantilly Lace Brazilian': 'Chantilly Lace Brazilian', // TODO: Translate to Chinese
-  'Charcoal Knit Hoodie': 'Charcoal Knit Hoodie', // TODO: Translate to Chinese
-  'Charcoal Knit Sweater': 'Charcoal Knit Sweater', // TODO: Translate to Chinese
-  'Charcoal Melange Cardigan': 'Charcoal Melange Cardigan', // TODO: Translate to Chinese
-  'Charcoal Slim Denim': 'Charcoal Slim Denim', // TODO: Translate to Chinese
-  'Checked Flannel Shirt': 'Checked Flannel Shirt', // TODO: Translate to Chinese
-  'Checkered Collar Polo': 'Checkered Collar Polo', // TODO: Translate to Chinese
-  'Checkered Gingham Blouse': 'Checkered Gingham Blouse', // TODO: Translate to Chinese
-  'Checkered School Skirt Set': 'Checkered School Skirt Set', // TODO: Translate to Chinese
-  'Checkered Tennis Skirt': 'Checkered Tennis Skirt', // TODO: Translate to Chinese
-  'Checkered Wool Blend Coat': 'Checkered Wool Blend Coat', // TODO: Translate to Chinese
-  'Chef Special Spice Rack': 'Chef Special Spice Rack', // TODO: Translate to Chinese
-  'Chic Office Leather Briefcase': 'Chic Office Leather Briefcase', // TODO: Translate to Chinese
-  'Chocolate Box': 'Chocolate Box', // TODO: Translate to Chinese
-  'Chocolate Surprise Box': 'Chocolate Surprise Box', // TODO: Translate to Chinese
-  'Chunky Cable-Knit Boot Sock': 'Chunky Cable-Knit Boot Sock', // TODO: Translate to Chinese
-  'Classic Black Leather Clutch': 'Classic Black Leather Clutch', // TODO: Translate to Chinese
-  'Classic Black Pumps': 'Classic Black Pumps', // TODO: Translate to Chinese
-  'Classic Brown Leather Loafers': 'Classic Brown Leather Loafers', // TODO: Translate to Chinese
-  'Classic Brown Waistband': 'Classic Brown Waistband', // TODO: Translate to Chinese
-  'Classic Button-Down PJ Top': 'Classic Button-Down PJ Top', // TODO: Translate to Chinese
-  'Classic Charcoal 3-Piece': 'Classic Charcoal 3-Piece', // TODO: Translate to Chinese
-  'Classic Charcoal Pajamas': 'Classic Charcoal Pajamas', // TODO: Translate to Chinese
-  'Classic Charcoal Suit': 'Classic Charcoal Suit', // TODO: Translate to Chinese
-  'Classic Comfort Bootcut': 'Classic Comfort Bootcut', // TODO: Translate to Chinese
-  'Classic Denim Shirt': 'Classic Denim Shirt', // TODO: Translate to Chinese
-  'Classic Denim Shorts': 'Classic Denim Shorts', // TODO: Translate to Chinese
-  'Classic Essential White Sneaker': 'Classic Essential White Sneaker', // TODO: Translate to Chinese
-  'Classic Evening Clutch Bag': 'Classic Evening Clutch Bag', // TODO: Translate to Chinese
-  'Classic Harrington Jacket': 'Classic Harrington Jacket', // TODO: Translate to Chinese
-  'Classic Hoodie': 'Classic Hoodie', // TODO: Translate to Chinese
-  'Classic Ivory Button-Up': 'Classic Ivory Button-Up', // TODO: Translate to Chinese
-  'Classic Leather Quartz': 'Classic Leather Quartz', // TODO: Translate to Chinese
-  'Classic Leather Slides': 'Classic Leather Slides', // TODO: Translate to Chinese
-  'Classic Mocha Plaid': 'Classic Mocha Plaid', // TODO: Translate to Chinese
-  'Classic Olive Green Parka': 'Classic Olive Green Parka', // TODO: Translate to Chinese
-  'Classic Patent Red Heels': 'Classic Patent Red Heels', // TODO: Translate to Chinese
-  'Classic Plaid Scarf': 'Classic Plaid Scarf', // TODO: Translate to Chinese
-  'Classic Pointed Toes Flat': 'Classic Pointed Toes Flat', // TODO: Translate to Chinese
-  'Classic Red Court': 'Classic Red Court', // TODO: Translate to Chinese
-  'Classic Red Ribbon Gift': 'Classic Red Ribbon Gift', // TODO: Translate to Chinese
-  'Classic Rubber Flip-Flops': 'Classic Rubber Flip-Flops', // TODO: Translate to Chinese
-  'Classic Silver Chronograph': 'Classic Silver Chronograph', // TODO: Translate to Chinese
-  'Classic Sneakers': 'Classic Sneakers', // TODO: Translate to Chinese
-  'Classic Striped Polo': 'Classic Striped Polo', // TODO: Translate to Chinese
-  'Classic Tan H-Strap Sandals': 'Classic Tan H-Strap Sandals', // TODO: Translate to Chinese
-  'Classic Watch': 'Classic Watch', // TODO: Translate to Chinese
-  'Classic Wayfarer Black': 'Classic Wayfarer Black', // TODO: Translate to Chinese
-  'Classic White Button-Up': 'Classic White Button-Up', // TODO: Translate to Chinese
-  'Classic White Crew': 'Classic White Crew', // TODO: Translate to Chinese
-  'Classic White Urban': 'Classic White Urban', // TODO: Translate to Chinese
-  'Classic Zip-Up Hoodie': 'Classic Zip-Up Hoodie', // TODO: Translate to Chinese
-  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.': 'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.', // TODO: Translate to Chinese
-  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.': 'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.', // TODO: Translate to Chinese
-  'Classic stonewashed denim with a comfortable straight-leg fit.': 'Classic stonewashed denim with a comfortable straight-leg fit.', // TODO: Translate to Chinese
-  'Cloud Glide 360': 'Cloud Glide 360', // TODO: Translate to Chinese
-  'Cloud-Soft Jogger Pants': 'Cloud-Soft Jogger Pants', // TODO: Translate to Chinese
-  'Collectible Fantasy Card Deck': 'Collectible Fantasy Card Deck', // TODO: Translate to Chinese
-  'Color-Block Modern': 'Color-Block Modern', // TODO: Translate to Chinese
-  'Combat Style Flat Sole': 'Combat Style Flat Sole', // TODO: Translate to Chinese
-  'Comfort Cork Sole Slides': 'Comfort Cork Sole Slides', // TODO: Translate to Chinese
-  'Comfort Walking Loafers': 'Comfort Walking Loafers', // TODO: Translate to Chinese
-  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.': 'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.', // TODO: Translate to Chinese
-  'Compact Tabletop Pool Table': 'Compact Tabletop Pool Table', // TODO: Translate to Chinese
-  'Compression Energizing 40D': 'Compression Energizing 40D', // TODO: Translate to Chinese
-  'Compression Sport Leggings': 'Compression Sport Leggings', // TODO: Translate to Chinese
-  'Compression Travel Tech': 'Compression Travel Tech', // TODO: Translate to Chinese
-  'Concrete Orchid': 'Concrete Orchid', // TODO: Translate to Chinese
-  'Connetix Magnetic Tiles: Light Star Pack': 'Connetix Magnetic Tiles: Light Star Pack', // TODO: Translate to Chinese
-  'Contour Sculpt Stick': 'Contour Sculpt Stick', // TODO: Translate to Chinese
-  'Contrast Collar Polo': 'Contrast Collar Polo', // TODO: Translate to Chinese
-  'Cool-Dry Golf Edition': 'Cool-Dry Golf Edition', // TODO: Translate to Chinese
-  'Corduroy Button Skirt': 'Corduroy Button Skirt', // TODO: Translate to Chinese
-  'Corduroy Lined Field Coat': 'Corduroy Lined Field Coat', // TODO: Translate to Chinese
-  'Corduroy Retro Shorts': 'Corduroy Retro Shorts', // TODO: Translate to Chinese
-  'Corduroy Sherpa Jacket': 'Corduroy Sherpa Jacket', // TODO: Translate to Chinese
-  'Corduroy Utility Shirt': 'Corduroy Utility Shirt', // TODO: Translate to Chinese
-  'Core Balance Trainer': 'Core Balance Trainer', // TODO: Translate to Chinese
-  'Core Sculpting Bodysuit': 'Core Sculpting Bodysuit', // TODO: Translate to Chinese
-  'Corporate Executive Gift': 'Corporate Executive Gift', // TODO: Translate to Chinese
-  'Cosmetic Glam Pack': 'Cosmetic Glam Pack', // TODO: Translate to Chinese
-  'Cotton Bandana Set': 'Cotton Bandana Set', // TODO: Translate to Chinese
-  'Cotton Cargo Shorts': 'Cotton Cargo Shorts', // TODO: Translate to Chinese
-  'Cotton Chino Shorts': 'Cotton Chino Shorts', // TODO: Translate to Chinese
-  'Cotton Stretch Hipster Pack': 'Cotton Stretch Hipster Pack', // TODO: Translate to Chinese
-  'Cotton-Stretch Daily Pack': 'Cotton-Stretch Daily Pack', // TODO: Translate to Chinese
-  'Court King Basketball Shoe': 'Court King Basketball Shoe', // TODO: Translate to Chinese
-  'Court Pro Flat Shoes': 'Court Pro Flat Shoes', // TODO: Translate to Chinese
-  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.': 'Crafted with a 14k gold nib for an exceptionally smooth writing experience.', // TODO: Translate to Chinese
-  'Cream Cashmere Sleeveless': 'Cream Cashmere Sleeveless', // TODO: Translate to Chinese
-  'Cream Fleece Basic': 'Cream Fleece Basic', // TODO: Translate to Chinese
-  'Crimson Red Active Hoodie': 'Crimson Red Active Hoodie', // TODO: Translate to Chinese
-  'Crimson Red Slim Jogger': 'Crimson Red Slim Jogger', // TODO: Translate to Chinese
-  'Criss-Cross Strap Heels': 'Criss-Cross Strap Heels', // TODO: Translate to Chinese
-  'Cropped Button Sweater': 'Cropped Button Sweater', // TODO: Translate to Chinese
-  'Cross-Train Elite': 'Cross-Train Elite', // TODO: Translate to Chinese
-  'Crystal Detail Evening Bra': 'Crystal Detail Evening Bra', // TODO: Translate to Chinese
-  'Crystal Detail Evening G-String': 'Crystal Detail Evening G-String', // TODO: Translate to Chinese
-  'Crystal Hair Clip Set': 'Crystal Hair Clip Set', // TODO: Translate to Chinese
-  'Crystal Studded Pumps': 'Crystal Studded Pumps', // TODO: Translate to Chinese
-  'Crystal Zen Garden Set': 'Crystal Zen Garden Set', // TODO: Translate to Chinese
-  'Curl Defining Soufflé': 'Curl Defining Soufflé', // TODO: Translate to Chinese
-  'Cute Bunny Ear Slippers': 'Cute Bunny Ear Slippers', // TODO: Translate to Chinese
-  'Cute Plush Collection': 'Cute Plush Collection', // TODO: Translate to Chinese
-  'Cute Teddy Bear': 'Cute Teddy Bear', // TODO: Translate to Chinese
-  'Cyberpunk Style LED Glasses': 'Cyberpunk Style LED Glasses', // TODO: Translate to Chinese
-  'Cycling Gel Padded': 'Cycling Gel Padded', // TODO: Translate to Chinese
-  'DIY Hydraulic Robot Arm': 'DIY Hydraulic Robot Arm', // TODO: Translate to Chinese
-  'Daily Comfort Walker': 'Daily Comfort Walker', // TODO: Translate to Chinese
-  'Daily UV Shield SPF50': 'Daily UV Shield SPF50', // TODO: Translate to Chinese
-  'Dark Grey Loafers': 'Dark Grey Loafers', // TODO: Translate to Chinese
-  'Dark Mocha Formal Polo': 'Dark Mocha Formal Polo', // TODO: Translate to Chinese
-  'Dark Mocha Pocket Knit': 'Dark Mocha Pocket Knit', // TODO: Translate to Chinese
-  'Decorative Hair Pins': 'Decorative Hair Pins', // TODO: Translate to Chinese
-  'Deep Burgundy Tailored Fit': 'Deep Burgundy Tailored Fit', // TODO: Translate to Chinese
-  'Deep Forest Cargo Joggers': 'Deep Forest Cargo Joggers', // TODO: Translate to Chinese
-  'Deep Forest Wool Gown': 'Deep Forest Wool Gown', // TODO: Translate to Chinese
-  'Deep Olive Chino Slim': 'Deep Olive Chino Slim', // TODO: Translate to Chinese
-  'Deep Sea Blue Pique': 'Deep Sea Blue Pique', // TODO: Translate to Chinese
-  'Deep V-Neck Chiffon Blouse': 'Deep V-Neck Chiffon Blouse', // TODO: Translate to Chinese
-  'Deep-V Plunge Microfiber': 'Deep-V Plunge Microfiber', // TODO: Translate to Chinese
-  'Denim Architect Vest': 'Denim Architect Vest', // TODO: Translate to Chinese
-  'Denim Overall Dress': 'Denim Overall Dress', // TODO: Translate to Chinese
-  'Denim Soft-Wash Blouse': 'Denim Soft-Wash Blouse', // TODO: Translate to Chinese
-  'Denim Style Slippers': 'Denim Style Slippers', // TODO: Translate to Chinese
-  'Denim Vest Streetwear': 'Denim Vest Streetwear', // TODO: Translate to Chinese
-  'Desert Cedar': 'Desert Cedar', // TODO: Translate to Chinese
-  'Desert Sand Slim Chinos': 'Desert Sand Slim Chinos', // TODO: Translate to Chinese
-  'Desert Tactical Combat Boot': 'Desert Tactical Combat Boot', // TODO: Translate to Chinese
-  'Designed for performance, these runners provide excellent grip and stability for all terrains.': 'Designed for performance, these runners provide excellent grip and stability for all terrains.', // TODO: Translate to Chinese
-  'Designer Embossed Belt': 'Designer Embossed Belt', // TODO: Translate to Chinese
-  'Designer Wallet': 'Designer Wallet', // TODO: Translate to Chinese
-  'Designer Wool Scarf': 'Designer Wool Scarf', // TODO: Translate to Chinese
-  'Diamond Bezel Edition': 'Diamond Bezel Edition', // TODO: Translate to Chinese
-  'Diamond Lattice Pattern': 'Diamond Lattice Pattern', // TODO: Translate to Chinese
-  'Distressed Denim Joggers': 'Distressed Denim Joggers', // TODO: Translate to Chinese
-  'Distressed Jean Shorts': 'Distressed Jean Shorts', // TODO: Translate to Chinese
-  'Distressed Knee Rip Jeans': 'Distressed Knee Rip Jeans', // TODO: Translate to Chinese
-  'Distressed Tan Leather': 'Distressed Tan Leather', // TODO: Translate to Chinese
-  'Double Ring Belt': 'Double Ring Belt', // TODO: Translate to Chinese
-  'Double-Breasted Classic': 'Double-Breasted Classic', // TODO: Translate to Chinese
-  'Double-Breasted Navy Elite': 'Double-Breasted Navy Elite', // TODO: Translate to Chinese
-  'Double-Breasted Navy Pea Coat': 'Double-Breasted Navy Pea Coat', // TODO: Translate to Chinese
-  'Double-Breasted Overcoat': 'Double-Breasted Overcoat', // TODO: Translate to Chinese
-  'Double-Layer Firm Bodice': 'Double-Layer Firm Bodice', // TODO: Translate to Chinese
-  'Double-Layer Smoothing': 'Double-Layer Smoothing', // TODO: Translate to Chinese
-  'Double-Lined Sculpting Brief': 'Double-Lined Sculpting Brief', // TODO: Translate to Chinese
-  'Dynamic Sport Runner': 'Dynamic Sport Runner', // TODO: Translate to Chinese
-  'D’Orsay Suede Pumps': 'D’Orsay Suede Pumps', // TODO: Translate to Chinese
-  'Earth Tone Brown': 'Earth Tone Brown', // TODO: Translate to Chinese
-  'Earth Tone Relaxed Jogger': 'Earth Tone Relaxed Jogger', // TODO: Translate to Chinese
-  'Earth Tone Relaxed Polo': 'Earth Tone Relaxed Polo', // TODO: Translate to Chinese
-  'Eco-Friendly Bamboo Building Blocks': 'Eco-Friendly Bamboo Building Blocks', // TODO: Translate to Chinese
-  'Eco-Friendly Wine Carrier': 'Eco-Friendly Wine Carrier', // TODO: Translate to Chinese
-  'Eco-Run Sustainable': 'Eco-Run Sustainable', // TODO: Translate to Chinese
-  'Egyptian Cotton Crew Pack': 'Egyptian Cotton Crew Pack', // TODO: Translate to Chinese
-  'Elastic Sport Bands': 'Elastic Sport Bands', // TODO: Translate to Chinese
-  'Electric Blue Y2K Hoodie': 'Electric Blue Y2K Hoodie', // TODO: Translate to Chinese
-  'Electric Heated Gloves': 'Electric Heated Gloves', // TODO: Translate to Chinese
-  'Electric Neon Track Joggers': 'Electric Neon Track Joggers', // TODO: Translate to Chinese
-  'Electric Pottery Wheel Kit for Kids': 'Electric Pottery Wheel Kit for Kids', // TODO: Translate to Chinese
-  'Electric Purple Party Polo': 'Electric Purple Party Polo', // TODO: Translate to Chinese
-  'Elegant Ballet Flats': 'Elegant Ballet Flats', // TODO: Translate to Chinese
-  'Elegant Bracelet': 'Elegant Bracelet', // TODO: Translate to Chinese
-  'Elegant Crocodile Print': 'Elegant Crocodile Print', // TODO: Translate to Chinese
-  'Elegant Gold Tea Infuser': 'Elegant Gold Tea Infuser', // TODO: Translate to Chinese
-  'Elegant Midnight Shawl': 'Elegant Midnight Shawl', // TODO: Translate to Chinese
-  'Elegant Necklace': 'Elegant Necklace', // TODO: Translate to Chinese
-  'Elegant Pearl Flat Sandals': 'Elegant Pearl Flat Sandals', // TODO: Translate to Chinese
-  'Elegant Pearl Jewelry Box': 'Elegant Pearl Jewelry Box', // TODO: Translate to Chinese
-  'Elegant Wedge Sandals': 'Elegant Wedge Sandals', // TODO: Translate to Chinese
-  'Elegant Women': 'Elegant Women', // TODO: Translate to Chinese
-  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.': 'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.', // TODO: Translate to Chinese
-  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.': 'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.', // TODO: Translate to Chinese
-  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.': 'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.', // TODO: Translate to Chinese
-  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.': 'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.', // TODO: Translate to Chinese
-  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.': 'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.', // TODO: Translate to Chinese
-  'Embossed Leather Loafers': 'Embossed Leather Loafers', // TODO: Translate to Chinese
-  'Embroidered Shawl': 'Embroidered Shawl', // TODO: Translate to Chinese
-  'Embroidered Tulle Slip': 'Embroidered Tulle Slip', // TODO: Translate to Chinese
-  'Emerald Green Ribbed Wrap': 'Emerald Green Ribbed Wrap', // TODO: Translate to Chinese
-  'Emerald Green Stilettos': 'Emerald Green Stilettos', // TODO: Translate to Chinese
-  'Emotional Support Highland Cow Plush': 'Emotional Support Highland Cow Plush', // TODO: Translate to Chinese
-  'Envelope Style Evening Clutch': 'Envelope Style Evening Clutch', // TODO: Translate to Chinese
-  'Espresso Sharkskin Suit': 'Espresso Sharkskin Suit', // TODO: Translate to Chinese
-  'Essential Black Joggers': 'Essential Black Joggers', // TODO: Translate to Chinese
-  'Essential Core Vest': 'Essential Core Vest', // TODO: Translate to Chinese
-  'Essential Daily Sneaker': 'Essential Daily Sneaker', // TODO: Translate to Chinese
-  'Essential Grey Crew': 'Essential Grey Crew', // TODO: Translate to Chinese
-  'Essential Grey Pullover': 'Essential Grey Pullover', // TODO: Translate to Chinese
-  'Essential Heather Grey': 'Essential Heather Grey', // TODO: Translate to Chinese
-  'Essential Seamless Bralette': 'Essential Seamless Bralette', // TODO: Translate to Chinese
-  'Essential White Polo': 'Essential White Polo', // TODO: Translate to Chinese
-  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.': 'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.', // TODO: Translate to Chinese
-  'Everyday T-Shirt Contour': 'Everyday T-Shirt Contour', // TODO: Translate to Chinese
-  'Executive Charcoal Polo': 'Executive Charcoal Polo', // TODO: Translate to Chinese
-  'Executive Emerald Suit': 'Executive Emerald Suit', // TODO: Translate to Chinese
-  'Executive Fountain Pen': 'Executive Fountain Pen', // TODO: Translate to Chinese
-  'Executive Pinstripe Slacks': 'Executive Pinstripe Slacks', // TODO: Translate to Chinese
-  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.': 'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.', // TODO: Translate to Chinese
-  'Eyelet Lace Sleep Shorts': 'Eyelet Lace Sleep Shorts', // TODO: Translate to Chinese
-  'FIFA World Cup 2026 Official Emblem Set': 'FIFA World Cup 2026 Official Emblem Set', // TODO: Translate to Chinese
-  'Fashion Handbag': 'Fashion Handbag', // TODO: Translate to Chinese
-  'Faux Leather Long Trench': 'Faux Leather Long Trench', // TODO: Translate to Chinese
-  'Festive Hamper Basket': 'Festive Hamper Basket', // TODO: Translate to Chinese
-  'Fitness Smart Band': 'Fitness Smart Band', // TODO: Translate to Chinese
-  'Fleece Running Gloves': 'Fleece Running Gloves', // TODO: Translate to Chinese
-  'Fleece Zip-Up Jacket': 'Fleece Zip-Up Jacket', // TODO: Translate to Chinese
-  'Flexi-Sole Running Flats': 'Flexi-Sole Running Flats', // TODO: Translate to Chinese
-  'Floral A-Line Skirt': 'Floral A-Line Skirt', // TODO: Translate to Chinese
-  'Floral Arrangement Box': 'Floral Arrangement Box', // TODO: Translate to Chinese
-  'Floral Embroidery Cardigan': 'Floral Embroidery Cardigan', // TODO: Translate to Chinese
-  'Floral Embroidery Cheeky': 'Floral Embroidery Cheeky', // TODO: Translate to Chinese
-  'Floral Embroidery Demi': 'Floral Embroidery Demi', // TODO: Translate to Chinese
-  'Floral Embroidery Knit': 'Floral Embroidery Knit', // TODO: Translate to Chinese
-  'Floral Lace Pattern Tights': 'Floral Lace Pattern Tights', // TODO: Translate to Chinese
-  'Floral Lace Shaping Brief': 'Floral Lace Shaping Brief', // TODO: Translate to Chinese
-  'Floral Print Lounge Set': 'Floral Print Lounge Set', // TODO: Translate to Chinese
-  'Floral Print Pumps': 'Floral Print Pumps', // TODO: Translate to Chinese
-  'Floral Print Summer Sandals': 'Floral Print Summer Sandals', // TODO: Translate to Chinese
-  'Floral Puff Sleeve Top': 'Floral Puff Sleeve Top', // TODO: Translate to Chinese
-  'Floral Spring Wrap': 'Floral Spring Wrap', // TODO: Translate to Chinese
-  'Floral Summer Sundress': 'Floral Summer Sundress', // TODO: Translate to Chinese
-  'Floral Vacation Shorts': 'Floral Vacation Shorts', // TODO: Translate to Chinese
-  'Flower Collection': 'Flower Collection', // TODO: Translate to Chinese
-  'Forest Camo Outdoor Polo': 'Forest Camo Outdoor Polo', // TODO: Translate to Chinese
-  'Forest Green Heavy': 'Forest Green Heavy', // TODO: Translate to Chinese
-  'Forest Green Organic': 'Forest Green Organic', // TODO: Translate to Chinese
-  'Forest Green Outdoor': 'Forest Green Outdoor', // TODO: Translate to Chinese
-  'Formal Black Leather': 'Formal Black Leather', // TODO: Translate to Chinese
-  'Formal Patent Loafers': 'Formal Patent Loafers', // TODO: Translate to Chinese
-  'Formal White Dress Shirt': 'Formal White Dress Shirt', // TODO: Translate to Chinese
-  'Fringe Pashmina': 'Fringe Pashmina', // TODO: Translate to Chinese
-  'Front-Close Lace Racer': 'Front-Close Lace Racer', // TODO: Translate to Chinese
-  'Full Coverage Concealer': 'Full Coverage Concealer', // TODO: Translate to Chinese
-  'Full-Body Invisible Suit': 'Full-Body Invisible Suit', // TODO: Translate to Chinese
-  'Full-Coverage Power Mesh': 'Full-Coverage Power Mesh', // TODO: Translate to Chinese
-  'Gaming Headset': 'Gaming Headset', // TODO: Translate to Chinese
-  'Gardening Soft Grip': 'Gardening Soft Grip', // TODO: Translate to Chinese
-  'Geometric Hair Claw': 'Geometric Hair Claw', // TODO: Translate to Chinese
-  'Geometric Jacquard Knit': 'Geometric Jacquard Knit', // TODO: Translate to Chinese
-  'Geometric Lace High-Cut': 'Geometric Lace High-Cut', // TODO: Translate to Chinese
-  'Geometric Lace Longline': 'Geometric Lace Longline', // TODO: Translate to Chinese
-  'Geometric Pattern Dress Sock': 'Geometric Pattern Dress Sock', // TODO: Translate to Chinese
-  'Geometric Print Polo': 'Geometric Print Polo', // TODO: Translate to Chinese
-  'Geometric Print Silk': 'Geometric Print Silk', // TODO: Translate to Chinese
-  'Giant Inflatable Rainbow Sprinkler': 'Giant Inflatable Rainbow Sprinkler', // TODO: Translate to Chinese
-  'Gingham Summer Skirt': 'Gingham Summer Skirt', // TODO: Translate to Chinese
-  'Gladiator High Sandals': 'Gladiator High Sandals', // TODO: Translate to Chinese
-  'Glass Shine Gloss': 'Glass Shine Gloss', // TODO: Translate to Chinese
-  'Glass Strengthening Base': 'Glass Strengthening Base', // TODO: Translate to Chinese
-  'Glitter Lurex Party Tights': 'Glitter Lurex Party Tights', // TODO: Translate to Chinese
-  'Glitter Mesh Party Sock': 'Glitter Mesh Party Sock', // TODO: Translate to Chinese
-  'Glitters Night Out Mini': 'Glitters Night Out Mini', // TODO: Translate to Chinese
-  'Glossing Glaze Treatment': 'Glossing Glaze Treatment', // TODO: Translate to Chinese
-  'Glow Setting Powder': 'Glow Setting Powder', // TODO: Translate to Chinese
-  'Glute-Enhancing Tech Short': 'Glute-Enhancing Tech Short', // TODO: Translate to Chinese
-  'Gold Leaf Top Coat': 'Gold Leaf Top Coat', // TODO: Translate to Chinese
-  'Gold Myrrh': 'Gold Myrrh', // TODO: Translate to Chinese
-  'Gold-Thread Evening Sock': 'Gold-Thread Evening Sock', // TODO: Translate to Chinese
-  'Golden Celebration Package': 'Golden Celebration Package', // TODO: Translate to Chinese
-  'Golden Elixir Serum': 'Golden Elixir Serum', // TODO: Translate to Chinese
-  'Golden Hue Designer Sunglasses': 'Golden Hue Designer Sunglasses', // TODO: Translate to Chinese
-  'Golden Leaf Hair Vine': 'Golden Leaf Hair Vine', // TODO: Translate to Chinese
-  'Golden Rush Edition': 'Golden Rush Edition', // TODO: Translate to Chinese
-  'Golden Skeleton Auto': 'Golden Skeleton Auto', // TODO: Translate to Chinese
-  'Golden Wedding Heels': 'Golden Wedding Heels', // TODO: Translate to Chinese
-  'Golf Stretch Shorts': 'Golf Stretch Shorts', // TODO: Translate to Chinese
-  'Gothic Skeleton Print Shirt': 'Gothic Skeleton Print Shirt', // TODO: Translate to Chinese
-  'Gothic Style Skull Printed Shirt': 'Gothic Style Skull Printed Shirt', // TODO: Translate to Chinese
-  'Grand Heritage Gold': 'Grand Heritage Gold', // TODO: Translate to Chinese
-  'Grandad Collar Shirt': 'Grandad Collar Shirt', // TODO: Translate to Chinese
-  'Graphic Print Urban Hoodie': 'Graphic Print Urban Hoodie', // TODO: Translate to Chinese
-  'Graphic Streetwear': 'Graphic Streetwear', // TODO: Translate to Chinese
-  'Graphite Brushed Wool': 'Graphite Brushed Wool', // TODO: Translate to Chinese
-  'Graphite Ribbed Joggers': 'Graphite Ribbed Joggers', // TODO: Translate to Chinese
-  'Graphite Stretch Jeans': 'Graphite Stretch Jeans', // TODO: Translate to Chinese
-  'Grey Comfort Walker': 'Grey Comfort Walker', // TODO: Translate to Chinese
-  'Grey Marl Basic': 'Grey Marl Basic', // TODO: Translate to Chinese
-  'Grey Mineral Wash Jeans': 'Grey Mineral Wash Jeans', // TODO: Translate to Chinese
-  'Gym Master Stealth': 'Gym Master Stealth', // TODO: Translate to Chinese
-  'Hand-Operated Mini Drone (UFO)': 'Hand-Operated Mini Drone (UFO)', // TODO: Translate to Chinese
-  'Hand-Poured Soy Candle Set': 'Hand-Poured Soy Candle Set', // TODO: Translate to Chinese
-  'Handcrafted from full-grain Italian leather, designed for the modern professional.': 'Handcrafted from full-grain Italian leather, designed for the modern professional.', // TODO: Translate to Chinese
-  'Handmade Spa Kit': 'Handmade Spa Kit', // TODO: Translate to Chinese
-  'Hape x The Met: Van Gogh Block Set': 'Hape x The Met: Van Gogh Block Set', // TODO: Translate to Chinese
-  'Harajuku Hip Hop Letter Jeans': 'Harajuku Hip Hop Letter Jeans', // TODO: Translate to Chinese
-  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.': 'Health tracking meets high fashion. Water-resistant with a 5-day battery life.', // TODO: Translate to Chinese
-  'Heather Purple Crew': 'Heather Purple Crew', // TODO: Translate to Chinese
-  'Heathered Grey Performance': 'Heathered Grey Performance', // TODO: Translate to Chinese
-  'Heavy Duty Work Gloves': 'Heavy Duty Work Gloves', // TODO: Translate to Chinese
-  'Heavy Jersey Shorts': 'Heavy Jersey Shorts', // TODO: Translate to Chinese
-  'Heavy Knit Muffler': 'Heavy Knit Muffler', // TODO: Translate to Chinese
-  'Heavyweight Charcoal': 'Heavyweight Charcoal', // TODO: Translate to Chinese
-  'Heavyweight Flannel': 'Heavyweight Flannel', // TODO: Translate to Chinese
-  'Heeled Loafer Style': 'Heeled Loafer Style', // TODO: Translate to Chinese
-  'Heritage Cable Knit': 'Heritage Cable Knit', // TODO: Translate to Chinese
-  'Heritage Plaid Trench': 'Heritage Plaid Trench', // TODO: Translate to Chinese
-  'Heritage Tweed Vest': 'Heritage Tweed Vest', // TODO: Translate to Chinese
-  'High-Gloss Gel Lacquer': 'High-Gloss Gel Lacquer', // TODO: Translate to Chinese
-  'High-Impact Performance Run': 'High-Impact Performance Run', // TODO: Translate to Chinese
-  'High-Impact Sport Sculpt': 'High-Impact Sport Sculpt', // TODO: Translate to Chinese
-  'High-Leg Sculpting Panty': 'High-Leg Sculpting Panty', // TODO: Translate to Chinese
-  'High-Neck Victorian Blouse': 'High-Neck Victorian Blouse', // TODO: Translate to Chinese
-  'High-Performance Compression': 'High-Performance Compression', // TODO: Translate to Chinese
-  'High-Waist Comfort Leggings': 'High-Waist Comfort Leggings', // TODO: Translate to Chinese
-  'High-Waist Control Top': 'High-Waist Control Top', // TODO: Translate to Chinese
-  'High-Waist Denim Skirt': 'High-Waist Denim Skirt', // TODO: Translate to Chinese
-  'High-Waist Mesh Brief': 'High-Waist Mesh Brief', // TODO: Translate to Chinese
-  'High-Waist Modal Shorts': 'High-Waist Modal Shorts', // TODO: Translate to Chinese
-  'High-Waist Thong Shaper': 'High-Waist Thong Shaper', // TODO: Translate to Chinese
-  'High-Waist Yoga Leggings': 'High-Waist Yoga Leggings', // TODO: Translate to Chinese
-  'High-Waisted Bootcut Leggings': 'High-Waisted Bootcut Leggings', // TODO: Translate to Chinese
-  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.': 'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.', // TODO: Translate to Chinese
-  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.': 'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.', // TODO: Translate to Chinese
-  'Hiking Water-Resistant Cargo': 'Hiking Water-Resistant Cargo', // TODO: Translate to Chinese
-  'Hip Hop Embroidered Jeans': 'Hip Hop Embroidered Jeans', // TODO: Translate to Chinese
-  'Holiday Tropical Print': 'Holiday Tropical Print', // TODO: Translate to Chinese
-  'Holographic Nail Tint': 'Holographic Nail Tint', // TODO: Translate to Chinese
-  'Hooded Parka Coat': 'Hooded Parka Coat', // TODO: Translate to Chinese
-  'Hooded Relaxed Cardigan': 'Hooded Relaxed Cardigan', // TODO: Translate to Chinese
-  'Hot Wheels: Ultimate T-Rex Garage': 'Hot Wheels: Ultimate T-Rex Garage', // TODO: Translate to Chinese
-  'Hyaluronic Acid Ampoule': 'Hyaluronic Acid Ampoule', // TODO: Translate to Chinese
-  'Hybrid Fitness Pro': 'Hybrid Fitness Pro', // TODO: Translate to Chinese
-  'Hydra-Glow Serum': 'Hydra-Glow Serum', // TODO: Translate to Chinese
-  'Hydrating Lip Oil': 'Hydrating Lip Oil', // TODO: Translate to Chinese
-  'Hyper Focus Sport': 'Hyper Focus Sport', // TODO: Translate to Chinese
-  'Iced Matcha EDP': 'Iced Matcha EDP', // TODO: Translate to Chinese
-  'Icy White Canvas': 'Icy White Canvas', // TODO: Translate to Chinese
-  'Illuminating Primer': 'Illuminating Primer', // TODO: Translate to Chinese
-  'Imperial Sandalwood': 'Imperial Sandalwood', // TODO: Translate to Chinese
-  'Indigo Dye Polo': 'Indigo Dye Polo', // TODO: Translate to Chinese
-  'Infinity Cushion Air': 'Infinity Cushion Air', // TODO: Translate to Chinese
-  'Infinity Loop Scarf': 'Infinity Loop Scarf', // TODO: Translate to Chinese
-  'Infused with rare essential oils of sandalwood and jasmine.': 'Infused with rare essential oils of sandalwood and jasmine.', // TODO: Translate to Chinese
-  'Interactive Coding Turtle': 'Interactive Coding Turtle', // TODO: Translate to Chinese
-  'Invisible Control Slip': 'Invisible Control Slip', // TODO: Translate to Chinese
-  'Ionic Nano Steamer': 'Ionic Nano Steamer', // TODO: Translate to Chinese
-  'Italian Leather Oxford Derby': 'Italian Leather Oxford Derby', // TODO: Translate to Chinese
-  'Italian Micro-Net Fishnet': 'Italian Micro-Net Fishnet', // TODO: Translate to Chinese
-  'Italian Silk Evening Suit': 'Italian Silk Evening Suit', // TODO: Translate to Chinese
-  'Italian Slim Fit Blue': 'Italian Slim Fit Blue', // TODO: Translate to Chinese
-  'Italian Wool Cashmere Coat': 'Italian Wool Cashmere Coat', // TODO: Translate to Chinese
-  'Italian Wool Pinstripe': 'Italian Wool Pinstripe', // TODO: Translate to Chinese
-  'Ivory Wedding Dinner Jacket': 'Ivory Wedding Dinner Jacket', // TODO: Translate to Chinese
-  'Jade Facial Roller': 'Jade Facial Roller', // TODO: Translate to Chinese
-  'Jelly Blox: Squish Train Building Set': 'Jelly Blox: Squish Train Building Set', // TODO: Translate to Chinese
-  'Jersey Knit Polo': 'Jersey Knit Polo', // TODO: Translate to Chinese
-  'Jet Black Formal Trousers': 'Jet Black Formal Trousers', // TODO: Translate to Chinese
-  'Jeweled Hair Comb': 'Jeweled Hair Comb', // TODO: Translate to Chinese
-  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.': 'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.', // TODO: Translate to Chinese
-  'Keratin Straightening Cream': 'Keratin Straightening Cream', // TODO: Translate to Chinese
-  'Khaki Cargo Basic': 'Khaki Cargo Basic', // TODO: Translate to Chinese
-  'Khaki Safari Skirt': 'Khaki Safari Skirt', // TODO: Translate to Chinese
-  'Khaki Utility Work Pants': 'Khaki Utility Work Pants', // TODO: Translate to Chinese
-  'Kids Cartoon Slippers': 'Kids Cartoon Slippers', // TODO: Translate to Chinese
-  'Kids Winter Mittens': 'Kids Winter Mittens', // TODO: Translate to Chinese
-  'KitchenAid Kids Real Working Blender': 'KitchenAid Kids Real Working Blender', // TODO: Translate to Chinese
-  'Knitted Cotton Polo': 'Knitted Cotton Polo', // TODO: Translate to Chinese
-  'LED Light Therapy Mask': 'LED Light Therapy Mask', // TODO: Translate to Chinese
-  'Lace Trim Balconette': 'Lace Trim Balconette', // TODO: Translate to Chinese
-  'Lace Trim Summer Top': 'Lace Trim Summer Top', // TODO: Translate to Chinese
-  'Lace-Edge Victorian Frill': 'Lace-Edge Victorian Frill', // TODO: Translate to Chinese
-  'Lace-Trimmed Brazilian': 'Lace-Trimmed Brazilian', // TODO: Translate to Chinese
-  'Lace-Trimmed Silk Slip': 'Lace-Trimmed Silk Slip', // TODO: Translate to Chinese
-  'Latex Protective Gloves': 'Latex Protective Gloves', // TODO: Translate to Chinese
-  'Lavender Breeze Casual': 'Lavender Breeze Casual', // TODO: Translate to Chinese
-  'Lavender Soak Salts': 'Lavender Soak Salts', // TODO: Translate to Chinese
-  'Leapfrog Twinkle Lights Learning Piano': 'Leapfrog Twinkle Lights Learning Piano', // TODO: Translate to Chinese
-  'Leather & Tobacco': 'Leather & Tobacco', // TODO: Translate to Chinese
-  'Leather Biker Jacket': 'Leather Biker Jacket', // TODO: Translate to Chinese
-  'Leather Cross Slippers': 'Leather Cross Slippers', // TODO: Translate to Chinese
-  'Leather Driving Gloves': 'Leather Driving Gloves', // TODO: Translate to Chinese
-  'Leather Handbag': 'Leather Handbag', // TODO: Translate to Chinese
-  'Leather Mini Skirt': 'Leather Mini Skirt', // TODO: Translate to Chinese
-  'Leather Moto Gilet': 'Leather Moto Gilet', // TODO: Translate to Chinese
-  'Leave-In Hydration Milk': 'Leave-In Hydration Milk', // TODO: Translate to Chinese
-  'Lego Smart Play: Mos Eisley Cantina': 'Lego Smart Play: Mos Eisley Cantina', // TODO: Translate to Chinese
-  'Leopard Print Heels': 'Leopard Print Heels', // TODO: Translate to Chinese
-  'Leopard Print Scrunchie': 'Leopard Print Scrunchie', // TODO: Translate to Chinese
-  'Leopard Print Sheer Mesh': 'Leopard Print Sheer Mesh', // TODO: Translate to Chinese
-  'Leopard Print Wrap': 'Leopard Print Wrap', // TODO: Translate to Chinese
-  'Lift-and-Sculpt Booty Short': 'Lift-and-Sculpt Booty Short', // TODO: Translate to Chinese
-  'Light Blue Pastel Business': 'Light Blue Pastel Business', // TODO: Translate to Chinese
-  'Light Grey Marl': 'Light Grey Marl', // TODO: Translate to Chinese
-  'Light Grey Marl Joggers': 'Light Grey Marl Joggers', // TODO: Translate to Chinese
-  'Lightweight Coaching Jacket': 'Lightweight Coaching Jacket', // TODO: Translate to Chinese
-  'Lightweight Linen Duster': 'Lightweight Linen Duster', // TODO: Translate to Chinese
-  'Lightweight Linen Layer': 'Lightweight Linen Layer', // TODO: Translate to Chinese
-  'Lightweight Linen Sleepers': 'Lightweight Linen Sleepers', // TODO: Translate to Chinese
-  'Lightweight Run Shorts': 'Lightweight Run Shorts', // TODO: Translate to Chinese
-  'Lightweight Summer Cover': 'Lightweight Summer Cover', // TODO: Translate to Chinese
-  'Lightweight and breathable. Perfect for the stylish city dweller.': 'Lightweight and breathable. Perfect for the stylish city dweller.', // TODO: Translate to Chinese
-  'Lightweight and responsive, perfect for marathon runners and speed training.': 'Lightweight and responsive, perfect for marathon runners and speed training.', // TODO: Translate to Chinese
-  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.': 'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.', // TODO: Translate to Chinese
-  'Linen Summer Blazer': 'Linen Summer Blazer', // TODO: Translate to Chinese
-  'Linen Summer Scarf': 'Linen Summer Scarf', // TODO: Translate to Chinese
-  'Linen Summer Shorts': 'Linen Summer Shorts', // TODO: Translate to Chinese
-  'Linen Summer Wrap': 'Linen Summer Wrap', // TODO: Translate to Chinese
-  'Linen-Blend Summer Polo': 'Linen-Blend Summer Polo', // TODO: Translate to Chinese
-  'Lionel Messi - Lego Soccer Legend': 'Lionel Messi - Lego Soccer Legend', // TODO: Translate to Chinese
-  'Liquid Amber Essence': 'Liquid Amber Essence', // TODO: Translate to Chinese
-  'Lite-Walk Everyday': 'Lite-Walk Everyday', // TODO: Translate to Chinese
-  'Lite-Weight Mesh Sport Loafer': 'Lite-Weight Mesh Sport Loafer', // TODO: Translate to Chinese
-  'Little Black Party Dress': 'Little Black Party Dress', // TODO: Translate to Chinese
-  'Logo Print Sport Tee': 'Logo Print Sport Tee', // TODO: Translate to Chinese
-  'Lolita Style Plaid Mini Skirt': 'Lolita Style Plaid Mini Skirt', // TODO: Translate to Chinese
-  'Long Sleeve Cotton Polo': 'Long Sleeve Cotton Polo', // TODO: Translate to Chinese
-  'Longline Black Curved': 'Longline Black Curved', // TODO: Translate to Chinese
-  'Longline Open Front Wrap': 'Longline Open Front Wrap', // TODO: Translate to Chinese
-  'Longwear Setting Spray': 'Longwear Setting Spray', // TODO: Translate to Chinese
-  'Loose Fit Skater Jeans': 'Loose Fit Skater Jeans', // TODO: Translate to Chinese
-  'Luxe Cashmere Polo': 'Luxe Cashmere Polo', // TODO: Translate to Chinese
-  'Luxe Leather High-Top': 'Luxe Leather High-Top', // TODO: Translate to Chinese
-  'Luxe Satin Shirt': 'Luxe Satin Shirt', // TODO: Translate to Chinese
-  'Luxe Travel Brush Set': 'Luxe Travel Brush Set', // TODO: Translate to Chinese
-  'Luxe Velour Joggers': 'Luxe Velour Joggers', // TODO: Translate to Chinese
-  'Luxe Velvet Trim Triangle': 'Luxe Velvet Trim Triangle', // TODO: Translate to Chinese
-  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.': 'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.', // TODO: Translate to Chinese
-  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.': 'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.', // TODO: Translate to Chinese
-  'Luxury Birthday Hamper': 'Luxury Birthday Hamper', // TODO: Translate to Chinese
-  'Luxury Candle Set': 'Luxury Candle Set', // TODO: Translate to Chinese
-  'Luxury Gift Box': 'Luxury Gift Box', // TODO: Translate to Chinese
-  'Luxury Gold Buckle': 'Luxury Gold Buckle', // TODO: Translate to Chinese
-  'Luxury Gold Trim Sandals': 'Luxury Gold Trim Sandals', // TODO: Translate to Chinese
-  'Luxury Makeup Kit': 'Luxury Makeup Kit', // TODO: Translate to Chinese
-  'Luxury Paddle Brush': 'Luxury Paddle Brush', // TODO: Translate to Chinese
-  'Luxury Patent Formal Shoe': 'Luxury Patent Formal Shoe', // TODO: Translate to Chinese
-  'Luxury Pearl Headband': 'Luxury Pearl Headband', // TODO: Translate to Chinese
-  'Luxury Perfume': 'Luxury Perfume', // TODO: Translate to Chinese
-  'Luxury Perfume Box': 'Luxury Perfume Box', // TODO: Translate to Chinese
-  'Luxury Perfume Set': 'Luxury Perfume Set', // TODO: Translate to Chinese
-  'Luxury Ribbed Wool Tights': 'Luxury Ribbed Wool Tights', // TODO: Translate to Chinese
-  'Luxury Rose Box': 'Luxury Rose Box', // TODO: Translate to Chinese
-  'Luxury Rose Gold': 'Luxury Rose Gold', // TODO: Translate to Chinese
-  'Luxury Scented Candle Set': 'Luxury Scented Candle Set', // TODO: Translate to Chinese
-  'Luxury Silk Pillowcase Set': 'Luxury Silk Pillowcase Set', // TODO: Translate to Chinese
-  'Luxury Silk-Blend Trouser': 'Luxury Silk-Blend Trouser', // TODO: Translate to Chinese
-  'Luxury Tulle Hipster Bloom': 'Luxury Tulle Hipster Bloom', // TODO: Translate to Chinese
-  'Luxury Watch Gift Set': 'Luxury Watch Gift Set', // TODO: Translate to Chinese
-  'Magic Chemistry Set (50 Experiments)': 'Magic Chemistry Set (50 Experiments)', // TODO: Translate to Chinese
-  'Magshuto Vert Tower - Kinetic Play': 'Magshuto Vert Tower - Kinetic Play', // TODO: Translate to Chinese
-  'Makeup Collection': 'Makeup Collection', // TODO: Translate to Chinese
-  'Mandarin Collar Casual': 'Mandarin Collar Casual', // TODO: Translate to Chinese
-  'Marble Coffee Mug Trio': 'Marble Coffee Mug Trio', // TODO: Translate to Chinese
-  'Maroon Velvet Touch Polo': 'Maroon Velvet Touch Polo', // TODO: Translate to Chinese
-  'Massage Sole Slippers': 'Massage Sole Slippers', // TODO: Translate to Chinese
-  'Masterpiece Leather Briefcase': 'Masterpiece Leather Briefcase', // TODO: Translate to Chinese
-  'Matcha Detox Scrub': 'Matcha Detox Scrub', // TODO: Translate to Chinese
-  'Maternity Over-Belly Support': 'Maternity Over-Belly Support', // TODO: Translate to Chinese
-  'Matte Black Rubber Sandals': 'Matte Black Rubber Sandals', // TODO: Translate to Chinese
-  'Matte Finish Claw': 'Matte Finish Claw', // TODO: Translate to Chinese
-  'Matte Finish Executive': 'Matte Finish Executive', // TODO: Translate to Chinese
-  'Matte Finish Loafers': 'Matte Finish Loafers', // TODO: Translate to Chinese
-  'Matte Finish Shoulder Bag': 'Matte Finish Shoulder Bag', // TODO: Translate to Chinese
-  'Matte Finish Top Coat': 'Matte Finish Top Coat', // TODO: Translate to Chinese
-  'Matte Grey Performance': 'Matte Grey Performance', // TODO: Translate to Chinese
-  'Matte Nylon Bodywarmer': 'Matte Nylon Bodywarmer', // TODO: Translate to Chinese
-  'Maxi Tulle Skirt': 'Maxi Tulle Skirt', // TODO: Translate to Chinese
-  'Memory Foam Comfort Slippers': 'Memory Foam Comfort Slippers', // TODO: Translate to Chinese
-  'Men': 'Men', // TODO: Translate to Chinese
-  'Merino Wool Hiking Sock': 'Merino Wool Hiking Sock', // TODO: Translate to Chinese
-  'Merino Wool Layer': 'Merino Wool Layer', // TODO: Translate to Chinese
-  'Mermaid Hem Skirt': 'Mermaid Hem Skirt', // TODO: Translate to Chinese
-  'Metallic Eye Pigment': 'Metallic Eye Pigment', // TODO: Translate to Chinese
-  'Micro-Modal Soft Shaper': 'Micro-Modal Soft Shaper', // TODO: Translate to Chinese
-  'Micro-Print Dress Shirt': 'Micro-Print Dress Shirt', // TODO: Translate to Chinese
-  'Microfiber Laser-Cut Thong': 'Microfiber Laser-Cut Thong', // TODO: Translate to Chinese
-  'Midnight Black Fleece': 'Midnight Black Fleece', // TODO: Translate to Chinese
-  'Midnight Black Hoodie': 'Midnight Black Hoodie', // TODO: Translate to Chinese
-  'Midnight Black Voyager': 'Midnight Black Voyager', // TODO: Translate to Chinese
-  'Midnight Blue Pocket': 'Midnight Blue Pocket', // TODO: Translate to Chinese
-  'Midnight Camo Active': 'Midnight Camo Active', // TODO: Translate to Chinese
-  'Midnight Cherry Polish': 'Midnight Cherry Polish', // TODO: Translate to Chinese
-  'Midnight Executive': 'Midnight Executive', // TODO: Translate to Chinese
-  'Midnight Gold Trim Polo': 'Midnight Gold Trim Polo', // TODO: Translate to Chinese
-  'Midnight Jasmine': 'Midnight Jasmine', // TODO: Translate to Chinese
-  'Midnight Kohl Pencil': 'Midnight Kohl Pencil', // TODO: Translate to Chinese
-  'Midnight Navy Sweatpants': 'Midnight Navy Sweatpants', // TODO: Translate to Chinese
-  'Midnight Navy Tuxedo': 'Midnight Navy Tuxedo', // TODO: Translate to Chinese
-  'Midnight Red Velvet Stiletto': 'Midnight Red Velvet Stiletto', // TODO: Translate to Chinese
-  'Midnight Repair Oil': 'Midnight Repair Oil', // TODO: Translate to Chinese
-  'Midnight Satin Kimono': 'Midnight Satin Kimono', // TODO: Translate to Chinese
-  'Midnight Stealth Black': 'Midnight Stealth Black', // TODO: Translate to Chinese
-  'Midnight Velvet Gilet': 'Midnight Velvet Gilet', // TODO: Translate to Chinese
-  'Midnight Velvet Tuxedo': 'Midnight Velvet Tuxedo', // TODO: Translate to Chinese
-  'Military Green Cargo': 'Military Green Cargo', // TODO: Translate to Chinese
-  'Military Green Cargo Polo': 'Military Green Cargo Polo', // TODO: Translate to Chinese
-  'Military Tactical': 'Military Tactical', // TODO: Translate to Chinese
-  'Mineral Dew Cream': 'Mineral Dew Cream', // TODO: Translate to Chinese
-  'Mineral Loose Powder': 'Mineral Loose Powder', // TODO: Translate to Chinese
-  'Mineral Ridge Filler': 'Mineral Ridge Filler', // TODO: Translate to Chinese
-  'Mini Birthday Treat': 'Mini Birthday Treat', // TODO: Translate to Chinese
-  'Mini Travel Messenger Pouch': 'Mini Travel Messenger Pouch', // TODO: Translate to Chinese
-  'Minimal Hoodie': 'Minimal Hoodie', // TODO: Translate to Chinese
-  'Minimalist Accessories': 'Minimalist Accessories', // TODO: Translate to Chinese
-  'Minimalist Bonded Edge': 'Minimalist Bonded Edge', // TODO: Translate to Chinese
-  'Minimalist Bone Overcoat': 'Minimalist Bone Overcoat', // TODO: Translate to Chinese
-  'Minimalist Cotton Tote Bag': 'Minimalist Cotton Tote Bag', // TODO: Translate to Chinese
-  'Minimalist Cream Polo': 'Minimalist Cream Polo', // TODO: Translate to Chinese
-  'Minimalist Cross-Strap Slides': 'Minimalist Cross-Strap Slides', // TODO: Translate to Chinese
-  'Minimalist Desk Organizer': 'Minimalist Desk Organizer', // TODO: Translate to Chinese
-  'Minimalist Gold Watch': 'Minimalist Gold Watch', // TODO: Translate to Chinese
-  'Minimalist Gold Watch with Leather Strap': 'Minimalist Gold Watch with Leather Strap', // TODO: Translate to Chinese
-  'Minimalist Home Slides': 'Minimalist Home Slides', // TODO: Translate to Chinese
-  'Minimalist Knit Skirt': 'Minimalist Knit Skirt', // TODO: Translate to Chinese
-  'Minimalist Mesh Band': 'Minimalist Mesh Band', // TODO: Translate to Chinese
-  'Minimalist Silver Barrette': 'Minimalist Silver Barrette', // TODO: Translate to Chinese
-  'Minimalist Slate': 'Minimalist Slate', // TODO: Translate to Chinese
-  'Minimalist Slate Gilet': 'Minimalist Slate Gilet', // TODO: Translate to Chinese
-  'Minimalist Slate Gray Knit Runner': 'Minimalist Slate Gray Knit Runner', // TODO: Translate to Chinese
-  'Minimalist Tech-Mesh Thong': 'Minimalist Tech-Mesh Thong', // TODO: Translate to Chinese
-  'Minimalist White Crew': 'Minimalist White Crew', // TODO: Translate to Chinese
-  'Minimalist White Flats': 'Minimalist White Flats', // TODO: Translate to Chinese
-  'Minimalist White Hoodie': 'Minimalist White Hoodie', // TODO: Translate to Chinese
-  'Minimalist White Smartwatch': 'Minimalist White Smartwatch', // TODO: Translate to Chinese
-  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.': 'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.', // TODO: Translate to Chinese
-  'Mocha Teddy Shearling': 'Mocha Teddy Shearling', // TODO: Translate to Chinese
-  'Modal Ribbed Boyshort': 'Modal Ribbed Boyshort', // TODO: Translate to Chinese
-  'Modal Ribbed Sleep Dress': 'Modal Ribbed Sleep Dress', // TODO: Translate to Chinese
-  'Modern Buckle Loafers': 'Modern Buckle Loafers', // TODO: Translate to Chinese
-  'Modern Canvas Utility': 'Modern Canvas Utility', // TODO: Translate to Chinese
-  'Modern Fit Burgundy Chinos': 'Modern Fit Burgundy Chinos', // TODO: Translate to Chinese
-  'Modern Jet Black Suit': 'Modern Jet Black Suit', // TODO: Translate to Chinese
-  'Modern Jet Black Tux': 'Modern Jet Black Tux', // TODO: Translate to Chinese
-  'Modern Minimalist': 'Modern Minimalist', // TODO: Translate to Chinese
-  'Modern Tech Gadget Box': 'Modern Tech Gadget Box', // TODO: Translate to Chinese
-  'Modular Tech Vest': 'Modular Tech Vest', // TODO: Translate to Chinese
-  'Moisture-Wicking Yoga Grip': 'Moisture-Wicking Yoga Grip', // TODO: Translate to Chinese
-  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.': 'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.', // TODO: Translate to Chinese
-  'Monster High: Moonspell Magic Willow Thorne': 'Monster High: Moonspell Magic Willow Thorne', // TODO: Translate to Chinese
-  'Morning Rain': 'Morning Rain', // TODO: Translate to Chinese
-  'Musical Electronic Drum Pad Mat': 'Musical Electronic Drum Pad Mat', // TODO: Translate to Chinese
-  'Mustard Yellow Boxy': 'Mustard Yellow Boxy', // TODO: Translate to Chinese
-  'Mustard Yellow Pop': 'Mustard Yellow Pop', // TODO: Translate to Chinese
-  'Mustard Yellow Streetwear': 'Mustard Yellow Streetwear', // TODO: Translate to Chinese
-  'Navy Blue Driving Mocs': 'Navy Blue Driving Mocs', // TODO: Translate to Chinese
-  'Navy Blue Sport Hoodie': 'Navy Blue Sport Hoodie', // TODO: Translate to Chinese
-  'Navy Blue Tech Fleece': 'Navy Blue Tech Fleece', // TODO: Translate to Chinese
-  'Navy Blue Work Blouse': 'Navy Blue Work Blouse', // TODO: Translate to Chinese
-  'Navy Dive Master': 'Navy Dive Master', // TODO: Translate to Chinese
-  'Navy Slim Fit Tee': 'Navy Slim Fit Tee', // TODO: Translate to Chinese
-  'Navy Work Shirt': 'Navy Work Shirt', // TODO: Translate to Chinese
-  'Neo Future Sport Sneaker': 'Neo Future Sport Sneaker', // TODO: Translate to Chinese
-  'Neon Liquid Motion Bubbler': 'Neon Liquid Motion Bubbler', // TODO: Translate to Chinese
-  'Neon Party Heels': 'Neon Party Heels', // TODO: Translate to Chinese
-  'Neon Speedster': 'Neon Speedster', // TODO: Translate to Chinese
-  'Neroli Coast': 'Neroli Coast', // TODO: Translate to Chinese
-  'Niacinamide Essence': 'Niacinamide Essence', // TODO: Translate to Chinese
-  'Night Vision Spy Goggles': 'Night Vision Spy Goggles', // TODO: Translate to Chinese
-  'Nike Air Max Pro': 'Nike Air Max Pro', // TODO: Translate to Chinese
-  'Non-Toxic Soy Remover': 'Non-Toxic Soy Remover', // TODO: Translate to Chinese
-  'Non-slip grip with high-density cushioning for ultimate joint support.': 'Non-slip grip with high-density cushioning for ultimate joint support.', // TODO: Translate to Chinese
-  'Nordic Glass Flower Vase': 'Nordic Glass Flower Vase', // TODO: Translate to Chinese
-  'Off-Shoulder Peplum Blouse': 'Off-Shoulder Peplum Blouse', // TODO: Translate to Chinese
-  'Off-Shoulder Silk Dress': 'Off-Shoulder Silk Dress', // TODO: Translate to Chinese
-  'Olive Drab Tactical': 'Olive Drab Tactical', // TODO: Translate to Chinese
-  'Olive Drab Tactical Polo': 'Olive Drab Tactical Polo', // TODO: Translate to Chinese
-  'Olympic Red Sport': 'Olympic Red Sport', // TODO: Translate to Chinese
-  'Onyx Black Evening Cape': 'Onyx Black Evening Cape', // TODO: Translate to Chinese
-  'Opaque 80D Matte Sculpt': 'Opaque 80D Matte Sculpt', // TODO: Translate to Chinese
-  'Open Toe Spa Slippers': 'Open Toe Spa Slippers', // TODO: Translate to Chinese
-  'Open-Bust Camisole Shaper': 'Open-Bust Camisole Shaper', // TODO: Translate to Chinese
-  'Open-Toe Sandal Tights': 'Open-Toe Sandal Tights', // TODO: Translate to Chinese
-  'Organic Cotton Lounge Panty': 'Organic Cotton Lounge Panty', // TODO: Translate to Chinese
-  'Organic Cotton Sleep Tee': 'Organic Cotton Sleep Tee', // TODO: Translate to Chinese
-  'Organic Hemp Daily Crew': 'Organic Hemp Daily Crew', // TODO: Translate to Chinese
-  'Orthopedic Support Slippers': 'Orthopedic Support Slippers', // TODO: Translate to Chinese
-  'Oud Wood & Amber': 'Oud Wood & Amber', // TODO: Translate to Chinese
-  'Outdoor Altimeter': 'Outdoor Altimeter', // TODO: Translate to Chinese
-  'Outdoor Sport Sandals': 'Outdoor Sport Sandals', // TODO: Translate to Chinese
-  'Outdoor Tactical Gloves': 'Outdoor Tactical Gloves', // TODO: Translate to Chinese
-  'Outdoor Terrain Flats': 'Outdoor Terrain Flats', // TODO: Translate to Chinese
-  'Over-the-Knee Ribbed Knit': 'Over-the-Knee Ribbed Knit', // TODO: Translate to Chinese
-  'Overnight Nail Mask': 'Overnight Nail Mask', // TODO: Translate to Chinese
-  'Overnight Repair Mask': 'Overnight Repair Mask', // TODO: Translate to Chinese
-  'Oversized Blanket Scarf': 'Oversized Blanket Scarf', // TODO: Translate to Chinese
-  'Oversized Chunky Knit': 'Oversized Chunky Knit', // TODO: Translate to Chinese
-  'Oversized Graphic Tee - Streetwear Collection': 'Oversized Graphic Tee - Streetwear Collection', // TODO: Translate to Chinese
-  'Oversized Heavyweight Hoodie': 'Oversized Heavyweight Hoodie', // TODO: Translate to Chinese
-  'Oversized Hoodie': 'Oversized Hoodie', // TODO: Translate to Chinese
-  'Oversized Knit Sleep Shirt': 'Oversized Knit Sleep Shirt', // TODO: Translate to Chinese
-  'Oversized Pastel Blue': 'Oversized Pastel Blue', // TODO: Translate to Chinese
-  'Oversized Pastel Pink': 'Oversized Pastel Pink', // TODO: Translate to Chinese
-  'Oversized Red Graphic Tee': 'Oversized Red Graphic Tee', // TODO: Translate to Chinese
-  'Oversized Skater Jeans': 'Oversized Skater Jeans', // TODO: Translate to Chinese
-  'Oxford Button-Down': 'Oxford Button-Down', // TODO: Translate to Chinese
-  'Oxford Navy Stretch Suit': 'Oxford Navy Stretch Suit', // TODO: Translate to Chinese
-  'Oxford Style Flat Shoes': 'Oxford Style Flat Shoes', // TODO: Translate to Chinese
-  'Padded Puffer Jacket': 'Padded Puffer Jacket', // TODO: Translate to Chinese
-  'Pastel Breeze Sneakers': 'Pastel Breeze Sneakers', // TODO: Translate to Chinese
-  'Pastel Lilac Knitwear': 'Pastel Lilac Knitwear', // TODO: Translate to Chinese
-  'Pastel Lounge Shorts': 'Pastel Lounge Shorts', // TODO: Translate to Chinese
-  'Pastel Ombre Cotton Blend': 'Pastel Ombre Cotton Blend', // TODO: Translate to Chinese
-  'Pastel Peach Flare Top': 'Pastel Peach Flare Top', // TODO: Translate to Chinese
-  'Pastel Pink Oxford': 'Pastel Pink Oxford', // TODO: Translate to Chinese
-  'Pastel Summer Polo': 'Pastel Summer Polo', // TODO: Translate to Chinese
-  'Peak Performance HIIT': 'Peak Performance HIIT', // TODO: Translate to Chinese
-  'Pearl Essence Gloss': 'Pearl Essence Gloss', // TODO: Translate to Chinese
-  'Pearl White Wedding Polo': 'Pearl White Wedding Polo', // TODO: Translate to Chinese
-  'Pencil Business Skirt': 'Pencil Business Skirt', // TODO: Translate to Chinese
-  'Peony Silk Extract': 'Peony Silk Extract', // TODO: Translate to Chinese
-  'Peptide Eye Lift': 'Peptide Eye Lift', // TODO: Translate to Chinese
-  'Perfume Gift Set': 'Perfume Gift Set', // TODO: Translate to Chinese
-  'Personalized Photo Cube': 'Personalized Photo Cube', // TODO: Translate to Chinese
-  'Pink Strappy Sandals': 'Pink Strappy Sandals', // TODO: Translate to Chinese
-  'Platform Wedge Slippers': 'Platform Wedge Slippers', // TODO: Translate to Chinese
-  'Pleated Chiffon Gown': 'Pleated Chiffon Gown', // TODO: Translate to Chinese
-  'Pleated Midi Skirt': 'Pleated Midi Skirt', // TODO: Translate to Chinese
-  'Pleated Satin Romper': 'Pleated Satin Romper', // TODO: Translate to Chinese
-  'Pocket Utility Leggings': 'Pocket Utility Leggings', // TODO: Translate to Chinese
-  'Pointed Toe Nude Heels': 'Pointed Toe Nude Heels', // TODO: Translate to Chinese
-  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.': 'Polarized lenses with a premium gold-toned frame. Elevate your summer style.', // TODO: Translate to Chinese
-  'Polka Dot Bow-Tie Top': 'Polka Dot Bow-Tie Top', // TODO: Translate to Chinese
-  'Polka Dot Fashion': 'Polka Dot Fashion', // TODO: Translate to Chinese
-  'Polka Dot Midi': 'Polka Dot Midi', // TODO: Translate to Chinese
-  'Polka Dot Neckerchief': 'Polka Dot Neckerchief', // TODO: Translate to Chinese
-  'Polka Dot Retro Midi': 'Polka Dot Retro Midi', // TODO: Translate to Chinese
-  'Polka Dot Sheer Tights': 'Polka Dot Sheer Tights', // TODO: Translate to Chinese
-  'Polka Dot Silk Sheer': 'Polka Dot Silk Sheer', // TODO: Translate to Chinese
-  'Portable Speaker': 'Portable Speaker', // TODO: Translate to Chinese
-  'Post-Op Compression Short': 'Post-Op Compression Short', // TODO: Translate to Chinese
-  'Power-Mesh Waist Trainer': 'Power-Mesh Waist Trainer', // TODO: Translate to Chinese
-  'PowerOn Energy-Generating Soccer Ball': 'PowerOn Energy-Generating Soccer Ball', // TODO: Translate to Chinese
-  'Prebiotic Cloud Milk': 'Prebiotic Cloud Milk', // TODO: Translate to Chinese
-  'Precision Liquid Liner': 'Precision Liquid Liner', // TODO: Translate to Chinese
-  'Precision Steel Clippers': 'Precision Steel Clippers', // TODO: Translate to Chinese
-  'Precision switches with customizable RGB lighting and premium aluminum body.': 'Precision switches with customizable RGB lighting and premium aluminum body.', // TODO: Translate to Chinese
-  'Premium Cashmere Cardigan': 'Premium Cashmere Cardigan', // TODO: Translate to Chinese
-  'Premium Cotton Set': 'Premium Cotton Set', // TODO: Translate to Chinese
-  'Premium French Lace Thong': 'Premium French Lace Thong', // TODO: Translate to Chinese
-  'Premium Gift Set': 'Premium Gift Set', // TODO: Translate to Chinese
-  'Premium Headphones': 'Premium Headphones', // TODO: Translate to Chinese
-  'Premium Leather Belt': 'Premium Leather Belt', // TODO: Translate to Chinese
-  'Premium Leather Passport Holder': 'Premium Leather Passport Holder', // TODO: Translate to Chinese
-  'Premium Micro-Modal Robe': 'Premium Micro-Modal Robe', // TODO: Translate to Chinese
-  'Premium Pima Cotton': 'Premium Pima Cotton', // TODO: Translate to Chinese
-  'Premium Silk Scarf': 'Premium Silk Scarf', // TODO: Translate to Chinese
-  'Premium Silk Triangle': 'Premium Silk Triangle', // TODO: Translate to Chinese
-  'Premium Silk-Blend Polo': 'Premium Silk-Blend Polo', // TODO: Translate to Chinese
-  'Premium Surprise Box': 'Premium Surprise Box', // TODO: Translate to Chinese
-  'Premium Waterproof Heritage Boot': 'Premium Waterproof Heritage Boot', // TODO: Translate to Chinese
-  'Premium Yoga Mat (Pro)': 'Premium Yoga Mat (Pro)', // TODO: Translate to Chinese
-  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.': 'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.', // TODO: Translate to Chinese
-  'Primal Hatch: Hybrid Hatcher Egg': 'Primal Hatch: Hybrid Hatcher Egg', // TODO: Translate to Chinese
-  'Pro Compression Shirt': 'Pro Compression Shirt', // TODO: Translate to Chinese
-  'Pro Gamer Mechanical Keyboard': 'Pro Gamer Mechanical Keyboard', // TODO: Translate to Chinese
-  'Pro-Cycle Aerodynamic Pants': 'Pro-Cycle Aerodynamic Pants', // TODO: Translate to Chinese
-  'Pro-Dry Gym Joggers': 'Pro-Dry Gym Joggers', // TODO: Translate to Chinese
-  'Pro-Fit Tennis Polo': 'Pro-Fit Tennis Polo', // TODO: Translate to Chinese
-  'Pro-Grip Buffer Tool': 'Pro-Grip Buffer Tool', // TODO: Translate to Chinese
-  'Pro-Running Shorts': 'Pro-Running Shorts', // TODO: Translate to Chinese
-  'Professional Boxing Gloves': 'Professional Boxing Gloves', // TODO: Translate to Chinese
-  'Professional Grey Polo': 'Professional Grey Polo', // TODO: Translate to Chinese
-  'Professional Navy Tapered': 'Professional Navy Tapered', // TODO: Translate to Chinese
-  'Programmable Emoji Backpack': 'Programmable Emoji Backpack', // TODO: Translate to Chinese
-  'Puffer Winter Vest': 'Puffer Winter Vest', // TODO: Translate to Chinese
-  'Pure Shine Conditioner': 'Pure Shine Conditioner', // TODO: Translate to Chinese
-  'Purple Royal Heels': 'Purple Royal Heels', // TODO: Translate to Chinese
-  'Quarter-Zip Performance': 'Quarter-Zip Performance', // TODO: Translate to Chinese
-  'Quick-Dry Diamond Drops': 'Quick-Dry Diamond Drops', // TODO: Translate to Chinese
-  'Quick-Dry Swim Trunks': 'Quick-Dry Swim Trunks', // TODO: Translate to Chinese
-  'Quilted Designer Handbag': 'Quilted Designer Handbag', // TODO: Translate to Chinese
-  'Quilted Down Long Parka': 'Quilted Down Long Parka', // TODO: Translate to Chinese
-  'Quilted Gilet Vest': 'Quilted Gilet Vest', // TODO: Translate to Chinese
-  'Quilted Obsidian Puffer': 'Quilted Obsidian Puffer', // TODO: Translate to Chinese
-  'Racerback Ribbed Bralette': 'Racerback Ribbed Bralette', // TODO: Translate to Chinese
-  'Racing Biker Gloves': 'Racing Biker Gloves', // TODO: Translate to Chinese
-  'Rainbow Hair Tinsel': 'Rainbow Hair Tinsel', // TODO: Translate to Chinese
-  'Recycled Nylon Athleisure': 'Recycled Nylon Athleisure', // TODO: Translate to Chinese
-  'Red Suede Bow Loafers': 'Red Suede Bow Loafers', // TODO: Translate to Chinese
-  'Red V-Neck Essential': 'Red V-Neck Essential', // TODO: Translate to Chinese
-  'Red Velvet Stilettos': 'Red Velvet Stilettos', // TODO: Translate to Chinese
-  'Reflective Night-Run Crew': 'Reflective Night-Run Crew', // TODO: Translate to Chinese
-  'Reflective Track Jacket': 'Reflective Track Jacket', // TODO: Translate to Chinese
-  'Relaxed Fit Sand Wash': 'Relaxed Fit Sand Wash', // TODO: Translate to Chinese
-  'Restorative Face Cream': 'Restorative Face Cream', // TODO: Translate to Chinese
-  'Restorative Silk Mask': 'Restorative Silk Mask', // TODO: Translate to Chinese
-  'Retro 35mm Film Camera for Kids': 'Retro 35mm Film Camera for Kids', // TODO: Translate to Chinese
-  'Retro 90s High-Top Sneaker': 'Retro 90s High-Top Sneaker', // TODO: Translate to Chinese
-  'Retro 90s Stripe Polo': 'Retro 90s Stripe Polo', // TODO: Translate to Chinese
-  'Retro 90s Vibes': 'Retro 90s Vibes', // TODO: Translate to Chinese
-  'Retro Loose Fit Windbreaker': 'Retro Loose Fit Windbreaker', // TODO: Translate to Chinese
-  'Retro Oversized Joggers': 'Retro Oversized Joggers', // TODO: Translate to Chinese
-  'Retro Shoulder Bag with Gold Chain': 'Retro Shoulder Bag with Gold Chain', // TODO: Translate to Chinese
-  'Retro Street Wear': 'Retro Street Wear', // TODO: Translate to Chinese
-  'Reversible Duo-Color': 'Reversible Duo-Color', // TODO: Translate to Chinese
-  'Rhinestone Tiara': 'Rhinestone Tiara', // TODO: Translate to Chinese
-  'Ribbed Cashmere Lounge Sock': 'Ribbed Cashmere Lounge Sock', // TODO: Translate to Chinese
-  'Ribbed Compression Tank': 'Ribbed Compression Tank', // TODO: Translate to Chinese
-  'Ribbed Cotton High-Waist': 'Ribbed Cotton High-Waist', // TODO: Translate to Chinese
-  'Ribbed Tank & Pant Duo': 'Ribbed Tank & Pant Duo', // TODO: Translate to Chinese
-  'Rolex Submariner Gold': 'Rolex Submariner Gold', // TODO: Translate to Chinese
-  'Rose Bouquet': 'Rose Bouquet', // TODO: Translate to Chinese
-  'Rose Gold Manicure Set': 'Rose Gold Manicure Set', // TODO: Translate to Chinese
-  'Rose Gold Pearl': 'Rose Gold Pearl', // TODO: Translate to Chinese
-  'Rose Petal Blush': 'Rose Petal Blush', // TODO: Translate to Chinese
-  'Rose Quartz Absolute': 'Rose Quartz Absolute', // TODO: Translate to Chinese
-  'Rose Quartz Gua Sha': 'Rose Quartz Gua Sha', // TODO: Translate to Chinese
-  'Rose Quartz Mist': 'Rose Quartz Mist', // TODO: Translate to Chinese
-  'Royal Blue Groom Suit': 'Royal Blue Groom Suit', // TODO: Translate to Chinese
-  'Royal Blue Slim Fit': 'Royal Blue Slim Fit', // TODO: Translate to Chinese
-  'Royal Velvet Keepsake': 'Royal Velvet Keepsake', // TODO: Translate to Chinese
-  'Ruffled Chiffon Party Blouse': 'Ruffled Chiffon Party Blouse', // TODO: Translate to Chinese
-  'Ruffled Pastel Sunsuit': 'Ruffled Pastel Sunsuit', // TODO: Translate to Chinese
-  'Rugby Heavyweight Polo': 'Rugby Heavyweight Polo', // TODO: Translate to Chinese
-  'Rugged Field Watch': 'Rugged Field Watch', // TODO: Translate to Chinese
-  'Rugged Mountain Grip': 'Rugged Mountain Grip', // TODO: Translate to Chinese
-  'Rugged Outdoor Loafers': 'Rugged Outdoor Loafers', // TODO: Translate to Chinese
-  'Rugged Work Flats': 'Rugged Work Flats', // TODO: Translate to Chinese
-  'Rustic Hunter Brown': 'Rustic Hunter Brown', // TODO: Translate to Chinese
-  'Rustic Orange Polo': 'Rustic Orange Polo', // TODO: Translate to Chinese
-  'Rusty Brown Corduroy': 'Rusty Brown Corduroy', // TODO: Translate to Chinese
-  'Sage Green Cotton Jogger': 'Sage Green Cotton Jogger', // TODO: Translate to Chinese
-  'Sage Green Relaxed': 'Sage Green Relaxed', // TODO: Translate to Chinese
-  'Sage Green Summer Linen': 'Sage Green Summer Linen', // TODO: Translate to Chinese
-  'Sand Dune Tech Joggers': 'Sand Dune Tech Joggers', // TODO: Translate to Chinese
-  'Sandstone Belted Wrap': 'Sandstone Belted Wrap', // TODO: Translate to Chinese
-  'Sandstone Cotton Suit': 'Sandstone Cotton Suit', // TODO: Translate to Chinese
-  'Sandy Beige Chino Polo': 'Sandy Beige Chino Polo', // TODO: Translate to Chinese
-  'Santal Bloom': 'Santal Bloom', // TODO: Translate to Chinese
-  'Sapphire Diver Pro': 'Sapphire Diver Pro', // TODO: Translate to Chinese
-  'Satin Bow Detail Bikini': 'Satin Bow Detail Bikini', // TODO: Translate to Chinese
-  'Satin Bow Stilettos': 'Satin Bow Stilettos', // TODO: Translate to Chinese
-  'Satin Cami & Short Set': 'Satin Cami & Short Set', // TODO: Translate to Chinese
-  'Satin Emerald Evening Dress': 'Satin Emerald Evening Dress', // TODO: Translate to Chinese
-  'Satin Finish Bronzer': 'Satin Finish Bronzer', // TODO: Translate to Chinese
-  'Satin Head Scarf': 'Satin Head Scarf', // TODO: Translate to Chinese
-  'Satin Ribbon Bow': 'Satin Ribbon Bow', // TODO: Translate to Chinese
-  'Satin Slip Skirt': 'Satin Slip Skirt', // TODO: Translate to Chinese
-  'Satin Strapless Multi-way': 'Satin Strapless Multi-way', // TODO: Translate to Chinese
-  'Satin Wrap Front Blouse': 'Satin Wrap Front Blouse', // TODO: Translate to Chinese
-  'Scalloped Edge Unlined': 'Scalloped Edge Unlined', // TODO: Translate to Chinese
-  'Scalloped Edge Unlined Thong': 'Scalloped Edge Unlined Thong', // TODO: Translate to Chinese
-  'Scalp Detox Scrub': 'Scalp Detox Scrub', // TODO: Translate to Chinese
-  'Sculpting Face Wand': 'Sculpting Face Wand', // TODO: Translate to Chinese
-  'Seamless 360 Comfort Fit': 'Seamless 360 Comfort Fit', // TODO: Translate to Chinese
-  'Seamless Bamboo No-Show': 'Seamless Bamboo No-Show', // TODO: Translate to Chinese
-  'Seamless Comfort Wireless Bra': 'Seamless Comfort Wireless Bra', // TODO: Translate to Chinese
-  'Seamless Compression Shaper': 'Seamless Compression Shaper', // TODO: Translate to Chinese
-  'Seamless Invisible Thong': 'Seamless Invisible Thong', // TODO: Translate to Chinese
-  'Seamless Maternity Shaper': 'Seamless Maternity Shaper', // TODO: Translate to Chinese
-  'Seamless Mid-Thigh Short': 'Seamless Mid-Thigh Short', // TODO: Translate to Chinese
-  'Seamless Push Up Bralette': 'Seamless Push Up Bralette', // TODO: Translate to Chinese
-  'Seamless Workout Tights': 'Seamless Workout Tights', // TODO: Translate to Chinese
-  'Seaweed Cleansing Gel': 'Seaweed Cleansing Gel', // TODO: Translate to Chinese
-  'Selvedge Premium Denim': 'Selvedge Premium Denim', // TODO: Translate to Chinese
-  'Sexy Boho Maxi Skirt': 'Sexy Boho Maxi Skirt', // TODO: Translate to Chinese
-  'Shadow Black Reflective': 'Shadow Black Reflective', // TODO: Translate to Chinese
-  'Shadow Black Stealth Boot': 'Shadow Black Stealth Boot', // TODO: Translate to Chinese
-  'Shea Butter Hand Relief': 'Shea Butter Hand Relief', // TODO: Translate to Chinese
-  'Shearling Trimmed Gilet': 'Shearling Trimmed Gilet', // TODO: Translate to Chinese
-  'Sheer Chiffon Robe': 'Sheer Chiffon Robe', // TODO: Translate to Chinese
-  'Sheer Chiffon Scarf': 'Sheer Chiffon Scarf', // TODO: Translate to Chinese
-  'Sheer Mesh Underwire': 'Sheer Mesh Underwire', // TODO: Translate to Chinese
-  'Sheer Nude Polish': 'Sheer Nude Polish', // TODO: Translate to Chinese
-  'Sheer Tulle Ankle Sock': 'Sheer Tulle Ankle Sock', // TODO: Translate to Chinese
-  'Sheer Tulle String Bikini': 'Sheer Tulle String Bikini', // TODO: Translate to Chinese
-  'Sheer-to-Waist Invisible': 'Sheer-to-Waist Invisible', // TODO: Translate to Chinese
-  'Short Sleeve Hawaiian': 'Short Sleeve Hawaiian', // TODO: Translate to Chinese
-  'Sicilian Fig': 'Sicilian Fig', // TODO: Translate to Chinese
-  'Side-Slit Silk Skirt': 'Side-Slit Silk Skirt', // TODO: Translate to Chinese
-  'Signature Pique Polo': 'Signature Pique Polo', // TODO: Translate to Chinese
-  'Silicone-Grip Thigh Shaper': 'Silicone-Grip Thigh Shaper', // TODO: Translate to Chinese
-  'Silk Flower Fascinator': 'Silk Flower Fascinator', // TODO: Translate to Chinese
-  'Silk Foundation SPF 20': 'Silk Foundation SPF 20', // TODO: Translate to Chinese
-  'Silk Liner Gloves': 'Silk Liner Gloves', // TODO: Translate to Chinese
-  'Silk Satin Bikini Cut': 'Silk Satin Bikini Cut', // TODO: Translate to Chinese
-  'Silk Satin Kimono Robe': 'Silk Satin Kimono Robe', // TODO: Translate to Chinese
-  'Silk Sleep Mask & Pillowcase': 'Silk Sleep Mask & Pillowcase', // TODO: Translate to Chinese
-  'Silk V-Neck Office Blouse': 'Silk V-Neck Office Blouse', // TODO: Translate to Chinese
-  'Silk-Blend Embroidered Cut': 'Silk-Blend Embroidered Cut', // TODO: Translate to Chinese
-  'Silk-Blend Luxury Sheer': 'Silk-Blend Luxury Sheer', // TODO: Translate to Chinese
-  'Silk-Lined Wireless Bra': 'Silk-Lined Wireless Bra', // TODO: Translate to Chinese
-  'Silver Charm Bundle': 'Silver Charm Bundle', // TODO: Translate to Chinese
-  'Silver Chronograph': 'Silver Chronograph', // TODO: Translate to Chinese
-  'Silver Glitter Heels': 'Silver Glitter Heels', // TODO: Translate to Chinese
-  'Silver Skeleton Mechanical': 'Silver Skeleton Mechanical', // TODO: Translate to Chinese
-  'Silver Toning Shampoo': 'Silver Toning Shampoo', // TODO: Translate to Chinese
-  'Silver-Plated Photo Frame': 'Silver-Plated Photo Frame', // TODO: Translate to Chinese
-  'Simple Plastic Flip-Flops': 'Simple Plastic Flip-Flops', // TODO: Translate to Chinese
-  'Ski Snowboard Gloves': 'Ski Snowboard Gloves', // TODO: Translate to Chinese
-  'Sky Blue Mohair Blend': 'Sky Blue Mohair Blend', // TODO: Translate to Chinese
-  'Sky Blue Stretch Polo': 'Sky Blue Stretch Polo', // TODO: Translate to Chinese
-  'Slate Grey Checkered Suit': 'Slate Grey Checkered Suit', // TODO: Translate to Chinese
-  'Sleek Black Matte': 'Sleek Black Matte', // TODO: Translate to Chinese
-  'Sleek Italian Loafers': 'Sleek Italian Loafers', // TODO: Translate to Chinese
-  'Sleek Midnight Black': 'Sleek Midnight Black', // TODO: Translate to Chinese
-  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.': 'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.', // TODO: Translate to Chinese
-  'Sleep and powerful, the Stealth Black series is made for those who move in style.': 'Sleep and powerful, the Stealth Black series is made for those who move in style.', // TODO: Translate to Chinese
-  'Sleeveless Pleated Blouse': 'Sleeveless Pleated Blouse', // TODO: Translate to Chinese
-  'Slim Dress Belt': 'Slim Dress Belt', // TODO: Translate to Chinese
-  'Slim Fit Black Shirt': 'Slim Fit Black Shirt', // TODO: Translate to Chinese
-  'Slim Fit Dark Indigo': 'Slim Fit Dark Indigo', // TODO: Translate to Chinese
-  'Slim Fit Navy Polo': 'Slim Fit Navy Polo', // TODO: Translate to Chinese
-  'Slip-on Leather Mules': 'Slip-on Leather Mules', // TODO: Translate to Chinese
-  'Slit Front Maxi': 'Slit Front Maxi', // TODO: Translate to Chinese
-  'Smart Aromatherapy Diffuser': 'Smart Aromatherapy Diffuser', // TODO: Translate to Chinese
-  'Smart Fitness Band': 'Smart Fitness Band', // TODO: Translate to Chinese
-  'Smart Series 9 Pro': 'Smart Series 9 Pro', // TODO: Translate to Chinese
-  'Smart Watch': 'Smart Watch', // TODO: Translate to Chinese
-  'Smart Watch Gift': 'Smart Watch Gift', // TODO: Translate to Chinese
-  'Smocked Waist Floral Top': 'Smocked Waist Floral Top', // TODO: Translate to Chinese
-  'Smoked Vanilla Elixir': 'Smoked Vanilla Elixir', // TODO: Translate to Chinese
-  'Smoothing Plunge Bodice': 'Smoothing Plunge Bodice', // TODO: Translate to Chinese
-  'Soft Cloud Platform Sandals': 'Soft Cloud Platform Sandals', // TODO: Translate to Chinese
-  'Soft Comfort Walking Flats': 'Soft Comfort Walking Flats', // TODO: Translate to Chinese
-  'Soft Lavender Occasion': 'Soft Lavender Occasion', // TODO: Translate to Chinese
-  'Soft Nubuck Belt': 'Soft Nubuck Belt', // TODO: Translate to Chinese
-  'Soft Pink Suede Mocs': 'Soft Pink Suede Mocs', // TODO: Translate to Chinese
-  'Soft Plush Indoor Slippers': 'Soft Plush Indoor Slippers', // TODO: Translate to Chinese
-  'Soft Ribbed V-Neck': 'Soft Ribbed V-Neck', // TODO: Translate to Chinese
-  'Soft Suede Square Messenger': 'Soft Suede Square Messenger', // TODO: Translate to Chinese
-  'Soft Touch Lavender': 'Soft Touch Lavender', // TODO: Translate to Chinese
-  'Soft Touch Pastel Mint': 'Soft Touch Pastel Mint', // TODO: Translate to Chinese
-  'Soft Touch Pastel Pink': 'Soft Touch Pastel Pink', // TODO: Translate to Chinese
-  'Soft-Cup Lace Teddy': 'Soft-Cup Lace Teddy', // TODO: Translate to Chinese
-  'Soft-Touch Chenille Slipper': 'Soft-Touch Chenille Slipper', // TODO: Translate to Chinese
-  'Solar Powered Tech': 'Solar Powered Tech', // TODO: Translate to Chinese
-  'Sonic Silicone Cleanser': 'Sonic Silicone Cleanser', // TODO: Translate to Chinese
-  'Sonic Wave Sneakers': 'Sonic Wave Sneakers', // TODO: Translate to Chinese
-  'Sparkly Party Skirt': 'Sparkly Party Skirt', // TODO: Translate to Chinese
-  'Speed Bolt Edition': 'Speed Bolt Edition', // TODO: Translate to Chinese
-  'Sport Digital Watch': 'Sport Digital Watch', // TODO: Translate to Chinese
-  'Sport Fitness Gloves': 'Sport Fitness Gloves', // TODO: Translate to Chinese
-  'Sport Performance Polo': 'Sport Performance Polo', // TODO: Translate to Chinese
-  'Sporty Lite Flats': 'Sporty Lite Flats', // TODO: Translate to Chinese
-  'Sprint Master V2': 'Sprint Master V2', // TODO: Translate to Chinese
-  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.': 'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.', // TODO: Translate to Chinese
-  'Squishy Foam "Donut" Squeeze Set': 'Squishy Foam "Donut" Squeeze Set', // TODO: Translate to Chinese
-  'Stability Plus Sport': 'Stability Plus Sport', // TODO: Translate to Chinese
-  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.': 'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.', // TODO: Translate to Chinese
-  'Star Motif Mesh Hosiery': 'Star Motif Mesh Hosiery', // TODO: Translate to Chinese
-  'Star Wars: The Darksaber Replica': 'Star Wars: The Darksaber Replica', // TODO: Translate to Chinese
-  'Star-Print Mesh Chemise': 'Star-Print Mesh Chemise', // TODO: Translate to Chinese
-  'Starfish Summer Clip': 'Starfish Summer Clip', // TODO: Translate to Chinese
-  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.': 'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.', // TODO: Translate to Chinese
-  'Stay-Up Lace Top Hold-Ups': 'Stay-Up Lace Top Hold-Ups', // TODO: Translate to Chinese
-  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.': 'Store up to 6 watches in style. Soft velvet lining to prevent scratches.', // TODO: Translate to Chinese
-  'Straight Leg Raw Denim': 'Straight Leg Raw Denim', // TODO: Translate to Chinese
-  'Strapless Shaping Slip': 'Strapless Shaping Slip', // TODO: Translate to Chinese
-  'Streetwear Letter Embroidered Jeans': 'Streetwear Letter Embroidered Jeans', // TODO: Translate to Chinese
-  'Streetwear Multi-Pocket Cargo': 'Streetwear Multi-Pocket Cargo', // TODO: Translate to Chinese
-  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.': 'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.', // TODO: Translate to Chinese
-  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.': 'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.', // TODO: Translate to Chinese
-  'Striped Beach Shorts': 'Striped Beach Shorts', // TODO: Translate to Chinese
-  'Striped Business Shirt': 'Striped Business Shirt', // TODO: Translate to Chinese
-  'Striped Casual Linen Blouse': 'Striped Casual Linen Blouse', // TODO: Translate to Chinese
-  'Striped Cotton Shirtdress': 'Striped Cotton Shirtdress', // TODO: Translate to Chinese
-  'Striped Cotton Slippers': 'Striped Cotton Slippers', // TODO: Translate to Chinese
-  'Striped Nautical Cardigan': 'Striped Nautical Cardigan', // TODO: Translate to Chinese
-  'Striped Nautical Tee': 'Striped Nautical Tee', // TODO: Translate to Chinese
-  'Striped Piped Pajama Set': 'Striped Piped Pajama Set', // TODO: Translate to Chinese
-  'Striped Retro Athletic': 'Striped Retro Athletic', // TODO: Translate to Chinese
-  'Structured Onyx Waistcoat': 'Structured Onyx Waistcoat', // TODO: Translate to Chinese
-  'Structured Slate Overcoat': 'Structured Slate Overcoat', // TODO: Translate to Chinese
-  'Studio-grade sound quality with genuine leather earcups and gold accents.': 'Studio-grade sound quality with genuine leather earcups and gold accents.', // TODO: Translate to Chinese
-  'Suede Penny Loafers': 'Suede Penny Loafers', // TODO: Translate to Chinese
-  'Suede Sahara Vest': 'Suede Sahara Vest', // TODO: Translate to Chinese
-  'Suede Stylish Belt': 'Suede Stylish Belt', // TODO: Translate to Chinese
-  'Suede Trucker Jacket': 'Suede Trucker Jacket', // TODO: Translate to Chinese
-  'Suede Urban Ankle Boot': 'Suede Urban Ankle Boot', // TODO: Translate to Chinese
-  'Summer Beach Slippers': 'Summer Beach Slippers', // TODO: Translate to Chinese
-  'Summer Breathable Loafers': 'Summer Breathable Loafers', // TODO: Translate to Chinese
-  'Summer Cotton Cargo Shorts': 'Summer Cotton Cargo Shorts', // TODO: Translate to Chinese
-  'Summer Holiday Cropped Vest': 'Summer Holiday Cropped Vest', // TODO: Translate to Chinese
-  'Summit Peak Hiking Explorer': 'Summit Peak Hiking Explorer', // TODO: Translate to Chinese
-  'Sun-Bleached Red Hoodie': 'Sun-Bleached Red Hoodie', // TODO: Translate to Chinese
-  'Sunshine Yellow Casual': 'Sunshine Yellow Casual', // TODO: Translate to Chinese
-  'Super-Size Snow Tube Sled': 'Super-Size Snow Tube Sled', // TODO: Translate to Chinese
-  'Supportive Shaping Tights': 'Supportive Shaping Tights', // TODO: Translate to Chinese
-  'Sweetheart Neckline Push-Up': 'Sweetheart Neckline Push-Up', // TODO: Translate to Chinese
-  'T-Strap Summer Flats': 'T-Strap Summer Flats', // TODO: Translate to Chinese
-  'Tactical Techwear Vest': 'Tactical Techwear Vest', // TODO: Translate to Chinese
-  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.': 'Tailored to perfection. A masterpiece of sartorial elegance for gala events.', // TODO: Translate to Chinese
-  'Tambour Street Diver Burning Rock': 'Tambour Street Diver Burning Rock', // TODO: Translate to Chinese
-  'Tan Linen Wedding Slacks': 'Tan Linen Wedding Slacks', // TODO: Translate to Chinese
-  'Tan Slip-on Loafers': 'Tan Slip-on Loafers', // TODO: Translate to Chinese
-  'Tapered Ankle Denim': 'Tapered Ankle Denim', // TODO: Translate to Chinese
-  'Targeted Tummy Control Band': 'Targeted Tummy Control Band', // TODO: Translate to Chinese
-  'Teal Ocean Active Polo': 'Teal Ocean Active Polo', // TODO: Translate to Chinese
-  'Tech Fleece Hoodie': 'Tech Fleece Hoodie', // TODO: Translate to Chinese
-  'Tech Fleece Performance': 'Tech Fleece Performance', // TODO: Translate to Chinese
-  'Tech-Knit Compression Bra': 'Tech-Knit Compression Bra', // TODO: Translate to Chinese
-  'Technical Windbreaker Y2K': 'Technical Windbreaker Y2K', // TODO: Translate to Chinese
-  'Techwear Messenger Bag': 'Techwear Messenger Bag', // TODO: Translate to Chinese
-  'Terra Eyeshadow Palette': 'Terra Eyeshadow Palette', // TODO: Translate to Chinese
-  'Texture Wave Spray': 'Texture Wave Spray', // TODO: Translate to Chinese
-  'Textured Geometric Pattern': 'Textured Geometric Pattern', // TODO: Translate to Chinese
-  'Textured Waffle Polo': 'Textured Waffle Polo', // TODO: Translate to Chinese
-  'The icon of eyewear. Always in style, no matter the decade.': 'The icon of eyewear. Always in style, no matter the decade.', // TODO: Translate to Chinese
-  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.': 'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.', // TODO: Translate to Chinese
-  'Thermal Fleece Baselayer': 'Thermal Fleece Baselayer', // TODO: Translate to Chinese
-  'Thermal Fleece-Lined Winter': 'Thermal Fleece-Lined Winter', // TODO: Translate to Chinese
-  'Thermal Protectant Mist': 'Thermal Protectant Mist', // TODO: Translate to Chinese
-  'Thermal Winter Gloves': 'Thermal Winter Gloves', // TODO: Translate to Chinese
-  'Tie-Dye Cotton Scarf': 'Tie-Dye Cotton Scarf', // TODO: Translate to Chinese
-  'Tie-Dye Dream Hoodie': 'Tie-Dye Dream Hoodie', // TODO: Translate to Chinese
-  'Tie-Dye Summer Vibes': 'Tie-Dye Summer Vibes', // TODO: Translate to Chinese
-  'Tie-Dye Ultimate Creation Station': 'Tie-Dye Ultimate Creation Station', // TODO: Translate to Chinese
-  'Tiered Boho Skirt': 'Tiered Boho Skirt', // TODO: Translate to Chinese
-  'Tiered Ruffle Sleeve Top': 'Tiered Ruffle Sleeve Top', // TODO: Translate to Chinese
-  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.': 'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.', // TODO: Translate to Chinese
-  'Titanium Lightweight': 'Titanium Lightweight', // TODO: Translate to Chinese
-  'Toy Story: Slinky Dog Bookends': 'Toy Story: Slinky Dog Bookends', // TODO: Translate to Chinese
-  'Trail Blazer Hiking': 'Trail Blazer Hiking', // TODO: Translate to Chinese
-  'Trail Blazer X1': 'Trail Blazer X1', // TODO: Translate to Chinese
-  'Transparent Jelly Handbag': 'Transparent Jelly Handbag', // TODO: Translate to Chinese
-  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.': 'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.', // TODO: Translate to Chinese
-  'Tropical Beach Flip-Flops': 'Tropical Beach Flip-Flops', // TODO: Translate to Chinese
-  'Tummy-Taming Brief': 'Tummy-Taming Brief', // TODO: Translate to Chinese
-  'Turquoise Beach Tee': 'Turquoise Beach Tee', // TODO: Translate to Chinese
-  'Turquoise Velvet Heels': 'Turquoise Velvet Heels', // TODO: Translate to Chinese
-  'Tweed Workwear Set': 'Tweed Workwear Set', // TODO: Translate to Chinese
-  'Ultra-Fast Pro Runner': 'Ultra-Fast Pro Runner', // TODO: Translate to Chinese
-  'Ultra-Gentle Dry Shampoo': 'Ultra-Gentle Dry Shampoo', // TODO: Translate to Chinese
-  'Ultra-Light Cooling Slip': 'Ultra-Light Cooling Slip', // TODO: Translate to Chinese
-  'Ultra-Sheer 15D Glossy': 'Ultra-Sheer 15D Glossy', // TODO: Translate to Chinese
-  'Ultra-Thick Fleece Cabin': 'Ultra-Thick Fleece Cabin', // TODO: Translate to Chinese
-  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.': 'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.', // TODO: Translate to Chinese
-  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.': 'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.', // TODO: Translate to Chinese
-  'Under-Bust Waist Nipper': 'Under-Bust Waist Nipper', // TODO: Translate to Chinese
-  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.': 'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.', // TODO: Translate to Chinese
-  'Urban Athletic Low': 'Urban Athletic Low', // TODO: Translate to Chinese
-  'Urban Black Polo': 'Urban Black Polo', // TODO: Translate to Chinese
-  'Urban Bomber Jacket': 'Urban Bomber Jacket', // TODO: Translate to Chinese
-  'Urban Cargo Olive': 'Urban Cargo Olive', // TODO: Translate to Chinese
-  'Urban Cargo Utility': 'Urban Cargo Utility', // TODO: Translate to Chinese
-  'Urban Casual Brown': 'Urban Casual Brown', // TODO: Translate to Chinese
-  'Urban Comfort Walking Sneaker': 'Urban Comfort Walking Sneaker', // TODO: Translate to Chinese
-  'Urban Commuter Laptop Bag': 'Urban Commuter Laptop Bag', // TODO: Translate to Chinese
-  'Urban Essential Joggers in Matte Black': 'Urban Essential Joggers in Matte Black', // TODO: Translate to Chinese
-  'Urban Explorer Sneakers': 'Urban Explorer Sneakers', // TODO: Translate to Chinese
-  'Urban Grey Slim-Fit': 'Urban Grey Slim-Fit', // TODO: Translate to Chinese
-  'Urban High-Top Sneakers': 'Urban High-Top Sneakers', // TODO: Translate to Chinese
-  'Urban Street Loafers': 'Urban Street Loafers', // TODO: Translate to Chinese
-  'Urban Streetwear Slides': 'Urban Streetwear Slides', // TODO: Translate to Chinese
-  'Urban Tactical Joggers': 'Urban Tactical Joggers', // TODO: Translate to Chinese
-  'Urban Tech Shell Coat': 'Urban Tech Shell Coat', // TODO: Translate to Chinese
-  'Urban Tech Shorts': 'Urban Tech Shorts', // TODO: Translate to Chinese
-  'V-Neck Chiffon Blouse': 'V-Neck Chiffon Blouse', // TODO: Translate to Chinese
-  'Valentine Special Pack': 'Valentine Special Pack', // TODO: Translate to Chinese
-  'Varsity Letterman Jacket': 'Varsity Letterman Jacket', // TODO: Translate to Chinese
-  'Velocity X-Stream': 'Velocity X-Stream', // TODO: Translate to Chinese
-  'Velvet Cocktail Dress': 'Velvet Cocktail Dress', // TODO: Translate to Chinese
-  'Velvet Evening Blouse': 'Velvet Evening Blouse', // TODO: Translate to Chinese
-  'Velvet Evening Scarf': 'Velvet Evening Scarf', // TODO: Translate to Chinese
-  'Velvet Evening Skirt': 'Velvet Evening Skirt', // TODO: Translate to Chinese
-  'Velvet Luxury Slippers': 'Velvet Luxury Slippers', // TODO: Translate to Chinese
-  'Velvet Matte Lipstick': 'Velvet Matte Lipstick', // TODO: Translate to Chinese
-  'Velvet Rose Bouquet Box': 'Velvet Rose Bouquet Box', // TODO: Translate to Chinese
-  'Velvet Suede Lacquer': 'Velvet Suede Lacquer', // TODO: Translate to Chinese
-  'Velvet Touch Soft Opaque': 'Velvet Touch Soft Opaque', // TODO: Translate to Chinese
-  'Velvet Tracksuit Set': 'Velvet Tracksuit Set', // TODO: Translate to Chinese
-  'Velvet Trim Luxury Brief': 'Velvet Trim Luxury Brief', // TODO: Translate to Chinese
-  'Velvet Trim Nightgown': 'Velvet Trim Nightgown', // TODO: Translate to Chinese
-  'Velvet Trim Sleep Sock': 'Velvet Trim Sleep Sock', // TODO: Translate to Chinese
-  'Velvet Two-Piece Tracksuit Set': 'Velvet Two-Piece Tracksuit Set', // TODO: Translate to Chinese
-  'Versatile shoes designed for high-intensity interval training and gym workouts.': 'Versatile shoes designed for high-intensity interval training and gym workouts.', // TODO: Translate to Chinese
-  'Vertical Stripe Slimming': 'Vertical Stripe Slimming', // TODO: Translate to Chinese
-  'Vetiver Noir': 'Vetiver Noir', // TODO: Translate to Chinese
-  'Vintage Athletic Red': 'Vintage Athletic Red', // TODO: Translate to Chinese
-  'Vintage Black Graphic': 'Vintage Black Graphic', // TODO: Translate to Chinese
-  'Vintage Brass Compass': 'Vintage Brass Compass', // TODO: Translate to Chinese
-  'Vintage Brown Buckle Sandals': 'Vintage Brown Buckle Sandals', // TODO: Translate to Chinese
-  'Vintage Buckle Belt': 'Vintage Buckle Belt', // TODO: Translate to Chinese
-  'Vintage Camel Hair Coat': 'Vintage Camel Hair Coat', // TODO: Translate to Chinese
-  'Vintage Denim Trucker': 'Vintage Denim Trucker', // TODO: Translate to Chinese
-  'Vintage Fashion Cotton Tee': 'Vintage Fashion Cotton Tee', // TODO: Translate to Chinese
-  'Vintage Leather Journal': 'Vintage Leather Journal', // TODO: Translate to Chinese
-  'Vintage Leather Square Bag': 'Vintage Leather Square Bag', // TODO: Translate to Chinese
-  'Vintage Leather Square Satchel': 'Vintage Leather Square Satchel', // TODO: Translate to Chinese
-  'Vintage Leather Watch Box': 'Vintage Leather Watch Box', // TODO: Translate to Chinese
-  'Vintage Light Wash Denim': 'Vintage Light Wash Denim', // TODO: Translate to Chinese
-  'Vintage Mechanical': 'Vintage Mechanical', // TODO: Translate to Chinese
-  'Vintage Rose Appliqué': 'Vintage Rose Appliqué', // TODO: Translate to Chinese
-  'Vintage Satin Tap Panty': 'Vintage Satin Tap Panty', // TODO: Translate to Chinese
-  'Vintage Silk Shirt': 'Vintage Silk Shirt', // TODO: Translate to Chinese
-  'Vintage Stonewash Denim': 'Vintage Stonewash Denim', // TODO: Translate to Chinese
-  'Vintage Suede Loafers': 'Vintage Suede Loafers', // TODO: Translate to Chinese
-  'Vintage Sweat Shorts': 'Vintage Sweat Shorts', // TODO: Translate to Chinese
-  'Vintage Velvet Scrunchies': 'Vintage Velvet Scrunchies', // TODO: Translate to Chinese
-  'Vintage Wash Blue Jogger': 'Vintage Wash Blue Jogger', // TODO: Translate to Chinese
-  'Vintage Wash Polo': 'Vintage Wash Polo', // TODO: Translate to Chinese
-  'Vintage Wash Street Hoodie': 'Vintage Wash Street Hoodie', // TODO: Translate to Chinese
-  'Vintage Wingtip Brogue Shoe': 'Vintage Wingtip Brogue Shoe', // TODO: Translate to Chinese
-  'Vitamin E Repair Balm': 'Vitamin E Repair Balm', // TODO: Translate to Chinese
-  'Volcanic Clay Mask': 'Volcanic Clay Mask', // TODO: Translate to Chinese
-  'Volt Energy Sneakers': 'Volt Energy Sneakers', // TODO: Translate to Chinese
-  'Volume Lift Mascara': 'Volume Lift Mascara', // TODO: Translate to Chinese
-  'Volumizing Root Lift': 'Volumizing Root Lift', // TODO: Translate to Chinese
-  'Waffle-Knit Spa Robe': 'Waffle-Knit Spa Robe', // TODO: Translate to Chinese
-  'Waist-Cinched Mesh Corset': 'Waist-Cinched Mesh Corset', // TODO: Translate to Chinese
-  'Warm Winter Fur Slippers': 'Warm Winter Fur Slippers', // TODO: Translate to Chinese
-  'Waterproof City Trench': 'Waterproof City Trench', // TODO: Translate to Chinese
-  'Wedding Party Team Bride Robe': 'Wedding Party Team Bride Robe', // TODO: Translate to Chinese
-  'Weightless Hair Oil': 'Weightless Hair Oil', // TODO: Translate to Chinese
-  'Western Stitch Leather': 'Western Stitch Leather', // TODO: Translate to Chinese
-  'White Lace Wedding Heels': 'White Lace Wedding Heels', // TODO: Translate to Chinese
-  'White Musk & Linen': 'White Musk & Linen', // TODO: Translate to Chinese
-  'Wigglitz: Collectible Food Fidget Series': 'Wigglitz: Collectible Food Fidget Series', // TODO: Translate to Chinese
-  'Wild West Cowboy Leather Boot': 'Wild West Cowboy Leather Boot', // TODO: Translate to Chinese
-  'Wireless Bamboo Charger': 'Wireless Bamboo Charger', // TODO: Translate to Chinese
-  'Wireless Earbuds': 'Wireless Earbuds', // TODO: Translate to Chinese
-  'Wireless Keyboard': 'Wireless Keyboard', // TODO: Translate to Chinese
-  'Women Elegant Stone': 'Women Elegant Stone', // TODO: Translate to Chinese
-  'Wool Blend Peacoat': 'Wool Blend Peacoat', // TODO: Translate to Chinese
-  'Wool Blend Varsity Cardigan': 'Wool Blend Varsity Cardigan', // TODO: Translate to Chinese
-  'Woolen Cozy Mittens': 'Woolen Cozy Mittens', // TODO: Translate to Chinese
-  'Workwear Double Knee': 'Workwear Double Knee', // TODO: Translate to Chinese
-  'Wrap Front Floral Midi': 'Wrap Front Floral Midi', // TODO: Translate to Chinese
-  'Wrap Front Skirt': 'Wrap Front Skirt', // TODO: Translate to Chinese
-  'Yoga Flow Light Support': 'Yoga Flow Light Support', // TODO: Translate to Chinese
-  'Zip-Up Modern Polo': 'Zip-Up Modern Polo', // TODO: Translate to Chinese
-  'ZipString Aracna - Kinetic String Toy': 'ZipString Aracna - Kinetic String Toy', // TODO: Translate to Chinese
-  'Zipped Cuff Tech Pants': 'Zipped Cuff Tech Pants', // TODO: Translate to Chinese
-  'Zoom Pro Elite Running Shoe': 'Zoom Pro Elite Running Shoe', // TODO: Translate to Chinese
+  '18K Gold Emblem Velvet Loafer': '18K金徽章天鹅绒乐福鞋',
+  '18K Gold Zip Compression Jacket': '18K金拉链压缩夹克',
+  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.': '一个平静的办公桌配件，配有细白沙、天然石块和用于放松的小型耙子。',
+  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.': '一款经典的圆领运动衫，采用重磅棉绒制成，带来极致的舒适与温暖。',
+  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.': '精选的奢侈品系列，包装在精美的优质金边礼盒中。',
+  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.': '一款高性能潜水表，具有大胆的美学，将瑞士工艺与现代设计相结合。',
+  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.': '一款翡翠绿色的奢华缎面晚礼服，具有高开叉和优雅的垂坠感。',
+  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.': '意大利剪裁的杰作，融合了优质羊毛和羊绒，带来极致的温暖和奢华。',
+  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.': '晚间优雅的巅峰之作，由优质意大利天鹅绒制成，配有缎面尖领。',
+  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.': '一款优质重磅棉连帽衫，采用宽松的超大版型，非常适合日常穿着。',
+  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.': '一套三个优质水晶夹，能美丽地捕捉光线。防滑设计，适用于所有发质。',
+  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.': '一款精致的全黑不锈钢手表，配备蓝宝石水晶镜面。专为注重低调与风格的现代行政人员设计。',
+  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.': '一款永恒的哈灵顿夹克，具有干净的轮廓和优质衬里，非常适合“老钱风”装扮。',
+  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.': '一款永恒的牛津衬衫，采用优质棉制成，配有干净的扣领。',
+  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.': '日常穿着的永恒设计，这些白色都市运动鞋可与任何装扮完美搭配。',
+  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.': '一款永恒的皮革邮差包，具有衬垫笔记本电脑隔层和可调节肩带，带来最大的舒适感。',
+  'A unique piece of home decor, individually signed by the artist.': '一件独特的家居装饰品，由艺术家亲自签名。',
+  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.': '一款多功能棕色皮革腰带，带有纹理饰面，非常适合日常办公室穿着或周末外出。',
+  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.': '一款现代修身版型的多功能炭灰色西装。非常适合商务会议、婚礼和正式活动。',
+  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.': '一款多功能波罗衫，采用透气棉质面料制成，带有微妙的刺绣标志。',
+  'AHA Exfoliating Peel': 'AHA 去角质面膜',
+  'Acid Blue Ripped Jeans': '酸洗蓝破洞牛仔裤',
+  'Acid Wash Retro Denim': '酸洗复古丹宁',
+  'Acid Wash Retro Pullover': '酸洗复古套头衫',
+  'Acid Wash Street Tee': '酸洗街头体恤',
+  'Active Flex Trainer': '活力柔韧训练鞋',
+  'Active Sport Waist Pack': '活力运动腰包',
+  'Active Tech Polo': '活力科技波罗衫',
+  'Active Trekking Sandals': '活力徒步凉鞋',
+  'Active-Dry Training Pants': '速干训练裤',
+  'Aero Cushion Max': '气垫 MAX',
+  'Aero Glide Flats': '气动滑行平底鞋',
+  'Aero Tech Blue': '航空科技蓝',
+  'Air Dynamic Performance Sneaker': '空气动力性能运动鞋',
+  'Alpine Hybrid Shell': '高山混合外壳',
+  'American Flag Splicing Hoodie': '美国国旗拼接连帽衫',
+  'Animal Print Mesh Top': '动物印花网眼上衣',
+  'Ankle Strap Platform': '踝带厚底鞋',
+  'Ankle Suede Flat Boots': '麂皮平底短靴',
+  'Anniversary Silk Box': '周年纪念丝绒盒',
+  'Anorak Streetwear Jacket': '套头街头夹克',
+  'Anti-Chafe Comfort Short': '防磨舒适短裤',
+  'Anti-Frizz Smoothing Balm': '防毛躁顺滑霜',
+  'Anti-Ladder Tech Sheer': '防脱丝科技薄袜',
+  'Anti-Odor Copper Blend': '防臭铜纤维混纺',
+  'Anti-Slip Bath Slippers': '防滑浴室拖鞋',
+  'App-Controlled Smart Chess Board': 'App 控制的智能棋盘',
+  'Apricot Cuticle Oil': '杏仁指缘油',
+  'Arch Sculpt Brow Gel': '眉弓塑形眉胶',
+  'Arctic Fur-Lined Winter Boot': '北极毛绒内衬冬靴',
+  'Arctic White Fleece Joggers': '北极白抓绒慢跑裤',
+  'Arctic White Puffer': '北极白羽绒服',
+  'Argan Infusion Shampoo': '阿甘油洗发露',
+  'Artisan Ceramic Vase': '工匠陶瓷花瓶',
+  'Artisan Chocolate Box': '工匠巧克力盒',
+  'Artisan Watercolor Paint Kit': '工匠水彩颜料套装',
+  'Asymmetric Drape Vest': '不对称垂坠背心',
+  'Athletic Mesh Shorts': '运动网眼短裤',
+  'Audiophile Gold Edition Headphones': '发烧友黄金版耳机',
+  'Automatic Skeleton X': '自动镂空 X',
+  'Aviation Pilot Watch': '航空飞行员手表',
+  'Back-Seam Vintage Classic': '背缝复古经典',
+  'Back-Smoothing Bralette': '美背顺滑内衣',
+  'Baggy Fit Hip-Hop Jeans': '宽松版嘻哈牛仔裤',
+  'Baggy Y2K Street Jeans': '宽松 Y2K 街头牛仔裤',
+  'Bakuchiol Retinol Alt': '补骨脂酚视黄醇替代品',
+  'Bamboo Breathable Soft-cup': '竹纤维透气软杯',
+  'Bamboo Charcoal Wash': '竹炭洗面奶',
+  'Bamboo Comfort Seamless': '竹纤维舒适无缝',
+  'Bamboo Cooling Chemise': '竹纤维清凉衬裙',
+  'Bamboo Weave Slippers': '竹编拖鞋',
+  'Basic Navy 2-Pack': '基础海军蓝 2 件装',
+  'Batman: Legacy of the Dark Knight Game': '蝙蝠侠：暗夜骑士传奇游戏',
+  'Beaded Hair Band': '串珠发带',
+  'Beauty sleep starts here. Reduces hair frizz and skin irritation.': '美容睡眠从这里开始。减少头发毛躁和皮肤刺激。',
+  'Beginner Wooden Acoustic Guitar': '初学者木质民谣吉他',
+  'Beige Comfort Heels': '米色舒适高跟鞋',
+  'Beige Sand Desert Hoodie': '米沙色沙漠连帽衫',
+  'Bergamot & Sea Salt': '佛手柑与海盐',
+  'Bermuda Formal Shorts': '百慕大正式短裤',
+  'Biking Padded Shorts': '骑行带垫短裤',
+  'Biotin Growth Elixir': '生物素生长精华',
+  'Birthday Cake Bundle': '生日蛋糕套装',
+  'Birthday Cupcake Set': '生日纸杯蛋糕套装',
+  'Birthday Dessert Pack': '生日甜点包',
+  'Birthday Flower Set': '生日鲜花套装',
+  'Birthday Photo Frame': '生日相框',
+  'Birthday Roses Basket': '生日玫瑰花篮',
+  'Birthday Sneakers': '生日运动鞋',
+  'Birthday Teddy Bear': '生日泰迪熊',
+  'Black High-Waist Skinny': '黑色高腰紧身裤',
+  'Black Saffron': '黑色藏红花',
+  'Black Tassel Loafers': '黑色流苏乐福鞋',
+  'Blue Dial Business': '蓝表盘商务表',
+  'Blue Suede Block Heels': '蓝色麂皮粗跟鞋',
+  'Bluetooth Headphones': '蓝牙耳机',
+  'Bluetooth Retro Speaker': '蓝牙复古音箱',
+  'Bluetooth Speaker': '蓝牙音箱',
+  'Bodycon Ribbed Mini': '紧身罗纹迷你裙',
+  'Bohemian Rope Sandals': '波西米亚绳索凉鞋',
+  'Boho Embroidered Blouse': '波西米亚刺绣衬衫',
+  'Boho Floral Crown': '波西米亚花环',
+  'Boho Maxi Lace Dress': '波西米亚蕾丝长裙',
+  'Boho Tassel Scarf': '波西米亚流苏围巾',
+  'Bold Burgundy Fleece': '大胆酒红抓绒',
+  'Bold Color-Block Polo': '大胆撞色波罗衫',
+  'Bond Repair Serum': '强韧修复精华',
+  'Bonded Edge Sport Brief': '粘合边运动内裤',
+  'Botanical Facial Oil': '植物面部油',
+  'Botanical Shine Pomade': '植物亮泽发膏',
+  'Braided Casual Belt': '编织休闲腰带',
+  'Breathable Mesh Babydoll': '透气网眼娃娃装',
+  'Breathable Mesh Padded Tech': '透气网眼带垫科技',
+  'Breathable Mesh Slip-ons': '透气网眼一脚蹬',
+  'Breathable linen blend for maximum comfort.': '透气亚麻混纺，带来最大的舒适感。',
+  'Breathable linen blend shirt, perfect for warm weather and beach outings.': '透气亚麻混纺衬衫，非常适合炎热天气和海边郊游。',
+  'Bridal Lace Veil': '新娘蕾丝头纱',
+  'Brightening Vit C Drop': '提亮维 C 精华',
+  'British Tan Tweed Suit': '英式棕色粗花呢西装',
+  'Burgundy Fringe Loafers': '酒红流苏乐福鞋',
+  'Burgundy Heritage Polo': '酒红传承波罗衫',
+  'Burgundy Luxe Fleece': '酒红奢华抓绒',
+  'Burgundy Velvet Evening Coat': '酒红天鹅绒晚礼服外套',
+  'Burgundy Velvet Gown': '酒红天鹅绒长礼服',
+  'Burgundy Wine V-Neck': '酒红 V 领',
+  'Butter-soft fabric with 4-way stretch, perfect for yoga.': '像黄油般柔软的面料，具有四向弹力，非常适合瑜伽。',
+  'Butterfly Wing Clips': '蝴蝶翅膀夹',
+  'Camo Field Jacket': '迷彩野战夹克',
+  'Camo Print Adventure': '迷彩印花探险',
+  'Canvas Flat Sneakers': '帆布平底运动鞋',
+  'Canvas Webbed Belt': '帆布织带腰带',
+  'Carbon Fiber Grey Tech': '碳纤维灰科技',
+  'Carbon Fiber Runner': '碳纤维跑步鞋',
+  'Carbon Fiber Slim Wallet': '碳纤维超薄钱包',
+  'Carbon Fiber Sport': '碳纤维运动',
+  'Carbon Flex Pro': '碳纤维柔韧专业版',
+  'Care Bears: Caring Cuties Plush': '爱心熊：关爱可爱毛绒玩具',
+  'Cargo Utility Shorts': '工装实用短裤',
+  'Cargo Utility Skirt': '工装实用裙',
+  'Carpenter Utility Jeans': '木工实用牛仔裤',
+  'Cashmere Winter Overcoat': '羊绒冬季大衣',
+  'Cashmere Winter Wrap': '羊绒冬季披肩',
+  'Cashmere-Blend Opaque': '羊绒混纺不透明',
+  'Cashmere-Blend Sleep Socks': '羊绒混纺睡眠袜',
+  'Casual Bomber Baseball Jacket': '休闲短夹克棒球服',
+  'Casual Canvas Loafers': '休闲帆布乐福鞋',
+  'Casual Charcoal Hoodie - Premium': '休闲炭灰连帽衫 - 优质',
+  'Casual Charcoal Hoodie - Premium Cotton': '休闲炭灰连帽衫 - 优质棉',
+  'Casual Denim Sandals': '休闲牛仔凉鞋',
+  'Casual Denim Skirt Dress': '休闲牛仔裙装',
+  'Casual Linen Shirt': '休闲亚麻衬衫',
+  'Casual Linen Slippers': '休闲亚麻拖鞋',
+  'Casual Strappy Sandals': '休闲系带凉鞋',
+  'Casual Suede Loafers': '休闲麂皮乐福鞋',
+  'Celestial Highlighter': '星辰高光',
+  'Celestial Moon Lamp': '星辰月球灯',
+  'Ceramic Bonsai Planter': '陶瓷盆景盆',
+  'Ceramic Nail File Set': '陶瓷指甲锉套装',
+  'Ceramic White Edition': '陶瓷白版本',
+  'Ceramide Night Balm': '神经酰胺晚霜',
+  'Chain Strap Crossbody Bag': '链条肩带斜挎包',
+  'Chain Strap Crossbody Bag - Pink Edition': '链条肩带斜挎包 - 粉色版',
+  'Chambray Everyday Shirt': '青年布日常衬衫',
+  'Champagne Gold Metallic Espadrille': '香槟金金属感渔夫鞋',
+  'Champagne Satin Slip': '香槟色缎面衬裙',
+  'Champagne Silk Blend Tux': '香槟色丝绸混纺礼服',
+  'Chantilly Lace Brazilian': '尚蒂伊蕾丝巴西式内裤',
+  'Charcoal Knit Hoodie': '炭灰色针织连帽衫',
+  'Charcoal Knit Sweater': '炭灰色针织毛衣',
+  'Charcoal Melange Cardigan': '炭灰色混色开衫',
+  'Charcoal Slim Denim': '炭灰色修身丹宁',
+  'Checked Flannel Shirt': '格子法兰绒衬衫',
+  'Checkered Collar Polo': '格子领波罗衫',
+  'Checkered Gingham Blouse': '格子布衬衫',
+  'Checkered School Skirt Set': '格子校裙套装',
+  'Checkered Tennis Skirt': '格子网球裙',
+  'Checkered Wool Blend Coat': '格子羊毛混纺大衣',
+  'Chef Special Spice Rack': '大厨专用香料架',
+  'Chic Office Leather Briefcase': '雅致办公皮革公文包',
+  'Chocolate Box': '巧克力盒',
+  'Chocolate Surprise Box': '巧克力惊喜盒',
+  'Chunky Cable-Knit Boot Sock': '粗线麻花针织靴袜',
+  'Classic Black Leather Clutch': '经典黑色皮革手包',
+  'Classic Black Pumps': '经典黑色高跟鞋',
+  'Classic Brown Leather Loafers': '经典棕色皮革乐福鞋',
+  'Classic Brown Waistband': '经典棕色腰带',
+  'Classic Button-Down PJ Top': '经典扣领睡衣上衣',
+  'Classic Charcoal 3-Piece': '经典炭灰色三件套',
+  'Classic Charcoal Pajamas': '经典炭灰色睡衣',
+  'Classic Charcoal Suit': '经典炭灰色西装',
+  'Classic Comfort Bootcut': '经典舒适微喇裤',
+  'Classic Denim Shirt': '经典丹宁衬衫',
+  'Classic Denim Shorts': '经典丹宁短裤',
+  'Classic Essential White Sneaker': '经典必备白色运动鞋',
+  'Classic Evening Clutch Bag': '经典晚宴手包',
+  'Classic Harrington Jacket': '经典哈灵顿夹克',
+  'Classic Hoodie': '经典连帽衫',
+  'Classic Ivory Button-Up': '经典象牙白扣衫',
+  'Classic Leather Quartz': '经典皮革石英表',
+  'Classic Leather Slides': '经典皮革拖鞋',
+  'Classic Mocha Plaid': '经典摩卡格纹',
+  'Classic Olive Green Parka': '经典橄榄绿派克大衣',
+  'Classic Patent Red Heels': '经典漆皮红高跟鞋',
+  'Classic Plaid Scarf': '经典格纹围巾',
+  'Classic Pointed Toes Flat': '经典尖头平底鞋',
+  'Classic Red Court': '经典红宫廷鞋',
+  'Classic Red Ribbon Gift': '经典红丝带礼品',
+  'Classic Rubber Flip-Flops': '经典橡胶人字拖',
+  'Classic Silver Chronograph': '经典银色计时码表',
+  'Classic Sneakers': '经典运动鞋',
+  'Classic Striped Polo': '经典条纹波罗衫',
+  'Classic Tan H-Strap Sandals': '经典棕褐色 H 型带凉鞋',
+  'Classic Watch': '经典手表',
+  'Classic Wayfarer Black': '经典徒步旅行者黑',
+  'Classic White Button-Up': '经典白色扣衫',
+  'Classic White Crew': '经典白色圆领',
+  'Classic White Urban': '经典白色都市款',
+  'Classic Zip-Up Hoodie': '经典拉链连帽衫',
+  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.': '经典牛仔裙，高腰设计，下摆略微磨损，极具现代感。',
+  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.': '经典皮革驾驶手套，旨在实现最大的抓地力和舒适度。由真正的羊皮制成，手感柔软、优质。',
+  'Classic stonewashed denim with a comfortable straight-leg fit.': '经典石洗丹宁，舒适直筒版型。',
+  'Cloud Glide 360': '云端滑行 360',
+  'Cloud-Soft Jogger Pants': '云朵般柔软的慢跑裤',
+  'Collectible Fantasy Card Deck': '收藏级幻想卡牌',
+  'Color-Block Modern': '撞色现代款',
+  'Combat Style Flat Sole': '作战风格平底',
+  'Comfort Cork Sole Slides': '舒适软木底拖鞋',
+  'Comfort Walking Loafers': '舒适步行乐福鞋',
+  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.': '舒适的高腰牛仔短裤，经典五口袋设计，毛边下摆。',
+  'Compact Tabletop Pool Table': '紧凑型桌面台球桌',
+  'Compression Energizing 40D': '压缩活力 40D',
+  'Compression Sport Leggings': '压缩运动紧身裤',
+  'Compression Travel Tech': '压缩旅行科技',
+  'Concrete Orchid': '混凝土兰花',
+  'Connetix Magnetic Tiles: Light Star Pack': 'Connetix 磁性片：光星套装',
+  'Contour Sculpt Stick': '轮廓塑形棒',
+  'Contrast Collar Polo': '拼色领波罗衫',
+  'Cool-Dry Golf Edition': '清爽速干高尔夫版',
+  'Corduroy Button Skirt': '灯芯绒纽扣裙',
+  'Corduroy Lined Field Coat': '灯芯绒衬里野战外套',
+  'Corduroy Retro Shorts': '灯芯绒复古短裤',
+  'Corduroy Sherpa Jacket': '灯芯绒羊羔绒夹克',
+  'Corduroy Utility Shirt': '灯芯绒实用衬衫',
+  'Core Balance Trainer': '核心平衡训练器',
+  'Core Sculpting Bodysuit': '核心塑形连体衣',
+  'Corporate Executive Gift': '企业行政礼品',
+  'Cosmetic Glam Pack': '美妆魅力包',
+  'Cotton Bandana Set': '棉质头巾套装',
+  'Cotton Cargo Shorts': '棉质工装短裤',
+  'Cotton Chino Shorts': '棉质斜纹短裤',
+  'Cotton Stretch Hipster Pack': '棉质弹力低腰裤包',
+  'Cotton-Stretch Daily Pack': '棉质弹力日常包',
+  'Court King Basketball Shoe': '球场之王篮球鞋',
+  'Court Pro Flat Shoes': '球场专业平底鞋',
+  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.': '采用 14k 金笔尖，带来异常流畅的写作体验。',
+  'Cream Cashmere Sleeveless': '奶油色羊绒无袖上衣',
+  'Cream Fleece Basic': '奶油色抓绒基础款',
+  'Crimson Red Active Hoodie': '深红活力连帽衫',
+  'Crimson Red Slim Jogger': '深红修身慢跑裤',
+  'Criss-Cross Strap Heels': '交叉带高跟鞋',
+  'Cropped Button Sweater': '短款纽扣毛衣',
+  'Cross-Train Elite': '交叉训练精英版',
+  'Crystal Detail Evening Bra': '水晶细节晚宴内衣',
+  'Crystal Detail Evening G-String': '水晶细节晚宴丁字裤',
+  'Crystal Hair Clip Set': '水晶发夹套装',
+  'Crystal Studded Pumps': '水晶镶嵌高跟鞋',
+  'Crystal Zen Garden Set': '水晶禅宗花园套装',
+  'Curl Defining Soufflé': '卷发塑形乳',
+  'Cute Bunny Ear Slippers': '可爱兔耳朵拖鞋',
+  'Cute Plush Collection': '可爱毛绒系列',
+  'Cute Teddy Bear': '可爱泰迪熊',
+  'Cyberpunk Style LED Glasses': '赛博朋克风格 LED 眼镜',
+  'Cycling Gel Padded': '骑行硅胶垫',
+  'DIY Hydraulic Robot Arm': 'DIY 液压机械臂',
+  'Daily Comfort Walker': '日常舒适健步鞋',
+  'Daily UV Shield SPF50': '日常紫外线防护 SPF50',
+  'Dark Grey Loafers': '深灰色乐福鞋',
+  'Dark Mocha Formal Polo': '深摩卡正式波罗衫',
+  'Dark Mocha Pocket Knit': '深摩卡口袋针织衫',
+  'Decorative Hair Pins': '装饰发夹',
+  'Deep Burgundy Tailored Fit': '深酒红合身版',
+  'Deep Forest Cargo Joggers': '深林色工装慢跑裤',
+  'Deep Forest Wool Gown': '深林色羊毛长袍',
+  'Deep Olive Chino Slim': '深橄榄色修身斜纹裤',
+  'Deep Sea Blue Pique': '深海蓝珠地布',
+  'Deep V-Neck Chiffon Blouse': '深 V 领雪纺衬衫',
+  'Deep-V Plunge Microfiber': '深 V 低胸微纤维',
+  'Denim Architect Vest': '丹宁建筑师背心',
+  'Denim Overall Dress': '丹宁背带裙',
+  'Denim Soft-Wash Blouse': '丹宁柔洗衬衫',
+  'Denim Style Slippers': '牛仔风格拖鞋',
+  'Denim Vest Streetwear': '丹宁背心街头装',
+  'Desert Cedar': '沙漠雪松',
+  'Desert Sand Slim Chinos': '沙色修身斜纹裤',
+  'Desert Tactical Combat Boot': '沙漠战术作战靴',
+  'Designed for performance, these runners provide excellent grip and stability for all terrains.': '专为性能设计，这些跑步鞋为所有地形提供出色的抓地力和稳定性。',
+  'Designer Embossed Belt': '设计师压纹腰带',
+  'Designer Wallet': '设计师钱包',
+  'Designer Wool Scarf': '设计师羊毛围巾',
+  'Diamond Bezel Edition': '钻石表圈版',
+  'Diamond Lattice Pattern': '菱格纹图案',
+  'Distressed Denim Joggers': '磨损丹宁慢跑裤',
+  'Distressed Jean Shorts': '磨损牛仔短裤',
+  'Distressed Knee Rip Jeans': '膝盖破洞牛仔裤',
+  'Distressed Tan Leather': '磨损棕褐色皮革',
+  'Double Ring Belt': '双环腰带',
+  'Double-Breasted Classic': '双排扣经典款',
+  'Double-Breasted Navy Elite': '双排扣海军蓝精英版',
+  'Double-Breasted Navy Pea Coat': '双排扣海军蓝呢大衣',
+  'Double-Breasted Overcoat': '双排扣大衣',
+  'Double-Layer Firm Bodice': '双层紧身胸衣',
+  'Double-Layer Smoothing': '双层顺滑',
+  'Double-Lined Sculpting Brief': '双层塑形内裤',
+  'Dynamic Sport Runner': '动力运动跑步鞋',
+  'D’Orsay Suede Pumps': 'D’Orsay 麂皮高跟鞋',
+  'Earth Tone Brown': '大地色棕',
+  'Earth Tone Relaxed Jogger': '大地色宽松慢跑裤',
+  'Earth Tone Relaxed Polo': '大地色宽松波罗衫',
+  'Eco-Friendly Bamboo Building Blocks': '环保竹制积木',
+  'Eco-Friendly Wine Carrier': '环保红酒提袋',
+  'Eco-Run Sustainable': '环保运行可持续',
+  'Egyptian Cotton Crew Pack': '埃及棉圆领包',
+  'Elastic Sport Bands': '弹性运动带',
+  'Electric Blue Y2K Hoodie': '电光蓝 Y2K 连帽衫',
+  'Electric Heated Gloves': '电加热手套',
+  'Electric Neon Track Joggers': '电光霓虹田径慢跑裤',
+  'Electric Pottery Wheel Kit for Kids': '儿童电动陶轮套装',
+  'Electric Purple Party Polo': '电光紫派对波罗衫',
+  'Elegant Ballet Flats': '优雅芭蕾平底鞋',
+  'Elegant Bracelet': '优雅手链',
+  'Elegant Crocodile Print': '优雅鳄鱼纹',
+  'Elegant Gold Tea Infuser': '优雅金茶漏',
+  'Elegant Midnight Shawl': '优雅午夜披肩',
+  'Elegant Necklace': '优雅项链',
+  'Elegant Pearl Flat Sandals': '优雅珍珠平底凉鞋',
+  'Elegant Pearl Jewelry Box': '优雅珍珠珠宝盒',
+  'Elegant Wedge Sandals': '优雅坡跟凉鞋',
+  'Elegant Women': '优雅女性',
+  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.': '装饰有高品质珍珠的优雅头带。非常适合婚礼、派对或为您的日常造型增添一抹高级感。',
+  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.': '优雅的女士手表，配备珍珠母贝表盘和玫瑰金镀层编织表带。晚间活动的完美配饰。',
+  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.': '优雅的午夜蓝无礼服，配有缎面翻领。正式场合的终极选择。',
+  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.': '优雅的褶皱中长裙，配有弹性腰带。轻盈且非常适合办公室和休闲郊游。',
+  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.': '优雅的丝绸缎面衬衫，带有干净的 V 领，非常适合专业办公室穿着。',
+  'Embossed Leather Loafers': '压纹皮革乐福鞋',
+  'Embroidered Shawl': '刺绣披肩',
+  'Embroidered Tulle Slip': '刺绣薄纱衬裙',
+  'Emerald Green Ribbed Wrap': '翡翠绿罗纹披肩',
+  'Emerald Green Stilettos': '翡翠绿细高跟鞋',
+  'Emotional Support Highland Cow Plush': '情绪支持高地牛毛绒玩具',
+  'Envelope Style Evening Clutch': '信封式晚宴手包',
+  'Espresso Sharkskin Suit': '浓缩咖啡色鲨鱼皮西装',
+  'Essential Black Joggers': '必备黑色慢跑裤',
+  'Essential Core Vest': '必备核心背心',
+  'Essential Daily Sneaker': '必备日常运动鞋',
+  'Essential Grey Crew': '必备灰色圆领',
+  'Essential Grey Pullover': '必备灰色套头衫',
+  'Essential Heather Grey': '必备花灰色',
+  'Essential Seamless Bralette': '必备无缝内衣',
+  'Essential White Polo': '必备白色波罗衫',
+  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.': '必备白色圆领 T 恤，由 100% 优质棉制成。柔软、透气且耐用，适合日常穿着。',
+  'Everyday T-Shirt Contour': '日常 T 恤轮廓',
+  'Executive Charcoal Polo': '行政炭灰波罗衫',
+  'Executive Emerald Suit': '行政翡翠绿西装',
+  'Executive Fountain Pen': '行政钢笔',
+  'Executive Pinstripe Slacks': '行政细条纹休闲裤',
+  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.': '体验 Nike Air Max Pro 带来的极致舒适感，具有先进的缓冲性能和透气网眼。',
+  'Eyelet Lace Sleep Shorts': '镂空蕾丝睡眠短裤',
+  'FIFA World Cup 2026 Official Emblem Set': '2026 年 FIFA 世界杯官方标志套装',
+  'Fashion Handbag': '时尚手提包',
+  'Faux Leather Long Trench': '人造革长风衣',
+  'Festive Hamper Basket': '节日礼篮',
+  'Fitness Smart Band': '健身智能手环',
+  'Fleece Running Gloves': '抓绒跑步手套',
+  'Fleece Zip-Up Jacket': '抓绒拉链夹克',
+  'Flexi-Sole Running Flats': '柔性底跑步平底鞋',
+  'Floral A-Line Skirt': '碎花 A 字裙',
+  'Floral Arrangement Box': '插花礼盒',
+  'Floral Embroidery Cardigan': '花卉刺绣开衫',
+  'Floral Embroidery Cheeky': '花卉刺绣巴西式内裤',
+  'Floral Embroidery Demi': '花卉刺绣半罩杯内衣',
+  'Floral Embroidery Knit': '花卉刺绣针织衫',
+  'Floral Lace Pattern Tights': '花卉蕾丝图案连裤袜',
+  'Floral Lace Shaping Brief': '花卉蕾丝塑形内裤',
+  'Floral Print Lounge Set': '花卉印花家居套装',
+  'Floral Print Pumps': '花卉印花高跟鞋',
+  'Floral Print Summer Sandals': '花卉印花夏季凉鞋',
+  'Floral Puff Sleeve Top': '花卉泡泡袖上衣',
+  'Floral Spring Wrap': '花卉春季披肩',
+  'Floral Summer Sundress': '花卉夏季太阳裙',
+  'Floral Vacation Shorts': '花卉度假短裤',
+  'Flower Collection': '鲜花系列',
+  'Forest Camo Outdoor Polo': '森林迷彩户外波罗衫',
+  'Forest Green Heavy': '森林绿重磅',
+  'Forest Green Organic': '森林绿有机',
+  'Forest Green Outdoor': '森林绿户外',
+  'Formal Black Leather': '正式黑色皮革',
+  'Formal Patent Loafers': '正式漆皮乐福鞋',
+  'Formal White Dress Shirt': '正式白色衬衫',
+  'Fringe Pashmina': '流苏帕什米纳披肩',
+  'Front-Close Lace Racer': '前扣蕾丝工字背内衣',
+  'Full Coverage Concealer': '全遮盖遮瑕膏',
+  'Full-Body Invisible Suit': '全身隐形衣',
+  'Full-Coverage Power Mesh': '全包覆强力网眼',
+  'Gaming Headset': '游戏耳机',
+  'Gardening Soft Grip': '园艺软握柄',
+  'Geometric Hair Claw': '几何发抓',
+  'Geometric Jacquard Knit': '几何提花针织衫',
+  'Geometric Lace High-Cut': '几何蕾丝高叉内裤',
+  'Geometric Lace Longline': '几何蕾丝长款内衣',
+  'Geometric Pattern Dress Sock': '几何图案正装袜',
+  'Geometric Print Polo': '几何印花波罗衫',
+  'Geometric Print Silk': '几何印花丝绸',
+  'Giant Inflatable Rainbow Sprinkler': '巨型充气彩虹洒水器',
+  'Gingham Summer Skirt': '格子夏季裙',
+  'Gladiator High Sandals': '角斗士高跟凉鞋',
+  'Glass Shine Gloss': '玻璃亮泽唇彩',
+  'Glass Strengthening Base': '玻璃强化底油',
+  'Glitter Lurex Party Tights': '闪粉卢雷克斯派对连裤袜',
+  'Glitter Mesh Party Sock': '闪粉网眼派对袜',
+  'Glitters Night Out Mini': '闪粉夜店迷你裙',
+  'Glossing Glaze Treatment': '亮泽釉面护理',
+  'Glow Setting Powder': '发光定妆粉',
+  'Glute-Enhancing Tech Short': '提臀科技短裤',
+  'Gold Leaf Top Coat': '金箔亮油',
+  'Gold Myrrh': '黄金没药',
+  'Gold-Thread Evening Sock': '金丝晚宴袜',
+  'Golden Celebration Package': '金色庆祝礼包',
+  'Golden Elixir Serum': '金色药剂精华',
+  'Golden Hue Designer Sunglasses': '金色调设计师太阳镜',
+  'Golden Leaf Hair Vine': '金叶发藤',
+  'Golden Rush Edition': '淘金热版',
+  'Golden Skeleton Auto': '金色镂空自动表',
+  'Golden Wedding Heels': '金色婚礼高跟鞋',
+  'Golf Stretch Shorts': '高尔夫弹力短裤',
+  'Gothic Skeleton Print Shirt': '哥特骨架印花衬衫',
+  'Gothic Style Skull Printed Shirt': '哥特风格骷髅印花衬衫',
+  'Grand Heritage Gold': '大遗产金',
+  'Grandad Collar Shirt': '立领衬衫',
+  'Graphic Print Urban Hoodie': '图案印花都市连帽衫',
+  'Graphic Streetwear': '图案街头装',
+  'Graphite Brushed Wool': '石墨拉绒羊毛',
+  'Graphite Ribbed Joggers': '石墨罗纹慢跑裤',
+  'Graphite Stretch Jeans': '石墨弹力牛仔裤',
+  'Grey Comfort Walker': '灰色舒适健步鞋',
+  'Grey Marl Basic': '灰混色基础款',
+  'Grey Mineral Wash Jeans': '灰色矿物洗牛仔裤',
+  'Gym Master Stealth': '健身大师隐形款',
+  'Hand-Operated Mini Drone (UFO)': '手控微型无人机（UFO）',
+  'Hand-Poured Soy Candle Set': '手工灌装大豆蜡烛套装',
+  'Handcrafted from full-grain Italian leather, designed for the modern professional.': '由全粒面意大利皮革手工制成，专为现代专业人士设计。',
+  'Handmade Spa Kit': '手工 SPA 套装',
+  'Hape x The Met: Van Gogh Block Set': 'Hape x 大都会：梵高积木套装',
+  'Harajuku Hip Hop Letter Jeans': '原宿嘻哈字母牛仔裤',
+  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.': '健康追踪与高级时尚的结合。防水，电池续航时间长达 5 天。',
+  'Heather Purple Crew': '花紫色圆领',
+  'Heathered Grey Performance': '花灰色性能款',
+  'Heavy Duty Work Gloves': '重型工作手套',
+  'Heavy Jersey Shorts': '重磅针织短裤',
+  'Heavy Knit Muffler': '重磅针织围巾',
+  'Heavyweight Charcoal': '重磅炭灰色',
+  'Heavyweight Flannel': '重磅法兰绒',
+  'Heeled Loafer Style': '带跟乐福鞋风格',
+  'Heritage Cable Knit': '传承麻花针织',
+  'Heritage Plaid Trench': '传承格纹风衣',
+  'Heritage Tweed Vest': '传承粗花呢背心',
+  'High-Gloss Gel Lacquer': '高亮泽甲油胶',
+  'High-Impact Performance Run': '高强度性能跑步',
+  'High-Impact Sport Sculpt': '高强度运动塑形',
+  'High-Leg Sculpting Panty': '高叉塑形内裤',
+  'High-Neck Victorian Blouse': '高领维多利亚衬衫',
+  'High-Performance Compression': '高性能压缩',
+  'High-Waist Comfort Leggings': '高腰舒适紧身裤',
+  'High-Waist Control Top': '高腰收腹型',
+  'High-Waist Denim Skirt': '高腰牛仔裙',
+  'High-Waist Mesh Brief': '高腰网眼内裤',
+  'High-Waist Modal Shorts': '高腰莫代尔短裤',
+  'High-Waist Thong Shaper': '高腰丁字塑形裤',
+  'High-Waist Yoga Leggings': '高腰瑜伽紧身裤',
+  'High-Waisted Bootcut Leggings': '高腰微喇紧身裤',
+  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.': '高性能吸湿排汗面料，旨在在剧烈运动中保持凉爽干燥。具有四向拉伸功能，可实现最大的移动性。',
+  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.': '高品质真皮腰带，配有时尚银色扣环。非常适合正式西装和休闲牛仔裤，兼具耐用性和风格。',
+  'Hiking Water-Resistant Cargo': '徒步防水工装裤',
+  'Hip Hop Embroidered Jeans': '嘻哈刺绣牛仔裤',
+  'Holiday Tropical Print': '假日热带印花',
+  'Holographic Nail Tint': '全息指甲油',
+  'Hooded Parka Coat': '连帽派克大衣',
+  'Hooded Relaxed Cardigan': '连帽宽松开衫',
+  'Hot Wheels: Ultimate T-Rex Garage': '风火轮：终极霸王龙车库',
+  'Hyaluronic Acid Ampoule': '透明质酸安瓶',
+  'Hybrid Fitness Pro': '混合健身专业版',
+  'Hydra-Glow Serum': '水光精华',
+  'Hydrating Lip Oil': '保湿唇油',
+  'Hyper Focus Sport': '超专注运动',
+  'Iced Matcha EDP': '冰抹茶香水',
+  'Icy White Canvas': '冰白色帆布',
+  'Illuminating Primer': '提亮妆前乳',
+  'Imperial Sandalwood': '皇室檀香',
+  'Indigo Dye Polo': '靛蓝染色波罗衫',
+  'Infinity Cushion Air': '无限气垫',
+  'Infinity Loop Scarf': '无限环形围巾',
+  'Infused with rare essential oils of sandalwood and jasmine.': '注入稀有的檀香和茉莉精油。',
+  'Interactive Coding Turtle': '互动编程海龟',
+  'Invisible Control Slip': '隐形控制衬裙',
+  'Ionic Nano Steamer': '离子纳米蒸面仪',
+  'Italian Leather Oxford Derby': '意大利皮革牛津德比鞋',
+  'Italian Micro-Net Fishnet': '意大利微网渔网袜',
+  'Italian Silk Evening Suit': '意大利丝绸晚礼服',
+  'Italian Slim Fit Blue': '意大利修身蓝',
+  'Italian Wool Cashmere Coat': '意大利羊毛羊绒大衣',
+  'Italian Wool Pinstripe': '意大利羊毛细条纹',
+  'Ivory Wedding Dinner Jacket': '象牙白婚礼晚宴夹克',
+  'Jade Facial Roller': '玉石面部滚轮',
+  'Jelly Blox: Squish Train Building Set': 'Jelly Blox：解压火车积木套装',
+  'Jersey Knit Polo': '针织波罗衫',
+  'Jet Black Formal Trousers': '墨黑正装长裤',
+  'Jeweled Hair Comb': '珠宝发梳',
+  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.': '用这些优质保暖手套保持双手温暖。防风且兼容智能手机触摸屏，非常适合寒冷的通勤。',
+  'Keratin Straightening Cream': '角蛋白直发霜',
+  'Khaki Cargo Basic': '卡其色工装基础款',
+  'Khaki Safari Skirt': '卡其色狩猎裙',
+  'Khaki Utility Work Pants': '卡其色实用工作裤',
+  'Kids Cartoon Slippers': '儿童卡通拖鞋',
+  'Kids Winter Mittens': '儿童冬季连指手套',
+  'KitchenAid Kids Real Working Blender': 'KitchenAid 儿童真实工作搅拌机',
+  'Knitted Cotton Polo': '针织棉波罗衫',
+  'LED Light Therapy Mask': 'LED 光疗面罩',
+  'Lace Trim Balconette': '蕾丝边半罩杯内衣',
+  'Lace Trim Summer Top': '蕾丝边夏季上衣',
+  'Lace-Edge Victorian Frill': '蕾丝边维多利亚荷叶边',
+  'Lace-Trimmed Brazilian': '蕾丝边巴西式内裤',
+  'Lace-Trimmed Silk Slip': '蕾丝边丝绸衬裙',
+  'Latex Protective Gloves': '乳胶防护手套',
+  'Lavender Breeze Casual': '薰衣草微风休闲款',
+  'Lavender Soak Salts': '薰衣草泡澡盐',
+  'Leapfrog Twinkle Lights Learning Piano': '跳跳蛙闪烁灯光学习钢琴',
+  'Leather & Tobacco': '皮革与烟草',
+  'Leather Biker Jacket': '皮革机车夹克',
+  'Leather Cross Slippers': '皮革交叉拖鞋',
+  'Leather Driving Gloves': '皮革驾驶手套',
+  'Leather Handbag': '皮革手提包',
+  'Leather Mini Skirt': '皮革迷你裙',
+  'Leather Moto Gilet': '皮革机车背心',
+  'Leave-In Hydration Milk': '免洗补水乳',
+  'Lego Smart Play: Mos Eisley Cantina': '乐高智能游戏：莫斯艾斯利小酒馆',
+  'Leopard Print Heels': '豹纹高跟鞋',
+  'Leopard Print Scrunchie': '豹纹发圈',
+  'Leopard Print Sheer Mesh': '豹纹透明网眼',
+  'Leopard Print Wrap': '豹纹披肩',
+  'Lift-and-Sculpt Booty Short': '提臀塑形短裤',
+  'Light Blue Pastel Business': '浅蓝色柔和商务款',
+  'Light Grey Marl': '浅灰混色',
+  'Light Grey Marl Joggers': '浅灰混色慢跑裤',
+  'Lightweight Coaching Jacket': '轻量教练夹克',
+  'Lightweight Linen Duster': '轻量亚麻长外套',
+  'Lightweight Linen Layer': '轻量亚麻层',
+  'Lightweight Linen Sleepers': '轻量亚麻睡衣',
+  'Lightweight Run Shorts': '轻量跑步短裤',
+  'Lightweight Summer Cover': '轻量夏季外罩',
+  'Lightweight and breathable. Perfect for the stylish city dweller.': '轻盈且透气。非常适合时尚的城市居民。',
+  'Lightweight and responsive, perfect for marathon runners and speed training.': '轻盈且反应灵敏，非常适合马拉松跑者和速度训练。',
+  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.': '轻便透气的泳裤，配有网眼衬里和安全拉链袋。',
+  'Linen Summer Blazer': '亚麻夏季西装外套',
+  'Linen Summer Scarf': '亚麻夏季围巾',
+  'Linen Summer Shorts': '亚麻夏季短裤',
+  'Linen Summer Wrap': '亚麻夏季披肩',
+  'Linen-Blend Summer Polo': '亚麻混纺夏季波罗衫',
+  'Lionel Messi - Lego Soccer Legend': '里奥内尔·梅西 - 乐高足球传奇',
+  'Liquid Amber Essence': '液体琥珀精华',
+  'Lite-Walk Everyday': '轻步日常',
+  'Lite-Weight Mesh Sport Loafer': '轻量网眼运动乐福鞋',
+  'Little Black Party Dress': '小黑派对礼服',
+  'Logo Print Sport Tee': '标志印花运动 T 恤',
+  'Lolita Style Plaid Mini Skirt': '洛丽塔风格格子迷你裙',
+  'Long Sleeve Cotton Polo': '长袖棉质波罗衫',
+  'Longline Black Curved': '长款黑色弧形',
+  'Longline Open Front Wrap': '长款前开襟披肩',
+  'Longwear Setting Spray': '长效定妆喷雾',
+  'Loose Fit Skater Jeans': '宽松版滑板牛仔裤',
+  'Luxe Cashmere Polo': '奢华羊绒波罗衫',
+  'Luxe Leather High-Top': '奢华皮革高帮鞋',
+  'Luxe Satin Shirt': '奢华缎面衬衫',
+  'Luxe Travel Brush Set': '奢华旅行刷具套装',
+  'Luxe Velour Joggers': '奢华丝绒慢跑裤',
+  'Luxe Velvet Trim Triangle': '奢华天鹅绒边三角内衣',
+  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.': '奢华 100% 纯丝围巾，带有鲜艳的花卉图案。平滑、优雅，非常适合任何正式或休闲场合。',
+  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.': '奢华柔软的 100% 羊绒开衫，配有经典的纽扣前襟和罗纹饰边。',
+  'Luxury Birthday Hamper': '奢华生日礼篮',
+  'Luxury Candle Set': '奢华蜡烛套装',
+  'Luxury Gift Box': '奢华礼盒',
+  'Luxury Gold Buckle': '奢华金扣',
+  'Luxury Gold Trim Sandals': '奢华金边凉鞋',
+  'Luxury Makeup Kit': '奢华化妆套装',
+  'Luxury Paddle Brush': '奢华气垫梳',
+  'Luxury Patent Formal Shoe': '奢华漆皮正装鞋',
+  'Luxury Pearl Headband': '奢华珍珠头带',
+  'Luxury Perfume': '奢华香水',
+  'Luxury Perfume Box': '奢华香水盒',
+  'Luxury Perfume Set': '奢华香水套装',
+  'Luxury Ribbed Wool Tights': '奢华罗纹羊毛连裤袜',
+  'Luxury Rose Box': '奢华玫瑰盒',
+  'Luxury Rose Gold': '奢华玫瑰金',
+  'Luxury Scented Candle Set': '奢华香氛蜡烛套装',
+  'Luxury Silk Pillowcase Set': '奢华丝绸枕套套装',
+  'Luxury Silk-Blend Trouser': '奢华丝绸混纺长裤',
+  'Luxury Tulle Hipster Bloom': '奢华薄纱低腰花卉内裤',
+  'Luxury Watch Gift Set': '奢华手表礼品套装',
+  'Magic Chemistry Set (50 Experiments)': '魔法化学套装（50 个实验）',
+  'Magshuto Vert Tower - Kinetic Play': 'Magshuto 垂直塔 - 动力游戏',
+  'Makeup Collection': '美妆系列',
+  'Mandarin Collar Casual': '立领休闲衫',
+  'Marble Coffee Mug Trio': '大理石咖啡杯三人组',
+  'Maroon Velvet Touch Polo': '栗色丝绒触感波罗衫',
+  'Massage Sole Slippers': '按摩底拖鞋',
+  'Masterpiece Leather Briefcase': '杰作皮革公文包',
+  'Matcha Detox Scrub': '抹茶排毒磨砂膏',
+  'Maternity Over-Belly Support': '孕妇过腹支撑',
+  'Matte Black Rubber Sandals': '磨砂黑橡胶凉鞋',
+  'Matte Finish Claw': '磨砂质感发抓',
+  'Matte Finish Executive': '磨砂质感行政款',
+  'Matte Finish Loafers': '磨砂质感乐福鞋',
+  'Matte Finish Shoulder Bag': '磨砂质感单肩包',
+  'Matte Finish Top Coat': '哑光亮油',
+  'Matte Grey Performance': '磨砂灰性能款',
+  'Matte Nylon Bodywarmer': '磨砂尼龙背心',
+  'Maxi Tulle Skirt': '薄纱长裙',
+  'Memory Foam Comfort Slippers': '记忆棉舒适拖鞋',
+  'Men': '男士',
+  'Merino Wool Hiking Sock': '美利奴羊毛徒步袜',
+  'Merino Wool Layer': '美利奴羊毛层',
+  'Mermaid Hem Skirt': '鱼尾下摆裙',
+  'Metallic Eye Pigment': '金属感眼影粉',
+  'Micro-Modal Soft Shaper': '莫代尔柔软塑形',
+  'Micro-Print Dress Shirt': '微印花正装衬衫',
+  'Microfiber Laser-Cut Thong': '微纤维激光切割丁字裤',
+  'Midnight Black Fleece': '午夜黑抓绒',
+  'Midnight Black Hoodie': '午夜黑连帽衫',
+  'Midnight Black Voyager': '午夜黑航行者',
+  'Midnight Blue Pocket': '午夜蓝口袋',
+  'Midnight Camo Active': '午夜迷彩活力款',
+  'Midnight Cherry Polish': '午夜樱桃指甲油',
+  'Midnight Executive': '午夜行政款',
+  'Midnight Gold Trim Polo': '午夜金边波罗衫',
+  'Midnight Jasmine': '午夜茉莉',
+  'Midnight Kohl Pencil': '午夜眼线笔',
+  'Midnight Navy Sweatpants': '午夜蓝运动裤',
+  'Midnight Navy Tuxedo': '午夜蓝无礼服',
+  'Midnight Red Velvet Stiletto': '午夜红天鹅绒细高跟',
+  'Midnight Repair Oil': '午夜修复油',
+  'Midnight Satin Kimono': '午夜缎面和服',
+  'Midnight Stealth Black': '午夜隐形黑',
+  'Midnight Velvet Gilet': '午夜天鹅绒背心',
+  'Midnight Velvet Tuxedo': '午夜天鹅绒无礼服',
+  'Military Green Cargo': '军绿色工装裤',
+  'Military Green Cargo Polo': '军绿色工装波罗衫',
+  'Military Tactical': '军事战术',
+  'Mineral Dew Cream': '矿物露面霜',
+  'Mineral Loose Powder': '矿物散粉',
+  'Mineral Ridge Filler': '矿物指甲修护底油',
+  'Mini Birthday Treat': '迷你生日款待',
+  'Mini Travel Messenger Pouch': '迷你旅行邮差包',
+  'Minimal Hoodie': '极简连帽衫',
+  'Minimalist Accessories': '极简配饰',
+  'Minimalist Bonded Edge': '极简粘合边',
+  'Minimalist Bone Overcoat': '极简骨白色大衣',
+  'Minimalist Cotton Tote Bag': '极简棉质托特包',
+  'Minimalist Cream Polo': '极简奶油色波罗衫',
+  'Minimalist Cross-Strap Slides': '极简交叉带拖鞋',
+  'Minimalist Desk Organizer': '极简桌面收纳器',
+  'Minimalist Gold Watch': '极简金表',
+  'Minimalist Gold Watch with Leather Strap': '极简金表带皮带',
+  'Minimalist Home Slides': '极简家居拖鞋',
+  'Minimalist Knit Skirt': '极简针织裙',
+  'Minimalist Mesh Band': '极简网状表带',
+  'Minimalist Silver Barrette': '极简银色发夹',
+  'Minimalist Slate': '极简板岩色',
+  'Minimalist Slate Gilet': '极简板岩色背心',
+  'Minimalist Slate Gray Knit Runner': '极简板岩灰针织跑步鞋',
+  'Minimalist Tech-Mesh Thong': '极简科技网眼丁字裤',
+  'Minimalist White Crew': '极简白色圆领',
+  'Minimalist White Flats': '极简白色平底鞋',
+  'Minimalist White Hoodie': '极简白色连帽衫',
+  'Minimalist White Smartwatch': '极简白色智能手表',
+  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.': '极简主义设计，配备正宗棕色皮革表带和可靠的日本石英机芯。非常适合日常办公穿着。',
+  'Mocha Teddy Shearling': '摩卡色泰迪羊羔绒',
+  'Modal Ribbed Boyshort': '莫代尔罗纹平角裤',
+  'Modal Ribbed Sleep Dress': '莫代尔罗纹睡裙',
+  'Modern Buckle Loafers': '现代搭扣乐福鞋',
+  'Modern Canvas Utility': '现代帆布实用款',
+  'Modern Fit Burgundy Chinos': '现代版酒红斜纹裤',
+  'Modern Jet Black Suit': '现代墨黑西装',
+  'Modern Jet Black Tux': '现代墨黑无礼服',
+  'Modern Minimalist': '现代极简主义',
+  'Modern Tech Gadget Box': '现代科技小工具盒',
+  'Modular Tech Vest': '模块化科技背心',
+  'Moisture-Wicking Yoga Grip': '吸湿排汗瑜伽垫',
+  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.': '吸湿排汗面料，旨在在高尔夫球场或街道上保持凉爽干燥。',
+  'Monster High: Moonspell Magic Willow Thorne': '精灵高中：月咒魔法 Willow Thorne',
+  'Morning Rain': '晨雨',
+  'Musical Electronic Drum Pad Mat': '电子鼓垫垫',
+  'Mustard Yellow Boxy': '芥末黄箱型',
+  'Mustard Yellow Pop': '芥末黄流行色',
+  'Mustard Yellow Streetwear': '芥末黄街头装',
+  'Navy Blue Driving Mocs': '海军蓝驾驶鞋',
+  'Navy Blue Sport Hoodie': '海军蓝运动连帽衫',
+  'Navy Blue Tech Fleece': '海军蓝科技抓绒',
+  'Navy Blue Work Blouse': '海军蓝工作衬衫',
+  'Navy Dive Master': '海军潜水大师',
+  'Navy Slim Fit Tee': '海军蓝修身 T 恤',
+  'Navy Work Shirt': '海军蓝工作衬衫',
+  'Neo Future Sport Sneaker': '新未来运动鞋',
+  'Neon Liquid Motion Bubbler': '霓虹液体运动起泡器',
+  'Neon Party Heels': '霓虹派对高跟鞋',
+  'Neon Speedster': '霓虹速跑者',
+  'Neroli Coast': '橙花海岸',
+  'Niacinamide Essence': '烟酰胺精华',
+  'Night Vision Spy Goggles': '夜视间谍眼镜',
+  'Nike Air Max Pro': 'Nike Air Max 专业版',
+  'Non-Toxic Soy Remover': '无毒大豆洗甲水',
+  'Non-slip grip with high-density cushioning for ultimate joint support.': '防滑抓地力与高密度缓冲，提供极致的关节支持。',
+  'Nordic Glass Flower Vase': '北欧玻璃花瓶',
+  'Off-Shoulder Peplum Blouse': '一字肩荷叶边衬衫',
+  'Off-Shoulder Silk Dress': '一字肩丝绸连衣裙',
+  'Olive Drab Tactical': '橄榄绿战术款',
+  'Olive Drab Tactical Polo': '橄榄绿战术波罗衫',
+  'Olympic Red Sport': '奥林匹克红运动款',
+  'Onyx Black Evening Cape': '玛瑙黑晚宴披肩',
+  'Opaque 80D Matte Sculpt': '不透明 80D 哑光塑形',
+  'Open Toe Spa Slippers': '露趾 SPA 拖鞋',
+  'Open-Bust Camisole Shaper': '露胸吊带塑形衣',
+  'Open-Toe Sandal Tights': '露趾凉鞋连裤袜',
+  'Organic Cotton Lounge Panty': '有机棉家居内裤',
+  'Organic Cotton Sleep Tee': '有机棉睡眠 T 恤',
+  'Organic Hemp Daily Crew': '有机大麻日常圆领',
+  'Orthopedic Support Slippers': '矫形支撑拖鞋',
+  'Oud Wood & Amber': '乌木与琥珀',
+  'Outdoor Altimeter': '户外高度计',
+  'Outdoor Sport Sandals': '户外运动凉鞋',
+  'Outdoor Tactical Gloves': '户外战术手套',
+  'Outdoor Terrain Flats': '户外地形平底鞋',
+  'Over-the-Knee Ribbed Knit': '过膝罗纹针织袜',
+  'Overnight Nail Mask': '夜间护甲膜',
+  'Overnight Repair Mask': '夜间修复面膜',
+  'Oversized Blanket Scarf': '超大毯子围巾',
+  'Oversized Chunky Knit': '超大粗针织衫',
+  'Oversized Graphic Tee - Streetwear Collection': '超大图案 T 恤 - 街头系列',
+  'Oversized Heavyweight Hoodie': '超大重磅连帽衫',
+  'Oversized Hoodie': '超大连帽衫',
+  'Oversized Knit Sleep Shirt': '超大针织睡衣',
+  'Oversized Pastel Blue': '超大柔蓝色',
+  'Oversized Pastel Pink': '超大柔粉色',
+  'Oversized Red Graphic Tee': '超大红色图案 T 恤',
+  'Oversized Skater Jeans': '超大滑板牛仔裤',
+  'Oxford Button-Down': '牛津扣领衫',
+  'Oxford Navy Stretch Suit': '牛津海军蓝弹力西装',
+  'Oxford Style Flat Shoes': '牛津风平底鞋',
+  'Padded Puffer Jacket': '带垫羽绒服',
+  'Pastel Breeze Sneakers': '柔风运动鞋',
+  'Pastel Lilac Knitwear': '柔紫色针织衫',
+  'Pastel Lounge Shorts': '柔色家居短裤',
+  'Pastel Ombre Cotton Blend': '柔色渐变棉混纺',
+  'Pastel Peach Flare Top': '柔桃色喇叭袖上衣',
+  'Pastel Pink Oxford': '柔粉色牛津衫',
+  'Pastel Summer Polo': '柔色夏季波罗衫',
+  'Peak Performance HIIT': '巅峰性能 HIIT',
+  'Pearl Essence Gloss': '珍珠精华唇彩',
+  'Pearl White Wedding Polo': '珍珠白婚礼波罗衫',
+  'Pencil Business Skirt': '铅笔商务裙',
+  'Peony Silk Extract': '牡丹丝绸精华',
+  'Peptide Eye Lift': '多肽眼部提升精华',
+  'Perfume Gift Set': '香水礼品套装',
+  'Personalized Photo Cube': '定制照片魔方',
+  'Pink Strappy Sandals': '粉色系带凉鞋',
+  'Platform Wedge Slippers': '厚底坡跟拖鞋',
+  'Pleated Chiffon Gown': '褶皱雪纺长袍',
+  'Pleated Midi Skirt': '褶皱中长裙',
+  'Pleated Satin Romper': '褶皱缎面连体裤',
+  'Pocket Utility Leggings': '口袋实用紧身裤',
+  'Pointed Toe Nude Heels': '尖头裸色高跟鞋',
+  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.': '偏光镜片配优质金色框架。提升您的夏季风格。',
+  'Polka Dot Bow-Tie Top': '波点蝴蝶结上衣',
+  'Polka Dot Fashion': '波点时尚',
+  'Polka Dot Midi': '波点中长裙',
+  'Polka Dot Neckerchief': '波点领巾',
+  'Polka Dot Retro Midi': '波点复古中长裙',
+  'Polka Dot Sheer Tights': '波点透明连裤袜',
+  'Polka Dot Silk Sheer': '波点丝绸薄袜',
+  'Portable Speaker': '便携式音箱',
+  'Post-Op Compression Short': '术后压缩短裤',
+  'Power-Mesh Waist Trainer': '强力网眼束腰',
+  'PowerOn Energy-Generating Soccer Ball': 'PowerOn 发电足球',
+  'Prebiotic Cloud Milk': '益生元云朵乳',
+  'Precision Liquid Liner': '精准眼线液',
+  'Precision Steel Clippers': '精密钢剪',
+  'Precision switches with customizable RGB lighting and premium aluminum body.': '精密开关，具有可定制的 RGB 灯光和优质铝制机身。',
+  'Premium Cashmere Cardigan': '优质羊绒开衫',
+  'Premium Cotton Set': '优质棉套装',
+  'Premium French Lace Thong': '优质法式蕾丝丁字裤',
+  'Premium Gift Set': '优质礼品套装',
+  'Premium Headphones': '优质耳机',
+  'Premium Leather Belt': '优质皮革腰带',
+  'Premium Leather Passport Holder': '优质皮革护照夹',
+  'Premium Micro-Modal Robe': '优质莫代尔睡袍',
+  'Premium Pima Cotton': '优质皮马棉',
+  'Premium Silk Scarf': '优质丝巾',
+  'Premium Silk Triangle': '优质丝绸三角内裤',
+  'Premium Silk-Blend Polo': '优质丝绸混纺波罗衫',
+  'Premium Surprise Box': '优质惊喜盒',
+  'Premium Waterproof Heritage Boot': '优质防水传承靴',
+  'Premium Yoga Mat (Pro)': '优质瑜伽垫（专业版）',
+  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.': '优质原色丹宁，经典直筒剪裁，非常适合“老钱风”审美。',
+  'Primal Hatch: Hybrid Hatcher Egg': 'Primal Hatch：混合孵化蛋',
+  'Pro Compression Shirt': '专业压缩衫',
+  'Pro Gamer Mechanical Keyboard': '专业玩家机械键盘',
+  'Pro-Cycle Aerodynamic Pants': '专业骑行空气动力裤',
+  'Pro-Dry Gym Joggers': '专业速干健身慢跑裤',
+  'Pro-Fit Tennis Polo': '专业合身网球波罗衫',
+  'Pro-Grip Buffer Tool': '专业抓握缓冲工具',
+  'Pro-Running Shorts': '专业跑步短裤',
+  'Professional Boxing Gloves': '专业拳击手套',
+  'Professional Grey Polo': '专业灰色波罗衫',
+  'Professional Navy Tapered': '专业海军蓝锥形裤',
+  'Programmable Emoji Backpack': '可编程表情符号背包',
+  'Puffer Winter Vest': '羽绒冬背心',
+  'Pure Shine Conditioner': '纯净亮泽护发素',
+  'Purple Royal Heels': '紫色皇家高跟鞋',
+  'Quarter-Zip Performance': '四分之一拉链性能款',
+  'Quick-Dry Diamond Drops': '速干钻石滴露',
+  'Quick-Dry Swim Trunks': '速干泳裤',
+  'Quilted Designer Handbag': '绗缝设计师手提包',
+  'Quilted Down Long Parka': '绗缝羽绒长款派克大衣',
+  'Quilted Gilet Vest': '绗缝背心',
+  'Quilted Obsidian Puffer': '绗缝黑曜石羽绒服',
+  'Racerback Ribbed Bralette': '工字背罗纹内衣',
+  'Racing Biker Gloves': '赛车手套',
+  'Rainbow Hair Tinsel': '彩虹金丝发',
+  'Recycled Nylon Athleisure': '再生尼龙运动休闲装',
+  'Red Suede Bow Loafers': '红色麂皮蝴蝶结乐福鞋',
+  'Red V-Neck Essential': '红色 V 领基础款',
+  'Red Velvet Stilettos': '红色天鹅绒细高跟',
+  'Reflective Night-Run Crew': '反光夜跑圆领',
+  'Reflective Track Jacket': '反光田径夹克',
+  'Relaxed Fit Sand Wash': '宽松版砂洗',
+  'Restorative Face Cream': '修护面霜',
+  'Restorative Silk Mask': '修护丝绸面膜',
+  'Retro 35mm Film Camera for Kids': '儿童复古 35mm 胶片相机',
+  'Retro 90s High-Top Sneaker': '复古 90 年代高帮运动鞋',
+  'Retro 90s Stripe Polo': '复古 90 年代条纹波罗衫',
+  'Retro 90s Vibes': '复古 90 年代气息',
+  'Retro Loose Fit Windbreaker': '复古宽松风衣',
+  'Retro Oversized Joggers': '复古超大慢跑裤',
+  'Retro Shoulder Bag with Gold Chain': '复古金链单肩包',
+  'Retro Street Wear': '复古街头装',
+  'Reversible Duo-Color': '双面双色',
+  'Rhinestone Tiara': '水钻王冠',
+  'Ribbed Cashmere Lounge Sock': '罗纹羊绒家居袜',
+  'Ribbed Compression Tank': '罗纹压缩背心',
+  'Ribbed Cotton High-Waist': '罗纹棉高腰',
+  'Ribbed Tank & Pant Duo': '罗纹背心长裤套装',
+  'Rolex Submariner Gold': '劳力士潜航者金表',
+  'Rose Bouquet': '玫瑰花束',
+  'Rose Gold Manicure Set': '玫瑰金修甲套装',
+  'Rose Gold Pearl': '玫瑰金珍珠',
+  'Rose Petal Blush': '玫瑰花瓣腮红',
+  'Rose Quartz Absolute': '粉晶精华',
+  'Rose Quartz Gua Sha': '粉晶刮痧板',
+  'Rose Quartz Mist': '粉晶喷雾',
+  'Royal Blue Groom Suit': '宝蓝色新郎西装',
+  'Royal Blue Slim Fit': '宝蓝色修身版',
+  'Royal Velvet Keepsake': '皇家天鹅绒纪念品',
+  'Ruffled Chiffon Party Blouse': '荷叶边雪纺派对衬衫',
+  'Ruffled Pastel Sunsuit': '荷叶边柔色太阳装',
+  'Rugby Heavyweight Polo': '橄榄球重磅波罗衫',
+  'Rugged Field Watch': '耐用野外手表',
+  'Rugged Mountain Grip': '耐用山地抓地力',
+  'Rugged Outdoor Loafers': '耐用户外乐福鞋',
+  'Rugged Work Flats': '耐用工作平底鞋',
+  'Rustic Hunter Brown': '乡村猎人棕',
+  'Rustic Orange Polo': '乡村橙波罗衫',
+  'Rusty Brown Corduroy': '锈棕色灯芯绒',
+  'Sage Green Cotton Jogger': '鼠尾草绿棉质慢跑裤',
+  'Sage Green Relaxed': '鼠尾草绿宽松款',
+  'Sage Green Summer Linen': '鼠尾草绿夏季亚麻',
+  'Sand Dune Tech Joggers': '沙丘科技慢跑裤',
+  'Sandstone Belted Wrap': '砂岩色带腰带披肩',
+  'Sandstone Cotton Suit': '砂岩色棉质西装',
+  'Sandy Beige Chino Polo': '沙米色斜纹波罗衫',
+  'Santal Bloom': '檀香花开',
+  'Sapphire Diver Pro': '蓝宝石潜水专业版',
+  'Satin Bow Detail Bikini': '缎面蝴蝶结细节比基尼',
+  'Satin Bow Stilettos': '缎面蝴蝶结高跟鞋',
+  'Satin Cami & Short Set': '缎面吊带短裤套装',
+  'Satin Emerald Evening Dress': '缎面翡翠绿晚礼服',
+  'Satin Finish Bronzer': '缎面质感修容',
+  'Satin Head Scarf': '缎面头巾',
+  'Satin Ribbon Bow': '缎面丝带蝴蝶结',
+  'Satin Slip Skirt': '缎面衬裙',
+  'Satin Strapless Multi-way': '缎面无肩带多穿法',
+  'Satin Wrap Front Blouse': '缎面前襟交叉衬衫',
+  'Scalloped Edge Unlined': '扇形边无衬里',
+  'Scalloped Edge Unlined Thong': '扇形边无衬里丁字裤',
+  'Scalp Detox Scrub': '头皮排毒磨砂膏',
+  'Sculpting Face Wand': '脸部塑形棒',
+  'Seamless 360 Comfort Fit': '无缝 360 舒适贴合',
+  'Seamless Bamboo No-Show': '无缝竹纤维隐形袜',
+  'Seamless Comfort Wireless Bra': '无缝舒适无钢圈内衣',
+  'Seamless Compression Shaper': '无缝压缩塑形',
+  'Seamless Invisible Thong': '无缝隐形丁字裤',
+  'Seamless Maternity Shaper': '无缝孕妇塑形',
+  'Seamless Mid-Thigh Short': '无缝中腿短裤',
+  'Seamless Push Up Bralette': '无缝聚拢内衣',
+  'Seamless Workout Tights': '无缝健身紧身裤',
+  'Seaweed Cleansing Gel': '海藻洁面凝胶',
+  'Selvedge Premium Denim': '赤耳优质丹宁',
+  'Sexy Boho Maxi Skirt': '性感波西米亚长裙',
+  'Shadow Black Reflective': '影黑反光',
+  'Shadow Black Stealth Boot': '影黑隐形靴',
+  'Shea Butter Hand Relief': '乳木果油护手霜',
+  'Shearling Trimmed Gilet': '羊羔绒饰边背心',
+  'Sheer Chiffon Robe': '透明雪纺袍',
+  'Sheer Chiffon Scarf': '透明雪纺围巾',
+  'Sheer Mesh Underwire': '透明网眼带钢圈',
+  'Sheer Nude Polish': '透明裸色指甲油',
+  'Sheer Tulle Ankle Sock': '透明薄纱踝袜',
+  'Sheer Tulle String Bikini': '透明薄纱系带比基尼',
+  'Sheer-to-Waist Invisible': '连腰透明隐形',
+  'Short Sleeve Hawaiian': '短袖夏威夷衫',
+  'Sicilian Fig': '西西里无花果',
+  'Side-Slit Silk Skirt': '侧开叉丝绸裙',
+  'Signature Pique Polo': '招牌珠地波罗衫',
+  'Silicone-Grip Thigh Shaper': '硅胶抓握大腿塑形',
+  'Silk Flower Fascinator': '丝绸花朵头饰',
+  'Silk Foundation SPF 20': '丝绸粉底液 SPF 20',
+  'Silk Liner Gloves': '丝绸内衬手套',
+  'Silk Satin Bikini Cut': '丝绸缎面比基尼剪裁',
+  'Silk Satin Kimono Robe': '丝绸缎面和服睡袍',
+  'Silk Sleep Mask & Pillowcase': '丝绸睡眠眼罩和枕套',
+  'Silk V-Neck Office Blouse': '丝绸 V 领办公衬衫',
+  'Silk-Blend Embroidered Cut': '丝绸混纺刺绣剪裁',
+  'Silk-Blend Luxury Sheer': '丝绸混纺奢华薄袜',
+  'Silk-Lined Wireless Bra': '丝绸衬里无钢圈内衣',
+  'Silver Charm Bundle': '银饰套装',
+  'Silver Chronograph': '银色计时码表',
+  'Silver Glitter Heels': '银色闪粉高跟鞋',
+  'Silver Skeleton Mechanical': '银色镂空机械表',
+  'Silver Toning Shampoo': '去黄洗发水',
+  'Silver-Plated Photo Frame': '镀银相框',
+  'Simple Plastic Flip-Flops': '简单塑料人字拖',
+  'Ski Snowboard Gloves': '滑雪手套',
+  'Sky Blue Mohair Blend': '天蓝色马海毛混纺',
+  'Sky Blue Stretch Polo': '天蓝色弹力波罗衫',
+  'Slate Grey Checkered Suit': '板岩灰格纹西装',
+  'Sleek Black Matte': '时尚黑色磨砂',
+  'Sleek Italian Loafers': '时尚意大利乐福鞋',
+  'Sleek Midnight Black': '时尚午夜黑',
+  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.': '时尚且隐秘。这款全黑手表非常适合正式活动和日常奢侈。',
+  'Sleep and powerful, the Stealth Black series is made for those who move in style.': '睡眠且强大，隐形黑系列专为那些有风格的人而生。',
+  'Sleeveless Pleated Blouse': '无袖褶皱衬衫',
+  'Slim Dress Belt': '修身正装腰带',
+  'Slim Fit Black Shirt': '修身版黑色衬衫',
+  'Slim Fit Dark Indigo': '修身版深靛蓝',
+  'Slim Fit Navy Polo': '修身版海军蓝波罗衫',
+  'Slip-on Leather Mules': '一脚蹬皮革穆勒鞋',
+  'Slit Front Maxi': '前开叉长裙',
+  'Smart Aromatherapy Diffuser': '智能香薰机',
+  'Smart Fitness Band': '智能健身手环',
+  'Smart Series 9 Pro': '智能系列 9 专业版',
+  'Smart Watch': '智能手表',
+  'Smart Watch Gift': '智能手表礼物',
+  'Smocked Waist Floral Top': '束腰花卉上衣',
+  'Smoked Vanilla Elixir': '熏制香草精华',
+  'Smoothing Plunge Bodice': '顺滑低胸紧身内衣',
+  'Soft Cloud Platform Sandals': '云端柔感厚底凉鞋',
+  'Soft Comfort Walking Flats': '柔软舒适健步平底鞋',
+  'Soft Lavender Occasion': '柔紫色场合装',
+  'Soft Nubuck Belt': '柔软磨砂皮腰带',
+  'Soft Pink Suede Mocs': '柔粉色麂皮软鞋',
+  'Soft Plush Indoor Slippers': '柔软毛绒室内拖鞋',
+  'Soft Ribbed V-Neck': '柔软罗纹 V 领',
+  'Soft Suede Square Messenger': '柔软麂皮方邮差包',
+  'Soft Touch Lavender': '柔感薰衣草',
+  'Soft Touch Pastel Mint': '柔感薄荷绿',
+  'Soft Touch Pastel Pink': '柔感粉色',
+  'Soft-Cup Lace Teddy': '软杯蕾丝连体内衣',
+  'Soft-Touch Chenille Slipper': '柔感雪尼尔拖鞋',
+  'Solar Powered Tech': '太阳能科技',
+  'Sonic Silicone Cleanser': '声波硅胶洁面仪',
+  'Sonic Wave Sneakers': '声波运动鞋',
+  'Sparkly Party Skirt': '闪亮派对裙',
+  'Speed Bolt Edition': '速度闪电版',
+  'Sport Digital Watch': '运动数字手表',
+  'Sport Fitness Gloves': '运动健身手套',
+  'Sport Performance Polo': '运动性能波罗衫',
+  'Sporty Lite Flats': '运动轻便平底鞋',
+  'Sprint Master V2': '冲刺大师 V2',
+  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.': '防蹲、不透视面料，带有隐藏腰带口袋。非常适合瑜伽、健身课程或休闲运动。',
+  'Squishy Foam "Donut" Squeeze Set': '捏捏乐泡沫“甜甜圈”套装',
+  'Stability Plus Sport': '稳定加运动',
+  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.': '穿上 Neon Speedster 脱颖而出，专为高速训练而优化。',
+  'Star Motif Mesh Hosiery': '星星图案网眼袜',
+  'Star Wars: The Darksaber Replica': '星球大战：暗剑复制品',
+  'Star-Print Mesh Chemise': '星印花网眼衬裙',
+  'Starfish Summer Clip': '海星夏日夹',
+  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.': '这款柔软的羊绒混纺披肩让您保持舒适。轻盈且在寒冷的冬日里异常温暖。',
+  'Stay-Up Lace Top Hold-Ups': '蕾丝边防滑长筒袜',
+  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.': '时尚地存放多达 6 只手表。柔软的天鹅绒衬里可防止划伤。',
+  'Straight Leg Raw Denim': '直筒原色丹宁',
+  'Strapless Shaping Slip': '无肩带塑形衬裙',
+  'Streetwear Letter Embroidered Jeans': '街头字母刺绣牛仔裤',
+  'Streetwear Multi-Pocket Cargo': '街头多口袋工装裤',
+  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.': '街头风格的图案 T 恤，具有复古水洗效果和高品质丝网印刷。',
+  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.': '引人注目的颜色和奢华的质感。配备舒适的 85mm 细高跟。',
+  'Striped Beach Shorts': '条纹海滩短裤',
+  'Striped Business Shirt': '条纹商务衬衫',
+  'Striped Casual Linen Blouse': '条纹休闲亚麻衬衫',
+  'Striped Cotton Shirtdress': '条纹棉质衬衫裙',
+  'Striped Cotton Slippers': '条纹棉拖鞋',
+  'Striped Nautical Cardigan': '条纹航海开衫',
+  'Striped Nautical Tee': '条纹航海 T 恤',
+  'Striped Piped Pajama Set': '条纹镶边睡衣套装',
+  'Striped Retro Athletic': '条纹复古运动款',
+  'Structured Onyx Waistcoat': '廓形玛瑙黑马甲',
+  'Structured Slate Overcoat': '廓形板岩色大衣',
+  'Studio-grade sound quality with genuine leather earcups and gold accents.': '录音室级音质，配备真皮耳罩和金色装饰。',
+  'Suede Penny Loafers': '麂皮便乐福鞋',
+  'Suede Sahara Vest': '麂皮撒哈拉背心',
+  'Suede Stylish Belt': '麂皮时尚腰带',
+  'Suede Trucker Jacket': '麂皮卡车司机夹克',
+  'Suede Urban Ankle Boot': '麂皮都市短靴',
+  'Summer Beach Slippers': '夏季海滩拖鞋',
+  'Summer Breathable Loafers': '夏季透气乐福鞋',
+  'Summer Cotton Cargo Shorts': '夏季棉质工装短裤',
+  'Summer Holiday Cropped Vest': '夏季假日短款背心',
+  'Summit Peak Hiking Explorer': '巅峰远足探险者',
+  'Sun-Bleached Red Hoodie': '晒褪色红连帽衫',
+  'Sunshine Yellow Casual': '阳光黄休闲款',
+  'Super-Size Snow Tube Sled': '超大号雪圈雪橇',
+  'Supportive Shaping Tights': '支撑塑形连裤袜',
+  'Sweetheart Neckline Push-Up': '心形领聚拢内衣',
+  'T-Strap Summer Flats': 'T 字带夏季平底鞋',
+  'Tactical Techwear Vest': '战术机能服背心',
+  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.': '裁剪完美。为盛大活动打造的裁缝优雅杰作。',
+  'Tambour Street Diver Burning Rock': 'Tambour Street 潜水表烈岩版',
+  'Tan Linen Wedding Slacks': '棕褐色亚麻婚礼休闲裤',
+  'Tan Slip-on Loafers': '棕褐色一脚蹬乐福鞋',
+  'Tapered Ankle Denim': '锥形踝部丹宁',
+  'Targeted Tummy Control Band': '针对性收腹带',
+  'Teal Ocean Active Polo': '青色海洋活力波罗衫',
+  'Tech Fleece Hoodie': '科技抓绒连帽衫',
+  'Tech Fleece Performance': '科技抓绒性能款',
+  'Tech-Knit Compression Bra': '科技针织压缩内衣',
+  'Technical Windbreaker Y2K': '技术风衣 Y2K',
+  'Techwear Messenger Bag': '机能服邮差包',
+  'Terra Eyeshadow Palette': '大地眼影盘',
+  'Texture Wave Spray': '纹理波浪喷雾',
+  'Textured Geometric Pattern': '纹理几何图案',
+  'Textured Waffle Polo': '纹理华夫格波罗衫',
+  'The icon of eyewear. Always in style, no matter the decade.': '眼镜界的偶像。无论年代，永不过时。',
+  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.': '典型的潜水表，Submariner 为该类型设定了标准。18k 金饰面，完美融合了奢华与实用性。',
+  'Thermal Fleece Baselayer': '保暖抓绒打底衫',
+  'Thermal Fleece-Lined Winter': '保暖抓绒内衬冬季款',
+  'Thermal Protectant Mist': '隔热喷雾',
+  'Thermal Winter Gloves': '保暖冬季手套',
+  'Tie-Dye Cotton Scarf': '扎染棉质围巾',
+  'Tie-Dye Dream Hoodie': '扎染梦幻连帽衫',
+  'Tie-Dye Summer Vibes': '扎染夏季气息',
+  'Tie-Dye Ultimate Creation Station': '扎染终极创意站',
+  'Tiered Boho Skirt': '层叠波西米亚裙',
+  'Tiered Ruffle Sleeve Top': '层叠荷叶袖上衣',
+  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.': '永恒的优雅与精密工程。配备不锈钢表壳和蓝宝石水晶。',
+  'Titanium Lightweight': '钛金轻量',
+  'Toy Story: Slinky Dog Bookends': '玩具总动员：弹簧狗书立',
+  'Trail Blazer Hiking': '开拓者远足鞋',
+  'Trail Blazer X1': '开拓者 X1',
+  'Transparent Jelly Handbag': '透明果冻手提包',
+  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.': '注重趋势的超大版型，落肩设计。非常适合舒适、时尚的造型。',
+  'Tropical Beach Flip-Flops': '热带海滩人字拖',
+  'Tummy-Taming Brief': '收腹内裤',
+  'Turquoise Beach Tee': '绿松石色海滩 T 恤',
+  'Turquoise Velvet Heels': '绿松石色天鹅绒高跟鞋',
+  'Tweed Workwear Set': '粗花呢工作服套装',
+  'Ultra-Fast Pro Runner': '极速专业跑步鞋',
+  'Ultra-Gentle Dry Shampoo': '温和干洗洗发水',
+  'Ultra-Light Cooling Slip': '超轻清凉衬裙',
+  'Ultra-Sheer 15D Glossy': '特薄 15D 亮面袜',
+  'Ultra-Thick Fleece Cabin': '特厚抓绒小屋袜',
+  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.': '超轻且具备 RFID 屏蔽功能。极简主义者的终极配饰。',
+  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.': '极柔软的抓绒慢跑裤，清爽的北极白，非常适合家居或冬季跑步。',
+  'Under-Bust Waist Nipper': '胸下收腰衣',
+  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.': '无可比拟的温暖和柔软。由 100% 纯喜马拉雅羊绒制成。',
+  'Urban Athletic Low': '都市运动低帮鞋',
+  'Urban Black Polo': '都市黑色波罗衫',
+  'Urban Bomber Jacket': '都市短夹克',
+  'Urban Cargo Olive': '都市工装橄榄绿',
+  'Urban Cargo Utility': '都市工装实用款',
+  'Urban Casual Brown': '都市休闲棕',
+  'Urban Comfort Walking Sneaker': '都市舒适健步运动鞋',
+  'Urban Commuter Laptop Bag': '都市通勤笔记本电脑包',
+  'Urban Essential Joggers in Matte Black': '磨砂黑都市必备慢跑裤',
+  'Urban Explorer Sneakers': '都市探险者运动鞋',
+  'Urban Grey Slim-Fit': '都市灰修身版',
+  'Urban High-Top Sneakers': '都市高帮运动鞋',
+  'Urban Street Loafers': '都市街头乐福鞋',
+  'Urban Streetwear Slides': '都市街头拖鞋',
+  'Urban Tactical Joggers': '都市战术慢跑裤',
+  'Urban Tech Shell Coat': '都市科技软壳大衣',
+  'Urban Tech Shorts': '都市科技短裤',
+  'V-Neck Chiffon Blouse': 'V 领雪纺衬衫',
+  'Valentine Special Pack': '情人节特别礼包',
+  'Varsity Letterman Jacket': '棒球校队夹克',
+  'Velocity X-Stream': '速度 X 溪流',
+  'Velvet Cocktail Dress': '天鹅绒鸡尾酒礼服',
+  'Velvet Evening Blouse': '天鹅绒晚宴衬衫',
+  'Velvet Evening Scarf': '天鹅绒晚宴围巾',
+  'Velvet Evening Skirt': '天鹅绒晚宴裙',
+  'Velvet Luxury Slippers': '天鹅绒奢华拖鞋',
+  'Velvet Matte Lipstick': '天鹅绒哑光口红',
+  'Velvet Rose Bouquet Box': '天鹅绒玫瑰花束盒',
+  'Velvet Suede Lacquer': '天鹅绒麂皮亮油',
+  'Velvet Touch Soft Opaque': '丝绒触感柔软不透明',
+  'Velvet Tracksuit Set': '天鹅绒运动套装',
+  'Velvet Trim Luxury Brief': '天鹅绒饰边奢华内裤',
+  'Velvet Trim Nightgown': '天鹅绒饰边睡袍',
+  'Velvet Trim Sleep Sock': '天鹅绒饰边睡眠袜',
+  'Velvet Two-Piece Tracksuit Set': '天鹅绒两件套运动服',
+  'Versatile shoes designed for high-intensity interval training and gym workouts.': '专为高强度间歇训练和健身房锻炼而设计的多功能鞋。',
+  'Vertical Stripe Slimming': '竖条纹显瘦',
+  'Vetiver Noir': '黑色香根草',
+  'Vintage Athletic Red': '复古运动红',
+  'Vintage Black Graphic': '复古黑色图案',
+  'Vintage Brass Compass': '复古黄铜指南针',
+  'Vintage Brown Buckle Sandals': '复古棕色搭扣凉鞋',
+  'Vintage Buckle Belt': '复古搭扣腰带',
+  'Vintage Camel Hair Coat': '复古骆驼毛大衣',
+  'Vintage Denim Trucker': '复古丹宁卡车司机夹克',
+  'Vintage Fashion Cotton Tee': '复古时尚棉 T 恤',
+  'Vintage Leather Journal': '复古皮革日记本',
+  'Vintage Leather Square Bag': '复古皮革方包',
+  'Vintage Leather Square Satchel': '复古皮革方提包',
+  'Vintage Leather Watch Box': '复古皮革手表盒',
+  'Vintage Light Wash Denim': '复古浅洗丹宁',
+  'Vintage Mechanical': '复古机械表',
+  'Vintage Rose Appliqu贴': '复古玫瑰贴花',
+  'Vintage Satin Tap Panty': '复古缎面睡裤',
+  'Vintage Silk Shirt': '复古丝绸衬衫',
+  'Vintage Stonewash Denim': '复古石洗丹宁',
+  'Vintage Suede Loafers': '复古麂皮乐福鞋',
+  'Vintage Sweat Shorts': '复古卫裤短裤',
+  'Vintage Velvet Scrunchies': '复古天鹅绒发圈',
+  'Vintage Wash Blue Jogger': '复古洗水蓝慢跑裤',
+  'Vintage Wash Polo': '复古洗水波罗衫',
+  'Vintage Wash Street Hoodie': '复古洗水街头连帽衫',
+  'Vintage Wingtip Brogue Shoe': '复古翼纹布洛克鞋',
+  'Vitamin E Repair Balm': '维生素 E 修护霜',
+  'Volcanic Clay Mask': '火山泥面膜',
+  'Volt Energy Sneakers': '伏特能量运动鞋',
+  'Volume Lift Mascara': '纤长卷翘睫毛膏',
+  'Volumizing Root Lift': '蓬松发根提升液',
+  'Waffle-Knit Spa Robe': '华夫格针织 SPA 睡袍',
+  'Waist-Cinched Mesh Corset': '收腰网眼束身衣',
+  'Warm Winter Fur Slippers': '保暖冬日毛皮拖鞋',
+  'Waterproof City Trench': '防水都市风衣',
+  'Wedding Party Team Bride Robe': '婚礼派对新娘团队睡袍',
+  'Weightless Hair Oil': '轻盈护发油',
+  'Western Stitch Leather': '西式缝线皮革',
+  'White Lace Wedding Heels': '白色蕾丝婚礼高跟鞋',
+  'White Musk & Linen': '白麝香与亚麻',
+  'Wigglitz: Collectible Food Fidget Series': 'Wigglitz：收藏级食物解压系列',
+  'Wild West Cowboy Leather Boot': '西域牛仔皮靴',
+  'Wireless Bamboo Charger': '无线竹制充电器',
+  'Wireless Earbuds': '无线耳机',
+  'Wireless Keyboard': '无线键盘',
+  'Women Elegant Stone': '女性优雅宝石',
+  'Wool Blend Peacoat': '羊毛混纺呢大衣',
+  'Wool Blend Varsity Cardigan': '羊毛混纺校队开衫',
+  'Woolen Cozy Mittens': '羊毛舒适连指手套',
+  'Workwear Double Knee': '双膝工装裤',
+  'Wrap Front Floral Midi': '交叉前襟碎花中长裙',
+  'Wrap Front Skirt': '交叉前襟裙',
+  'Yoga Flow Light Support': '瑜伽流轻度支撑',
+  'Zip-Up Modern Polo': '拉链现代波罗衫',
+  'ZipString Aracna - Kinetic String Toy': 'ZipString Aracna - 动力绳索玩具',
+  'Zipped Cuff Tech Pants': '拉链裤脚科技裤',
+  'Zoom Pro Elite Running Shoe': 'Zoom 专业精英跑步鞋',
 };

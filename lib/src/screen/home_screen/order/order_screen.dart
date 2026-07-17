@@ -206,7 +206,7 @@ class _OrderScreenState extends State<OrderScreen> {
             Icon(Icons.assignment_outlined, size: 80, color: Colors.grey[300]),
             const SizedBox(height: 16),
             TextWidget(
-              "No orders yet",
+              "No orders yet".tr,
               fontSize: 18,
               color: Colors.grey,
               fontWeight: FontWeight.w500,
@@ -266,7 +266,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextWidget(
-                      order['name'],
+                      order['name'].toString().tr,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       maxLines: 1,
@@ -274,7 +274,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                     const SizedBox(height: 8),
                     TextWidget(
-                      "${order['items']} Item${order['items'] > 1 ? 's' : ''}",
+                      "${order['items']} ${'Item'.tr}${order['items'] > 1 ? 's'.tr : ''}",
                       color: Colors.grey,
                       fontSize: 13,
                     ),
@@ -299,7 +299,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: TextWidget(
-                            order['status'],
+                            order['status'].toString().tr,
                             color: isCompleted ? Colors.green : Colors.blue,
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
@@ -329,7 +329,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                   ),
                   child: TextWidget(
-                    isCompleted ? "Leave Review" : "Track Order",
+                    (isCompleted ? "Leave Review" : "Track Order").tr,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: isDark ? Colors.white : Colors.black,
@@ -349,7 +349,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                   ),
                   child: TextWidget(
-                    isCompleted ? "Re-order" : "Details",
+                    (isCompleted ? "Re-order" : "Details").tr,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),

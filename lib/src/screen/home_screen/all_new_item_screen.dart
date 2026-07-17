@@ -33,7 +33,7 @@ class AllNewItemScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          categoryName.toUpperCase().tr,
+          categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,

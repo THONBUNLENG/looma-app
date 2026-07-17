@@ -310,7 +310,7 @@ class _TshirtsScreenState extends State<TshirtsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Graphic T-shirt',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -369,7 +369,7 @@ class _TshirtsScreenState extends State<TshirtsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No t-shirts available" : "No results found for '$_searchQuery'",
+            _searchQuery.isEmpty ? 'No t-shirts available' : 'No results found for \'$_searchQuery\'',
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

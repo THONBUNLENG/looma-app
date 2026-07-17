@@ -360,7 +360,7 @@ class _SweatshirtsScreenState extends State<SweatshirtsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Oversized Sweatshirt',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

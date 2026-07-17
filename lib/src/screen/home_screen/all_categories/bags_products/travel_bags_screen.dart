@@ -341,7 +341,7 @@ class _TravelBagsScreenState extends State<TravelBagsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  (item['title'] ?? 'Travel Bag').toString().tr,
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

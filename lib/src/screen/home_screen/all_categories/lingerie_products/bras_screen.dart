@@ -342,7 +342,7 @@ class _BrasScreenState extends State<BrasScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                item['title'] ?? 'Lace Bra',
+                (item['title'] ?? 'Product').toString().tr,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

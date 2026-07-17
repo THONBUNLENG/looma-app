@@ -341,7 +341,7 @@ class _SocksScreenState extends State<SocksScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                item['title'] ?? 'Pattern Socks',
+                (item['title'] ?? 'Product').toString().tr,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

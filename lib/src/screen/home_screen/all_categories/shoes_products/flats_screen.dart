@@ -354,7 +354,7 @@ class _FlatsScreenState extends State<FlatsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -362,7 +362,7 @@ class _FlatsScreenState extends State<FlatsScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  item['title'] ?? 'Casual Flats',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -389,7 +389,7 @@ class _FlatsScreenState extends State<FlatsScreen> {
                     ),
                     Expanded(
                       child: Text(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         style: TextStyle(color: subTextColor, fontSize: 11),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -425,7 +425,7 @@ class _FlatsScreenState extends State<FlatsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No flats available" : "No results for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No flats available".tr : "${'No results for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

@@ -3,6 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../widget/button.dart';
@@ -86,7 +87,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
         centerTitle: true,
         leading: BackButton(color: isDark ? Colors.white : Colors.black),
         title: TextWidget(
-          "Edit Address",
+          "Edit Address".tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
         ),
@@ -99,7 +100,6 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
               zoom: 15.5,
             ),
             style: isDark ? darkMapStyle : null,
-            // ប្តូរ Style តាម Theme
             onMapCreated: (controller) => mapController = controller,
             onCameraMove: (position) => _currentPosition = position.target,
             onCameraIdle: () => _getAddressFromLatLng(_currentPosition),
@@ -108,7 +108,6 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             zoomControlsEnabled: false,
           ),
 
-          // Custom Marker Pin
           Center(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 40),
@@ -177,22 +176,22 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextWidget(
-                      "Address Details",
+                      "Address Details".tr,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white : Colors.black,
                     ),
                     const Divider(height: 30),
 
-                    _buildLabel(context, "Name Address"),
-                    _buildTextField(context, _nameController, "e.g. Home"),
+                    _buildLabel(context, "Name Address".tr),
+                    _buildTextField(context, _nameController, "e.g. Home".tr),
 
                     const SizedBox(height: 20),
-                    _buildLabel(context, "Address Details"),
+                    _buildLabel(context, "Address Details".tr),
                     _buildTextField(
                       context,
                       _addressController,
-                      "Location details",
+                      "Location details".tr,
                       icon: Icons.location_on,
                     ),
 
@@ -200,7 +199,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       value: _isDefault,
                       onChanged: (val) => setState(() => _isDefault = val!),
                       title: TextWidget(
-                        "Set as default address",
+                        "Set as default address".tr,
                         fontSize: 14,
                         color: isDark ? Colors.white70 : Colors.black87,
                       ),
@@ -211,7 +210,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
 
                     const SizedBox(height: 20),
                     MyCustomButton(
-                      text: 'Update Address',
+                      text: 'Update Address'.tr,
                       onPressed: () {
                         final updatedData = {
                           "title": _nameController.text,
@@ -265,10 +264,10 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
     showDialog(
       context: context,
       builder: (context) => StatusDialog(
-        title: "Delete Address?",
-        message: "Are you sure you want to remove this address?",
-        btn1Text: "Cancel",
-        btn2Text: "Delete",
+        title: "Delete Address?".tr,
+        message: "Are you sure you want to remove this address?".tr,
+        btn1Text: "Cancel".tr,
+        btn2Text: "Delete".tr,
         icon: Icons.delete_sweep,
         iconColor: AppColor.mutedRed,
         onBtn1Pressed: () => Navigator.pop(context),

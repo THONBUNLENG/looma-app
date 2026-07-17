@@ -360,7 +360,7 @@ class _ToteBagsScreenState extends State<ToteBagsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  (item['title'] ?? 'Classic Tote').toString().tr,
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

@@ -374,7 +374,7 @@ class _SportsScreenState extends State<SportsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -382,7 +382,7 @@ class _SportsScreenState extends State<SportsScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  item['title'] ?? 'Sports Item',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -407,7 +407,7 @@ class _SportsScreenState extends State<SportsScreen> {
                     ),
                     Expanded(
                       child: Text(
-                        "${item['sold'] ?? '0'} sold",
+                        "${item['sold'] ?? '0'} ${'sold'.tr}",
                         style: TextStyle(color: subTextColor, fontSize: 11),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -443,7 +443,7 @@ class _SportsScreenState extends State<SportsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No sports items found" : "No results for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No sports items found".tr : "${'No results for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

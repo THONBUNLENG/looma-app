@@ -363,7 +363,7 @@ class _LoafersScreenState extends State<LoafersScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -371,7 +371,7 @@ class _LoafersScreenState extends State<LoafersScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  item['title'] ?? 'Classic Loafer',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -407,7 +407,7 @@ class _LoafersScreenState extends State<LoafersScreen> {
                       ),
                     ),
                     Text(
-                      "${item['sold'] ?? '0'} sold",
+                      "${item['sold'] ?? '0'} ${'sold'.tr}",
                       style: TextStyle(color: subTextColor, fontSize: 11),
                     ),
                   ],
@@ -441,7 +441,7 @@ class _LoafersScreenState extends State<LoafersScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No loafers available" : "No results for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No loafers available".tr : "${'No results for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

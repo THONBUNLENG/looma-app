@@ -204,7 +204,7 @@ class _ProductShoesScreenState extends State<ProductShoesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    "LOOMA".tr,
+                    "LOOMA".tr.toUpperCase(),
                     fontSize: 14,
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.bold,
@@ -310,11 +310,11 @@ class _ProductShoesScreenState extends State<ProductShoesScreen> {
                   const Divider(height: 40),
                   _buildModelInfo(isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Product details", isDark),
+                  _buildCollapsibleItem("Product details".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Size guide", isDark),
+                  _buildCollapsibleItem("Size guide".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Online exchange policy", isDark),
+                  _buildCollapsibleItem("Online exchange policy".tr, isDark),
                   const SizedBox(height: 40),
                   _buildSimilarItems(isDark),
                   const SizedBox(height: 30),
@@ -364,7 +364,6 @@ class _ProductShoesScreenState extends State<ProductShoesScreen> {
           runSpacing: 12,
           children: List.generate(sizes.length, (index) {
             final isSelected = selectedSize == index;
-
             return GestureDetector(
               onTap: () => setState(() => selectedSize = index),
               child: AnimatedContainer(

@@ -29,7 +29,7 @@ class AllPopularItemsScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          "MOST POPULAR".tr,
+          "MOST POPULAR".tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -113,7 +113,7 @@ class AllPopularItemsScreen extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextWidget(
-                      "Search popular...",
+                      "Search popular...".tr,
                       color: hintColor,
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
@@ -148,7 +148,7 @@ class AllPopularItemsScreen extends StatelessWidget {
                   Icon(Icons.tune_rounded, size: 18, color: textColor),
                   const SizedBox(width: 6),
                   TextWidget(
-                    "Filter",
+                    "Filter".tr,
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                     color: textColor,
@@ -241,7 +241,7 @@ class AllPopularItemsScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextWidget(
-                        "Premium Item",
+                        "Premium Item".tr,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         maxLines: 1,
@@ -258,7 +258,7 @@ class AllPopularItemsScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         TextWidget(
-                          likes,
+                          likes.tr,
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                           color: textColor,
@@ -269,7 +269,7 @@ class AllPopularItemsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  "Gucci Collection",
+                  "Gucci Collection".tr,
                   fontSize: 12,
                   color: isDark ? Colors.white54 : Colors.black54,
                 ),

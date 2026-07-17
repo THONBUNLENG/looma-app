@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: TextWidget(
-          'Privacy Policy',
+          'Privacy Policy'.tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 22,
@@ -76,14 +77,14 @@ class PrivacyPolicyScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextWidget(
-          title,
+          title.tr,
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : Colors.black87,
         ),
         const SizedBox(height: 12),
         TextWidget(
-          content,
+          content.tr,
           textAlign: TextAlign.justify,
           fontSize: 14,
           color: isDark ? Colors.white70 : Colors.grey[700],

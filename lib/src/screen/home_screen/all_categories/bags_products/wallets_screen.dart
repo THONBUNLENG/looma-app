@@ -363,7 +363,7 @@ class _WalletsScreenState extends State<WalletsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  (item['title'] ?? 'Leather Wallet').toString().tr,
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

@@ -45,7 +45,7 @@ class BrandsScreen extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 115,
+          height: 125,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -122,7 +122,7 @@ class BrandsCircle extends StatelessWidget {
           SizedBox(
             width: 75,
             child: TextWidget(
-              brandName,
+              brandName.tr,
               textAlign: TextAlign.center,
               fontSize: 12,
               fontWeight: FontWeight.bold,

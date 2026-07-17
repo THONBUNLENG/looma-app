@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 class SavingsAccountCard extends StatefulWidget {
   const SavingsAccountCard({super.key});
@@ -87,7 +88,7 @@ class _SavingsAccountCardState extends State<SavingsAccountCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Savings",
+                          "Savings".tr,
                           style: TextStyle(
                             color: isDark ? Colors.white70 : Colors.black54,
                             fontSize: 12,

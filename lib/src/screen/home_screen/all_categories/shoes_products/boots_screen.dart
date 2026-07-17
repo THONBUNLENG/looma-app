@@ -359,7 +359,7 @@ class _BootsScreenState extends State<BootsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -367,7 +367,7 @@ class _BootsScreenState extends State<BootsScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  item['title'] ?? 'Shoe Name',
+                  (item['title'] ?? 'Product').toString().tr,
                   style: TextStyle(
                     color: textColor,
                     fontSize: 15,
@@ -391,7 +391,7 @@ class _BootsScreenState extends State<BootsScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      "|  ${item['sold'] ?? '0'} sold",
+                      "|  ${item['sold'] ?? '0'} ${'sold'.tr}",
                       style: TextStyle(color: subTextColor, fontSize: 11),
                     ),
                   ],
@@ -425,7 +425,7 @@ class _BootsScreenState extends State<BootsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No boots found" : "No results for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No boots found".tr : "${'No results for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

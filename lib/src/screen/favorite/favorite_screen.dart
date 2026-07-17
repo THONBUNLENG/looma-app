@@ -169,7 +169,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    item['title'] ?? 'Product',
+                    (item['title'] ?? 'Product').toString().tr,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     maxLines: 1,

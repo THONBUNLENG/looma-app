@@ -205,9 +205,9 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
-                    "LOOMA".tr,
-                    fontSize: 14,
+                TextWidget(
+                  "LOOMA".tr.toUpperCase(),
+                  fontSize: 14,
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white54 : Colors.black45,
@@ -218,7 +218,7 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                       Expanded(
                         child: TextWidget(
                           (widget.product['title'] ?? 'Product Item')
-                              .toString(),
+                              .toString().tr,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: isDark ? Colors.white : Colors.black,
@@ -314,11 +314,11 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                   const Divider(height: 40),
                   _buildModelInfo(isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Product details", isDark),
+                  _buildCollapsibleItem("Product details".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Size guide", isDark),
+                  _buildCollapsibleItem("Size guide".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Online exchange policy", isDark),
+                  _buildCollapsibleItem("Online exchange policy".tr, isDark),
                   const SizedBox(height: 40),
 
                   _buildSimilarItems(isDark),

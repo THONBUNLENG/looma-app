@@ -341,7 +341,7 @@ class _ShapewearScreenState extends State<ShapewearScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                item['title'] ?? 'Seamless Shapewear',
+                (item['title'] ?? 'Product').toString().tr,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

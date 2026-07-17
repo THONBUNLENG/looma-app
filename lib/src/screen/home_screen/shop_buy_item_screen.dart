@@ -230,14 +230,14 @@ class ShopBuyItemScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextWidget(
-                      'FREE DELIVERY\nON ORDERS\nOVER \$160+'.tr,
+                      'FREE DELIVERY\nON ORDERS\nOVER \$160+'.tr.toUpperCase(),
                       fontSize: 18,
                       fontWeight: FontWeight.w900,
                       color: isDark ? Colors.white : Colors.black,
                     ),
                     const SizedBox(height: 8),
                     TextWidget(
-                      'T&Cs APPLY'.tr,
+                      'T&Cs APPLY'.tr.toUpperCase(),
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white38 : Colors.black45,

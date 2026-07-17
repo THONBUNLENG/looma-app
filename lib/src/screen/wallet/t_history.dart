@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/wallet/transaction_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
@@ -95,7 +96,7 @@ class TransactionHistory extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextWidget(
-            'Transaction History',
+            'Transaction History'.tr,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -109,7 +110,7 @@ class TransactionHistory extends StatelessWidget {
                 ),
               );
             },
-            child: TextWidget('See All', color: Colors.blue),
+            child: TextWidget('See All'.tr, color: Colors.blue),
           ),
         ],
       ),
@@ -160,7 +161,7 @@ class TransactionItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    transaction.title,
+                    transaction.title.tr,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     maxLines: 1,
@@ -206,7 +207,7 @@ class TransactionItemTile extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         TextWidget(
-          transaction.type.label,
+          transaction.type.label.tr,
           fontSize: 12,
           color: isDark ? Colors.white54 : Colors.grey[600],
         ),

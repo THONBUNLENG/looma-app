@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -95,7 +96,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -121,15 +122,15 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Skincare"),
-                  Tab(text: "Makeup"),
-                  Tab(text: "Haircare"),
-                  Tab(text: "Fragrances"),
-                  Tab(text: "Nail Care"),
-                  Tab(text: "Beauty Tools"),
-                  Tab(text: "Personal Care"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Skincare".tr),
+                  Tab(text: "Makeup".tr),
+                  Tab(text: "Haircare".tr),
+                  Tab(text: "Fragrances".tr),
+                  Tab(text: "Nail Care".tr),
+                  Tab(text: "Beauty Tools".tr),
+                  Tab(text: "Personal Care".tr),
                 ],
               ),
             ],
@@ -147,7 +148,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -201,7 +202,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...",
+                  hintText: "Search in ${widget.categoryName.tr}...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search_rounded, size: 22, color: hintColor),
                   suffixIcon: _searchQuery.isNotEmpty
@@ -242,7 +243,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
                   ),
                   const SizedBox(width: 8),
                   TextWidget(
-                    "Filter",
+                    "filter".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black,
@@ -423,7 +424,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -454,7 +455,7 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -491,8 +492,8 @@ class _CosmeticsScreenState extends State<CosmeticsScreen>
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No cosmetics available"
-                : "No items found for '$_searchQuery'",
+                ? "No cosmetics available".tr
+                : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 
@@ -19,7 +20,7 @@ class PaymentSettingsScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: TextWidget(
-          'Payment',
+          'Payment'.tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 22,
@@ -143,7 +144,7 @@ class PaymentMethodTile extends StatelessWidget {
           child: Image.asset(imagePath, fit: BoxFit.contain),
         ),
         title: Text(
-          title,
+          title.tr,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
@@ -152,12 +153,12 @@ class PaymentMethodTile extends StatelessWidget {
         ),
         subtitle: subtitle.isNotEmpty
             ? Text(
-                subtitle,
+                subtitle.tr,
                 style: TextStyle(color: isDark ? Colors.white60 : Colors.grey),
               )
             : null,
         trailing: Text(
-          status,
+          status.tr,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: isDark ? Colors.white70 : Colors.black87,

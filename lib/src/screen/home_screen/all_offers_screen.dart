@@ -83,7 +83,7 @@ class AllOffersScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          offer["title"]!.toUpperCase().tr,
+                          offer["title"]!.tr.toUpperCase(),
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w900,

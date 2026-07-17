@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -53,7 +54,7 @@ class _ToysScreenState extends State<ToysScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName,
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: textColor,
@@ -72,7 +73,7 @@ class _ToysScreenState extends State<ToysScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: TextWidget(
-              "${filteredToys.length} items found",
+              "${filteredToys.length} ${"items found".tr}",
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: textColor,
@@ -108,7 +109,7 @@ class _ToysScreenState extends State<ToysScreen> {
                 },
                 style: TextStyle(color: textColor, fontSize: 14),
                 decoration: InputDecoration(
-                  hintText: "Search toys...",
+                  hintText: "Search toys...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search, size: 20, color: hintColor),
                   border: InputBorder.none,
@@ -132,7 +133,7 @@ class _ToysScreenState extends State<ToysScreen> {
                 Icon(Icons.tune, size: 20, color: textColor),
                 const SizedBox(width: 6),
                 TextWidget(
-                  "Filter",
+                  "filter".tr,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -285,7 +286,7 @@ class _ToysScreenState extends State<ToysScreen> {
                   color: isDark ? Colors.white54 : Colors.black45,
                 ),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -316,7 +317,7 @@ class _ToysScreenState extends State<ToysScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -352,7 +353,7 @@ class _ToysScreenState extends State<ToysScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "No toys found",
+            "No toys found".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

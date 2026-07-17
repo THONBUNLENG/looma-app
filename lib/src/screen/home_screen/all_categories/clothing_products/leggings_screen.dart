@@ -360,7 +360,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Active Leggings',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -419,7 +419,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No leggings found" : "No results found for '$_searchQuery'",
+            _searchQuery.isEmpty ? 'No leggings found' : 'No results found for \'$_searchQuery\'',
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

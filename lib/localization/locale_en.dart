@@ -138,7 +138,6 @@ const Map<String, String> english = {
   'Waterproof Sport Cross': 'Waterproof Sport Cross',
   'Dark Mocha Leather': 'Dark Mocha Leather',
   'Artisan Hand-Stitched': 'Artisan Hand-Stitched',
-
   'Eco-Friendly Cotton Tote': 'Eco-Friendly Cotton Tote',
   'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.':
       'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.',
@@ -238,7 +237,6 @@ const Map<String, String> english = {
   'Orange': 'Orange',
   'Printed': 'Printed',
   'Free size': 'Free size',
-
   'Big Sale': 'Big Sale',
   'BIG SALE': 'Big Sale',
   'Up to 50%': 'Up to 50%',
@@ -371,11 +369,11 @@ const Map<String, String> english = {
 
   'Jewelry': 'Jewelry',
   'Sunglasses': 'Sunglasses',
-  'Hats':'Hats',
-   'Belts':'Belts',
-  'Scarves':'Scarves',
-  'Hair':'Hair Accessories',
-  'Gloves':'Gloves',
+  'Hats': 'Hats',
+  'Belts': 'Belts',
+  'Scarves': 'Scarves',
+  'Hair': 'Hair Accessories',
+  'Gloves': 'Gloves',
   'Watches': 'Watches',
   'Edit': 'Edit',
   'Order Confirm': 'Order Confirm',
@@ -415,7 +413,8 @@ const Map<String, String> english = {
   'Other': 'Other',
   'Continue': 'Continue',
   'Profile': 'Profile',
-  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.': 'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.',
+  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.':
+      'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.',
   'Let\'s get started': 'Let\'s get started',
   'Already have an account?': 'Already have an account?',
   'I already have an account': 'I already have an account',
@@ -424,6 +423,8 @@ const Map<String, String> english = {
   'Good to see you back!': 'Good to see you back!',
   'Next': 'Next',
   'SEE MORE': 'SEE MORE',
+  'Brands': 'Brands',
+  'ALL BRANDS': 'ALL BRANDS',
   'LOOMA CLOTHES': 'LOOMA CLOTHES',
   'LOOMA SHOES': 'LOOMA SHOES',
   'LOOMA BAGS': 'LOOMA BAGS',
@@ -444,24 +445,42 @@ const Map<String, String> english = {
   'Toys': 'Toys',
   '18K Gold Emblem Velvet Loafer': '18K Gold Emblem Velvet Loafer',
   '18K Gold Zip Compression Jacket': '18K Gold Zip Compression Jacket',
-  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.': 'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.',
-  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.': 'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.',
-  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.': 'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.',
-  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.': 'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.',
-  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.': 'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
-  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.': 'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.',
-  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.': 'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.',
-  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.': 'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.',
-  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.': 'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.',
-  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.': 'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.',
-  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.': 'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
-  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.': 'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.',
-  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.': 'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.',
-  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.': 'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.',
-  'A unique piece of home decor, individually signed by the artist.': 'A unique piece of home decor, individually signed by the artist.',
-  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.': 'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.',
-  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.': 'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.',
-  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.': 'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.',
+  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.':
+      'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.',
+  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.':
+      'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.',
+  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.':
+      'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.',
+  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.':
+      'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.',
+  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.':
+      'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
+  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.':
+      'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.',
+  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.':
+      'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.',
+  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.':
+      'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.',
+  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.':
+      'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.',
+  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.':
+      'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.',
+  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.':
+      'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
+  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.':
+      'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.',
+  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.':
+      'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.',
+  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.':
+      'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.',
+  'A unique piece of home decor, individually signed by the artist.':
+      'A unique piece of home decor, individually signed by the artist.',
+  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.':
+      'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.',
+  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.':
+      'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.',
+  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.':
+      'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.',
   'AHA Exfoliating Peel': 'AHA Exfoliating Peel',
   'Acid Blue Ripped Jeans': 'Acid Blue Ripped Jeans',
   'Acid Wash Retro Denim': 'Acid Wash Retro Denim',
@@ -514,9 +533,11 @@ const Map<String, String> english = {
   'Bamboo Cooling Chemise': 'Bamboo Cooling Chemise',
   'Bamboo Weave Slippers': 'Bamboo Weave Slippers',
   'Basic Navy 2-Pack': 'Basic Navy 2-Pack',
-  'Batman: Legacy of the Dark Knight Game': 'Batman: Legacy of the Dark Knight Game',
+  'Batman: Legacy of the Dark Knight Game':
+  'Batman: Legacy of the Dark Knight Game',
   'Beaded Hair Band': 'Beaded Hair Band',
-  'Beauty sleep starts here. Reduces hair frizz and skin irritation.': 'Beauty sleep starts here. Reduces hair frizz and skin irritation.',
+  'Beauty sleep starts here. Reduces hair frizz and skin irritation.':
+  'Beauty sleep starts here. Reduces hair frizz and skin irritation.',
   'Beginner Wooden Acoustic Guitar': 'Beginner Wooden Acoustic Guitar',
   'Beige Comfort Heels': 'Beige Comfort Heels',
   'Beige Sand Desert Hoodie': 'Beige Sand Desert Hoodie',
@@ -556,8 +577,10 @@ const Map<String, String> english = {
   'Breathable Mesh Babydoll': 'Breathable Mesh Babydoll',
   'Breathable Mesh Padded Tech': 'Breathable Mesh Padded Tech',
   'Breathable Mesh Slip-ons': 'Breathable Mesh Slip-ons',
-  'Breathable linen blend for maximum comfort.': 'Breathable linen blend for maximum comfort.',
-  'Breathable linen blend shirt, perfect for warm weather and beach outings.': 'Breathable linen blend shirt, perfect for warm weather and beach outings.',
+  'Breathable linen blend for maximum comfort.':
+  'Breathable linen blend for maximum comfort.',
+  'Breathable linen blend shirt, perfect for warm weather and beach outings.':
+  'Breathable linen blend shirt, perfect for warm weather and beach outings.',
   'Bridal Lace Veil': 'Bridal Lace Veil',
   'Brightening Vit C Drop': 'Brightening Vit C Drop',
   'British Tan Tweed Suit': 'British Tan Tweed Suit',
@@ -567,7 +590,8 @@ const Map<String, String> english = {
   'Burgundy Velvet Evening Coat': 'Burgundy Velvet Evening Coat',
   'Burgundy Velvet Gown': 'Burgundy Velvet Gown',
   'Burgundy Wine V-Neck': 'Burgundy Wine V-Neck',
-  'Butter-soft fabric with 4-way stretch, perfect for yoga.': 'Butter-soft fabric with 4-way stretch, perfect for yoga.',
+  'Butter-soft fabric with 4-way stretch, perfect for yoga.':
+  'Butter-soft fabric with 4-way stretch, perfect for yoga.',
   'Butterfly Wing Clips': 'Butterfly Wing Clips',
   'Camo Field Jacket': 'Camo Field Jacket',
   'Camo Print Adventure': 'Camo Print Adventure',
@@ -589,7 +613,8 @@ const Map<String, String> english = {
   'Casual Bomber Baseball Jacket': 'Casual Bomber Baseball Jacket',
   'Casual Canvas Loafers': 'Casual Canvas Loafers',
   'Casual Charcoal Hoodie - Premium': 'Casual Charcoal Hoodie - Premium',
-  'Casual Charcoal Hoodie - Premium Cotton': 'Casual Charcoal Hoodie - Premium Cotton',
+  'Casual Charcoal Hoodie - Premium Cotton':
+  'Casual Charcoal Hoodie - Premium Cotton',
   'Casual Denim Sandals': 'Casual Denim Sandals',
   'Casual Denim Skirt Dress': 'Casual Denim Skirt Dress',
   'Casual Linen Shirt': 'Casual Linen Shirt',
@@ -603,7 +628,8 @@ const Map<String, String> english = {
   'Ceramic White Edition': 'Ceramic White Edition',
   'Ceramide Night Balm': 'Ceramide Night Balm',
   'Chain Strap Crossbody Bag': 'Chain Strap Crossbody Bag',
-  'Chain Strap Crossbody Bag - Pink Edition': 'Chain Strap Crossbody Bag - Pink Edition',
+  'Chain Strap Crossbody Bag - Pink Edition':
+  'Chain Strap Crossbody Bag - Pink Edition',
   'Chambray Everyday Shirt': 'Chambray Everyday Shirt',
   'Champagne Gold Metallic Espadrille': 'Champagne Gold Metallic Espadrille',
   'Champagne Satin Slip': 'Champagne Satin Slip',
@@ -660,9 +686,12 @@ const Map<String, String> english = {
   'Classic White Crew': 'Classic White Crew',
   'Classic White Urban': 'Classic White Urban',
   'Classic Zip-Up Hoodie': 'Classic Zip-Up Hoodie',
-  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.': 'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.',
-  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.': 'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.',
-  'Classic stonewashed denim with a comfortable straight-leg fit.': 'Classic stonewashed denim with a comfortable straight-leg fit.',
+  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.':
+      'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.',
+  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.':
+      'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.',
+  'Classic stonewashed denim with a comfortable straight-leg fit.':
+      'Classic stonewashed denim with a comfortable straight-leg fit.',
   'Cloud Glide 360': 'Cloud Glide 360',
   'Cloud-Soft Jogger Pants': 'Cloud-Soft Jogger Pants',
   'Collectible Fantasy Card Deck': 'Collectible Fantasy Card Deck',
@@ -670,13 +699,15 @@ const Map<String, String> english = {
   'Combat Style Flat Sole': 'Combat Style Flat Sole',
   'Comfort Cork Sole Slides': 'Comfort Cork Sole Slides',
   'Comfort Walking Loafers': 'Comfort Walking Loafers',
-  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.': 'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.',
+  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.':
+      'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.',
   'Compact Tabletop Pool Table': 'Compact Tabletop Pool Table',
   'Compression Energizing 40D': 'Compression Energizing 40D',
   'Compression Sport Leggings': 'Compression Sport Leggings',
   'Compression Travel Tech': 'Compression Travel Tech',
   'Concrete Orchid': 'Concrete Orchid',
-  'Connetix Magnetic Tiles: Light Star Pack': 'Connetix Magnetic Tiles: Light Star Pack',
+  'Connetix Magnetic Tiles: Light Star Pack':
+      'Connetix Magnetic Tiles: Light Star Pack',
   'Contour Sculpt Stick': 'Contour Sculpt Stick',
   'Contrast Collar Polo': 'Contrast Collar Polo',
   'Cool-Dry Golf Edition': 'Cool-Dry Golf Edition',
@@ -696,7 +727,8 @@ const Map<String, String> english = {
   'Cotton-Stretch Daily Pack': 'Cotton-Stretch Daily Pack',
   'Court King Basketball Shoe': 'Court King Basketball Shoe',
   'Court Pro Flat Shoes': 'Court Pro Flat Shoes',
-  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.': 'Crafted with a 14k gold nib for an exceptionally smooth writing experience.',
+  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.':
+      'Crafted with a 14k gold nib for an exceptionally smooth writing experience.',
   'Cream Cashmere Sleeveless': 'Cream Cashmere Sleeveless',
   'Cream Fleece Basic': 'Cream Fleece Basic',
   'Crimson Red Active Hoodie': 'Crimson Red Active Hoodie',
@@ -737,7 +769,8 @@ const Map<String, String> english = {
   'Desert Cedar': 'Desert Cedar',
   'Desert Sand Slim Chinos': 'Desert Sand Slim Chinos',
   'Desert Tactical Combat Boot': 'Desert Tactical Combat Boot',
-  'Designed for performance, these runners provide excellent grip and stability for all terrains.': 'Designed for performance, these runners provide excellent grip and stability for all terrains.',
+  'Designed for performance, these runners provide excellent grip and stability for all terrains.':
+      'Designed for performance, these runners provide excellent grip and stability for all terrains.',
   'Designer Embossed Belt': 'Designer Embossed Belt',
   'Designer Wallet': 'Designer Wallet',
   'Designer Wool Scarf': 'Designer Wool Scarf',
@@ -780,17 +813,23 @@ const Map<String, String> english = {
   'Elegant Pearl Jewelry Box': 'Elegant Pearl Jewelry Box',
   'Elegant Wedge Sandals': 'Elegant Wedge Sandals',
   'Elegant Women': 'Elegant Women',
-  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.': 'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.',
-  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.': 'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.',
-  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.': 'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.',
-  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.': 'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.',
-  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.': 'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.',
+  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.':
+      'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.',
+  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.':
+      'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.',
+  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.':
+      'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.',
+  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.':
+      'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.',
+  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.':
+      'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.',
   'Embossed Leather Loafers': 'Embossed Leather Loafers',
   'Embroidered Shawl': 'Embroidered Shawl',
   'Embroidered Tulle Slip': 'Embroidered Tulle Slip',
   'Emerald Green Ribbed Wrap': 'Emerald Green Ribbed Wrap',
   'Emerald Green Stilettos': 'Emerald Green Stilettos',
-  'Emotional Support Highland Cow Plush': 'Emotional Support Highland Cow Plush',
+  'Emotional Support Highland Cow Plush':
+      'Emotional Support Highland Cow Plush',
   'Envelope Style Evening Clutch': 'Envelope Style Evening Clutch',
   'Espresso Sharkskin Suit': 'Espresso Sharkskin Suit',
   'Essential Black Joggers': 'Essential Black Joggers',
@@ -801,15 +840,18 @@ const Map<String, String> english = {
   'Essential Heather Grey': 'Essential Heather Grey',
   'Essential Seamless Bralette': 'Essential Seamless Bralette',
   'Essential White Polo': 'Essential White Polo',
-  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.': 'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.',
+  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.':
+      'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.',
   'Everyday T-Shirt Contour': 'Everyday T-Shirt Contour',
   'Executive Charcoal Polo': 'Executive Charcoal Polo',
   'Executive Emerald Suit': 'Executive Emerald Suit',
   'Executive Fountain Pen': 'Executive Fountain Pen',
   'Executive Pinstripe Slacks': 'Executive Pinstripe Slacks',
-  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.': 'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.',
+  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.':
+      'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.',
   'Eyelet Lace Sleep Shorts': 'Eyelet Lace Sleep Shorts',
-  'FIFA World Cup 2026 Official Emblem Set': 'FIFA World Cup 2026 Official Emblem Set',
+  'FIFA World Cup 2026 Official Emblem Set':
+      'FIFA World Cup 2026 Official Emblem Set',
   'Fashion Handbag': 'Fashion Handbag',
   'Faux Leather Long Trench': 'Faux Leather Long Trench',
   'Festive Hamper Basket': 'Festive Hamper Basket',
@@ -891,11 +933,13 @@ const Map<String, String> english = {
   'Gym Master Stealth': 'Gym Master Stealth',
   'Hand-Operated Mini Drone (UFO)': 'Hand-Operated Mini Drone (UFO)',
   'Hand-Poured Soy Candle Set': 'Hand-Poured Soy Candle Set',
-  'Handcrafted from full-grain Italian leather, designed for the modern professional.': 'Handcrafted from full-grain Italian leather, designed for the modern professional.',
+  'Handcrafted from full-grain Italian leather, designed for the modern professional.':
+      'Handcrafted from full-grain Italian leather, designed for the modern professional.',
   'Handmade Spa Kit': 'Handmade Spa Kit',
   'Hape x The Met: Van Gogh Block Set': 'Hape x The Met: Van Gogh Block Set',
   'Harajuku Hip Hop Letter Jeans': 'Harajuku Hip Hop Letter Jeans',
-  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.': 'Health tracking meets high fashion. Water-resistant with a 5-day battery life.',
+  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.':
+      'Health tracking meets high fashion. Water-resistant with a 5-day battery life.',
   'Heather Purple Crew': 'Heather Purple Crew',
   'Heathered Grey Performance': 'Heathered Grey Performance',
   'Heavy Duty Work Gloves': 'Heavy Duty Work Gloves',
@@ -921,8 +965,10 @@ const Map<String, String> english = {
   'High-Waist Thong Shaper': 'High-Waist Thong Shaper',
   'High-Waist Yoga Leggings': 'High-Waist Yoga Leggings',
   'High-Waisted Bootcut Leggings': 'High-Waisted Bootcut Leggings',
-  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.': 'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
-  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.': 'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.',
+  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.':
+      'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
+  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.':
+      'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.',
   'Hiking Water-Resistant Cargo': 'Hiking Water-Resistant Cargo',
   'Hip Hop Embroidered Jeans': 'Hip Hop Embroidered Jeans',
   'Holiday Tropical Print': 'Holiday Tropical Print',
@@ -942,7 +988,8 @@ const Map<String, String> english = {
   'Indigo Dye Polo': 'Indigo Dye Polo',
   'Infinity Cushion Air': 'Infinity Cushion Air',
   'Infinity Loop Scarf': 'Infinity Loop Scarf',
-  'Infused with rare essential oils of sandalwood and jasmine.': 'Infused with rare essential oils of sandalwood and jasmine.',
+  'Infused with rare essential oils of sandalwood and jasmine.':
+      'Infused with rare essential oils of sandalwood and jasmine.',
   'Interactive Coding Turtle': 'Interactive Coding Turtle',
   'Invisible Control Slip': 'Invisible Control Slip',
   'Ionic Nano Steamer': 'Ionic Nano Steamer',
@@ -954,18 +1001,21 @@ const Map<String, String> english = {
   'Italian Wool Pinstripe': 'Italian Wool Pinstripe',
   'Ivory Wedding Dinner Jacket': 'Ivory Wedding Dinner Jacket',
   'Jade Facial Roller': 'Jade Facial Roller',
-  'Jelly Blox: Squish Train Building Set': 'Jelly Blox: Squish Train Building Set',
+  'Jelly Blox: Squish Train Building Set':
+      'Jelly Blox: Squish Train Building Set',
   'Jersey Knit Polo': 'Jersey Knit Polo',
   'Jet Black Formal Trousers': 'Jet Black Formal Trousers',
   'Jeweled Hair Comb': 'Jeweled Hair Comb',
-  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.': 'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.',
+  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.':
+      'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.',
   'Keratin Straightening Cream': 'Keratin Straightening Cream',
   'Khaki Cargo Basic': 'Khaki Cargo Basic',
   'Khaki Safari Skirt': 'Khaki Safari Skirt',
   'Khaki Utility Work Pants': 'Khaki Utility Work Pants',
   'Kids Cartoon Slippers': 'Kids Cartoon Slippers',
   'Kids Winter Mittens': 'Kids Winter Mittens',
-  'KitchenAid Kids Real Working Blender': 'KitchenAid Kids Real Working Blender',
+  'KitchenAid Kids Real Working Blender':
+      'KitchenAid Kids Real Working Blender',
   'Knitted Cotton Polo': 'Knitted Cotton Polo',
   'LED Light Therapy Mask': 'LED Light Therapy Mask',
   'Lace Trim Balconette': 'Lace Trim Balconette',
@@ -976,7 +1026,8 @@ const Map<String, String> english = {
   'Latex Protective Gloves': 'Latex Protective Gloves',
   'Lavender Breeze Casual': 'Lavender Breeze Casual',
   'Lavender Soak Salts': 'Lavender Soak Salts',
-  'Leapfrog Twinkle Lights Learning Piano': 'Leapfrog Twinkle Lights Learning Piano',
+  'Leapfrog Twinkle Lights Learning Piano':
+      'Leapfrog Twinkle Lights Learning Piano',
   'Leather & Tobacco': 'Leather & Tobacco',
   'Leather Biker Jacket': 'Leather Biker Jacket',
   'Leather Cross Slippers': 'Leather Cross Slippers',
@@ -1000,9 +1051,12 @@ const Map<String, String> english = {
   'Lightweight Linen Sleepers': 'Lightweight Linen Sleepers',
   'Lightweight Run Shorts': 'Lightweight Run Shorts',
   'Lightweight Summer Cover': 'Lightweight Summer Cover',
-  'Lightweight and breathable. Perfect for the stylish city dweller.': 'Lightweight and breathable. Perfect for the stylish city dweller.',
-  'Lightweight and responsive, perfect for marathon runners and speed training.': 'Lightweight and responsive, perfect for marathon runners and speed training.',
-  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.': 'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
+  'Lightweight and breathable. Perfect for the stylish city dweller.':
+      'Lightweight and breathable. Perfect for the stylish city dweller.',
+  'Lightweight and responsive, perfect for marathon runners and speed training.':
+      'Lightweight and responsive, perfect for marathon runners and speed training.',
+  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.':
+      'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
   'Linen Summer Blazer': 'Linen Summer Blazer',
   'Linen Summer Scarf': 'Linen Summer Scarf',
   'Linen Summer Shorts': 'Linen Summer Shorts',
@@ -1026,8 +1080,10 @@ const Map<String, String> english = {
   'Luxe Travel Brush Set': 'Luxe Travel Brush Set',
   'Luxe Velour Joggers': 'Luxe Velour Joggers',
   'Luxe Velvet Trim Triangle': 'Luxe Velvet Trim Triangle',
-  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.': 'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
-  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.': 'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
+  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.':
+      'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
+  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.':
+      'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
   'Luxury Birthday Hamper': 'Luxury Birthday Hamper',
   'Luxury Candle Set': 'Luxury Candle Set',
   'Luxury Gift Box': 'Luxury Gift Box',
@@ -1048,7 +1104,8 @@ const Map<String, String> english = {
   'Luxury Silk-Blend Trouser': 'Luxury Silk-Blend Trouser',
   'Luxury Tulle Hipster Bloom': 'Luxury Tulle Hipster Bloom',
   'Luxury Watch Gift Set': 'Luxury Watch Gift Set',
-  'Magic Chemistry Set (50 Experiments)': 'Magic Chemistry Set (50 Experiments)',
+  'Magic Chemistry Set (50 Experiments)':
+      'Magic Chemistry Set (50 Experiments)',
   'Magshuto Vert Tower - Kinetic Play': 'Magshuto Vert Tower - Kinetic Play',
   'Makeup Collection': 'Makeup Collection',
   'Mandarin Collar Casual': 'Mandarin Collar Casual',
@@ -1111,7 +1168,8 @@ const Map<String, String> english = {
   'Minimalist Cross-Strap Slides': 'Minimalist Cross-Strap Slides',
   'Minimalist Desk Organizer': 'Minimalist Desk Organizer',
   'Minimalist Gold Watch': 'Minimalist Gold Watch',
-  'Minimalist Gold Watch with Leather Strap': 'Minimalist Gold Watch with Leather Strap',
+  'Minimalist Gold Watch with Leather Strap':
+      'Minimalist Gold Watch with Leather Strap',
   'Minimalist Home Slides': 'Minimalist Home Slides',
   'Minimalist Knit Skirt': 'Minimalist Knit Skirt',
   'Minimalist Mesh Band': 'Minimalist Mesh Band',
@@ -1124,7 +1182,8 @@ const Map<String, String> english = {
   'Minimalist White Flats': 'Minimalist White Flats',
   'Minimalist White Hoodie': 'Minimalist White Hoodie',
   'Minimalist White Smartwatch': 'Minimalist White Smartwatch',
-  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.': 'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
+  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.':
+      'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
   'Mocha Teddy Shearling': 'Mocha Teddy Shearling',
   'Modal Ribbed Boyshort': 'Modal Ribbed Boyshort',
   'Modal Ribbed Sleep Dress': 'Modal Ribbed Sleep Dress',
@@ -1137,8 +1196,10 @@ const Map<String, String> english = {
   'Modern Tech Gadget Box': 'Modern Tech Gadget Box',
   'Modular Tech Vest': 'Modular Tech Vest',
   'Moisture-Wicking Yoga Grip': 'Moisture-Wicking Yoga Grip',
-  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.': 'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.',
-  'Monster High: Moonspell Magic Willow Thorne': 'Monster High: Moonspell Magic Willow Thorne',
+  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.':
+      'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.',
+  'Monster High: Moonspell Magic Willow Thorne':
+      'Monster High: Moonspell Magic Willow Thorne',
   'Morning Rain': 'Morning Rain',
   'Musical Electronic Drum Pad Mat': 'Musical Electronic Drum Pad Mat',
   'Mustard Yellow Boxy': 'Mustard Yellow Boxy',
@@ -1160,7 +1221,8 @@ const Map<String, String> english = {
   'Night Vision Spy Goggles': 'Night Vision Spy Goggles',
   'Nike Air Max Pro': 'Nike Air Max Pro',
   'Non-Toxic Soy Remover': 'Non-Toxic Soy Remover',
-  'Non-slip grip with high-density cushioning for ultimate joint support.': 'Non-slip grip with high-density cushioning for ultimate joint support.',
+  'Non-slip grip with high-density cushioning for ultimate joint support.':
+      'Non-slip grip with high-density cushioning for ultimate joint support.',
   'Nordic Glass Flower Vase': 'Nordic Glass Flower Vase',
   'Off-Shoulder Peplum Blouse': 'Off-Shoulder Peplum Blouse',
   'Off-Shoulder Silk Dress': 'Off-Shoulder Silk Dress',
@@ -1186,7 +1248,8 @@ const Map<String, String> english = {
   'Overnight Repair Mask': 'Overnight Repair Mask',
   'Oversized Blanket Scarf': 'Oversized Blanket Scarf',
   'Oversized Chunky Knit': 'Oversized Chunky Knit',
-  'Oversized Graphic Tee - Streetwear Collection': 'Oversized Graphic Tee - Streetwear Collection',
+  'Oversized Graphic Tee - Streetwear Collection':
+      'Oversized Graphic Tee - Streetwear Collection',
   'Oversized Heavyweight Hoodie': 'Oversized Heavyweight Hoodie',
   'Oversized Hoodie': 'Oversized Hoodie',
   'Oversized Knit Sleep Shirt': 'Oversized Knit Sleep Shirt',
@@ -1220,7 +1283,8 @@ const Map<String, String> english = {
   'Pleated Satin Romper': 'Pleated Satin Romper',
   'Pocket Utility Leggings': 'Pocket Utility Leggings',
   'Pointed Toe Nude Heels': 'Pointed Toe Nude Heels',
-  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.': 'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
+  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.':
+      'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
   'Polka Dot Bow-Tie Top': 'Polka Dot Bow-Tie Top',
   'Polka Dot Fashion': 'Polka Dot Fashion',
   'Polka Dot Midi': 'Polka Dot Midi',
@@ -1231,11 +1295,13 @@ const Map<String, String> english = {
   'Portable Speaker': 'Portable Speaker',
   'Post-Op Compression Short': 'Post-Op Compression Short',
   'Power-Mesh Waist Trainer': 'Power-Mesh Waist Trainer',
-  'PowerOn Energy-Generating Soccer Ball': 'PowerOn Energy-Generating Soccer Ball',
+  'PowerOn Energy-Generating Soccer Ball':
+      'PowerOn Energy-Generating Soccer Ball',
   'Prebiotic Cloud Milk': 'Prebiotic Cloud Milk',
   'Precision Liquid Liner': 'Precision Liquid Liner',
   'Precision Steel Clippers': 'Precision Steel Clippers',
-  'Precision switches with customizable RGB lighting and premium aluminum body.': 'Precision switches with customizable RGB lighting and premium aluminum body.',
+  'Precision switches with customizable RGB lighting and premium aluminum body.':
+      'Precision switches with customizable RGB lighting and premium aluminum body.',
   'Premium Cashmere Cardigan': 'Premium Cashmere Cardigan',
   'Premium Cotton Set': 'Premium Cotton Set',
   'Premium French Lace Thong': 'Premium French Lace Thong',
@@ -1251,7 +1317,8 @@ const Map<String, String> english = {
   'Premium Surprise Box': 'Premium Surprise Box',
   'Premium Waterproof Heritage Boot': 'Premium Waterproof Heritage Boot',
   'Premium Yoga Mat (Pro)': 'Premium Yoga Mat (Pro)',
-  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.': 'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
+  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.':
+      'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
   'Primal Hatch: Hybrid Hatcher Egg': 'Primal Hatch: Hybrid Hatcher Egg',
   'Pro Compression Shirt': 'Pro Compression Shirt',
   'Pro Gamer Mechanical Keyboard': 'Pro Gamer Mechanical Keyboard',
@@ -1396,8 +1463,10 @@ const Map<String, String> english = {
   'Sleek Black Matte': 'Sleek Black Matte',
   'Sleek Italian Loafers': 'Sleek Italian Loafers',
   'Sleek Midnight Black': 'Sleek Midnight Black',
-  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.': 'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
-  'Sleep and powerful, the Stealth Black series is made for those who move in style.': 'Sleep and powerful, the Stealth Black series is made for those who move in style.',
+  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.':
+      'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
+  'Sleep and powerful, the Stealth Black series is made for those who move in style.':
+      'Sleep and powerful, the Stealth Black series is made for those who move in style.',
   'Sleeveless Pleated Blouse': 'Sleeveless Pleated Blouse',
   'Slim Dress Belt': 'Slim Dress Belt',
   'Slim Fit Black Shirt': 'Slim Fit Black Shirt',
@@ -1436,23 +1505,29 @@ const Map<String, String> english = {
   'Sport Performance Polo': 'Sport Performance Polo',
   'Sporty Lite Flats': 'Sporty Lite Flats',
   'Sprint Master V2': 'Sprint Master V2',
-  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.': 'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
+  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.':
+      'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
   'Squishy Foam "Donut" Squeeze Set': 'Squishy Foam "Donut" Squeeze Set',
   'Stability Plus Sport': 'Stability Plus Sport',
-  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.': 'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
+  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.':
+      'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
   'Star Motif Mesh Hosiery': 'Star Motif Mesh Hosiery',
   'Star Wars: The Darksaber Replica': 'Star Wars: The Darksaber Replica',
   'Star-Print Mesh Chemise': 'Star-Print Mesh Chemise',
   'Starfish Summer Clip': 'Starfish Summer Clip',
-  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.': 'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
+  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.':
+      'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
   'Stay-Up Lace Top Hold-Ups': 'Stay-Up Lace Top Hold-Ups',
-  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.': 'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
+  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.':
+      'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
   'Straight Leg Raw Denim': 'Straight Leg Raw Denim',
   'Strapless Shaping Slip': 'Strapless Shaping Slip',
   'Streetwear Letter Embroidered Jeans': 'Streetwear Letter Embroidered Jeans',
   'Streetwear Multi-Pocket Cargo': 'Streetwear Multi-Pocket Cargo',
-  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.': 'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
-  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.': 'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
+  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.':
+      'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
+  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.':
+      'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
   'Striped Beach Shorts': 'Striped Beach Shorts',
   'Striped Business Shirt': 'Striped Business Shirt',
   'Striped Casual Linen Blouse': 'Striped Casual Linen Blouse',
@@ -1464,7 +1539,8 @@ const Map<String, String> english = {
   'Striped Retro Athletic': 'Striped Retro Athletic',
   'Structured Onyx Waistcoat': 'Structured Onyx Waistcoat',
   'Structured Slate Overcoat': 'Structured Slate Overcoat',
-  'Studio-grade sound quality with genuine leather earcups and gold accents.': 'Studio-grade sound quality with genuine leather earcups and gold accents.',
+  'Studio-grade sound quality with genuine leather earcups and gold accents.':
+      'Studio-grade sound quality with genuine leather earcups and gold accents.',
   'Suede Penny Loafers': 'Suede Penny Loafers',
   'Suede Sahara Vest': 'Suede Sahara Vest',
   'Suede Stylish Belt': 'Suede Stylish Belt',
@@ -1482,7 +1558,8 @@ const Map<String, String> english = {
   'Sweetheart Neckline Push-Up': 'Sweetheart Neckline Push-Up',
   'T-Strap Summer Flats': 'T-Strap Summer Flats',
   'Tactical Techwear Vest': 'Tactical Techwear Vest',
-  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.': 'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
+  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.':
+      'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
   'Tambour Street Diver Burning Rock': 'Tambour Street Diver Burning Rock',
   'Tan Linen Wedding Slacks': 'Tan Linen Wedding Slacks',
   'Tan Slip-on Loafers': 'Tan Slip-on Loafers',
@@ -1498,8 +1575,10 @@ const Map<String, String> english = {
   'Texture Wave Spray': 'Texture Wave Spray',
   'Textured Geometric Pattern': 'Textured Geometric Pattern',
   'Textured Waffle Polo': 'Textured Waffle Polo',
-  'The icon of eyewear. Always in style, no matter the decade.': 'The icon of eyewear. Always in style, no matter the decade.',
-  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.': 'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
+  'The icon of eyewear. Always in style, no matter the decade.':
+      'The icon of eyewear. Always in style, no matter the decade.',
+  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.':
+      'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
   'Thermal Fleece Baselayer': 'Thermal Fleece Baselayer',
   'Thermal Fleece-Lined Winter': 'Thermal Fleece-Lined Winter',
   'Thermal Protectant Mist': 'Thermal Protectant Mist',
@@ -1510,13 +1589,15 @@ const Map<String, String> english = {
   'Tie-Dye Ultimate Creation Station': 'Tie-Dye Ultimate Creation Station',
   'Tiered Boho Skirt': 'Tiered Boho Skirt',
   'Tiered Ruffle Sleeve Top': 'Tiered Ruffle Sleeve Top',
-  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.': 'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
+  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.':
+      'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
   'Titanium Lightweight': 'Titanium Lightweight',
   'Toy Story: Slinky Dog Bookends': 'Toy Story: Slinky Dog Bookends',
   'Trail Blazer Hiking': 'Trail Blazer Hiking',
   'Trail Blazer X1': 'Trail Blazer X1',
   'Transparent Jelly Handbag': 'Transparent Jelly Handbag',
-  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.': 'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
+  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.':
+      'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
   'Tropical Beach Flip-Flops': 'Tropical Beach Flip-Flops',
   'Tummy-Taming Brief': 'Tummy-Taming Brief',
   'Turquoise Beach Tee': 'Turquoise Beach Tee',
@@ -1527,10 +1608,13 @@ const Map<String, String> english = {
   'Ultra-Light Cooling Slip': 'Ultra-Light Cooling Slip',
   'Ultra-Sheer 15D Glossy': 'Ultra-Sheer 15D Glossy',
   'Ultra-Thick Fleece Cabin': 'Ultra-Thick Fleece Cabin',
-  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.': 'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
-  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.': 'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
+  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.':
+      'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
+  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.':
+      'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
   'Under-Bust Waist Nipper': 'Under-Bust Waist Nipper',
-  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.': 'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
+  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.':
+      'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
   'Urban Athletic Low': 'Urban Athletic Low',
   'Urban Black Polo': 'Urban Black Polo',
   'Urban Bomber Jacket': 'Urban Bomber Jacket',
@@ -1539,7 +1623,8 @@ const Map<String, String> english = {
   'Urban Casual Brown': 'Urban Casual Brown',
   'Urban Comfort Walking Sneaker': 'Urban Comfort Walking Sneaker',
   'Urban Commuter Laptop Bag': 'Urban Commuter Laptop Bag',
-  'Urban Essential Joggers in Matte Black': 'Urban Essential Joggers in Matte Black',
+  'Urban Essential Joggers in Matte Black':
+      'Urban Essential Joggers in Matte Black',
   'Urban Explorer Sneakers': 'Urban Explorer Sneakers',
   'Urban Grey Slim-Fit': 'Urban Grey Slim-Fit',
   'Urban High-Top Sneakers': 'Urban High-Top Sneakers',
@@ -1566,7 +1651,8 @@ const Map<String, String> english = {
   'Velvet Trim Nightgown': 'Velvet Trim Nightgown',
   'Velvet Trim Sleep Sock': 'Velvet Trim Sleep Sock',
   'Velvet Two-Piece Tracksuit Set': 'Velvet Two-Piece Tracksuit Set',
-  'Versatile shoes designed for high-intensity interval training and gym workouts.': 'Versatile shoes designed for high-intensity interval training and gym workouts.',
+  'Versatile shoes designed for high-intensity interval training and gym workouts.':
+      'Versatile shoes designed for high-intensity interval training and gym workouts.',
   'Vertical Stripe Slimming': 'Vertical Stripe Slimming',
   'Vetiver Noir': 'Vetiver Noir',
   'Vintage Athletic Red': 'Vintage Athletic Red',
@@ -1608,7 +1694,8 @@ const Map<String, String> english = {
   'Western Stitch Leather': 'Western Stitch Leather',
   'White Lace Wedding Heels': 'White Lace Wedding Heels',
   'White Musk & Linen': 'White Musk & Linen',
-  'Wigglitz: Collectible Food Fidget Series': 'Wigglitz: Collectible Food Fidget Series',
+  'Wigglitz: Collectible Food Fidget Series':
+      'Wigglitz: Collectible Food Fidget Series',
   'Wild West Cowboy Leather Boot': 'Wild West Cowboy Leather Boot',
   'Wireless Bamboo Charger': 'Wireless Bamboo Charger',
   'Wireless Earbuds': 'Wireless Earbuds',
@@ -1622,7 +1709,8 @@ const Map<String, String> english = {
   'Wrap Front Skirt': 'Wrap Front Skirt',
   'Yoga Flow Light Support': 'Yoga Flow Light Support',
   'Zip-Up Modern Polo': 'Zip-Up Modern Polo',
-  'ZipString Aracna - Kinetic String Toy': 'ZipString Aracna - Kinetic String Toy',
+  'ZipString Aracna - Kinetic String Toy':
+      'ZipString Aracna - Kinetic String Toy',
   'Zipped Cuff Tech Pants': 'Zipped Cuff Tech Pants',
   'Zoom Pro Elite Running Shoe': 'Zoom Pro Elite Running Shoe',
 };

@@ -192,7 +192,7 @@ class TopSaleItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             TextWidget(
-              "LOOMA",
+              "LOOMA".tr.toUpperCase(),
               fontSize: 13,
               letterSpacing: 1.2,
               fontWeight: FontWeight.bold,

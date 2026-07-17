@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
@@ -69,7 +70,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
               ),
               const SizedBox(height: 15),
               TextWidget(
-                "Map Type",
+                "Map Type".tr,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: isDark ? Colors.white : Colors.black,
@@ -79,17 +80,17 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _mapTypeItem(
-                    "Default",
+                    "Default".tr,
                     MapType.normal,
                     'https://i.sstatic.net/rUA7c.png',
                   ),
                   _mapTypeItem(
-                    "Satellite",
+                    "Satellite".tr,
                     MapType.satellite,
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMtNTbmYEibQQkk2v--nTlZs8D0KZaAWrYCw&s',
                   ),
                   _mapTypeItem(
-                    "Terrain",
+                    "Terrain".tr,
                     MapType.terrain,
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOYyx4JXs1SL410TfqkqzPpgK25gNKIepdCw&s',
                   ),
@@ -188,7 +189,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
         elevation: 0,
         leading: BackButton(color: isDark ? Colors.white : Colors.black),
         title: TextWidget(
-          "Add New Address",
+          "Add New Address".tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
         ),
@@ -289,20 +290,20 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextWidget(
-                      "Address Details",
+                      "Address Details".tr,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white : Colors.black,
                     ),
                     const Divider(height: 30),
-                    _buildLabel(context, "Name Address"),
-                    _buildTextField(context, _nameController, "e.g. Home"),
+                    _buildLabel(context, "Name Address".tr),
+                    _buildTextField(context, _nameController, "e.g. Home".tr),
                     const SizedBox(height: 20),
-                    _buildLabel(context, "Address Details"),
+                    _buildLabel(context, "Address Details".tr),
                     _buildTextField(
                       context,
                       _addressController,
-                      "Location details",
+                      "Location details".tr,
                       icon: Icons.location_on,
                     ),
                     const SizedBox(height: 10),
@@ -311,7 +312,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       activeColor: isDark ? Colors.white : Colors.black,
                       onChanged: (val) => setState(() => _isDefault = val!),
                       title: TextWidget(
-                        "Make this as the default address",
+                        "Make this as the default address".tr,
                         fontSize: 14,
                         color: isDark ? Colors.white70 : Colors.black87,
                       ),
@@ -338,7 +339,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         Navigator.pop(context, newAddress);
                       },
                       child: TextWidget(
-                        "Add Address",
+                        "Add Address".tr,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),

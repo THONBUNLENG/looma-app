@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../model/wallet_card_model.dart';
 import '../../widget/button.dart';
@@ -94,28 +95,28 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
 
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter the card_repository holder's full name")),
+        SnackBar(content: Text("Please enter the card holder's full name".tr)),
       );
       return;
     }
 
     if (number.length != 16 || !RegExp(r'^[0-9]+$').hasMatch(number)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter a valid 16-digit card_repository number")),
+        SnackBar(content: Text("Please enter a valid 16-digit card number".tr)),
       );
       return;
     }
 
-    if (!RegExp(r'^(0[1-9]|1[0-2])\/\d{2}$').hasMatch(expiry)) {
+    if (!RegExp(r'^(0[1-9]|1[0-2])/\d{2}$').hasMatch(expiry)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter a valid expiry date (MM/YY)")),
+        SnackBar(content: Text("Please enter a valid expiry date (MM/YY)".tr)),
       );
       return;
     }
 
     if (cvv.length != 3 || !RegExp(r'^[0-9]+$').hasMatch(cvv)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter a valid 3-digit CVV")),
+        SnackBar(content: Text("Please enter a valid 3-digit CVV".tr)),
       );
       return;
     }
@@ -134,19 +135,13 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          'Add New Card',
-          style: TextStyle(
-            color: isDark ? Colors.white : Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+        title: TextWidget(
+          'Add New Card'.tr,
         ),
       ),
       body: Column(
@@ -160,13 +155,13 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                   const SizedBox(height: 10),
                   _buildAnimatedCard(),
                   const SizedBox(height: 30),
-                  _buildLabel(context, "Select Card Color"),
+                  _buildLabel(context, "Select Card Color".tr),
                   _buildColorSelector(),
                   const SizedBox(height: 25),
-                  _buildLabel(context, "Card Holder Name"),
-                  _buildField(context, _nameController, "FULL NAME"),
+                  _buildLabel(context, "Card Holder Name".tr),
+                  _buildField(context, _nameController, "FULL NAME".tr),
                   const SizedBox(height: 20),
-                  _buildLabel(context, "Card Number"),
+                  _buildLabel(context, "Card Number".tr),
                   _buildField(
                     context,
                     _numberController,
@@ -184,7 +179,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildLabel(context, "Expiry Date"),
+                            _buildLabel(context, "Expiry Date".tr),
                             _buildField(
                               context,
                               _expiryController,
@@ -203,7 +198,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildLabel(context, "CVV"),
+                            _buildLabel(context, "CVV".tr),
                             _buildField(
                               context,
                               _cvvController,
@@ -225,7 +220,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
           Padding(
             padding: const EdgeInsets.all(24),
             child: MyCustomButton(
-              text: 'Save Card',
+              text: 'Save Card'.tr,
               onPressed: _saveCard,
               width: double.infinity,
               height: 58,
@@ -288,9 +283,9 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Looma Premium",
-                        style: TextStyle(
+                      Text(
+                        "Looma Premium".tr,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.w300,
@@ -316,8 +311,8 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _cardInfo("Card Holder", _nameController.text),
-                      _cardInfo("Valid Thru", _expiryController.text),
+                      _cardInfo("Card Holder".tr, _nameController.text),
+                      _cardInfo("Valid Thru".tr, _expiryController.text),
                       const Icon(
                         Icons.contactless,
                         color: Colors.white54,
@@ -360,7 +355,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                 ),
                 const SizedBox(width: 15),
                 TextWidget(
-                  "CVV: ${_cvvController.text}",
+                  "${"CVV".tr}: ${_cvvController.text}",
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -501,7 +496,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        label.toUpperCase(),
+        label.tr.toUpperCase(),
         style: const TextStyle(color: Colors.white54, fontSize: 8),
       ),
       Text(

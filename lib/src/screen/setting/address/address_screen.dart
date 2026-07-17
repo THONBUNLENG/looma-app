@@ -306,7 +306,7 @@ class _AddressScreenState extends State<AddressScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: TextWidget(
-          "${"Address".tr} '$title' ${"deleted".tr}",
+          "${"Address".tr} '${title.tr}' ${"deleted".tr}",
           color: isDark ? Colors.black : Colors.white,
         ),
         behavior: SnackBarBehavior.floating,

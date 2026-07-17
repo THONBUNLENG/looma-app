@@ -187,7 +187,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    "LOOMA".tr,
+                    "LOOMA".tr.toUpperCase(),
                     fontSize: 14,
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.bold,
@@ -199,7 +199,7 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                       Expanded(
                         child: TextWidget(
                           (widget.product['title'] ?? 'Product Item')
-                              .toString(),
+                              .toString().tr,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: isDark ? Colors.white : Colors.black,
@@ -283,11 +283,11 @@ class _ProductBagScreenState extends State<ProductBagScreen> {
                   const Divider(height: 40),
                   _buildModelInfo(isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Product details", isDark),
+                  _buildCollapsibleItem("Product details".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Size guide", isDark),
+                  _buildCollapsibleItem("Size guide".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Online exchange policy", isDark),
+                  _buildCollapsibleItem("Online exchange policy".tr, isDark),
                   const SizedBox(height: 40),
                   _buildSimilarItems(isDark),
                   const SizedBox(height: 30),

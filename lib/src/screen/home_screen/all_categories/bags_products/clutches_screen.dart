@@ -360,7 +360,7 @@ class _ClutchesScreenState extends State<ClutchesScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  (item['title'] ?? 'Luxury Clutch').toString().tr,
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

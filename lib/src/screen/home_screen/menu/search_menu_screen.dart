@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import '../../../widget/text_widget.dart';
 class SearchMenuScreen extends StatefulWidget {
   const SearchMenuScreen({super.key});
@@ -35,7 +36,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
             child: TextWidget(
-              "Recent Searches",
+              "Recent Searches".tr,
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: primaryColor,
@@ -53,7 +54,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextWidget(
-                    "You have no recent searches.",
+                    "You have no recent searches.".tr,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: primaryColor,
@@ -102,7 +103,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> {
                   style: TextStyle(color: color),
                   decoration: InputDecoration(
                     hintText:
-                        "Search ${_categories[_selectedCategoryIndex].toLowerCase()}",
+                        "${"Search".tr} ${_categories[_selectedCategoryIndex].tr.toLowerCase()}",
                     hintStyle: TextStyle(
                       color: isDark ? Colors.white38 : Colors.black38,
                     ),
@@ -152,7 +153,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> {
               ),
               child: Center(
                 child: TextWidget(
-                  _categories[index],
+                  _categories[index].tr,
                   fontWeight: FontWeight.w900,
                   fontSize: 13,
                   color: isActive ? active : inactive,

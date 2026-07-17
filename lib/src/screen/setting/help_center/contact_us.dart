@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 class ContactUsTabContent extends StatelessWidget {
   const ContactUsTabContent({super.key});
@@ -8,16 +9,46 @@ class ContactUsTabContent extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20.0),
       children: [
-        _buildContactCard(context, "assets/icon/i_color/customer_service.png", "Customer Service", () {}),
-        _buildContactCard(context, "assets/icon/i_color/website.png", "Website", () {}),
-        _buildContactCard(context, "assets/icon/i_color/fb.png", "Facebook", () {}),
-        _buildContactCard(context, "assets/icon/i_color/telegram.png", "Telegram", () {}),
-        _buildContactCard(context, "assets/icon/i_color/instagram.png", "Instagram", () {}),
+        _buildContactCard(
+          context,
+          "assets/icon/i_color/customer_service.png",
+          "Customer Service".tr,
+          () {},
+        ),
+        _buildContactCard(
+          context,
+          "assets/icon/i_color/website.png",
+          "Website".tr,
+          () {},
+        ),
+        _buildContactCard(
+          context,
+          "assets/icon/i_color/fb.png",
+          "Facebook".tr,
+          () {},
+        ),
+        _buildContactCard(
+          context,
+          "assets/icon/i_color/telegram.png",
+          "Telegram".tr,
+          () {},
+        ),
+        _buildContactCard(
+          context,
+          "assets/icon/i_color/instagram.png",
+          "Instagram".tr,
+          () {},
+        ),
       ],
     );
   }
 
-  Widget _buildContactCard(BuildContext context, String imagePath, String title, VoidCallback onTap) {
+  Widget _buildContactCard(
+    BuildContext context,
+    String imagePath,
+    String title,
+    VoidCallback onTap,
+  ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -42,7 +73,6 @@ class ContactUsTabContent extends StatelessWidget {
           imagePath,
           width: 28,
           height: 28,
-          // ប្រើ ColorFilter ដើម្បីប្តូរពណ៌រូបភាព PNG ឱ្យទៅជា ស ឬ ខ្មៅ តាម Theme
           color: isDark ? Colors.white : Colors.black,
           colorBlendMode: BlendMode.srcIn,
         ),
@@ -55,9 +85,9 @@ class ContactUsTabContent extends StatelessWidget {
           ),
         ),
         trailing: Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-            color: isDark ? Colors.white24 : Colors.black12
+          Icons.arrow_forward_ios,
+          size: 16,
+          color: isDark ? Colors.white24 : Colors.black12,
         ),
         onTap: onTap,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

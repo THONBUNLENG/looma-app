@@ -345,7 +345,7 @@ class _TightsScreenState extends State<TightsScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  item['title'] ?? 'Essential Tights',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

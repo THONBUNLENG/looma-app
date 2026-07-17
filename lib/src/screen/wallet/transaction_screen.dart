@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/wallet/t_history.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'e_receipt.dart';
@@ -47,7 +48,7 @@ class _TransactionHistorySectionState extends State<TransactionHistorySection> {
                 controller: _searchController,
                 autofocus: true,
                 decoration: InputDecoration(
-                  hintText: 'Search transactions...',
+                  hintText: 'Search transactions...'.tr,
                   border: InputBorder.none,
                   hintStyle: TextStyle(
                     color: isDark ? Colors.white60 : Colors.grey,
@@ -57,7 +58,7 @@ class _TransactionHistorySectionState extends State<TransactionHistorySection> {
                 onChanged: _filterTransactions,
               )
             : TextWidget(
-                'Transaction History',
+                'Transaction History'.tr,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: isDark ? Colors.white : Colors.black,
@@ -87,7 +88,7 @@ class _TransactionHistorySectionState extends State<TransactionHistorySection> {
       body: _filteredTransactions.isEmpty
           ? Center(
               child: TextWidget(
-                'No transactions found',
+                'No transactions found'.tr,
                 color: isDark ? Colors.white60 : Colors.grey,
               ),
             )

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 
@@ -37,7 +38,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
         elevation: 0,
         centerTitle: false,
         title: TextWidget(
-          "Invite Friends",
+          "Invite Friends".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 22,
           fontWeight: FontWeight.bold,
@@ -115,7 +116,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
           minimumSize: const Size(85, 36),
         ),
         child: TextWidget(
-          "Invited",
+          "Invited".tr,
           color: isDark ? Colors.white38 : Colors.grey,
           fontWeight: FontWeight.bold,
           fontSize: 13,
@@ -132,7 +133,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
           minimumSize: const Size(85, 36),
         ),
         child: TextWidget(
-          "Invite",
+          "Invite".tr,
           fontWeight: FontWeight.bold,
           fontSize: 13,
         ),

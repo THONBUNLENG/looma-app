@@ -362,7 +362,7 @@ class _BackpacksScreenState extends State<BackpacksScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  (item['title'] ?? 'Utility Backpack').toString().tr,
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,

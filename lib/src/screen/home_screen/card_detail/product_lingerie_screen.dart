@@ -201,7 +201,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    "LOOMA",
+                    "LOOMA".tr.toUpperCase(),
                     fontSize: 14,
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.bold,
@@ -301,11 +301,11 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                   const Divider(height: 40),
                   _buildModelInfo(isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Product details", isDark),
+                  _buildCollapsibleItem("Product details".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Size guide", isDark),
+                  _buildCollapsibleItem("Size guide".tr, isDark),
                   const Divider(height: 0),
-                  _buildCollapsibleItem("Online exchange policy", isDark),
+                  _buildCollapsibleItem("Online exchange policy".tr, isDark),
                   const SizedBox(height: 40),
                   _buildSimilarItems(isDark),
                   const SizedBox(height: 30),
@@ -665,7 +665,7 @@ class _ProductLingerieScreenState extends State<ProductLingerieScreen> {
                           ),
                           const SizedBox(width: 4),
                           TextWidget(
-                            "New In",
+                            "New In".tr,
                             color: Colors.white,
                             fontSize: 9,
                             fontWeight: FontWeight.bold,

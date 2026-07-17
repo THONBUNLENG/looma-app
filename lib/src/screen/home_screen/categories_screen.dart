@@ -226,7 +226,7 @@ class _CategorySectionState extends State<CategorySection> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 125,
+            height: 140,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
@@ -273,7 +273,7 @@ class _CategorySectionState extends State<CategorySection> {
                         ),
                         const SizedBox(height: 8),
                         TextWidget(
-                          item.title.toUpperCase().tr,
+                          item.title.tr.toUpperCase(),
                           textAlign: TextAlign.center,
                           fontSize: 10,
                           fontWeight: FontWeight.w800,

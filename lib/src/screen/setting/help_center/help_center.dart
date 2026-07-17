@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'contact_us.dart';
 
@@ -18,7 +19,7 @@ class HelpCenterScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: TextWidget(
-            "Help Center",
+            "Help Center".tr,
             color: isDark ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -35,9 +36,9 @@ class HelpCenterScreen extends StatelessWidget {
             labelColor: isDark ? Colors.white : Colors.black,
             unselectedLabelColor: isDark ? Colors.white38 : Colors.grey,
             labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            tabs: const [
-              Tab(text: "FAQ"),
-              Tab(text: "Contact us"),
+            tabs: [
+              Tab(text: "FAQ".tr),
+              Tab(text: "Contact us".tr),
             ],
           ),
         ),
@@ -68,11 +69,11 @@ class FaqTabContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              _buildFilterChip(context, "General", true),
-              _buildFilterChip(context, "Account", false),
-              _buildFilterChip(context, "Service", false),
-              _buildFilterChip(context, "Payment", false),
-              _buildFilterChip(context, "Delivery", false),
+              _buildFilterChip(context, "General".tr, true),
+              _buildFilterChip(context, "Account".tr, false),
+              _buildFilterChip(context, "Service".tr, false),
+              _buildFilterChip(context, "Payment".tr, false),
+              _buildFilterChip(context, "Delivery".tr, false),
             ],
           ),
         ),
@@ -82,7 +83,7 @@ class FaqTabContent extends StatelessWidget {
           child: TextField(
             style: TextStyle(color: isDark ? Colors.white : Colors.black),
             decoration: InputDecoration(
-              hintText: "Search",
+              hintText: "Search".tr,
               hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.grey),
               prefixIcon: Icon(Icons.search, color: isDark ? Colors.white38 : Colors.grey),
               suffixIcon: Icon(Icons.tune, color: isDark ? Colors.white38 : Colors.grey),
@@ -102,13 +103,13 @@ class FaqTabContent extends StatelessWidget {
             children: [
               _buildFaqCard(
                 context,
-                "What is Evira?",
-                "Evira is a premium shopping platform that provides high-quality products with fast delivery and secure order options.",
+                "What is Evira?".tr,
+                "Evira is a premium shopping platform that provides high-quality products with fast delivery and secure order options.".tr,
               ),
-              _buildFaqCard(context, "How to use Evira?", "Simply browse products, add them to your cart, and proceed to checkout using your preferred order method."),
-              _buildFaqCard(context, "How do I cancel a orders product?", "You can cancel your order from the 'My Orders' section within 30 minutes of purchase."),
-              _buildFaqCard(context, "Is Evira free to use?", "Yes, downloading and browsing Evira is completely free."),
-              _buildFaqCard(context, "How to add promo on Evira?", "Enter your promo code at the checkout page under the 'Discount' section."),
+              _buildFaqCard(context, "How to use Evira?".tr, "Simply browse products, add them to your cart, and proceed to checkout using your preferred order method.".tr),
+              _buildFaqCard(context, "How do I cancel a orders product?".tr, "You can cancel your order from the 'My Orders' section within 30 minutes of purchase.".tr),
+              _buildFaqCard(context, "Is Evira free to use?".tr, "Yes, downloading and browsing Evira is completely free.".tr),
+              _buildFaqCard(context, "How to add promo on Evira?".tr, "Enter your promo code at the checkout page under the 'Discount' section.".tr),
               const SizedBox(height: 20),
             ],
           ),

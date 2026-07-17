@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/src/screen/login_screen/password_dot.dart';
 
 import '../../../constants/color.dart';
 import '../../widget/button_cus.dart';
-import 'Alert_info.dart';
+import 'alert_info.dart';
 import 'hello_card_screen.dart';
 
 class PasswordRecovery2 extends StatelessWidget {

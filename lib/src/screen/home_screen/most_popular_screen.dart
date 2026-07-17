@@ -146,7 +146,7 @@ class PopularCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextWidget(
-                      tag.toUpperCase(),
+                      tag.toString().tr.toUpperCase(),
                       fontSize: 10,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.2,
@@ -173,7 +173,7 @@ class PopularCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  "Premium Item",
+                  "Premium Item".tr,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),

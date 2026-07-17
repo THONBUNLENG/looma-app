@@ -354,7 +354,7 @@ class _SlippersScreenState extends State<SlippersScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -362,7 +362,7 @@ class _SlippersScreenState extends State<SlippersScreen> {
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  item['title'] ?? 'Comfort Slipper',
+                  (item['title'] ?? 'Product').toString().tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -385,7 +385,7 @@ class _SlippersScreenState extends State<SlippersScreen> {
                       child: TextWidget("|", color: subTextColor.withValues(alpha: 0.3)),
                     ),
                     TextWidget(
-                      "${item['sold'] ?? '0'} sold",
+                      "${item['sold'] ?? '0'} ${'sold'.tr}",
                       color: subTextColor,
                       fontSize: 11,
                     ),
@@ -418,7 +418,7 @@ class _SlippersScreenState extends State<SlippersScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No slippers available" : "No results for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No slippers available".tr : "${'No results for'.tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -97,7 +98,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          widget.categoryName.toUpperCase(),
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.w900,
           color: textColor,
@@ -123,15 +124,15 @@ class _PerfumesScreenState extends State<PerfumesScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Women"),
-                  Tab(text: "Men"),
-                  Tab(text: "Unisex"),
-                  Tab(text: "Body Mist"),
-                  Tab(text: "Sets"),
-                  Tab(text: "Deodorants"),
-                  Tab(text: "Luxury"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Women".tr),
+                  Tab(text: "Men".tr),
+                  Tab(text: "Unisex".tr),
+                  Tab(text: "Body Mist".tr),
+                  Tab(text: "Sets".tr),
+                  Tab(text: "Deodorants".tr),
+                  Tab(text: "Luxury".tr),
                 ],
               ),
             ],
@@ -149,7 +150,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -203,7 +204,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...",
+                  hintText: "Search in ${widget.categoryName.tr}...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search_rounded, size: 22, color: hintColor),
                   suffixIcon: _searchQuery.isNotEmpty
@@ -244,7 +245,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
                   ),
                   const SizedBox(width: 8),
                   TextWidget(
-                    "Filter",
+                    "filter".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black,
@@ -423,7 +424,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -454,7 +455,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold sold",
+                        "$sold ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -490,7 +491,7 @@ class _PerfumesScreenState extends State<PerfumesScreen>
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No perfumes available" : "No items found for '$_searchQuery'",
+            _searchQuery.isEmpty ? "No perfumes available".tr : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

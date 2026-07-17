@@ -241,10 +241,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               'assets/icon/language.png',
               "Language".tr,
               trailingText: translator.currentLocale?.languageCode == 'en'
-                  ? "English (US)"
+                  ? "English (US)".tr
                   : (translator.currentLocale?.languageCode == 'km'
-                        ? "Khmer"
-                        : "Chinese"),
+                        ? "Khmer".tr
+                        : "Chinese".tr),
               onTap: () {
                 Navigator.push(
                   context,

@@ -92,7 +92,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
               TextWidget(
-                "Select Country",
+                "Select Country".tr,
                 color: theme.colorScheme.onSurface,
 
               ),
@@ -108,7 +108,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         style: const TextStyle(fontSize: 24),
                       ),
                       title: TextWidget(
-                        country["name"]!,
+                        country["name"]!.tr,
                         color: theme.colorScheme.onSurface,
                       ),
                       trailing: TextWidget(

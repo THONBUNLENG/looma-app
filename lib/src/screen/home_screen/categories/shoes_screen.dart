@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -99,7 +100,7 @@ class _ShoesScreenState extends State<ShoesScreen>
         centerTitle: true,
         leading: BackButton(color: textColor),
         title: TextWidget(
-          widget.categoryName,
+          widget.categoryName.tr.toUpperCase(),
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: textColor,
@@ -123,16 +124,16 @@ class _ShoesScreenState extends State<ShoesScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
-                tabs: const [
-                  Tab(text: "All"),
-                  Tab(text: "Boots"),
-                  Tab(text: "Heeled"),
-                  Tab(text: "Flats"),
-                  Tab(text: "Loafers"),
-                  Tab(text: "Sandals"),
-                  Tab(text: "Slippers"),
-                  Tab(text: "Sneakers"),
-                  Tab(text: "Sports"),
+                tabs: [
+                  Tab(text: "All".tr),
+                  Tab(text: "Boots".tr),
+                  Tab(text: "Heeled".tr),
+                  Tab(text: "Flats".tr),
+                  Tab(text: "Loafers".tr),
+                  Tab(text: "Sandals".tr),
+                  Tab(text: "Slippers".tr),
+                  Tab(text: "Sneakers".tr),
+                  Tab(text: "Sports".tr),
                 ],
               ),
             ],
@@ -149,7 +150,7 @@ class _ShoesScreenState extends State<ShoesScreen>
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: TextWidget(
-                  "$count items found",
+                  "${count} ${"items found".tr}",
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -194,7 +195,7 @@ class _ShoesScreenState extends State<ShoesScreen>
                 },
                 style: TextStyle(color: textColor, fontSize: 14),
                 decoration: InputDecoration(
-                  hintText: "Search shoes...",
+                  hintText: "Search shoes...".tr,
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search, size: 20, color: hintColor),
                   border: InputBorder.none,
@@ -218,7 +219,7 @@ class _ShoesScreenState extends State<ShoesScreen>
                 Icon(Icons.tune, size: 20, color: textColor),
                 const SizedBox(width: 6),
                 TextWidget(
-                  "Filter",
+                  "filter".tr,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: textColor,
@@ -372,7 +373,7 @@ class _ShoesScreenState extends State<ShoesScreen>
                 ),
                 const SizedBox(height: 4),
                 TextWidget(
-                  title,
+                  title.tr,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: 15,
@@ -397,7 +398,7 @@ class _ShoesScreenState extends State<ShoesScreen>
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextWidget(
-                        "| $sold sold",
+                        "| ${sold} ${"sold".tr}",
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -433,7 +434,7 @@ class _ShoesScreenState extends State<ShoesScreen>
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "No shoes found",
+            "No shoes found".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

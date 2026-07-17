@@ -340,8 +340,8 @@ class _NightwearScreenState extends State<NightwearScreen> {
                 color: isDark ? Colors.white54 : Colors.black45,
               ),
               const SizedBox(height: 4),
-              Text(
-                item['title'] ?? 'Silk Nightwear',
+              TextWidget(
+                (item['title'] ?? 'Product').toString().tr,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
