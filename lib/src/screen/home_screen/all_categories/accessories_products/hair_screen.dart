@@ -1,12 +1,68 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import 'package:flutter/material.dart';
+
+
+
+
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
+
+
+
+
+
+
+
 import '../../../../../constants/app_color.dart';
+
+
+
+
+
+
+
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_bag_screen.dart';
+
+
+
+
+
+
+
 import '../../filter/filter_screen.dart';
+
+
+
+
+
+
+
+import '../../product_detail/product_bag_screen.dart';
+
+
+
+
+
+
+
 import '../../shopping_bag/shopping_bag_screen.dart';
+
+
+
+
+
+
+
 
 class HairScreen extends StatefulWidget {
   final String categoryName;
@@ -90,7 +146,7 @@ class _HairScreenState extends State<HairScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartButton(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBanner(isDark),
       ),
       body: Column(
@@ -143,7 +199,7 @@ class _HairScreenState extends State<HairScreen> {
                 onChanged: _runFilter,
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(
                     color: isDark ? Colors.white38 : Colors.grey,
                     fontSize: 14,
@@ -335,11 +391,25 @@ class _HairScreenState extends State<HairScreen> {
                     Positioned(
                       top: 10,
                       right: 10,
+                      child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
                       child: Icon(
                         Icons.favorite_border,
                         size: 20,
                         color: isDark ? Colors.white60 : Colors.black26,
-                      ),
+                      )
+                    ),
                     ),
                   ],
                 ),
@@ -353,7 +423,7 @@ class _HairScreenState extends State<HairScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 14,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -396,7 +466,7 @@ class _HairScreenState extends State<HairScreen> {
                     ),
                     Expanded(
                       child: Text(
-                        "${item['sold'] ?? '0'} sold",
+                        '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                         style: TextStyle(color: subTextColor, fontSize: 11),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -433,8 +503,8 @@ class _HairScreenState extends State<HairScreen> {
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "New accessories coming soon"
-                : "No results for '$_searchQuery'",
+                ? "New accessories coming soon".tr
+                : "No results for '$_searchQuery'".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -443,4 +513,10 @@ class _HairScreenState extends State<HairScreen> {
     );
   }
 }
+
+
+
+
+
+
 

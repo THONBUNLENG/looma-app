@@ -1,22 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
 import '../../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_watch_screen.dart';
 import '../filter/filter_screen.dart';
+import '../product_detail/product_watch_screen.dart';
 
 
 class WatchScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> watch;
 
   const WatchScreen({
     super.key,
     required this.categoryName,
-    required this.watch,
   });
 
   @override
@@ -26,6 +25,7 @@ class WatchScreen extends StatefulWidget {
 class _WatchScreenState extends State<WatchScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  final ProductRepository _productRepository = ProductRepository();
 
   @override
   void dispose() {
@@ -33,23 +33,11 @@ class _WatchScreenState extends State<WatchScreen> {
     super.dispose();
   }
 
-  List<Map<String, dynamic>> get _filteredWatches {
-    if (_searchQuery.isEmpty) {
-      return widget.watch;
-    }
-    final query = _searchQuery.toLowerCase();
-    return widget.watch.where((item) {
-      final title = (item['title'] ?? '').toString().toLowerCase();
-      return title.contains(query);
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF121212) : AppColor.white;
     final textColor = isDark ? Colors.white : AppColor.black;
-    final filteredWatches = _filteredWatches;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -73,19 +61,36 @@ class _WatchScreenState extends State<WatchScreen> {
           child: _buildSearchBar(isDark),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: TextWidget(
-              "${filteredWatches.length} ${"items found".tr}",
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: textColor,
-            ),
-          ),
-          Expanded(child: _buildWatchGrid(filteredWatches, isDark)),
-        ],
+      body: StreamBuilder<List<ProductModel>>(
+        stream: _productRepository.getProductsStream('watches'),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
+
+              final products = snapshot.data ?? [];
+              final filteredWatches = _searchQuery.isEmpty
+                  ? products
+                  : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: TextWidget(
+                  '{0} items found'.trArgs([filteredWatches.length.toString()]),
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                ),
+              ),
+              Expanded(child: _buildWatchGrid(filteredWatches, isDark)),
+            ],
+          );
+        }
       ),
     );
   }
@@ -151,7 +156,7 @@ class _WatchScreenState extends State<WatchScreen> {
     );
   }
 
-  Widget _buildWatchGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildWatchGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -175,29 +180,24 @@ class _WatchScreenState extends State<WatchScreen> {
 
   Widget _buildWatchCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Luxury Watch').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final String rating = (item['rating'] ?? '4.9').toString();
-    final String sold = (item['sold'] ?? '0').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = '\$${item.price.toStringAsFixed(2)}';
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  ProductWatchScreen(product: item),
+            builder: (context) =>  ProductWatchScreen(product: item.toMap()),
           ),
         );
       },
@@ -265,9 +265,9 @@ class _WatchScreenState extends State<WatchScreen> {
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
+                          // setState(() {
+                          //   item['is_favorite'] = !isFavorite;
+                          // });
                         },
                         child: CircleAvatar(
                           radius: 18,
@@ -333,7 +333,7 @@ class _WatchScreenState extends State<WatchScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold ${"sold".tr}",
+                        '{0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -378,4 +378,3 @@ class _WatchScreenState extends State<WatchScreen> {
     );
   }
 }
-

@@ -4,7 +4,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 
 import '../../../../../constants/app_color.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_bag_screen.dart';
+import '../product_detail/product_bag_screen.dart';
 import '../shopping_bag/shopping_bag_screen.dart';
 
 class JustForYouAll extends StatelessWidget {
@@ -249,7 +249,7 @@ class JustForYouAll extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} ${'sold'.tr}",
+                        '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,

@@ -1,21 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:shopping_app/constants/string_extension.dart';
+
 import 'package:shopping_app/src/widget/cart_badge.dart';
+
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/app_color.dart';
-import '../card_detail/product_clothes_screen.dart';
+
 import '../filter/filter_screen.dart';
 
+import '../product_detail/product_clothes_screen.dart';
 
 class FlashSaleDiscountScreen extends StatefulWidget {
   final String imageUrl;
 
-  const FlashSaleDiscountScreen({
-    super.key,
-    required this.imageUrl,
-  });
+  const FlashSaleDiscountScreen({super.key, required this.imageUrl});
 
   @override
   State<FlashSaleDiscountScreen> createState() =>
@@ -27,14 +31,20 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-    final List<String> filters = [
-    "All",
-    "10%",
-    "20%",
-    "30%",
-    "40%",
-    "50%",
-  ].map((e) => e.tr).toList();
+  late final List<String> filters;
+
+  @override
+  void initState() {
+    super.initState();
+    filters = [
+      "All",
+      "10%",
+      "20%",
+      "30%",
+      "40%",
+      "50%",
+    ].map((e) => e.tr).toList();
+  }
 
   @override
   void dispose() {
@@ -81,10 +91,7 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
           fontWeight: FontWeight.bold,
           color: textColor,
         ),
-        actions: const [
-          CartBadge(),
-          SizedBox(width: 8),
-        ],
+        actions: const [CartBadge(), SizedBox(width: 8)],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(125),
           child: Column(
@@ -99,7 +106,7 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(18, 14, 18, 8),  
+            padding: const EdgeInsets.fromLTRB(18, 14, 18, 8),
             child: Row(
               children: [
                 TextWidget(
@@ -130,9 +137,7 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
               ],
             ),
           ),
-          Expanded(
-            child: _buildProductGrid(isDark, products),
-          ),
+          Expanded(child: _buildProductGrid(isDark, products)),
         ],
       ),
     );
@@ -224,10 +229,7 @@ class _FlashSaleDiscountScreenState extends State<FlashSaleDiscountScreen> {
               decoration: BoxDecoration(
                 gradient: selected
                     ? const LinearGradient(
-                        colors: [
-                          Color(0xFFFF3D5A),
-                          Color(0xFFFF8A00),
-                        ],
+                        colors: [Color(0xFFFF3D5A), Color(0xFFFF8A00)],
                       )
                     : null,
                 color: selected
@@ -330,9 +332,7 @@ class DiscountProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ProductClothesScreen(
-              product: product,
-            ),
+            builder: (_) => ProductClothesScreen(product: product),
           ),
         );
       },
@@ -402,13 +402,29 @@ class DiscountProductCard extends StatelessWidget {
                     Positioned(
                       top: 10,
                       right: 10,
-                      child: CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Colors.white.withValues(alpha: 0.9),
-                        child: const Icon(
-                          Icons.favorite_border,
-                          size: 19,
-                          color: Colors.black45,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (await AuthService.isLoggedIn()) {
+                            // Toggle wishlist logic here
+                          } else {
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        child: CircleAvatar(
+                          radius: 17,
+                          backgroundColor: Colors.white.withValues(alpha: 0.9),
+                          child: const Icon(
+                            Icons.favorite_border,
+                            size: 19,
+                            color: Colors.black45,
+                          ),
                         ),
                       ),
                     ),
@@ -721,7 +737,7 @@ final Map<String, List<Map<String, String>>> discountProducts = {
       'rating': "4.3",
       'sold': "126",
       'reviews': "92",
-    }
+    },
   ],
   "20%": [
     {
@@ -943,7 +959,7 @@ final Map<String, List<Map<String, String>>> discountProducts = {
       'rating': "4.4",
       'sold': "142",
       'reviews': "105",
-    }
+    },
   ],
   "30%": [
     {
@@ -1165,7 +1181,7 @@ final Map<String, List<Map<String, String>>> discountProducts = {
       'rating': "4.5",
       'sold': "154",
       'reviews': "118",
-    }
+    },
   ],
   "40%": [
     {
@@ -1387,7 +1403,7 @@ final Map<String, List<Map<String, String>>> discountProducts = {
       'rating': "4.8",
       'sold': "112",
       'reviews': "86",
-    }
+    },
   ],
   "50%": [
     {
@@ -1609,7 +1625,6 @@ final Map<String, List<Map<String, String>>> discountProducts = {
       'rating': "4.8",
       'sold': "39",
       'reviews': "29",
-    }
+    },
   ],
 };
-

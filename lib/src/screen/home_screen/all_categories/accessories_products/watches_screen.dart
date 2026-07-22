@@ -1,12 +1,68 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import 'package:flutter/material.dart';
+
+
+
+
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
+
+
+
+
+
+
+
 import '../../../../../constants/app_color.dart';
+
+
+
+
+
+
+
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_watch_screen.dart';
+
+
+
+
+
+
+
 import '../../filter/filter_screen.dart';
+
+
+
+
+
+
+
+import '../../product_detail/product_watch_screen.dart';
+
+
+
+
+
+
+
 import '../../shopping_bag/shopping_bag_screen.dart';
+
+
+
+
+
+
+
 
 class WatchesScreen extends StatefulWidget {
   final String categoryName;
@@ -83,7 +139,7 @@ class _WatchesScreenState extends State<WatchesScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
@@ -116,6 +172,7 @@ class _WatchesScreenState extends State<WatchesScreen> {
       ),
     );
   }
+
   Widget _buildSearchBar(bool isDark) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 5),
@@ -132,10 +189,10 @@ class _WatchesScreenState extends State<WatchesScreen> {
               ),
               child: TextField(
                 controller: _searchController,
-                onChanged:  _onSearchChanged,
+                onChanged: _onSearchChanged,
                 style: TextStyle(color: isDark ? Colors.white : Colors.black),
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(
                     color: isDark ? Colors.white38 : Colors.grey,
                     fontSize: 14,
@@ -146,12 +203,12 @@ class _WatchesScreenState extends State<WatchesScreen> {
                   ),
                   suffixIcon: _searchQuery.isNotEmpty
                       ? IconButton(
-                    icon: const Icon(Icons.clear, size: 20),
-                    onPressed: () {
-                      _searchController.clear();
-                      _onSearchChanged("");
-                    },
-                  )
+                          icon: const Icon(Icons.clear, size: 20),
+                          onPressed: () {
+                            _searchController.clear();
+                            _onSearchChanged("");
+                          },
+                        )
                       : null,
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(vertical: 12),
@@ -204,54 +261,54 @@ class _WatchesScreenState extends State<WatchesScreen> {
     );
   }
 
-  Widget _buildCartIcon(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 14),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          IconButton(
-            splashRadius: 24,
-            icon: Icon(
-              Icons.shopping_bag_outlined,
-              color: isDark ? Colors.white : Colors.black,
-              size: 30,
-            ),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ShoppingBagScreen(),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            top: -2,
-            child: Container(
-              width: 22,
-              height: 22,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(
-                  color: isDark ? const Color(0xFF121212) : Colors.white,
-                  width: 2,
-                ),
-              ),
-              child:  Center(
-                child: TextWidget(
-                  '0',
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildCartIcon(bool isDark) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(right: 14),
+  //     child: Stack(
+  //       clipBehavior: Clip.none,
+  //       children: [
+  //         IconButton(
+  //           splashRadius: 24,
+  //           icon: Icon(
+  //             Icons.shopping_bag_outlined,
+  //             color: isDark ? Colors.white : Colors.black,
+  //             size: 30,
+  //           ),
+  //           onPressed: () => Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const ShoppingBagScreen(),
+  //             ),
+  //           ),
+  //         ),
+  //         Positioned(
+  //           right: 0,
+  //           top: -2,
+  //           child: Container(
+  //             width: 22,
+  //             height: 22,
+  //             decoration: BoxDecoration(
+  //               color: Colors.red,
+  //               borderRadius: BorderRadius.circular(100),
+  //               border: Border.all(
+  //                 color: isDark ? const Color(0xFF121212) : Colors.white,
+  //                 width: 2,
+  //               ),
+  //             ),
+  //             child: Center(
+  //               child: TextWidget(
+  //                 '0',
+  //                 color: Colors.white,
+  //                 fontSize: 10,
+  //                 fontWeight: FontWeight.w700,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   PreferredSizeWidget _buildPromoBar(bool isDark) {
     return PreferredSize(
@@ -289,7 +346,7 @@ class _WatchesScreenState extends State<WatchesScreen> {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>  ProductWatchScreen(product: item),
+          builder: (context) => ProductWatchScreen(product: item),
         ),
       ),
       child: Column(
@@ -327,11 +384,25 @@ class _WatchesScreenState extends State<WatchesScreen> {
                     Positioned(
                       top: 10,
                       right: 10,
+                      child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
                       child: Icon(
                         Icons.favorite_border,
                         size: 20,
                         color: isDark ? Colors.white60 : Colors.black26,
-                      ),
+                      )
+                    ),
                     ),
                   ],
                 ),
@@ -345,7 +416,7 @@ class _WatchesScreenState extends State<WatchesScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 14,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -388,7 +459,7 @@ class _WatchesScreenState extends State<WatchesScreen> {
                     ),
                     Expanded(
                       child: Text(
-                        "${item['sold'] ?? '0'} sold",
+                        '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                         style: TextStyle(color: subTextColor, fontSize: 11),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -425,8 +496,8 @@ class _WatchesScreenState extends State<WatchesScreen> {
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "No watches available"
-                : "No results for '$_searchQuery'",
+                ? "No watches available".tr
+                : "No results for '$_searchQuery'".tr,
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -435,4 +506,14 @@ class _WatchesScreenState extends State<WatchesScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
 

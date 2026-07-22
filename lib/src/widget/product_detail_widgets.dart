@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DeliveryReturnsInfo extends StatelessWidget {
   final bool isDark;
@@ -129,6 +130,13 @@ class ProductFooter extends StatelessWidget {
   final bool isDark;
   const ProductFooter({super.key, required this.isDark});
 
+  Future<void> _launchTelegram() async {
+    final Uri url = Uri.parse('https://t.me/+QWy3vO16nphjODBl');
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      debugPrint('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -187,7 +195,12 @@ class ProductFooter extends StatelessWidget {
           isDark,
         ),
         _buildFooterItem(Icons.phone_outlined, "(+855) 011 820 595", isDark),
-        _buildFooterItem(Icons.send, "Telegram", isDark),
+        _buildFooterItem(
+          Icons.send,
+          "Telegram",
+          isDark,
+          onTap: _launchTelegram,
+        ),
         const SizedBox(height: 30),
         _buildSectionTitle("WE ACCEPT", isDark),
         const SizedBox(height: 10),
@@ -208,21 +221,24 @@ class ProductFooter extends StatelessWidget {
     );
   }
 
-  Widget _buildFooterItem(IconData icon, String title, bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: isDark ? Colors.white70 : Colors.black87),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextWidget(
-              title.tr,
-              fontSize: 14,
-              color: isDark ? Colors.white70 : Colors.black87,
+  Widget _buildFooterItem(IconData icon, String title, bool isDark, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        child: Row(
+          children: [
+            Icon(icon, size: 20, color: isDark ? Colors.white70 : Colors.black87),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextWidget(
+                title.tr,
+                fontSize: 14,
+                color: isDark ? Colors.white70 : Colors.black87,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
 import 'package:flutter/material.dart';
+
+
+
 import 'package:shopping_app/src/widget/text_widget.dart';
+
+
+
 import '../../../../constants/app_color.dart';
+
+
+
+import '../../../../constants/string_extension.dart';
+
+
+
 
 class StyleProductScreen extends StatefulWidget {
   final String imageUrl;
@@ -47,7 +63,7 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: textColor),
         title: TextWidget(
-          "Style Product",
+          "Styles".tr,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: textColor,
@@ -94,11 +110,9 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
                     color: isDark ? Colors.white70 : Colors.black54,
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    "Search style products...",
-                    style: TextStyle(
-                      color: isDark ? Colors.white70 : Colors.black54,
-                    ),
+                  TextWidget(
+                    "Search style products...".tr,
+                    color: isDark ? Colors.white70 : Colors.black54,
                   ),
                 ],
               ),
@@ -107,9 +121,10 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
           const SizedBox(width: 12),
           Icon(Icons.tune, size: 20, color: textColor),
           const SizedBox(width: 4),
-          Text(
-            "filter",
-            style: TextStyle(fontWeight: FontWeight.bold, color: textColor),
+          TextWidget(
+            "filter".tr,
+            fontWeight: FontWeight.bold,
+            color: textColor,
           ),
         ],
       ),
@@ -156,7 +171,7 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: TextWidget(
-                filter,
+                filter.tr,
                 fontWeight: FontWeight.bold,
                 color: selected
                     ? AppColor.white
@@ -170,14 +185,14 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
   }
 
   Widget _buildSectionHeader(bool isDark) {
-    final textColor = isDark ? Colors.white : AppColor.black;
+    final textColor = isDark ? Colors.white : Colors.black;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(18, 14, 18, 8),
       child: Row(
         children: [
           TextWidget(
-            selectedStyle == "ALL" ? "All Styles" : "$selectedStyle Style",
+            selectedStyle == "ALL" ? "All Styles".tr : "$selectedStyle ${'Style'.tr}",
             fontSize: 22,
             fontWeight: FontWeight.w900,
             color: textColor,
@@ -190,7 +205,7 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
               borderRadius: BorderRadius.circular(30),
             ),
             child: TextWidget(
-              "${currentProducts.length} items",
+              "${currentProducts.length} ${'items'.tr}",
               fontSize: 12,
               fontWeight: FontWeight.bold,
               color: textColor,
@@ -207,7 +222,7 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
     if (products.isEmpty) {
       return Center(
         child: TextWidget(
-          "No items found",
+          "No items found".tr,
           color: isDark ? Colors.white38 : AppColor.grey,
           fontSize: 16,
         ),
@@ -326,13 +341,27 @@ class StyleProductCard extends StatelessWidget {
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: CircleAvatar(
-                      radius: 17,
-                      backgroundColor: Colors.white.withValues(alpha: 0.9),
-                      child: const Icon(
-                        Icons.favorite_border,
-                        size: 19,
-                        color: Colors.black45,
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Toggle wishlist logic here
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
+                      child: CircleAvatar(
+                        radius: 17,
+                        backgroundColor: Colors.white.withValues(alpha: 0.9),
+                        child: const Icon(
+                          Icons.favorite_border,
+                          size: 19,
+                          color: Colors.black45,
+                        ),
                       ),
                     ),
                   ),
@@ -2008,3 +2037,6 @@ final Map<String, List<Map<String, String>>> styleProduct = {
     },
   ],
 };
+
+
+

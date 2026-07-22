@@ -1,12 +1,68 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import 'package:flutter/material.dart';
+
+
+
+
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
+
+
+
+
+
+
+
 import '../../../../../constants/app_color.dart';
+
+
+
+
+
+
+
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_shoes_screen.dart';
+
+
+
+
+
+
+
 import '../../filter/filter_screen.dart';
+
+
+
+
+
+
+
+import '../../product_detail/product_shoes_screen.dart';
+
+
+
+
+
+
+
 import '../../shopping_bag/shopping_bag_screen.dart';
+
+
+
+
+
+
+
 
 class SneakersScreen extends StatefulWidget {
   final String categoryName;
@@ -89,7 +145,7 @@ class _SneakersScreenState extends State<SneakersScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
@@ -221,7 +277,7 @@ class _SneakersScreenState extends State<SneakersScreen> {
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -341,11 +397,25 @@ class _SneakersScreenState extends State<SneakersScreen> {
                         backgroundColor: isDark
                             ? Colors.black.withValues(alpha: 0.2)
                             : Colors.white.withValues(alpha: 0.9),
-                        child: Icon(
+                        child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
+                      child: Icon(
                           Icons.favorite_border,
                           size: 18,
                           color: isDark ? Colors.white : Colors.black,
-                        ),
+                        )
+                    ),
                       ),
                     ),
                   ],
@@ -391,7 +461,7 @@ class _SneakersScreenState extends State<SneakersScreen> {
                       child: TextWidget("|", color: subTextColor.withValues(alpha: 0.3)),
                     ),
                     TextWidget(
-                      "${item['sold'] ?? '0'} ${'sold'.tr}",
+                      '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                       color: subTextColor,
                       fontSize: 11,
                     ),
@@ -424,7 +494,7 @@ class _SneakersScreenState extends State<SneakersScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No sneakers found".tr : "${'No results for'.tr} '$_searchQuery'",
+            _searchQuery.isEmpty ? "No sneakers found".tr : "'No results for {0}'.trArgs([_searchQuery])",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -433,4 +503,15 @@ class _SneakersScreenState extends State<SneakersScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 

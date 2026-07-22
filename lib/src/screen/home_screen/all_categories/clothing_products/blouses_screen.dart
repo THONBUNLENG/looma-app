@@ -1,13 +1,69 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import 'package:flutter/material.dart';
+
+
+
+
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
 
+
+
+
+
+
+
+
 import '../../../../../constants/app_color.dart';
+
+
+
+
+
+
+
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_clothes_screen.dart';
+
+
+
+
+
+
+
 import '../../filter/filter_screen.dart';
+
+
+
+
+
+
+
+import '../../product_detail/product_clothes_screen.dart';
+
+
+
+
+
+
+
 import '../../shopping_bag/shopping_bag_screen.dart';
+
+
+
+
+
+
+
 
 class BlousesScreen extends StatefulWidget {
   final String categoryName;
@@ -90,7 +146,7 @@ class _BlousesScreenState extends State<BlousesScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
@@ -222,7 +278,7 @@ class _BlousesScreenState extends State<BlousesScreen> {
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -334,11 +390,25 @@ class _BlousesScreenState extends State<BlousesScreen> {
                     Positioned(
                       top: 10,
                       right: 10,
+                      child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
                       child: Icon(
                         Icons.favorite_border,
                         size: 20,
                         color: isDark ? Colors.white60 : Colors.black26,
-                      ),
+                      )
+                    ),
                     ),
                   ],
                 ),
@@ -384,7 +454,7 @@ class _BlousesScreenState extends State<BlousesScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} ${'sold'.tr}",
+                        '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -419,7 +489,7 @@ class _BlousesScreenState extends State<BlousesScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? 'No Blouses found'.tr : "${'No results found for'.tr} '$_searchQuery'",
+            _searchQuery.isEmpty ? 'No Blouses found'.tr : "'No results found for {0}'.trArgs([_searchQuery])",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -428,4 +498,15 @@ class _BlousesScreenState extends State<BlousesScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 

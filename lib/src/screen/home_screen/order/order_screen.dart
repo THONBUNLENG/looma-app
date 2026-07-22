@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 
+
 import '../../../widget/text_widget.dart';
+
 import '../notification_page.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
+
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -99,58 +102,7 @@ class _OrderScreenState extends State<OrderScreen> {
               fontStyle: FontStyle.italic,
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 14),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  IconButton(
-                    splashRadius: 24,
-                    icon: Icon(
-                      Icons.shopping_bag_outlined,
-                      color: isDark ? Colors.white : Colors.black,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ShoppingBagScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  Positioned(
-                    right: 0,
-                    top: -2,
-                    child: Container(
-                      width: 22,
-                      height: 22,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(100),
-                        border: Border.all(
-                          color: isDark
-                              ? const Color(0xFF121212)
-                              : Colors.white,
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: TextWidget(
-                          '0',
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          actions: [const CartBadge()],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(56),
             child: Column(
@@ -362,3 +314,6 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 }
+
+
+

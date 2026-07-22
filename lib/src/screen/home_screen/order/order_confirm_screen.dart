@@ -1,11 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
+import 'package:shopping_app/src/model/order_model.dart';
+import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
 import 'package:shopping_app/src/screen/home_screen/shopping_bag/checkout_payment_screen.dart';
-import 'package:shopping_app/src/screen/setting/address/address_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
+
+import '../address/address_screen.dart';
 
 class OrderConfirmScreen extends StatefulWidget {
   final List<Map<String, dynamic>> items;
@@ -20,6 +24,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
   final TextEditingController _promoController = TextEditingController();
   int _selectedDelivery = 0;
   int _selectedPayment = 0;
+  bool _isOrdering = false;
 
   @override
   void dispose() {
@@ -62,19 +67,14 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: isDark ? Colors.white : Colors.black,
-            size: 20,
-          ),
-          onPressed: () => Navigator.pop(context),
+        leading: BackButton(
+          color: isDark ? Colors.white : Colors.black,
         ),
         title: TextWidget(
           "Order Confirm".tr,
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: AppColor.pink100Color,
+          color: isDark ? Colors.white : Colors.black,
         ),
       ),
       body: SingleChildScrollView(
@@ -198,7 +198,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
         children: [
           _buildRadioOption(
             "Free delivery សម្រាប់ អតិថិជននៅភ្នំពេញ រាល់ការ បញ្ជាទិញចាប់ពី 10\$ ឡើងទៅ"
-                .tr,
+               .tr,
             0,
             _selectedDelivery,
             (v) => setState(() => _selectedDelivery = v!),
@@ -468,19 +468,22 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             width: 180,
             height: 50,
             child: ElevatedButton(
-              onPressed: () {
-                if (_selectedPayment == 1) {
-                  // Bank transfer selected
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CheckoutPaymentScreen(),
-                    ),
-                  );
-                } else {
-                  // Cash On Delivery - placeholder action
-                }
-              },
+              onPressed: _isOrdering
+                  ? null
+                  : () async {
+                      if (_selectedPayment == 1) {
+                        // Bank transfer selected
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CheckoutPaymentScreen(),
+                          ),
+                        );
+                      } else {
+                        // Cash On Delivery - save to Firestore
+                        await _placeOrder();
+                      }
+                    },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.pink100Color,
                 shape: RoundedRectangleBorder(
@@ -488,15 +491,122 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
                 ),
                 elevation: 0,
               ),
-              child: TextWidget(
-                "Order Now".tr,
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              child: _isOrdering
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : TextWidget(
+                      "Order Now".tr,
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Future<void> _placeOrder() async {
+    final profile = ProfileManager();
+    final address = profile.defaultAddress;
+
+    if (address == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Please add a receive address first".tr),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isOrdering = true);
+
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid ?? 'guest_user';
+      
+      final order = OrderModel(
+        userId: userId,
+        items: widget.items,
+        totalAmount: _total,
+        status: 'Processing',
+        paymentMethod: _selectedPayment == 0 ? 'Cash On Delivery' : 'Bank Transfer',
+        deliveryMethod: _selectedDelivery == 0 ? 'Free Delivery' : 'Standard Delivery',
+        address: address,
+        createdAt: DateTime.now(),
+      );
+
+      await FirestoreService().createOrder(order);
+
+      if (!mounted) return;
+
+      _showSuccessDialog();
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Failed to place order: $e".tr),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _isOrdering = false);
+    }
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 20),
+            const Icon(Icons.check_circle, color: Colors.green, size: 80),
+            const SizedBox(height: 20),
+            TextWidget(
+              "Order Successful!".tr,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 10),
+            TextWidget(
+              "Your order has been placed successfully.".tr,
+              textAlign: TextAlign.center,
+              color: Colors.grey,
+            ),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.pink100Color,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: TextWidget(
+                  "Go to Home".tr,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

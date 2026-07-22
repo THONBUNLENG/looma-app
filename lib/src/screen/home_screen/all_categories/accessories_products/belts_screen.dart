@@ -1,22 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
-
 import '../../../../../constants/app_color.dart';
+import '../../../../model/product_model.dart';
+import '../../../../network/repository/product_repository.dart';
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_bag_screen.dart';
 import '../../filter/filter_screen.dart';
+import '../../product_detail/product_bag_screen.dart';
 import '../../shopping_bag/shopping_bag_screen.dart';
+
 
 class BeltsScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> belts;
 
   const BeltsScreen({
     super.key,
     required this.categoryName,
-    required this.belts,
   });
 
   @override
@@ -26,26 +28,7 @@ class BeltsScreen extends StatefulWidget {
 class _BeltsScreenState extends State<BeltsScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = "";
-  late List<Map<String, dynamic>> _filteredBelts;
-
-  @override
-  void initState() {
-    super.initState();
-    _filteredBelts = widget.belts;
-  }
-
-  void _onSearchChanged(String query) {
-    setState(() {
-      _searchQuery = query;
-      _filteredBelts = widget.belts
-          .where(
-            (belt) => (belt['title'] ?? '').toLowerCase().contains(
-              query.toLowerCase(),
-            ),
-          )
-          .toList();
-    });
-  }
+  final ProductRepository _productRepository = ProductRepository();
 
   @override
   void dispose() {
@@ -84,81 +67,52 @@ class _BeltsScreenState extends State<BeltsScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
         children: [
           _buildSearchBar(context, isDark),
           Expanded(
-            child: _filteredBelts.isEmpty
-                ? _buildEmptyState(isDark)
-                : GridView.builder(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
-                    ),
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.60,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 20,
-                        ),
-                    itemCount: _filteredBelts.length,
-                    itemBuilder: (context, index) {
-                      final item = _filteredBelts[index];
-                      return _buildBeltCard(context, item, isDark, index);
-                    },
+            child: StreamBuilder<List<ProductModel>>(
+              stream: _productRepository.getProductsStream('belts'),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Center(child: TextWidget("Error loading products".tr));
+                }
+
+                final products = snapshot.data ?? [];
+                final filteredBelts = _searchQuery.isEmpty
+                    ? products
+                    : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+                if (filteredBelts.isEmpty) {
+                  return _buildEmptyState(isDark);
+                }
+
+                return GridView.builder(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
                   ),
-          ),
-        ],
-      ),
-    );
-  }
-  Widget _buildCartIcon(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 14),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          IconButton(
-            splashRadius: 24,
-            icon: Icon(
-              Icons.shopping_bag_outlined,
-              color: isDark ? Colors.white : Colors.black,
-              size: 30,
-            ),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ShoppingBagScreen(),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            top: -2,
-            child: Container(
-              width: 22,
-              height: 22,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(
-                  color: isDark ? const Color(0xFF121212) : Colors.white,
-                  width: 2,
-                ),
-              ),
-              child:  Center(
-                child: TextWidget(
-                  '0',
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.60,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 20,
+                      ),
+                  itemCount: filteredBelts.length,
+                  itemBuilder: (context, index) {
+                    final item = filteredBelts[index];
+                    return _buildBeltCard(context, item, isDark, index);
+                  },
+                );
+              },
             ),
           ),
         ],
@@ -207,7 +161,11 @@ class _BeltsScreenState extends State<BeltsScreen> {
               ),
               child: TextField(
                 controller: _searchController,
-                onChanged: _onSearchChanged,
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
                 style: TextStyle(
                   color: textColor,
                   fontSize: 14,
@@ -215,7 +173,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -230,8 +188,10 @@ class _BeltsScreenState extends State<BeltsScreen> {
                             color: hintColor,
                           ),
                           onPressed: () {
-                            _searchController.clear();
-                            _onSearchChanged("");
+                            setState(() {
+                              _searchController.clear();
+                              _searchQuery = "";
+                            });
                           },
                         )
                       : null,
@@ -276,21 +236,23 @@ class _BeltsScreenState extends State<BeltsScreen> {
 
   Widget _buildBeltCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-    final String imageUrl =
-        (item['images'] != null && (item['images'] as List).isNotEmpty)
-        ? item['images'][0]
-        : (item['image'] ?? '');
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = '\$${item.price.toStringAsFixed(2)}';
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ProductBagScreen(product: item),
+          builder: (context) => ProductBagScreen(product: item.toMap()),
         ),
       ),
       child: Column(
@@ -308,7 +270,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
                   children: [
                     Positioned.fill(
                       child: Hero(
-                        tag: imageUrl + index.toString(),
+                        tag: 'belt_${item.id ?? index}',
                         child: CachedNetworkImage(
                           imageUrl: imageUrl,
                           fit: BoxFit.contain,
@@ -326,11 +288,25 @@ class _BeltsScreenState extends State<BeltsScreen> {
                     Positioned(
                       top: 10,
                       right: 10,
+                      child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
                       child: Icon(
-                        Icons.favorite_border,
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
                         size: 20,
-                        color: isDark ? Colors.white60 : Colors.black26,
-                      ),
+                        color: isFavorite ? Colors.redAccent : (isDark ? Colors.white60 : Colors.black26),
+                      )
+                    ),
                     ),
                   ],
                 ),
@@ -339,7 +315,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           ),
           const SizedBox(height: 12),
           TextWidget(
-            "LOOMA",
+            "LOOMA".tr.toUpperCase(),
             fontSize: 14,
             letterSpacing: 1.2,
             fontWeight: FontWeight.bold,
@@ -347,7 +323,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           ),
           const SizedBox(height: 4),
           TextWidget(
-            item['title']?.toString().tr ?? 'Classic Belt'.tr,
+            title.tr,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             fontSize: 15,
@@ -360,20 +336,20 @@ class _BeltsScreenState extends State<BeltsScreen> {
               const Icon(Icons.star_rounded, color: Colors.orange, size: 16),
               const SizedBox(width: 4),
               TextWidget(
-                item['rating'] ?? '4.8',
+                rating,
                 color: subTextColor,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
               Text(
-                " | ${item['sold'] ?? '0'} ${'sold'.tr}",
+                ' | {0} sold'.trArgs([sold]),
                 style: TextStyle(color: subTextColor, fontSize: 11),
               ),
             ],
           ),
           const SizedBox(height: 4),
           TextWidget(
-            item['price'] ?? '\$0.00',
+            price,
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: AppColor.primaryColor,
@@ -395,7 +371,7 @@ class _BeltsScreenState extends State<BeltsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            "${'No results found for'.tr} '$_searchQuery'",
+            "No results found for '{0}'".trArgs([_searchQuery]),
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -404,4 +380,3 @@ class _BeltsScreenState extends State<BeltsScreen> {
     );
   }
 }
-

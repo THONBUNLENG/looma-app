@@ -7,7 +7,7 @@ import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../widget/show_dialog.dart';
 import '../../list_url.dart';
-import '../card_detail/product_shoes_screen.dart';
+import '../product_detail/product_shoes_screen.dart';
 
 
 class SearchScreen extends StatefulWidget {

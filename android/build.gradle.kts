@@ -4,7 +4,6 @@ allprojects {
         mavenCentral()
     }
 }
-
 val newBuildDir: Directory =
     rootProject.layout.buildDirectory
         .dir("../../build")
@@ -15,8 +14,25 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
+}
+
+subprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        val javaTask = project.tasks.withType<JavaCompile>().findByName(name.replace("Kotlin", "JavaWithJavac"))
+        val javaTarget = javaTask?.targetCompatibility ?: "17"
+        val target = when (javaTarget.toString()) {
+            "1.8" -> org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8
+            "11" -> org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+            "17" -> org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+            else -> org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        }
+        compilerOptions {
+            jvmTarget.set(target)
+        }
+    }
 }
 
 tasks.register<Delete>("clean") {

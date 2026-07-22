@@ -1,38 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_lingerie_screen.dart';
 import '../filter/filter_screen.dart';
-
+import '../product_detail/product_lingerie_screen.dart';
 
 class LingerieScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> lingerie;
-  final List<Map<String, dynamic>> bodysuitProduct;
-  final List<Map<String, dynamic>> nightwearProducts;
-  final List<Map<String, dynamic>> pantyProducts;
-  final List<Map<String, dynamic>> shapewearProducts;
-  final List<Map<String, dynamic>> sockProducts;
-  final List<Map<String, dynamic>> tightsProducts;
-  final List<Map<String, dynamic>> braProducts;
-  final List<Map<String, dynamic>> bridalLingerieProducts;
 
   const LingerieScreen({
     super.key,
     required this.categoryName,
-    required this.lingerie,
-    required this.bodysuitProduct,
-    required this.nightwearProducts,
-    required this.pantyProducts,
-    required this.shapewearProducts,
-    required this.sockProducts,
-    required this.tightsProducts,
-    required this.braProducts,
-    required this.bridalLingerieProducts,
   });
 
   @override
@@ -44,8 +26,20 @@ class _LingerieScreenState extends State<LingerieScreen>
   late TabController _tabController;
   late TextEditingController _searchController;
   String _searchQuery = "";
+  final ProductRepository _productRepository = ProductRepository();
 
   static const int _tabCount = 9;
+  final List<String> _categories = [
+    "lingerie",
+    "bodysuits",
+    "nightwear",
+    "panties",
+    "shapewear",
+    "socks",
+    "tights",
+    "bra",
+    "bridal",
+  ];
 
   @override
   void initState() {
@@ -59,31 +53,6 @@ class _LingerieScreenState extends State<LingerieScreen>
     _tabController.dispose();
     _searchController.dispose();
     super.dispose();
-  }
-
-  List<List<Map<String, dynamic>>> get _tabItems {
-    final List<List<Map<String, dynamic>>> allTabs = [
-      widget.lingerie,
-      widget.bodysuitProduct,
-      widget.nightwearProducts,
-      widget.pantyProducts,
-      widget.shapewearProducts,
-      widget.sockProducts,
-      widget.tightsProducts,
-      widget.braProducts,
-      widget.bridalLingerieProducts,
-    ];
-
-    if (_searchQuery.isEmpty) {
-      return allTabs;
-    }
-
-    return allTabs.map((list) {
-      return list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        return title.contains(_searchQuery.toLowerCase());
-      }).toList();
-    }).toList();
   }
 
   @override
@@ -142,34 +111,43 @@ class _LingerieScreenState extends State<LingerieScreen>
           ),
         ),
       ),
-      body: Column(
-        children: [
-          AnimatedBuilder(
-            animation: Listenable.merge([_tabController, _searchController]),
-            builder: (context, _) {
-              final items = _tabItems[_tabController.index];
-              final count = items.length;
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(_tabCount, (index) {
+          return StreamBuilder<List<ProductModel>>(
+            stream: _productRepository.getProductsStream(_categories[index]),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: TextWidget(
-                  "${count} ${"items found".tr}",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
+              final products = snapshot.data ?? [];
+              final filteredProducts = _searchQuery.isEmpty
+                  ? products
+                  : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: TextWidget(
+                      '{0} items found'.trArgs([filteredProducts.length.toString()]),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildLingerieGrid(filteredProducts, isDark),
+                  ),
+                ],
               );
             },
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: _tabItems
-                  .map((items) => _buildLingerieGrid(items, isDark))
-                  .toList(),
-            ),
-          ),
-        ],
+          );
+        }),
       ),
     );
   }
@@ -209,7 +187,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName.tr}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName.tr]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -273,7 +251,7 @@ class _LingerieScreenState extends State<LingerieScreen>
     );
   }
 
-  Widget _buildLingerieGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildLingerieGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -297,29 +275,24 @@ class _LingerieScreenState extends State<LingerieScreen>
 
   Widget _buildLingerieCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Lingerie Piece').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final String rating = (item['rating'] ?? '4.8').toString();
-    final String sold = (item['sold'] ?? '0').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = "\$${item.price.toStringAsFixed(2)}";
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductLingerieScreen(product: item),
+            builder: (context) => ProductLingerieScreen(product: item.toMap()),
           ),
         );
       },
@@ -349,7 +322,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                     Positioned.fill(
                       child: imageUrl.isNotEmpty
                           ? Hero(
-                              tag: 'lingerie_${item['id'] ?? index}',
+                              tag: 'lingerie_${item.id ?? index}',
                               child: CachedNetworkImage(
                                 imageUrl: imageUrl,
                                 fit: BoxFit.cover,
@@ -387,9 +360,9 @@ class _LingerieScreenState extends State<LingerieScreen>
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
+                          // setState(() {
+                          //   item['is_favorite'] = !isFavorite;
+                          // });
                         },
                         child: CircleAvatar(
                           radius: 18,
@@ -455,7 +428,7 @@ class _LingerieScreenState extends State<LingerieScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold ${"sold".tr}",
+                        '{0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -502,4 +475,3 @@ class _LingerieScreenState extends State<LingerieScreen>
     );
   }
 }
-

@@ -1,60 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-
 import '../../../../constants/app_color.dart';
-import '../card_detail/product_clothes_screen.dart';
+import '../../../logic/bloc/product/product_bloc.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../filter/filter_screen.dart';
-
+import '../product_detail/product_clothes_screen.dart';
 
 class ClothesScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> clothes;
-  final List<Map<String, dynamic>> polos;
-  final List<Map<String, dynamic>> activewear;
-  final List<Map<String, dynamic>> jackets;
-  final List<Map<String, dynamic>> jeans;
-  final List<Map<String, dynamic>> joggers;
-  final List<Map<String, dynamic>> leggings;
-  final List<Map<String, dynamic>> pants;
-  final List<Map<String, dynamic>> shirts;
-  final List<Map<String, dynamic>> skirt;
-  final List<Map<String, dynamic>> suits;
-  final List<Map<String, dynamic>> sweatshirts;
-  final List<Map<String, dynamic>> tShirts;
-  final List<Map<String, dynamic>> blouses;
-  final List<Map<String, dynamic>> cardigans;
-  final List<Map<String, dynamic>> coats;
-  final List<Map<String, dynamic>> dresses;
-  final List<Map<String, dynamic>> essentialHoodies;
-  final List<Map<String, dynamic>> shorts;
-  final List<Map<String, dynamic>> skirts;
 
   const ClothesScreen({
     super.key,
     this.categoryName = "Clothes",
-    required this.clothes,
-    required this.polos,
-    required this.activewear,
-    required this.jackets,
-    required this.jeans,
-    required this.joggers,
-    required this.leggings,
-    required this.pants,
-    required this.shirts,
-    required this.skirt,
-    required this.suits,
-    required this.sweatshirts,
-    required this.tShirts,
-    required this.blouses,
-    required this.cardigans,
-    required this.coats,
-    required this.dresses,
-    required this.essentialHoodies,
-    required this.shorts,
-    required this.skirts,
   });
 
   @override
@@ -65,60 +27,61 @@ class _ClothesScreenState extends State<ClothesScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
   late TextEditingController _searchController;
+  late ProductBloc _productBloc;
   String _searchQuery = "";
 
-  static const int _tabCount = 20;
+  // Map tab index to Firestore category names
+  final List<String> _categoryMap = [
+    'activewear', // Using first category as "All" for now or specifically 'activewear'
+    'polos',
+    'activewear',
+    'jackets',
+    'jeans',
+    'joggers',
+    'leggings',
+    'pants',
+    'shirts',
+    'skirt',
+    'suits',
+    'sweatshirts',
+    'tShirts',
+    'blouses',
+    'cardigans',
+    'coats',
+    'dresses',
+    'hoodies',
+    'shorts',
+    'skirts',
+  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _tabCount, vsync: this);
+    _tabController = TabController(length: _categoryMap.length, vsync: this);
     _searchController = TextEditingController();
+    _productBloc = ProductBloc(ProductRepository());
+    
+    // Initial fetch
+    _fetchProducts();
+
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        _fetchProducts();
+      }
+    });
+  }
+
+  void _fetchProducts() {
+    final category = _categoryMap[_tabController.index];
+    _productBloc.add(FetchProductsByCategory(category));
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _productBloc.close();
     super.dispose();
-  }
-
-  List<List<Map<String, dynamic>>> get _tabItems {
-    final List<List<Map<String, dynamic>>> allTabs = [
-      widget.clothes,
-      widget.polos,
-      widget.activewear,
-      widget.jackets,
-      widget.jeans,
-      widget.joggers,
-      widget.leggings,
-      widget.pants,
-      widget.shirts,
-      widget.skirt,
-      widget.suits,
-      widget.sweatshirts,
-      widget.tShirts,
-      widget.blouses,
-      widget.cardigans,
-      widget.coats,
-      widget.dresses,
-      widget.essentialHoodies,
-      widget.shorts,
-      widget.skirts,
-    ];
-
-    if (_searchQuery.isEmpty) {
-      return allTabs;
-    }
-
-    return allTabs.map((list) {
-      return list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        final description = (item['description'] ?? '').toString().toLowerCase();
-        return title.contains(_searchQuery.toLowerCase()) || 
-               description.contains(_searchQuery.toLowerCase());
-      }).toList();
-    }).toList();
   }
 
   @override
@@ -127,95 +90,104 @@ class _ClothesScreenState extends State<ClothesScreen>
     final bgColor = isDark ? const Color(0xFF121212) : AppColor.white;
     final textColor = isDark ? Colors.white : Colors.black;
 
-    return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
+    return BlocProvider.value(
+      value: _productBloc,
+      child: Scaffold(
         backgroundColor: bgColor,
-        elevation: 0,
-        centerTitle: true,
-        iconTheme: IconThemeData(color: textColor),
-        title: TextWidget(
-          widget.categoryName.tr.toUpperCase(),
-          fontSize: 18,
-          fontWeight: FontWeight.w900,
-          color: textColor,
-          letterSpacing: 1.2,
-        ),
-        actions: [
-          CartBadge(),
-          SizedBox(width: 8),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(115),
-          child: Column(
-            children: [
-              _buildSearchBar(context, isDark),
-              TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                indicatorColor: textColor,
-                labelColor: textColor,
-                unselectedLabelColor: Colors.grey,
-                indicatorWeight: 3,
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-                tabs: [
-                  Tab(text: "All".tr),
-                  Tab(text: "Polos".tr),
-                  Tab(text: "Activewear".tr),
-                  Tab(text: "Jackets".tr),
-                  Tab(text: "Jeans".tr),
-                  Tab(text: "Joggers".tr),
-                  Tab(text: "Leggings".tr),
-                  Tab(text: "Pants".tr),
-                  Tab(text: "Shirts".tr),
-                  Tab(text: "Skirt".tr),
-                  Tab(text: "Suits".tr),
-                  Tab(text: "Sweatshirts".tr),
-                  Tab(text: "T-Shirts".tr),
-                  Tab(text: "Blouses".tr),
-                  Tab(text: "Cardigans".tr),
-                  Tab(text: "Coats".tr),
-                  Tab(text: "Dresses".tr),
-                  Tab(text: "Essential Hoodies".tr),
-                  Tab(text: "Shorts".tr),
-                  Tab(text: "Skirts".tr),
-                ],
-              ),
-            ],
+        appBar: AppBar(
+          backgroundColor: bgColor,
+          elevation: 0,
+          centerTitle: true,
+          iconTheme: IconThemeData(color: textColor),
+          title: TextWidget(
+            widget.categoryName.tr.toUpperCase(),
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
+            color: textColor,
+            letterSpacing: 1.2,
           ),
-        ),
-      ),
-      body: Column(
-        children: [
-          AnimatedBuilder(
-            animation: Listenable.merge([_tabController, _searchController]),
-            builder: (context, _) {
-              final items = _tabItems[_tabController.index];
-              final count = items.length;
-
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: TextWidget(
-                  "${count} ${"items found".tr}",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
+          actions: [
+            const CartBadge(),
+            const SizedBox(width: 8),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(115),
+            child: Column(
+              children: [
+                _buildSearchBar(context, isDark),
+                TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  indicatorColor: textColor,
+                  labelColor: textColor,
+                  unselectedLabelColor: Colors.grey,
+                  indicatorWeight: 3,
+                  labelStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                  tabs: [
+                    Tab(text: "All".tr),
+                    Tab(text: "Polos".tr),
+                    Tab(text: "Activewear".tr),
+                    Tab(text: "Jackets".tr),
+                    Tab(text: "Jeans".tr),
+                    Tab(text: "Joggers".tr),
+                    Tab(text: "Leggings".tr),
+                    Tab(text: "Pants".tr),
+                    Tab(text: "Shirts".tr),
+                    Tab(text: "Skirt".tr),
+                    Tab(text: "Suits".tr),
+                    Tab(text: "Sweatshirts".tr),
+                    Tab(text: "T-Shirts".tr),
+                    Tab(text: "Blouses".tr),
+                    Tab(text: "Cardigans".tr),
+                    Tab(text: "Coats".tr),
+                    Tab(text: "Dresses".tr),
+                    Tab(text: "Essential Hoodies".tr),
+                    Tab(text: "Shorts".tr),
+                    Tab(text: "Skirts".tr),
+                  ],
                 ),
-              );
-            },
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: _tabItems
-                  .map((items) => _buildProductGrid(items, isDark))
-                  .toList(),
+              ],
             ),
           ),
-        ],
+        ),
+        body: Column(
+          children: [
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                int count = 0;
+                if (state is ProductLoaded) {
+                  count = state.products.length;
+                }
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: TextWidget(
+                    '{0} items found'.trArgs([count.toString()]),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
+                );
+              },
+            ),
+            Expanded(
+              child: BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductLoaded) {
+                    return _buildProductGrid(state.products, isDark);
+                  } else if (state is ProductError) {
+                    return Center(child: TextWidget(state.message));
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -242,9 +214,8 @@ class _ClothesScreenState extends State<ClothesScreen>
               child: TextField(
                 controller: _searchController,
                 onChanged: (value) {
-                  setState(() {
-                    _searchQuery = value;
-                  });
+                  _searchQuery = value;
+                  _productBloc.add(SearchProducts(value, _categoryMap[_tabController.index]));
                 },
                 style: TextStyle(
                   color: textColor,
@@ -253,17 +224,16 @@ class _ClothesScreenState extends State<ClothesScreen>
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName.tr}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName.tr]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(Icons.search_rounded, size: 22, color: hintColor),
                   suffixIcon: _searchQuery.isNotEmpty
                       ? IconButton(
                           icon: Icon(Icons.cancel_rounded, size: 20, color: hintColor),
                           onPressed: () {
-                            setState(() {
-                              _searchController.clear();
-                              _searchQuery = "";
-                            });
+                            _searchController.clear();
+                            _searchQuery = "";
+                            _fetchProducts();
                           },
                         )
                       : null,
@@ -308,7 +278,7 @@ class _ClothesScreenState extends State<ClothesScreen>
     );
   }
 
-  Widget _buildProductGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildProductGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -332,25 +302,21 @@ class _ClothesScreenState extends State<ClothesScreen>
 
   Widget _buildProductCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Fashion Item').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = "\$${item.price.toStringAsFixed(2)}";
+    final bool isFavorite = false; // Add state management for favorites later
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: item),
+            builder: (context) => ProductClothesScreen(product: item.toMap()),
           ),
         );
       },
@@ -380,7 +346,7 @@ class _ClothesScreenState extends State<ClothesScreen>
                     Positioned.fill(
                       child: imageUrl.isNotEmpty
                           ? Hero(
-                              tag: 'clothes_${item['id'] ?? index}',
+                              tag: 'clothes_${item.id ?? index}',
                               child: CachedNetworkImage(
                                 imageUrl: imageUrl,
                                 fit: BoxFit.cover,
@@ -416,51 +382,15 @@ class _ClothesScreenState extends State<ClothesScreen>
                     Positioned(
                       top: 12,
                       right: 12,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
-                        },
-                        child: CircleAvatar(
-                          radius: 18,
-                          backgroundColor: Colors.white.withValues(alpha: 0.9),
-                          child: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_border,
-                            size: 20,
-                            color: isFavorite
-                                ? Colors.redAccent
-                                : Colors.black26,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 12,
-                      left: 12,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.6),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.wb_sunny, color: Colors.yellow, size: 12),
-                            SizedBox(width: 4),
-                            Text(
-                              "New In",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                      child: CircleAvatar(
+                        radius: 18,
+                        backgroundColor: Colors.white.withValues(alpha: 0.9),
+                        child: Icon(
+                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                          size: 20,
+                          color: isFavorite
+                              ? Colors.redAccent
+                              : Colors.black26,
                         ),
                       ),
                     ),
@@ -511,12 +441,7 @@ class _ClothesScreenState extends State<ClothesScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CachedNetworkImage(
-            imageUrl:
-                'https://www.pngitem.com/pimgs/m/255-2550411_no-image-available-png-transparent-no-image-available.png',
-            fit: BoxFit.contain,
-            width: 150,
-          ),
+          const Icon(Icons.shopping_bag_outlined, size: 80, color: Colors.grey),
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
@@ -530,4 +455,3 @@ class _ClothesScreenState extends State<ClothesScreen>
     );
   }
 }
-

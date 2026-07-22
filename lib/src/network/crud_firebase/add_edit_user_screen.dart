@@ -27,7 +27,6 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
   File? _imageFile;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoading = false;
-
   Future<void> _pickImg() async {
     final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (picked != null) {
@@ -71,7 +70,6 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
             .doc(widget.user?.id ?? "")
             .update(data);
       }
-
       if (!mounted) return;
       Navigator.pop(context);
     } catch (e) {

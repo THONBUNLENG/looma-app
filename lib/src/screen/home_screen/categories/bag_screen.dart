@@ -1,35 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_bag_screen.dart';
 import '../filter/filter_screen.dart';
+import '../product_detail/product_bag_screen.dart';
 
 class BagesScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> bags;
-  final List<Map<String, dynamic>> backpacks;
-  final List<Map<String, dynamic>> clutches;
-  final List<Map<String, dynamic>> handbags;
-  final List<Map<String, dynamic>> messengerBags;
-  final List<Map<String, dynamic>> toteBags;
-  final List<Map<String, dynamic>> travelBags;
-  final List<Map<String, dynamic>> wallets;
 
   const BagesScreen({
     super.key,
     required this.categoryName,
-    required this.bags,
-    required this.backpacks,
-    required this.clutches,
-    required this.handbags,
-    required this.messengerBags,
-    required this.toteBags,
-    required this.travelBags,
-    required this.wallets,
   });
 
   @override
@@ -41,8 +26,19 @@ class _BagesScreenState extends State<BagesScreen>
   late TabController _tabController;
   late TextEditingController _searchController;
   String _searchQuery = "";
+  final ProductRepository _productRepository = ProductRepository();
 
   static const int _tabCount = 8;
+  final List<String> _categories = [
+    "bags",
+    "backpacks",
+    "clutches",
+    "handbags",
+    "messengerBags",
+    "toteBags",
+    "travelBags",
+    "wallets",
+  ];
 
   @override
   void initState() {
@@ -56,30 +52,6 @@ class _BagesScreenState extends State<BagesScreen>
     _tabController.dispose();
     _searchController.dispose();
     super.dispose();
-  }
-
-  List<List<Map<String, dynamic>>> get _tabItems {
-    final List<List<Map<String, dynamic>>> allTabs = [
-      widget.bags,
-      widget.backpacks,
-      widget.clutches,
-      widget.handbags,
-      widget.messengerBags,
-      widget.toteBags,
-      widget.travelBags,
-      widget.wallets,
-    ];
-
-    if (_searchQuery.isEmpty) {
-      return allTabs;
-    }
-
-    return allTabs.map((list) {
-      return list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        return title.contains(_searchQuery.toLowerCase());
-      }).toList();
-    }).toList();
   }
 
   @override
@@ -102,10 +74,7 @@ class _BagesScreenState extends State<BagesScreen>
           color: textColor,
           letterSpacing: 1.2,
         ),
-        actions: [
-          CartBadge(),
-          SizedBox(width: 8),
-        ],
+        actions: [const CartBadge()],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(115),
           child: Column(
@@ -137,17 +106,43 @@ class _BagesScreenState extends State<BagesScreen>
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: _tabItems
-                  .map((items) => _buildBagGrid(items, isDark))
-                  .toList(),
-            ),
-          ),
-        ],
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(_tabCount, (index) {
+          return StreamBuilder<List<ProductModel>>(
+            stream: _productRepository.getProductsStream(_categories[index]),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
+
+              final products = snapshot.data ?? [];
+              final filteredProducts = _searchQuery.isEmpty
+                  ? products
+                  : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: TextWidget(
+                      '{0} items found'.trArgs([filteredProducts.length.toString()]),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildBagGrid(filteredProducts, isDark),
+                  ),
+                ],
+              );
+            },
+          );
+        }),
       ),
     );
   }
@@ -250,7 +245,7 @@ class _BagesScreenState extends State<BagesScreen>
     );
   }
 
-  Widget _buildBagGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildBagGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -274,29 +269,24 @@ class _BagesScreenState extends State<BagesScreen>
 
   Widget _buildBagCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Luxury Bag').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final String rating = (item['rating'] ?? '4.9').toString();
-    final String sold = (item['sold'] ?? '0').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = "\$${item.price.toStringAsFixed(2)}";
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductBagScreen(product: item),
+            builder: (context) => ProductBagScreen(product: item.toMap()),
           ),
         );
       },
@@ -326,7 +316,7 @@ class _BagesScreenState extends State<BagesScreen>
                     Positioned.fill(
                       child: imageUrl.isNotEmpty
                           ? Hero(
-                              tag: 'bag_${item['id'] ?? index}',
+                              tag: 'bag_${item.id ?? index}',
                               child: CachedNetworkImage(
                                 imageUrl: imageUrl,
                                 fit: BoxFit.cover,
@@ -358,9 +348,9 @@ class _BagesScreenState extends State<BagesScreen>
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
+                          // setState(() {
+                          //   item['is_favorite'] = !isFavorite;
+                          // });
                         },
                         child: CircleAvatar(
                           radius: 18,
@@ -426,7 +416,7 @@ class _BagesScreenState extends State<BagesScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold ${'sold'.tr}",
+                        '{0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -468,4 +458,3 @@ class _BagesScreenState extends State<BagesScreen>
     );
   }
 }
-

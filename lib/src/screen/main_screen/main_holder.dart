@@ -3,11 +3,12 @@ import 'package:shopping_app/constants/string_extension.dart';
 
 import 'package:shopping_app/manager/callback_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-import '../favorite/favorite_screen.dart';
+import '../home_screen/favorite/favorite_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../home_screen/menu/menu_screen.dart';
-import '../profile_screen/profile_screen.dart';
-import '../wallet/wallet_page.dart';
+import '../home_screen/profile_screen/profile_screen.dart';
+import '../home_screen/wallet/wallet_page.dart';
+
 
 class MainHolder extends StatefulWidget {
   const MainHolder({super.key});
@@ -47,30 +48,7 @@ class MainHolderState extends State<MainHolder> {
       const HomeScreen(),
       const WishlistScreen(),
       const MyWalletPage(),
-      const MenuScreen(
-        categoryName: '',
-        newItems: [],
-        clothes: [],
-        polos: [],
-        activewear: [],
-        jackets: [],
-        jeans: [],
-        joggers: [],
-        leggings: [],
-        pants: [],
-        shirts: [],
-        skirt: [],
-        suits: [],
-        sweatshirts: [],
-        tShirts: [],
-        blouses: [],
-        cardigans: [],
-        coats: [],
-        dresses: [],
-        shorts: [],
-        skirts: [],
-        hoodies: [],
-      ),
+      const MenuScreen(),
       const ProfileScreen(),
     ];
     _checkLoginStatus();

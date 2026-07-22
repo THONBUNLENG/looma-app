@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/screen/home_screen/shopping_bag/shopping_bag_screen.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class CartBadge extends StatelessWidget {
@@ -30,13 +32,27 @@ class CartBadge extends StatelessWidget {
         color: effectiveIconColor,
         size: iconSize,
       ),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ShoppingBagScreen(),
-          ),
-        );
+      onPressed: () async {
+        final isLoggedIn = await AuthService.isLoggedIn();
+        if (isLoggedIn) {
+          if (context.mounted) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ShoppingBagScreen(),
+              ),
+            );
+          }
+        } else {
+          if (context.mounted) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ),
+            );
+          }
+        }
       },
     );
 
@@ -92,3 +108,5 @@ class CartBadge extends StatelessWidget {
     );
   }
 }
+
+

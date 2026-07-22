@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/src/network/network_wrapper/network_wrapper.dart';
 import 'package:shopping_app/src/screen/splash_screen.dart';
-
 import 'manager/preferences_manager.dart';
 import 'manager/cart_manager.dart';
 import 'manager/profile_manager.dart';
+import 'manager/review_manager.dart';
 import 'manager/wishlist_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
@@ -18,11 +20,16 @@ final FlutterLocalization translator = FlutterLocalization.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await GoogleSignIn.instance.initialize(
+    serverClientId: '469046663529-f1uun26pcrq8j1h7mffu7un3i1248g0r.apps.googleusercontent.com',
+  );
 
   await SharedPrefUtil.init();
   await CartManager().init();
   await WishlistManager().init();
   await ProfileManager().init();
+  await ReviewManager().init();
   await translator.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

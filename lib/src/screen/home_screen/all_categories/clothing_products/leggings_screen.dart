@@ -1,13 +1,69 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
+import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import 'package:flutter/material.dart';
+
+
+
+
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
 
+
+
+
+
+
+
+
 import '../../../../../constants/app_color.dart';
+
+
+
+
+
+
+
 import '../../../../widget/text_widget.dart';
-import '../../card_detail/product_clothes_screen.dart';
+
+
+
+
+
+
+
 import '../../filter/filter_screen.dart';
+
+
+
+
+
+
+
+import '../../product_detail/product_clothes_screen.dart';
+
+
+
+
+
+
+
 import '../../shopping_bag/shopping_bag_screen.dart';
+
+
+
+
+
+
+
 
 class LeggingsScreen extends StatefulWidget {
   final String categoryName;
@@ -90,7 +146,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
             fontStyle: FontStyle.italic,
           ),
         ),
-        actions: [_buildCartIcon(isDark)],
+        actions: [const CartBadge()],
         bottom: _buildPromoBar(isDark),
       ),
       body: Column(
@@ -184,7 +240,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
           color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
         ),
         child: TextWidget(
-          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!",
+          "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
           color: isDark ? Colors.white : Colors.black,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -222,7 +278,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
                 ),
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  hintText: "Search in ${widget.categoryName}...".tr,
+                  hintText: "Search in {0}...".trArgs([widget.categoryName]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search_rounded,
@@ -334,11 +390,25 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
                     Positioned(
                       top: 10,
                       right: 10,
+                      child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Wishlist toggle
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
                       child: Icon(
                         Icons.favorite_border,
                         size: 20,
                         color: isDark ? Colors.white60 : Colors.black26,
-                      ),
+                      )
+                    ),
                     ),
                   ],
                 ),
@@ -352,7 +422,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  "LOOMA",
+                  "LOOMA".tr.toUpperCase(),
                   fontSize: 16,
                   letterSpacing: 1.2,
                   fontWeight: FontWeight.bold,
@@ -384,7 +454,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "${item['sold'] ?? '0'} sold",
+                        '{0} sold'.trArgs([(item['sold'] ?? '0').toString()]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -419,7 +489,7 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? 'No leggings found' : 'No results found for \'$_searchQuery\'',
+            _searchQuery.isEmpty ? 'No leggings found'.tr : "'No results found for {0}'.trArgs([_searchQuery])",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),
@@ -428,4 +498,15 @@ class _LeggingsScreenState extends State<LeggingsScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 

@@ -2,38 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/filter/filter_screen.dart';
-
 import 'package:shopping_app/src/widget/cart_badge.dart';
-
 import '../../../../../constants/app_color.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_jewelry_screen.dart';
+import '../product_detail/product_jewelry_screen.dart';
 
 class AccessoriesScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> accessories;
-  final List<Map<String, dynamic>> jewelry;
-  final List<Map<String, dynamic>> sunglasses;
-  final List<Map<String, dynamic>> hats;
-  final List<Map<String, dynamic>> belts;
-  final List<Map<String, dynamic>> scarves;
-  final List<Map<String, dynamic>> hairAccessories;
-  final List<Map<String, dynamic>> gloves;
-  final List<Map<String, dynamic>> watches;
 
-  const AccessoriesScreen({
-    super.key,
-    this.categoryName = "Accessories",
-    required this.accessories,
-    required this.jewelry,
-    required this.sunglasses,
-    required this.hats,
-    required this.belts,
-    required this.scarves,
-    required this.hairAccessories,
-    required this.gloves,
-    required this.watches,
-  });
+  const AccessoriesScreen({super.key, this.categoryName = "Accessories"});
 
   @override
   State<AccessoriesScreen> createState() => _AccessoriesScreenState();
@@ -44,14 +23,25 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
   late TabController _tabController;
   late TextEditingController _searchController;
   String _searchQuery = "";
+  final ProductRepository _productRepository = ProductRepository();
 
   static const int _tabCount = 9;
+  final List<String> _categories = [
+    "accessories",
+    "jewelry",
+    "sunglasses",
+    "hats",
+    "belts",
+    "scarves",
+    "hairAccessories",
+    "gloves",
+    "watches",
+  ];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabCount, vsync: this);
-
     _searchController = TextEditingController();
   }
 
@@ -62,30 +52,6 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
     super.dispose();
   }
 
-  List<List<Map<String, dynamic>>> get _tabItems {
-    final List<List<Map<String, dynamic>>> allTabs = [
-      widget.accessories,
-      widget.jewelry,
-      widget.sunglasses,
-      widget.hats,
-      widget.belts,
-      widget.scarves,
-      widget.hairAccessories,
-      widget.gloves,
-      widget.watches,
-    ];
-
-    if (_searchQuery.isEmpty) {
-      return allTabs;
-    }
-
-    return allTabs.map((list) {
-      return list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        return title.contains(_searchQuery.toLowerCase());
-      }).toList();
-    }).toList();
-  }
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -106,10 +72,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
           color: textColor,
           letterSpacing: 1.2,
         ),
-        actions: [
-          CartBadge(),
-          SizedBox(width: 8),
-        ],
+        actions: [CartBadge(), SizedBox(width: 8)],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(115),
           child: Column(
@@ -142,34 +105,51 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
           ),
         ),
       ),
-      body: Column(
-        children: [
-          AnimatedBuilder(
-            animation: Listenable.merge([_tabController, _searchController]),
-            builder: (context, _) {
-              final items = _tabItems[_tabController.index];
-              final count = items.length;
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(_tabCount, (index) {
+          return StreamBuilder<List<ProductModel>>(
+            stream: _productRepository.getProductsStream(_categories[index]),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: TextWidget(
-                  "$count ${"items found".tr}",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
+              final products = snapshot.data ?? [];
+              final filteredProducts = _searchQuery.isEmpty
+                  ? products
+                  : products
+                        .where(
+                          (p) => p.title.toLowerCase().contains(
+                            _searchQuery.toLowerCase(),
+                          ),
+                        )
+                        .toList();
+
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: TextWidget(
+                      '{0} items found'.trArgs([
+                        filteredProducts.length.toString(),
+                      ]),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildAccessoriesGrid(filteredProducts, isDark),
+                  ),
+                ],
               );
             },
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: _tabItems
-                  .map((items) => _buildAccessoriesGrid(items, isDark))
-                  .toList(),
-            ),
-          ),
-        ],
+          );
+        }),
       ),
     );
   }
@@ -272,7 +252,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
     );
   }
 
-  Widget _buildAccessoriesGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildAccessoriesGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -296,35 +276,24 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
 
   Widget _buildAccessoriesCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-
-    final String imageUrl = images is List && images.isNotEmpty
-
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Fashion Accessory').toString();
-
-    final String price = (item['price'] ?? '\$0.00').toString();
-
-    final String rating = (item['rating'] ?? '4.9').toString();
-
-    final String sold = (item['sold'] ?? '0').toString();
-
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = '\$${item.price.toStringAsFixed(2)}';
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductJewelryScreen(product: item),
+            builder: (context) => ProductJewelryScreen(product: item.toMap()),
           ),
         );
       },
@@ -354,7 +323,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
                     Positioned.fill(
                       child: imageUrl.isNotEmpty
                           ? Hero(
-                              tag: 'accessory_${item['id'] ?? index}',
+                              tag: 'accessory_${item.id ?? index}',
                               child: CachedNetworkImage(
                                 imageUrl: imageUrl,
                                 fit: BoxFit.contain,
@@ -370,9 +339,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
                                   color: isDark
                                       ? Colors.white10
                                       : AppColor.grey100,
-                                  child: Icon(
-                                    Icons.image_not_supported,
-                                  ),
+                                  child: Icon(Icons.image_not_supported),
                                 ),
                               ),
                             )
@@ -386,8 +353,10 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
+                          // This would need a proper update in Firestore or state management
                           setState(() {
-                            item['is_favorite'] = !isFavorite;
+                            // Local update for UI feedback
+                            // item = item.copyWith(isFavorite: !isFavorite);
                           });
                         },
                         child: CircleAvatar(
@@ -454,7 +423,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold ${"sold".tr}",
+                        '{0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -486,8 +455,7 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
           const SizedBox(height: 16),
           TextWidget(
             _searchQuery.isEmpty
-                ? "Accessories collection coming soon"
-                      .tr
+                ? "Accessories collection coming soon".tr
                 : "${"No items found for".tr} '$_searchQuery'",
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
@@ -497,4 +465,3 @@ class _AccessoriesScreenState extends State<AccessoriesScreen>
     );
   }
 }
-

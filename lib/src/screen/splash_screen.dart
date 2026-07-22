@@ -4,7 +4,10 @@ import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../constants/navigator_extension.dart';
+import '../network/crud_firebase/migration_utility.dart';
+import '../network/datastor/auth_service.dart';
 import 'login_screen/welcome_screen.dart';
+import 'main_screen/main_holder.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,22 +18,35 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool _isNavigated = false;
+
   @override
   void initState() {
     super.initState();
     _startNavigation();
   }
 
-  void _startNavigation() {
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted && !_isNavigated) {
-        setState(() {
-          _isNavigated = true;
-        });
+  Future<void> _startNavigation() async {
+    MigrationUtility().migrateAllProducts().catchError((e) {
+      debugPrint("Migration failed: $e");
+    });
+
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (mounted && !_isNavigated) {
+      setState(() {
+        _isNavigated = true;
+      });
+
+      final bool loggedIn = await AuthService.isLoggedIn();
+
+      if (loggedIn) {
+        Go.toRemoveUntil(const MainHolder());
+      } else {
         Go.toRemoveUntil(const WelcomeScreen());
       }
-    });
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,8 +91,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: ClipOval(
                       child: Image.asset(
                         'assets/image/logo4-removebg.png',
-                        width: 360,
-                        height:360,
+                        width: 160,
+                        height: 160,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -92,7 +108,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 ],
               ),
             ),
-
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 100),
@@ -107,7 +122,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             ),
-
             Positioned(
               bottom: 60,
               child: Column(
@@ -139,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ],
         ),
-        ),
+      ),
     );
   }
 }

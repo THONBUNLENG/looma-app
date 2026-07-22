@@ -116,15 +116,15 @@ class ShopBuyItemScreen extends StatelessWidget {
                   case 'shoes':
                     targetScreen = ShoesScreen(
                       categoryName: 'LOOMA SHOES',
-                      shoes: shoes,
-                      shoesBoots: shoesBoots,
-                      heeled: heeled,
-                      flats: flats,
-                      loafers: loafers,
-                      sandals: sandals,
-                      slippers: slippers,
-                      sneakers: sneakers,
-                      sportsShoes: sportsShoes,
+                      // shoes: shoes,
+                      // shoesBoots: shoesBoots,
+                      // heeled: heeled,
+                      // flats: flats,
+                      // loafers: loafers,
+                      // sandals: sandals,
+                      // slippers: slippers,
+                      // sneakers: sneakers,
+                      // sportsShoes: sportsShoes,
                     );
                     break;
                   case 'jackets':

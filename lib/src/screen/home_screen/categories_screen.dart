@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/all_categories/all_categories_screen.dart';
@@ -41,146 +40,67 @@ class _CategorySectionState extends State<CategorySection> {
       CategoryItem(
         title: 'Clothes',
         asset: 'assets/icon/i_color/clothes.png',
-        screen: ClothesScreen(
+        screen: const ClothesScreen(
           categoryName: 'LOOMA CLOTHES',
-          clothes: clothes,
-          polos: polos,
-          activewear: activewear,
-          jackets: jackets,
-          jeans: jeans,
-          joggers: joggers,
-          leggings: leggings,
-          pants: pants,
-          shirts: shirts,
-          skirt: skirt,
-          suits: suits,
-          sweatshirts: sweatshirts,
-          tShirts: tShirts,
-          blouses: blouses,
-          cardigans: cardigans,
-          coats: coats,
-          dresses: dresses,
-          essentialHoodies: hoodies,
-          shorts: shorts,
-          skirts: skirt,
         ),
       ),
       CategoryItem(
         title: 'Shoes',
         asset: 'assets/icon/i_color/shoes.png',
-        screen: ShoesScreen(
+        screen: const ShoesScreen(
           categoryName: 'LOOMA SHOES',
-          shoes: shoes,
-          shoesBoots: shoesBoots,
-          heeled: heeled,
-          flats: flats,
-          loafers: loafers,
-          sandals: sandals,
-          slippers: slippers,
-          sneakers: sneakers,
-          sportsShoes: sportsShoes,
         ),
       ),
       CategoryItem(
         title: 'Bags',
         asset: 'assets/icon/i_color/pag.png',
-        screen: BagesScreen(
+        screen: const BagesScreen(
           categoryName: 'LOOMA BAGS',
-          bags: bags,
-          backpacks: backpacks,
-          clutches: clutches,
-          handbags: handbags,
-          messengerBags: messengerBags,
-          toteBags: toteBags,
-          travelBags: travelBags,
-          wallets: wallets,
         ),
       ),
       CategoryItem(
         title: 'Watch',
         asset: 'assets/icon/i_color/watch.png',
-        screen: WatchScreen(categoryName: 'LOOMA WATCH', watch: watch),
+        screen: const WatchScreen(categoryName: 'LOOMA WATCH'),
       ),
       CategoryItem(
         title: 'Accessories',
         asset: 'assets/icon/i_color/jewelry.png',
-        screen: AccessoriesScreen(
+        screen: const AccessoriesScreen(
           categoryName: 'LOOMA ACCESSORIES',
-          accessories: accessories,
-          jewelry: jewelry,
-          sunglasses: sunglasses,
-          hats: hats,
-          belts: belts,
-          scarves: scarves,
-          hairAccessories: hairAccessories,
-          gloves: gloves,
-          watches: watches,
         ),
       ),
       CategoryItem(
         title: 'Toys',
         asset: 'assets/icon/i_color/toys.png',
-        screen: ToysScreen(categoryName: 'LOOMA TOYS', toys: toys),
+        screen: const ToysScreen(categoryName: 'LOOMA TOYS'),
       ),
       CategoryItem(
         title: 'Lingerie',
         asset: 'assets/icon/i_color/lingerie.png',
-        screen: LingerieScreen(
+        screen: const LingerieScreen(
           categoryName: 'LOOMA LINGERIE',
-          lingerie: lingerie,
-          bodysuitProduct: bodysuitProduct,
-          nightwearProducts:nightwearProducts,
-          pantyProducts: pantyProducts,
-          shapewearProducts: shapewearProducts,
-          sockProducts: sockProducts,
-          tightsProducts: tightsProducts,
-          braProducts: [],
-          bridalLingerieProducts:[],
         ),
       ),
       CategoryItem(
         title: 'Gift',
         asset: 'assets/icon/i_color/gift.png',
-        screen: GiftScreen(
+        screen: const GiftScreen(
           categoryName: 'LOOMA GIFT',
-          gift: gift,
-          birthdayGifts: birthdayGift ,
-          anniversaryGifts: [],
-          weddingGifts: [],
-          babyGifts: [],
-          valentineGifts: [],
-          graduationGifts: [],
-          personalizedGifts: [],
         ),
       ),
       CategoryItem(
         title: 'Perfumes',
         asset: 'assets/icon/perfumes.png',
-        screen: PerfumesScreen(
+        screen: const PerfumesScreen(
           categoryName: 'LOOMA  PERFUMES',
-          perfumesData: perfumesData,
-          womenPerfumes: [],
-          menPerfumes: [],
-          unisexPerfumes: [],
-          bodyMist: [],
-          perfumeSets: [],
-          deodorants: [],
-          luxuryPerfumes: [],
         ),
       ),
       CategoryItem(
         title: 'Cosmetics',
         asset: 'assets/icon/cosmetic.png',
-        screen: CosmeticsScreen(
+        screen: const CosmeticsScreen(
           categoryName: 'LOOMA  COSMETICS',
-          cosmeticsData: cosmeticsData,
-          skincare: skincare,
-          makeup: makeup,
-          haircare: haircare,
-          fragrances: fragrances,
-          nailCare: nailCare,
-          beautyTools:beautyTools,
-          personalCare: [],
         ),
       ),
     ];

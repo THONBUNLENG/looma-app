@@ -100,8 +100,6 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
       'joggers': (name) => JoggersScreen(categoryName: name, joggers: joggers),
       'vests': (name) => VestScreen(categoryName: name, vests: vests),
 
-
-
       // --- Shoes ---
       'sneakers': (name) =>
           SneakersScreen(categoryName: name, sneakers: sneakers),
@@ -157,7 +155,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
       'sunglasses': (name) =>
           SunglassesScreen(categoryName: name, sunglasses: sunglasses),
       'hats': (name) => HatsScreen(categoryName: name, hats: hats),
-      'belts': (name) => BeltsScreen(categoryName: name, belts: belts),
+      'belts': (name) => BeltsScreen(categoryName: name),
       'scarves': (name) => ScarvesScreen(categoryName: name, scarves: scarves),
       'hair': (name) =>
           HairScreen(categoryName: name, hairAccessories: hairAccessories),
@@ -173,7 +171,9 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: TextWidget(
-            'Category "$subName" is coming soon!'.tr,
+            'Category "{0}" is coming soon!',
+            context: context,
+            args: [subName.tr],
             color: Colors.white,
           ),
           backgroundColor: Colors.orange,
@@ -202,9 +202,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : AppColor.black,
         ),
-        actions: const [
-          CartBadge(),
-        ],
+        actions: const [CartBadge()],
       ),
       body: Column(
         children: [
@@ -237,7 +235,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                     'Cardigans',
                     'Leggings',
                     'Joggers',
-                    'Vests'
+                    'Vests',
                   ],
                 ),
                 _buildCategoryItem(
@@ -311,6 +309,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
       ),
     );
   }
+
   Widget _buildCategoryItem({
     required String title,
     required String image,

@@ -1,11 +1,15 @@
+import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../constants/app_color.dart';
+import '../../network/datastor/auth_login_service.dart';
+import '../../network/datastor/auth_service.dart';
 import '../../widget/button.dart';
-import 'hello_card_screen.dart';
+import '../main_screen/main_holder.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -15,7 +19,93 @@ class CreateAccountScreen extends StatefulWidget {
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  bool _isLoading = false;
+  File? _imageFile;
+
+  Future<void> _pickImage() async {
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        setState(() {
+          _imageFile = File(image.path);
+        });
+      }
+    } catch (e) {
+      debugPrint("Error picking image: $e");
+    }
+  }
+
+  Future<void> _handleRegister() async {
+    final name = nameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final phone = phoneController.text.trim();
+
+    if (name.isEmpty || email.isEmpty || password.isEmpty || phone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please fill in all fields".tr)),
+      );
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      final userCredential = await AuthLoginService().createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      if (userCredential != null && userCredential.user != null) {
+        final user = userCredential.user!;
+        
+        String? photoUrl;
+        if (_imageFile != null) {
+          photoUrl = await AuthLoginService().uploadProfilePicture(user.uid, _imageFile!);
+        }
+
+        // Update Firebase User Profile
+        await user.updateDisplayName(name);
+        if (photoUrl != null) {
+          await user.updatePhotoURL(photoUrl);
+        }
+
+        // Send Email Verification
+        await user.sendEmailVerification();
+
+        await AuthService.saveLoginData(
+          username: name,
+          phone: phone,
+          picture: photoUrl,
+          token: await user.getIdToken(),
+        );
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Registration successful! Please check your email for verification.".tr)),
+          );
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const MainHolder()),
+            (route) => false,
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Registration failed: $e")),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
 
   void _showCountryPicker() {
     showModalBottomSheet(
@@ -115,23 +205,35 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   ),
 
                   const SizedBox(height: 60),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: DottedBorder(
-                        options: CircularDottedBorderOptions(
-                          dashPattern: [18, 5],
-                          strokeWidth: 2,
-                          color: AppColor.buttonColor,
-                          padding: EdgeInsets.all(4),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/icon/camera.png',
-                            width: 40,
+                  GestureDetector(
+                    onTap: _pickImage,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: DottedBorder(
+                          options: CircularDottedBorderOptions(
+                            dashPattern: [18, 5],
+                            strokeWidth: 2,
                             color: AppColor.buttonColor,
+                            padding: const EdgeInsets.all(4),
+                          ),
+                          child: Center(
+                            child: _imageFile != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      _imageFile!,
+                                      width: 90,
+                                      height: 90,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : Image.asset(
+                                    'assets/icon/camera.png',
+                                    width: 40,
+                                    color: AppColor.buttonColor,
+                                  ),
                           ),
                         ),
                       ),
@@ -140,12 +242,23 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
                   const SizedBox(height: 40),
 
-                  _buildTextField(hint: "Email".tr),
+                  _buildTextField(
+                    hint: "Full Name".tr,
+                    controller: nameController,
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  _buildTextField(
+                    hint: "Email".tr,
+                    controller: emailController,
+                  ),
 
                   const SizedBox(height: 20),
 
                   _buildTextField(
                     hint: "Password".tr,
+                    controller: passwordController,
                     isPassword: true,
                     isObscured: _isObscured,
                     suffixAsset: _isObscured
@@ -188,19 +301,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   const SizedBox(height: 60),
 
                   MyCustomButton(
-                    text: "Done".tr,
+                    text: _isLoading ? "Loading...".tr : "Register".tr,
                     width: double.infinity,
                     height: 60,
                     borderRadius: 15,
                     gradientColors: [AppColor.buttonColor,AppColor.buttonColor],
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HelloCardScreen(),
-                        ),
-                      );
-                    },
+                    onPressed: _isLoading ? () {} : _handleRegister,
                   ),
 
                   const SizedBox(height: 20),

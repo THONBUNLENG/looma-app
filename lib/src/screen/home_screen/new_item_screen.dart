@@ -1,12 +1,37 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
 import 'package:flutter/material.dart';
+
+
+
 import 'package:shopping_app/constants/app_color.dart';
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
+
+
+
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
+
+
+
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+
+
+
 import '../list_url.dart';
+
+
+
 import 'all_new_item_screen.dart';
-import 'card_detail/product_clothes_screen.dart';
+
+
+
+
 
 class NewItemsSection extends StatelessWidget {
   const NewItemsSection({super.key});
@@ -173,15 +198,29 @@ class NewItemCard extends StatelessWidget {
                       Positioned(
                         top: 10,
                         right: 10,
-                        child: CircleAvatar(
-                          radius: 17,
-                          backgroundColor: Colors.white.withValues(alpha: 0.9),
-                          child: const Icon(
-                            Icons.favorite_border,
-                            size: 19,
-                            color: Colors.black45,
-                          ),
+                        child: GestureDetector(
+                      onTap: () async {
+                        if (await AuthService.isLoggedIn()) {
+                          // Toggle wishlist logic here
+                        } else {
+                          if (context.mounted) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          }
+                        }
+                      },
+                      child: CircleAvatar(
+                        radius: 17,
+                        backgroundColor: Colors.white.withValues(alpha: 0.9),
+                        child: const Icon(
+                          Icons.favorite_border,
+                          size: 19,
+                          color: Colors.black45,
                         ),
+                      ),
+                    ),
                       ),
                     ],
                   ),
@@ -218,4 +257,7 @@ class NewItemCard extends StatelessWidget {
     );
   }
 }
+
+
+
 

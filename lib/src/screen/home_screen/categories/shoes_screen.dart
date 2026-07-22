@@ -1,38 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_shoes_screen.dart';
 import '../filter/filter_screen.dart';
+import '../product_detail/product_shoes_screen.dart';
 
 
 class ShoesScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> shoes;
-  final List<Map<String, dynamic>> shoesBoots;
-  final List<Map<String, dynamic>> heeled;
-  final List<Map<String, dynamic>> flats;
-  final List<Map<String, dynamic>> loafers;
-  final List<Map<String, dynamic>> sandals;
-  final List<Map<String, dynamic>> slippers;
-  final List<Map<String, dynamic>> sneakers;
-  final List<Map<String, dynamic>> sportsShoes;
 
   const ShoesScreen({
     super.key,
     required this.categoryName,
-    required this.shoes,
-    required this.shoesBoots,
-    required this.heeled,
-    required this.flats,
-    required this.loafers,
-    required this.sandals,
-    required this.slippers,
-    required this.sneakers,
-    required this.sportsShoes,
   });
 
   @override
@@ -44,8 +27,20 @@ class _ShoesScreenState extends State<ShoesScreen>
   late TabController _tabController;
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  final ProductRepository _productRepository = ProductRepository();
 
   static const int _tabCount = 9;
+  final List<String> _categories = [
+    "shoes",
+    "shoesBoots",
+    "heeled",
+    "flats",
+    "loafers",
+    "sandals",
+    "slippers",
+    "sneakers",
+    "sportsShoes",
+  ];
 
   @override
   void initState() {
@@ -58,32 +53,6 @@ class _ShoesScreenState extends State<ShoesScreen>
     _tabController.dispose();
     _searchController.dispose();
     super.dispose();
-  }
-
-  List<List<Map<String, dynamic>>> get _tabItems {
-    final List<List<Map<String, dynamic>>> allTabs = [
-      widget.shoes,
-      widget.shoesBoots,
-      widget.heeled,
-      widget.flats,
-      widget.loafers,
-      widget.sandals,
-      widget.slippers,
-      widget.sneakers,
-      widget.sportsShoes,
-    ];
-
-    if (_searchQuery.isEmpty) {
-      return allTabs;
-    }
-
-    final query = _searchQuery.toLowerCase();
-    return allTabs.map((list) {
-      return list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        return title.contains(query);
-      }).toList();
-    }).toList();
   }
 
   @override
@@ -140,33 +109,43 @@ class _ShoesScreenState extends State<ShoesScreen>
           ),
         ),
       ),
-      body: Column(
-        children: [
-          AnimatedBuilder(
-            animation: _tabController,
-            builder: (context, _) {
-              final count = _tabItems[_tabController.index].length;
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(_tabCount, (index) {
+          return StreamBuilder<List<ProductModel>>(
+            stream: _productRepository.getProductsStream(_categories[index]),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: TextWidget(
-                  "${count} ${"items found".tr}",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
+              final products = snapshot.data ?? [];
+              final filteredProducts = _searchQuery.isEmpty
+                  ? products
+                  : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: TextWidget(
+                      '{0} items found'.trArgs([filteredProducts.length.toString()]),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildShoesGrid(filteredProducts, isDark),
+                  ),
+                ],
               );
             },
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: _tabItems
-                  .map((items) => _buildShoesGrid(items, isDark))
-                  .toList(),
-            ),
-          ),
-        ],
+          );
+        }),
       ),
     );
   }
@@ -232,7 +211,7 @@ class _ShoesScreenState extends State<ShoesScreen>
     );
   }
 
-  Widget _buildShoesGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildShoesGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -256,29 +235,24 @@ class _ShoesScreenState extends State<ShoesScreen>
 
   Widget _buildShoeCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Shoe Item').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final String rating = (item['rating'] ?? '4.8').toString();
-    final String sold = (item['sold'] ?? '0').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = '\$${item.price.toStringAsFixed(2)}';
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductShoesScreen(product: item),
+            builder: (context) => ProductShoesScreen(product: item.toMap()),
           ),
         );
       },
@@ -336,9 +310,9 @@ class _ShoesScreenState extends State<ShoesScreen>
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
+                          // setState(() {
+                          //   item['is_favorite'] = !isFavorite;
+                          // });
                         },
                         child: CircleAvatar(
                           radius: 18,
@@ -398,7 +372,7 @@ class _ShoesScreenState extends State<ShoesScreen>
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextWidget(
-                        "| ${sold} ${"sold".tr}",
+                        '| {0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -443,4 +417,3 @@ class _ShoesScreenState extends State<ShoesScreen>
     );
   }
 }
-

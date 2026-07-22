@@ -17,9 +17,10 @@ class TextWidget extends Text {
         double? letterSpacing,
         bool? softWrap,
         BuildContext? context,
+        List<dynamic> args = const [],
         TextStyle? style,
       }) : super(
-    context == null ? text : context.formatString(text, []),
+    context == null ? text : context.formatString(text, args),
     key: key,
     textAlign: textAlign,
     overflow: overflow,

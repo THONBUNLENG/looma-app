@@ -1,13 +1,40 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
 import 'package:flutter/material.dart';
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
 
+
+
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
+
+
+
+
 import '../../../../constants/app_color.dart';
+
+
+
 import '../../../constants/color.dart';
+
+
+
 import 'package:shopping_app/src/widget/cart_badge.dart';
+
+
+
 import '../../widget/text_widget.dart';
-import 'card_detail/product_clothes_screen.dart';
+
+
+
 import 'filter/filter_screen.dart';
+
+
+
 
 class AllNewItemScreen extends StatelessWidget {
   final String categoryName;
@@ -65,7 +92,7 @@ class AllNewItemScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 TextWidget(
-                  "${newItems.length} ${'items found'.tr}",
+                  '{0} items found'.trArgs([newItems.length.toString()]),
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: textColor.withValues(alpha: 0.7),
@@ -391,4 +418,7 @@ class AllNewItemScreen extends StatelessWidget {
     );
   }
 }
+
+
+
 

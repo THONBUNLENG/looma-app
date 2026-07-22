@@ -6,7 +6,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/notification_page.dart';
 import 'package:shopping_app/src/screen/home_screen/pick_up_your_style.dart';
 import 'package:shopping_app/src/screen/home_screen/shop_buy_item_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/brands_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/brand/brands_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/top_sale_screen.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
@@ -252,7 +252,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           child: TextWidget(
                             bannerData[index]["desc"]!
                                 .replaceAll('\n', ' ')
-                                .tr.toUpperCase(),
+                               .tr.toUpperCase(),
                             color: Colors.black,
                             fontSize: 10,
                             fontWeight: FontWeight.bold,

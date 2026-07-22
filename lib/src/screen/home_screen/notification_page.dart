@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/src/screen/home_screen/setting/notification_screen.dart';
 import '../../widget/text_widget.dart';
-import '../setting/notification_screen.dart';
+
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -141,21 +142,17 @@ class NotificationScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  TextWidget(
                     title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white : Colors.black87,
-                    ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black87,
                   ),
                   const SizedBox(height: 4),
-                  Text(
+                  TextWidget(
                     subtitle,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: isDark ? Colors.white38 : Colors.grey[600],
-                    ),
+                    fontSize: 13,
+                    color: isDark ? Colors.white38 : Colors.grey[600],
                   ),
                 ],
               ),

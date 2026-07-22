@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
 import '../../../../constants/app_color.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
+import '../../../model/product_model.dart';
+import '../../../network/repository/product_repository.dart';
 import '../../../widget/text_widget.dart';
-import '../card_detail/product_bag_screen.dart';
 import '../filter/filter_screen.dart';
+import '../product_detail/product_bag_screen.dart';
 
 class ToysScreen extends StatefulWidget {
   final String categoryName;
-  final List<Map<String, dynamic>> toys;
 
-  const ToysScreen({super.key, required this.categoryName, required this.toys});
+  const ToysScreen({super.key, required this.categoryName});
 
   @override
   State<ToysScreen> createState() => _ToysScreenState();
@@ -21,6 +21,7 @@ class ToysScreen extends StatefulWidget {
 class _ToysScreenState extends State<ToysScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  final ProductRepository _productRepository = ProductRepository();
 
   @override
   void dispose() {
@@ -28,23 +29,11 @@ class _ToysScreenState extends State<ToysScreen> {
     super.dispose();
   }
 
-  List<Map<String, dynamic>> get _filteredToys {
-    if (_searchQuery.isEmpty) {
-      return widget.toys;
-    }
-    final query = _searchQuery.toLowerCase();
-    return widget.toys.where((toy) {
-      final title = (toy['title'] ?? '').toString().toLowerCase();
-      return title.contains(query);
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF121212) : AppColor.white;
     final textColor = isDark ? Colors.white : AppColor.black;
-    final filteredToys = _filteredToys;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -68,19 +57,36 @@ class _ToysScreenState extends State<ToysScreen> {
           child: _buildSearchBar(isDark),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: TextWidget(
-              "${filteredToys.length} ${"items found".tr}",
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: textColor,
-            ),
-          ),
-          Expanded(child: _buildToysGrid(filteredToys, isDark)),
-        ],
+      body: StreamBuilder<List<ProductModel>>(
+        stream: _productRepository.getProductsStream('toys'),
+        builder: (context, snapshot) {
+           if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: TextWidget("Error loading products".tr));
+              }
+
+              final products = snapshot.data ?? [];
+              final filteredToys = _searchQuery.isEmpty
+                  ? products
+                  : products.where((p) => p.title.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: TextWidget(
+                  '{0} items found'.trArgs([filteredToys.length.toString()]),
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                ),
+              ),
+              Expanded(child: _buildToysGrid(filteredToys, isDark)),
+            ],
+          );
+        }
       ),
     );
   }
@@ -146,7 +152,7 @@ class _ToysScreenState extends State<ToysScreen> {
     );
   }
 
-  Widget _buildToysGrid(List<Map<String, dynamic>> items, bool isDark) {
+  Widget _buildToysGrid(List<ProductModel> items, bool isDark) {
     if (items.isEmpty) {
       return _buildEmptyState(isDark);
     }
@@ -170,29 +176,24 @@ class _ToysScreenState extends State<ToysScreen> {
 
   Widget _buildToyCard(
     BuildContext context,
-    Map<String, dynamic> item,
+    ProductModel item,
     bool isDark,
     int index,
   ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Toy Item').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
-    final String rating = (item['rating'] ?? '4.9').toString();
-    final String sold = (item['sold'] ?? '0').toString();
-    final bool isFavorite = item['is_favorite'] ?? false;
+    final String imageUrl = item.images.isNotEmpty ? item.images.first : '';
+    final String title = item.title;
+    final String price = "\$${item.price.toStringAsFixed(2)}";
+    final String rating = item.rating.toString();
+    final String sold = item.sold ?? '0';
+    final bool isFavorite = item.isFavorite;
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductBagScreen(product: item),
+            builder: (context) => ProductBagScreen(product: item.toMap()),
           ),
         );
       },
@@ -250,9 +251,9 @@ class _ToysScreenState extends State<ToysScreen> {
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            item['is_favorite'] = !isFavorite;
-                          });
+                          // setState(() {
+                          //   item['is_favorite'] = !isFavorite;
+                          // });
                         },
                         child: CircleAvatar(
                           radius: 18,
@@ -317,7 +318,7 @@ class _ToysScreenState extends State<ToysScreen> {
                     ),
                     Expanded(
                       child: TextWidget(
-                        "$sold ${"sold".tr}",
+                        '{0} sold'.trArgs([sold]),
                         color: subTextColor,
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
@@ -362,4 +363,3 @@ class _ToysScreenState extends State<ToysScreen> {
     );
   }
 }
-

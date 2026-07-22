@@ -4,7 +4,7 @@ import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../constants/string_extension.dart';
 import '../../widget/button.dart';
-import 'create_account.dart';
+import '../main_screen/main_holder.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -84,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CreateAccountScreen(),
+                        builder: (context) => const MainHolder(),
                       ),
                     );
                   },
@@ -109,7 +109,6 @@ class WelcomeScreen extends StatelessWidget {
                         ),
 
                         const SizedBox(width: 12),
-
                         Container(
                           width: 30,
                           height: 30,

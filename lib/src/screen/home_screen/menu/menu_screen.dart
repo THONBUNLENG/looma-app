@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/all_new_item_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/categories/accessories_screen.dart';
@@ -9,59 +10,14 @@ import '../categories/clothes_screen.dart';
 import '../categories/shoes_screen.dart';
 import '../flash_sale/flash_sale_discount_screen.dart';
 import '../notification_page.dart';
-import '../shopping_bag/shopping_bag_screen.dart';
 import '../style_product/style_product_screen.dart';
+
 
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({
     super.key,
-    required this.categoryName,
-    required this.newItems,
-    required this.clothes,
-    required this.polos,
-    required this.activewear,
-    required this.jackets,
-    required this.jeans,
-    required this.joggers,
-    required this.leggings,
-    required this.pants,
-    required this.shirts,
-    required this.skirt,
-    required this.suits,
-    required this.sweatshirts,
-    required this.tShirts,
-    required this.blouses,
-    required this.cardigans,
-    required this.coats,
-    required this.dresses,
-    required this.hoodies,
-    required this.shorts,
-    required this.skirts,
   });
-
-  final String categoryName;
-  final List<Map<String, dynamic>> newItems;
-  final List<Map<String, dynamic>> clothes;
-  final List<Map<String, dynamic>> polos;
-  final List<Map<String, dynamic>> activewear;
-  final List<Map<String, dynamic>> jackets;
-  final List<Map<String, dynamic>> jeans;
-  final List<Map<String, dynamic>> joggers;
-  final List<Map<String, dynamic>> leggings;
-  final List<Map<String, dynamic>> pants;
-  final List<Map<String, dynamic>> shirts;
-  final List<Map<String, dynamic>> skirt;
-  final List<Map<String, dynamic>> suits;
-  final List<Map<String, dynamic>> sweatshirts;
-  final List<Map<String, dynamic>> tShirts;
-  final List<Map<String, dynamic>> blouses;
-  final List<Map<String, dynamic>> cardigans;
-  final List<Map<String, dynamic>> coats;
-  final List<Map<String, dynamic>> dresses;
-  final List<Map<String, dynamic>> hoodies;
-  final List<Map<String, dynamic>> shorts;
-  final List<Map<String, dynamic>> skirts;
 
   @override
   State<MenuScreen> createState() => _MenuScreenState();
@@ -179,26 +135,6 @@ class _MenuScreenState extends State<MenuScreen> {
         MaterialPageRoute(
           builder: (context) => ClothesScreen(
             categoryName: item,
-            clothes: clothes,
-            polos: polos,
-            activewear: activewear,
-            jackets: jackets,
-            jeans: jeans,
-            joggers: joggers,
-            leggings: leggings,
-            pants: pants,
-            shirts: shirts,
-            skirt: skirt,
-            suits: suits,
-            sweatshirts: sweatshirts,
-            tShirts: tShirts,
-            blouses: blouses,
-            cardigans: cardigans,
-            coats: coats,
-            dresses: dresses,
-            essentialHoodies: hoodies,
-            shorts: shorts,
-            skirts: skirt,
           ),
         ),
       );
@@ -212,15 +148,6 @@ class _MenuScreenState extends State<MenuScreen> {
         MaterialPageRoute(
           builder: (context) => AccessoriesScreen(
             categoryName: item,
-            accessories: accessories,
-            jewelry: jewelry,
-            sunglasses: sunglasses,
-            watches: watches,
-            hats: hats,
-            belts: belts,
-            scarves: scarves,
-            hairAccessories: hairAccessories,
-            gloves: gloves,
           ),
         ),
       );
@@ -230,15 +157,6 @@ class _MenuScreenState extends State<MenuScreen> {
         MaterialPageRoute(
           builder: (context) => ShoesScreen(
             categoryName: 'Shoes',
-            shoes: shoes,
-            shoesBoots: shoesBoots,
-            heeled: heeled,
-            flats: flats,
-            loafers: loafers,
-            sandals: sandals,
-            slippers: slippers,
-            sneakers: sneakers,
-            sportsShoes: sportsShoes,
           ),
         ),
       );
@@ -246,7 +164,9 @@ class _MenuScreenState extends State<MenuScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: TextWidget(
-            'Category "$item" is coming soon!',
+            'Category "{0}" is coming soon!',
+            context: context,
+            args: [item.tr],
             color: Colors.white,
           ),
           backgroundColor: Colors.black87,
@@ -352,56 +272,7 @@ class _MenuScreenState extends State<MenuScreen> {
           fontStyle: FontStyle.italic,
         ),
       ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 14),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              IconButton(
-                splashRadius: 24,
-                icon: Icon(
-                  Icons.shopping_bag_outlined,
-                  color: isDark ? Colors.white : Colors.black,
-                  size: 30,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ShoppingBagScreen(),
-                    ),
-                  );
-                },
-              ),
-              Positioned(
-                right: 0,
-                top: -2,
-                child: Container(
-                  width: 22,
-                  height: 22,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: isDark ? const Color(0xFF121212) : Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: Center(
-                    child: TextWidget(
-                      '0',
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+      actions: [const CartBadge()],
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(8),
         child: Container(

@@ -1,10 +1,28 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/network/datastor/auth_service.dart';
+
 import 'package:flutter/material.dart';
+
+
+
 import 'package:shopping_app/constants/app_color.dart';
+
+
+
 import 'package:shopping_app/constants/string_extension.dart';
+
+
+
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
+
+
+
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-import 'card_detail/product_clothes_screen.dart';
+
+
+
 
 class JustForYouSection extends StatelessWidget {
   final List<Map<String, dynamic>> justForYouData;
@@ -146,15 +164,27 @@ class JustForYouCard extends StatelessWidget {
                     Positioned(
                       top: 12,
                       right: 12,
-                      child: CircleAvatar(
-                        radius: 16,
-                        backgroundColor: isDark
-                            ? Colors.black38
-                            : Colors.white.withValues(alpha: 0.8),
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: 18,
-                          color: isDark ? Colors.white : Colors.black87,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (await AuthService.isLoggedIn()) {
+                            // Toggle wishlist logic
+                          } else {
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => LoginScreen()),
+                              );
+                            }
+                          }
+                        },
+                        child: CircleAvatar(
+                          radius: 16,
+                          backgroundColor: isDark ? Colors.black38 : Colors.white.withValues(alpha: 0.8),
+                          child: Icon(
+                            Icons.favorite_border,
+                            size: 18,
+                            color: isDark ? Colors.white : Colors.black87,
+                          ),
                         ),
                       ),
                     ),
@@ -225,4 +255,7 @@ class JustForYouCard extends StatelessWidget {
     );
   }
 }
+
+
+
 

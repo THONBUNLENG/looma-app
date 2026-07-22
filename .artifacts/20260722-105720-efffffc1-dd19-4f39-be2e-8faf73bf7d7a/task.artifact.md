@@ -1,0 +1,9 @@
+- [x] Research existing ProductModel and its usages
+- [x] Create implementation plan for fixes and improvements
+- [x] Update ProductModel with new fields and methods
+	- [x] Add `stockStatus`, `sku`, `brandId`, `isFavorite`
+	- [x] Add `copyWith`, `toJson`, `toMap`
+	- [x] Improve parsing logic for `int`, `price`, `rating`, `images`, and `DateTime`
+- [x] Verify changes with `analyze_file`
+- [x] Update `ClothesScreen` to use `ProductModel.toMap()`
+- [x] Create walkthrough artifact

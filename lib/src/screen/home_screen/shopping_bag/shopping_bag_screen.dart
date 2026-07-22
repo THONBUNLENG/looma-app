@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:shopping_app/constants/app_color.dart';
+
 import 'package:shopping_app/constants/string_extension.dart';
+
 import 'package:shopping_app/manager/cart_manager.dart';
+
 import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
+
 import 'package:shopping_app/src/widget/text_widget.dart';
+
 
 class ShoppingBagScreen extends StatefulWidget {
   const ShoppingBagScreen({super.key});
@@ -63,24 +70,14 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: isDark ? Colors.white : Colors.black, size: 20),
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: BackButton(color: isDark ? Colors.white : Colors.black),
         title: TextWidget(
           "My Shopping Bag".tr,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : Colors.black,
         ),
-        actions: [
-          if (_cartItems.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.delete_outline_rounded, color: Colors.redAccent, size: 24),
-              onPressed: _clearCart,
-            ),
-          const SizedBox(width: 8),
-        ],
+        actions: [const CartBadge()],
       ),
       body: _cartItems.isEmpty ? _buildEmptyState(isDark) : _buildCartList(isDark),
       bottomNavigationBar: _cartItems.isEmpty ? null : _buildCheckoutBar(isDark),
@@ -432,3 +429,5 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
     );
   }
 }
+
+
