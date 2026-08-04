@@ -6,43 +6,51 @@ A modern and feature-rich E-commerce application built with Flutter.
 
 ## 🌟 Features
 
-- **Multi-language Support**: Fully localized in English, Khmer, and Chinese.
-- **Dynamic Theming**: Support for Light and Dark modes with automatic system detection.
+- **Multi-language Support**: Fully localized in English and Khmer.
+- **Dynamic Theming**: Support for Light and Dark modes.
 - **State Management**: Robust state management using the **BLoC** pattern.
-- **Firebase Integration**: Powered by Firebase Core and Cloud Firestore for real-time data.
+- **Firebase Integration**: Powered by Firebase Core, Cloud Firestore, and Firebase Storage.
+- **Authentication**: 
+  - Secure login with OTP support.
+  - Social Auth: Google, Apple, and Facebook sign-in.
+  - Session management via `shared_preferences` and `flutter_secure_storage`.
+- **Payments & Billing**:
+  - Integrated **ABA PayWay** and **Bakong (KHQR)** for seamless transactions.
+  - Receipt generation and gallery saving support.
 - **Maps & Location**: Integrated Google Maps with geolocator for address and location services.
-- **Authentication**: Secure login with OTP support and session management via `shared_preferences`.
-- **Background Migration**: Intelligent data migration system to sync local data with Firestore.
+- **Telegram Integration**: Built-in Telegram bot support via Televerse.
 - **Rich UI/UX**:
   - Smooth animations with Lottie.
   - SVG support for crisp icons.
-  - Cached network images for better performance.
-  - Video player integration.
+  - Cached network images and video player integration.
+  - Haptic feedback and interactive UI components.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Flutter](https://flutter.dev)
+- **Framework**: [Flutter](https://flutter.dev) (SDK ^3.10.3)
 - **State Management**: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-- **Backend**: [Firebase (Firestore & Auth)](https://firebase.google.com/)
-- **Networking**: [Dio](https://pub.dev/packages/dio)
+- **Backend**: [Firebase](https://firebase.google.com/) (Auth, Firestore, Storage)
+- **Payments**: `khqr_sdk`, `aba_payway_service` (Custom)
+- **Networking**: [Dio](https://pub.dev/packages/dio), [http](https://pub.dev/packages/http)
 - **Local Storage**: `shared_preferences`, `flutter_secure_storage`
+- **Other Key Packages**: `televerse`, `google_maps_flutter`, `geolocator`, `pinput`, `image_picker`
 
 ## 📁 Project Structure
 
 ```text
 lib/
-├── main.dart             # Entry point
-├── manager/              # Preferences and Managers
-├── constants/            # App constants and extensions
-├── localization/         # Language translation files
-├── light_dark_theme/     # Theme configuration
+├── main.dart             # Entry point & App Configuration
+├── manager/              # Logic for Cart, Profile, Wishlist, etc.
+├── constants/            # App constants, Colors, and Extensions
+├── localization/         # Language translation files (EN, KM)
+├── light_dark_theme/     # Comprehensive Theme configuration
 └── src/
-    ├── auth/             # Authentication logic
+    ├── logic/            # BLoC state management
     ├── model/            # Data models
-    ├── screen/           # UI Screens (Splash, Welcome, Main)
-    ├── widget/           # Reusable widgets
-    ├── network/          # API, Firestore, & Migration logic
-    └── telegram_bot/     # Telegram integration
+    ├── screen/           # UI Screens (Home, Main, Login, Splash)
+    ├── widget/           # Reusable UI components
+    ├── network/          # API, Firestore, & Payment services
+    └── telegarm_bot/     # Telegram integration logic
 ```
 
 ## 🚀 Getting Started
@@ -76,8 +84,10 @@ lib/
 ## 🇰🇭 ការពិពណ៌នាគម្រោង (Khmer)
 
 កម្មវិធីទិញទំនិញទំនើបដែលបង្កើតឡើងដោយប្រើប្រាស់ Flutter ជាមួយនឹងមុខងារពេញលេញ៖
-- **គាំទ្រច្រើនភាសា**: អង់គ្លេស, ខ្មែរ, និង ចិន។
-- **មុខងារពន្លឺ (Dark/Light Mode)**: អាចប្ដូរតាមតម្រូវការ ឬតាមប្រព័ន្ធទូរស័ព្ទ។
-- **ការគ្រប់គ្រងទិន្នន័យ**: ប្រើប្រាស់ Firebase Firestore។
+- **គាំទ្រច្រើនភាសា**: អង់គ្លេស និង ខ្មែរ។
+- **មុខងារពន្លឺ (Dark/Light Mode)**: អាចប្ដូរតាមតម្រូវការ។
+- **ការទូទាត់ប្រាក់**: បញ្ចូលជាមួយ ABA PayWay និង Bakong (KHQR)។
+- **ការចូលប្រើប្រាស់**: គាំទ្រ Google, Apple, Facebook និង លេខទូរស័ព្ទ (OTP)។
 - **ទីតាំង**: មានបញ្ចូលជាមួយ Google Maps។
-- **សុវត្ថិភាព**: ការពារដោយការប្រើប្រាស់ Secure Storage និង OTP។
+- **សុវត្ថិភាព**: ការពារដោយការប្រើប្រាស់ Secure Storage។
+- **តេឡេក្រាម**: មានបញ្ចូលជាមួយ Telegram Bot។
