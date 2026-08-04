@@ -2,7 +2,7 @@
 
 A modern and feature-rich E-commerce application built with Flutter.
 
-![Looma Banner](assets/image/logo4-removebg.png)
+![Looma Banner](assets/image/bg3.png)
 
 ## 🌟 Features
 
