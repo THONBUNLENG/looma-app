@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-
-import '../../../constants/color.dart';
+import '../../../constants/app_color.dart';
 
 enum PinStatus { typing, correct, wrong }
 
@@ -12,19 +10,20 @@ class PasswordDot extends StatelessWidget {
     this.totalCount = 8,
     this.status = PinStatus.typing,
   });
+
   final int fillCount;
   final int totalCount;
   final PinStatus status;
 
   Color checkColor(bool isFilled) {
-    if (!isFilled) return greyColor;
+    if (!isFilled) return Colors.grey.shade300;
     switch (status) {
       case PinStatus.correct:
-        return mainColor;
+        return AppColor.buttonColor;
       case PinStatus.wrong:
         return Colors.red;
       case PinStatus.typing:
-        return mainColor;
+        return AppColor.buttonColor;
     }
   }
 

@@ -1,33 +1,32 @@
+import 'package:shopping_app/src/network/crud_firebase/all_product.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/model/product_model.dart';
+import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
 import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
 import 'package:shopping_app/src/network/datastor/auth_service.dart';
-
 import 'package:flutter/material.dart';
-
-
-
 import 'package:shopping_app/constants/app_color.dart';
-
-
-
 import 'package:shopping_app/constants/string_extension.dart';
-
-
-
-import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
-
-
-
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
+class JustForYouSection extends StatefulWidget {
+  const JustForYouSection({super.key});
 
+  @override
+  State<JustForYouSection> createState() => _JustForYouSectionState();
+}
 
+class _JustForYouSectionState extends State<JustForYouSection> {
+  final FirestoreService _firestoreService = FirestoreService();
+  late Stream<List<ProductModel>> _productStream;
 
-
-class JustForYouSection extends StatelessWidget {
-  final List<Map<String, dynamic>> justForYouData;
-
-  const JustForYouSection({super.key, required this.justForYouData});
+  @override
+  void initState() {
+    super.initState();
+    _productStream = _firestoreService.getProducts(category: 'JUST_FOR_YOU');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,20 +57,38 @@ class JustForYouSection extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GridView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(bottom: 20),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: justForYouData.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 25,
-              crossAxisSpacing: 16,
-              childAspectRatio: 0.60,
-            ),
-            itemBuilder: (context, index) {
-              final item = justForYouData[index];
-              return JustForYouCard(justForYouData: item, isDark: isDark);
+          child: StreamBuilder<List<ProductModel>>(
+            stream: _productStream,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return LoadingWidget.loadingCenterWidget();
+              }
+              
+              var products = snapshot.data ?? [];
+              
+              // Fallback to local data if Firestore is empty or has error
+              if (products.isEmpty) {
+                products = justForYouData.take(10).map((m) => ProductModel.fromMap(m)).toList();
+              }
+
+              if (products.isEmpty) {
+                return Center(child: TextWidget("No recommendations yet".tr, color: isDark ? Colors.white38 : Colors.grey));
+              }
+              return GridView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(bottom: 20),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 25,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 0.60,
+                ),
+                itemBuilder: (context, index) {
+                  return JustForYouCard(product: products[index], isDark: isDark);
+                },
+              );
             },
           ),
         ),
@@ -81,35 +98,26 @@ class JustForYouSection extends StatelessWidget {
 }
 
 class JustForYouCard extends StatelessWidget {
-  final Map<String, dynamic> justForYouData;
+  final ProductModel product;
   final bool isDark;
 
   const JustForYouCard({
     super.key,
-    required this.justForYouData,
+    required this.product,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
-    final String imageUrl =
-        (justForYouData['images'] != null &&
-            (justForYouData['images'] as List).isNotEmpty)
-        ? justForYouData['images'][0]
-        : (justForYouData['image'] ?? '');
-
-    final title = justForYouData['title'] ?? 'Product Name';
-    final price = justForYouData['price'] ?? '\$0.00';
-    final rating = justForYouData['rating'] ?? '4.8';
-    final sold = justForYouData['sold'] ?? '0';
+    final String imageUrl = product.images.isNotEmpty ? product.images[0] : '';
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: justForYouData),
+            builder: (context) => ProductClothesScreen(product: product.toMap()),
           ),
         );
       },
@@ -139,9 +147,7 @@ class JustForYouCard extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Hero(
-                        tag: imageUrl.isNotEmpty
-                            ? imageUrl
-                            : 'product_${title}_$price',
+                        tag: imageUrl + (product.id ?? product.title),
                         child: CachedNetworkImage(
                           imageUrl: imageUrl,
                           fit: BoxFit.cover,
@@ -167,19 +173,23 @@ class JustForYouCard extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () async {
                           if (await AuthService.isLoggedIn()) {
-                            // Toggle wishlist logic
+                            // Wishlist logic
                           } else {
                             if (context.mounted) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => LoginScreen()),
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
                               );
                             }
                           }
                         },
                         child: CircleAvatar(
                           radius: 16,
-                          backgroundColor: isDark ? Colors.black38 : Colors.white.withValues(alpha: 0.8),
+                          backgroundColor: isDark
+                              ? Colors.black38
+                              : Colors.white.withValues(alpha: 0.8),
                           child: Icon(
                             Icons.favorite_border,
                             size: 18,
@@ -208,7 +218,7 @@ class JustForYouCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 TextWidget(
-                  title.toString().tr,
+                  product.title.tr,
                   fontSize: 15,
                   maxLines: 1,
                   fontWeight: FontWeight.w600,
@@ -225,7 +235,7 @@ class JustForYouCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     TextWidget(
-                      rating.toString(),
+                      product.rating.toString(),
                       color: subTextColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -237,12 +247,16 @@ class JustForYouCard extends StatelessWidget {
                         color: subTextColor.withValues(alpha: 0.2),
                       ),
                     ),
-                    TextWidget("${sold.toString()} ${'sold'.tr}", color: subTextColor, fontSize: 11),
+                    TextWidget(
+                      "${product.sold ?? '0'} ${'sold'.tr}",
+                      color: subTextColor,
+                      fontSize: 11,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 6),
                 TextWidget(
-                  price,
+                  "\$${product.price.toStringAsFixed(2)}",
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
                   color: isDark ? Colors.white : Colors.black,
@@ -255,7 +269,3 @@ class JustForYouCard extends StatelessWidget {
     );
   }
 }
-
-
-
-

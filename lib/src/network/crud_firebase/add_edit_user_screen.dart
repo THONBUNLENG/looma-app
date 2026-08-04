@@ -19,7 +19,7 @@ class AddEditUserScreen extends StatefulWidget {
 }
 
 class _AddEditUserScreenState extends State<AddEditUserScreen> {
-  final List<String> geners = ['Male', 'Femal', 'Other'];
+  final List<String> genders = ['Male', 'Female', 'Other'];
   final userController = TextEditingController();
   final ageController = TextEditingController();
   final addressController = TextEditingController();
@@ -27,13 +27,19 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
   File? _imageFile;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoading = false;
-  Future<void> _pickImg() async {
-    final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (picked != null) {
-      setState(() {
-        _imageFile = File(picked.path);
-      });
-    }
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    userController.dispose();
+    ageController.dispose();
+    addressController.dispose();
+    super.dispose();
   }
 
   void initData() {
@@ -41,9 +47,26 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
     userController.text = widget.user?.name ?? "";
     ageController.text = widget.user?.age ?? "";
     addressController.text = widget.user?.address ?? "";
-    selectedGender = widget.user?.gender ?? "Male";
-    _imageFile = File(widget.user?.picture ?? "");
+    selectedGender = genders.contains(widget.user?.gender) 
+        ? widget.user?.gender 
+        : 'Male';
+    
+    if (widget.user?.picture != null && widget.user!.picture.isNotEmpty) {
+      final file = File(widget.user!.picture);
+      if (file.existsSync()) {
+        _imageFile = file;
+      }
+    }
     setState(() {});
+  }
+
+  Future<void> _pickImg() async {
+    final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      setState(() {
+        _imageFile = File(picked.path);
+      });
+    }
   }
 
   Future<void> saveUser() async {
@@ -76,6 +99,12 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString()), backgroundColor: pink100Color),
       );
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -84,15 +113,15 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
       context: context,
       builder: (context) {
         return AlertDialog.adaptive(
-          title: Text("Delete"),
-          content: Text("Do you want to delete?"),
+          title: const Text("Delete"),
+          content: const Text("Do you want to delete this user?"),
           actions: [
             CupertinoButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () => Navigator.pop(context),
             ),
             CupertinoButton(
-              child: TextWidget("Confirm"),
+              child:  TextWidget("Confirm"),
               onPressed: () {
                 Navigator.pop(context);
                 deleteUser();
@@ -105,6 +134,9 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
   }
 
   Future<void> deleteUser() async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       await FirebaseFirestore.instance
           .collection("user")
@@ -116,13 +148,13 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString()), backgroundColor: pink100Color),
       );
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
-  }
-
-  @override
-  void initState() {
-    initData();
-    super.initState();
   }
 
   @override
@@ -136,13 +168,13 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
             children: [
               Expanded(
                 child: ButtonCus(
-                  buttonName: (widget.user?.id ?? "").isEmpty
-                      ? 'Save'
-                      : "Update",
+                  buttonName: isLoading 
+                      ? 'Processing...' 
+                      : ((widget.user?.id ?? "").isEmpty ? 'Save' : "Update"),
                   bgColor: (widget.user?.id ?? "").isEmpty
                       ? mainColor
                       : greenColor,
-                  onPressed: () => saveUser(),
+                  onPressed: isLoading ? null : () => saveUser(),
                 ),
               ),
               if (widget.user != null)
@@ -150,77 +182,102 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                   child: ButtonCus(
                     bgColor: pink100Color,
                     buttonName: 'Delete user',
-                    onPressed: () => alertDeleteUser(),
+                    onPressed: isLoading ? null : () => alertDeleteUser(),
                   ),
                 ),
             ],
           ),
         ),
       ],
-      appBar: AppBar(title: Text("Add & Edit USER")),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: EdgeInsets.all(16),
-          children: [
-            GestureDetector(
-              onTap: () => _pickImg(),
-              child: CircleAvatar(
-                radius: 45,
-                backgroundImage:
-                    FileImage(File(_imageFile?.path ?? "")) as ImageProvider,
-              ),
+      appBar: AppBar(title: const Text("Add & Edit USER")),
+      body: Stack(
+        children: [
+          Form(
+            key: _formKey,
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                Center(
+                  child: GestureDetector(
+                    onTap: isLoading ? null : () => _pickImg(),
+                    child: CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.grey[200],
+                      backgroundImage: _imageFile != null && _imageFile!.existsSync()
+                          ? FileImage(_imageFile!)
+                          : null,
+                      child: (_imageFile == null || !_imageFile!.existsSync())
+                          ? const Icon(Icons.camera_alt, size: 30, color: Colors.grey)
+                          : null,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                TextFormCus(
+                  hintText: "User name",
+                  controller: userController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter user name';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormCus(
+                  hintText: "Age",
+                  controller: ageController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter age';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormCus(
+                  hintText: "Address",
+                  controller: addressController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<String>(
+                  initialValue: selectedGender,
+                  decoration: InputDecoration(
+                    hintText: 'Select gender',
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    filled: true,
+                    fillColor: grey30Color,
+                  ),
+                  items: genders.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: isLoading ? null : (value) {
+                    setState(() {
+                      selectedGender = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: 24),
-            TextFormCus(
-              hintText: "User name",
-              controller: userController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter name user'; // Error message
-                }
-                return null; // Input is valid
-              },
+          ),
+          if (isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
             ),
-            SizedBox(height: 16),
-            TextFormCus(
-              hintText: "Age",
-              controller: ageController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter age'; // Error message
-                }
-                return null; // Input is valid
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormCus(
-              hintText: "Address",
-              controller: addressController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter address'; // Error message
-                }
-                return null; // Input is valid
-              },
-            ),
-            SizedBox(height: 16),
-            // DropdownFlutter<String>(
-            //   decoration: CustomDropdownDecoration(
-            //     closedFillColor: grey30Color,
-            //     closedBorderRadius: BorderRadius.circular(32),
-            //   ),
-            //   hintText: 'Select gender',
-            //   items: geners,
-            //   initialItem: selectedGender,
-            //   onChanged: (value) => setState(() {
-            //     selectedGender = value ?? "Male";
-            //   }),
-            // ),
-          ],
-        ),
+        ],
       ),
     );
   }
 }
-

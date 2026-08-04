@@ -1,6 +1,8 @@
-# Shopping App 🛍️
+# Looma Shopping App 🛍️
 
 A modern and feature-rich E-commerce application built with Flutter.
+
+![Looma Banner](assets/image/logo4-removebg.png)
 
 ## 🌟 Features
 
@@ -9,23 +11,21 @@ A modern and feature-rich E-commerce application built with Flutter.
 - **State Management**: Robust state management using the **BLoC** pattern.
 - **Firebase Integration**: Powered by Firebase Core and Cloud Firestore for real-time data.
 - **Maps & Location**: Integrated Google Maps with geolocator for address and location services.
-- **Authentication**: Secure login with OTP support (using Pinput).
-- **Network Management**: Efficient API handling using Dio and connectivity monitoring.
+- **Authentication**: Secure login with OTP support and session management via `shared_preferences`.
+- **Background Migration**: Intelligent data migration system to sync local data with Firestore.
 - **Rich UI/UX**:
   - Smooth animations with Lottie.
   - SVG support for crisp icons.
   - Cached network images for better performance.
   - Video player integration.
-  - Custom dropdowns and image picking capabilities.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Flutter](https://flutter.dev)
 - **State Management**: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-- **Backend**: [Firebase](https://firebase.google.com/)
+- **Backend**: [Firebase (Firestore & Auth)](https://firebase.google.com/)
 - **Networking**: [Dio](https://pub.dev/packages/dio)
 - **Local Storage**: `shared_preferences`, `flutter_secure_storage`
-- **Localization**: `flutter_localization`
 
 ## 📁 Project Structure
 
@@ -39,9 +39,9 @@ lib/
 └── src/
     ├── auth/             # Authentication logic
     ├── model/            # Data models
-    ├── screen/           # UI Screens
+    ├── screen/           # UI Screens (Splash, Welcome, Main)
     ├── widget/           # Reusable widgets
-    ├── network/          # API & Connectivity
+    ├── network/          # API, Firestore, & Migration logic
     └── telegram_bot/     # Telegram integration
 ```
 
@@ -50,7 +50,6 @@ lib/
 ### Prerequisites
 
 - Flutter SDK: `^3.10.3`
-- Dart SDK
 - Android Studio / VS Code
 
 ### Installation

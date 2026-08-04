@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "469046663529",
-    "project_id": "shopping-app-a2012",
-    "storage_bucket": "shopping-app-a2012.firebasestorage.app"
+    "project_number": "561028849572",
+    "project_id": "ecommers-62c2d",
+    "storage_bucket": "ecommers-62c2d.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:469046663529:android:107297926b42b947c92842",
+        "mobilesdk_app_id": "1:561028849572:android:cd07543f315a7b4ef2eb31",
         "android_client_info": {
           "package_name": "com.example.shopping_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "469046663529-f1uun26pcrq8j1h7mffu7un3i1248g0r.apps.googleusercontent.com",
+          "client_id": "561028849572-7t80lmes6d2fk441hb37od0u63suh4o4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopping_app",
+            "certificate_hash": "79bb62f419defceb932b5faf60aaf4ee4701c049"
+          }
+        },
+        {
+          "client_id": "561028849572-veuui4830sq4dteqo5vits81l1g8n653.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCw4vG-R6Y-..."
+          "current_key": "AIzaSyC6lI3ThjwE5p7itoXlscDIr197nZ84ZGw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "469046663529-f1uun26pcrq8j1h7mffu7un3i1248g0r.apps.googleusercontent.com",
+              "client_id": "561028849572-veuui4830sq4dteqo5vits81l1g8n653.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

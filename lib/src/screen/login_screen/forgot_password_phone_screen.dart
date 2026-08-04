@@ -14,18 +14,14 @@ class ForgotPasswordPhoneScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordPhoneScreenState extends State<ForgotPasswordPhoneScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
   bool _isLoading = false;
 
   Future<void> _handleSendOTP() async {
-    final phone = _phoneController.text.trim();
+    if (!_formKey.currentState!.validate()) return;
 
-    if (phone.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please enter your phone number".tr)),
-      );
-      return;
-    }
+    final phone = _phoneController.text.trim();
 
     setState(() => _isLoading = true);
 
@@ -72,7 +68,6 @@ class _ForgotPasswordPhoneScreenState extends State<ForgotPasswordPhoneScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Background Bubbles
           Positioned(
             top: -100,
             left: -100,
@@ -101,43 +96,50 @@ class _ForgotPasswordPhoneScreenState extends State<ForgotPasswordPhoneScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 20),
-                        TextWidget(
-                          "Phone Recovery".tr,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF2D2D2D),
-                        ),
-                        const SizedBox(height: 16),
-                        TextWidget(
-                          "Enter your phone number to receive a verification code for password reset.".tr,
-                          fontSize: 15,
-                          color: Colors.grey.shade600,
-                          textAlign: TextAlign.center,
-                          lineHeight: 1.5,
-                        ),
-                        const SizedBox(height: 48),
-
-                        _buildTextField(
-                          hint: "Phone Number".tr,
-                          controller: _phoneController,
-                          keyboardType: TextInputType.phone,
-                          prefixIcon: Icons.phone_outlined,
-                        ),
-
-                        const SizedBox(height: 48),
-                        MyCustomButton(
-                          text: _isLoading ? "Sending...".tr : "Send Verification Code".tr,
-                          width: double.infinity,
-                          height: 58,
-                          borderRadius: 15,
-                          gradientColors: const [AppColor.buttonColor, AppColor.buttonColor],
-                          onPressed: _isLoading ? () {} : _handleSendOTP,
-                        ),
-                      ],
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 20),
+                          TextWidget(
+                            "Phone Recovery".tr,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF2D2D2D),
+                          ),
+                          const SizedBox(height: 16),
+                          TextWidget(
+                            "Enter your phone number to receive a verification code for password reset.".tr,
+                            fontSize: 15,
+                            color: Colors.grey.shade600,
+                            textAlign: TextAlign.center,
+                            lineHeight: 1.5,
+                          ),
+                          const SizedBox(height: 48),
+                          _buildTextField(
+                            hint: "Phone Number".tr,
+                            controller: _phoneController,
+                            keyboardType: TextInputType.phone,
+                            prefixIcon: Icons.phone_outlined,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "This field is required".tr;
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 48),
+                          MyCustomButton(
+                            text: _isLoading ? "Sending...".tr : "Send Verification Code".tr,
+                            width: double.infinity,
+                            height: 58,
+                            borderRadius: 15,
+                            gradientColors: const [AppColor.buttonColor, AppColor.buttonColor],
+                            onPressed: _isLoading ? () {} : _handleSendOTP,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -154,24 +156,35 @@ class _ForgotPasswordPhoneScreenState extends State<ForgotPasswordPhoneScreen> {
     required TextEditingController controller,
     IconData? prefixIcon,
     TextInputType keyboardType = TextInputType.text,
+    String? Function(String?)? validator,
   }) {
-    return Container(
-      height: 58,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7F7F7),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.black.withValues(alpha: 0.05)),
-      ),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-        decoration: InputDecoration(
-          hintText: hint,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: Colors.grey, size: 20) : null,
+    return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      validator: validator,
+      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: const Color(0xFFF7F7F7),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: Colors.grey, size: 20) : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: Colors.black.withValues(alpha: 0.05)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: Colors.black.withValues(alpha: 0.05)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColor.buttonColor),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: Colors.red),
         ),
       ),
     );

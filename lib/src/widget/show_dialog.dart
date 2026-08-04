@@ -45,14 +45,12 @@ class StatusDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                TextWidget(
                   title,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.black,
-                  ),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.black,
                 ),
                 const SizedBox(height: 15),
                 TextWidget(
@@ -66,7 +64,7 @@ class StatusDialog extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:AppColor.mutedRed,
+                          backgroundColor: AppColor.black,
                           foregroundColor: AppColor.white,
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           shape: RoundedRectangleBorder(
@@ -74,9 +72,9 @@ class StatusDialog extends StatelessWidget {
                           ),
                         ),
                         onPressed: onBtn1Pressed,
-                        child: Text(
+                        child: TextWidget(
                           btn1Text,
-                          style: const TextStyle(fontSize: 16),
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -84,7 +82,7 @@ class StatusDialog extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.black,
+                          backgroundColor: AppColor.mutedRed,
                           foregroundColor: AppColor.white,
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -93,9 +91,9 @@ class StatusDialog extends StatelessWidget {
                           ),
                         ),
                         onPressed: onBtn2Pressed,
-                        child: Text(
+                        child: TextWidget(
                           btn2Text,
-                          style: const TextStyle(fontSize: 16),
+                            fontSize: 16
                         ),
                       ),
                     ),

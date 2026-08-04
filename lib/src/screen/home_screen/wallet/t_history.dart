@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/wallet/transaction_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
@@ -15,7 +16,7 @@ enum TransactionType {
   topUp(
     label: 'Top Up',
     iconPath: 'assets/icon/i_color/arrow_outward.png',
-    color: Colors.blueAccent,
+    color: AppColor.primaryColor,
   );
 
   final String label;
@@ -61,29 +62,30 @@ class TransactionHistory extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         _buildHeader(context),
         const SizedBox(height: 8),
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            itemCount: transactions.length,
-            separatorBuilder: (_, _) => const Divider(height: 10, color: Colors.transparent),
-            itemBuilder: (context, index) {
-              final tx = transactions[index];
-              return TransactionItemTile(
-                transaction: tx,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EReceiptScreen(transaction: tx),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          itemCount: transactions.length,
+          separatorBuilder: (_, _) => const Divider(height: 10, color: Colors.transparent),
+          itemBuilder: (context, index) {
+            final tx = transactions[index];
+            return TransactionItemTile(
+              transaction: tx,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EReceiptScreen(transaction: tx),
+                  ),
+                );
+              },
+            );
+          },
         ),
       ],
     );
@@ -110,7 +112,7 @@ class TransactionHistory extends StatelessWidget {
                 ),
               );
             },
-            child: TextWidget('See All'.tr, color: Colors.blue),
+            child: TextWidget('See All'.tr, color: Theme.of(context).primaryColor),
           ),
         ],
       ),
@@ -184,12 +186,12 @@ class TransactionItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   TextWidget(
-                    transaction.amount,
+                    '${transaction.type == TransactionType.topUp ? '+' : '-'}${transaction.amount}',
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: transaction.type == TransactionType.topUp
                         ? Colors.green
-                        : (isDark ? Colors.white : Colors.black),
+                        : Colors.redAccent,
                   ),
                   const SizedBox(height: 6),
                   _buildTypeBadge(isDark),

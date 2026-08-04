@@ -6,7 +6,11 @@ extension TranslateExtension on String {
   String get tr {
     final context = Go.navigatorKey.currentContext;
     if (context == null) return this;
-    return getString(context);
+    final result = getString(context);
+    if (result.contains('not found')) {
+      return this;
+    }
+    return result;
   }
 
   String trArgs(List<dynamic> args) {
@@ -14,4 +18,5 @@ extension TranslateExtension on String {
     if (context == null) return this;
     return context.formatString(this, args);
   }
+
 }

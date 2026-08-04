@@ -1,64 +1,100 @@
-﻿const Map<String, String> khmer = {
+const Map<String, String> khmer = {
   ' No user found': ' No user found',
-  ' | {0} sold': ' | {0} sold',
-  '\$\${(unitPrice * quantity).toStringAsFixed(2)}': '\$\${(unitPrice * quantity).toStringAsFixed(2)}',
-  '\$\${priceRange.start.round()} - \$\${priceRange.end.round()}': '\$\${priceRange.start.round()} - \$\${priceRange.end.round()}',
+  ' | %a sold': ' | %a លក់ដាច់',
+  '\$\${(unitPrice * quantity).toStringAsFixed(2)}':
+      '\$\${(unitPrice * quantity).toStringAsFixed(2)}',
+  '\$\${priceRange.start.round()} - \$\${priceRange.end.round()}':
+      '\$\${priceRange.start.round()} - \$\${priceRange.end.round()}',
   '\$sold sold': '\$sold sold',
   '\${"Color".tr} ': '\${"Color".tr} ',
   '\${"Qty".tr} = 1': '\${"Qty".tr} = 1',
   '\${"Size".tr} = 40': '\${"Size".tr} = 40',
-  '\${\'Added to Cart\'.tr}: \${widget.product[\'title\'] ?? \'Product Item\'}': '\${\'Added to Cart\'.tr}: \${widget.product[\'title\'] ?? \'Product Item\'}',
+  '\${\'Added to Cart\'.tr}: \${widget.product[\'title\'] ?? \'Product Item\'}':
+      '\${\'Added to Cart\'.tr}: \${widget.product[\'title\'] ?? \'Product Item\'}',
   '\${_total.toStringAsFixed(2)} USD': '\${_total.toStringAsFixed(2)} USD',
-  '\${currentProducts.length} \${\'items\'.tr}': '\${currentProducts.length} \${\'items\'.tr}',
-  '\${items.length} \${\'popular items\'.tr}': '\${items.length} \${\'popular items\'.tr}',
-  '\${order[\'items\']} \${\'Item\'.tr}\${order[\'items\'] > 1 ? \'s\'.tr : \'\'}': '\${order[\'items\']} \${\'Item\'.tr}\${order[\'items\'] > 1 ? \'s\'.tr : \'\'}',
+  '\${currentProducts.length} \${\'items\'.tr}':
+      '\${currentProducts.length} \${\'items\'.tr}',
+  '\${items.length} \${\'popular items\'.tr}':
+      '\${items.length} \${\'popular items\'.tr}',
+  '\${order[\'items\']} \${\'Item\'.tr}\${order[\'items\'] > 1 ? \'s\'.tr : \'\'}':
+      '\${order[\'items\']} \${\'Item\'.tr}\${order[\'items\'] > 1 ? \'s\'.tr : \'\'}',
   '\${product[\'sold\'] ?? \'0\'} sold': '\${product[\'sold\'] ?? \'0\'} sold',
   '\${products.length} items': '\${products.length} items',
   '\${sold.toString()} \${\'sold\'.tr}': '\${sold.toString()} \${\'sold\'.tr}',
-  '\${visualSearchResults.length} items': '\${visualSearchResults.length} items',
-  '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${': '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${',
-  '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${\'reviews\'.tr})': '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${\'reviews\'.tr})',
+  '\${visualSearchResults.length} items':
+      '\${visualSearchResults.length} items',
+  '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${':
+      '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${',
+  '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${\'reviews\'.tr})':
+      '\${widget.product[\'rating\'] ?? \'4.8\'} (\${widget.product[\'reviews\'] ?? \'0\'} \${\'reviews\'.tr})',
   '\'No results for {0}': '\'No results for {0}',
   '\'No results found for {0}': '\'No results found for {0}',
-  '\'No results found for {0}\'.trArgs([_searchQuery])': '\'No results found for {0}\'.trArgs([_searchQuery])',
+  'No results found for %a': 'រកមិនឃើញលទ្ធផលសម្រាប់ %a',
   '+855 11 820 595': '+855 11 820 595',
   '-50%': '-50%',
   '0': '0',
   '1. Types of Data We Collect': '១. ប្រភេទនៃទិន្នន័យដែលយើងប្រមូល',
-  '18K Gold Emblem Velvet Loafer': 'ស្បែកជើងដេររូបសញ្ញាមាស 18K សាច់វល្លិ៍ Loafer',
+  '18K Gold Emblem Velvet Loafer':
+      'ស្បែកជើងដេររូបសញ្ញាមាស 18K សាច់វល្លិ៍ Loafer',
   '18K Gold Zip Compression Jacket': 'អាវរងាខ្សែរ៉ូតមាស 18K Compression Jacket',
   '2. Use of Your Personal Data': '២. ការប្រើប្រាស់ទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក',
   '273628           837279': '273628           837279',
-  '3. Disclosure of Your Personal Data': '៣. ការបង្ហាញទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក',
+  '3. Disclosure of Your Personal Data':
+      '៣. ការបង្ហាញទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក',
   '30% Special Discount!': 'បញ្ចុះតម្លៃពិសេស ៣០%!',
   '4. Data Retention Policy': '៤. គោលការណ៍រក្សាទុកទិន្នន័យ',
   '5. Your Rights and Choices': '៥. សិទ្ធិ និងជម្រើសរបស់អ្នក',
   '6. Updates to This Policy': '៦. ការធ្វើបច្ចុប្បន្នភាពលើគោលការណ៍នេះ',
-  'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.': 'ការរចនាកញ្ចក់តែមួយធំទូលាយ បង្ហាញពីភាពទាន់សម័យបែបអនាគត និងការពារខ្យល់បានកម្រិតអតិបរមាសម្រាប់ការធ្វើសកម្មភាពក្រៅផ្ទះ។',
-  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.': 'ឧបករណ៍លម្អតុធ្វើការដើម្បីភាពស្ងប់ចិត្ត រួមមានខ្សាច់សម៉ដ់ ថ្មធម្មជាតិ និងចបកាស់ខ្នាតតូចសម្រាប់បន្ធូរអារម្មណ៍ធុញថប់។',
-  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.': 'អាវរងាកមូលបែប Classic ផលិតពីសាច់ក្រណាត់កប្បាសក្រាស់ ផ្តល់នូវផាសុកភាព និងភាពកក់ក្តៅកម្រិតអតិបរមា។',
-  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.': 'បណ្តុំទំនិញប្រណីតៗដែលបានជ្រើសរើសយ៉ាងសម្រិតសម្រាំង ខ្ចប់ក្នុងប្រអប់ដ៏ស្រស់ស្អាតលម្អដោយពណ៌មាសកម្រិត Premium។',
-  'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.': 'កាតាបស្ពាយដែលមានគុណភាពខ្ពស់ ឌីហ្សាញឡើងសម្រាប់អ្នកធ្វើដំណើរក្នុងក្រុង និងអ្នកចូលចិត្តសកម្មភាពក្រៅផ្ទះ មានសមត្ថភាពមិនជ្រាបទឹក និងមានថតដាក់កុំព្យូទ័រយួរដៃទំហំ ១៥ អ៊ីញ។',
-  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.': 'នាឡិកាមុជទឹកដែលមានគុណភាពខ្ពស់ និងរចនាបថលេចធ្លោ ដោយរួមបញ្ចូលគ្នានូវសិល្បៈច្នៃប្រឌិតស្វីសជាមួយនឹងឌីហ្សាញបែបសហសម័យ។',
-  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.': 'រ៉ូបរាត្រីសមោសរសាច់សូត្ររលោងប្រណីត ពណ៌បៃតងត្បូងមរកត រចនាម៉ូដឆែកជើងខ្ពស់ និងធ្លាក់ផ្នត់យ៉ាងស្រស់ស្អាត។',
-  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.': 'ស្នាដៃកាត់ដេរដ៏ឆ្នើមរបស់អ៊ីតាលី ដោយរួមបញ្ចូលគ្នានូវសាច់រោមសត្វ និងរោមពពែ (Cashmere) កម្រិតប្រណីត ដើម្បីភាពកក់ក្តៅ និងភាពស៊ីវិល័យបំផុត។',
-  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.': 'កំពូលនៃភាពឆើតឆាយពេលរាត្រី កាត់ដេរពីសាច់វល្លិ៍អ៊ីតាលីលំដាប់ខ្ពស់ ជាមួយកអាវឆែកសាច់សូត្ររលោង Satin។',
-  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.': 'អាវរងាមានមួក (Hoodie) សាច់ក្រណាត់កប្បាសក្រាស់កម្រិតប្រណីត ម៉ូដទំហំធំ (Oversized) ធូរស្រឡះ ល្អឥតខ្ចោះសម្រាប់ផាសុកភាពប្រចាំថ្ងៃ។',
-  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.': 'ឈុតដង្កៀបសក់គ្រីស្តាល់ប្រណីតចំនួនបី ដែលចាំងពន្លឺយ៉ាងស្អាត។ ឌីហ្សាញឡើងឱ្យកៀកជាប់មាំល្អសម្រាប់សក់គ្រប់ប្រភេទ។',
-  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.': 'នាឡិកាដែកមិនច្រេះពណ៌ខ្មៅរលោងដ៏ស៊ីវិល័យ ជាមួយមុខកញ្ចក់ត្បូងកណ្តៀង (Sapphire)។ ឌីហ្សាញសម្រាប់ថ្នាក់ដឹកនាំសម័យថ្មីដែលឱ្យតម្លៃលើភាពថ្លៃថ្នូរ និងស្ទីលលាក់កំបាំង។',
-  'A sophisticated evening clutch designed with premium materials to complement your best outfits.': 'កាបូបយួរដៃរាត្រីសមោសរដ៏ស៊ីវិល័យ ផលិតពីវត្ថុធាតុដើមលំដាប់ខ្ពស់ ដើម្បីបង្កើនសម្រស់សម្លៀកបំពាក់ដ៏ល្អបំផុតរបស់អ្នក។',
-  'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.': 'ចិញ្ចៀនដណ្តឹងមាសស 18k ដ៏ស្រស់ស្អាត ដាំពេជ្រកាត់យ៉ាងចែងចាំងនៅចំកណ្តាល។ ជាទម្រង់និមិត្តរូបនៃសេចក្តីស្រឡាញ់ និងការប្តេជ្ញាចិត្តមិនចេះប្រែប្រួល។',
-  'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.': 'កាបូបយួរដៃចែងចាំងយ៉ាងស្រស់ស្អាត ល្អឥតខ្ចោះសម្រាប់ពិធីជប់លៀងពេលល្ងាច និងពិធីមង្គលការ។ រួមបញ្ចូលទាំងខ្សែច្រវាក់ដែលអាចដោះចេញបាន និងមានកន្លែងខាងក្នុងល្មមសម្រាប់របស់របរចាំបាច់។',
-  'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.': 'កាបូបធ្វើដំណើរ (Duffel) ដែលមានស្ទីលទាន់សម័យ និងធំទូលាយ ផលិតពីស្បែកមានគុណភាពខ្ពស់ ល្អឥតខ្ចោះសម្រាប់ការដើរកម្សាន្តចុងសប្តាហ៍។',
-  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.': 'រចនាឡើងយ៉ាងទាក់ទាញមិនចេះហួសសម័យសម្រាប់ការដកពាក់ប្រចាំថ្ងៃ ស្បែកជើងប៉ាតាទីក្រុងពណ៌សនេះ ស័ក្តិសមឥតខ្ចោះជាមួយគ្រប់សម្លៀកបំពាក់។',
-  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.': 'កាបូបស្ពាយចំហៀងស្បែកមិនចេះហួសសម័យ មានថតការពារកុំព្យូទ័រយួរដៃ និងខ្សែស្ពាយលៃតម្រូវបាន ដើម្បីផាសុកភាពកម្រិតអតិបរមា។',
-  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.': 'អាវសឺមី Oxford មិនចេះហួសសម័យ កាត់ពីសាច់កប្បាសលំដាប់ខ្ពស់ ជាមួយកអាវឡេវប៊ូតុងស្អាតរៀបរយ។',
-  'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.': 'មួកហ្វេដូរ៉ាធ្វើពីក្រណាត់រោមសត្វមិនចេះហួសសម័យ លម្អដោយខ្សែបូរបែបបុរាណ។ ស័ក្តិសមសម្រាប់ឱកាសផ្លូវការ ឬបន្ថែមភាពស៊ីវិល័យដល់សម្លៀកបំពាក់ធម្មតារបស់អ្នក។',
-  'A unique piece of home decor, individually signed by the artist.': 'វត្ថុដេគ័រផ្ទះដ៏ប្លែកប្លែក និងមានតែមួយគត់ មានហត្ថលេខាផ្ទាល់ពីសិល្បករ។',
-  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.': 'ខ្សែក្រវាត់ស្បែកពណ៌ត្នោតដែលអាចប្រើប្រាស់បានច្រើនទម្រង់ ជាមួយផ្ទៃមានឡាយឆ្នូត ល្អបំផុតសម្រាប់ការងារការិយាល័យប្រចាំថ្ងៃ ឬការដើរលេងចុងសប្តាហ៍។',
-  'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.': 'កាបូបយួរធំក្រណាត់កង់វ៉ាស់ដែលអាចប្រើបានច្រើនទម្រង់ មានថ្នេរដេរយ៉ាងមាំ និងមានកន្លែងខាងក្នុងធំទូលាយសម្រាប់ដាក់កុំព្យូទ័រយួរដៃ និងសៀវភៅ។',
-  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.': 'ឈុតគ្របស៊ុតពណ៌ប្រផេះធ្យូងដែលអាចប្រើបានគ្រប់ឱកាស រាងស្លីមហ្វីត (Slim Fit) ទំនើប។ ល្អឥតខ្ចោះសម្រាប់កិច្ចប្រជុំធុរកិច្ច ពិធីមង្គលការ និងកម្មវិធីផ្លូវការនានា។',
-  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.': 'អាវប៉ូឡូដែលអាចពាក់បានច្រើនទម្រង់ ផលិតពីសាច់ក្រណាត់កប្បាសខ្យល់ចេញចូលបានល្អ មានប៉ាក់ឡូហ្គោតូចមួយយ៉ាងប្រណីត។',
+  'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.':
+      'ការរចនាកញ្ចក់តែមួយធំទូលាយ បង្ហាញពីភាពទាន់សម័យបែបអនាគត និងការពារខ្យល់បានកម្រិតអតិបរមាសម្រាប់ការធ្វើសកម្មភាពក្រៅផ្ទះ។',
+  'A calming desk accessory featuring fine white sand, natural stones, and a miniature rake for relaxation.':
+      'ឧបករណ៍លម្អតុធ្វើការដើម្បីភាពស្ងប់ចិត្ត រួមមានខ្សាច់សម៉ដ់ ថ្មធម្មជាតិ និងចបកាស់ខ្នាតតូចសម្រាប់បន្ធូរអារម្មណ៍ធុញថប់។',
+  'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.':
+      'អាវរងាកមូលបែប Classic ផលិតពីសាច់ក្រណាត់កប្បាសក្រាស់ ផ្តល់នូវផាសុកភាព និងភាពកក់ក្តៅកម្រិតអតិបរមា។',
+  'A curated collection of luxury items wrapped in a beautiful premium gold-accented box.':
+      'បណ្តុំទំនិញប្រណីតៗដែលបានជ្រើសរើសយ៉ាងសម្រិតសម្រាំង ខ្ចប់ក្នុងប្រអប់ដ៏ស្រស់ស្អាតលម្អដោយពណ៌មាសកម្រិត Premium។',
+  'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.':
+      'កាតាបស្ពាយដែលមានគុណភាពខ្ពស់ ឌីហ្សាញឡើងសម្រាប់អ្នកធ្វើដំណើរក្នុងក្រុង និងអ្នកចូលចិត្តសកម្មភាពក្រៅផ្ទះ មានសមត្ថភាពមិនជ្រាបទឹក និងមានថតដាក់កុំព្យូទ័រយួរដៃទំហំ ១៥ អ៊ីញ។',
+  'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.':
+      'នាឡិកាមុជទឹកដែលមានគុណភាពខ្ពស់ និងរចនាបថលេចធ្លោ ដោយរួមបញ្ចូលគ្នានូវសិល្បៈច្នៃប្រឌិតស្វីសជាមួយនឹងឌីហ្សាញបែបសហសម័យ។',
+  'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.':
+      'រ៉ូបរាត្រីសមោសរសាច់សូត្ររលោងប្រណីត ពណ៌បៃតងត្បូងមរកត រចនាម៉ូដឆែកជើងខ្ពស់ និងធ្លាក់ផ្នត់យ៉ាងស្រស់ស្អាត។',
+  'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.':
+      'ស្នាដៃកាត់ដេរដ៏ឆ្នើមរបស់អ៊ីតាលី ដោយរួមបញ្ចូលគ្នានូវសាច់រោមសត្វ និងរោមពពែ (Cashmere) កម្រិតប្រណីត ដើម្បីភាពកក់ក្តៅ និងភាពស៊ីវិល័យបំផុត។',
+  'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.':
+      'កំពូលនៃភាពឆើតឆាយពេលរាត្រី កាត់ដេរពីសាច់វល្លិ៍អ៊ីតាលីលំដាប់ខ្ពស់ ជាមួយកអាវឆែកសាច់សូត្ររលោង Satin។',
+  'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.':
+      'អាវរងាមានមួក (Hoodie) សាច់ក្រណាត់កប្បាសក្រាស់កម្រិតប្រណីត ម៉ូដទំហំធំ (Oversized) ធូរស្រឡះ ល្អឥតខ្ចោះសម្រាប់ផាសុកភាពប្រចាំថ្ងៃ។',
+  'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.':
+      'ឈុតដង្កៀបសក់គ្រីស្តាល់ប្រណីតចំនួនបី ដែលចាំងពន្លឺយ៉ាងស្អាត។ ឌីហ្សាញឡើងឱ្យកៀកជាប់មាំល្អសម្រាប់សក់គ្រប់ប្រភេទ។',
+  'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.':
+      'នាឡិកាដែកមិនច្រេះពណ៌ខ្មៅរលោងដ៏ស៊ីវិល័យ ជាមួយមុខកញ្ចក់ត្បូងកណ្តៀង (Sapphire)។ ឌីហ្សាញសម្រាប់ថ្នាក់ដឹកនាំសម័យថ្មីដែលឱ្យតម្លៃលើភាពថ្លៃថ្នូរ និងស្ទីលលាក់កំបាំង។',
+  'A sophisticated evening clutch designed with premium materials to complement your best outfits.':
+      'កាបូបយួរដៃរាត្រីសមោសរដ៏ស៊ីវិល័យ ផលិតពីវត្ថុធាតុដើមលំដាប់ខ្ពស់ ដើម្បីបង្កើនសម្រស់សម្លៀកបំពាក់ដ៏ល្អបំផុតរបស់អ្នក។',
+  'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.':
+      'ចិញ្ចៀនដណ្តឹងមាសស 18k ដ៏ស្រស់ស្អាត ដាំពេជ្រកាត់យ៉ាងចែងចាំងនៅចំកណ្តាល។ ជាទម្រង់និមិត្តរូបនៃសេចក្តីស្រឡាញ់ និងការប្តេជ្ញាចិត្តមិនចេះប្រែប្រួល។',
+  'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.':
+      'កាបូបយួរដៃចែងចាំងយ៉ាងស្រស់ស្អាត ល្អឥតខ្ចោះសម្រាប់ពិធីជប់លៀងពេលល្ងាច និងពិធីមង្គលការ។ រួមបញ្ចូលទាំងខ្សែច្រវាក់ដែលអាចដោះចេញបាន និងមានកន្លែងខាងក្នុងល្មមសម្រាប់របស់របរចាំបាច់។',
+  'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.':
+      'កាបូបធ្វើដំណើរ (Duffel) ដែលមានស្ទីលទាន់សម័យ និងធំទូលាយ ផលិតពីស្បែកមានគុណភាពខ្ពស់ ល្អឥតខ្ចោះសម្រាប់ការដើរកម្សាន្តចុងសប្តាហ៍។',
+  'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.':
+      'រចនាឡើងយ៉ាងទាក់ទាញមិនចេះហួសសម័យសម្រាប់ការដកពាក់ប្រចាំថ្ងៃ ស្បែកជើងប៉ាតាទីក្រុងពណ៌សនេះ ស័ក្តិសមឥតខ្ចោះជាមួយគ្រប់សម្លៀកបំពាក់។',
+  'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.':
+      'កាបូបស្ពាយចំហៀងស្បែកមិនចេះហួសសម័យ មានថតការពារកុំព្យូទ័រយួរដៃ និងខ្សែស្ពាយលៃតម្រូវបាន ដើម្បីផាសុកភាពកម្រិតអតិបរមា។',
+  'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.':
+      'អាវសឺមី Oxford មិនចេះហួសសម័យ កាត់ពីសាច់កប្បាសលំដាប់ខ្ពស់ ជាមួយកអាវឡេវប៊ូតុងស្អាតរៀបរយ។',
+  'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.':
+      'មួកហ្វេដូរ៉ាធ្វើពីក្រណាត់រោមសត្វមិនចេះហួសសម័យ លម្អដោយខ្សែបូរបែបបុរាណ។ ស័ក្តិសមសម្រាប់ឱកាសផ្លូវការ ឬបន្ថែមភាពស៊ីវិល័យដល់សម្លៀកបំពាក់ធម្មតារបស់អ្នក។',
+  'A unique piece of home decor, individually signed by the artist.':
+      'វត្ថុដេគ័រផ្ទះដ៏ប្លែកប្លែក និងមានតែមួយគត់ មានហត្ថលេខាផ្ទាល់ពីសិល្បករ។',
+  'A versatile brown leather belt with a textured finish, ideal for everyday office wear or weekend outings.':
+      'ខ្សែក្រវាត់ស្បែកពណ៌ត្នោតដែលអាចប្រើប្រាស់បានច្រើនទម្រង់ ជាមួយផ្ទៃមានឡាយឆ្នូត ល្អបំផុតសម្រាប់ការងារការិយាល័យប្រចាំថ្ងៃ ឬការដើរលេងចុងសប្តាហ៍។',
+  'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.':
+      'កាបូបយួរធំក្រណាត់កង់វ៉ាស់ដែលអាចប្រើបានច្រើនទម្រង់ មានថ្នេរដេរយ៉ាងមាំ និងមានកន្លែងខាងក្នុងធំទូលាយសម្រាប់ដាក់កុំព្យូទ័រយួរដៃ និងសៀវភៅ។',
+  'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.':
+      'ឈុតគ្របស៊ុតពណ៌ប្រផេះធ្យូងដែលអាចប្រើបានគ្រប់ឱកាស រាងស្លីមហ្វីត (Slim Fit) ទំនើប។ ល្អឥតខ្ចោះសម្រាប់កិច្ចប្រជុំធុរកិច្ច ពិធីមង្គលការ និងកម្មវិធីផ្លូវការនានា។',
+  'A versatile polo shirt crafted from breathable cotton pique, featuring a subtle embroidered logo.':
+      'អាវប៉ូឡូដែលអាចពាក់បានច្រើនទម្រង់ ផលិតពីសាច់ក្រណាត់កប្បាសខ្យល់ចេញចូលបានល្អ មានប៉ាក់ឡូហ្គោតូចមួយយ៉ាងប្រណីត។',
   'Accessories': 'គ្រឿងលម្អ/គ្រឿងបន្លាស់',
   'Account': 'គណនី',
   'Account Setup Successful!': 'ការរៀបចំគណនីបានជោគជ័យ!',
@@ -80,7 +116,8 @@
   'Add to Cart': 'បន្ថែមទៅក្នុងកន្ត្រក',
   'Added to Cart': 'បានបន្ថែមទៅក្នុងកន្ត្រក',
   'Address': 'អាសយដ្ឋាន',
-  'Address \${user?.address.toString() ?? ': 'Address \${user?.address.toString() ?? ',
+  'Address \${user?.address.toString() ?? ':
+      'Address \${user?.address.toString() ?? ',
   'Address Details': 'ព័ត៌មានលម្អិតអាសយដ្ឋាន',
   'Adventure Waterproof Duffel': 'កាបូបធ្វើដំណើរមិនជ្រាបទឹកបែបផ្សងព្រេង',
   'Aero Cushion Max': 'ស្បែកជើងទ្រនាប់ខ្យល់ Aero Cushion Max',
@@ -99,6 +136,8 @@
   'All Styles': 'គ្រប់ម៉ូដទាំងអស់',
   'Alpine Hybrid Shell': 'អាវក្រៅការពារធាតុអាកាស Alpine Hybrid',
   'Already have an account?': 'មានគណនីរួចហើយមែនទេ?',
+  'technical_problem_contact_aba': 'មានបញ្ហាអាក់រអួល។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ ឬទាក់ទងមក ABA ដើម្បីដោះស្រាយបញ្ហានេះឲ្យបានឆាប់រហ័ស។',
+  'agree': 'យល់ព្រម',
   'American Flag Splicing Hoodie': 'អាវរងាមានមួកតភ្ជាប់ឡាយទង់ជាតិអាមេរិក',
   'Amethyst Drop Earrings': 'ក្រវិលត្បូងពណ៌ស្វាយ Amethyst Drop',
   'Ametrine Statement Ring': 'ចិញ្ចៀនត្បូងអាមេត្រីនខ្នាតធំ Ametrine',
@@ -126,8 +165,10 @@
   'Arctic White Fleece Joggers': 'ខោកីឡាសាច់ក្រណាត់ទន់ពណ៌សអាកទិក',
   'Arctic White Puffer': 'អាវរងាប៉ោងពណ៌សអាកទិក Arctic White Puffer',
   'Are you sure you want to delete': 'តើអ្នកប្រាកដជាចង់លុបឬទេ',
-  'Are you sure you want to log out of your account?': 'តើអ្នកប្រាកដជាចង់ចាកចេញពីគណនីរបស់អ្នកមែនទេ?',
-  'Are you sure you want to remove this address?': 'តើអ្នកប្រាកដជាចង់លុបអាសយដ្ឋាននេះមែនទេ?',
+  'Are you sure you want to log out of your account?':
+      'តើអ្នកប្រាកដជាចង់ចាកចេញពីគណនីរបស់អ្នកមែនទេ?',
+  'Are you sure you want to remove this address?':
+      'តើអ្នកប្រាកដជាចង់លុបអាសយដ្ឋាននេះមែនទេ?',
   'Argan Infusion Shampoo': 'សាប៊ូកក់សក់ផ្សំពីប្រេងអាហ្គាន Argan Infusion',
   'Artisan Ceramic Vase': 'ថូផ្កាដីដុតបែបសិប្បកម្ម Artisan Ceramic',
   'Artisan Chocolate Box': 'ប្រអប់សូកូឡាធ្វើដោយដៃបែបសិប្បកម្ម',
@@ -136,10 +177,12 @@
   'Artistic Floral Canvas': 'កាបូបក្រណាត់កង់វ៉ាស់ឡាយផ្កាបែបសិល្បៈ',
   'Asymmetric Drape Vest': 'អាវកាក់ម៉ូដផ្នត់មិនស្មើគ្នា Asymmetric Drape',
   'Athletic Mesh Shorts': 'ខោខ្លីកីឡាក្រណាត់សំណាញ់ខ្យល់ចេញចូល',
-  'Audiophile Gold Edition Headphones': 'កាសស្តាប់ត្រចៀកកម្រិតសំឡេងច្បាស់ល្អស៊េរីមាស',
+  'Audiophile Gold Edition Headphones':
+      'កាសស្តាប់ត្រចៀកកម្រិតសំឡេងច្បាស់ល្អស៊េរីមាស',
   'Automatic Skeleton X': 'នាឡិកាមេកានិចមើលធ្លាយក្នុង Automatic Skeleton X',
   'Aviation Pilot Watch': 'នាឡិកាដៃស្ទីលអ្នកបើកបរយន្តហោះ Aviation Pilot',
-  'Aww ..Snap. Your wish list is empty!': 'អូហូ... បញ្ជីបំណងប្រាថ្នារបស់អ្នកនៅទំនេរទេ!',
+  'Aww ..Snap. Your wish list is empty!':
+      'អូហូ... បញ្ជីបំណងប្រាថ្នារបស់អ្នកនៅទំនេរទេ!',
   'Baby': 'ទារក',
   'Back to School': 'ត្រៀមចូលរៀនវិញ',
   'Back-Seam Vintage Classic': 'ស្រោមជើងវែងម៉ូដឆ្នូតក្រោយបែបបុរាណ Classic',
@@ -157,14 +200,17 @@
   'Bamboo Weave Slippers': 'ស្បែកជើងផ្ទាត់ក្នុងផ្ទះត្បាញពីឫស្សី',
   'Bank transfer': 'ផ្ទេរប្រាក់តាមធនាគារ',
   'Basic Navy 2-Pack': 'ឈុតអាវយឺតពណ៌ខៀវក្រម៉ៅមូលដ្ឋាន (កញ្ចប់ ២ អាវ)',
-  'Batman: Legacy of the Dark Knight Game': 'ហ្គេមក្តារ Batman: Legacy of the Dark Knight',
+  'Batman: Legacy of the Dark Knight Game':
+      'ហ្គេមក្តារ Batman: Legacy of the Dark Knight',
   'Beaded Boho Necklace': 'ខ្សែករ موដអង្កាំបែប Boho',
   'Beaded Hair Band': 'ខ្សែចងសក់ដាំអង្កាំប្រណីត',
   'BEAUTY': 'សម្រស់ (BEAUTY)',
-  'Beauty sleep starts here. Reduces hair frizz and skin irritation.': 'ការគេងដ៏មានសម្រស់ចាប់ផ្តើមពីទីនេះ។ ជួយកាត់បន្ថយការរួញជំពាក់នៃសក់ និងការរំញោចស្បែក។',
+  'Beauty sleep starts here. Reduces hair frizz and skin irritation.':
+      'ការគេងដ៏មានសម្រស់ចាប់ផ្តើមពីទីនេះ។ ជួយកាត់បន្ថយការរួញជំពាក់នៃសក់ និងការរំញោចស្បែក។',
   'Beauty Tools': 'Beauty Tools',
   'Bedroom': 'បន្ទប់គេង',
-  'Beginner Wooden Acoustic Guitar': 'ហ្គីតាឈើ Acoustic សម្រាប់អ្នកចាប់ផ្តើមដំបូង',
+  'Beginner Wooden Acoustic Guitar':
+      'ហ្គីតាឈើ Acoustic សម្រាប់អ្នកចាប់ផ្តើមដំបូង',
   'Beige Comfort Heels': 'ស្បែកជើងកែងទន់ស្រួលពាក់ពណ៌បន៍ត្នោតខ្ចី',
   'Beige Sand Desert Hoodie': 'អាវរងាមានមួកពណ៌ខ្សាច់វាលខ្សាច់ Beige Sand',
   'Belts': 'ខ្សែក្រវាត់',
@@ -187,9 +233,11 @@
   'Birthday Sneakers': 'ស្បែកជើងប៉ាតាសម្រាប់កាដូខួបកំណើត',
   'Birthday Teddy Bear': 'តុក្កតាខ្លាឃ្មុំកាដូខួបកំណើត Teddy Bear',
   'Black': 'ពណ៌ខ្មៅ',
-  'Black High-Waist Skinny': 'ខោខូវប៊យរាងរឹបចង្កេះខ្ពស់ពណ៌ខ្មៅ High-Waist Skinny',
+  'Black High-Waist Skinny':
+      'ខោខូវប៊យរាងរឹបចង្កេះខ្ពស់ពណ៌ខ្មៅ High-Waist Skinny',
   'Black Saffron': 'ទឹកអប់ក្លិន Black Saffron',
-  'Black Tassel Loafers': 'ស្បែកជើងស្បែកមានកញ្ចុំសក់ពណ៌ខ្មៅ Black Tassel Loafers',
+  'Black Tassel Loafers':
+      'ស្បែកជើងស្បែកមានកញ្ចុំសក់ពណ៌ខ្មៅ Black Tassel Loafers',
   'Blouses': 'Blouses',
   'Blue': 'ពណ៌ខៀវ',
   'Blue Dial Business': 'នាឡិកាធុរកិច្ចមុខខៀវ Blue Dial Business',
@@ -216,9 +264,11 @@
   'Boys': 'ក្មេងប្រុស',
   'Bra': 'Bra',
   'Braided Casual Belt': 'ខ្សែក្រវាត់ត្បាញធម្មតា Braided Casual Belt',
-  'Brands': 'ម៉ាកយីហោ (Brands)',
-  'Breathable linen blend for maximum comfort.': 'សាច់ក្រណាត់ល្បាយលីនិនខ្យល់ចេញចូលបានល្អ ដើម្បីផាសុកភាពកម្រិតអតិបរមា។',
-  'Breathable linen blend shirt, perfect for warm weather and beach outings.': 'អាវក្រណាត់ល្បាយលីនិនខ្យល់ចេញចូលបានល្អ ល្អឥតខ្ចោះសម្រាប់អាកាសធាតុក្តៅ និងការដើរលេងឆ្នេរខ្សាច់។',
+  'Brands': 'ម៉ាកយីហោ',
+  'Breathable linen blend for maximum comfort.':
+      'សាច់ក្រណាត់ល្បាយលីនិនខ្យល់ចេញចូលបានល្អ ដើម្បីផាសុកភាពកម្រិតអតិបរមា។',
+  'Breathable linen blend shirt, perfect for warm weather and beach outings.':
+      'អាវក្រណាត់ល្បាយលីនិនខ្យល់ចេញចូលបានល្អ ល្អឥតខ្ចោះសម្រាប់អាកាសធាតុក្តៅ និងការដើរលេងឆ្នេរខ្សាច់។',
   'Breathable Mesh Babydoll': 'ឈុតគេងសិចស៊ីក្រណាត់សំណាញ់ស្តើងដកដង្ហើមបាន',
   'Breathable Mesh Padded Tech': 'ស្បែកជើងកីឡាក្រណាត់សំណាញ់មានទ្រនាប់ខ្យល់',
   'Breathable Mesh Slip-ons': 'ស្បែកជើងស៊កក្រណាត់សំណាញ់ខ្យល់ចេញចូល',
@@ -233,9 +283,11 @@
   'Burgundy Velvet Evening Coat': 'អាវធំរាត្រីសមោសរសាច់វល្លិ៍ពណ៌ក្រហមក្រម៉ៅ',
   'Burgundy Velvet Gown': 'រ៉ូបរាត្រីសមោសរសាច់វល្លិ៍ពណ៌ក្រហមក្រម៉ៅ',
   'Burgundy Wine V-Neck': 'អាវកវីពណ៌ក្រហមទំពាំងបាយជូរ Burgundy Wine',
-  'Business Carry-On Trolley': 'វ៉ាលីយួរឡើងយន្តហោះសម្រាប់ធុរកិច្ច Business Carry-On',
+  'Business Carry-On Trolley':
+      'វ៉ាលីយួរឡើងយន្តហោះសម្រាប់ធុរកិច្ច Business Carry-On',
   'Business Professional Wallet': 'កាបូបលុយធុរកិច្ចអាជីព Business Professional',
-  'Butter-soft fabric with 4-way stretch, perfect for yoga.': 'សាច់ក្រណាត់ទន់ល្មើយដូចប៊ឺ យឺតបាន ៤ ទិស ល្អឥតខ្ចោះសម្រាប់យូហ្គា។',
+  'Butter-soft fabric with 4-way stretch, perfect for yoga.':
+      'សាច់ក្រណាត់ទន់ល្មើយដូចប៊ឺ យឺតបាន ៤ ទិស ល្អឥតខ្ចោះសម្រាប់យូហ្គា។',
   'Butterfly Wing Clips': 'ដង្កៀបសក់រាងស្លាបមេអំបៅ Butterfly Wing',
   'Camo Field Jacket': 'អាវក្រៅឡាយទាហាន Camo Field Jacket',
   'Camo Print Adventure': 'ស្បែកជើងប៉ាតាឡាយទាហានបែបផ្សងព្រេង Camo Print',
@@ -243,8 +295,10 @@
   'Canvas Flat Sneakers': 'ស្បែកជើងប៉ាតាបាតសំប៉ែតក្រណាត់កង់វ៉ាស់',
   'Canvas Webbed Belt': 'ខ្សែក្រវាត់ក្រណាត់កង់វ៉ាស់បែបកីឡា Canvas Webbed',
   'Canvas Weekend Explorer': 'កាបូបក្រណាត់កង់វ៉ាស់សម្រាប់ដើរលេងចុងសប្តាហ៍',
-  'Carbon Fiber Grey Tech': 'នាឡិកាបច្ចេកវិទ្យាពណ៌ប្រផេះសរសៃកាបូន (Carbon Fiber)',
-  'Carbon Fiber RFID Blocker': 'កាបូបកាតប្រឆាំងការលួចទិន្នន័យ Carbon Fiber RFID',
+  'Carbon Fiber Grey Tech':
+      'នាឡិកាបច្ចេកវិទ្យាពណ៌ប្រផេះសរសៃកាបូន (Carbon Fiber)',
+  'Carbon Fiber RFID Blocker':
+      'កាបូបកាតប្រឆាំងការលួចទិន្នន័យ Carbon Fiber RFID',
   'Carbon Fiber Runner': 'ស្បែកជើងរត់ប្រណាំងស៊េរីសរសៃកាបូន Carbon Fiber',
   'Carbon Fiber Slim Wallet': 'កាបូបលុយស្តើងស៊េរីសរសៃកាបូន Carbon Fiber',
   'Carbon Fiber Sport': 'នាឡិកាកីឡាស៊េរីសរសៃកាបូន Carbon Fiber Sport',
@@ -254,11 +308,13 @@
   'Card Holder Name': 'ឈ្មោះម្ចាស់ប័ណ្ណ',
   'Card Number': 'លេខប័ណ្ណ',
   'Cardigans': 'Cardigans',
-  'Care Bears: Caring Cuties Plush': 'តុក្កតាខ្លាឃ្មុំ Care Bears: Caring Cuties',
+  'Care Bears: Caring Cuties Plush':
+      'តុក្កតាខ្លាឃ្មុំ Care Bears: Caring Cuties',
   'Cargo Utility Shorts': 'ខោខ្លីហោប៉ៅច្រើន Cargo Utility Shorts',
   'Cargo Utility Skirt': 'សំពត់ហោប៉ៅច្រើនបែបស្ព័រ Cargo Utility Skirt',
   'Carpenter Utility Jeans': 'ខោខូវប៊យហោប៉ៅជាង Carpenter Utility',
-  'Case diameter is 40 mm / thickness is 11 mm and strap width is 20 mm.': 'Case diameter is 40 mm / thickness is 11 mm and strap width is 20 mm.',
+  'Case diameter is 40 mm / thickness is 11 mm and strap width is 20 mm.':
+      'Case diameter is 40 mm / thickness is 11 mm and strap width is 20 mm.',
   'Cash On Delivery': 'ទូទាត់ប្រាក់ពេលទទួលទំនិញ (COD)',
   'Cashback': 'ប្រាក់ត្រឡប់មកវិញ',
   'Cashmere Winter Overcoat': 'អាវធំរងាសាច់រោមពពែ Cashmere Winter',
@@ -269,8 +325,10 @@
   'Casual Beanie Hat': 'មួកចាក់រោមសត្វធម្មតា Casual Beanie',
   'Casual Bomber Baseball Jacket': 'អាវក្រៅ Casual Bomber ស្ទីលបេស្បល',
   'Casual Canvas Loafers': 'ស្បែកជើងស៊កក្រណាត់កង់វ៉ាស់ធម្មតា Casual Canvas',
-  'Casual Charcoal Hoodie - Premium': 'អាវរងាមានមួកពណ៌ប្រផេះធ្យូងធម្មតា - Premium',
-  'Casual Charcoal Hoodie - Premium Cotton': 'អាវរងាមានមួកពណ៌ប្រផេះធ្យូង - កប្បាស Premium',
+  'Casual Charcoal Hoodie - Premium':
+      'អាវរងាមានមួកពណ៌ប្រផេះធ្យូងធម្មតា - Premium',
+  'Casual Charcoal Hoodie - Premium Cotton':
+      'អាវរងាមានមួកពណ៌ប្រផេះធ្យូង - កប្បាស Premium',
   'Casual Denim Purse': 'កាបូបដៃក្រណាត់ខូវប៊យ Casual Denim',
   'Casual Denim Sandals': 'ស្បែកជើងរាត់ក្រណាត់ខូវប៊យធម្មតា Casual Denim',
   'Casual Denim Skirt Dress': 'រ៉ូបសំពត់ក្រណាត់ខូវប៊យបែបធម្មតា Casual Denim',
@@ -293,9 +351,11 @@
   'Ceramic White Edition': 'នាឡិកាស៊េរីពណ៌សសេរ៉ាមិច Ceramic White',
   'Ceramide Night Balm': 'គ្រីមលាបមុខពេលយប់ផ្សំពីសេរ៉ាម៉ាយ Ceramide',
   'Chain Strap Crossbody Bag': 'កាបូបស្ពាយចំហៀងខ្សែច្រវាក់ Chain Strap',
-  'Chain Strap Crossbody Bag - Pink Edition': 'កាបូបស្ពាយចំហៀងខ្សែច្រវាក់ - ស៊េរីពណ៌ផ្កាឈូក',
+  'Chain Strap Crossbody Bag - Pink Edition':
+      'កាបូបស្ពាយចំហៀងខ្សែច្រវាក់ - ស៊េរីពណ៌ផ្កាឈូក',
   'Chambray Everyday Shirt': 'អាវសឺមីក្រណាត់សំបកបេកប្រចាំថ្ងៃ Chambray',
-  'Champagne Gold Metallic Espadrille': 'ស្បែកជើងផ្ទាត់ពណ៌មាសសាំប៉ាញលោហៈ Metallic',
+  'Champagne Gold Metallic Espadrille':
+      'ស្បែកជើងផ្ទាត់ពណ៌មាសសាំប៉ាញលោហៈ Metallic',
   'Champagne Satin Slip': 'រ៉ូបគេងសូត្ររលោងពណ៌មាសសាំប៉ាញ Champagne',
   'Champagne Silk Blend Tux': 'ឈុតតុកស៊ីដូសូត្រល្បាយពណ៌មាសសាំប៉ាញ',
   'Change Password': 'ប្តូរពាក្យសម្ងាត់',
@@ -305,7 +365,8 @@
   'Charcoal Knit Sweater': 'អាវរងាសាច់ចាក់ពណ៌ប្រផេះធ្យូង Charcoal Knit',
   'Charcoal Melange Cardigan': 'អាវក្រៅសាច់ចាក់ពណ៌ប្រផេះធ្យូង Charcoal Melange',
   'Charcoal Slim Denim': 'ខោខូវប៊យរាងស្លីមពណ៌ប្រផេះធ្យូង Charcoal Slim',
-  'Check out our latest arrivals and stay up to date with our latest styles!': 'ពិនិត្យមើលទំនិញថ្មីៗបំផុតរបស់យើង និងបន្ដធ្វើបច្ចុប្បន្នភាពជាមួយម៉ូដទាន់សម័យចុងក្រោយបង្អស់!',
+  'Check out our latest arrivals and stay up to date with our latest styles!':
+      'ពិនិត្យមើលទំនិញថ្មីៗបំផុតរបស់យើង និងបន្ដធ្វើបច្ចុប្បន្នភាពជាមួយម៉ូដទាន់សម័យចុងក្រោយបង្អស់!',
   'Checked Flannel Shirt': 'អាវសឺមីក្រណាត់ហ្វ្លានែលឡាយការ៉ូ Checked Flannel',
   'Checkered Collar Polo': 'អាវប៉ូឡូកអាវឡាយការ៉ូ Checkered Collar',
   'Checkered Gingham Blouse': 'អាវនារីឡាយការ៉ូតូច Gingham Blouse',
@@ -327,7 +388,8 @@
   'Classic Black Leather Clutch': 'កាបូបយួរដៃស្បែកពណ៌ខ្មៅម៉ូដ Classic Clutch',
   'Classic Black Pouch': 'កាបូបដៃតូចពណ៌ខ្មៅម៉ូដ Classic',
   'Classic Black Pumps': 'ស្បែកជើងកែងបិទមុខពណ៌ខ្មៅម៉ូដ Classic Pumps',
-  'Classic Brown Leather Duffel': 'កាបូបធ្វើដំណើរស្បែកពណ៌ត្នោតម៉ូដ Classic Duffel',
+  'Classic Brown Leather Duffel':
+      'កាបូបធ្វើដំណើរស្បែកពណ៌ត្នោតម៉ូដ Classic Duffel',
   'Classic Brown Leather Loafers': 'ស្បែកជើងស្បែកពណ៌ត្នោតម៉ូដ Classic Loafers',
   'Classic Brown Leather Wallet': 'កាបូបលុយស្បែកពណ៌ត្នោតម៉ូដ Classic',
   'Classic Brown Pouch': 'កាបូបដៃតូចពណ៌ត្នោតម៉ូដ Classic',
@@ -341,15 +403,18 @@
   'Classic Cowboy Hat': 'មួកគង្វាលគោម៉ូដបុរាណ Classic Cowboy',
   'Classic Denim Shirt': 'អាវសឺមីក្រណាត់ខូវប៊យម៉ូដ Classic Denim',
   'Classic Denim Shorts': 'ខោខ្លីក្រណាត់ខូវប៊យម៉ូដ Classic Denim Shorts',
-  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.': 'សំពត់ក្រណាត់ខូវប៊យម៉ូដ Classic រាងចង្កេះខ្ពស់ និងមានគែមព្រុយបន្ដិច បង្ហាញពីស្ទីលទាន់សម័យ។',
+  'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.':
+      'សំពត់ក្រណាត់ខូវប៊យម៉ូដ Classic រាងចង្កេះខ្ពស់ និងមានគែមព្រុយបន្ដិច បង្ហាញពីស្ទីលទាន់សម័យ។',
   'Classic Essential White Sneaker': 'ស្បែកជើងប៉ាតាពណ៌សចាំបាច់ម៉ូដ Classic',
   'Classic Evening Clutch Bag': 'កាបូបយួរដៃរាត្រីសមោសរម៉ូដ Classic Clutch',
   'Classic Harrington Jacket': 'អាវធំ Harrington ម៉ូដ Classic Harrington',
   'Classic Hoodie': 'អាវរងាមានមួកម៉ូដ Classic Hoodie',
   'Classic Ivory Button-Up': 'អាវសឺមីឡេវមុខពណ៌សភ្លុកដំរីម៉ូដ Classic',
-  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.': 'ស្រោមដៃស្បែកបើកបរម៉ូដ Classic ឌីហ្សាញឡើងដើម្បីការក្តាប់ជាប់ល្អបំផុត និងផាសុកភាព។ ផលិតពីស្បែកកូនចៀមពិតប្រាកដ ផ្តល់អារម្មណ៍ទន់ល្មើយកម្រិតប្រណីត។',
+  'Classic leather driving gloves designed for maximum grip and comfort. Made from genuine lambskin for a soft, premium feel.':
+      'ស្រោមដៃស្បែកបើកបរម៉ូដ Classic ឌីហ្សាញឡើងដើម្បីការក្តាប់ជាប់ល្អបំផុត និងផាសុកភាព។ ផលិតពីស្បែកកូនចៀមពិតប្រាកដ ផ្តល់អារម្មណ៍ទន់ល្មើយកម្រិតប្រណីត។',
   'Classic Leather Messenger': 'កាបូបស្ពាយចំហៀងស្បែកម៉ូដ Classic',
-  'Classic Leather Quartz': 'នាឡិកាខ្សែស្បែកប្រព័ន្ធក្វាត្សម៉ូដ Classic Leather',
+  'Classic Leather Quartz':
+      'នាឡិកាខ្សែស្បែកប្រព័ន្ធក្វាត្សម៉ូដ Classic Leather',
   'Classic Leather Slides': 'ស្បែកជើងស៊កស្បែកម៉ូដ Classic Leather Slides',
   'Classic Mocha Plaid': 'អាវសឺមីឡាយការ៉ូពណ៌ម៉ូកាម៉ូដ Classic Mocha',
   'Classic Olive Green Parka': 'អាវរងាជួរវែងពណ៌បៃតងអូលីវម៉ូដ Classic Parka',
@@ -363,9 +428,11 @@
   'Classic School Backpack': 'កាតាបរៀនម៉ូដបុរាណ Classic',
   'Classic Silver Chronograph': 'នាឡិកាដៃកាត់ម៉ោងពណ៌ប្រាក់ម៉ូដ Classic',
   'Classic Sneakers': 'ស្បែកជើងប៉ាតាម៉ូដ Classic Sneakers',
-  'Classic stonewashed denim with a comfortable straight-leg fit.': 'ខោខូវប៊យម៉ូដបុរាណលាងទឹកថ្ម (Stonewashed) ជើងត្រង់ស្រួលពាក់។',
+  'Classic stonewashed denim with a comfortable straight-leg fit.':
+      'ខោខូវប៊យម៉ូដបុរាណលាងទឹកថ្ម (Stonewashed) ជើងត្រង់ស្រួលពាក់។',
   'Classic Striped Polo': 'អាវប៉ូឡូឡាយឆ្នូតម៉ូដ Classic Striped',
-  'Classic Tan H-Strap Sandals': 'ស្បែកជើងរាត់ខ្សែរាងអក្សរ H ពណ៌ត្នោតខ្ចី Classic',
+  'Classic Tan H-Strap Sandals':
+      'ស្បែកជើងរាត់ខ្សែរាងអក្សរ H ពណ៌ត្នោតខ្ចី Classic',
   'Classic Tennis Bracelet': 'កងដៃពេជ្រជួរម៉ូដ Classic Tennis',
   'Classic Watch': 'នាឡិកាដៃម៉ូដ Classic Watch',
   'Classic Wayfarer Black': 'វ៉ែនតាពណ៌ខ្មៅម៉ូដ Classic Wayfarer',
@@ -383,13 +450,15 @@
   'Clubmaster Classic': 'វ៉ែនតាម៉ូដ Clubmaster Classic',
   'Clutches': 'កាបូបយួរដៃតូច (Clutches)',
   'Coats': 'Coats',
-  'Collectible Fantasy Card Deck': 'ឈុតបៀកាតហ្វង់តាស៊ីសម្រាប់ប្រមូលទុក Collectible',
+  'Collectible Fantasy Card Deck':
+      'ឈុតបៀកាតហ្វង់តាស៊ីសម្រាប់ប្រមូលទុក Collectible',
   'Color': 'ពណ៌',
   'Color-Block Modern': 'អាវយឺតដេញប្លុកពណ៌ទំនើប Color-Block',
   'Combat Style Flat Sole': 'ស្បែកជើងប៊ូតបាតសំប៉ែតស្ទីលប្រយុទ្ធ Combat',
   'Comfort Cork Sole Slides': 'ស្បែកជើងស៊កបាតឈើឆ្នុក Comfort Cork',
   'Comfort Walking Loafers': 'ស្បែកជើងស៊កដើរស្រួល Comfort Walking',
-  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.': 'ខោខ្លីក្រណាត់ខូវប៊យចង្កេះខ្ពស់ពាក់ស្រួល ជាមួយឌីហ្សាញហោប៉ៅប្រាំបែបបុរាណ និងគែមព្រុយធម្មជាតិ។',
+  'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.':
+      'ខោខ្លីក្រណាត់ខូវប៊យចង្កេះខ្ពស់ពាក់ស្រួល ជាមួយឌីហ្សាញហោប៉ៅប្រាំបែបបុរាណ និងគែមព្រុយធម្មជាតិ។',
   'Compact Daypack': 'កាតាបស្ពាយខ្នាតបង្រួមប្រចាំថ្ងៃ',
   'Compact Overnight Bag': 'កាបូបស្នាក់នៅមួយយប់ខ្នាតបង្រួម',
   'Compact Tabletop Pool Table': 'តុប៊ីយែរខ្នាតតូចដាក់លើតុ Compact Tabletop',
@@ -401,14 +470,16 @@
   'Concrete Orchid': 'ទឹកអប់ក្លិន Concrete Orchid',
   'Confirm': 'Confirm',
   'Confirm Payment': 'បញ្ជាក់ការទូទាត់',
-  'Connetix Magnetic Tiles: Light Star Pack': 'កូនជញ្ជាំងមេដែក Connetix Magnetic Tiles',
+  'Connetix Magnetic Tiles: Light Star Pack':
+      'កូនជញ្ជាំងមេដែក Connetix Magnetic Tiles',
   'Contact us': 'ទាក់ទងមកយើង',
   'Continue': 'បន្ដទៅមុខទៀត',
   'Contour Sculpt Stick': 'ដំបងបន្លិចរាងមុខ Contour Sculpt Stick',
   'Contrast Collar Polo': 'អាវប៉ូឡូកអាវពណ៌ផ្ទុយ Contrast Collar',
   'Cool-Dry Golf Edition': 'អាវកីឡាវាយកូនហ្គោលក្រណាត់ត្រជាក់ស្ងួតលឿន',
   'Corduroy Button Skirt': 'សំពត់ឡេវមុខក្រណាត់កូឌុយរ៉យ (Corduroy)',
-  'Corduroy Lined Field Coat': 'អាវធំទ្រនាប់ក្រណាត់កូឌុយរ៉យ Corduroy Field Coat',
+  'Corduroy Lined Field Coat':
+      'អាវធំទ្រនាប់ក្រណាត់កូឌុយរ៉យ Corduroy Field Coat',
   'Corduroy Retro Shorts': 'ខោខ្លីក្រណាត់កូឌុយរ៉យស្ទីលរ៉េត្រូ Corduroy Retro',
   'Corduroy Sherpa Jacket': 'អាវក្រៅក្រណាត់កូឌុយរ៉យទ្រនាប់រោមចៀម Sherpa',
   'Corduroy Texture Tote': 'កាបូបយួរធំក្រណាត់កូឌុយរ៉យ (Corduroy)',
@@ -422,13 +493,16 @@
   'Cotton Cargo Shorts': 'ខោខ្លីហោប៉ៅថង់ក្រណាត់កប្បាស Cotton Cargo',
   'Cotton Chino Shorts': 'ខោខ្លីឈីណូក្រណាត់កប្បាស Cotton Chino',
   'Cotton Stretch Hipster Pack': 'កញ្ចប់ខោក្នុងយឺតសាច់កប្បាសម៉ូដ Hipster',
-  'Cotton-Stretch Daily Pack': 'កញ្ចប់ខោក្នុងយឺតសាច់កប្បាសប្រចាំថ្ងៃ Daily Pack',
+  'Cotton-Stretch Daily Pack':
+      'កញ្ចប់ខោក្នុងយឺតសាច់កប្បាសប្រចាំថ្ងៃ Daily Pack',
   'Court King Basketball Shoe': 'ស្បែកជើងកីឡាបាល់បោះ Court King',
   'Court Pro Flat Shoes': 'ស្បែកជើងបាតសំប៉ែតកីឡាវាយកូនបាល់ Court Pro',
-  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.': 'ផលិតឡើងជាមួយក្បាលប៊ិចមាស 14k ដើម្បីបទពិសោធន៍សរសេរដ៏រលូនអស្ចារ្យ។',
+  'Crafted with a 14k gold nib for an exceptionally smooth writing experience.':
+      'ផលិតឡើងជាមួយក្បាលប៊ិចមាស 14k ដើម្បីបទពិសោធន៍សរសេរដ៏រលូនអស្ចារ្យ។',
   'Cream': 'ពណ៌គ្រីម',
   'Cream Cashmere Sleeveless': 'អាវវាលក្លៀកសាច់រោមពពែពណ៌គ្រីម Cashmere',
   'Cream Fleece Basic': 'អាវរងាសាច់ទន់ពណ៌គ្រីមមូលដ្ឋាន Cream Fleece',
+  'Create Account': 'បង្កើតគណនី',
   'Create\nAccount': 'Create\nAccount',
   'Credit Card Connected!': 'បានភ្ជាប់កាតឥណទានរួចរាល់!',
   'Credit Card has been linked!': 'កាតឥណទានត្រូវបានភ្ជាប់រួចរាល់!',
@@ -440,7 +514,8 @@
   'Cross-Train Elite': 'ស្បែកជើងកីឡាហ្វឹកហាត់ Cross-Train Elite',
   'Crystal Bow Evening': 'កាបូបរាត្រីសមោសរបូគ្រីស្តាល់',
   'Crystal Detail Evening Bra': 'អាវទ្រនាប់រាត្រីសមោសរលម្អគ្រីស្តាល់ Crystal',
-  'Crystal Detail Evening G-String': 'ខោក្នុងសិចស៊ីរាត្រីសមោសរលម្អគ្រីស្តាល់ G-String',
+  'Crystal Detail Evening G-String':
+      'ខោក្នុងសិចស៊ីរាត្រីសមោសរលម្អគ្រីស្តាល់ G-String',
   'Crystal Hair Clip Set': 'ឈុតដង្កៀបសក់គ្រីស្តាល់ Crystal Hair Clip',
   'Crystal Studded Pumps': 'ស្បែកជើងកែងបិទមុខដាំគ្រីស្តាល់ Crystal Studded',
   'Crystal Zen Garden Set': 'ឈុតសួនគ្រីស្តាល់ហ្សេន (Zen) សម្រាប់បន្ធូរអារម្មណ៍',
@@ -450,11 +525,13 @@
   'Cute Plush Collection': 'បណ្តុំតុក្កតាសាច់ទន់គួរឱ្យស្រឡាញ់ Cute Plush',
   'Cute Teddy Bear': 'តុក្កតាខ្លាឃ្មុំគួរឱ្យស្រឡាញ់ Cute Teddy Bear',
   'CVV': 'លេខកូដ CVV',
-  'Cyberpunk Style LED Glasses': 'វ៉ែនតាមានភ្លើង LED ស្ទីលស៊ីប៊ឺផាំង (Cyberpunk)',
+  'Cyberpunk Style LED Glasses':
+      'វ៉ែនតាមានភ្លើង LED ស្ទីលស៊ីប៊ឺផាំង (Cyberpunk)',
   'Cycling Gel Padded': 'ខោជិះកង់មានទ្រនាប់ជែលការពារការកកិត',
   'Daily Comfort Walker': 'ស្បែកជើងដើរប្រចាំថ្ងៃស្រួលពាក់ Daily Comfort',
   'Daily Grind Backpack': 'កាតាបស្ពាយប្រចាំថ្ងៃ Daily Grind',
-  'Daily UV Shield SPF50': 'គ្រីមការពារកម្តៅថ្ងៃប្រចាំថ្ងៃ Daily UV Shield SPF50',
+  'Daily UV Shield SPF50':
+      'គ្រីមការពារកម្តៅថ្ងៃប្រចាំថ្ងៃ Daily UV Shield SPF50',
   'Dark Grey Loafers': 'ស្បែកជើងស៊កពណ៌ប្រផេះដិត Dark Grey Loafers',
   'Dark Mocha Formal Polo': 'អាវប៉ូឡូផ្លូវការពណ៌ម៉ូកាដិត Dark Mocha',
   'Dark Mocha Leather': 'កាបូបស្បែកពណ៌ម៉ូកាដិត Dark Mocha',
@@ -490,7 +567,8 @@
   'Desert Cedar': 'ទឹកអប់ក្លិន Desert Cedar',
   'Desert Sand Slim Chinos': 'ខោឈីណូរាងស្លីមពណ៌ខ្សាច់វាលខ្សាច់ Desert Sand',
   'Desert Tactical Combat Boot': 'ស្បែកជើងប៊ូតប្រយុទ្ធបែបយោធាវាលខ្សាច់',
-  'Designed for performance, these runners provide excellent grip and stability for all terrains.': 'រចនាឡើងសម្រាប់ប្រសិទ្ធភាពខ្ពស់ ស្បែកជើងរត់ទាំងនេះផ្តល់នូវការខាំជាប់ដីយ៉ាងល្អ និងលំនឹងខ្ពស់សម្រាប់គ្រប់ស្ថានភាពផ្លូវ។',
+  'Designed for performance, these runners provide excellent grip and stability for all terrains.':
+      'រចនាឡើងសម្រាប់ប្រសិទ្ធភាពខ្ពស់ ស្បែកជើងរត់ទាំងនេះផ្តល់នូវការខាំជាប់ដីយ៉ាងល្អ និងលំនឹងខ្ពស់សម្រាប់គ្រប់ស្ថានភាពផ្លូវ។',
   'Designer Bowler Hat': 'មួកមូល Bowler រចនាពិសេស Designer',
   'Designer Chandelier Earrings': 'ក្រវិលយារម៉ូដរចនាពិសេស Chandelier',
   'Designer Embossed Belt': 'ខ្សែក្រវាត់ស្បែកឆ្លាក់ឡាយរចនាពិសេស Designer',
@@ -502,7 +580,8 @@
   'Diamond Engagement Ring': 'ចិញ្ចៀនពេជ្រដណ្តឹង Diamond Engagement',
   'Diamond Lattice Pattern': 'ស្រោមជើងវែងឡាយក្រឡាពេជ្រ Diamond Lattice',
   'Diamond Studded Bag': 'កាបូបដាំពេជ្រប្រណីត',
-  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.': 'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.',
+  'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.':
+      'Discover your favorite fashion pieces.\nShop effortlessly and enjoy a new online clothing experience.',
   'Distressed Denim Joggers': 'ខោកីឡាក្រណាត់ខូវប៊យម៉ូដហែក Distressed Denim',
   'Distressed Jean Shorts': 'ខោខ្លីខូវប៊យម៉ូដហែកព្រុយ Distressed Jean',
   'Distressed Knee Rip Jeans': 'ខោខូវប៊យរហែកជង្គង់ឡាយស្ទាយ Distressed Knee',
@@ -520,7 +599,8 @@
   'Double-Lined Sculpting Brief': 'ខោក្នុងរឹបរាងមានទ្រនាប់ពីរជាន់ Double-Lined',
   'Download E-Receipt': 'ទាញយកបង្កាន់ដៃ',
   'Dresses': 'Dresses',
-  'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.': 'ធន់ និងទម្ងន់ស្រាល វ៉ាលីសម្បករឹងនេះមានកង់វិលបាន ៣៦០ ដឺក្រេ ធ្វើឱ្យការធ្វើដំណើររបស់អ្នកកាន់តែងាយស្រួលដោយមិនបាច់ប្រឹង។',
+  'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.':
+      'ធន់ និងទម្ងន់ស្រាល វ៉ាលីសម្បករឹងនេះមានកង់វិលបាន ៣៦០ ដឺក្រេ ធ្វើឱ្យការធ្វើដំណើររបស់អ្នកកាន់តែងាយស្រួលដោយមិនបាច់ប្រឹង។',
   'Dynamic Sport Runner': 'ស្បែកជើងប៉ាតាកីឡាស្ទុះខ្លាំង Dynamic Runner',
   'D’Orsay Suede Pumps': 'ស្បែកជើងកែងបិទមុខចំហចំហៀងស្បែកសត្វទន់ D’Orsay',
   'E-Receipt': 'បង្កាន់ដៃអេឡិចត្រូនិក',
@@ -528,7 +608,8 @@
   'Earth Tone Brown': 'អាវយឺតពណ៌ត្នោតស្រទន់បែបធម្មជាតិ Earth Tone',
   'Earth Tone Relaxed Jogger': 'ខោកីឡារាងធូរស្រឡះពណ៌ស្រទន់បែបធម្មជាតិ',
   'Earth Tone Relaxed Polo': 'អាវប៉ូឡូរាងធូរស្រឡះពណ៌ស្រទន់បែបធម្មជាតិ',
-  'Eco-Friendly Bamboo Building Blocks': 'ដុំឈើឫស្សីក្មេងលេងមិត្តភាពបរិស្ថាន Eco-Friendly',
+  'Eco-Friendly Bamboo Building Blocks':
+      'ដុំឈើឫស្សីក្មេងលេងមិត្តភាពបរិស្ថាន Eco-Friendly',
   'Eco-Friendly Cotton Tote': 'កាបូបយួរធំក្រណាត់កប្បាសបរិស្ថាន Eco-Friendly',
   'Eco-Friendly Wine Carrier': 'កាបូបដាក់ដបស្រាឡេវបរិស្ថាន Eco-Friendly',
   'Eco-Run Sustainable': 'ស្បែកជើងរត់ប្រណាំងបែបនិរន្តរភាព Eco-Run',
@@ -540,27 +621,37 @@
   'Electric Blue Y2K Hoodie': 'អាវរងាមានមួកពណ៌ខៀវភ្លឺស្ទីល Y2K Electric Blue',
   'Electric Heated Gloves': 'ស្រោមដៃផ្ដល់កម្តៅដោយប្រព័ន្ធអគ្គិសនី Electric',
   'Electric Neon Track Joggers': 'ខោកីឡាពណ៌ណេអុងភ្លឺ Electric Neon Track',
-  'Electric Pottery Wheel Kit for Kids': 'ម៉ាស៊ីនពូនដីដុតអគ្គិសនីខ្នាតតូចសម្រាប់កុមារ',
-  'Electric Purple Party Polo': 'អាវប៉ូឡូពណ៌ស្វាយភ្លឺសម្រាប់ជប់លៀង Electric Purple',
-  'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.': 'ខ្សែករមាសលឿង 14k ដ៏ប្រណីត ល្អឥតខ្ចោះសម្រាប់ការដកពាក់ប្រចាំថ្ងៃ ឬពាក់លេងម៉ូដឡាយជាមួយគ្រឿងផ្សេងទៀត។ ធន់ និងទាន់សម័យ។',
-  'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.': 'កាបូបយួរដៃស្បែកមានគុណភាពខ្ពស់ និងប្រណីត មានថតជាច្រើនងាយស្រួលរៀបចំរបស់របរ។ ល្អឥតខ្ចោះសម្រាប់ការដើរលេងផ្លូវការ និងធម្មតា។',
+  'Electric Pottery Wheel Kit for Kids':
+      'ម៉ាស៊ីនពូនដីដុតអគ្គិសនីខ្នាតតូចសម្រាប់កុមារ',
+  'Electric Purple Party Polo':
+      'អាវប៉ូឡូពណ៌ស្វាយភ្លឺសម្រាប់ជប់លៀង Electric Purple',
+  'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.':
+      'ខ្សែករមាសលឿង 14k ដ៏ប្រណីត ល្អឥតខ្ចោះសម្រាប់ការដកពាក់ប្រចាំថ្ងៃ ឬពាក់លេងម៉ូដឡាយជាមួយគ្រឿងផ្សេងទៀត។ ធន់ និងទាន់សម័យ។',
+  'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.':
+      'កាបូបយួរដៃស្បែកមានគុណភាពខ្ពស់ និងប្រណីត មានថតជាច្រើនងាយស្រួលរៀបចំរបស់របរ។ ល្អឥតខ្ចោះសម្រាប់ការដើរលេងផ្លូវការ និងធម្មតា។',
   'Elegant Ballet Flats': 'ស្បែកជើងបាតសំប៉ែតស្ទីលបាឡេដ៏ប្រណីត Elegant',
   'Elegant Bracelet': 'កងដៃដ៏ប្រណីត Elegant Bracelet',
   'Elegant Crocodile Print': 'កាបូបលុយព្រីនឡាយស្បែកក្រពើដ៏ប្រណីត',
   'Elegant Evening Clutch': 'កាបូបយួរដៃរាត្រីសមោសរដ៏ប្រណីត',
   'Elegant Gold Tea Infuser': 'ឧបករណ៍ត្រងតែពណ៌មាសដ៏ប្រណីត Elegant Gold',
-  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.': 'ខ្សែចងក្បាលដ៏ប្រណីតលម្អដោយគជ់ខ្យងគុណភាពខ្ពស់។ ល្អឥតខ្ចោះសម្រាប់ពិធីមង្គលការ ជប់លៀង ឬបង្កើនភាពទាក់ទាញដល់ស្ទីលប្រចាំថ្ងៃរបស់អ្នក។',
+  'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.':
+      'ខ្សែចងក្បាលដ៏ប្រណីតលម្អដោយគជ់ខ្យងគុណភាពខ្ពស់។ ល្អឥតខ្ចោះសម្រាប់ពិធីមង្គលការ ជប់លៀង ឬបង្កើនភាពទាក់ទាញដល់ស្ទីលប្រចាំថ្ងៃរបស់អ្នក។',
   'Elegant Lace Clutch': 'កាបូបយួរដៃក្រណាត់ប៉ាក់ប្រណីត Elegant Lace',
-  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.': 'នាឡិកាដៃនារីដ៏ប្រណីតមានមុខងាវងក់ខ្យង និងខ្សែសំណាញ់ស្រោបពណ៌មាសផ្កាឈូក។ ជាគ្រឿងលម្អដ៏ល្អឥតខ្ចោះសម្រាប់កម្មវិធីពេលល្ងាច។',
+  'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.':
+      'នាឡិកាដៃនារីដ៏ប្រណីតមានមុខងាវងក់ខ្យង និងខ្សែសំណាញ់ស្រោបពណ៌មាសផ្កាឈូក។ ជាគ្រឿងលម្អដ៏ល្អឥតខ្ចោះសម្រាប់កម្មវិធីពេលល្ងាច។',
   'Elegant Leather Satchel': 'កាបូបយួរដៃស្បែកប្រណីត Elegant Leather',
-  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.': 'ឈុតតុកស៊ីដូពណ៌ខៀវក្រម៉ៅ Midnight Navy ដ៏ប្រណីត ជាមួយកអាវសូត្ររលោង Satin។ ជាជម្រើសដ៏ល្អបំផុតសម្រាប់កម្មវិធីលំដាប់ខ្ពស់។',
+  'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.':
+      'ឈុតតុកស៊ីដូពណ៌ខៀវក្រម៉ៅ Midnight Navy ដ៏ប្រណីត ជាមួយកអាវសូត្ររលោង Satin។ ជាជម្រើសដ៏ល្អបំផុតសម្រាប់កម្មវិធីលំដាប់ខ្ពស់។',
   'Elegant Midnight Shawl': 'កន្សែងដណ្តប់រាត្រីដ៏ប្រណីត Elegant Midnight',
   'Elegant Necklace': 'ខ្សែករដ៏ប្រណីត Elegant Necklace',
   'Elegant Pearl Flat Sandals': 'ស្បែកជើងរាត់បាតសំប៉ែតលម្អគជ់ខ្យងដ៏ប្រណីត',
   'Elegant Pearl Jewelry Box': 'ប្រអប់គ្រឿងអលង្ការលម្អគជ់ខ្យងដ៏ប្រណីត',
-  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.': 'សំពត់បត់ផ្នត់ប្រណីតខ្នាតកណ្តាលមានចង្កេះយឺត។ ទម្ងន់ស្រាល និងល្អឥតខ្ចោះសម្រាប់ទាំងការិយាល័យ និងការដើរលេងធម្មតា។',
-  'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.': 'ផ្ទៃសាច់សូត្ររលោងប្រណីត និងទន់ល្មើយ។ កាបូបរាត្រីសមោសរនេះជួយបង្កើនភាពស៊ីវិល័យដល់រ៉ូបរាត្រីសមោសរគ្រប់ប្រភេទ។',
-  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.': 'អាវនារីសាច់សូត្ររលោងដ៏ប្រណីតជាមួយកអាវរាងអក្សរ V ស្អាតស្អំ ល្អឥតខ្ចោះសម្រាប់សម្លៀកបំពាក់ការិយាល័យអាជីព។',
+  'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.':
+      'សំពត់បត់ផ្នត់ប្រណីតខ្នាតកណ្តាលមានចង្កេះយឺត។ ទម្ងន់ស្រាល និងល្អឥតខ្ចោះសម្រាប់ទាំងការិយាល័យ និងការដើរលេងធម្មតា។',
+  'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.':
+      'ផ្ទៃសាច់សូត្ររលោងប្រណីត និងទន់ល្មើយ។ កាបូបរាត្រីសមោសរនេះជួយបង្កើនភាពស៊ីវិល័យដល់រ៉ូបរាត្រីសមោសរគ្រប់ប្រភេទ។',
+  'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.':
+      'អាវនារីសាច់សូត្ររលោងដ៏ប្រណីតជាមួយកអាវរាងអក្សរ V ស្អាតស្អំ ល្អឥតខ្ចោះសម្រាប់សម្លៀកបំពាក់ការិយាល័យអាជីព។',
   'Elegant Wedge Sandals': 'ស្បែកជើងរាត់បាតក្រាស់ (Wedge) ដ៏ប្រណីត',
   'Elegant Wide Brim': 'មួកគែមធំទូលាយដ៏ប្រណីត Elegant Wide Brim',
   'Elegant Women': 'ទឹកអប់សម្រាប់នារីស៊ីវិល័យ Elegant Women',
@@ -575,13 +666,16 @@
   'Emerald Green Shades': 'វ៉ែនតាកញ្ចក់ពណ៌បៃតងត្បូងមរកត',
   'Emerald Green Stilettos': 'ស្បែកជើងកែងស្រួចខ្លាំងពណ៌បៃតងត្បូងមរកត',
   'Emerald Stud Earrings': 'ក្រវិលត្បូងមរកត Emerald Stud',
-  'Emotional Support Highland Cow Plush': 'តុក្កតាគោ Highland សាច់ទន់ជួយបន្ធូរអារម្មណ៍',
+  'Emotional Support Highland Cow Plush':
+      'តុក្កតាគោ Highland សាច់ទន់ជួយបន្ធូរអារម្មណ៍',
   'English (US)': 'English (US)',
   'Engraved Locket': 'ខ្សែបន្ដោងរូបថតមានឆ្លាក់ឡាយ Engraved Locket',
   'Enter Promo Code': 'បញ្ចូលកូដប្រូម៉ូសិន',
   'Enter your phone number': 'Enter your phone number',
-  'Enter your promo code at the checkout page under the \'Discount\' section.': 'Enter your promo code at the checkout page under the \'Discount\' section.',
-  'Envelope Style Evening Clutch': 'កាបូបយួរដៃរាត្រីសមោសរម៉ូដស្រោមសំបុត្រ Envelope',
+  'Enter your promo code at the checkout page under the \'Discount\' section.':
+      'Enter your promo code at the checkout page under the \'Discount\' section.',
+  'Envelope Style Evening Clutch':
+      'កាបូបយួរដៃរាត្រីសមោសរម៉ូដស្រោមសំបុត្រ Envelope',
   'Error: \${snapshot.error}': 'Error: \${snapshot.error}',
   'Espresso Sharkskin Suit': 'ឈុតគ្របស៊ុតសាច់ក្រណាត់ឡាយស្បែកឆ្លាមពណ៌កាហ្វេ',
   'Essential Black Joggers': 'ខោកីឡាពណ៌ខ្មៅចាំបាច់ Essential Black Joggers',
@@ -591,11 +685,15 @@
   'Essential Grey Pullover': 'អាវរងាកមូលពណ៌ប្រផេះចាំបាច់ Essential Grey',
   'Essential Heather Grey': 'អាវយឺតពណ៌ប្រផេះដេញស្រទន់ Essential Heather Grey',
   'Essential Hoodies': 'Essential Hoodies',
-  'Essential Seamless Bralette': 'អាវទ្រនាប់គ្មានថ្នេរចាំបាច់ Essential Seamless',
-  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.': 'អាវយឺតកមូលពណ៌សចាំបាច់ ផលិតពីកប្បាស Premium ១០០%។ ទន់ ខ្យល់ចេញចូលបានល្អ និងធន់សម្រាប់ការប្រើប្រាស់ប្រចាំថ្ងៃ។',
+  'Essential Seamless Bralette':
+      'អាវទ្រនាប់គ្មានថ្នេរចាំបាច់ Essential Seamless',
+  'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.':
+      'អាវយឺតកមូលពណ៌សចាំបាច់ ផលិតពីកប្បាស Premium ១០០%។ ទន់ ខ្យល់ចេញចូលបានល្អ និងធន់សម្រាប់ការប្រើប្រាស់ប្រចាំថ្ងៃ។',
   'Essential White Polo': 'អាវប៉ូឡូពណ៌សចាំបាច់ Essential White Polo',
-  'Everyday T-Shirt Contour': 'អាវទ្រនាប់រឹបរាងសម្រាប់ពាក់ជាមួយអាវយឺតប្រចាំថ្ងៃ',
-  'Evira is a premium shopping platform that provides high-quality products with fast delivery and secure order options.': 'Evira គឺជាវេទិកាទិញទំនិញលំដាប់ខ្ពស់ ដែលផ្តល់ជូននូវផលិតផលដែលមានគុណភាពខ្ពស់ ជាមួយការដឹកជញ្ជូនរហ័ស និងជម្រើសការបញ្ជាទិញដែលមានសុវត្ថិភាព។',
+  'Everyday T-Shirt Contour':
+      'អាវទ្រនាប់រឹបរាងសម្រាប់ពាក់ជាមួយអាវយឺតប្រចាំថ្ងៃ',
+  'Evira is a premium shopping platform that provides high-quality products with fast delivery and secure order options.':
+      'Evira គឺជាវេទិកាទិញទំនិញលំដាប់ខ្ពស់ ដែលផ្តល់ជូននូវផលិតផលដែលមានគុណភាពខ្ពស់ ជាមួយការដឹកជញ្ជូនរហ័ស និងជម្រើសការបញ្ជាទិញដែលមានសុវត្ថិភាព។',
   'Executive Business Pack': 'កាតាបធុរកិច្ចថ្នាក់ដឹកនាំ Executive',
   'Executive Carbon Fiber': 'វ៉ែនតាស៊ុម Carbon Fiber ថ្នាក់ដឹកនាំ Executive',
   'Executive Charcoal Polo': 'អាវប៉ូឡូថ្នាក់ដឹកនាំពណ៌ប្រផេះធ្យូង Executive',
@@ -603,13 +701,16 @@
   'Executive Fountain Pen': 'ប៊ិចទឹកលំដាប់ថ្នាក់ដឹកនាំ Executive Fountain Pen',
   'Executive Leather Brief': 'កាបូបយួរដៃស្បែកធុរកិច្ច Executive',
   'Executive Leather Case': 'កាបូបស្បែកធុរកិច្ចថ្នាក់ដឹកនាំ Executive',
-  'Executive Pinstripe Slacks': 'ខោសាច់ក្រណាត់ឡាយឆ្នូតតូចថ្នាក់ដឹកនាំ Executive',
-  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.': 'បទពិសោធន៍ផាសុកភាពកម្រិតអតិបរមាជាមួយ Nike Air Max Pro មានទ្រនាប់ជើងទំនើប និងក្រណាត់សំណាញ់ខ្យល់ចេញចូលបានល្អ។',
+  'Executive Pinstripe Slacks':
+      'ខោសាច់ក្រណាត់ឡាយឆ្នូតតូចថ្នាក់ដឹកនាំ Executive',
+  'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.':
+      'បទពិសោធន៍ផាសុកភាពកម្រិតអតិបរមាជាមួយ Nike Air Max Pro មានទ្រនាប់ជើងទំនើប និងក្រណាត់សំណាញ់ខ្យល់ចេញចូលបានល្អ។',
   'Expiry Date': 'កាលបរិច្ឆេទផុតកំណត់',
   'Eyelet Lace Sleep Shorts': 'ខោខ្លីគេងក្រណាត់ប៉ាក់មានរន្ធឡាយ Eyelet Lace',
   'Face ID': 'Face ID',
   'Facebook': 'ហ្វេសប៊ុក',
-  'Family Size Extra Large Luggage': 'វ៉ាលីខ្នាតធំពិសេសសម្រាប់គ្រួសារ Family Size XL',
+  'Family Size Extra Large Luggage':
+      'វ៉ាលីខ្នាតធំពិសេសសម្រាប់គ្រួសារ Family Size XL',
   'FAQ': 'សំណួរដែលសួរញឹកញាប់',
   'Fashion Handbag': 'កាបូបយួរដៃម៉ូដទាន់សម័យ Fashion Handbag',
   'Fashionista Pink Pouch': 'កាបូបដៃតូចពណ៌ផ្កាឈូក Fashionista',
@@ -617,7 +718,8 @@
   'Faux Leather Long Trench': 'អាវធំជួរវែងសាច់ស្បែកសិប្បនិម្មិត Faux Leather',
   'Female': 'ស្រី',
   'Festive Hamper Basket': 'កន្ត្រកកាដូសម្រាប់ឱកាសបុណ្យទាន Festive Hamper',
-  'FIFA World Cup 2026 Official Emblem Set': 'ឈុតរូបសញ្ញាផ្លូវការនៃព្រឹត្តិការណ៍ FIFA World Cup 2026',
+  'FIFA World Cup 2026 Official Emblem Set':
+      'ឈុតរូបសញ្ញាផ្លូវការនៃព្រឹត្តិការណ៍ FIFA World Cup 2026',
   'filter': 'តម្រង',
   'Filter': 'Filter',
   'Fitness Smart Band': 'ខ្សែដៃវៃឆ្លាតតាមដានសុខភាព Fitness Smart Band',
@@ -638,7 +740,8 @@
   'Floral Print Handbag': 'កាបូបយួរដៃព្រីនឡាយផ្កា',
   'Floral Print Lounge Set': 'ឈុតខោអាវសម្រាកនៅផ្ទះព្រីនឡាយផ្កា Floral',
   'Floral Print Pumps': 'ស្បែកជើងកែងបិទមុខព្រីនឡាយផ្កា Floral Print',
-  'Floral Print Summer Sandals': 'ស្បែកជើងរាត់រដូវក្តៅព្រីនឡាយផ្កា Floral Print',
+  'Floral Print Summer Sandals':
+      'ស្បែកជើងរាត់រដូវក្តៅព្រីនឡាយផ្កា Floral Print',
   'Floral Puff Sleeve Top': 'អាវនារីដៃប៉ោងឡាយផ្កា Floral Puff Sleeve',
   'Floral Spring Wrap': 'កន្សែងដណ្តប់រដូវផ្ការីកឡាយផ្កា Floral Spring',
   'Floral Summer Hat': 'មួកដើរលេងរដូវក្តៅឡាយផ្កា Floral Summer',
@@ -653,7 +756,8 @@
   'Formal Patent Loafers': 'ស្បែកជើងស៊កស្បែករលោងផ្លូវការ Formal Patent',
   'Formal White Dress Shirt': 'អាវសឺមីសផ្លូវការ Formal White Dress Shirt',
   'Fragrances': 'Fragrances',
-  'FREE DELIVERY\nON ORDERS\nOVER \$160+': 'FREE DELIVERY\nON ORDERS\nOVER \$160+',
+  'FREE DELIVERY\nON ORDERS\nOVER \$160+':
+      'FREE DELIVERY\nON ORDERS\nOVER \$160+',
   'Free size': 'ទំហំទូទៅ (Free size)',
   'Fringe Pashmina': 'កន្សែងបង់កមានព្រុយសាច់ម៉ត់ Fringe Pashmina',
   'From 1 - 3 days': 'From 1 - 3 days',
@@ -667,7 +771,8 @@
   'Gaming Headset': 'កាសស្តាប់ត្រចៀកសម្រាប់លេងហ្គេម Gaming Headset',
   'Gardening Soft Grip': 'ស្រោមដៃធ្វើសួនទន់ដៃចាប់ជាប់មាំ Gardening',
   'Gender': 'ភេទ',
-  'Gender :  \${user?.gender.toString() ?? ': 'Gender :  \${user?.gender.toString() ?? ',
+  'Gender :  \${user?.gender.toString() ?? ':
+      'Gender :  \${user?.gender.toString() ?? ',
   'General': 'ទូទៅ',
   'General Notification': 'ការជូនដំណឹងទូទៅ',
   'Geometric Hair Claw': 'ដង្កៀបសក់រាងធរណីមាត្រ Geometric Hair Claw',
@@ -693,12 +798,14 @@
   'Glitter Lurex Party Tights': 'ស្រោមជើងខោវែងចែងចាំងសម្រាប់ជប់លៀង',
   'Glitter Mesh Party Sock': 'ស្រោមជើងសំណាញ់ចែងចាំងសម្រាប់ជប់លៀង',
   'Glitter Party Clutch': 'កាបូបយួរដៃរាត្រីសមោសរចែងចាំង Glitter',
-  'Glitters Night Out Mini': 'រ៉ូបខ្លីចែងចាំងសម្រាប់រាត្រីកម្សាន្ត Glitters Mini',
+  'Glitters Night Out Mini':
+      'រ៉ូបខ្លីចែងចាំងសម្រាប់រាត្រីកម្សាន្ត Glitters Mini',
   'Global Traveler 50L': 'កាតាបអ្នកធ្វើដំណើរជុំវិញពិភពលោក 50L',
   'Glossing Glaze Treatment': 'គ្រីមថែរក្សាសក់ឱ្យរលោងរលើប Glossing Glaze',
   'Gloves': 'ស្រោមដៃ',
   'Glow Setting Powder': 'ម្សៅផាត់មុខឱ្យមានពន្លឺ Glow Setting Powder',
-  'Glute-Enhancing Tech Short': 'ខោខ្លីបច្ចេកវិទ្យាជួយលើករាងគូទ Glute-Enhancing',
+  'Glute-Enhancing Tech Short':
+      'ខោខ្លីបច្ចេកវិទ្យាជួយលើករាងគូទ Glute-Enhancing',
   'Gold Chain Necklace': 'ខ្សែករខ្សែច្រវាក់មាស Gold Chain',
   'Gold Leaf Top Coat': 'ទឹកថ្នាំលាបការពារក្រចកឡាយសន្លឹកមាស Gold Leaf',
   'Gold Myrrh': 'ទឹកអប់ក្លិន Gold Myrrh',
@@ -716,7 +823,8 @@
   'Good to see you back!': 'រីករាយដែលបានឃើញអ្នកត្រឡប់មកវិញ!',
   'Google Authenticator': 'Google Authenticator',
   'Gothic Rectangle': 'វ៉ែនតារាងចតុកោណរចនាបថ Gothic',
-  'Gothic Skeleton Print Shirt': 'អាវសឺមីព្រីនរូបឆ្អឹងខ្មោចស្ទីលហ្គោធិក (Gothic)',
+  'Gothic Skeleton Print Shirt':
+      'អាវសឺមីព្រីនរូបឆ្អឹងខ្មោចស្ទីលហ្គោធិក (Gothic)',
   'Gothic Style Skull Printed Shirt': 'អាវយឺតព្រីនរូបលលាដ៍ក្បាលស្ទីលហ្គោធិក',
   'Graduation': 'Graduation',
   'Grand Heritage Gold': 'នាឡិកាដៃស៊េរីមាសបេតិកភណ្ឌ Grand Heritage',
@@ -738,14 +846,18 @@
   'Haircare': 'Haircare',
   'Hand-Poured Soy Candle Set': 'ឈុតទៀនក្រអូបធ្វើពីសណ្តែកសៀងធ្វើដោយដៃ',
   'Handbags': 'កាបូបយួរដៃ',
-  'Handcrafted from full-grain Italian leather, designed for the modern professional.': 'ធ្វើដោយដៃពីស្បែកអ៊ីតាលីលំដាប់ខ្ពស់ ឌីហ្សាញឡើងសម្រាប់អ្នកជំនាញសម័យថ្មី។',
-  'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.': 'ធ្វើដោយដៃពីស្បែកគោពិតប្រាកដ កាបូបលុយបត់ពីរម៉ូដ Classic នេះផ្តល់នូវភាពធន់ និងស្ទីលមិនចេះជោគជាំ។',
-  'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.': 'មួកប៉ាណាម៉ាសម្រាប់រដូវក្តៅធ្វើដោយដៃពីចំបើងដែលមានខ្យល់ចេញចូលបានល្អ។ ល្អឥតខ្ចោះសម្រាប់ការដើរលេងឆ្នេរ និងព្រឹត្តិការណ៍ក្រៅផ្ទះដែលមានពន្លឺថ្ងៃ ផ្តល់ទាំងម្លប់និងស្ទីលដ៏ទាក់ទាញ។',
+  'Handcrafted from full-grain Italian leather, designed for the modern professional.':
+      'ធ្វើដោយដៃពីស្បែកអ៊ីតាលីលំដាប់ខ្ពស់ ឌីហ្សាញឡើងសម្រាប់អ្នកជំនាញសម័យថ្មី។',
+  'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.':
+      'ធ្វើដោយដៃពីស្បែកគោពិតប្រាកដ កាបូបលុយបត់ពីរម៉ូដ Classic នេះផ្តល់នូវភាពធន់ និងស្ទីលមិនចេះជោគជាំ។',
+  'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.':
+      'មួកប៉ាណាម៉ាសម្រាប់រដូវក្តៅធ្វើដោយដៃពីចំបើងដែលមានខ្យល់ចេញចូលបានល្អ។ ល្អឥតខ្ចោះសម្រាប់ការដើរលេងឆ្នេរ និងព្រឹត្តិការណ៍ក្រៅផ្ទះដែលមានពន្លឺថ្ងៃ ផ្តល់ទាំងម្លប់និងស្ទីលដ៏ទាក់ទាញ។',
   'Handmade Spa Kit': 'ឈុតស្ប៉ាថែរក្សាខ្លួនធ្វើដោយដៃ Handmade Spa Kit',
   'Hape x The Met: Van Gogh Block Set': 'ដុំឈើតម្រៀប Hape x The Met: Van Gogh',
   'Harajuku Hip Hop Letter Jeans': 'ខោខូវប៊យឆ្លាក់អក្សរស្ទីលហាលីជូគូហ៊ីបហប',
   'Hats': 'មួក',
-  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.': 'ការតាមដានសុខភាពរួមបញ្ចូលជាមួយម៉ូដទាន់សម័យ។ មិនជ្រាបទឹក និងមានថ្មប្រើបានរហូតដល់ ៥ ថ្ងៃ។',
+  'Health tracking meets high fashion. Water-resistant with a 5-day battery life.':
+      'ការតាមដានសុខភាពរួមបញ្ចូលជាមួយម៉ូដទាន់សម័យ។ មិនជ្រាបទឹក និងមានថ្មប្រើបានរហូតដល់ ៥ ថ្ងៃ។',
   'Heather Purple Crew': 'អាវយឺតកមូលពណ៌ស្វាយដេញស្រទន់ Heather Purple',
   'Heathered Grey Performance': 'អាវកីឡាពណ៌ប្រផេះដេញស្រទន់ Heathered Grey',
   'Heavy Duty Work Gloves': 'Heavy Duty Work Gloves',
@@ -768,11 +880,16 @@
   'High-Leg Sculpting Panty': 'High-Leg Sculpting Panty',
   'High-Neck Victorian Blouse': 'High-Neck Victorian Blouse',
   'High-Performance Compression': 'High-Performance Compression',
-  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.': 'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
-  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.': 'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.',
-  'High-quality lenses providing 100% UV protection and durable frames.': 'High-quality lenses providing 100% UV protection and durable frames.',
-  'High-quality materials and craftsmanship for ultimate durability.': 'High-quality materials and craftsmanship for ultimate durability.',
-  'High-quality materials and craftsmanship.': 'High-quality materials and craftsmanship.',
+  'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.':
+      'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
+  'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.':
+      'High-quality genuine leather belt with a sleek silver buckle. Perfect for both formal suits and casual jeans, providing durability and style.',
+  'High-quality lenses providing 100% UV protection and durable frames.':
+      'High-quality lenses providing 100% UV protection and durable frames.',
+  'High-quality materials and craftsmanship for ultimate durability.':
+      'High-quality materials and craftsmanship for ultimate durability.',
+  'High-quality materials and craftsmanship.':
+      'High-quality materials and craftsmanship.',
   'High-Waist Comfort Leggings': 'High-Waist Comfort Leggings',
   'High-Waist Control Top': 'High-Waist Control Top',
   'High-Waist Denim Skirt': 'High-Waist Denim Skirt',
@@ -791,8 +908,10 @@
   'Hooded Parka Coat': 'Hooded Parka Coat',
   'Hooded Relaxed Cardigan': 'Hooded Relaxed Cardigan',
   'Hot Wheels: Ultimate T-Rex Garage': 'Hot Wheels: Ultimate T-Rex Garage',
-  'How do I cancel a orders product?': 'តើខ្ញុំអាចលុបចោលការបញ្ជាទិញផលិតផលយ៉ាងដូចម្តេច?',
-  'How to add promo on Evira?': 'តើត្រូវបន្ថែមប្រូម៉ូសិនក្នុង Evira យ៉ាងដូចម្តេច?',
+  'How do I cancel a orders product?':
+      'តើខ្ញុំអាចលុបចោលការបញ្ជាទិញផលិតផលយ៉ាងដូចម្តេច?',
+  'How to add promo on Evira?':
+      'តើត្រូវបន្ថែមប្រូម៉ូសិនក្នុង Evira យ៉ាងដូចម្តេច?',
   'How to use Evira?': 'តើត្រូវប្រើប្រាស់ Evira យ៉ាងដូចម្តេច?',
   'Hyaluronic Acid Ampoule': 'Hyaluronic Acid Ampoule',
   'Hybrid Fitness Pro': 'Hybrid Fitness Pro',
@@ -807,7 +926,8 @@
   'Indigo Dye Polo': 'Indigo Dye Polo',
   'Infinity Cushion Air': 'Infinity Cushion Air',
   'Infinity Loop Scarf': 'Infinity Loop Scarf',
-  'Infused with rare essential oils of sandalwood and jasmine.': 'Infused with rare essential oils of sandalwood and jasmine.',
+  'Infused with rare essential oils of sandalwood and jasmine.':
+      'Infused with rare essential oils of sandalwood and jasmine.',
   'Instagram': 'អ៊ិនស្តាក្រាម',
   'Interactive Coding Turtle': 'Interactive Coding Turtle',
   'Invisible Control Slip': 'Invisible Control Slip',
@@ -832,7 +952,8 @@
   'Jackets': 'Jackets',
   'Jade Facial Roller': 'Jade Facial Roller',
   'Jeans': 'Jeans',
-  'Jelly Blox: Squish Train Building Set': 'Jelly Blox: Squish Train Building Set',
+  'Jelly Blox: Squish Train Building Set':
+      'Jelly Blox: Squish Train Building Set',
   'Jersey Knit Polo': 'Jersey Knit Polo',
   'Jet Black Formal Trousers': 'Jet Black Formal Trousers',
   'Jeweled Hair Comb': 'Jeweled Hair Comb',
@@ -841,7 +962,8 @@
   'Joggers': 'Joggers',
   'Just for You': 'Just for You',
   'Just For You': 'សម្រាប់អ្នកតែប៉ុណ្ណោះ',
-  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.': 'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.',
+  'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.':
+      'Keep your hands warm with these premium thermal gloves. Windproof and touchscreen compatible for your smartphone, perfect for cold commutes.',
   'Keratin Straightening Cream': 'Keratin Straightening Cream',
   'Khaki Cargo Basic': 'Khaki Cargo Basic',
   'Khaki Field Messenger': 'កាបូបស្ពាយចំហៀងពណ៌កាគី Khaki Field',
@@ -854,7 +976,8 @@
   'Kids Winter Mittens': 'Kids Winter Mittens',
   'KIDS WORLD': 'ពិភពកុមារ',
   'Kitchen': 'ផ្ទះបាយ',
-  'KitchenAid Kids Real Working Blender': 'KitchenAid Kids Real Working Blender',
+  'KitchenAid Kids Real Working Blender':
+      'KitchenAid Kids Real Working Blender',
   'Knitted Cotton Polo': 'Knitted Cotton Polo',
   'L.HOME': 'ទំព័រដើម',
   'Lace Trim Balconette': 'Lace Trim Balconette',
@@ -866,7 +989,8 @@
   'Latex Protective Gloves': 'Latex Protective Gloves',
   'Lavender Breeze Casual': 'Lavender Breeze Casual',
   'Lavender Soak Salts': 'Lavender Soak Salts',
-  'Leapfrog Twinkle Lights Learning Piano': 'Leapfrog Twinkle Lights Learning Piano',
+  'Leapfrog Twinkle Lights Learning Piano':
+      'Leapfrog Twinkle Lights Learning Piano',
   'Learn More': 'Learn More',
   'Leather & Tobacco': 'Leather & Tobacco',
   'Leather Biker Jacket': 'Leather Biker Jacket',
@@ -891,9 +1015,12 @@
   'Light Blue Pastel Business': 'Light Blue Pastel Business',
   'Light Grey Marl': 'Light Grey Marl',
   'Light Grey Marl Joggers': 'Light Grey Marl Joggers',
-  'Lightweight and breathable. Perfect for the stylish city dweller.': 'Lightweight and breathable. Perfect for the stylish city dweller.',
-  'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.': 'ទម្ងន់ស្រាល និងធន់ កាបូបក្រណាត់កង់វ៉ាស់នេះស័ក្តិសមបំផុតសម្រាប់សិស្សានុសិស្ស និងអ្នកធ្វើដំណើរប្រចាំថ្ងៃដែលឱ្យតម្លៃលើស្ទីល និងមុខងារប្រើប្រាស់។',
-  'Lightweight and responsive, perfect for marathon runners and speed training.': 'Lightweight and responsive, perfect for marathon runners and speed training.',
+  'Lightweight and breathable. Perfect for the stylish city dweller.':
+      'Lightweight and breathable. Perfect for the stylish city dweller.',
+  'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.':
+      'ទម្ងន់ស្រាល និងធន់ កាបូបក្រណាត់កង់វ៉ាស់នេះស័ក្តិសមបំផុតសម្រាប់សិស្សានុសិស្ស និងអ្នកធ្វើដំណើរប្រចាំថ្ងៃដែលឱ្យតម្លៃលើស្ទីល និងមុខងារប្រើប្រាស់។',
+  'Lightweight and responsive, perfect for marathon runners and speed training.':
+      'Lightweight and responsive, perfect for marathon runners and speed training.',
   'Lightweight Coaching Jacket': 'Lightweight Coaching Jacket',
   'Lightweight Foldable Bag': 'កាបូបបត់បានទម្ងន់ស្រាល',
   'Lightweight Linen Duster': 'Lightweight Linen Duster',
@@ -901,7 +1028,8 @@
   'Lightweight Linen Sleepers': 'Lightweight Linen Sleepers',
   'Lightweight Run Shorts': 'Lightweight Run Shorts',
   'Lightweight Summer Cover': 'Lightweight Summer Cover',
-  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.': 'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
+  'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.':
+      'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
   'Linen Summer Blazer': 'Linen Summer Blazer',
   'Linen Summer Scarf': 'Linen Summer Scarf',
   'Linen Summer Shorts': 'Linen Summer Shorts',
@@ -918,7 +1046,8 @@
   'Loafers': 'Loafers',
   'Location details': 'ព័ត៌មានលម្អិតទីតាំង',
   'Login to LOOMA': 'ចូលទៅកាន់ LOOMA',
-  'Manage your account, check notifications, rating on product and more.': 'គ្រប់គ្រងគណនីរបស់អ្នក ពិនិត្យមើលការជូនដំណឹង ការវាយតម្លៃលើផលិតផល និងច្រើនទៀត។',
+  'Manage your account, check notifications, rating on product and more.':
+      'គ្រប់គ្រងគណនីរបស់អ្នក ពិនិត្យមើលការជូនដំណឹង ការវាយតម្លៃលើផលិតផល និងច្រើនទៀត។',
   'Use phone number': 'ប្រើប្រាស់លេខទូរសព្ទ',
   'Continue with Google': 'បន្ដជាមួយ Google',
   'Don\'t have an account?': 'មិនទាន់មានគណនីមែនទេ?',
@@ -932,7 +1061,8 @@
   'Longline Open Front Wrap': 'Longline Open Front Wrap',
   'Longwear Setting Spray': 'Longwear Setting Spray',
   'Looks like you haven': 'Looks like you haven',
-  'Looks like you haven\'t added anything to your bag yet.': 'Looks like you haven\'t added anything to your bag yet.',
+  'Looks like you haven\'t added anything to your bag yet.':
+      'Looks like you haven\'t added anything to your bag yet.',
   'LOOMA': 'LOOMA',
   'LOOMA ACCESSORIES': 'LOOMA ACCESSORIES',
   'LOOMA BAGS': 'LOOMA BAGS',
@@ -954,14 +1084,17 @@
   'Luxe Travel Brush Set': 'Luxe Travel Brush Set',
   'Luxe Velour Joggers': 'Luxe Velour Joggers',
   'Luxe Velvet Trim Triangle': 'Luxe Velvet Trim Triangle',
-  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.': 'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
-  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.': 'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
+  'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.':
+      'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
+  'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.':
+      'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
   'LUXURY': 'ភាពប្រណីត (LUXURY)',
   'Luxury': 'ស្ទីល Luxury',
   'Luxury Birthday Hamper': 'Luxury Birthday Hamper',
   'Luxury Candle Set': 'Luxury Candle Set',
   'Luxury Choker Set': 'ឈុតខ្សែករកៀកកប្រណីត Luxury Choker',
-  'Luxury fragrance components sourced from the finest materials.': 'Luxury fragrance components sourced from the finest materials.',
+  'Luxury fragrance components sourced from the finest materials.':
+      'Luxury fragrance components sourced from the finest materials.',
   'Luxury Gift Box': 'Luxury Gift Box',
   'Luxury Gold Buckle': 'Luxury Gold Buckle',
   'Luxury Gold Frame': 'វ៉ែនតាស៊ុមមាសប្រណីត Luxury Gold',
@@ -1012,7 +1145,10 @@
   'Matte Nylon Bodywarmer': 'Matte Nylon Bodywarmer',
   'Matte Rose Gold': 'កាបូបពណ៌មាសផ្កាឈូកក្រើម Matte Rose Gold',
   'Maxi Tulle Skirt': 'Maxi Tulle Skirt',
-  'Me': 'ខ្ញុំ',
+  'Login Required': 'តម្រូវឱ្យចូលប្រព័ន្ធ',
+  'Please login to view your profile and manage your account.':
+      'សូមចូលប្រព័ន្ធដើម្បីមើលប្រវត្តិរូប និងគ្រប់គ្រងគណនីរបស់អ្នក។',
+  'Login Now': 'ចូលប្រព័ន្ធឥឡូវនេះ',
   'Memory Foam Comfort Slippers': 'Memory Foam Comfort Slippers',
   'Men': 'Men',
   'Men\'s Urban Wear': 'Men\'s Urban Wear',
@@ -1064,10 +1200,12 @@
   'Minimalist Cotton Tote Bag': 'Minimalist Cotton Tote Bag',
   'Minimalist Cream Polo': 'Minimalist Cream Polo',
   'Minimalist Cross-Strap Slides': 'Minimalist Cross-Strap Slides',
-  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.': 'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
+  'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.':
+      'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
   'Minimalist Desk Organizer': 'Minimalist Desk Organizer',
   'Minimalist Gold Watch': 'Minimalist Gold Watch',
-  'Minimalist Gold Watch with Leather Strap': 'Minimalist Gold Watch with Leather Strap',
+  'Minimalist Gold Watch with Leather Strap':
+      'Minimalist Gold Watch with Leather Strap',
   'Minimalist Home Slides': 'Minimalist Home Slides',
   'Minimalist Knit Skirt': 'Minimalist Knit Skirt',
   'Minimalist Laptop Bag': 'កាបូបដាក់កុំព្យូទ័ររចនាបថសាមញ្ញ Minimalist',
@@ -1092,7 +1230,8 @@
   'Modal Ribbed Boyshort': 'Modal Ribbed Boyshort',
   'Modal Ribbed Sleep Dress': 'Modal Ribbed Sleep Dress',
   'Model info': 'ព័ត៌មានម៉ូដែល',
-  'Model is 175 cm tall / 65 kg weight and is wearing size M.': 'Model is 175 cm tall / 65 kg weight and is wearing size M.',
+  'Model is 175 cm tall / 65 kg weight and is wearing size M.':
+      'Model is 175 cm tall / 65 kg weight and is wearing size M.',
   'Modern Buckle Loafers': 'Modern Buckle Loafers',
   'Modern Buckle Wallet': 'កាបូបលុយមានគន្លឹះចង្រ្កានទំនើប',
   'Modern Canvas Utility': 'Modern Canvas Utility',
@@ -1109,11 +1248,14 @@
   'Modern Shield': 'វ៉ែនតាការពារភ្នែកទំនើប Modern Shield',
   'Modern Tech Gadget Box': 'Modern Tech Gadget Box',
   'Modern Urban Rucksack': 'កាតាបទីក្រុងទំនើប Modern Urban',
-  'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.': 'ស៊ុមវ៉ែនតាម៉ូដ Wayfarer ទំនើប ពណ៌ខ្មៅក្រើម។ ផលិតពីសារធាតុប៉ូលីកាបូណាតដ៏ធន់ ផ្តល់នូវភាពច្បាស់កម្រិតខ្ពស់។',
+  'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.':
+      'ស៊ុមវ៉ែនតាម៉ូដ Wayfarer ទំនើប ពណ៌ខ្មៅក្រើម។ ផលិតពីសារធាតុប៉ូលីកាបូណាតដ៏ធន់ ផ្តល់នូវភាពច្បាស់កម្រិតខ្ពស់។',
   'Modular Tech Vest': 'Modular Tech Vest',
-  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.': 'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.',
+  'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.':
+      'Moisture-wicking fabric designed to keep you cool and dry on the golf course or the street.',
   'Moisture-Wicking Yoga Grip': 'Moisture-Wicking Yoga Grip',
-  'Monster High: Moonspell Magic Willow Thorne': 'Monster High: Moonspell Magic Willow Thorne',
+  'Monster High: Moonspell Magic Willow Thorne':
+      'Monster High: Moonspell Magic Willow Thorne',
   'Morning Rain': 'Morning Rain',
   'Most Popular': 'Most Popular',
   'MOST POPULAR': 'MOST POPULAR',
@@ -1123,6 +1265,9 @@
   'Mustard Yellow Streetwear': 'Mustard Yellow Streetwear',
   'My E-Wallet': 'កាបូបលុយអេឡិចត្រូនិករបស់ខ្ញុំ',
   'My Orders': 'ការបញ្ជាទិញរបស់ខ្ញុំ',
+  'My QR': 'កូដ QR របស់ខ្ញុំ',
+  'Gift Card': 'កាតកាដូ',
+  'Find a Store': 'ស្វែងរកហាង',
   'My Shopping Bag': 'កាបូបទិញទំនិញរបស់ខ្ញុំ',
   'My Wallet': 'កាបូបលុយរបស់ខ្ញុំ',
   'Nail Care': 'Nail Care',
@@ -1221,12 +1366,14 @@
   'No wallets found': 'No wallets found',
   'No watches available': 'No watches available',
   'No watches found': 'No watches found',
-  'Non-slip grip with high-density cushioning for ultimate joint support.': 'Non-slip grip with high-density cushioning for ultimate joint support.',
+  'Non-slip grip with high-density cushioning for ultimate joint support.':
+      'Non-slip grip with high-density cushioning for ultimate joint support.',
   'Non-Toxic Soy Remover': 'Non-Toxic Soy Remover',
   'Nordic Glass Flower Vase': 'Nordic Glass Flower Vase',
   'Not you?': 'Not you?',
   'Notification': 'Notification',
-  'Now you can track orders in real time': 'ឥឡូវនេះអ្នកអាចតាមដានការបញ្ជាទិញបានភ្លាមៗ',
+  'Now you can track orders in real time':
+      'ឥឡូវនេះអ្នកអាចតាមដានការបញ្ជាទិញបានភ្លាមៗ',
   'Ocean Blue Shades': 'វ៉ែនតាកញ្ចក់ពណ៌ខៀវសមុទ្រ Ocean Blue',
   'Off-Shoulder Peplum Blouse': 'Off-Shoulder Peplum Blouse',
   'Off-Shoulder Silk Dress': 'Off-Shoulder Silk Dress',
@@ -1263,7 +1410,8 @@
   'Overnight Repair Mask': 'Overnight Repair Mask',
   'Oversized Blanket Scarf': 'Oversized Blanket Scarf',
   'Oversized Chunky Knit': 'Oversized Chunky Knit',
-  'Oversized Graphic Tee - Streetwear Collection': 'Oversized Graphic Tee - Streetwear Collection',
+  'Oversized Graphic Tee - Streetwear Collection':
+      'Oversized Graphic Tee - Streetwear Collection',
   'Oversized Heavyweight Hoodie': 'Oversized Heavyweight Hoodie',
   'Oversized Hoodie': 'Oversized Hoodie',
   'Oversized Knit Sleep Shirt': 'Oversized Knit Sleep Shirt',
@@ -1299,7 +1447,8 @@
   'Pencil Business Skirt': 'Pencil Business Skirt',
   'Peony Silk Extract': 'Peony Silk Extract',
   'Peptide Eye Lift': 'Peptide Eye Lift',
-  'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.': 'ល្អឥតខ្ចោះសម្រាប់អ្នកចូលចិត្តភាពសាមញ្ញទំនើប កាបូបកាតរាងស្តើងនេះជួយរក្សាកាតចាំបាច់របស់អ្នកឱ្យមានសណ្តាប់ធ្នាប់ដោយមិនក្រាស់ហើម។',
+  'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.':
+      'ល្អឥតខ្ចោះសម្រាប់អ្នកចូលចិត្តភាពសាមញ្ញទំនើប កាបូបកាតរាងស្តើងនេះជួយរក្សាកាតចាំបាច់របស់អ្នកឱ្យមានសណ្តាប់ធ្នាប់ដោយមិនក្រាស់ហើម។',
   'Perfume Gift Set': 'Perfume Gift Set',
   'Perfumes': 'ទឹកអប់',
   'Personal Care': 'Personal Care',
@@ -1313,18 +1462,24 @@
   'Platform Wedge Slippers': 'Platform Wedge Slippers',
   'Platinum Wedding Band': 'ចិញ្ចៀនអាពាហ៍ពិពាហ៍ប្លាទីន Platinum',
   'Playaround Firebase': 'Playaround Firebase',
-  'Please check your network and try again': 'Please check your network and try again',
-  'Please enter a valid 16-digit card number': 'សូមបញ្ចូលលេខប័ណ្ណ ១៦ ខ្ទង់ឱ្យបានត្រឹមត្រូវ',
-  'Please enter a valid 3-digit CVV': 'សូមបញ្ចូលលេខកូដ CVV ៣ ខ្ទង់ឱ្យបានត្រឹមត្រូវ',
-  'Please enter a valid expiry date (MM/YY)': 'Please enter a valid expiry date (MM/YY)',
-  'Please enter the card holder\'s full name': 'Please enter the card holder\'s full name',
+  'Please check your network and try again':
+      'Please check your network and try again',
+  'Please enter a valid 16-digit card number':
+      'សូមបញ្ចូលលេខប័ណ្ណ ១៦ ខ្ទង់ឱ្យបានត្រឹមត្រូវ',
+  'Please enter a valid 3-digit CVV':
+      'សូមបញ្ចូលលេខកូដ CVV ៣ ខ្ទង់ឱ្យបានត្រឹមត្រូវ',
+  'Please enter a valid expiry date (MM/YY)':
+      'Please enter a valid expiry date (MM/YY)',
+  'Please enter the card holder\'s full name':
+      'Please enter the card holder\'s full name',
   'Pleated Chiffon Gown': 'Pleated Chiffon Gown',
   'Pleated Midi Skirt': 'Pleated Midi Skirt',
   'Pleated Satin Romper': 'Pleated Satin Romper',
   'Pocket Utility Leggings': 'Pocket Utility Leggings',
   'Point at an item to search': 'Point at an item to search',
   'Pointed Toe Nude Heels': 'Pointed Toe Nude Heels',
-  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.': 'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
+  'Polarized lenses with a premium gold-toned frame. Elevate your summer style.':
+      'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
   'Polarized Night Vision': 'វ៉ែនតាបើកបរពេលយប់ Polarized Night Vision',
   'Polka Dot Bow-Tie Top': 'Polka Dot Bow-Tie Top',
   'Polka Dot Fashion': 'Polka Dot Fashion',
@@ -1339,11 +1494,13 @@
   'Portable Speaker': 'Portable Speaker',
   'Post-Op Compression Short': 'Post-Op Compression Short',
   'Power-Mesh Waist Trainer': 'Power-Mesh Waist Trainer',
-  'PowerOn Energy-Generating Soccer Ball': 'PowerOn Energy-Generating Soccer Ball',
+  'PowerOn Energy-Generating Soccer Ball':
+      'PowerOn Energy-Generating Soccer Ball',
   'Prebiotic Cloud Milk': 'Prebiotic Cloud Milk',
   'Precision Liquid Liner': 'Precision Liquid Liner',
   'Precision Steel Clippers': 'Precision Steel Clippers',
-  'Precision switches with customizable RGB lighting and premium aluminum body.': 'Precision switches with customizable RGB lighting and premium aluminum body.',
+  'Precision switches with customizable RGB lighting and premium aluminum body.':
+      'Precision switches with customizable RGB lighting and premium aluminum body.',
   'Premium Black Bifold': 'កាបូបលុយបត់ពីរពណ៌ខ្មៅកម្រិតប្រណីត Premium',
   'Premium Black Leather Tote': 'កាបូបយួរធំស្បែកពណ៌ខ្មៅកម្រិតប្រណីត',
   'Premium Cashmere Cardigan': 'Premium Cashmere Cardigan',
@@ -1353,14 +1510,17 @@
   'Premium Hard-Shell Suitcase': 'វ៉ាលីសម្បករឹងកម្រិតប្រណីត Premium',
   'Premium Headphones': 'Premium Headphones',
   'Premium Item': 'Premium Item',
-  'Premium jewelry crafted with high-quality materials and exquisite attention to detail.': 'Premium jewelry crafted with high-quality materials and exquisite attention to detail.',
+  'Premium jewelry crafted with high-quality materials and exquisite attention to detail.':
+      'Premium jewelry crafted with high-quality materials and exquisite attention to detail.',
   'Premium Leather Backpack': 'កាតាបស្បែកកម្រិតប្រណីត Premium',
   'Premium Leather Belt': 'Premium Leather Belt',
   'Premium Leather Passport Holder': 'Premium Leather Passport Holder',
   'Premium Micro-Modal Robe': 'Premium Micro-Modal Robe',
   'Premium Pima Cotton': 'Premium Pima Cotton',
-  'Premium quality fabrics with standard fitting sizes.': 'Premium quality fabrics with standard fitting sizes.',
-  'Premium quality product designed for durability and comfort.': 'ផលិតផលគុណភាពខ្ពស់ ឌីហ្សាញឡើងដើម្បីភាពធន់ និងភាពងាយស្រួលក្នុងការប្រើប្រាស់។',
+  'Premium quality fabrics with standard fitting sizes.':
+      'Premium quality fabrics with standard fitting sizes.',
+  'Premium quality product designed for durability and comfort.':
+      'ផលិតផលគុណភាពខ្ពស់ ឌីហ្សាញឡើងដើម្បីភាពធន់ និងភាពងាយស្រួលក្នុងការប្រើប្រាស់។',
   'PREMIUM SHOPPING': 'PREMIUM SHOPPING',
   'Premium Silk Scarf': 'Premium Silk Scarf',
   'Premium Silk Triangle': 'Premium Silk Triangle',
@@ -1387,7 +1547,8 @@
   'Professional Laptop Bag': 'កាបូបដាក់កុំព្យូទ័រយួរដៃអាជីព',
   'Professional Navy Tapered': 'Professional Navy Tapered',
   'Professional Tech Bag': 'កាបូបបច្ចេកវិទ្យាអាជីព Professional Tech',
-  'Professional Tech Travel Bag': 'កាបូបធ្វើដំណើរបច្ចេកវិទ្យាអាជីព Professional Tech',
+  'Professional Tech Travel Bag':
+      'កាបូបធ្វើដំណើរបច្ចេកវិទ្យាអាជីព Professional Tech',
   'Profile': 'ប្រវត្តិរូប',
   'Programmable Emoji Backpack': 'Programmable Emoji Backpack',
   'Promo': 'Promo',
@@ -1427,7 +1588,8 @@
   'Restorative Face Cream': 'Restorative Face Cream',
   'Restorative Silk Mask': 'Restorative Silk Mask',
   'Results for ': 'Results for ',
-  'Results for "\${_searchController.text}"': 'Results for "\${_searchController.text}"',
+  'Results for "\${_searchController.text}"':
+      'Results for "\${_searchController.text}"',
   'Retro 35mm Film Camera for Kids': 'Retro 35mm Film Camera for Kids',
   'Retro 90s High-Top Sneaker': 'Retro 90s High-Top Sneaker',
   'Retro 90s Stripe Polo': 'Retro 90s Stripe Polo',
@@ -1440,11 +1602,12 @@
   'RETURNS': 'RETURNS',
   'Reusable Net Tote Bag': 'កាបូបសំណាញ់ដែលអាចប្រើឡើងវិញបាន',
   'Reversible Duo-Color': 'Reversible Duo-Color',
-  'reviews': 'ការវាយតម្លៃ',
+  '%a reviews': '%a ការវាយតម្លៃ',
   'Write a Review': 'សរសេរការវាយតម្លៃ',
   'Rating & Reviews': 'ការដាក់ពិន្ទុ និងការវាយតម្លៃ',
   'What is your rate?': 'តើអ្នកដាក់ពិន្ទុប៉ុន្មាន?',
-  'Please share your opinion about the product': 'សូមចែករំលែកមតិរបស់អ្នកអំពីផលិតផល',
+  'Please share your opinion about the product':
+      'សូមចែករំលែកមតិរបស់អ្នកអំពីផលិតផល',
   'Add Photo': 'បន្ថែមរូបភាព',
   'Submit Review': 'ដាក់បញ្ជូនការវាយតម្លៃ',
   'Your review has been submitted': 'ការវាយតម្លៃរបស់អ្នកត្រូវបានបញ្ជូន',
@@ -1533,7 +1696,7 @@
   'Search in': 'ស្វែងរកក្នុង',
   'Search in \$categoryName...': 'Search in \$categoryName...',
   'Search in Product item...': 'ស្វែងរកទំនិញ...',
-  'Search in {0}...': 'Search in {0}...',
+  'Search in %a...': 'ស្វែងរកក្នុង %a...',
   'Search popular...': 'Search popular...',
   'Search products...': 'ស្វែងរកផលិតផល...',
   'Search shoes...': 'Search shoes...',
@@ -1601,9 +1764,12 @@
   'Similar items': 'ទំនិញប្រហាក់ប្រហែល',
   'Simple Leather Pouch': 'កាបូបដៃស្បែកសាមញ្ញ',
   'Simple Plastic Flip-Flops': 'Simple Plastic Flip-Flops',
-  'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.': 'សាមញ្ញ ធន់ និងធំទូលាយ។ ល្អឥតខ្ចោះសម្រាប់សិស្សានុសិស្ស និងការប្រើប្រាស់ប្រចាំថ្ងៃ ជាមួយខ្សែស្ពាយមាំ និងមានថតខ្សែរ៉ូតជាច្រើន។',
-  'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.': 'សាមញ្ញ ធន់ និងមាននិរន្តរភាព។ កាបូបយួរធំផលិតពីកប្បាសសរីរាង្គ ១០០% នេះស័ក្តិសមបំផុតសម្រាប់ការទិញទំនិញប្រចាំថ្ងៃ ឬដើរលេងឆ្នេរខ្សាច់។',
-  'Simply browse products, add them to your cart, and proceed to checkout using your preferred order method.': 'គ្រាន់តែស្វែងរកផលិតផល បន្ថែមទៅក្នុងកន្ត្រក និងបន្ដទៅការទូទាត់តាមវិធីសាស្ត្រដែលអ្នកពេញចិត្ត។',
+  'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.':
+      'សាមញ្ញ ធន់ និងធំទូលាយ។ ល្អឥតខ្ចោះសម្រាប់សិស្សានុសិស្ស និងការប្រើប្រាស់ប្រចាំថ្ងៃ ជាមួយខ្សែស្ពាយមាំ និងមានថតខ្សែរ៉ូតជាច្រើន។',
+  'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.':
+      'សាមញ្ញ ធន់ និងមាននិរន្តរភាព។ កាបូបយួរធំផលិតពីកប្បាសសរីរាង្គ ១០០% នេះស័ក្តិសមបំផុតសម្រាប់ការទិញទំនិញប្រចាំថ្ងៃ ឬដើរលេងឆ្នេរខ្សាច់។',
+  'Simply browse products, add them to your cart, and proceed to checkout using your preferred order method.':
+      'គ្រាន់តែស្វែងរកផលិតផល បន្ថែមទៅក្នុងកន្ត្រក និងបន្ដទៅការទូទាត់តាមវិធីសាស្ត្រដែលអ្នកពេញចិត្ត។',
   'Size': 'ទំហំ',
   'Size guide': 'ការណែនាំអំពីទំហំ',
   'Ski Snowboard Gloves': 'Ski Snowboard Gloves',
@@ -1615,7 +1781,8 @@
   'Slate Blue Satchel': 'កាបូបយួរដៃពណ៌ខៀវប្រផេះ Slate Blue',
   'Slate Grey Checkered Suit': 'Slate Grey Checkered Suit',
   'Sleek All-Black Stealth': 'កាតាបខ្មៅរលោងម៉ូដ Stealth',
-  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.': 'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
+  'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.':
+      'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
   'Sleek Black Matte': 'Sleek Black Matte',
   'Sleek Italian Loafers': 'Sleek Italian Loafers',
   'Sleek Maroon Office Tote': 'កាបូបការិយាល័យពណ៌ក្រហមឈាមជ្រូករលោង',
@@ -1623,7 +1790,8 @@
   'Sleek Metal Money Clip': 'ដង្កៀបគាបលុយលោហៈរលោង',
   'Sleek Midnight Black': 'Sleek Midnight Black',
   'Sleek Minimalist Crossbody': 'កាបូបស្ពាយចំហៀងរាងស្តើងសាមញ្ញ',
-  'Sleep and powerful, the Stealth Black series is made for those who move in style.': 'Sleep and powerful, the Stealth Black series is made for those who move in style.',
+  'Sleep and powerful, the Stealth Black series is made for those who move in style.':
+      'Sleep and powerful, the Stealth Black series is made for those who move in style.',
   'Sleeveless Pleated Blouse': 'Sleeveless Pleated Blouse',
   'Slim Dress Belt': 'Slim Dress Belt',
   'Slim Fit Black Shirt': 'Slim Fit Black Shirt',
@@ -1669,10 +1837,13 @@
   'Sparkly Party Skirt': 'Sparkly Party Skirt',
   'SPECIAL OFFERS': 'SPECIAL OFFERS',
   'Special Offers': 'ការផ្តល់ជូនពិសេស',
-  'Special promotion only valid today': 'ប្រូម៉ូសិនពិសេសនេះមានសុពលភាពតែថ្ងៃនេះប៉ុណ្ណោះ',
-  'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.': 'កញ្ចក់ពណ៌លឿងពិសេស ឌីហ្សាញឡើងដើម្បីកាត់បន្ថយពន្លឺចាំង និងបង្កើនភាពច្បាស់លាស់ក្នុងការបើកបរពេលយប់ ឬក្នុងលក្ខខណ្ឌពន្លឺតិច។',
+  'Special promotion only valid today':
+      'ប្រូម៉ូសិនពិសេសនេះមានសុពលភាពតែថ្ងៃនេះប៉ុណ្ណោះ',
+  'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.':
+      'កញ្ចក់ពណ៌លឿងពិសេស ឌីហ្សាញឡើងដើម្បីកាត់បន្ថយពន្លឺចាំង និងបង្កើនភាពច្បាស់លាស់ក្នុងការបើកបរពេលយប់ ឬក្នុងលក្ខខណ្ឌពន្លឺតិច។',
   'Speed Bolt Edition': 'Speed Bolt Edition',
-  'Spend \$160+ and enjoy Discount 15% + FREE Delivery!': 'Spend \$160+ and enjoy Discount 15% + FREE Delivery!',
+  'Spend \$160+ and enjoy Discount 15% + FREE Delivery!':
+      'Spend \$160+ and enjoy Discount 15% + FREE Delivery!',
   'Sport': 'កីឡា',
   'Sport Digital Watch': 'Sport Digital Watch',
   'Sport Fitness Gloves': 'Sport Fitness Gloves',
@@ -1684,9 +1855,11 @@
   'Spring Collection': 'ការប្រមូលម៉ូដរដូវផ្ការីក',
   'Sprint Master V2': 'Sprint Master V2',
   'Square Oversized': 'វ៉ែនតារាងការ៉េខ្នាតធំ Square Oversized',
-  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.': 'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
+  'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.':
+      'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
   'Stability Plus Sport': 'Stability Plus Sport',
-  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.': 'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
+  'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.':
+      'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
   'Star Motif Mesh Hosiery': 'Star Motif Mesh Hosiery',
   'Star Wars: The Darksaber Replica': 'Star Wars: The Darksaber Replica',
   'Star-Print Mesh Chemise': 'Star-Print Mesh Chemise',
@@ -1694,10 +1867,12 @@
   'Start Shopping': 'Start Shopping',
   'Start shopping': 'ចាប់ផ្តើមទិញទំនិញ',
   'Status': 'Status',
-  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.': 'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
+  'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.':
+      'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
   'Stay-Up Lace Top Hold-Ups': 'Stay-Up Lace Top Hold-Ups',
   'Steampunk Round': 'វ៉ែនតាមូលរចនាបថ Steampunk',
-  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.': 'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
+  'Store up to 6 watches in style. Soft velvet lining to prevent scratches.':
+      'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
   'Stories': 'Stories',
   'Straight Leg Raw Denim': 'Straight Leg Raw Denim',
   'Strapless Shaping Slip': 'Strapless Shaping Slip',
@@ -1705,8 +1880,10 @@
   'Streetwear': 'ស្ទីល Streetwear',
   'Streetwear Letter Embroidered Jeans': 'Streetwear Letter Embroidered Jeans',
   'Streetwear Multi-Pocket Cargo': 'Streetwear Multi-Pocket Cargo',
-  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.': 'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
-  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.': 'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
+  'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.':
+      'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
+  'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.':
+      'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
   'Striped Beach Shorts': 'Striped Beach Shorts',
   'Striped Business Shirt': 'Striped Business Shirt',
   'Striped Casual Linen Blouse': 'Striped Casual Linen Blouse',
@@ -1718,7 +1895,8 @@
   'Striped Retro Athletic': 'Striped Retro Athletic',
   'Structured Onyx Waistcoat': 'Structured Onyx Waistcoat',
   'Structured Slate Overcoat': 'Structured Slate Overcoat',
-  'Studio-grade sound quality with genuine leather earcups and gold accents.': 'Studio-grade sound quality with genuine leather earcups and gold accents.',
+  'Studio-grade sound quality with genuine leather earcups and gold accents.':
+      'Studio-grade sound quality with genuine leather earcups and gold accents.',
   'Style': 'ម៉ូដ',
   'STYLE WEEK': 'សប្តាហ៍នៃស្ទីលទាន់សម័យ',
   'Styles': 'ម៉ូដ',
@@ -1737,7 +1915,8 @@
   'Summer collection coming soon': 'Summer collection coming soon',
   'Summer Cotton Cargo Shorts': 'Summer Cotton Cargo Shorts',
   'Summer Holiday Cropped Vest': 'Summer Holiday Cropped Vest',
-  'Summer Straw Beach Tote': 'កាបូបយួរធំក្រណាត់កន្ត្រាំងសម្រាប់ដើរលេងឆ្នេររដូវក្តៅ',
+  'Summer Straw Beach Tote':
+      'កាបូបយួរធំក្រណាត់កន្ត្រាំងសម្រាប់ដើរលេងឆ្នេររដូវក្តៅ',
   'Summit Peak Hiking Explorer': 'Summit Peak Hiking Explorer',
   'Sun-Bleached Red Hoodie': 'Sun-Bleached Red Hoodie',
   'Sunglasses': 'វ៉ែនតាការពារកម្តៅថ្ងៃ',
@@ -1752,7 +1931,8 @@
   'Tactical EDC Wallet': 'កាបូបលុយប្រើប្រាស់ប្រចាំថ្ងៃបែបយោធា Tactical EDC',
   'Tactical Tech Bag': 'កាបូបបច្ចេកវិទ្យាបែបយោធា Tactical Tech',
   'Tactical Techwear Vest': 'Tactical Techwear Vest',
-  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.': 'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
+  'Tailored to perfection. A masterpiece of sartorial elegance for gala events.':
+      'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
   'Tambour Street Diver Burning Rock': 'Tambour Street Diver Burning Rock',
   'Tan Linen Wedding Slacks': 'Tan Linen Wedding Slacks',
   'Tan Slip-on Loafers': 'Tan Slip-on Loafers',
@@ -1772,8 +1952,10 @@
   'Texture Wave Spray': 'Texture Wave Spray',
   'Textured Geometric Pattern': 'Textured Geometric Pattern',
   'Textured Waffle Polo': 'Textured Waffle Polo',
-  'The icon of eyewear. Always in style, no matter the decade.': 'The icon of eyewear. Always in style, no matter the decade.',
-  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.': 'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
+  'The icon of eyewear. Always in style, no matter the decade.':
+      'The icon of eyewear. Always in style, no matter the decade.',
+  'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.':
+      'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
   'Thermal Fleece Baselayer': 'Thermal Fleece Baselayer',
   'Thermal Fleece-Lined Winter': 'Thermal Fleece-Lined Winter',
   'Thermal Protectant Mist': 'Thermal Protectant Mist',
@@ -1785,8 +1967,10 @@
   'Tiered Boho Skirt': 'Tiered Boho Skirt',
   'Tiered Ruffle Sleeve Top': 'Tiered Ruffle Sleeve Top',
   'Tights': 'Tights',
-  'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.': 'វ៉ែនតារចនាបថ Aviator មិនចេះហួសសម័យ ជាមួយកញ្ចក់ Polarized ការពារកាំរស្មី UV 100%។ ស៊ុមលោហៈទម្ងន់ស្រាល ផ្តល់ផាសុកភាពពេញមួយថ្ងៃ។',
-  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.': 'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
+  'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.':
+      'វ៉ែនតារចនាបថ Aviator មិនចេះហួសសម័យ ជាមួយកញ្ចក់ Polarized ការពារកាំរស្មី UV 100%។ ស៊ុមលោហៈទម្ងន់ស្រាល ផ្តល់ផាសុកភាពពេញមួយថ្ងៃ។',
+  'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.':
+      'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
   'Titanium Lightweight': 'Titanium Lightweight',
   'Titanium Series Carry-On': 'វ៉ាលីយួរឡើងយន្តហោះស៊េរី Titanium',
   'Titanium Ultra-Light': 'វ៉ែនតាស៊ុម Titanium ស្រាលពិសេស Ultra-Light',
@@ -1807,7 +1991,8 @@
   'Transparent Jelly Handbag': 'Transparent Jelly Handbag',
   'Travel': 'ការធ្វើដំណើរ',
   'Travel Passport Wallet': 'កាបូបលុយដាក់លិខិតឆ្លងដែនសម្រាប់ធ្វើដំណើរ',
-  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.': 'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
+  'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.':
+      'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
   'Tropical Beach Flip-Flops': 'Tropical Beach Flip-Flops',
   'Tummy-Taming Brief': 'Tummy-Taming Brief',
   'Turquoise Beach Tee': 'Turquoise Beach Tee',
@@ -1818,13 +2003,16 @@
   'Ultra-Fast Pro Runner': 'Ultra-Fast Pro Runner',
   'Ultra-Gentle Dry Shampoo': 'Ultra-Gentle Dry Shampoo',
   'Ultra-Light Cooling Slip': 'Ultra-Light Cooling Slip',
-  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.': 'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
+  'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.':
+      'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
   'Ultra-Sheer 15D Glossy': 'Ultra-Sheer 15D Glossy',
-  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.': 'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
+  'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.':
+      'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
   'Ultra-Thick Fleece Cabin': 'Ultra-Thick Fleece Cabin',
   'Under-Bust Waist Nipper': 'Under-Bust Waist Nipper',
   'Unisex': 'Unisex',
-  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.': 'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
+  'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.':
+      'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
   'UP TO 50%': 'រហូតដល់ 50%',
   'Up to 50%': 'រហូតដល់ 50%',
   'Up to 70% Off': 'បញ្ចុះតម្លៃរហូតដល់ 70%',
@@ -1839,7 +2027,8 @@
   'Urban Casual Brown': 'Urban Casual Brown',
   'Urban Comfort Walking Sneaker': 'Urban Comfort Walking Sneaker',
   'Urban Commuter Laptop Bag': 'Urban Commuter Laptop Bag',
-  'Urban Essential Joggers in Matte Black': 'Urban Essential Joggers in Matte Black',
+  'Urban Essential Joggers in Matte Black':
+      'Urban Essential Joggers in Matte Black',
   'Urban Explorer Backpack': 'កាតាបស្ពាយទីក្រុង Urban Explorer',
   'Urban Explorer Pro': 'កាតាបទីក្រុង Urban Explorer Pro',
   'Urban Explorer Sneakers': 'Urban Explorer Sneakers',
@@ -1874,7 +2063,8 @@
   'Velvet Trim Nightgown': 'Velvet Trim Nightgown',
   'Velvet Trim Sleep Sock': 'Velvet Trim Sleep Sock',
   'Velvet Two-Piece Tracksuit Set': 'Velvet Two-Piece Tracksuit Set',
-  'Versatile shoes designed for high-intensity interval training and gym workouts.': 'Versatile shoes designed for high-intensity interval training and gym workouts.',
+  'Versatile shoes designed for high-intensity interval training and gym workouts.':
+      'Versatile shoes designed for high-intensity interval training and gym workouts.',
   'Vertical Stripe Slimming': 'Vertical Stripe Slimming',
   'Vetiver Noir': 'Vetiver Noir',
   'Vibrate': 'រំញ័រ',
@@ -1943,7 +2133,8 @@
   'White': 'ពណ៌ស',
   'White Lace Wedding Heels': 'White Lace Wedding Heels',
   'White Musk & Linen': 'White Musk & Linen',
-  'Wigglitz: Collectible Food Fidget Series': 'Wigglitz: Collectible Food Fidget Series',
+  'Wigglitz: Collectible Food Fidget Series':
+      'Wigglitz: Collectible Food Fidget Series',
   'Wild West Cowboy Leather Boot': 'Wild West Cowboy Leather Boot',
   'Winter collection coming soon': 'Winter collection coming soon',
   'Wireless Bamboo Charger': 'Wireless Bamboo Charger',
@@ -1965,44 +2156,74 @@
   'Wrap Front Skirt': 'Wrap Front Skirt',
   'Y2K': 'ស្ទីល Y2K',
   'Yellow': 'ពណ៌លឿង',
-  'Yes, downloading and browsing Evira is completely free.': 'បាទ/ចាស ការទាញយក និងការស្វែងរកផលិតផលក្នុង Evira គឺឥតគិតថ្លៃទាំងស្រុង។',
+  'Yes, downloading and browsing Evira is completely free.':
+      'បាទ/ចាស ការទាញយក និងការស្វែងរកផលិតផលក្នុង Evira គឺឥតគិតថ្លៃទាំងស្រុង។',
   'Yesterday': 'ម្សិលមិញ',
   'Yoga Flow Light Support': 'Yoga Flow Light Support',
-  'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.': 'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.',
+  'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.':
+      'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.',
   'You have no recent searches.': 'អ្នកមិនទាន់មានការស្វែងរកថ្មីៗនៅឡើយទេ។',
-  'You have to top up your e-wallet': 'អ្នកត្រូវបញ្ចូលលុយក្នុងកាបូបអេឡិចត្រូនិករបស់អ្នក',
+  'You have to top up your e-wallet':
+      'អ្នកត្រូវបញ្ចូលលុយក្នុងកាបូបអេឡិចត្រូនិករបស់អ្នក',
   'Your account has been created!': 'គណនីរបស់អ្នកត្រូវបានបង្កើតរួចរាល់!',
   'Your bag is empty': 'កាបូបរបស់អ្នកនៅទំនេរ',
   'Z.HOME': 'ទំព័រដើម',
   'Zip-Up Modern Polo': 'Zip-Up Modern Polo',
   'Zipped Cuff Tech Pants': 'Zipped Cuff Tech Pants',
-  'ZipString Aracna - Kinetic String Toy': 'ZipString Aracna - Kinetic String Toy',
+  'ZipString Aracna - Kinetic String Toy':
+      'ZipString Aracna - Kinetic String Toy',
   'Zoom Pro Elite Running Shoe': 'Zoom Pro Elite Running Shoe',
   '{0} items found': '{0} items found',
-  '{0} sold': '{0} sold',
+  '%a sold': '%a លក់ដាច់',
   '|': '|',
   '| {0} sold': '| {0} sold',
-  'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$': 'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$',
-  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.': 'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.', // TODO: Translate to Khmer
+  'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$':
+      'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$',
+  'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.':
+      'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
+  // TODO: Translate to Khmer
   'Elegant Women\'': 'Elegant Women\', // TODO: Translate to Khmer',
   'Hand-Operated Mini Drone (UFO)': 'Hand-Operated Mini Drone (UFO)',
-  'Magic Chemistry Set (50 Experiments)': 'Magic Chemistry Set (50 Experiments)',
+  'Magic Chemistry Set (50 Experiments)':
+      'Magic Chemistry Set (50 Experiments)',
   'Men\'': 'Men\', // TODO: Translate to Khmer',
   'Premium Yoga Mat (Pro)': 'Premium Yoga Mat (Pro)',
-  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.': 'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.', // TODO: Translate to Khmer
+  'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.':
+      'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
+  // TODO: Translate to Khmer
   'Squishy Foam "Donut" Squeeze Set': 'Squishy Foam "Donut" Squeeze Set',
   'OR': 'ឬ',
   'Phone Number': 'លេខទូរសព្ទ',
-  'Please enter both phone and password': 'សូមបញ្ចូលទាំងលេខទូរសព្ទ និងពាក្យសម្ងាត់',
+  'Please enter both phone and password':
+      'សូមបញ្ចូលទាំងលេខទូរសព្ទ និងពាក្យសម្ងាត់',
   'Register': 'ចុះឈ្មោះ',
   'Registration successful!': 'ការចុះឈ្មោះទទួលបានជោគជ័យ!',
-  'Please enter email, password and phone': 'សូមបញ្ចូលអ៊ីមែល ពាក្យសម្ងាត់ និងលេខទូរសព្ទ',
+  'Please enter email, password and phone':
+      'សូមបញ្ចូលអ៊ីមែល ពាក្យសម្ងាត់ និងលេខទូរសព្ទ',
   'Continue with Phone': 'បន្តជាមួយលេខទូរសព្ទ',
   'Continue with Email': 'បន្តជាមួយអ៊ីមែល',
   'Continue with Apple': 'បន្តជាមួយ Apple',
   'Sign Up': 'ចុះឈ្មោះ',
   'Sign Up here': 'ចុះឈ្មោះនៅទីនេះ',
   'Secure Payment Methods': 'វិធីសាស្ត្រទូទាត់ប្រកបដោយសុវត្ថិភាព',
-  'Registration successful! Please check your email for verification.': 'ការចុះឈ្មោះជោគជ័យ! សូមពិនិត្យអ៊ីមែលរបស់អ្នកសម្រាប់ការផ្ទៀងផ្ទាត់។',
+  'Registration successful! Please check your email for verification.':
+      'ការចុះឈ្មោះជោគជ័យ! សូមពិនិត្យអ៊ីមែលរបស់អ្នកសម្រាប់ការផ្ទៀងផ្ទាត់។',
   'Please fill in all fields': 'សូមបំពេញគ្រប់ចន្លោះ',
+  'First name': 'នាមខ្លួន',
+  'Last name': 'នាមត្រកូល',
+  'Mobile number': 'លេខទូរសព្ទ',
+  'Add contact number': 'បន្ថែមលេខទំនាក់ទំនង',
+  'Date of birth (DD/MM/YYYY)': 'ថ្ងៃខែឆ្នាំកំណើត (ថ្ងៃ/ខែ/ឆ្នាំ)',
+  'Add your birthday to unlock additional offering/reward!':
+      'បន្ថែមថ្ងៃកំណើតរបស់អ្នក ដើម្បីទទួលបានរង្វាន់បន្ថែម!',
+  'Your address': 'អាសយដ្ឋានរបស់អ្នក',
+  'Address book': 'សៀវភៅអាសយដ្ឋាន',
+  'Save': 'រក្សាទុក',
+  'FAQs & guides': 'សំណួរដែលសួរញឹកញាប់ និងការណែនាំ',
+  'Rate this app': 'វាយតម្លៃកម្មវិធីនេះ',
+  'Recommend this app': 'ណែនាំកម្មវិធីនេះ',
+  'Clear cache': 'សម្អាតទិន្នន័យបណ្តោះអាសន្ន',
+  'LOG OUT': 'ចាកចេញ',
+  'Account deletion': 'ការលុបគណនី',
+  'Delete account': 'លុបគណនី',
 };

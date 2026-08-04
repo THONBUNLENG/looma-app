@@ -13,16 +13,13 @@ import '../../../widget/write_review_bottom_sheet.dart';
 
 class ProductReviewScreen extends StatefulWidget {
   final Map<String, dynamic> product;
-
   const ProductReviewScreen({super.key, required this.product});
-
   @override
   State<ProductReviewScreen> createState() => _ProductReviewScreenState();
 }
 
 class _ProductReviewScreenState extends State<ProductReviewScreen> {
   int _selectedFilter = 0;
-
   final List<ReviewModel> _dummyReviews = [
     ReviewModel(
       id: "1",
@@ -50,7 +47,6 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
       date: DateTime.now().subtract(const Duration(days: 10)),
     ),
   ];
-
   @override
   void initState() {
     super.initState();
@@ -98,7 +94,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: textColor, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: textColor, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -132,7 +128,6 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
   Widget _buildRatingSummary(bool isDark) {
     final rating = widget.product['rating'] ?? '4.8';
     final totalReviews = widget.product['reviews'] ?? '24';
-    
     return Row(
       children: [
         Column(
@@ -156,7 +151,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
             ),
             const SizedBox(height: 4),
             TextWidget(
-              "{0} reviews".trArgs([totalReviews.toString()]),
+              "%a reviews".trArgs([totalReviews.toString()]),
               color: isDark ? Colors.white54 : Colors.black54,
               fontSize: 14,
             ),

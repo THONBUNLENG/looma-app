@@ -12,7 +12,6 @@ import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.d
 
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-
 class ShoppingBagScreen extends StatefulWidget {
   const ShoppingBagScreen({super.key});
 
@@ -24,7 +23,9 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
   List<Map<String, dynamic>> get _cartItems => CartManager().cartItems;
 
   double get _subtotal => CartManager().subtotal;
+
   double get _deliveryFee => _subtotal == 0 ? 0.0 : 2.00;
+
   double get _total => _subtotal + _deliveryFee;
 
   void _updateQuantity(int index, int delta) {
@@ -53,12 +54,6 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
     });
   }
 
-  void _clearCart() {
-    setState(() {
-      CartManager().clearCart();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -79,8 +74,12 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
         ),
         actions: [const CartBadge()],
       ),
-      body: _cartItems.isEmpty ? _buildEmptyState(isDark) : _buildCartList(isDark),
-      bottomNavigationBar: _cartItems.isEmpty ? null : _buildCheckoutBar(isDark),
+      body: _cartItems.isEmpty
+          ? _buildEmptyState(isDark)
+          : _buildCartList(isDark),
+      bottomNavigationBar: _cartItems.isEmpty
+          ? null
+          : _buildCheckoutBar(isDark),
     );
   }
 
@@ -94,10 +93,16 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
             Container(
               padding: const EdgeInsets.all(30),
               decoration: BoxDecoration(
-                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.white,
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.shopping_bag_outlined, size: 80, color: Colors.grey[400]),
+              child: Icon(
+                Icons.shopping_bag_outlined,
+                size: 80,
+                color: Colors.grey[400],
+              ),
             ),
             const SizedBox(height: 30),
             TextWidget(
@@ -120,10 +125,16 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.buttonColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   elevation: 0,
                 ),
-                child: TextWidget("Start Shopping".tr, color: Colors.white, fontWeight: FontWeight.bold),
+                child: TextWidget(
+                  "Start Shopping".tr,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
@@ -148,7 +159,9 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                     value: CartManager().isAllSelected,
                     onChanged: _selectAll,
                     activeColor: AppColor.primaryColor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -166,7 +179,10 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
             itemCount: cartItemsList.length,
             itemBuilder: (context, index) {
               final item = cartItemsList[index];
-              final uniqueKey = item['id']?.toString() ?? item['title']?.toString() ?? index.toString();
+              final uniqueKey =
+                  item['id']?.toString() ??
+                  item['title']?.toString() ??
+                  index.toString();
               final isSelected = item['isSelected'] ?? true;
 
               return Dismissible(
@@ -180,28 +196,23 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                     color: Colors.redAccent.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Icon(Icons.delete_sweep_outlined, color: Colors.redAccent, size: 30),
+                  child: const Icon(
+                    Icons.delete_sweep_outlined,
+                    color: Colors.redAccent,
+                    size: 30,
+                  ),
                 ),
                 onDismissed: (_) => _removeItem(index),
                 child: Row(
                   children: [
-                    SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: Checkbox(
-                        value: isSelected,
-                        onChanged: (value) => _toggleSelection(index),
-                        activeColor: AppColor.primaryColor,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 20),
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.05)
+                              : Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             if (!isDark)
@@ -213,7 +224,25 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                           ],
                         ),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            // 1. Fixed position: Checkbox is now inside children[]
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Checkbox(
+                                value: isSelected,
+                                onChanged: (value) => _toggleSelection(index),
+                                activeColor: AppColor.primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            // Space between checkbox and image
+
+                            // 2. Product Image
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
                               child: _getImage(item).isNotEmpty
@@ -222,14 +251,18 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                                       width: 90,
                                       height: 110,
                                       fit: BoxFit.cover,
-                                      placeholder: (context, url) => Container(color: Colors.grey[200]),
-                                      errorWidget: (context, url, error) => const Icon(Icons.broken_image),
+                                      placeholder: (context, url) =>
+                                          Container(color: Colors.grey[200]),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.broken_image),
                                     )
                                   : Container(
                                       width: 90,
                                       height: 110,
                                       color: Colors.grey[200],
-                                      child: const Icon(Icons.image_not_supported),
+                                      child: const Icon(
+                                        Icons.image_not_supported,
+                                      ),
                                     ),
                             ),
                             const SizedBox(width: 16),
@@ -252,7 +285,8 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                                   ),
                                   const SizedBox(height: 12),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       TextWidget(
                                         "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
@@ -281,7 +315,9 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
   }
 
   String _getImage(Map<String, dynamic> item) {
-    if (item['images'] != null && item['images'] is List && (item['images'] as List).isNotEmpty) {
+    if (item['images'] != null &&
+        item['images'] is List &&
+        (item['images'] as List).isNotEmpty) {
       return item['images'][0].toString();
     }
     return item['image']?.toString() ?? '';
@@ -289,16 +325,24 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
 
   String _getDetails(Map<String, dynamic> item) {
     List<String> details = [];
-    if (item['selectedSize'] != null) details.add("${'Size'.tr}: ${item['selectedSize']}");
-    if (item['selectedColorIndex'] != null) details.add("${'Color'.tr}: ${item['selectedColorIndex']}");
-    
+    if (item['selectedSize'] != null)
+      details.add("${'Size'.tr}: ${item['selectedSize']}");
+    if (item['selectedColor'] != null) {
+      details.add("${'Color'.tr}: ${item['selectedColor']}");
+    } else if (item['selectedColorIndex'] != null) {
+      details.add("${'Color'.tr}: ${item['selectedColorIndex']}");
+    }
+
     return details.isEmpty ? 'No details' : details.join('  |  ');
   }
 
   double _parsePrice(dynamic price) {
     if (price == null) return 0.0;
     if (price is num) return price.toDouble();
-    return double.tryParse(price.toString().replaceAll(RegExp(r'[^\d.]'), '')) ?? 0.0;
+    return double.tryParse(
+          price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
+        ) ??
+        0.0;
   }
 
   Widget _buildQuantityController(int index, bool isDark) {
@@ -309,7 +353,11 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
       ),
       child: Row(
         children: [
-          _quantityButton(Icons.remove, () => _updateQuantity(index, -1), isDark),
+          _quantityButton(
+            Icons.remove,
+            () => _updateQuantity(index, -1),
+            isDark,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: TextWidget(
@@ -340,7 +388,11 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
               ),
           ],
         ),
-        child: Icon(icon, size: 16, color: isDark ? Colors.white : Colors.black),
+        child: Icon(
+          icon,
+          size: 16,
+          color: isDark ? Colors.white : Colors.black,
+        ),
       ),
     );
   }
@@ -363,9 +415,17 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _summaryRow("Subtotal".tr, "\$${_subtotal.toStringAsFixed(2)}", false),
+            _summaryRow(
+              "Subtotal".tr,
+              "\$${_subtotal.toStringAsFixed(2)}",
+              false,
+            ),
             const SizedBox(height: 10),
-            _summaryRow("Delivery Fee".tr, "\$${_deliveryFee.toStringAsFixed(2)}", false),
+            _summaryRow(
+              "Delivery Fee".tr,
+              "\$${_deliveryFee.toStringAsFixed(2)}",
+              false,
+            ),
             const Divider(height: 30),
             _summaryRow("Total".tr, "\$${_total.toStringAsFixed(2)}", true),
             const SizedBox(height: 25),
@@ -379,15 +439,21 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => OrderConfirmScreen(
-                              items: _cartItems.where((e) => e['isSelected'] == true).toList(),
+                              items: _cartItems
+                                  .where((e) => e['isSelected'] == true)
+                                  .toList(),
                             ),
                           ),
                         );
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: _subtotal > 0 ? AppColor.pink100Color : Colors.grey,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  backgroundColor: _subtotal > 0
+                      ? AppColor.pink100Color
+                      : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   elevation: 0,
                 ),
                 child: Row(
@@ -429,5 +495,3 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
     );
   }
 }
-
-

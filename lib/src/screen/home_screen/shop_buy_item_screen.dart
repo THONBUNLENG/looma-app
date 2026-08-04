@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/dresse_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/hoodies_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/jackets_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/jeans_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/all_categories/clothing_products/polo_screen.dart';
-import 'package:shopping_app/src/screen/list_url.dart';
+import 'package:shopping_app/src/screen/home_screen/universal_product_screen.dart';
 import 'package:shopping_app/src/screen/main_screen/main_holder.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-
-import 'all_categories/clothing_products/shorts_screen.dart';
-import 'all_categories/clothing_products/skirts_screen.dart';
-import 'all_categories/clothing_products/vest_screen.dart';
-import 'categories/shoes_screen.dart';
 
 class ShopBuyItemScreen extends StatelessWidget {
   const ShopBuyItemScreen({super.key, required this.categoryName});
@@ -21,15 +11,15 @@ class ShopBuyItemScreen extends StatelessWidget {
   final String categoryName;
 
   final List<Map<String, dynamic>> categories = const [
-    {'title': 'Polo', 'image': 'assets/icon/i_buy_item/tops.png'},
-    {'title': 'Jeans', 'image': 'assets/icon/i_buy_item/jeans.png'},
-    {'title': 'Dresses', 'image': 'assets/icon/i_buy_item/dresses.png'},
-    {'title': 'Shoes', 'image': 'assets/icon/i_buy_item/shoes.png'},
-    {'title': 'Jackets', 'image': 'assets/icon/i_buy_item/jackets.png'},
-    {'title': 'Vests', 'image': 'assets/icon/i_buy_item/vests.png'},
-    {'title': 'Skirts', 'image': 'assets/icon/i_buy_item/skirts.png'},
-    {'title': 'Shorts', 'image': 'assets/icon/i_buy_item/shorts.png'},
-    {'title': 'Hoodies', 'image': 'assets/icon/i_buy_item/hoodies.png'},
+    {'title': 'Tops', 'image': 'assets/icon/i_buy_item/tops.png', 'category': 'CLOTHING', 'subCategory': 'POLOS'},
+    {'title': 'Jeans', 'image': 'assets/icon/i_buy_item/jeans.png', 'category': 'CLOTHING', 'subCategory': 'JEANS'},
+    {'title': 'Dresses', 'image': 'assets/icon/i_buy_item/dresses.png', 'category': 'CLOTHING', 'subCategory': 'DRESSES'},
+    {'title': 'Shoes', 'image': 'assets/icon/i_buy_item/shoes.png', 'category': 'SHOES'},
+    {'title': 'Jackets', 'image': 'assets/icon/i_buy_item/jackets.png', 'category': 'CLOTHING', 'subCategory': 'JACKETS'},
+    {'title': 'Vests', 'image': 'assets/icon/i_buy_item/vests.png', 'category': 'CLOTHING', 'subCategory': 'VESTS'},
+    {'title': 'Skirts', 'image': 'assets/icon/i_buy_item/skirts.png', 'category': 'CLOTHING', 'subCategory': 'SKIRT'},
+    {'title': 'Shorts', 'image': 'assets/icon/i_buy_item/shorts.png', 'category': 'CLOTHING', 'subCategory': 'SHORTS'},
+    {'title': 'Hoodies', 'image': 'assets/icon/i_buy_item/hoodies.png', 'category': 'CLOTHING', 'subCategory': 'HOODIES'},
     {'title': 'More', 'image': 'assets/icon/more.png', 'isMore': true},
   ];
 
@@ -51,22 +41,6 @@ class ShopBuyItemScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: isDark ? AppColor.white : AppColor.black,
               ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => (),
-              //       ),
-              //     );
-              //   },
-              //   child: TextWidget(
-              //     "SEE MORE",
-              //     fontSize: 14,
-              //     fontWeight: FontWeight.bold,
-              //     color: isDark ? Colors.white70 : Colors.black54,
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -91,81 +65,17 @@ class ShopBuyItemScreen extends StatelessWidget {
                   MainHolder.of(context)?.setSelectedIndex(4);
                   return;
                 }
-                Widget? targetScreen;
-                final String title = item['title'].toString().toLowerCase();
-
-                switch (title) {
-                  case 'polo':
-                    targetScreen = PoloScreen(
-                      categoryName: categoryName,
-                      polos: polos,
-                    );
-                    break;
-                  case 'jeans':
-                    targetScreen = JeansScreen(
-                      categoryName: categoryName,
-                      jeans: jeans,
-                    );
-                    break;
-                  case 'dresses':
-                    targetScreen = DresseScreen(
-                      categoryName: categoryName,
-                      dresses: dresses,
-                    );
-                    break;
-                  case 'shoes':
-                    targetScreen = ShoesScreen(
-                      categoryName: 'LOOMA SHOES',
-                      // shoes: shoes,
-                      // shoesBoots: shoesBoots,
-                      // heeled: heeled,
-                      // flats: flats,
-                      // loafers: loafers,
-                      // sandals: sandals,
-                      // slippers: slippers,
-                      // sneakers: sneakers,
-                      // sportsShoes: sportsShoes,
-                    );
-                    break;
-                  case 'jackets':
-                    targetScreen = JacketsScreen(
-                      categoryName: categoryName,
-                      jackets: jackets,
-                    );
-                    break;
-                  case 'vests':
-                    targetScreen = VestScreen(
-                      categoryName: categoryName, vests: vests,
-                    );
-                    break;
-                  case 'skirts':
-                    targetScreen = SkirtsScreen(
-                      categoryName: categoryName,
-                      skirts: skirt,
-                    );
-                    break;
-                  case 'shorts':
-                    targetScreen = ShortsScreen(
-                      categoryName: categoryName,
-                      shorts: shorts,
-                    );
-                    break;
-                  case 'hoodies':
-                    targetScreen = HoodiesScreen(
-                      categoryName: categoryName,
-                      essentialHoodies: hoodies,
-                    );
-                    break;
-                  default:
-                    debugPrint("No screen defined for: $title");
-                }
-
-                if (targetScreen != null) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => targetScreen!),
-                  );
-                }
+                
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UniversalProductScreen(
+                      title: item['title'].toString(),
+                      category: item['category'],
+                      subCategory: item['subCategory'],
+                    ),
+                  ),
+                );
               },
               borderRadius: BorderRadius.circular(16),
               child: Column(

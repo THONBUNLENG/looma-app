@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_detail_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/order/payment_history.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-
-
+import '../../../../constants/app_color.dart';
 import '../../../widget/text_widget.dart';
 
-import '../notification_page.dart';
-
+import 'track_order_screen.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -16,133 +16,79 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  final List<Map<String, dynamic>> activeOrders = [
+  final List<Map<String, dynamic>> allOrders = [
     {
-      "id": "ORD-7732",
-      "name": "Tambour Street Diver Burning Rock",
-      "image":
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWk3ODZqYyZbb-CHDbmzE7En-1bcFgJBO8pg&s",
-      "price": 7500.00,
-      "status": "In Delivery",
-      "items": 1,
-      "date": "Oct 24, 2023",
+      "id": "#1000137",
+      "date": "2024-05-18 10:27:08",
+      "status": "pending",
+      "total": "40.00 USD",
+      "items": "1",
+      "discount": "0.00 USD",
+      "totalAmount": "40.00 USD",
     },
     {
-      "id": "ORD-5521",
-      "name": "Classic Silver Chronograph",
-      "image":
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMtNTbmYEibQQkk2v--nTlZs8D0KZaAWrYCw&s",
-      "price": 3200.00,
-      "status": "Processing",
-      "items": 2,
-      "date": "Oct 22, 2023",
-    },
-  ];
-
-  final List<Map<String, dynamic>> completedOrders = [
-    {
-      "id": "ORD-1204",
-      "name": "Midnight Black Voyager",
-      "image":
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOYyx4JXs1SL410TfqkqzPpgK25gNKIepdCw&s",
-      "price": 1850.00,
-      "status": "Completed",
-      "items": 1,
-      "date": "Oct 15, 2023",
+      "id": "#1000138",
+      "date": "2024-05-19 11:30:00",
+      "status": "Already Paid",
+      "total": "120.00 USD",
+      "items": "2",
+      "discount": "10.00 USD",
+      "totalAmount": "110.00 USD",
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
+        backgroundColor: theme.scaffoldBackgroundColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 90,
-          backgroundColor: isDark
-              ? const Color(0xFF121212)
-              : const Color(0xFFF9F9F9),
+          backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          leadingWidth: 70,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 14),
-            child: IconButton(
-              splashRadius: 24,
-              icon: ImageIcon(
-                const AssetImage('assets/icon/notification.png'),
-                color: isDark ? Colors.white : Colors.black,
-                size: 26,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationScreen(),
-                  ),
-                );
-              },
-            ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black, size: 20),
+            onPressed: () => Navigator.pop(context),
           ),
-          title: ShaderMask(
-            shaderCallback: (bounds) => LinearGradient(
-              colors: isDark
-                  ? const [Colors.white, Colors.white70]
-                  : const [Colors.black, Colors.black54],
-            ).createShader(bounds),
-            child: TextWidget(
-              'LOOMA',
-              fontSize: 34,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 0.5,
-              color: Colors.white,
-              fontStyle: FontStyle.italic,
+          title: TextWidget(
+            'My Orders'.tr,
+            style: theme.textTheme.headlineMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: isDark ? Colors.white : Colors.black,
             ),
           ),
           actions: [const CartBadge()],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(56),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
-                  ),
-                  child: TextWidget(
-                    "Spend \$160+ and enjoy Discount 15% + FREE Delivery!".tr,
-                    color: isDark ? Colors.white : Colors.black,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                TabBar(
-                  indicatorColor: isDark ? Colors.white : Colors.black,
-                  labelColor: isDark ? Colors.white : Colors.black,
-                  unselectedLabelColor: Colors.grey,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                  tabs: [
-                    Tab(text: "Active".tr),
-                    Tab(text: "Completed".tr),
-                  ],
-                ),
+            preferredSize: const Size.fromHeight(48),
+            child: TabBar(
+              indicatorColor: AppColor.pink,
+              labelColor: AppColor.pink,
+              unselectedLabelColor: Colors.grey,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+              tabs: [
+                Tab(text: "All Order".tr),
+                Tab(text: "Await Payment".tr),
+                Tab(text: "Already Paid".tr),
               ],
             ),
           ),
         ),
-        backgroundColor: isDark
-            ? Theme.of(context).scaffoldBackgroundColor
-            : const Color(0xFFF8F9FA),
         body: TabBarView(
           children: [
-            _buildOrderList(activeOrders, isDark),
-            _buildOrderList(completedOrders, isDark),
+            _buildOrderList(allOrders, isDark),
+            _buildOrderList(
+                allOrders.where((o) => o['status'] == 'pending').toList(),
+                isDark),
+            _buildOrderList(
+                allOrders.where((o) => o['status'] != 'pending').toList(),
+                isDark),
           ],
         ),
       ),
@@ -158,8 +104,8 @@ class _OrderScreenState extends State<OrderScreen> {
             Icon(Icons.assignment_outlined, size: 80, color: Colors.grey[300]),
             const SizedBox(height: 16),
             TextWidget(
-              "No orders yet".tr,
-              fontSize: 18,
+              "No data available".tr,
+              fontSize: 16,
               color: Colors.grey,
               fontWeight: FontWeight.w500,
             ),
@@ -169,7 +115,7 @@ class _OrderScreenState extends State<OrderScreen> {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       itemCount: orders.length,
       itemBuilder: (context, index) {
         final order = orders[index];
@@ -179,132 +125,122 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget _buildOrderCard(Map<String, dynamic> order, bool isDark) {
-    bool isCompleted = order['status'] == "Completed";
+    final cardColor = isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white;
+    final isPending = order['status'] == 'pending';
+    final statusText = isPending ? "Await Payment".tr : "Already Paid".tr;
+    final statusColor = isPending ? Colors.orange : AppColor.successGreen;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        color: cardColor,
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           if (!isDark)
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
-              offset: const Offset(0, 5),
+              offset: const Offset(0, 2),
             ),
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white10 : const Color(0xFFF5F5F5),
-                  borderRadius: BorderRadius.circular(16),
-                  image: DecorationImage(
-                    image: NetworkImage(order['image']),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              TextWidget(
+                order['id'],
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: isDark ? Colors.white : Colors.black,
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextWidget(
-                      order['name'].toString().tr,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    TextWidget(
-                      "${order['items']} ${'Item'.tr}${order['items'] > 1 ? 's'.tr : ''}",
-                      color: Colors.grey,
-                      fontSize: 13,
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          "\$${order['price'].toStringAsFixed(2)}",
-                          fontWeight: FontWeight.w900,
-                          fontSize: 18,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 5,
-                          ),
-                          decoration: BoxDecoration(
-                            color: isCompleted
-                                ? Colors.green.withValues(alpha: 0.1)
-                                : Colors.blue.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: TextWidget(
-                            order['status'].toString().tr,
-                            color: isCompleted ? Colors.green : Colors.blue,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: statusColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: TextWidget(
+                  statusText,
+                  color: statusColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
           ),
+          const SizedBox(height: 4),
+          TextWidget(
+            order['date'],
+            color: isDark ? Colors.white54 : Colors.grey,
+            fontSize: 13,
+          ),
           const SizedBox(height: 16),
-          const Divider(),
-          const SizedBox(height: 8),
+          const Divider(height: 1, thickness: 0.5),
+          const SizedBox(height: 16),
+          _buildInfoRow("Total".tr, order['total'], isDark),
+          const SizedBox(height: 10),
+          _buildInfoRow("Total Item".tr, order['items'], isDark),
+          const SizedBox(height: 10),
+          _buildInfoRow("Discount".tr, order['discount'], isDark),
+          const SizedBox(height: 10),
+          _buildInfoRow("Total Amount".tr, order['totalAmount'], isDark, isBold: true),
+          const SizedBox(height: 20),
           Row(
             children: [
               Expanded(
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    side: BorderSide(
-                      color: isDark ? Colors.white24 : Colors.grey[300]!,
-                    ),
-                  ),
-                  child: TextWidget(
-                    (isCompleted ? "Leave Review" : "Track Order").tr,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : Colors.black,
-                  ),
+                child: _buildCardButton(
+                  "View tracking".tr,
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TrackOrderScreen(order: order),
+                      ),
+                    );
+                  },
+                  isDark,
+                  borderColor: isDark ? Colors.white24 : Colors.grey.shade300,
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isDark ? Colors.white : Colors.black,
-                    foregroundColor: isDark ? Colors.black : Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: TextWidget(
-                    (isCompleted ? "Re-order" : "Details").tr,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: _buildCardButton(
+                  "Payment".tr,
+                  isPending
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PaymentHistory(order: order),
+                            ),
+                          );
+                        }
+                      : () {},
+                  isDark,
+                  backgroundColor: isPending ? null : (isDark ? Colors.white10 : Colors.grey[100]),
+                  textColor: isPending ? null : Colors.grey,
+                  borderColor: isPending ? (isDark ? Colors.white24 : Colors.grey.shade300) : Colors.transparent,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: _buildCardButton(
+                  "Detail".tr,
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderDetailScreen(order: order),
+                      ),
+                    );
+                  },
+                  isDark,
+                  backgroundColor: AppColor.pink,
+                  textColor: Colors.white,
                 ),
               ),
             ],
@@ -313,7 +249,53 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
+
+  Widget _buildInfoRow(String label, String value, bool isDark, {bool isBold = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextWidget(
+          label,
+          fontSize: 14,
+          color: isDark ? Colors.white60 : Colors.black54,
+        ),
+        TextWidget(
+          value,
+          fontSize: 14,
+          fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
+          color: isBold ? (isDark ? Colors.white : Colors.black) : (isDark ? Colors.white70 : Colors.black87),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCardButton(
+    String label,
+    VoidCallback onTap,
+    bool isDark, {
+    Color? backgroundColor,
+    Color? textColor,
+    Color? borderColor,
+  }) {
+    return SizedBox(
+      height: 38,
+      child: OutlinedButton(
+        onPressed: onTap,
+        style: OutlinedButton.styleFrom(
+          backgroundColor: backgroundColor ?? Colors.transparent,
+          side: borderColor != null ? BorderSide(color: borderColor) : BorderSide.none,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.zero,
+        ),
+        child: TextWidget(
+          label,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: textColor ?? (isDark ? Colors.white : Colors.black),
+        ),
+      ),
+    );
+  }
 }
-
-
-

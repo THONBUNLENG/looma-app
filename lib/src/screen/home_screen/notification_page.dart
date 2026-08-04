@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/setting/notification_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/profile_screen/notification_screen.dart';
 import '../../widget/text_widget.dart';
 
 

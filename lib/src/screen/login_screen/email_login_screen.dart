@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
 import '../../network/datastor/auth_login_service.dart';
 import '../../network/datastor/auth_service.dart';
 import '../../widget/button.dart';
 import '../main_screen/main_holder.dart';
-import 'create_account.dart';
+import 'create_account/create_account_screen.dart';
 import 'forgot_password_gmail_screen.dart';
 
 class EmailLoginScreen extends StatefulWidget {
@@ -17,21 +18,17 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isObscured = true;
   bool _isLoading = false;
 
   Future<void> _handleLogin() async {
+    if (!_formKey.currentState!.validate()) return;
+
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
-
-    if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please enter both email and password".tr)),
-      );
-      return;
-    }
 
     setState(() => _isLoading = true);
 
@@ -91,19 +88,22 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             child: Image.asset('assets/image/bubble1.png', width: 250),
           ),
 
-          SafeArea(
-            child: Column(
-              children: [
-                Padding(
+          Column(
+            children: [
+              SafeArea(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child:BackButton(color: Colors.black)
+                    child: BackButton(color: Colors.black),
                   ),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Form(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -122,15 +122,22 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                           textAlign: TextAlign.center,
                           lineHeight: 1.5,
                         ),
-                        const SizedBox(height: 48),
-
+                        const SizedBox(height: 32),
+                        const SizedBox(height: 8),
                         _buildTextField(
                           hint: "Email".tr,
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           prefixIcon: Icons.email_outlined,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "This field is required".tr;
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                         _buildTextField(
                           hint: "Password".tr,
                           controller: _passwordController,
@@ -141,6 +148,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                             setState(() {
                               _isObscured = !_isObscured;
                             });
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "This field is required".tr;
+                            }
+                            return null;
                           },
                         ),
                         
@@ -166,7 +179,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
                         const SizedBox(height: 16),
                         MyCustomButton(
-                          text: _isLoading ? "Loading...".tr : "Login".tr,
+                          text: "Login".tr,
                           width: double.infinity,
                           height: 58,
                           borderRadius: 15,
@@ -204,15 +217,13 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           if (_isLoading)
             Container(
               color: Colors.black26,
-              child: const Center(
-                child: CircularProgressIndicator(color: AppColor.buttonColor),
-              ),
+              child: LoadingWidget.loadingCenterWidget(),
             ),
         ],
       ),
@@ -227,35 +238,46 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     IconData? prefixIcon,
     VoidCallback? onSuffixTap,
     TextInputType keyboardType = TextInputType.text,
+    String? Function(String?)? validator,
   }) {
-    return Container(
-      height: 58,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7F7F7),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.black.withValues(alpha: 0.05)),
-      ),
-      child: TextField(
-        controller: controller,
-        obscureText: isPassword ? isObscured : false,
-        keyboardType: keyboardType,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-        decoration: InputDecoration(
-          hintText: hint,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: Colors.grey, size: 20) : null,
-          suffixIcon: isPassword
-              ? IconButton(
-                  icon: Icon(
-                    isObscured ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                  onPressed: onSuffixTap,
-                )
-              : null,
+    return TextFormField(
+      controller: controller,
+      obscureText: isPassword ? isObscured : false,
+      keyboardType: keyboardType,
+      validator: validator,
+      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: const Color(0xFFF7F7F7),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: Colors.grey, size: 20) : null,
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(
+                  isObscured ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                  color: Colors.grey,
+                  size: 20,
+                ),
+                onPressed: onSuffixTap,
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: Colors.black.withValues(alpha: 0.05)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: Colors.black.withValues(alpha: 0.05)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColor.buttonColor),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: Colors.red),
         ),
       ),
     );

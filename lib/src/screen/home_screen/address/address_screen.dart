@@ -4,7 +4,6 @@ import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../../constants/string_extension.dart';
-import '../../../widget/button.dart';
 import '../../../widget/show_dialog.dart';
 import 'bloc/address_bloc.dart';
 import 'edit_address.dart';
@@ -31,19 +30,20 @@ class AddressView extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark
-          ? theme.scaffoldBackgroundColor
-          : const Color(0xFFF8F9FA),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: BackButton(color: isDark ? Colors.white : Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: TextWidget(
-          "Address".tr,
+          "Address book".tr,
           color: isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 18,
         ),
       ),
       body: BlocBuilder<AddressBloc, AddressState>(
@@ -52,38 +52,41 @@ class AddressView extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is AddressLoaded) {
             final addresses = state.addresses;
-            return ListView.builder(
-              padding: const EdgeInsets.fromLTRB(20, 15, 20, 100),
-              itemCount: addresses.length,
-              itemBuilder: (context, index) {
-                final item = addresses[index];
-                return Dismissible(
-                  key: Key(item['address'] + index.toString()),
-                  direction: DismissDirection.endToStart,
-                  confirmDismiss: (direction) async {
-                    return await showDialog<bool>(
-                      context: context,
-                      builder: (dialogContext) => StatusDialog(
-                        title: "Delete Address".tr,
-                        message:
-                            "${"Are you sure you want to delete".tr} '${item['title']}'?",
-                        btn1Text: "Cancel".tr,
-                        btn2Text: "Delete".tr,
-                        icon: Icons.delete_sweep_rounded,
-                        iconColor: AppColor.mutedRed,
-                        onBtn1Pressed: () => Navigator.of(dialogContext).pop(false),
-                        onBtn2Pressed: () => Navigator.of(dialogContext).pop(true),
-                      ),
-                    );
-                  },
-                  onDismissed: (direction) {
-                    context.read<AddressBloc>().add(DeleteAddress(index));
-                    _showSuccessSnackBar(context, item['title']);
-                  },
-                  background: _buildDeleteBackground(),
-                  child: _buildAddressCard(context, item, index),
-                );
-              },
+            return ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              children: [
+                _buildAddButton(context),
+                const SizedBox(height: 20),
+                ...List.generate(addresses.length, (index) {
+                  final item = addresses[index];
+                  return Dismissible(
+                    key: Key(item['address'] + index.toString()),
+                    direction: DismissDirection.endToStart,
+                    confirmDismiss: (direction) async {
+                      return await showDialog<bool>(
+                        context: context,
+                        builder: (dialogContext) => StatusDialog(
+                          title: "Delete Address".tr,
+                          message:
+                              "${"Are you sure you want to delete".tr} '${item['title']}'?",
+                          btn1Text: "Cancel".tr,
+                          btn2Text: "Delete".tr,
+                          icon: Icons.delete_sweep_rounded,
+                          iconColor: AppColor.mutedRed,
+                          onBtn1Pressed: () => Navigator.of(dialogContext).pop(false),
+                          onBtn2Pressed: () => Navigator.of(dialogContext).pop(true),
+                        ),
+                      );
+                    },
+                    onDismissed: (direction) {
+                      context.read<AddressBloc>().add(DeleteAddress(index));
+                      _showSuccessSnackBar(context, item['title']);
+                    },
+                    background: _buildDeleteBackground(),
+                    child: _buildAddressCard(context, item, index),
+                  );
+                }),
+              ],
             );
           } else if (state is AddressError) {
             return Center(child: TextWidget(state.message));
@@ -91,7 +94,6 @@ class AddressView extends StatelessWidget {
           return const SizedBox.shrink();
         },
       ),
-      bottomNavigationBar: _buildAddButton(context),
     );
   }
 
@@ -109,75 +111,57 @@ class AddressView extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isDefault
-                ? (isDark ? Colors.white : Colors.black)
-                : (isDark ? Colors.white10 : Colors.transparent),
-            width: 1.5,
+          color: Colors.transparent,
+          border: Border(
+            bottom: BorderSide(
+              color: isDark ? Colors.white10 : Colors.grey.shade200,
+              width: 1,
+            ),
           ),
-          boxShadow: [
-            if (!isDark)
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              ),
-          ],
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 48,
-              width: 48,
-              decoration: BoxDecoration(
-                color: isDefault
-                    ? (isDark ? Colors.white : Colors.black)
-                    : (isDark ? Colors.white10 : const Color(0xFFF5F5F5)),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.location_on,
-                color: isDefault
-                    ? (isDark ? Colors.black : Colors.white)
-                    : (isDark ? Colors.white70 : Colors.black54),
-                size: 22,
-              ),
+            Radio<bool>(
+              value: true,
+              // ignore: deprecated_member_use
+              groupValue: isDefault,
+              // ignore: deprecated_member_use
+              onChanged: (val) {
+                context.read<AddressBloc>().add(SetDefaultAddress(index));
+              },
+              activeColor: isDark ? Colors.white : Colors.black,
+              visualDensity: VisualDensity.compact,
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      TextWidget(
-                        (item['title'] as String).tr,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: isDark ? Colors.white : Colors.black,
-                      ),
-                      if (isDefault) _buildDefaultBadge(context),
-                    ],
+                  TextWidget(
+                    (item['title'] as String).tr,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
                   const SizedBox(height: 4),
                   TextWidget(
                     item['address'],
-                    color: isDark ? Colors.white60 : Colors.grey[600],
-                    fontSize: 13,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                    color: isDark ? Colors.white60 : Colors.black87,
+                    fontSize: 14,
                   ),
                 ],
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                IconButton(
-                  onPressed: () async {
+                if (isDefault) _buildDefaultBadge(context),
+                const SizedBox(height: 12),
+                InkWell(
+                  onTap: () async {
                     final result = await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -192,20 +176,22 @@ class AddressView extends StatelessWidget {
                       }
                     }
                   },
-                  icon: Icon(
-                    Icons.edit_location_alt_outlined,
-                    color: isDark ? Colors.white70 : Colors.black54,
-                    size: 20,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextWidget(
+                        "Edit".tr,
+                        fontSize: 14,
+                        color: isDark ? Colors.white70 : Colors.black,
+                      ),
+                      const SizedBox(width: 4),
+                      Icon(
+                        Icons.edit_outlined,
+                        color: isDark ? Colors.white70 : Colors.black,
+                        size: 18,
+                      ),
+                    ],
                   ),
-                ),
-                Radio<bool>(
-                  value: true,
-                  groupValue: isDefault,
-                  onChanged: (val) {
-                    context.read<AddressBloc>().add(SetDefaultAddress(index));
-                  },
-                  activeColor: isDark ? Colors.white : Colors.black,
-                  visualDensity: VisualDensity.compact,
                 ),
               ],
             ),
@@ -218,17 +204,15 @@ class AddressView extends StatelessWidget {
   Widget _buildDefaultBadge(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      margin: const EdgeInsets.only(left: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white24 : Colors.grey[200],
+        color: isDark ? Colors.white10 : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(6),
       ),
       child: TextWidget(
         "Default".tr,
-        fontSize: 10,
-        color: isDark ? Colors.white : Colors.black54,
-        fontWeight: FontWeight.bold,
+        fontSize: 12,
+        color: isDark ? Colors.white : Colors.black,
       ),
     );
   }
@@ -240,7 +224,7 @@ class AddressView extends StatelessWidget {
       alignment: Alignment.centerRight,
       decoration: BoxDecoration(
         color: AppColor.mutedRed,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: const Icon(Icons.delete_outline, color: Colors.white, size: 30),
     );
@@ -249,19 +233,23 @@ class AddressView extends StatelessWidget {
   Widget _buildAddButton(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
+      width: double.infinity,
+      height: 50,
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF121212) : Colors.white,
-        border: Border(
-          top: BorderSide(
-            color: isDark ? Colors.white10 : Colors.grey[200]!,
-            width: 1,
-          ),
-        ),
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: isDark ? Colors.white10 : Colors.grey.shade200),
+        boxShadow: [
+          if (!isDark)
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+        ],
       ),
-      child: MyCustomButton(
-        text: 'Add New Address'.tr,
-        onPressed: () async {
+      child: InkWell(
+        onTap: () async {
           final result = await Navigator.push(
             context,
             MaterialPageRoute(
@@ -273,12 +261,19 @@ class AddressView extends StatelessWidget {
             context.read<AddressBloc>().add(AddAddress(result));
           }
         },
-        width: double.infinity,
-        height: 56,
-        borderRadius: 16,
+        borderRadius: BorderRadius.circular(10),
+        child: Center(
+          child: TextWidget(
+            'Add new address'.tr,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: isDark ? Colors.white : Colors.black,
+          ),
+        ),
       ),
     );
   }
+
 
   void _showSuccessSnackBar(BuildContext context, String title) {
     final isDark = Theme.of(context).brightness == Brightness.dark;

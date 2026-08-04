@@ -21,15 +21,18 @@ class TAppTheme {
     primaryColor: AppColor.primaryColor,
     scaffoldBackgroundColor: AppColor.lightMode,
 
-    disabledColor: Colors.grey[400],
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColor.primaryColor,
+      refreshBackgroundColor: Colors.white,
+    ),
 
+    disabledColor: Colors.grey[400],
 
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColor.primaryColor,
       selectionColor: AppColor.primarySwatch,
       selectionHandleColor: AppColor.primaryColor,
     ),
-
 
     textTheme: TTextTheme.lightTextTheme,
     chipTheme: TChipTheme.lightChipTheme,
@@ -49,6 +52,10 @@ class TAppTheme {
     primaryColor: AppColor.primaryColor,
     scaffoldBackgroundColor: AppColor.darkMode,
 
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColor.primaryColor,
+      refreshBackgroundColor: Colors.black,
+    ),
 
     disabledColor: Colors.grey[700],
 
@@ -57,7 +64,6 @@ class TAppTheme {
       selectionColor: AppColor.primaryColor,
       selectionHandleColor: AppColor.primaryColor,
     ),
-
 
     textTheme: TTextTheme.darkTextTheme,
     chipTheme: TChipTheme.darkChipTheme,
@@ -68,11 +74,9 @@ class TAppTheme {
     outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: TTextFormFieldTheme.darkInputDecorationTheme,
   );
-  static ValueNotifier<ThemeMode> themeMode = ValueNotifier(ThemeMode.system);
+  static ValueNotifier<ThemeMode> themeMode = ValueNotifier(ThemeMode.light);
 
   static void toggleTheme(ThemeMode mode) {
-    themeMode.value = mode;
+    themeMode.value = ThemeMode.light;
   }
-
-
 }

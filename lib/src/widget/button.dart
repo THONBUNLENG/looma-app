@@ -29,9 +29,7 @@ class MyCustomButton extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    final List<Color> defaultGradient = isDark
-        ? [AppColor.primaryColor, AppColor.primaryColor]
-        : [AppColor.black, AppColor.black];
+    final List<Color> defaultGradient = [AppColor.primaryColor, AppColor.primaryColor];
 
     return Container(
       width: width,
@@ -56,7 +54,7 @@ class MyCustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
-          foregroundColor: isDark ? Colors.black : Colors.white,
+          foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),

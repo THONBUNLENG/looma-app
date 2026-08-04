@@ -38,10 +38,8 @@ class BotManager {
 
       await _bot!.start();
       _isRunning = true;
-      print("Telegram Bot started successfully.");
     } catch (e) {
       _isRunning = false;
-      print("Failed to start Telegram Bot: $e");
       rethrow;
     }
   }
@@ -52,9 +50,8 @@ class BotManager {
     try {
       _isRunning = false;
       _bot = null;
-      print("Telegram Bot stopped.");
+    // ignore: empty_catches
     } catch (e) {
-      print("Error stopping Telegram Bot: $e");
     }
   }
 }

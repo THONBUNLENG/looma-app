@@ -4,8 +4,8 @@ import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../constants/navigator_extension.dart';
-import '../network/crud_firebase/migration_utility.dart';
 import '../network/datastor/auth_service.dart';
+import '../widget/loading_widget.dart';
 import 'login_screen/welcome_screen.dart';
 import 'main_screen/main_holder.dart';
 
@@ -26,10 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _startNavigation() async {
-    MigrationUtility().migrateAllProducts().catchError((e) {
-      debugPrint("Migration failed: $e");
-    });
-
     await Future.delayed(const Duration(seconds: 3));
 
     if (mounted && !_isNavigated) {
@@ -126,13 +122,10 @@ class _SplashScreenState extends State<SplashScreen> {
               bottom: 60,
               child: Column(
                 children: [
-                  const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.5,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black26),
-                    ),
+                  SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: LoadingWidget.loadingCenterWidget(),
                   ),
                   const SizedBox(height: 25),
                   TextWidget(

@@ -7,7 +7,7 @@ import '../../../model/wallet_card_model.dart';
 import '../../../widget/button.dart';
 import '../../../widget/text_widget.dart';
 import 'color_card.dart';
-
+import 'package:shopping_app/constants/app_color.dart';
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({super.key});
 
@@ -399,7 +399,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
               shape: BoxShape.circle,
               gradient: cardGradients[index],
               border: _selectedColorIndex == index
-                  ? Border.all(color: Colors.blueAccent, width: 3)
+                  ? Border.all(color: Theme.of(context).primaryColor, width: 3)
                   : null,
             ),
           ),
@@ -613,11 +613,12 @@ class CardMeshPainter extends CustomPainter {
   bool shouldRepaint(oldDelegate) => false;
 }
 
+
 class SignatureLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = Colors.blue.withValues(alpha: 0.05)
+      ..color = AppColor.primaryColor.withValues(alpha: 0.05)
       ..strokeWidth = 1.0;
     for (double i = 8; i < size.height; i += 8) {
       canvas.drawLine(Offset(0, i), Offset(size.width, i), paint);

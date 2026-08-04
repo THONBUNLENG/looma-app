@@ -1,0 +1,394 @@
+import 'package:flutter/material.dart';
+import 'package:shopping_app/manager/profile_manager.dart';
+import 'package:shopping_app/src/widget/text_widget.dart';
+
+import '../../../../constants/string_extension.dart';
+import '../address/address_screen.dart';
+
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  late TextEditingController firstNameController;
+  late TextEditingController lastNameController;
+  late TextEditingController emailController;
+  late TextEditingController dateController;
+  late TextEditingController phoneController;
+
+  String? selectedGender;
+  String? _picture;
+
+  @override
+  void initState() {
+    super.initState();
+    final profile = ProfileManager();
+
+    // Split full name into first and last name
+    String fullName = profile.name;
+    List<String> nameParts = fullName.split(' ');
+    if (nameParts.length > 1) {
+      firstNameController = TextEditingController(
+          text: nameParts.sublist(0, nameParts.length - 1).join(' '));
+      lastNameController = TextEditingController(text: nameParts.last);
+    } else {
+      firstNameController = TextEditingController(text: fullName);
+      lastNameController = TextEditingController(text: '');
+    }
+
+    emailController = TextEditingController(text: profile.email);
+    dateController = TextEditingController(text: profile.dateOfBirth);
+    selectedGender = profile.gender;
+    _picture = profile.picture;
+
+    String rawPhone = profile.phone;
+    Map<String, String> selectedCountry = countries.firstWhere(
+      (c) => rawPhone.startsWith(c['code']!),
+      orElse: () => countries[0],
+    );
+
+    String phoneWithoutCode = rawPhone;
+    if (rawPhone.startsWith(selectedCountry['code']!)) {
+      phoneWithoutCode =
+          rawPhone.substring(selectedCountry['code']!.length).trim();
+    }
+    phoneController = TextEditingController(text: phoneWithoutCode);
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    dateController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final theme = Theme.of(context);
+
+    DateTime initialDate = DateTime(2000, 1, 1);
+    try {
+      final parts = dateController.text.split('/');
+      if (parts.length == 3) {
+        initialDate = DateTime(
+            int.parse(parts[2]), int.parse(parts[1]), int.parse(parts[0]));
+      }
+    } catch (_) {}
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: theme.copyWith(
+            colorScheme: theme.brightness == Brightness.dark
+                ? ColorScheme.dark(primary: Theme.of(context).primaryColor)
+                : ColorScheme.light(primary: Theme.of(context).primaryColor),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null) {
+      setState(() {
+        dateController.text =
+            "${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}";
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left, size: 30),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: TextWidget(
+          'Profile'.tr,
+          color: isDark ? Colors.white : Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Gender Section
+            TextWidget(
+              "Gender".tr,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                _buildGenderRadio("Male"),
+                const SizedBox(width: 20),
+                _buildGenderRadio("Female"),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            Row(
+              children: [
+                Expanded(
+                  child: _buildInputField(
+                    label: 'First name'.tr,
+                    controller: firstNameController,
+                    showCheck: firstNameController.text.isNotEmpty,
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: _buildInputField(
+                    label: 'Last name'.tr,
+                    controller: lastNameController,
+                    showCheck: lastNameController.text.isNotEmpty,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // Email Section
+            _buildInputField(
+              label: 'Email'.tr,
+              controller: emailController,
+              showCheck: emailController.text.isNotEmpty,
+            ),
+            const SizedBox(height: 20),
+
+            // Mobile Number Section
+            _buildInputField(
+              label: 'Mobile number'.tr,
+              controller: phoneController,
+              hint: 'Add contact number'.tr,
+              hintStyle: const TextStyle(color: Color(0xFF0055FF)),
+            ),
+            const SizedBox(height: 20),
+
+            // Date of Birth Section
+            _buildInputField(
+              label: 'Date of birth (DD/MM/YYYY)'.tr,
+              controller: dateController,
+              onTap: () => _selectDate(context),
+            ),
+            const SizedBox(height: 12),
+            TextWidget(
+              "Add your birthday to unlock additional offering/reward!".tr,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+            const SizedBox(height: 30),
+
+            // Your Address Section
+            TextWidget(
+              "Your address".tr,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 10),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddressScreen()),
+                );
+              },
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
+                        "Address book".tr,
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                      const Icon(Icons.chevron_right, size: 30),
+                    ],
+                  ),
+                  const Divider(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 100),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20),
+        child: _buildSaveButton(),
+      ),
+    );
+  }
+
+  Widget _buildGenderRadio(String gender) {
+    final isSelected = selectedGender == gender;
+    return InkWell(
+      onTap: () => setState(() => selectedGender = gender),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.grey.shade400,
+                width: 1,
+              ),
+            ),
+            child: isSelected
+                ? Center(
+                    child: Container(
+                      width: 16,
+                      height: 16,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  )
+                : null,
+          ),
+          const SizedBox(width: 8),
+          TextWidget(
+            gender.tr,
+            fontSize: 16,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInputField({
+    required String label,
+    TextEditingController? controller,
+    String? hint,
+    TextStyle? hintStyle,
+    VoidCallback? onTap,
+    bool showCheck = false,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final borderColor = isDark ? Colors.white24 : Colors.black;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextWidget(
+          label,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: isDark ? Colors.white70 : Colors.black87,
+        ),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          readOnly: onTap != null,
+          onTap: onTap,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: hintStyle ??
+                TextStyle(
+                  color: isDark ? Colors.white54 : Colors.black54,
+                ),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: borderColor, width: 1),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: borderColor, width: 1.5),
+            ),
+            suffixIcon: showCheck
+                ? Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.green, width: 1),
+                      ),
+                      child:
+                          const Icon(Icons.check, size: 12, color: Colors.green),
+                    ),
+                  )
+                : null,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSaveButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 55,
+      child: ElevatedButton(
+        onPressed: () {
+          String fullName =
+              "${firstNameController.text} ${lastNameController.text}".trim();
+          ProfileManager().updateProfile(
+            name: fullName,
+            email: emailController.text,
+            phone: phoneController.text,
+            gender: selectedGender,
+            dateOfBirth: dateController.text,
+            picture: _picture,
+          );
+          Navigator.pop(context);
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        child: TextWidget(
+          'Save'.tr,
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+}
+
+final List<Map<String, String>> countries = [
+  {"name": "Cambodia", "flag": "🇰🇭", "code": "+855"},
+  {"name": "United Kingdom", "flag": "🇬🇧", "code": "+44"},
+  {"name": "United States", "flag": "🇺🇸", "code": "+1"},
+  {"name": "Thailand", "flag": "🇹🇭", "code": "+66"},
+  {"name": "Vietnam", "flag": "🇻🇳", "code": "+84"},
+  {"name": "France", "flag": "🇫🇷", "code": "+33"},
+  {"name": "Germany", "flag": "🇩🇪", "code": "+49"},
+  {"name": "Japan", "flag": "🇯🇵", "code": "+81"},
+  {"name": "South Korea", "flag": "🇰🇷", "code": "+82"},
+  {"name": "China", "flag": "🇨🇳", "code": "+86"},
+];

@@ -25,15 +25,12 @@ class CartManager extends ChangeNotifier {
   }
 
   Future<void> addToCart(Map<String, dynamic> product) async {
-    // Check if item already exists in cart (by id or title if id is missing)
     final productId = product['id'] ?? product['title'];
     final existingIndex = _cartItems.indexWhere((item) => (item['id'] ?? item['title']) == productId);
 
     if (existingIndex != -1) {
-      // Update quantity
       _cartItems[existingIndex]['quantity'] = (_cartItems[existingIndex]['quantity'] ?? 1) + (product['quantity'] ?? 1);
     } else {
-      // Add new item
       product['isSelected'] = true;
       _cartItems.add(product);
     }

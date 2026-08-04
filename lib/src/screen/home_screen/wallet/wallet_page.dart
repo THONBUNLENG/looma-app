@@ -55,14 +55,18 @@ class _MyWalletPageState extends State<MyWalletPage> {
           setState(() {});
         },
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          SavingsAccountCard(),
-          const SizedBox(height: 20),
-          const WalletCardScreen(cards: []),
-          const SizedBox(height: 10),
-          const Expanded(child: TransactionHistory()),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          const SliverToBoxAdapter(child: SavingsAccountCard()),
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          const SliverToBoxAdapter(
+            child: WalletCardScreen(cards: []),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          const SliverToBoxAdapter(child: TransactionHistory()),
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
         ],
       ),
     );

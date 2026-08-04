@@ -6,7 +6,7 @@ import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/model/order_model.dart';
 import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
-import 'package:shopping_app/src/screen/home_screen/shopping_bag/checkout_payment_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/payment/checkout_payment_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../address/address_screen.dart';
@@ -96,7 +96,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             const SizedBox(height: 24),
             _buildSectionTitle("Item summary", isDark),
             _buildItemSummary(isDark),
-            const SizedBox(height: 100), // Space for bottom bar
+            const SizedBox(height: 100),
           ],
         ),
       ),
@@ -197,7 +197,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
       child: Column(
         children: [
           _buildRadioOption(
-            "Free delivery សម្រាប់ អតិថិជននៅភ្នំពេញ រាល់ការ បញ្ជាទិញចាប់ពី 10\$ ឡើងទៅ"
+            "Free delivery for customers in Phnom Penh."
                .tr,
             0,
             _selectedDelivery,
@@ -205,7 +205,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             isDark,
           ),
           _buildRadioOption(
-            "គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$".tr,
+            "Free shipping for orders under \$160 and 15% discount.",
             1,
             _selectedDelivery,
             (v) => setState(() => _selectedDelivery = v!),
@@ -472,15 +472,17 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
                   ? null
                   : () async {
                       if (_selectedPayment == 1) {
-                        // Bank transfer selected
+                        final tempOrderId = "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CheckoutPaymentScreen(),
+                            builder: (context) => CheckoutPaymentScreen(
+                              totalAmount: _total,
+                              orderId: tempOrderId,
+                            ),
                           ),
                         );
                       } else {
-                        // Cash On Delivery - save to Firestore
                         await _placeOrder();
                       }
                     },

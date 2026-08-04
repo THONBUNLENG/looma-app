@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 mixin AppColor {
-  static const int _primary = 0xFF1E88E5;
+  static const int _primary = 0xFF000000;
   static const Map<int, Color> _swatch = {
     50: primaryColor,
     100: primaryColor,
@@ -30,7 +30,7 @@ mixin AppColor {
   static const Color grey100 = Color(0xFFF5F5F5);
 
   ///-------------------------------------------------------
-  static const Color buttonColor = Color(0xFF004CFF);
+  static const Color buttonColor = Color(0xFF000000);
   static const Color pink = Color(0xFFE91E63);
   static const Color lightPink = Color(0xFFF8BBD0);
   static const Color hotPink = Color(0xFFFF69B4);
@@ -43,9 +43,9 @@ mixin AppColor {
   static const Color successGreen = Color(0xFF08C514);
   static const Color gold = Color(0xFFECA61B);
   static const Color mutedRed = Color(0xFFD97474);
-  static const Color blueStart = Color(0xFF004CFF);
+  static const Color blueStart = Color(0xFF000000);
   static const Color greenEnd = Color(0xFF17BE5A);
-  static const Color mainColor = Color(0xFF004BFE);
+  static const Color mainColor = Color(0xFF000000);
   static const Color grey30Color = Color(0xFFF8F8F8);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color textColor = Colors.black87;

@@ -10,9 +10,16 @@ class ProductModel {
   final String? sold;
   final int? reviews;
   final String category;
+  final String? subCategory;
+  final String? gender;
+  final List<String> sizes;
+  final List<String> colors;
+  final List<String> imageColor;
+  final String? discount;
   final DateTime? createdAt;
   final String? stockStatus;
   final String? sku;
+  final String? brandName;
   final int? brandId;
   final bool isFavorite;
 
@@ -26,9 +33,16 @@ class ProductModel {
     this.sold,
     this.reviews,
     required this.category,
+    this.subCategory,
+    this.gender,
+    this.sizes = const [],
+    this.colors = const [],
+    this.imageColor = const [],
+    this.discount,
     this.createdAt,
     this.stockStatus,
     this.sku,
+    this.brandName,
     this.brandId,
     this.isFavorite = false,
   });
@@ -45,9 +59,16 @@ class ProductModel {
       sold: map['sold']?.toString(),
       reviews: _parseInt(map['reviews']),
       category: map['category']?.toString() ?? 'uncategorized',
+      subCategory: map['subCategory']?.toString(),
+      gender: map['gender']?.toString(),
+      sizes: _parseList(map['sizes'] ?? map['size']),
+      colors: _parseList(map['colors'] ?? map['color']),
+      imageColor: _parseList(map['image_color']),
+      discount: map['discount']?.toString(),
       createdAt: _parseDateTime(map['createdAt']),
       stockStatus: map['stock_status']?.toString(),
       sku: map['sku']?.toString(),
+      brandName: map['brand_name']?.toString() ?? map['brand']?.toString(),
       brandId: _parseInt(map['brand_id']),
       isFavorite: map['is_favorite'] == true,
     );
@@ -64,9 +85,16 @@ class ProductModel {
       'sold': sold,
       'reviews': reviews,
       'category': category,
+      'subCategory': subCategory,
+      'gender': gender,
+      'sizes': sizes,
+      'colors': colors,
+      'image_color': imageColor,
+      'discount': discount,
       'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
       'stock_status': stockStatus,
       'sku': sku,
+      'brand_name': brandName,
       'brand_id': brandId,
       'is_favorite': isFavorite,
     };
@@ -84,18 +112,22 @@ class ProductModel {
       'sold': sold,
       'reviews': reviews,
       'category': category,
+      'subCategory': subCategory,
+      'gender': gender,
+      'sizes': sizes,
+      'colors': colors,
+      'image_color': imageColor,
+      'discount': discount,
       'createdAt': createdAt?.toIso8601String(),
       'stock_status': stockStatus,
       'sku': sku,
+      'brand_name': brandName,
       'brand_id': brandId,
       'is_favorite': isFavorite,
     };
   }
-
-  /// Converts the [ProductModel] to a JSON Map
   Map<String, dynamic> toJson() => toMap();
 
-  /// Create a copy of [ProductModel] with modified fields
   ProductModel copyWith({
     String? id,
     String? title,
@@ -106,11 +138,18 @@ class ProductModel {
     String? sold,
     int? reviews,
     String? category,
+    String? subCategory,
+    String? gender,
     DateTime? createdAt,
     String? stockStatus,
     String? sku,
+    String? brandName,
     int? brandId,
     bool? isFavorite,
+    List<String>? sizes,
+    List<String>? colors,
+    List<String>? imageColor,
+    String? discount,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -122,11 +161,18 @@ class ProductModel {
       sold: sold ?? this.sold,
       reviews: reviews ?? this.reviews,
       category: category ?? this.category,
+      subCategory: subCategory ?? this.subCategory,
+      gender: gender ?? this.gender,
       createdAt: createdAt ?? this.createdAt,
       stockStatus: stockStatus ?? this.stockStatus,
       sku: sku ?? this.sku,
+      brandName: brandName ?? this.brandName,
       brandId: brandId ?? this.brandId,
       isFavorite: isFavorite ?? this.isFavorite,
+      sizes: sizes ?? this.sizes,
+      colors: colors ?? this.colors,
+      imageColor: imageColor ?? this.imageColor,
+      discount: discount ?? this.discount,
     );
   }
 
@@ -137,6 +183,20 @@ class ProductModel {
     }
     if (map['image'] != null && map['image'] is String) {
       return [map['image'] as String];
+    }
+    return [];
+  }
+
+  // ignore: unintended_html_in_doc_comment
+  /// Helper to parse List<String> from dynamic
+  static List<String> _parseList(dynamic value) {
+    if (value == null || value == false) return [];
+    if (value is List) {
+      return value.map((e) => e.toString()).toList();
+    }
+    if (value is String) {
+      if (value.isEmpty) return [];
+      return value.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
     }
     return [];
   }

@@ -1,40 +1,33 @@
+import 'package:shopping_app/src/network/crud_firebase/all_product.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/model/product_model.dart';
+import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
+import 'package:shopping_app/src/screen/home_screen/universal_product_screen.dart';
 import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
 import 'package:shopping_app/src/network/datastor/auth_service.dart';
-
 import 'package:flutter/material.dart';
-
-
-
 import 'package:shopping_app/constants/app_color.dart';
-
-
-
 import 'package:shopping_app/constants/string_extension.dart';
-
-
-
-import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
-
-
-
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-
-
-
-import '../list_url.dart';
-
-
-
-import 'all_new_item_screen.dart';
-
-
-
-
-
-class NewItemsSection extends StatelessWidget {
+class NewItemsSection extends StatefulWidget {
   const NewItemsSection({super.key});
+
+  @override
+  State<NewItemsSection> createState() => _NewItemsSectionState();
+}
+
+class _NewItemsSectionState extends State<NewItemsSection> {
+  final FirestoreService _firestoreService = FirestoreService();
+  late Stream<List<ProductModel>> _productStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _productStream = _firestoreService.getProducts(category: 'NEW_ARRIVALS');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,20 +41,25 @@ class NewItemsSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextWidget(
-                "New Items".tr,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: isDark ? AppColor.white : AppColor.black,
+              Expanded(
+                child: TextWidget(
+                  "New Items".tr,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? AppColor.white : AppColor.black,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
+              const SizedBox(width: 8),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AllNewItemScreen(
-                        categoryName: 'All New Items',
-                        newItems: allTabs,
+                      builder: (context) => const UniversalProductScreen(
+                        title: 'New Items',
+                        category: 'NEW_ARRIVALS',
                       ),
                     ),
                   );
@@ -83,15 +81,43 @@ class NewItemsSection extends StatelessWidget {
         ),
         SizedBox(
           height: 315,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 10),
-            physics: const BouncingScrollPhysics(),
-            itemCount: allTabs.length,
-            itemBuilder: (context, index) {
-              final item = allTabs[index];
+          child: StreamBuilder<List<ProductModel>>(
+            stream: _productStream,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return LoadingWidget.loadingCenterWidget();
+              }
+              var products = snapshot.data ?? [];
+              
+              // Fallback to local data if Firestore is empty
+              if (products.isEmpty) {
+                // Mix of clothes, shoes, and bags
+                final List<Map<String, dynamic>> mixedItems = [
+                  if (clothes.isNotEmpty) clothes[0],
+                  if (shoes.isNotEmpty) shoes[0],
+                  if (bags.isNotEmpty) bags[0],
+                  if (clothes.length > 1) clothes[1],
+                  if (shoes.length > 1) shoes[1],
+                  if (bags.length > 1) bags[1],
+                  if (clothes.length > 2) clothes[2],
+                  if (shoes.length > 2) shoes[2],
+                  if (bags.length > 2) bags[2],
+                ];
+                products = mixedItems.map((m) => ProductModel.fromMap(m)).toList();
+              }
 
-              return NewItemCard(item: item, index: index);
+              if (products.isEmpty) {
+                return Center(child: TextWidget("No new items".tr, color: isDark ? Colors.white38 : Colors.grey));
+              }
+              return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                physics: const BouncingScrollPhysics(),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return NewItemCard(product: products[index], index: index);
+                },
+              );
             },
           ),
         ),
@@ -101,29 +127,22 @@ class NewItemsSection extends StatelessWidget {
 }
 
 class NewItemCard extends StatelessWidget {
-  final Map<String, dynamic> item;
+  final ProductModel product;
   final int index;
 
-  const NewItemCard({super.key, required this.item, required this.index});
+  const NewItemCard({super.key, required this.product, required this.index});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final dynamic images = item['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (item['image'] ?? '').toString();
-
-    final String title = (item['title'] ?? 'Product Item').toString();
-    final String price = (item['price'] ?? '\$0.00').toString();
+    final String imageUrl = product.images.isNotEmpty ? product.images[0] : '';
 
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: item),
+            builder: (context) => ProductClothesScreen(product: product.toMap()),
           ),
         );
       },
@@ -186,7 +205,7 @@ class NewItemCard extends StatelessWidget {
                             color: Colors.black.withValues(alpha: 0.65),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child:TextWidget(
+                          child: TextWidget(
                             "NEW",
                             color: Colors.white,
                             fontSize: 11,
@@ -199,28 +218,32 @@ class NewItemCard extends StatelessWidget {
                         top: 10,
                         right: 10,
                         child: GestureDetector(
-                      onTap: () async {
-                        if (await AuthService.isLoggedIn()) {
-                          // Toggle wishlist logic here
-                        } else {
-                          if (context.mounted) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()),
-                            );
-                          }
-                        }
-                      },
-                      child: CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Colors.white.withValues(alpha: 0.9),
-                        child: const Icon(
-                          Icons.favorite_border,
-                          size: 19,
-                          color: Colors.black45,
+                          onTap: () async {
+                            if (await AuthService.isLoggedIn()) {
+                              // Wishlist logic
+                            } else {
+                              if (context.mounted) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          child: CircleAvatar(
+                            radius: 17,
+                            backgroundColor: Colors.white.withValues(
+                              alpha: 0.9,
+                            ),
+                            child: const Icon(
+                              Icons.favorite_border,
+                              size: 19,
+                              color: Colors.black45,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
                       ),
                     ],
                   ),
@@ -237,7 +260,7 @@ class NewItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             TextWidget(
-              title.tr,
+              product.title.tr,
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: isDark ? Colors.white : Colors.black87,
@@ -246,7 +269,7 @@ class NewItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             TextWidget(
-              price,
+              "\$${product.price.toStringAsFixed(2)}",
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: AppColor.primaryColor,
@@ -257,7 +280,3 @@ class NewItemCard extends StatelessWidget {
     );
   }
 }
-
-
-
-

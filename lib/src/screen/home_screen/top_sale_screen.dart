@@ -1,153 +1,117 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
-import 'package:shopping_app/src/network/datastor/auth_service.dart';
-
+import 'dart:async';
+import 'package:shopping_app/src/network/crud_firebase/all_product.dart';
 import 'package:flutter/material.dart';
-
-
-
-import 'package:shopping_app/constants/app_color.dart';
-
-
-
 import 'package:shopping_app/constants/string_extension.dart';
-
-
-
-import 'package:shopping_app/src/screen/home_screen/product_detail/product_clothes_screen.dart';
-
-
-
+import 'package:shopping_app/src/model/product_model.dart';
+import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
+import 'package:shopping_app/src/screen/home_screen/flash_sale/flash_sale_discount_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-
-
-
-import '../list_url.dart';
-
-
-
-import 'flash_sale/flash_sale_discount_screen.dart';
-
-
-
-
-class TopSaleScreen extends StatelessWidget {
+class TopSaleScreen extends StatefulWidget {
   const TopSaleScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextWidget(
-                "Top Sale".tr,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: isDark ? AppColor.white : AppColor.black,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          FlashSaleDiscountScreen(imageUrl: flashSaleImages[0]),
-                    ),
-                  );
-                },
-                child: Row(
-                  children: [
-                    TextWidget(
-                      "SEE MORE".tr,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white70 : Colors.black54,
-                    ),
-                    const SizedBox(width: 8),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 315,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 10),
-            physics: const BouncingScrollPhysics(),
-            itemCount: jackets.length,
-            itemBuilder: (context, index) {
-              final item = jackets[index];
-
-              return TopSaleItemCard(jackets: item, index: index);
-            },
-          ),
-        ),
-      ],
-    );
-  }
+  State<TopSaleScreen> createState() => _TopSaleScreenState();
 }
 
-class TopSaleItemCard extends StatelessWidget {
-  final Map<String, dynamic> jackets;
-  final int index;
+class _TopSaleScreenState extends State<TopSaleScreen> {
+  late Timer _timer;
+  Duration _timeLeft = const Duration(hours: 12, minutes: 4, seconds: 55);
+  late Stream<List<ProductModel>> _productStream;
+  final FirestoreService _firestoreService = FirestoreService();
 
-  const TopSaleItemCard({
-    super.key,
-    required this.jackets,
-    required this.index,
-  });
+  @override
+  void initState() {
+    super.initState();
+    _productStream = _firestoreService.getProducts(category: 'FLASH_SALE');
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_timeLeft.inSeconds > 0) {
+        setState(() {
+          _timeLeft = _timeLeft - const Duration(seconds: 1);
+        });
+      } else {
+        _timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return "$hours : $minutes : $seconds";
+  }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final dynamic images = jackets['images'];
-    final String imageUrl = images is List && images.isNotEmpty
-        ? images.first.toString()
-        : (jackets['image'] ?? '').toString();
+    return StreamBuilder<List<ProductModel>>(
+      stream: _productStream,
+      builder: (context, snapshot) {
+        var products = snapshot.data ?? [];
+        
+        if (products.isEmpty && snapshot.connectionState != ConnectionState.waiting) {
+           if (allItems.isNotEmpty) {
+             products = [ProductModel.fromMap(allItems[0])];
+           }
+        }
 
-    final String title = (jackets['title'] ?? 'Product Item').toString();
-    final String price = (jackets['price'] ?? '\$0.00').toString();
+        if (products.isEmpty) return const SizedBox.shrink();
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: jackets),
-          ),
-        );
-      },
-      child: Container(
-        width: 190,
-        margin: const EdgeInsets.only(right: 18, bottom: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        final imageUrl = products[0].images.isNotEmpty
+            ? products[0].images[0]
+            : '';
+
+        return Column(
           children: [
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextWidget(
+                    "Top Sale".tr,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        FlashSaleDiscountScreen(imageUrl: imageUrl),
+                  ),
+                );
+              },
               child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                height: 220,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.05)
-                      : AppColor.grey100,
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
-                    if (!isDark)
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.08),
-                        blurRadius: 14,
-                        offset: const Offset(0, 8),
-                      ),
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.15),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
                   ],
                 ),
                 child: ClipRRect(
@@ -155,110 +119,103 @@ class TopSaleItemCard extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: imageUrl.isNotEmpty
-                            ? Hero(
-                                tag: 'top_sale_item_$index',
-                                child: CachedNetworkImage(
-                                  imageUrl: imageUrl,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) => Center(
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: isDark
-                                          ? Colors.white24
-                                          : Colors.grey[300],
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.broken_image_outlined),
-                                ),
-                              )
-                            : const Icon(Icons.image_not_supported_outlined),
+                        child: Image.asset(
+                          'assets/image/bg_top_sale.png',
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            color: Colors.grey[900],
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: const [0.3, 1.0],
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withValues(alpha: 0.8),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                       Positioned(
-                        top: 12,
-                        left: 12,
+                        top: 15,
+                        left: 15,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 6,
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                            color: AppColor.saleRed,
-                            borderRadius: BorderRadius.circular(20),
+                            color: const Color(0xFFFF4B4B),
+                            borderRadius: BorderRadius.circular(12),
                           ),
                           child: TextWidget(
-                            "-50%",
+                            "UP TO 70% OFF",
                             color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
                             letterSpacing: 1,
                           ),
                         ),
                       ),
                       Positioned(
-                        top: 10,
-                        right: 10,
-                        child: GestureDetector(
-                      onTap: () async {
-                        if (await AuthService.isLoggedIn()) {
-                          // Toggle wishlist logic here
-                        } else {
-                          if (context.mounted) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()),
-                            );
-                          }
-                        }
-                      },
-                      child: CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Colors.white.withValues(alpha: 0.9),
-                        child: const Icon(
-                          Icons.favorite_border,
-                          size: 19,
-                          color: Colors.black45,
+                        bottom: 20,
+                        left: 20,
+                        right: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextWidget(
+                              "Flash Sale Ending In:".tr,
+                              color: Colors.white70,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            const SizedBox(height: 6),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextWidget(
+                                  _formatDuration(_timeLeft),
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 1,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      TextWidget(
+                                        "SHOP NOW".tr,
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      const Icon(Icons.arrow_forward_ios, size: 10, color: Colors.black),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            TextWidget(
-              "LOOMA".tr.toUpperCase(),
-              fontSize: 13,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white54 : Colors.black45,
-            ),
-            const SizedBox(height: 4),
-            TextWidget(
-              title.tr,
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white : Colors.black87,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 4),
-            TextWidget(
-              price,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppColor.primaryColor,
-            ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
-
-
-
-

@@ -1,3 +1,4 @@
+import 'package:shopping_app/src/network/crud_firebase/all_product.dart';
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -10,9 +11,7 @@ import 'package:shopping_app/src/screen/home_screen/brand/brands_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/top_sale_screen.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-import '../list_url.dart';
 import 'categories_screen.dart';
-import 'flash_sale_screen.dart';
 import 'just_screen.dart';
 import 'most_popular_screen.dart';
 import 'new_item_screen.dart';
@@ -38,9 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : const Color(0xFFF9F9F9),
         elevation: 0,
         centerTitle: true,
-
         leadingWidth: 70,
-
         leading: Padding(
           padding: const EdgeInsets.only(left: 14),
           child: IconButton(
@@ -75,15 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        actions: [
-          const CartBadge(),
-        ],
+        actions: [const CartBadge()],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(8),
+          preferredSize: const Size.fromHeight(25),
           child: Container(
             width: double.infinity,
             alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
             decoration: BoxDecoration(
               color: isDark ? Colors.white10 : const Color(0xFFF1F1F1),
             ),
@@ -92,6 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
               color: isDark ? Colors.white : Colors.black,
               fontSize: 12,
               fontWeight: FontWeight.w700,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
           ),
         ),
@@ -99,33 +97,31 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: isDark
           ? Theme.of(context).scaffoldBackgroundColor
           : const Color(0xFFF8F9FA),
-      body: FlashSalePopupTimer(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ShopHeaderSection(),
-                SizedBox(height: 8),
-                CategorySection(),
-                SizedBox(height: 12),
-                ShopBuyItemScreen(categoryName: ''),
-                SizedBox(height: 20),
-                BrandsScreen(),
-                SizedBox(height: 25),
-                NewItemsSection(),
-                SizedBox(height: 12),
-                PickStyleSection(),
-                SizedBox(height: 18),
-                FlashSalePopupTimer(child: TopSaleScreen()),
-                SizedBox(height: 25),
-                MostPopularSection(),
-                SizedBox(height: 25),
-                JustForYouSection(justForYouData: justForYouData),
-                SizedBox(height: 30),
-              ],
-            ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ShopHeaderSection(),
+              const SizedBox(height: 8),
+              const BrandsScreen(),
+              const SizedBox(height: 12),
+              const ShopBuyItemScreen(categoryName: ''),
+              const SizedBox(height: 20),
+              CategorySection(),
+              const SizedBox(height: 25),
+              const NewItemsSection(),
+              const SizedBox(height: 12),
+              PickStyleSection(),
+              const SizedBox(height: 18),
+              const TopSaleScreen(),
+              const SizedBox(height: 25),
+              const MostPopularSection(),
+              const SizedBox(height: 25),
+              const JustForYouSection(),
+              const SizedBox(height: 30),
+            ],
           ),
         ),
       ),
@@ -148,14 +144,14 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
   @override
   void initState() {
     super.initState();
-    _startTimer();
   }
 
-  void _startTimer() {
+  void _startTimer(int totalItems) {
     _timer?.cancel();
+    if (totalItems <= 1) return;
     _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
       if (_pageController.hasClients) {
-        int next = (_currentPage + 1) % bannerData.length;
+        int next = (_currentPage + 1) % totalItems;
         _pageController.animateToPage(
           next,
           duration: const Duration(milliseconds: 800),
@@ -175,6 +171,41 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final banners = bannerData;
+
+    if (banners.isEmpty) {
+      return Container(
+        height: 180,
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.grey[100],
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/icon/i_color/no_image.png',
+                height: 80,
+                width: 80,
+              ),
+              const SizedBox(height: 10),
+              TextWidget(
+                "Check out our new arrivals!".tr,
+                color: isDark ? Colors.white38 : Colors.black38,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_timer == null) _startTimer(banners.length);
+    });
 
     return Column(
       children: [
@@ -183,8 +214,10 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
           child: PageView.builder(
             controller: _pageController,
             onPageChanged: (int index) => setState(() => _currentPage = index),
-            itemCount: bannerData.length,
+            itemCount: banners.length,
             itemBuilder: (context, index) {
+              final banner = banners[index];
+              final imageUrl = banner['image'] ?? '';
               return Container(
                 margin: EdgeInsets.zero,
                 decoration: const BoxDecoration(
@@ -195,7 +228,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                   child: Stack(
                     children: [
                       CachedNetworkImage(
-                        imageUrl: bannerData[index]["image"]!,
+                        imageUrl: imageUrl,
                         height: double.infinity,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -222,7 +255,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextWidget(
-                               bannerData[index]["title"]!.tr.toUpperCase(),
+                              (banner['title'] ?? '').tr.toUpperCase(),
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.w900,
@@ -230,7 +263,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                             ),
                             const SizedBox(height: 4),
                             TextWidget(
-                              bannerData[index]["subtitle"]!.tr.toUpperCase(),
+                              (banner['subtitle'] ?? '').tr.toUpperCase(),
                               color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 14,
                             ),
@@ -240,23 +273,35 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                       Positioned(
                         left: 20,
                         bottom: 25,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          child: TextWidget(
-                            bannerData[index]["desc"]!
-                                .replaceAll('\n', ' ')
-                               .tr.toUpperCase(),
-                            color: Colors.black,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: Row(
+                              children: [
+                                TextWidget(
+                                  (banner['desc'] ?? "SHOP NOW").tr
+                                      .replaceAll('\n', ' ')
+                                      .toUpperCase(),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                const SizedBox(width: 6),
+                                const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                  size: 10,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -267,32 +312,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 15, bottom: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              bannerData.length,
-              (index) => _buildDot(index == _currentPage, isDark),
-            ),
-          ),
-        ),
       ],
-    );
-  }
-
-  Widget _buildDot(bool isActive, bool isDark) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 3),
-      height: 6,
-      width: isActive ? 24 : 6,
-      decoration: BoxDecoration(
-        color: isActive
-            ? (isDark ? Colors.white : const Color(0xFF0052D4))
-            : (isDark ? Colors.white24 : const Color(0xFFDDE6F5)),
-        borderRadius: BorderRadius.circular(10),
-      ),
     );
   }
 }

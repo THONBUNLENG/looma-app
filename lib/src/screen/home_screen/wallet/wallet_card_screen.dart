@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shopping_app/constants/app_color.dart';
 
 import '../../../model/wallet_card_model.dart';
 import 'add_new_card.dart';
@@ -365,7 +366,7 @@ class _WalletCardScreenState extends State<WalletCardScreen>
     final gradient = cardGradients[card.colorIndex % cardGradients.length];
     final gradientColors = (gradient is LinearGradient)
         ? gradient.colors
-        : [Colors.blue, Colors.blueAccent];
+        : [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withValues(alpha: 0.8)];
 
     return BoxDecoration(
       borderRadius: BorderRadius.circular(22),
@@ -520,7 +521,7 @@ class SignatureLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = Colors.blue.withValues(alpha: 0.05)
+      ..color = AppColor.primaryColor.withValues(alpha: 0.05)
       ..strokeWidth = 1.0;
     for (double i = 8; i < size.height; i += 8) {
       canvas.drawLine(Offset(0, i), Offset(size.width, i), paint);

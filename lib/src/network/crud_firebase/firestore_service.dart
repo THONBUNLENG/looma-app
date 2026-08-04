@@ -1,64 +1,82 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../model/order_model.dart';
 import '../../model/product_model.dart';
 
 class FirestoreService {
-  static final FirestoreService _instance = FirestoreService._internal();
-  factory FirestoreService() => _instance;
-  FirestoreService._internal();
-
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // --- Orders ---
+  /// Get products by category, subCategory, and brandName
+  Stream<List<ProductModel>> getProducts({String? category, String? subCategory, String? brandName}) {
+    Query query = _db.collection('products');
 
-  Future<void> createOrder(OrderModel order) async {
-    try {
-      await _db.collection('orders').add(order.toFirestore());
-    } catch (e) {
-      throw Exception('Failed to create order: $e');
+    if (category != null && category.isNotEmpty) {
+      query = query.where('category', isEqualTo: category);
     }
-  }
 
-  Stream<List<OrderModel>> getOrders(String userId) {
-    return _db
-        .collection('orders')
-        .where('userId', isEqualTo: userId)
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => OrderModel.fromFirestore(doc))
-            .toList());
-  }
-
-  // --- Products ---
-
-  /// Uploads a list of products in batches of 500 (Firestore limit).
-  Future<void> uploadBatchProducts(List<ProductModel> products) async {
-    final collection = _db.collection('products');
-    
-    // Split into chunks of 500
-    for (var i = 0; i < products.length; i += 500) {
-      final batch = _db.batch();
-      final end = (i + 500 < products.length) ? i + 500 : products.length;
-      final chunk = products.sublist(i, end);
-
-      for (var product in chunk) {
-        final docRef = collection.doc(); // Generate random ID
-        batch.set(docRef, product.toFirestore());
-      }
-
-      await batch.commit();
-      print('Uploaded batch of ${chunk.length} products (Total: $end)');
+    if (subCategory != null && subCategory.isNotEmpty) {
+      query = query.where('subCategory', isEqualTo: subCategory);
     }
+
+    if (brandName != null && brandName.isNotEmpty) {
+      query = query.where('brand_name', isEqualTo: brandName);
+    }
+
+    return query.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return ProductModel.fromMap(
+          doc.data() as Map<String, dynamic>,
+          docId: doc.id,
+        );
+      }).toList();
+    });
   }
 
+  /// Compatibility method for older code
   Stream<List<ProductModel>> getProductsByCategory(String category) {
-    return _db
-        .collection('products')
-        .where('category', isEqualTo: category)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => ProductModel.fromMap(doc.data(), docId: doc.id))
-            .toList());
+    return getProducts(category: category);
+  }
+
+  /// Batch upload for migration
+  Future<void> uploadBatchProducts(List<ProductModel> products) async {
+    final batch = _db.batch();
+    for (var product in products) {
+      final docRef = _db.collection('products').doc();
+      batch.set(docRef, product.toFirestore());
+    }
+    await batch.commit();
+  }
+
+  /// Placeholder for order creation
+  Future<void> createOrder(dynamic order) async {
+    await _db.collection('orders').add(order.toMap());
+  }
+
+  /// Get a single product by ID
+  Future<ProductModel?> getProductById(String id) async {
+    final doc = await _db.collection('products').doc(id).get();
+    if (doc.exists) {
+      return ProductModel.fromMap(doc.data()!, docId: doc.id);
+    }
+    return null;
+  }
+
+  /// Get unique sub-categories for a specific category
+  Future<List<String>> getSubCategories(String category) async {
+    try {
+      final snapshot = await _db
+          .collection('products')
+          .where('category', isEqualTo: category)
+          .get();
+
+      final Set<String> subCats = {};
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        if (data['subCategory'] != null && data['subCategory'].toString().isNotEmpty) {
+          subCats.add(data['subCategory'].toString());
+        }
+      }
+      return subCats.toList()..sort();
+    } catch (e) {
+      return [];
+    }
   }
 }

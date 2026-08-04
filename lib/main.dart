@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'src/network/crud_firebase/firebase_options.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shopping_app/src/network/network_wrapper/network_wrapper.dart';
+import 'package:shopping_app/manager/network_wrapper.dart';
 import 'package:shopping_app/src/screen/splash_screen.dart';
 import 'manager/preferences_manager.dart';
 import 'manager/cart_manager.dart';
@@ -12,7 +13,6 @@ import 'manager/review_manager.dart';
 import 'manager/wishlist_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
-import 'localization/locale_ch.dart';
 import 'localization/locale_en.dart';
 import 'localization/locale_km.dart';
 
@@ -20,21 +20,47 @@ final FlutterLocalization translator = FlutterLocalization.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await GoogleSignIn.instance.initialize(
-    serverClientId: '469046663529-f1uun26pcrq8j1h7mffu7un3i1248g0r.apps.googleusercontent.com',
-  );
+  
+  // Initialize the localization library
+  await FlutterLocalization.instance.ensureInitialized();
 
-  await SharedPrefUtil.init();
-  await CartManager().init();
-  await WishlistManager().init();
-  await ProfileManager().init();
-  await ReviewManager().init();
-  await translator.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint("Firebase initialization error: $e");
+    try {
+      await Firebase.initializeApp();
+    } catch (_) {}
+  }
+  
+  try {
+    await GoogleSignIn.instance.initialize(
+      serverClientId: '561028849572-veuui4830sq4dteqo5vits81l1g8n653.apps.googleusercontent.com',
+    );
+  } catch (e) {
+    debugPrint("Google Sign In initialization error: $e");
+  }
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  try {
+    await SharedPrefUtil.init();
+    await Future.wait([
+      CartManager().init(),
+      WishlistManager().init(),
+      ProfileManager().init(),
+      ReviewManager().init(),
+    ]);
+  } catch (e) {
+    debugPrint("Manager initialization error: $e");
+  }
 
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -47,17 +73,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    super.initState();
-
     translator.init(
       mapLocales: [
         const MapLocale('en', english),
         const MapLocale('km', khmer),
-        const MapLocale('cn', chinese),
       ],
       initLanguageCode: 'en',
     );
     translator.onTranslatedLanguage = _onTranslatedLanguage;
+    super.initState();
   }
 
   void _onTranslatedLanguage(Locale? locale) {
@@ -68,46 +92,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: TAppTheme.themeMode,
-      builder: (context, currentMode, _) {
-        final platformBrightness = View.of(
-          context,
-        ).platformDispatcher.platformBrightness;
-        final brightness = currentMode == ThemeMode.system
-            ? platformBrightness
-            : (currentMode == ThemeMode.dark
-                  ? Brightness.dark
-                  : Brightness.light);
-
-        final isDark = brightness == Brightness.dark;
-
-        SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: isDark
-                ? Brightness.light
-                : Brightness.dark,
-            statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
-            systemNavigationBarColor: isDark
-                ? const Color(0xFF121212)
-                : Colors.white,
-            systemNavigationBarIconBrightness: isDark
-                ? Brightness.light
-                : Brightness.dark,
-          ),
-        );
-
+      builder: (context, mode, child) {
         return MaterialApp(
-          debugShowCheckedModeBanner: false,
           navigatorKey: Go.navigatorKey,
-          supportedLocales: translator.supportedLocales,
-          localizationsDelegates: translator.localizationsDelegates,
+          debugShowCheckedModeBanner: false,
           theme: TAppTheme.lightTheme,
-          darkTheme: TAppTheme.darkTheme,
-          themeMode: currentMode,
-          builder: (context, child) {
-            return NetworkWrapper(child: child!);
-          },
-          home: const SplashScreen(),
+          themeMode: ThemeMode.light,
+          localizationsDelegates: translator.localizationsDelegates,
+          supportedLocales: translator.supportedLocales,
+          home: const NetworkWrapper(child: SplashScreen()),
         );
       },
     );

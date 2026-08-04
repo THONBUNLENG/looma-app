@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,31 @@ class AuthLoginService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Save User Data to Firestore
+  Future<void> saveUserData({
+    required String uid,
+    required String name,
+    String? email,
+    String? phone,
+    String? photoUrl,
+    String? password,
+  }) async {
+    try {
+      await _firestore.collection('user').doc(uid).set({
+        'uid': uid,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'photoUrl': photoUrl,
+        'password': password, // Note: In a production app, never store plain text passwords
+        'createdAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+    } catch (e) {
+      debugPrint("Error saving user data to Firestore: $e");
+    }
+  }
 
   // Upload Profile Picture
   Future<String?> uploadProfilePicture(String userId, File imageFile) async {
@@ -160,11 +186,16 @@ class AuthLoginService {
     required String phoneNumber,
     required Function(String verificationId) onCodeSent,
     required Function(FirebaseAuthException e) onVerificationFailed,
+    Function(AuthCredential credential)? onVerificationCompleted,
   }) async {
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
+        if (onVerificationCompleted != null) {
+          onVerificationCompleted(credential);
+        } else {
+          await _auth.signInWithCredential(credential);
+        }
       },
       verificationFailed: onVerificationFailed,
       codeSent: (String verificationId, int? resendToken) {

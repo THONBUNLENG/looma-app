@@ -12,6 +12,11 @@ final class LoginSuccess extends LoginState {
   LoginSuccess(this.username);
 }
 
+final class OtpSentState extends LoginState {
+  final String verificationId;
+  OtpSentState(this.verificationId);
+}
+
 final class LoginFailure extends LoginState {
   final String error;
   LoginFailure(this.error);

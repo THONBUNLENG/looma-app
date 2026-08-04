@@ -1,36 +1,25 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:flutter/material.dart';
-
-import 'package:shopping_app/light_dark_theme/theme.dart';
 
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/string_extension.dart';
+import 'package:shopping_app/constants/app_color.dart';
 import '../../../../main.dart';
-import '../../../network/crud_firebase/migration_utility.dart';
 import '../../../network/datastor/auth_service.dart';
-import '../../../telegarm_bot/faq_admin_page.dart';
 import '../../../widget/show_dialog.dart';
 import '../../login_screen/login_screen.dart';
-import '../address/address_screen.dart';
+import '../../main_screen/main_holder.dart';
 import '../order/order_screen.dart';
 
-import '../setting/change_language_screen.dart';
+import 'edit_profile.dart';
 
-import '../setting/edit_profile.dart';
+import 'help_center/help_center.dart';
 
-import '../setting/help_center/help_center.dart';
+import 'membership_screen.dart';
 
-import '../setting/invite_friend.dart';
-
-import '../setting/notification_screen.dart';
-
-import '../setting/payment_screen.dart';
-
-import '../setting/privacy_policy_screen.dart';
-
-import '../setting/security_screen.dart';
+import 'privacy_policy_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -44,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoggedIn = false;
   String _username = "User";
   String _phone = "";
-  String? _picture;
 
   @override
   void initState() {
@@ -57,14 +45,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (loggedIn) {
       final name = await AuthService.getUsername() ?? "User";
       final phone = await AuthService.getPhone() ?? "";
-      final picture = await AuthService.getPicture();
       if (mounted) {
         setState(() {
           _isLoading = false;
           _isLoggedIn = true;
           _username = name;
           _phone = phone;
-          _picture = picture;
         });
       }
     } else {
@@ -85,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (_isLoading) {
       return Scaffold(
         backgroundColor: theme.scaffoldBackgroundColor,
-        body: const Center(child: CircularProgressIndicator()),
+        body: LoadingWidget.loadingCenterWidget(),
       );
     }
 
@@ -100,11 +86,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-
         title: TextWidget(
-          'Profile'.tr,
+          'Me'.tr,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
+            fontSize: 18,
             color: isDark ? Colors.white : Colors.black,
           ),
         ),
@@ -112,186 +98,191 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-
-            Center(
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  CircleAvatar(
-                    radius: 60,
-                    backgroundColor: isDark
-                        ? Colors.grey[800]
-                        : const Color(0xFFEEEEEE),
-                    backgroundImage: _picture != null
-                        ? CachedNetworkImageProvider(_picture!)
-                        : const CachedNetworkImageProvider(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWk3ODZqYyZbb-CHDbmzE7En-1bcFgJBO8pg&s',
+            // User Info Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EditProfileScreen(),
+                    ),
+                  ).then((_) => _checkAuth());
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextWidget(
+                            _username.toUpperCase(),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 4,
-                    child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: isDark ? theme.primaryColor : Colors.black,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: theme.scaffoldBackgroundColor,
-                          width: 2,
+                          const SizedBox(height: 8),
+                          TextWidget(
+                            _phone.isEmpty ? "No email or phone" : _phone,
+                            fontSize: 16,
+                            color: isDark ? Colors.white70 : Colors.black87,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right, size: 30),
+                  ],
+                ),
+              ),
+            ),
+
+            // Membership Banner
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color:  Colors.black,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextWidget(
+                          "PLATINUM",
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                      ),
-                      child: Image.asset(
-                        'assets/icon/edit.png',
-                        height: 16,
-                        width: 16,
-                        color: Colors.white,
-                      ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MembershipScreen(),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              TextWidget(
+                                "Explore more",
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                              const Icon(
+                                Icons.chevron_right,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    TextWidget(
+                      "You haven't made any success purchase yet.",
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Action Grid
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _buildGridItem(
+                      context,
+                      'assets/icon/order.png',
+                      "My Orders",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const OrderScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildGridItem(
+                      context,
+                      'assets/image/qr.png',
+                      "My QR",
+                      onTap: () {
+                        // My QR action
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildGridItem(
+                      context,
+                      'assets/icon/gift_card.png',
+                      "Gift Card",
+                      onTap: () {
+                        // Gift Card action
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildGridItem(
+                      context,
+                      'assets/icon/store.png',
+                      "Find a Store",
+                      onTap: () {
+        
+                      },
                     ),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 16),
-            TextWidget(_username, fontSize: 22, fontWeight: FontWeight.bold),
-            const SizedBox(height: 4),
-            TextWidget(
-              _phone,
-              color: isDark ? Colors.white60 : Colors.grey,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
+            const SizedBox(height: 40),
 
-            const SizedBox(height: 24),
-            Divider(
-              color: isDark ? Colors.white10 : Colors.grey.shade200,
-              thickness: 1,
-              indent: 20,
-              endIndent: 20,
-            ),
-
-            _buildProfileItem(
-              context,
-              'assets/icon/edit_profile.png',
-              "Edit Profile".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EditProfileScreen(),
-                  ),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/address.png',
-              "Address".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddressScreen(),
-                  ),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/order.png',
-              "My Orders".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OrderScreen()),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/notification.png',
-              "Notification".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationSettingsScreen(),
-                  ),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/payment.png',
-              "Payment".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PaymentSettingsScreen(),
-                  ),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/security.png',
-              "Security".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SecuritySettingsScreen(),
-                  ),
-                );
-              },
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/language.png',
-              "Language".tr,
-              trailingText: translator.currentLocale?.languageCode == 'en'
-                  ? "English (US)".tr
-                  : (translator.currentLocale?.languageCode == 'km'
-                        ? "Khmer".tr
-                        : "Chinese".tr),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChangeLanguageScreen(),
-                  ),
-                );
-              },
-            ),
-
-            ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-              leading: Image.asset(
-                isDark ? 'assets/icon/night.png' : 'assets/icon/day_mode.png',
-                width: 24,
-                height: 24,
-                color: isDark ? Colors.white : Colors.black,
-              ),
-              title: TextWidget("Dark Mode".tr, fontWeight: FontWeight.w600),
-              trailing: Switch(
-                value: isDark,
-                activeTrackColor: theme.primaryColor,
-                onChanged: (val) {
-                  TAppTheme.themeMode.value = val
-                      ? ThemeMode.dark
-                      : ThemeMode.light;
-                },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextWidget(
+                "ភាសា / Languages",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 10),
+            _buildLanguageRadio(context, "English", 'en'),
+            _buildLanguageRadio(context, "ខ្មែរ", 'km'),
 
+            const SizedBox(height: 40),
+
+            // Support Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextWidget(
+                "Support",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
             _buildProfileItem(
               context,
               'assets/icon/privacy_policy.png',
-              "Privacy Policy".tr,
+              "Privacy policy".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -300,11 +291,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 );
               },
+              showLeading: false,
             ),
             _buildProfileItem(
               context,
               'assets/icon/help_center.png',
-              "Help Center".tr,
+              "FAQs & guides".tr,
               onTap: () {
                 Navigator.push(
                   context,
@@ -313,79 +305,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 );
               },
+              showLeading: false,
             ),
             _buildProfileItem(
               context,
-              'assets/icon/invite_friends.png',
-              "Invite Friends".tr,
+              'assets/icon/star.png',
+              "Rate this app".tr,
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const InviteFriendsScreen(),
-                  ),
-                );
+                // Rate this app action
               },
+              showLeading: false,
             ),
-
-            const SizedBox(height: 24),
-            ListTile(
-              leading: const Icon(Icons.android, color: Colors.blue),
-              title: TextWidget(
-                "Telegram FAQ Admin",
-                fontWeight: FontWeight.w600,
-                color: Colors.blue,
-              ),
+            _buildProfileItem(
+              context,
+              'assets/icon/recommend.png',
+              "Recommend this app".tr,
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FAQAdminPage(),
-                  ),
-                );
+                // Recommend this app action
               },
+              showLeading: false,
             ),
 
-            const SizedBox(height: 24),
-            ListTile(
-              leading: const Icon(Icons.cloud_upload, color: Colors.blue),
-              title: TextWidget(
-                "Migrate Products to Firestore",
-                fontWeight: FontWeight.w600,
-                color: Colors.blue,
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _buildWideButton(
+                context,
+                "Contact us".tr,
+                onPressed: () {
+                  // Contact us action
+                },
               ),
-              onTap: () async {
-                final scaffoldMessenger = ScaffoldMessenger.of(context);
-                scaffoldMessenger.showSnackBar(
-                  const SnackBar(content: Text("Starting migration...")),
-                );
-                try {
-                  await MigrationUtility().migrateAllProducts();
-                  scaffoldMessenger.showSnackBar(
-                    const SnackBar(content: Text("Migration complete!")),
-                  );
-                } catch (e) {
-                  scaffoldMessenger.showSnackBar(
-                    SnackBar(content: Text("Migration failed: $e")),
-                  );
-                }
-              },
             ),
 
-            const SizedBox(height: 24),
-            ListTile(
-              leading: Image.asset(
-                'assets/icon/logout.png',
-                width: 24,
-                height: 24,
-                color: Colors.red,
+            const SizedBox(height: 30),
+
+            // Settings Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextWidget(
+                "Settings",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
-              title: TextWidget(
-                "Logout".tr,
-                color: Colors.red,
-                fontWeight: FontWeight.w600,
+            ),
+            const SizedBox(height: 10),
+            _buildProfileItem(
+              context,
+              'assets/icon/cache.png',
+              "Clear cache".tr,
+              onTap: () {
+                // Clear cache action
+              },
+              showLeading: false,
+            ),
+
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _buildWideButton(
+                context,
+                "LOG OUT".tr,
+                onPressed: () => _showLogoutDialog(context),
               ),
-              onTap: () => _showLogoutDialog(context),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Account deletion Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextWidget(
+                "Account deletion",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            _buildProfileItem(
+              context,
+              'assets/icon/delete.png',
+              "Delete account".tr,
+              onTap: () => _showDeleteAccountDialog(context),
+              showLeading: false,
             ),
             const SizedBox(height: 40),
           ],
@@ -394,48 +396,142 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildProfileItem(
+  Widget _buildWideButton(
     BuildContext context,
-    String imagePath,
-    String title, {
-    String? trailingText,
+    String text, {
+    required VoidCallback onPressed,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return SizedBox(
+      width: double.infinity,
+      height: 55,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isDark
+              ? AppColor.grey100.withValues(alpha: 0.1)
+              : Colors.black,
+          foregroundColor: isDark ? Colors.white : Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: TextWidget(text, fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _buildGridItem(
+    BuildContext context,
+    String iconPath,
+    String label, {
     VoidCallback? onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isColored = iconPath.contains('i_color');
+
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Image.asset(
+            iconPath,
+            width: 30,
+            height: 30,
+            color: isColored ? null : (isDark ? Colors.white : Colors.black),
+            errorBuilder: (_, _, _) => Icon(
+              Icons.grid_view_rounded,
+              size: 30,
+              color: isDark ? Colors.white : Colors.black,
+            ),
+          ),
+          TextWidget(
+            label.tr,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageRadio(
+    BuildContext context,
+    String label,
+    String langCode,
+  ) {
+    final isSelected = translator.currentLocale?.languageCode == langCode;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return ListTile(
+      onTap: () {
+        if (!isSelected) {
+          translator.translate(langCode);
+          setState(() {});
+        }
+      },
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+      title: TextWidget(label, fontSize: 16, fontWeight: FontWeight.w500),
+      trailing: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: isDark ? Colors.white70 : Colors.black26,
+            width: 1,
+          ),
+        ),
+        child: isSelected
+            ? Center(
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white : Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              )
+            : null,
+      ),
+    );
+  }
+
+  Widget _buildProfileItem(
+    BuildContext context,
+    String? imagePath,
+    String title, {
+    VoidCallback? onTap,
+    bool showLeading = false,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isColored = imagePath?.contains('i_color') ?? false;
+
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-      leading: Image.asset(
-        imagePath,
-        width: 24,
-        height: 24,
-        color: isDark ? Colors.white : Colors.black,
-        errorBuilder: (_, _, _) =>
-            const Icon(Icons.image_not_supported, size: 22),
-      ),
+      leading: showLeading && imagePath != null
+          ? Image.asset(
+              imagePath,
+              width: 24,
+              height: 24,
+              color: isColored ? null : (isDark ? Colors.white : Colors.black),
+              errorBuilder: (_, _, _) =>
+                  const Icon(Icons.image_not_supported, size: 22),
+            )
+          : null,
       title: TextWidget(
         title,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w400,
         fontSize: 16,
         color: isDark ? Colors.white : Colors.black,
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (trailingText != null)
-            TextWidget(
-              trailingText,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white70 : Colors.black87,
-            ),
-          const SizedBox(width: 10),
-          Image.asset(
-            'assets/icon/go.png',
-            width: 16,
-            height: 16,
-            color: isDark ? Colors.white : Colors.black,
-          ),
-        ],
+      trailing: Icon(
+        Icons.chevron_right,
+        size: 30,
+        color: isDark ? Colors.white : Colors.black,
       ),
       onTap: onTap,
     );
@@ -457,7 +553,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
           if (context.mounted) {
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
+              MaterialPageRoute(builder: (context) => const MainHolder()),
+              (route) => false,
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => StatusDialog(
+        title: "Delete Account".tr,
+        message:
+            "Are you sure you want to permanently delete your account? This action cannot be undone."
+                .tr,
+        btn1Text: "Cancel".tr,
+        btn2Text: "Delete".tr,
+        imagePath: 'assets/icon/i_color/Information.png',
+        iconColor: Colors.red,
+        onBtn1Pressed: () => Navigator.pop(context),
+        onBtn2Pressed: () async {
+          await AuthService.deleteAccountPermanent();
+          if (context.mounted) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const MainHolder()),
               (route) => false,
             );
           }
@@ -488,14 +611,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   color: isDark ? Colors.white54 : Colors.grey,
                 ),
               ),
-              const SizedBox(height: 24),
               TextWidget(
                 "Login Required".tr,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: isDark ? Colors.white : Colors.black,
               ),
-              const SizedBox(height: 12),
               TextWidget(
                 "Please login to view your profile and manage your account.".tr,
                 textAlign: TextAlign.center,
@@ -510,11 +631,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0055FF),
+                    backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

@@ -40,7 +40,6 @@ class _FAQAdminPageState extends State<FAQAdminPage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       appBar: AppBar(
         title: TextWidget(
@@ -90,7 +89,7 @@ class _FAQAdminPageState extends State<FAQAdminPage> {
       decoration: BoxDecoration(
         color: isDark
             ? Colors.white.withValues(alpha: 0.05)
-            : Colors.blue.withValues(alpha: 0.05),
+            : Theme.of(context).primaryColor.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: _isBotRunning ? Colors.green : Colors.grey),
       ),

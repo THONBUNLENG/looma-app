@@ -115,16 +115,6 @@ class _VisualSearchScreenState extends State<VisualSearchScreen> {
 
           if (status == SearchStatus.recognized) _buildProductResults(isDark),
 
-
-          Positioned(
-            top: 50,
-            left: 20,
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              style: IconButton.styleFrom(backgroundColor: Colors.black38),
-            ),
-          ),
         ],
       ),
     );

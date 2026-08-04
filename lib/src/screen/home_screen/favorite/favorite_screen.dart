@@ -10,7 +10,7 @@ import 'package:shopping_app/src/screen/main_screen/main_holder.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-import '../product_detail/product_clothes_screen.dart';
+import '../product_detail/product_detail_screen.dart';
 
 
 
@@ -282,7 +282,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0055FF),
+                    backgroundColor:  Colors.black,
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

@@ -6,15 +6,16 @@ class ProfileManager extends ChangeNotifier {
   static final ProfileManager _instance = ProfileManager._internal();
   factory ProfileManager() => _instance;
   ProfileManager._internal();
-
-  String _name = "Andrew Ainsley";
-  String _phone = "11 820595";
-  String _email = "andrew_ainsley@yourdomain.com";
-  String _picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWk3ODZqYyZbb-CHDbmzE7En-1bcFgJBO8pg&s";
+  String _name = "";
+  String _phone = "";
+  String _email = "";
+  String _picture = "";
+  String _gender = "";
+  String _dateOfBirth = "";
   List<Map<String, dynamic>> _addresses = [
     {
-      "title": "Home",
-      "address": "61480 Sunbrook Park, PC 5679",
+      "title": "",
+      "address": "",
       "isDefault": true,
     },
   ];
@@ -23,6 +24,8 @@ class ProfileManager extends ChangeNotifier {
   String get phone => _phone;
   String get email => _email;
   String get picture => _picture;
+  String get gender => _gender;
+  String get dateOfBirth => _dateOfBirth;
   List<Map<String, dynamic>> get addresses => _addresses;
 
   Map<String, dynamic>? get defaultAddress {
@@ -39,6 +42,8 @@ class ProfileManager extends ChangeNotifier {
     _phone = prefs.getString('user_phone') ?? _phone;
     _email = prefs.getString('user_email') ?? _email;
     _picture = prefs.getString('user_picture') ?? _picture;
+    _gender = prefs.getString('user_gender') ?? _gender;
+    _dateOfBirth = prefs.getString('user_dob') ?? _dateOfBirth;
     
     final String? addrData = prefs.getString('user_addresses');
     if (addrData != null) {
@@ -47,7 +52,14 @@ class ProfileManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateProfile({String? name, String? phone, String? email, String? picture}) async {
+  Future<void> updateProfile({
+    String? name,
+    String? phone,
+    String? email,
+    String? picture,
+    String? gender,
+    String? dateOfBirth,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     if (name != null) {
       _name = name;
@@ -65,6 +77,14 @@ class ProfileManager extends ChangeNotifier {
       _picture = picture;
       await prefs.setString('user_picture', picture);
     }
+    if (gender != null) {
+      _gender = gender;
+      await prefs.setString('user_gender', gender);
+    }
+    if (dateOfBirth != null) {
+      _dateOfBirth = dateOfBirth;
+      await prefs.setString('user_dob', dateOfBirth);
+    }
     notifyListeners();
   }
 
@@ -74,4 +94,5 @@ class ProfileManager extends ChangeNotifier {
     await prefs.setString('user_addresses', jsonEncode(_addresses));
     notifyListeners();
   }
+
 }

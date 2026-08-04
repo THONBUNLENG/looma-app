@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/screen/login_screen/phone_login_screen.dart';
 import 'package:shopping_app/src/screen/login_screen/email_login_screen.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
 import '../main_screen/main_holder.dart';
-import 'create_account.dart';
 import 'bloc/login_bloc.dart';
+import 'create_account/create_account_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -59,10 +60,10 @@ class LoginView extends StatelessWidget {
               child: Image.asset('assets/image/bubble1.png', width: 250),
             ),
             
-            SafeArea(
-              child: Column(
-                children: [
-                  Padding(
+            Column(
+              children: [
+                SafeArea(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -71,8 +72,9 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
-                  Expanded(
+                ),
+                
+                Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
@@ -239,15 +241,12 @@ class LoginView extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            BlocBuilder<LoginBloc, LoginState>(
+              BlocBuilder<LoginBloc, LoginState>(
               builder: (context, state) {
                 if (state is LoginLoading) {
                   return Container(
                     color: Colors.black26,
-                    child: const Center(
-                      child: CircularProgressIndicator(color: AppColor.buttonColor),
-                    ),
+                    child: LoadingWidget.loadingCenterWidget(),
                   );
                 }
                 return const SizedBox.shrink();
