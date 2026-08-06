@@ -1,23 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
-import 'package:shopping_app/src/network/datastor/auth_service.dart';
 
 import 'package:flutter/material.dart';
 
-
-
 import 'package:shopping_app/src/widget/text_widget.dart';
-
-
 
 import '../../../../constants/app_color.dart';
 
-
-
 import '../../../../constants/string_extension.dart';
-
-
-
+import '../../../widget/favorite_button.dart';
 
 class StyleProductScreen extends StatefulWidget {
   final String imageUrl;
@@ -33,7 +23,6 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
 
   List<Map<String, String>> get allProducts {
     final List<Map<String, String>> combined = [];
-
     styleProduct.forEach((styleName, productList) {
       for (final product in productList) {
         combined.add({...product, 'style': styleName});
@@ -91,7 +80,6 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
   Widget _buildSearchBar(bool isDark) {
     final textColor = isDark ? Colors.white : Colors.black;
     final searchBg = isDark ? Colors.grey[850] : Colors.grey[100];
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
@@ -142,7 +130,6 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
       "Luxury",
       "Y2K",
     ];
-
     return SizedBox(
       height: 58,
       child: ListView.builder(
@@ -152,7 +139,6 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
         itemBuilder: (context, index) {
           final filter = filters[index];
           final selected = filter == selectedStyle;
-
           return GestureDetector(
             onTap: () {
               setState(() {
@@ -186,13 +172,14 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
 
   Widget _buildSectionHeader(bool isDark) {
     final textColor = isDark ? Colors.white : Colors.black;
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(18, 14, 18, 8),
       child: Row(
         children: [
           TextWidget(
-            selectedStyle == "ALL" ? "All Styles".tr : "$selectedStyle ${'Style'.tr}",
+            selectedStyle == "ALL"
+                ? "All Styles".tr
+                : "$selectedStyle ${'Style'.tr}",
             fontSize: 22,
             fontWeight: FontWeight.w900,
             color: textColor,
@@ -218,7 +205,6 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
 
   Widget _buildProductGrid(bool isDark) {
     final products = currentProducts;
-
     if (products.isEmpty) {
       return Center(
         child: TextWidget(
@@ -241,12 +227,11 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
       ),
       itemBuilder: (context, index) {
         final item = products[index];
-
         final label = selectedStyle == "ALL"
             ? (item['style'] ?? "New")
             : selectedStyle;
-
         return StyleProductCard(
+          product: item,
           imageUrl: item['image'] ?? '',
           title: item['title'] ?? '',
           price: item['price'] ?? '',
@@ -260,6 +245,7 @@ class _StyleProductScreenState extends State<StyleProductScreen> {
 }
 
 class StyleProductCard extends StatelessWidget {
+  final Map<String, dynamic> product;
   final String imageUrl;
   final String title;
   final String price;
@@ -269,6 +255,7 @@ class StyleProductCard extends StatelessWidget {
 
   const StyleProductCard({
     super.key,
+    required this.product,
     required this.imageUrl,
     required this.title,
     required this.price,
@@ -341,28 +328,10 @@ class StyleProductCard extends StatelessWidget {
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await AuthService.isLoggedIn()) {
-                          // Toggle wishlist logic here
-                        } else {
-                          if (context.mounted) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()),
-                            );
-                          }
-                        }
-                      },
-                      child: CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Colors.white.withValues(alpha: 0.9),
-                        child: const Icon(
-                          Icons.favorite_border,
-                          size: 19,
-                          color: Colors.black45,
-                        ),
-                      ),
+                    child: FavoriteButton(
+                      product: product,
+                      size: 19,
+                      showBackground: true,
                     ),
                   ),
                 ],
@@ -403,15 +372,12 @@ class StyleProductCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(
+                    child: TextWidget(
                       oldPrice,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        decoration: TextDecoration.lineThrough,
-                        fontSize: 12,
-                      ),
+                      color: Colors.grey,
+                      fontSize: 12,
                     ),
                   ),
                 ],
@@ -2037,6 +2003,3 @@ final Map<String, List<Map<String, String>>> styleProduct = {
     },
   ],
 };
-
-
-

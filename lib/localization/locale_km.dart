@@ -1,4 +1,9 @@
 const Map<String, String> khmer = {
+  'Country and Language': 'ប្រទេស និងភាសា',
+  'Personalize your shopping with your location preferences.': 'ធ្វើឱ្យការទិញទំនិញរបស់អ្នកកាន់តែមានលក្ខណៈផ្ទាល់ខ្លួនជាមួយនឹងចំណូលចិត្តទីតាំងរបស់អ្នក។',
+  'Select your language preferences.': 'ជ្រើសរើសចំណូលចិត្តភាសារបស់អ្នក។',
+  'Continue': 'បន្ត',
+  'Select Language': 'ជ្រើសរើសភាសា',
   ' No user found': ' No user found',
   ' | %a sold': ' | %a លក់ដាច់',
   '\$\${(unitPrice * quantity).toStringAsFixed(2)}':
@@ -473,7 +478,6 @@ const Map<String, String> khmer = {
   'Connetix Magnetic Tiles: Light Star Pack':
       'កូនជញ្ជាំងមេដែក Connetix Magnetic Tiles',
   'Contact us': 'ទាក់ទងមកយើង',
-  'Continue': 'បន្ដទៅមុខទៀត',
   'Contour Sculpt Stick': 'ដំបងបន្លិចរាងមុខ Contour Sculpt Stick',
   'Contrast Collar Polo': 'អាវប៉ូឡូកអាវពណ៌ផ្ទុយ Contrast Collar',
   'Cool-Dry Golf Edition': 'អាវកីឡាវាយកូនហ្គោលក្រណាត់ត្រជាក់ស្ងួតលឿន',
@@ -671,6 +675,9 @@ const Map<String, String> khmer = {
   'English (US)': 'English (US)',
   'Engraved Locket': 'ខ្សែបន្ដោងរូបថតមានឆ្លាក់ឡាយ Engraved Locket',
   'Enter Promo Code': 'បញ្ចូលកូដប្រូម៉ូសិន',
+  'Please enter a promo code': 'សូមបញ្ចូលកូដប្រូម៉ូសិន',
+  'Promo code applied:': 'បានអនុវត្តកូដប្រូម៉ូសិន៖',
+  'Invalid or expired promo code': 'កូដប្រូម៉ូសិនមិនត្រឹមត្រូវ ឬផុតកំណត់',
   'Enter your phone number': 'Enter your phone number',
   'Enter your promo code at the checkout page under the \'Discount\' section.':
       'Enter your promo code at the checkout page under the \'Discount\' section.',
@@ -2226,4 +2233,10 @@ const Map<String, String> khmer = {
   'LOG OUT': 'ចាកចេញ',
   'Account deletion': 'ការលុបគណនី',
   'Delete account': 'លុបគណនី',
+  'Order Successful!': 'ការបញ្ជាទិញទទួលបានជោគជ័យ!',
+  'Your order has been placed successfully.': 'ការបញ្ជាទិញរបស់អ្នកត្រូវបានដាក់ដោយជោគជ័យ។',
+  'Order ID': 'លេខសម្គាល់ការបញ្ជាទិញ',
+  'Back to Home': 'ត្រឡប់ទៅទំព័រដើម',
+  'View My Orders': 'មើលការបញ្ជាទិញរបស់ខ្ញុំ',
+  'Select': 'ជ្រើសរើស',
 };

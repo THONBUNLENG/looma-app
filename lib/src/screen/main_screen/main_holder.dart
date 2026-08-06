@@ -38,6 +38,10 @@ class MainHolderState extends State<MainHolder> {
       setState(() {
         _selectedIndex = index;
       });
+      // If switching to Wishlist tab (index 3), trigger refresh
+      if (index == 3) {
+        CallbackManager().refreshWishlist?.call();
+      }
     }
   }
 

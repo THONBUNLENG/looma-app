@@ -76,9 +76,9 @@ class TrackOrderScreen extends StatelessWidget {
     // Simplified logic for timeline based on status
     final steps = [
       {'title': 'Order Placed'.tr, 'desc': 'Your order has been received'.tr, 'isDone': true},
-      {'title': 'Processing'.tr, 'desc': 'We are preparing your items'.tr, 'isDone': status != 'pending'},
-      {'title': 'Shipped'.tr, 'desc': 'Order is on the way to you'.tr, 'isDone': status == 'already paid'},
-      {'title': 'Delivered'.tr, 'desc': 'Enjoy your products!'.tr, 'isDone': false},
+      {'title': 'Processing'.tr, 'desc': 'We are preparing your items'.tr, 'isDone': status != 'pending' && status != 'await payment'},
+      {'title': 'Shipped'.tr, 'desc': 'Order is on the way to you'.tr, 'isDone': status == 'already paid' || status == 'shipped'},
+      {'title': 'Delivered'.tr, 'desc': 'Enjoy your products!'.tr, 'isDone': status == 'delivered'},
     ];
 
     return _buildInfoCard(
@@ -163,6 +163,8 @@ class TrackOrderScreen extends StatelessWidget {
 
   Widget _buildOrderDetails(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final discount = order['discountAmount'] ?? 0.0;
+    
     return _buildInfoCard(
       context,
       child: Column(
@@ -176,6 +178,15 @@ class TrackOrderScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _buildRow(context, "Items".tr, order['items'] ?? "1"),
+          if (discount > 0) ...[
+            const SizedBox(height: 12),
+            _buildRow(
+              context,
+              "Discount".tr,
+              "- ${discount.toStringAsFixed(2)} USD",
+              valueColor: Colors.redAccent,
+            ),
+          ],
           const SizedBox(height: 12),
           _buildRow(context, "Total".tr, order['totalAmount'] ?? "40.00 USD", isBold: true),
           const SizedBox(height: 12),

@@ -14,15 +14,19 @@ class HelpCenterScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: theme.scaffoldBackgroundColor,
+        backgroundColor: isDark ? theme.scaffoldBackgroundColor : const Color(0xFFF9F9F9),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black, size: 20),
+            onPressed: () => Navigator.pop(context),
+          ),
           title: TextWidget(
             "Help Center".tr,
             color: isDark ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 18,
           ),
           actions: [
             IconButton(
@@ -80,18 +84,38 @@ class FaqTabContent extends StatelessWidget {
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TextField(
-            style: TextStyle(color: isDark ? Colors.white : Colors.black),
-            decoration: InputDecoration(
-              hintText: "Search".tr,
-              hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.grey),
-              prefixIcon: Icon(Icons.search, color: isDark ? Colors.white38 : Colors.grey),
-              suffixIcon: Icon(Icons.tune, color: isDark ? Colors.white38 : Colors.grey),
-              filled: true,
-              fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[100],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide.none,
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                if (!isDark)
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+              ],
+            ),
+            child: TextField(
+              style: TextStyle(color: isDark ? Colors.white : Colors.black),
+              decoration: InputDecoration(
+                hintText: "Search".tr,
+                hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.grey),
+                prefixIcon: Icon(Icons.search, color: isDark ? Colors.white38 : Colors.grey),
+                suffixIcon: Icon(Icons.tune, color: isDark ? Colors.white38 : Colors.grey),
+                filled: true,
+                fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: isDark ? BorderSide(color: Colors.white10) : BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: isDark ? BorderSide(color: Colors.white10) : BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(color: isDark ? Colors.white24 : Colors.black12),
+                ),
               ),
             ),
           ),
@@ -103,13 +127,13 @@ class FaqTabContent extends StatelessWidget {
             children: [
               _buildFaqCard(
                 context,
-                "What is Evira?".tr,
-                "Evira is a premium shopping platform that provides high-quality products with fast delivery and secure order options.".tr,
+                "What is Looma?".tr,
+                "Looma is a premium shopping platform that provides high-quality products with fast delivery and secure order options.".tr,
               ),
-              _buildFaqCard(context, "How to use Evira?".tr, "Simply browse products, add them to your cart, and proceed to checkout using your preferred order method.".tr),
+              _buildFaqCard(context, "How to use Looma?".tr, "Simply browse products, add them to your cart, and proceed to checkout using your preferred order method.".tr),
               _buildFaqCard(context, "How do I cancel a orders product?".tr, "You can cancel your order from the 'My Orders' section within 30 minutes of purchase.".tr),
-              _buildFaqCard(context, "Is Evira free to use?".tr, "Yes, downloading and browsing Evira is completely free.".tr),
-              _buildFaqCard(context, "How to add promo on Evira?".tr, "Enter your promo code at the checkout page under the 'Discount' section.".tr),
+              _buildFaqCard(context, "Is Looma free to use?".tr, "Yes, downloading and browsing Looma is completely free.".tr),
+              _buildFaqCard(context, "How to add promo on Looma?".tr, "Enter your promo code at the checkout page under the 'Discount' section.".tr),
               const SizedBox(height: 20),
             ],
           ),

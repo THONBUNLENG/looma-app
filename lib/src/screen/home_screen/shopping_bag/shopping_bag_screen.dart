@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -90,19 +91,11 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.white.withValues(alpha: 0.05)
-                    : Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                size: 80,
-                color: Colors.grey[400],
-              ),
+            Lottie.asset(
+              'assets/lottie/bag_card.json',
+              width: 180,
+              height: 180,
+              fit: BoxFit.contain,
             ),
             const SizedBox(height: 30),
             TextWidget(

@@ -29,6 +29,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-woven-effect-tweed-mini-skirt--FVSJ13KWQ107_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'CLOTHING',
       'subCategory': 'SKIRT',
+      'gender': 'Woman',
     },
     {
       'title': 'Shorts',
@@ -70,7 +71,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'image':
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-long-sleeved-technical-t-shirt-with-reflective-details--HVY68WZ3891F_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'CLOTHING',
-      'subCategory': 'TSHIRT',
+      'subCategory': 'TSHIRTS',
     },
     {
       'title': 'Jean',
@@ -85,6 +86,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lavalliere-blouse--FUTP14AKM601_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'CLOTHING',
       'subCategory': 'BLOUSES',
+      'gender': 'Woman',
     },
     {
       'title': 'Coats',
@@ -127,6 +129,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-accent-leggings--FVPA24G72900_PM1_Worn%20view.png?wid=1300&hei=1300',
       'category': 'CLOTHING',
       'subCategory': 'LEGGINGS',
+      'gender': 'Woman',
     },
     {
       'title': 'Joggers',
@@ -147,7 +150,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'image':
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-poche-toilette---N40929_PM1_Worn%20view.png?wid=1300&hei=1300',
       'category': 'CLOTHING',
-      'gender': 'KIDS',
+      'gender': 'Kids',
     },
     {
       'title': 'Dresses',
@@ -155,6 +158,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-twist-belt-pleated-dress--FVKD08393650_PM1_Worn%20view.png?wid=1300&hei=1300',
       'category': 'CLOTHING',
       'subCategory': 'DRESSES',
+      'gender': 'Woman',
     },
     // --- SHOES ---
     {
@@ -170,6 +174,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-cube-mule--AWH059SS02_PM1_Cropped%20worn%20view.png?wid=1300&hei=1300',
       'category': 'SHOES',
       'subCategory': 'HEELS',
+      'gender': 'Woman',
     },
     {
       'title': 'Sandals',
@@ -191,6 +196,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bella-ballerina--AWP016NM92_PM1_Worn%20view.png?wid=1300&hei=1300',
       'category': 'SHOES',
       'subCategory': 'FLATS',
+      'gender': 'Woman',
     },
     {
       'title': 'Loafers',
@@ -220,6 +226,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-vendome-mm--M26501_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'BAGS',
       'subCategory': 'HANDBAGS',
+      'gender': 'Woman',
     },
     {
       'title': 'Backpacks',
@@ -234,6 +241,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-side-trunk-mm--M24309_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'BAGS',
       'subCategory': 'CLUTCHES',
+      'gender': 'Woman',
     },
     {
       'title': 'Wallets',
@@ -272,6 +280,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-damier-triangle-bikini-top--FVSW04527004_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'LINGERIE',
       'subCategory': 'BRAS',
+      'gender': 'Woman',
     },
     {
       'title': 'Panties',
@@ -279,6 +288,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnLksFJSE4-Rdp3LlSbqvk-XONebGGzjqwuA&s',
       'category': 'LINGERIE',
       'subCategory': 'PANTIES',
+      'gender': 'Woman',
     },
     {
       'title': 'Nightwear',
@@ -286,6 +296,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnLksFJSE4-Rdp3LlSbqvk-XONebGGzjqwuA&s',
       'category': 'LINGERIE',
       'subCategory': 'NIGHTWEAR',
+      'gender': 'Woman',
     },
     {
       'title': 'Bodysuit',
@@ -293,6 +304,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnLksFJSE4-Rdp3LlSbqvk-XONebGGzjqwuA&s',
       'category': 'LINGERIE',
       'subCategory': 'BODYSUIT',
+      'gender': 'Woman',
     },
     {
       'title': 'Shapewear',
@@ -300,6 +312,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnLksFJSE4-Rdp3LlSbqvk-XONebGGzjqwuA&s',
       'category': 'LINGERIE',
       'subCategory': 'SHAPEWEAR',
+      'gender': 'Woman',
     },
     {
       'title': 'Socks',
@@ -314,6 +327,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnLksFJSE4-Rdp3LlSbqvk-XONebGGzjqwuA&s',
       'category': 'LINGERIE',
       'subCategory': 'TIGHTS',
+      'gender': 'Woman',
     },
     // --- ACCESSORIES ---
     {
@@ -364,6 +378,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-resin-headband--M03539_PM2_Front%20view.png?wid=730&hei=730',
       'category': 'ACCESSORIES',
       'subCategory': 'HAIR',
+      'gender': 'Woman',
     },
     {
       'title': 'Gloves',
@@ -406,6 +421,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXR0FXC2kz0NDHKyABGcecPgKVKtkwQgBhNTiLhlKwuQ&s=10',
       'category': 'GIFTS',
       'subCategory': 'TOYS',
+      'gender': 'Kids',
     },
     {
       'title': 'Bedding',
@@ -503,8 +519,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
       bool isDark,
       int index,
       ) {
-    final String alternatingGender = index.isEven ? 'Men' : 'Women';
-    final String gender = (item['gender'] as String?) ?? alternatingGender;
+    final String? gender = item['gender'] as String?;
     final String title = item['title'] as String;
     final String imageUrl = item['image'] as String;
 

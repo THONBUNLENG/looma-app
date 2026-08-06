@@ -10,13 +10,9 @@ class AbaPayWayService {
       '3bcbb5140d1659e1a7aa427be70f369a7a6c9a52';
 
   // User/Owner Information
-  static const String defaultFirstName = 'Thon';
-  static const String defaultLastName = 'Bunleng';
+  static const String defaultFirstName = 'Looma';
+  static const String defaultLastName = 'Store';
   static const String defaultPhone = '011820595';
-
-  // Account Reference (Internal Documentation)
-  // KHR: 007 276 457
-  // USD: 007 276 456
 
   static const String apiUrl =
       'https://checkout-sandbox.payway.com.kh/api/payment-gateway/v1/payments/purchase';
@@ -157,10 +153,13 @@ class AbaPayWayService {
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {
-        return {'status': response.statusCode, 'description': 'Server Error'};
+        return {
+          'status': response.statusCode.toString(),
+          'description': 'Server Error: ${response.statusCode}'
+        };
       }
     } catch (e) {
-      return {'status': -1, 'description': e.toString()};
+      return {'status': '-1', 'description': e.toString()};
     }
   }
 }

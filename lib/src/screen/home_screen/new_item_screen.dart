@@ -4,12 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shopping_app/src/model/product_model.dart';
 import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
 import 'package:shopping_app/src/screen/home_screen/universal_product_screen.dart';
-import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
-import 'package:shopping_app/src/network/datastor/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
+import 'package:shopping_app/src/widget/favorite_button.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class NewItemsSection extends StatefulWidget {
@@ -217,32 +216,10 @@ class NewItemCard extends StatelessWidget {
                       Positioned(
                         top: 10,
                         right: 10,
-                        child: GestureDetector(
-                          onTap: () async {
-                            if (await AuthService.isLoggedIn()) {
-                              // Wishlist logic
-                            } else {
-                              if (context.mounted) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              }
-                            }
-                          },
-                          child: CircleAvatar(
-                            radius: 17,
-                            backgroundColor: Colors.white.withValues(
-                              alpha: 0.9,
-                            ),
-                            child: const Icon(
-                              Icons.favorite_border,
-                              size: 19,
-                              color: Colors.black45,
-                            ),
-                          ),
+                        child: FavoriteButton(
+                          product: product.toMap(),
+                          size: 19,
+                          showBackground: true,
                         ),
                       ),
                     ],

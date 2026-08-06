@@ -15,6 +15,7 @@ import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
 import 'localization/locale_en.dart';
 import 'localization/locale_km.dart';
+import 'localization/locale_cn.dart';
 
 final FlutterLocalization translator = FlutterLocalization.instance;
 
@@ -77,6 +78,7 @@ class _MyAppState extends State<MyApp> {
       mapLocales: [
         const MapLocale('en', english),
         const MapLocale('km', khmer),
+        const MapLocale('cn', chinese),
       ],
       initLanguageCode: 'en',
     );

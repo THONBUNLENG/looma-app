@@ -1,12 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
+import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/model/order_model.dart';
-import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
+import 'package:shopping_app/src/model/gift_card_model.dart';
+import 'package:shopping_app/src/screen/home_screen/order/bloc/order_bloc.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_success_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/payment/checkout_payment_screen.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../address/address_screen.dart';
@@ -20,16 +26,17 @@ class OrderConfirmScreen extends StatefulWidget {
   State<OrderConfirmScreen> createState() => _OrderConfirmScreenState();
 }
 
-class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
+class _OrderConfirmScreenState extends State<OrderConfirmScreen> with LoadingWidget {
   final TextEditingController _promoController = TextEditingController();
   int _selectedDelivery = 0;
   int _selectedPayment = 0;
-  bool _isOrdering = false;
+  double _discountAmount = 0.0;
+  String? _appliedPromoCode;
 
   @override
   void dispose() {
     _promoController.dispose();
-    super.dispose();
+    super.dispose();  
   }
 
   double get _subtotal {
@@ -44,7 +51,16 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
 
   double get _deliveryFee => _selectedDelivery == 1 ? 1.0 : 0.0;
 
-  double get _total => _subtotal + _deliveryFee;
+  double get _automaticDiscount {
+    if (_selectedDelivery == 1 && _subtotal >= 160.0) {
+      return _subtotal * 0.15;
+    }
+    return 0.0;
+  }
+
+  double get _total =>
+      (_subtotal + _deliveryFee - _discountAmount - _automaticDiscount)
+          .clamp(0.0, double.infinity);
 
   double _parsePrice(dynamic price) {
     if (price == null) return 0.0;
@@ -59,48 +75,103 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: isDark
-          ? const Color(0xFF121212)
-          : const Color(0xFFF8F9FA),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        leading: BackButton(
-          color: isDark ? Colors.white : Colors.black,
-        ),
-        title: TextWidget(
-          "Order Confirm".tr,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: isDark ? Colors.white : Colors.black,
+    return BlocProvider(
+      create: (context) => OrderBloc(),
+      child: BlocListener<OrderBloc, OrderState>(
+        listener: (context, state) {
+          if (state is OrderSuccess) {
+            final order = state.order!;
+            CartManager().clearCart();
+
+            if (order.paymentMethod == 'Bank transfer') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CheckoutPaymentScreen(
+                    totalAmount: order.totalAmount,
+                    orderId: order.id!,
+                    paymentMethod: order.paymentMethod,
+                  ),
+                ),
+              );
+            } else {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OrderSuccessScreen(
+                    orderId: order.id!,
+                    totalAmount: order.totalAmount,
+                    paymentMethod: order.paymentMethod,
+                  ),
+                ),
+              );
+            }
+          } else if (state is OrderFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: TextWidget("Failed to place order: ${state.error}".tr),
+                backgroundColor: Colors.redAccent,
+              ),
+            );
+          }
+        },
+        child: BlocBuilder<OrderBloc, OrderState>(
+          builder: (context, state) {
+            return Stack(
+              children: [
+                Scaffold(
+                  backgroundColor: isDark
+                      ? const Color(0xFF121212)
+                      : const Color(0xFFF8F9FA),
+                  appBar: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    centerTitle: true,
+                    leading: BackButton(
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
+                    title: TextWidget(
+                      "Order Confirm".tr,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  body: SingleChildScrollView(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildSectionTitle("Receive Address", isDark),
+                        _buildAddressCard(isDark),
+                        const SizedBox(height: 24),
+                        _buildSectionTitle("Delivery Methods", isDark),
+                        _buildDeliveryMethods(isDark),
+                        const SizedBox(height: 24),
+                        _buildSectionTitle("Payment Methods", isDark),
+                        _buildPaymentMethods(isDark),
+                        const SizedBox(height: 24),
+                        _buildSectionTitle("Promo Code", isDark),
+                        _buildPromoCodeSection(isDark),
+                        const SizedBox(height: 24),
+                        _buildSectionTitle("Item summary", isDark),
+                        _buildItemSummary(isDark),
+                        const SizedBox(height: 100),
+                      ],
+                    ),
+                  ),
+                  bottomSheet: _buildBottomBar(isDark, state),
+                ),
+                if (state is OrderLoading)
+                  Container(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    child: LoadingWidget.loadingCenterWidget(),
+                  ),
+              ],
+            );
+          },
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionTitle("Receive Address", isDark),
-            _buildAddressCard(isDark),
-            const SizedBox(height: 24),
-            _buildSectionTitle("Delivery Methods", isDark),
-            _buildDeliveryMethods(isDark),
-            const SizedBox(height: 24),
-            _buildSectionTitle("Payment Methods", isDark),
-            _buildPaymentMethods(isDark),
-            const SizedBox(height: 24),
-            _buildSectionTitle("Promo Code", isDark),
-            _buildPromoCodeSection(isDark),
-            const SizedBox(height: 24),
-            _buildSectionTitle("Item summary", isDark),
-            _buildItemSummary(isDark),
-            const SizedBox(height: 100),
-          ],
-        ),
-      ),
-      bottomSheet: _buildBottomBar(isDark),
     );
   }
 
@@ -163,14 +234,21 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextWidget(profile.name, fontWeight: FontWeight.bold),
+                TextWidget(
+                  address['title'] ?? profile.name,
+                  fontWeight: FontWeight.bold,
+                ),
                 const SizedBox(height: 4),
-                TextWidget(profile.phone, color: Colors.grey),
+                TextWidget(
+                  address['phone'] ?? profile.phone,
+                  color: Colors.grey,
+                  fontSize: 14,
+                ),
                 const SizedBox(height: 4),
                 TextWidget(
                   address['address'],
                   color: Colors.grey,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ],
             ),
@@ -205,7 +283,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
             isDark,
           ),
           _buildRadioOption(
-            "Free shipping for orders under \$160 and 15% discount.",
+            "Free shipping for orders over \$160 and 15% discount.".tr,
             1,
             _selectedDelivery,
             (v) => setState(() => _selectedDelivery = v!),
@@ -246,43 +324,67 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
 
   Widget _buildPromoCodeSection(bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: TextField(
-              controller: _promoController,
-              style: TextStyle(color: isDark ? Colors.white : Colors.black87),
-              decoration: InputDecoration(
-                hintText: "Enter Promo Code".tr,
-                hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 48,
+                  child: TextField(
+                    controller: _promoController,
+                    style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black87),
+                    decoration: InputDecoration(
+                      hintText: "Enter Promo Code".tr,
+                      hintStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 14),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 16),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                            color:
+                                isDark ? Colors.white24 : Colors.grey.shade300),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                            color: isDark ? Colors.white54 : Colors.grey),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Apply promo code logic here
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColor.pink100Color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
+              const SizedBox(width: 12),
+              SizedBox(
+                height: 48,
+                child: ElevatedButton(
+                  onPressed: _applyPromoCode,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        const Color(0xFFFF003F),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                  ),
+                  child: TextWidget(
+                    "Apply".tr,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
               ),
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            ),
-            child: TextWidget(
-              "Apply".tr,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
+            ],
           ),
         ],
       ),
@@ -422,100 +524,158 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
           const SizedBox(height: 12),
           _summaryRow(
             "Subtotal Amount:",
-            "${_subtotal.toStringAsFixed(2)} USD",
+            "\$${_subtotal.toStringAsFixed(2)}",
             isDark,
           ),
+          if (_discountAmount > 0) ...[
+            const SizedBox(height: 12),
+            _summaryRow(
+              "Promo Discount:",
+              "-\$${_discountAmount.toStringAsFixed(2)}",
+              isDark,
+              valueColor: Colors.redAccent,
+            ),
+          ],
+          if (_automaticDiscount > 0) ...[
+            const SizedBox(height: 12),
+            _summaryRow(
+              "Bulk Order Discount (15%):",
+              "-\$${_automaticDiscount.toStringAsFixed(2)}",
+              isDark,
+              valueColor: Colors.redAccent,
+            ),
+          ],
         ],
       ),
     );
   }
 
-  Widget _summaryRow(String label, String value, bool isDark) {
+  void _applyPromoCode() {
+    final code = _promoController.text.trim();
+    if (code.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Please enter a promo code".tr),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
+    final giftCard = GiftCardModel.sampleData.firstWhereOrNull(
+      (c) => c.claimCode.toUpperCase() == code.toUpperCase(),
+    );
+
+    if (giftCard != null) {
+      setState(() {
+        _discountAmount = giftCard.amount;
+        _appliedPromoCode = giftCard.claimCode;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              TextWidget("${"Promo code applied:".tr} \$${giftCard.amount}"),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } else {
+      setState(() {
+        _discountAmount = 0.0;
+        _appliedPromoCode = null;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Invalid or expired promo code".tr),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+    }
+  }
+
+  Widget _summaryRow(String label, String value, bool isDark,
+      {Color? valueColor}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextWidget(label, color: Colors.grey),
-        TextWidget(value, fontWeight: FontWeight.bold),
+        TextWidget(
+          value,
+          fontWeight: FontWeight.bold,
+          color: valueColor,
+        ),
       ],
     );
   }
 
-  Widget _buildBottomBar(bool isDark) {
+  Widget _buildBottomBar(bool isDark, OrderState state) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         border: Border(
           top: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextWidget("Total amount:".tr, fontSize: 12, color: Colors.grey),
-              TextWidget(
-                "${_total.toStringAsFixed(2)} USD",
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextWidget("Total amount:".tr, fontSize: 12, color: Colors.grey),
+                  TextWidget(
+                    "\$${_total.toStringAsFixed(2)}",
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: SizedBox(
+                  height: 56,
+                  child: Builder(
+                    builder: (context) {
+                      return ElevatedButton(
+                        onPressed: state is OrderLoading
+                            ? null
+                            : () async {
+                                await _placeOrder(context);
+                              },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.pink100Color,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                        ),
+                        child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: TextWidget(
+                                  "Order Now".tr,
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                      );
+                    }
+                  ),
+                ),
               ),
             ],
           ),
-          SizedBox(
-            width: 180,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: _isOrdering
-                  ? null
-                  : () async {
-                      if (_selectedPayment == 1) {
-                        final tempOrderId = "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CheckoutPaymentScreen(
-                              totalAmount: _total,
-                              orderId: tempOrderId,
-                            ),
-                          ),
-                        );
-                      } else {
-                        await _placeOrder();
-                      }
-                    },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.pink100Color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                elevation: 0,
-              ),
-              child: _isOrdering
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 2,
-                      ),
-                    )
-                  : TextWidget(
-                      "Order Now".tr,
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
 
-  Future<void> _placeOrder() async {
+  Future<void> _placeOrder(BuildContext context) async {
     final profile = ProfileManager();
     final address = profile.defaultAddress;
 
@@ -529,87 +689,25 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen> {
       return;
     }
 
-    setState(() => _isOrdering = true);
-
-    try {
-      final userId = FirebaseAuth.instance.currentUser?.uid ?? 'guest_user';
-      
-      final order = OrderModel(
-        userId: userId,
-        items: widget.items,
-        totalAmount: _total,
-        status: 'Processing',
-        paymentMethod: _selectedPayment == 0 ? 'Cash On Delivery' : 'Bank Transfer',
-        deliveryMethod: _selectedDelivery == 0 ? 'Free Delivery' : 'Standard Delivery',
-        address: address,
-        createdAt: DateTime.now(),
-      );
-
-      await FirestoreService().createOrder(order);
-
-      if (!mounted) return;
-
-      _showSuccessDialog();
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget("Failed to place order: $e".tr),
-          backgroundColor: Colors.redAccent,
-        ),
-      );
-    } finally {
-      if (mounted) setState(() => _isOrdering = false);
-    }
-  }
-
-  void _showSuccessDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 20),
-            const Icon(Icons.check_circle, color: Colors.green, size: 80),
-            const SizedBox(height: 20),
-            TextWidget(
-              "Order Successful!".tr,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 10),
-            TextWidget(
-              "Your order has been placed successfully.".tr,
-              textAlign: TextAlign.center,
-              color: Colors.grey,
-            ),
-            const SizedBox(height: 30),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.pink100Color,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-                child: TextWidget(
-                  "Go to Home".tr,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+    final userId = FirebaseAuth.instance.currentUser?.uid ?? 'guest_user';
+    final orderId = "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
+    
+    final order = OrderModel(
+      id: orderId,
+      userId: userId,
+      items: widget.items,
+      totalAmount: _total,
+      status: 'Processing',
+      paymentMethod: _selectedPayment == 0 ? 'Cash On Delivery' : 'Bank transfer',
+      deliveryMethod:
+          _selectedDelivery == 0 ? 'Free Delivery' : 'Standard Delivery',
+      address: address,
+      createdAt: DateTime.now(),
+      promoCode: _appliedPromoCode,
+      discountAmount: _discountAmount + _automaticDiscount,
     );
+
+    context.read<OrderBloc>().add(PlaceOrder(order));
   }
+  
 }

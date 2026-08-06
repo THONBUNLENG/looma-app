@@ -107,7 +107,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
       text: widget.addressData['phone'] ?? "",
     );
     _streetController = TextEditingController(
-      text: widget.addressData['address'] ?? "",
+      text: widget.addressData['street'] ?? widget.addressData['address'] ?? "",
     );
     _isDefault = widget.addressData['isDefault'] ?? false;
     selectedLabel = widget.addressData['label'] ?? "Home";
@@ -157,12 +157,12 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildInputField(
-              label: "First name".tr,
+              label: "First name(Required)".tr,
               controller: _firstNameController,
             ),
             const SizedBox(height: 20),
             _buildInputField(
-              label: "Last name".tr,
+              label: "Last name(Required)".tr,
               controller: _lastNameController,
             ),
             const SizedBox(height: 20),
@@ -204,9 +204,9 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
               children: [
                 Expanded(
                   child: _buildDropdownField(
-                    label: "District/Khan".tr,
+                    label: "District/Khan(Required)".tr,
                     value: selectedDistrict,
-                    hint: "Select a Distric...".tr,
+                    hint: "Select a District...".tr,
                     items: currentDistricts.map((d) => d['en']!).toList(),
                     onChanged: (val) {
                       setState(() {
@@ -219,7 +219,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                 const SizedBox(width: 15),
                 Expanded(
                   child: _buildDropdownField(
-                    label: "Commune/Sangkat".tr,
+                    label: "Commune/Sangkat(Required)".tr,
                     value: selectedCommune,
                     hint: "Select a Commune".tr,
                     items: currentCommunes,
@@ -230,7 +230,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             ),
             const SizedBox(height: 20),
             _buildInputField(
-              label: "Street, Apartment, Building, Floor".tr,
+              label: "Street, Apartment, Building, Floor(Required)".tr,
               controller: _streetController,
               hint: "Enter Street, Apartment, Building and Floor".tr,
             ),
@@ -263,11 +263,43 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
           height: 55,
           child: ElevatedButton(
             onPressed: () {
+              if (_firstNameController.text.trim().isEmpty ||
+                  _lastNameController.text.trim().isEmpty ||
+                  _phoneController.text.trim().isEmpty ||
+                  selectedCity == null ||
+                  selectedDistrict == null ||
+                  selectedCommune == null ||
+                  _streetController.text.trim().isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: TextWidget("Please fill all required fields".tr),
+                    backgroundColor: Colors.redAccent,
+                  ),
+                );
+                return;
+              }
+
+              final street = _streetController.text.trim();
+              final commune = selectedCommune ?? "";
+              final district = selectedDistrict ?? "";
+              final city = selectedCity ?? "";
+              final country = selectedCountry ?? "";
+
+              // Construct full address string
+              final fullAddress = [
+                street,
+                commune,
+                district,
+                city,
+                country
+              ].where((s) => s.isNotEmpty).join(", ");
+
               final updatedData = {
                 "title":
                     "${_firstNameController.text} ${_lastNameController.text}"
                         .trim(),
-                "address": _streetController.text,
+                "address": fullAddress,
+                "street": street,
                 "phone": _phoneController.text,
                 "country": selectedCountry,
                 "city": selectedCity,

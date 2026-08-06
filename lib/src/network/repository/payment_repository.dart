@@ -12,8 +12,7 @@ class PaymentRepository {
     required String currency,
     required PaymentMethod method,
   }) async {
-    // In a real app, this would call your backend to create a transaction record
-    // and get the necessary tokens/payloads for the payment gateways.
+
     
     final id = "TXN-${DateTime.now().millisecondsSinceEpoch}";
     

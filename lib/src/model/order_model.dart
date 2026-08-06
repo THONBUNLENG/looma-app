@@ -10,6 +10,8 @@ class OrderModel {
   final String deliveryMethod;
   final Map<String, dynamic> address;
   final DateTime createdAt;
+  final String? promoCode;
+  final double? discountAmount;
 
   OrderModel({
     this.id,
@@ -21,6 +23,8 @@ class OrderModel {
     required this.deliveryMethod,
     required this.address,
     required this.createdAt,
+    this.promoCode,
+    this.discountAmount,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot doc) {
@@ -35,6 +39,8 @@ class OrderModel {
       deliveryMethod: data['deliveryMethod'] ?? '',
       address: Map<String, dynamic>.from(data['address'] ?? {}),
       createdAt: (data['createdAt'] as Timestamp).toDate(),
+      promoCode: data['promoCode'],
+      discountAmount: (data['discountAmount'] ?? 0.0).toDouble(),
     );
   }
 
@@ -48,6 +54,8 @@ class OrderModel {
       'deliveryMethod': deliveryMethod,
       'address': address,
       'createdAt': Timestamp.fromDate(createdAt),
+      'promoCode': promoCode,
+      'discountAmount': discountAmount,
     };
   }
 
@@ -62,6 +70,8 @@ class OrderModel {
       deliveryMethod: json['deliveryMethod'] ?? '',
       address: Map<String, dynamic>.from(json['address'] ?? {}),
       createdAt: DateTime.parse(json['createdAt']),
+      promoCode: json['promoCode'],
+      discountAmount: (json['discountAmount'] ?? 0.0).toDouble(),
     );
   }
 
@@ -76,6 +86,10 @@ class OrderModel {
       'deliveryMethod': deliveryMethod,
       'address': address,
       'createdAt': createdAt.toIso8601String(),
+      'promoCode': promoCode,
+      'discountAmount': discountAmount,
     };
   }
+
+  Map<String, dynamic> toMap() => toFirestore();
 }

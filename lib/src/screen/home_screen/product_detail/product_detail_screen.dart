@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
-import 'package:shopping_app/manager/wishlist_manager.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_confirm_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/product_detail/product_review_screen.dart';
 import 'package:shopping_app/src/network/datastor/auth_service.dart';
 import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
+import 'package:shopping_app/src/widget/favorite_button.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'package:shopping_app/src/widget/product_detail_widgets.dart';
 import 'package:shopping_app/src/model/product_model.dart';
@@ -106,13 +106,10 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
     }
   }
 
-  late bool isFavorite;
-
   @override
   void initState() {
     super.initState();
     product = ProductModel.fromMap(widget.product);
-    isFavorite = WishlistManager().isFavorite(widget.product);
     _pageController = PageController(initialPage: 0);
     _similarProductsStream = FirestoreService().getProducts(category: product.category);
   }
@@ -259,23 +256,9 @@ class _ProductClothesScreenState extends State<ProductClothesScreen> {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isFavorite = !isFavorite;
-                            WishlistManager().toggleWishlist(widget.product);
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          child: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_border,
-                            size: 28,
-                            color: isFavorite
-                                ? Colors.red
-                                : (isDark ? Colors.white : Colors.black),
-                          ),
-                        ),
+                      FavoriteButton(
+                        product: product.toMap(),
+                        size: 28,
                       ),
                     ],
                   ),

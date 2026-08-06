@@ -13,13 +13,21 @@ import '../../login_screen/login_screen.dart';
 import '../../main_screen/main_holder.dart';
 import '../order/order_screen.dart';
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:share_plus/share_plus.dart';
 import 'edit_profile.dart';
 
 import 'help_center/help_center.dart';
+import 'gift_card_screen.dart';
+import 'membership_qr_screen.dart';
 
 import 'membership_screen.dart';
 
 import 'privacy_policy_screen.dart';
+import 'country_selection_screen.dart';
+import 'language_selection_screen.dart';
+import 'contact_us_screen.dart';
+import '../../../../manager/preferences_manager.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -33,11 +41,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoggedIn = false;
   String _username = "User";
   String _phone = "";
+  String _selectedCountry = "";
+  String _selectedFlag = "";
 
   @override
   void initState() {
     super.initState();
     _checkAuth();
+    _loadCountry();
+  }
+
+  Future<void> _loadCountry() async {
+    final country = await PreferencesManager().setGetString(PrefKey.country);
+    if (country.isNotEmpty) {
+      final List<Map<String, String>> countries = [
+        {'name': 'Cambodia', 'flag': '🇰🇭'},
+        {'name': 'Japan', 'flag': '🇯🇵'},
+        {'name': 'Malaysia', 'flag': '🇲🇾'},
+        {'name': 'Philippines', 'flag': '🇵🇭'},
+        {'name': 'South Korea', 'flag': '🇰🇷'},
+        {'name': 'United Kingdom', 'flag': '🇬🇧'},
+      ];
+
+      final countryData = countries.firstWhere(
+        (element) => element['name'] == country,
+        orElse: () => {},
+      );
+
+      if (mounted && countryData.isNotEmpty) {
+        setState(() {
+          _selectedCountry = "$country - USD(\$)";
+          _selectedFlag = countryData['flag']!;
+        });
+      }
+    }
   }
 
   Future<void> _checkAuth() async {
@@ -145,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color:  Colors.black,
+                  color:  Color(0xFFD9904D),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
@@ -155,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextWidget(
-                          "PLATINUM",
+                          "ONLINE",
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -225,7 +262,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'assets/image/qr.png',
                       "My QR",
                       onTap: () {
-                        // My QR action
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MembershipQRScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -235,7 +277,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'assets/icon/gift_card.png',
                       "Gift Card",
                       onTap: () {
-                        // Gift Card action
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GiftCardScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -258,14 +305,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextWidget(
-                "ភាសា / Languages",
+                "Country and Language".tr,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10),
-            _buildLanguageRadio(context, "English", 'en'),
-            _buildLanguageRadio(context, "ខ្មែរ", 'km'),
+            _buildSelectionItem(
+              context,
+              "Country".tr,
+              _selectedCountry,
+              flag: _selectedFlag,
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CountrySelectionScreen(),
+                  ),
+                );
+                if (result == true) {
+                  _loadCountry();
+                }
+              },
+            ),
+            _buildSelectionItem(
+              context,
+              "Language/ភាសា",
+              translator.currentLocale?.languageCode == 'en' ? "English" : (translator.currentLocale?.languageCode == 'km' ? "ខ្មែរ" : "中文"),
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LanguageSelectionScreen(),
+                  ),
+                );
+                if (result == true) {
+                  setState(() {});
+                }
+              },
+            ),
 
             const SizedBox(height: 40),
 
@@ -320,9 +398,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               context,
               'assets/icon/recommend.png',
               "Recommend this app".tr,
-              onTap: () {
-                // Recommend this app action
-              },
+              onTap: () => _recommendApp(),
               showLeading: false,
             ),
 
@@ -333,7 +409,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 context,
                 "Contact us".tr,
                 onPressed: () {
-                  // Contact us action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ContactUsScreen(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -354,9 +435,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               context,
               'assets/icon/cache.png',
               "Clear cache".tr,
-              onTap: () {
-                // Clear cache action
-              },
+              onTap: () => _showClearCacheDialog(context),
               showLeading: false,
             ),
 
@@ -422,6 +501,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget _buildSelectionItem(
+    BuildContext context,
+    String title,
+    String value, {
+    String? flag,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+      leading: flag != null && flag.isNotEmpty
+          ? Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white10 : Colors.grey[100],
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: TextWidget(flag, fontSize: 22),
+              ),
+            )
+          : Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white10 : Colors.grey[100],
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.public,
+                color: isDark ? Colors.white70 : Colors.black54,
+              ),
+            ),
+      title: TextWidget(
+        value.isEmpty ? "Select".tr : value,
+        fontWeight: FontWeight.w400,
+        fontSize: 18,
+        color: isDark ? Colors.white : Colors.black,
+      ),
+      subtitle: TextWidget(
+        title,
+        fontSize: 14,
+        color: isDark ? Colors.white54 : Colors.black54,
+      ),
+      trailing: Icon(
+        Icons.chevron_right,
+        size: 30,
+        color: isDark ? Colors.white : Colors.black,
+      ),
+      onTap: onTap,
+    );
+  }
+
   Widget _buildGridItem(
     BuildContext context,
     String iconPath,
@@ -430,7 +563,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isColored = iconPath.contains('i_color');
-
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -453,49 +585,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             textAlign: TextAlign.center,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildLanguageRadio(
-    BuildContext context,
-    String label,
-    String langCode,
-  ) {
-    final isSelected = translator.currentLocale?.languageCode == langCode;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return ListTile(
-      onTap: () {
-        if (!isSelected) {
-          translator.translate(langCode);
-          setState(() {});
-        }
-      },
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-      title: TextWidget(label, fontSize: 16, fontWeight: FontWeight.w500),
-      trailing: Container(
-        width: 20,
-        height: 20,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: isDark ? Colors.white70 : Colors.black26,
-            width: 1,
-          ),
-        ),
-        child: isSelected
-            ? Center(
-                child: Container(
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white : Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              )
-            : null,
       ),
     );
   }
@@ -534,6 +623,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
         color: isDark ? Colors.white : Colors.black,
       ),
       onTap: onTap,
+    );
+  }
+
+  void _recommendApp() {
+    const String appLink = "https://play.google.com/store/apps/details?id=com.loomakh.app";
+    Share.share(
+      "Check out this amazing shopping app! Download it now: $appLink".tr,
+      subject: "Recommend Looma App".tr,
+    );
+  }
+
+  void _showClearCacheDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => StatusDialog(
+        title: "Clear cache".tr,
+        message: "Are you sure you want to clear the app cache? This will free up space but might make images load slower temporarily.".tr,
+        btn1Text: "Cancel".tr,
+        btn2Text: "Clear".tr,
+        imagePath: 'assets/icon/i_color/Information.png',
+        iconColor: AppColor.primaryColor,
+        onBtn1Pressed: () => Navigator.pop(context),
+        onBtn2Pressed: () async {
+          await DefaultCacheManager().emptyCache();
+          if (context.mounted) {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: TextWidget("Cache cleared successfully".tr, color: Colors.white),
+                backgroundColor: Colors.green,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 

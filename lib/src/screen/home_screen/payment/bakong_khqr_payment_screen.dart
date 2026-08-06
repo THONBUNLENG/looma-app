@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../network/datastor/bakong_service.dart';
 import '../../../widget/button_cus.dart';
@@ -48,6 +49,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
   bool _isPaid = false;
   bool _isSaving = false;
   bool _hasError = false;
+  bool _isCheckingStatus = false;
 
   static const Color khqrRed = Color(0xFFE31B23);
 
@@ -153,12 +155,14 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
       if (!mounted || _isExpired || _isPaid) return;
       
       _pollingTimer = Timer.periodic(const Duration(seconds: 3), (timer) async {
-        if (_md5Hash == null || _isExpired || _isPaid) return;
+        if (_md5Hash == null || _isExpired || _isPaid || _isCheckingStatus) return;
 
+        _isCheckingStatus = true;
         final result = await BakongService.checkTransactionByMd5(
           md5: _md5Hash!,
           token: widget.bakongToken,
         );
+        _isCheckingStatus = false;
 
         if (!mounted) {
           timer.cancel();
@@ -210,6 +214,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
             ButtonCus(
               buttonName: "Back to Home".tr,
               onPressed: () {
+                CartManager().clearCart();
                 Navigator.of(context).pop();
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
@@ -259,7 +264,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
         return;
       }
 
-      await Gal.putImageBytes(bytes, album: 'Thon Bunleng');
+      await Gal.putImageBytes(bytes, album: 'Looma Shop');
       _showSnack("Saved KHQR to Gallery!");
     } catch (e) {
       _showSnack("Failed to save QR Code", isError: true);
@@ -324,7 +329,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
-        leading: const BackButton(color: Colors.black),
+        leading: BackButton(color: theme.colorScheme.onSurface),
         title: TextWidget(
           "My QR Code".tr,
           fontSize: 20,
@@ -384,7 +389,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextWidget(
-                              "Thon Bunleng",
+                              "LOOMA SHOP",
                               fontSize: 13,
                               color: Colors.black54,
                               fontWeight: FontWeight.w500,
@@ -395,7 +400,9 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                               textBaseline: TextBaseline.alphabetic,
                               children: [
                                 TextWidget(
-                                  widget.amount.toStringAsFixed(2),
+                                  widget.currency == 'KHR' 
+                                    ? widget.amount.toStringAsFixed(0)
+                                    : widget.amount.toStringAsFixed(2),
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -616,8 +623,11 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                       children: [
                         TextWidget("Amount".tr,
                             color: theme.colorScheme.onSurfaceVariant),
-                        TextWidget("\$${widget.amount.toStringAsFixed(2)}",
-                            fontWeight: FontWeight.bold),
+                        TextWidget(
+                          widget.currency == 'KHR'
+                            ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
+                            : "\$${widget.amount.toStringAsFixed(2)}",
+                          fontWeight: FontWeight.bold),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -630,7 +640,9 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                         TextWidget(
-                          "\$${widget.amount.toStringAsFixed(2)}",
+                          widget.currency == 'KHR'
+                            ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
+                            : "\$${widget.amount.toStringAsFixed(2)}",
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
                         ),
@@ -640,7 +652,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                 ),
               ),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 20),
               if (!_isExpired && !_isPaid && !_hasError)
                 Container(
                   padding:
@@ -711,7 +723,6 @@ class _StatusOverlay extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Prohibited Icon over QR Code
               Stack(
                 alignment: Alignment.center,
                 children: [

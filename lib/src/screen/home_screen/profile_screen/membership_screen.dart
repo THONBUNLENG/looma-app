@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../../constants/string_extension.dart';
+import 'qr_scanner_screen.dart';
 
 class MembershipScreen extends StatelessWidget {
   const MembershipScreen({super.key});
@@ -28,6 +29,19 @@ class MembershipScreen extends StatelessWidget {
             color: isDark ? Colors.white : Colors.black,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.qr_code_scanner, color: isDark ? Colors.white : Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const QRScannerScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -104,10 +118,10 @@ class MembershipScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            _buildLevelHeader("ONLINE", const Color(0xFFD9904D), false),
+            _buildLevelHeader("ONLINE", const Color(0xFFD9904D), true),
             _buildLevelHeader("SILVER", Colors.grey, false),
             _buildLevelHeader("GOLD", Colors.yellow[700]!, false),
-            _buildLevelHeader("PLATINUM", Colors.black, true),
+            _buildLevelHeader("PLATINUM", Colors.black, false),
           ],
         ),
         const SizedBox(height: 16),

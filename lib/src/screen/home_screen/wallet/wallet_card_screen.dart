@@ -4,7 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
+import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../model/wallet_card_model.dart';
 import 'add_new_card.dart';
@@ -31,14 +34,21 @@ class _WalletCardScreenState extends State<WalletCardScreen>
 
   Future<void> saveCardsSecurely() async {
     try {
-
       final String jsonString = jsonEncode(
         localCards.map((card) => card.toJson()).toList(),
       );
 
-
       await storage.write(key: 'secure_wallet_cards', value: jsonString);
-      debugPrint("✅ Cards saved successfully");
+      debugPrint("✅ Cards saved locally");
+
+      // Sync to Firestore if logged in
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await FirestoreService().updateUserCards(
+          user.uid,
+          localCards.map((card) => card.toJson()).toList(),
+        );
+      }
     } catch (e) {
       debugPrint("❌ Error saving cards: $e");
     }
@@ -46,26 +56,54 @@ class _WalletCardScreenState extends State<WalletCardScreen>
 
   Future<void> loadSavedCards() async {
     try {
+      // 1. Load from local secure storage
       String? jsonString = await storage.read(key: 'secure_wallet_cards');
+      List<WalletCardModel> cards = [];
 
       if (jsonString != null && jsonString.isNotEmpty) {
         final List<dynamic> decodedList = jsonDecode(jsonString);
+        cards = decodedList
+            .map((item) => WalletCardModel.fromJson(item))
+            .toList();
+      }
 
-        setState(() {
-          localCards = decodedList
+      // 2. Load from Firestore if logged in and merge
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final List<Map<String, dynamic>> firestoreCardsData =
+            await FirestoreService().getUserCards(user.uid);
+        
+        if (firestoreCardsData.isNotEmpty) {
+          final List<WalletCardModel> firestoreCards = firestoreCardsData
               .map((item) => WalletCardModel.fromJson(item))
               .toList();
 
-          flipControllers = List.generate(
-            localCards.length,
-                (_) => AnimationController(
-              vsync: this,
-              duration: const Duration(milliseconds: 600),
-            ),
-          );
-          isFrontList = List.generate(localCards.length, (_) => true);
-        });
-        debugPrint("✅ Loaded ${localCards.length} cards");
+          // Merge: Add cards from Firestore that aren't already in local (by card number)
+          for (var fCard in firestoreCards) {
+            if (!cards.any((lCard) => lCard.number == fCard.number)) {
+              cards.add(fCard);
+            }
+          }
+        }
+      }
+
+      setState(() {
+        localCards = cards;
+
+        flipControllers = List.generate(
+          localCards.length,
+          (_) => AnimationController(
+            vsync: this,
+            duration: const Duration(milliseconds: 600),
+          ),
+        );
+        isFrontList = List.generate(localCards.length, (_) => true);
+      });
+      debugPrint("✅ Loaded ${localCards.length} cards");
+
+      // If we merged new cards from Firestore, save them back to local
+      if (user != null) {
+        await saveCardsSecurely();
       }
     } catch (e) {
       debugPrint("❌ Error loading cards: $e");
@@ -154,7 +192,55 @@ class _WalletCardScreenState extends State<WalletCardScreen>
             },
           ),
         ),
+        Positioned(
+          top: 15,
+          right: 15,
+          child: GestureDetector(
+            onTap: () => _confirmDelete(index),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.delete_outline_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            ),
+          ),
+        ),
       ],
+    );
+  }
+
+  void _confirmDelete(int index) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title:  TextWidget("Delete Card"),
+        content:  TextWidget("Are you sure you want to remove this card?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              setState(() {
+                localCards.removeAt(index);
+                flipControllers[index].dispose();
+                flipControllers.removeAt(index);
+                isFrontList.removeAt(index);
+              });
+              await saveCardsSecurely();
+            },
+            child: const Text("Delete", style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
     );
   }
 

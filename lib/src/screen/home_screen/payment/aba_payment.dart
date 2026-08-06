@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data' show Uint8List;
 import 'package:flutter/material.dart';
+import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'package:shopping_app/src/network/datastor/aba_payway_service.dart';
 import 'package:shopping_app/constants/string_extension.dart';
@@ -34,6 +35,7 @@ class _AbaPaymentScreenState extends State<AbaPaymentScreen> {
   DateTime? _deadline;
 
   bool _loading = true;
+  bool _isCheckingStatus = false;
   String? _error;
   Map<String, dynamic>? _qrData;
   Duration _remaining = const Duration(minutes: _lifetimeMinutes);
@@ -123,7 +125,12 @@ class _AbaPaymentScreenState extends State<AbaPaymentScreen> {
         return;
       }
 
+      if (_isCheckingStatus) return;
+
+      _isCheckingStatus = true;
       final result = await AbaPayWayService.checkTransaction(widget.orderId);
+      _isCheckingStatus = false;
+
       if (result['status'] == '0' || result['status'] == 0) {
         timer.cancel();
         if (mounted) {
@@ -138,8 +145,8 @@ class _AbaPaymentScreenState extends State<AbaPaymentScreen> {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         contentPadding: const EdgeInsets.fromLTRB(24, 40, 24, 24),
         content: Column(
@@ -165,7 +172,7 @@ class _AbaPaymentScreenState extends State<AbaPaymentScreen> {
               "Your transaction for Order #${widget.orderId} has been completed successfully.".tr,
               textAlign: TextAlign.center,
               fontSize: 15,
-              color: Colors.black54,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               lineHeight: 1.5,
             ),
             const SizedBox(height: 32),
@@ -174,6 +181,7 @@ class _AbaPaymentScreenState extends State<AbaPaymentScreen> {
               height: 54,
               child: ElevatedButton(
                 onPressed: () {
+                  CartManager().clearCart();
                   Navigator.of(context).pop();
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },

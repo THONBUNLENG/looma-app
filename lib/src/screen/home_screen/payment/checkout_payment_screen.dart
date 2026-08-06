@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/model/payment_model.dart';
 import 'package:shopping_app/src/network/repository/payment_repository.dart';
+import 'package:shopping_app/src/screen/home_screen/order/order_success_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'bakong_khqr_payment_screen.dart';
 import 'aba_payment.dart';
@@ -12,18 +13,24 @@ import 'bloc/payment_bloc.dart';
 class CheckoutPaymentScreen extends StatelessWidget {
   final double totalAmount;
   final String orderId;
+  final String paymentMethod;
 
   const CheckoutPaymentScreen({
     super.key,
     this.totalAmount = 0.0,
     this.orderId = "ORD-0000",
+    this.paymentMethod = "Bank transfer",
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PaymentBloc(paymentRepository: PaymentRepository()),
-      child: CheckoutPaymentView(totalAmount: totalAmount, orderId: orderId),
+      child: CheckoutPaymentView(
+        totalAmount: totalAmount,
+        orderId: orderId,
+        paymentMethod: paymentMethod,
+      ),
     );
   }
 }
@@ -31,11 +38,12 @@ class CheckoutPaymentScreen extends StatelessWidget {
 class CheckoutPaymentView extends StatefulWidget {
   final double totalAmount;
   final String orderId;
-
+  final String paymentMethod;
   const CheckoutPaymentView({
     super.key,
     required this.totalAmount,
     required this.orderId,
+    required this.paymentMethod,
   });
 
   @override
@@ -71,71 +79,17 @@ class _CheckoutPaymentViewState extends State<CheckoutPaymentView> {
   }
 
   void _showPaymentSuccessDialog(BuildContext rootContext) {
-    showDialog(
-      context: rootContext,
-      barrierDismissible: false,
-      builder: (dialogContext) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 32,
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.green.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.check_circle_rounded,
-                color: Colors.green,
-                size: 64,
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextWidget(
-              "Payment Successful!".tr,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 8),
-            TextWidget(
-              "Your payment of \$${widget.totalAmount.toStringAsFixed(2)} for Order #${widget.orderId} was processed successfully."
-                  .tr,
-              textAlign: TextAlign.center,
-              fontSize: 14,
-              color: Theme.of(rootContext).colorScheme.onSurfaceVariant,
-            ),
-            const SizedBox(height: 28),
-            SizedBox(
-              width: double.infinity,
-              height: 52,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(dialogContext).pop();
-                  Navigator.of(rootContext).popUntil((route) => route.isFirst);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.primaryColor,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: TextWidget(
-                  "Back to Home".tr,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ],
+    CartManager().clearCart();
+    Navigator.pushAndRemoveUntil(
+      rootContext,
+      MaterialPageRoute(
+        builder: (_) => OrderSuccessScreen(
+          orderId: widget.orderId,
+          totalAmount: widget.totalAmount,
+          paymentMethod: widget.paymentMethod,
         ),
       ),
+      (route) => route.isFirst,
     );
   }
 

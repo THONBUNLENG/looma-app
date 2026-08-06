@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import '../../model/order_model.dart';
 import '../../model/product_model.dart';
 
 class FirestoreService {
@@ -47,7 +49,20 @@ class FirestoreService {
 
   /// Placeholder for order creation
   Future<void> createOrder(dynamic order) async {
-    await _db.collection('orders').add(order.toMap());
+    if (order is OrderModel) {
+      // Use the generated ID as the document ID for consistency
+      final docId = order.id ?? _db.collection('orders').doc().id;
+      await _db.collection('orders').doc(docId).set(order.toFirestore());
+    } else if (order is Map<String, dynamic>) {
+      await _db.collection('orders').add(order);
+    } else {
+      // Fallback for other objects that might have toMap or toJson
+      try {
+        await _db.collection('orders').add(order.toMap());
+      } catch (_) {
+        await _db.collection('orders').add(order.toJson());
+      }
+    }
   }
 
   /// Get a single product by ID
@@ -76,6 +91,49 @@ class FirestoreService {
       }
       return subCats.toList()..sort();
     } catch (e) {
+      return [];
+    }
+  }
+
+  /// Update user's wishlist in Firestore
+  Future<void> updateUserWishlist(String uid, List<Map<String, dynamic>> items) async {
+    try {
+      await _db.collection('user').doc(uid).set({
+        'wishlist': items,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      debugPrint("✅ Wishlist synced to Firestore for user $uid");
+    } catch (e) {
+      debugPrint("❌ Error syncing wishlist to Firestore: $e");
+    }
+  }
+
+  /// Update user's wallet cards in Firestore
+  Future<void> updateUserCards(String uid, List<Map<String, dynamic>> cards) async {
+    try {
+      await _db.collection('user').doc(uid).set({
+        'cards': cards,
+        'cardsUpdatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      debugPrint("✅ Cards synced to Firestore for user $uid");
+    } catch (e) {
+      debugPrint("❌ Error syncing cards to Firestore: $e");
+    }
+  }
+
+  /// Get user's wallet cards from Firestore
+  Future<List<Map<String, dynamic>>> getUserCards(String uid) async {
+    try {
+      final doc = await _db.collection('user').doc(uid).get();
+      if (doc.exists && doc.data() != null) {
+        final data = doc.data()!;
+        if (data['cards'] != null && data['cards'] is List) {
+          return List<Map<String, dynamic>>.from(data['cards']);
+        }
+      }
+      return [];
+    } catch (e) {
+      debugPrint("❌ Error fetching cards from Firestore: $e");
       return [];
     }
   }

@@ -7,8 +7,8 @@ import 'package:shopping_app/src/model/product_model.dart';
 import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
 import 'package:shopping_app/src/screen/home_screen/universal_product_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
+import 'package:shopping_app/src/widget/favorite_button.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-import '../../../constants/app_color.dart';
 
 class MostPopularSection extends StatefulWidget {
   const MostPopularSection({super.key});
@@ -214,12 +214,11 @@ class PopularCard extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(
-                            Icons.favorite,
-                            color: AppColor.buttonColor,
-                            size: 12,
+                          FavoriteButton(
+                            product: product.toMap(),
+                            size: 16,
                           ),
-                          const SizedBox(width: 4),
+                          const SizedBox(width: 6),
                           TextWidget(
                             product.sold ?? '0',
                             fontWeight: FontWeight.bold,

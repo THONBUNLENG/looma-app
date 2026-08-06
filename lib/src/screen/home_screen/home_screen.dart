@@ -255,7 +255,7 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextWidget(
-                              (banner['title'] ?? '').tr.toUpperCase(),
+                              (banner['title'] ?? ''),
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.w900,

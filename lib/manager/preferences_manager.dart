@@ -44,4 +44,4 @@ class SharedPrefUtil {
     return await _prefs?.clear() ?? false;
   }
 }
-enum PrefKey { token, fbToken, deviceId }
+enum PrefKey { token, fbToken, deviceId, country }

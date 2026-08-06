@@ -7,9 +7,8 @@ import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/model/product_model.dart';
 import 'package:shopping_app/src/network/crud_firebase/firestore_service.dart';
-import 'package:shopping_app/src/network/datastor/auth_service.dart';
-import 'package:shopping_app/src/screen/login_screen/login_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
+import 'package:shopping_app/src/widget/favorite_button.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'filter/filter_screen.dart';
@@ -235,13 +234,13 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
       localData = jackets;
     } else if (subCat == 'VESTS') {
       localData = vests;
-    } else if (subCat == 'SKIRT') {
+    } else if (subCat == 'SKIRT' || subCat == 'SKIRTS') {
       localData = skirt;
     } else if (subCat == 'SHORTS') {
       localData = shorts;
     } else if (subCat == 'HOODIES') {
       localData = hoodies;
-    } else if (subCat == 'T-SHIRTS' || subCat == 'TSHIRTS') {
+    } else if (subCat == 'T-SHIRTS' || subCat == 'TSHIRTS' || subCat == 'TSHIRT') {
       localData = tShirts;
     } else if (subCat == 'SWEATSHIRTS') {
       localData = sweatshirts;
@@ -253,7 +252,57 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
       localData = skincare;
     } else if (subCat == 'MAKEUP') {
       localData = makeup;
-    } 
+    } else if (subCat == 'SNEAKERS') {
+      localData = sneakers;
+    } else if (subCat == 'HEELS') {
+      localData = heeled;
+    } else if (subCat == 'SANDALS') {
+      localData = sandals;
+    } else if (subCat == 'BOOTS') {
+      localData = shoesBoots;
+    } else if (subCat == 'FLATS') {
+      localData = flats;
+    } else if (subCat == 'LOAFERS') {
+      localData = loafers;
+    } else if (subCat == 'SLIPPERS') {
+      localData = slippers;
+    } else if (subCat == 'SPORTS') {
+      localData = sportsShoes;
+    } else if (subCat == 'HANDBAGS') {
+      localData = handbags;
+    } else if (subCat == 'BACKPACKS') {
+      localData = backpacks;
+    } else if (subCat == 'CLUTCHES') {
+      localData = clutches;
+    } else if (subCat == 'WALLETS') {
+      localData = wallets;
+    } else if (subCat == 'TOTEBAGS') {
+      localData = toteBags;
+    } else if (subCat == 'MESSENGER') {
+      localData = messengerBags;
+    } else if (subCat == 'TRAVELBAGS') {
+      localData = travelBags;
+    } else if (subCat == 'BRAS' || subCat == 'PANTIES' || subCat == 'NIGHTWEAR' || subCat == 'BODYSUIT' || subCat == 'SHAPEWEAR') {
+      localData = lingerie;
+    } else if (subCat == 'JEWELRY') {
+      localData = jewelry;
+    } else if (subCat == 'WATCHES') {
+      localData = watches;
+    } else if (subCat == 'SUNGLASSES') {
+      localData = sunglasses;
+    } else if (subCat == 'HATS') {
+      localData = hats;
+    } else if (subCat == 'BELTS') {
+      localData = belts;
+    } else if (subCat == 'SCARVES') {
+      localData = scarves;
+    } else if (subCat == 'HAIR') {
+      localData = hairAccessories;
+    } else if (subCat == 'GLOVES') {
+      localData = gloves;
+    } else if (subCat == 'TOYS') {
+      localData = toys;
+    }
     
 
     if (localData.isEmpty) {
@@ -472,7 +521,7 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
           MaterialPageRoute(
             builder: (context) => ProductClothesScreen(product: product.toMap()),
           ),
-        );
+        ).then((_) => setState(() {}));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -504,19 +553,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 10,
-                      right: 10,
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (await AuthService.isLoggedIn()) {
-                            // Wishlist logic
-                          } else {
-                            if (context.mounted) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                            }
-                          }
-                        },
-                        child: Icon(Icons.favorite_border, size: 20, color: isDark ? Colors.white60 : Colors.black26),
+                      bottom: 12,
+                      right: 12,
+                      child: FavoriteButton(
+                        product: product.toMap(),
+                        size: 24,
                       ),
                     ),
                   ],

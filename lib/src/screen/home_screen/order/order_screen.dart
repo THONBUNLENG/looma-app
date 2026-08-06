@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:shopping_app/src/model/order_model.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_detail_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/order/payment_history.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
@@ -16,31 +20,19 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  final List<Map<String, dynamic>> allOrders = [
-    {
-      "id": "#1000137",
-      "date": "2024-05-18 10:27:08",
-      "status": "pending",
-      "total": "40.00 USD",
-      "items": "1",
-      "discount": "0.00 USD",
-      "totalAmount": "40.00 USD",
-    },
-    {
-      "id": "#1000138",
-      "date": "2024-05-19 11:30:00",
-      "status": "Already Paid",
-      "total": "120.00 USD",
-      "items": "2",
-      "discount": "10.00 USD",
-      "totalAmount": "110.00 USD",
-    },
-  ];
+  final String _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? '';
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+
+    if (_currentUserId.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: TextWidget("My Orders".tr)),
+        body: Center(child: TextWidget("Please login to view orders".tr)),
+      );
+    }
 
     return DefaultTabController(
       length: 3,
@@ -52,7 +44,11 @@ class _OrderScreenState extends State<OrderScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black, size: 20),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: isDark ? Colors.white : Colors.black,
+              size: 20,
+            ),
             onPressed: () => Navigator.pop(context),
           ),
           title: TextWidget(
@@ -71,7 +67,10 @@ class _OrderScreenState extends State<OrderScreen> {
               labelColor: AppColor.pink,
               unselectedLabelColor: Colors.grey,
               indicatorSize: TabBarIndicatorSize.tab,
-              labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+              labelStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
               tabs: [
                 Tab(text: "All Order".tr),
                 Tab(text: "Await Payment".tr),
@@ -80,22 +79,60 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
           ),
         ),
-        body: TabBarView(
-          children: [
-            _buildOrderList(allOrders, isDark),
-            _buildOrderList(
-                allOrders.where((o) => o['status'] == 'pending').toList(),
-                isDark),
-            _buildOrderList(
-                allOrders.where((o) => o['status'] != 'pending').toList(),
-                isDark),
-          ],
+        body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('orders')
+              .where('userId', isEqualTo: _currentUserId)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: TextWidget("Error: ${snapshot.error}"));
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final orders =
+                snapshot.data?.docs
+                    .map((doc) => OrderModel.fromFirestore(doc))
+                    .toList() ??
+                [];
+
+            orders.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+            return TabBarView(
+              children: [
+                _buildOrderList(orders, isDark),
+                _buildOrderList(
+                  orders
+                      .where(
+                        (o) =>
+                            o.status.toLowerCase() == 'pending' ||
+                            o.status.toLowerCase() == 'await payment',
+                      )
+                      .toList(),
+                  isDark,
+                ),
+                _buildOrderList(
+                  orders
+                      .where(
+                        (o) =>
+                            o.status.toLowerCase() != 'pending' &&
+                            o.status.toLowerCase() != 'await payment',
+                      )
+                      .toList(),
+                  isDark,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget _buildOrderList(List<Map<String, dynamic>> orders, bool isDark) {
+  Widget _buildOrderList(List<OrderModel> orders, bool isDark) {
     if (orders.isEmpty) {
       return Center(
         child: Column(
@@ -124,11 +161,32 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildOrderCard(Map<String, dynamic> order, bool isDark) {
-    final cardColor = isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white;
-    final isPending = order['status'] == 'pending';
+  Widget _buildOrderCard(OrderModel order, bool isDark) {
+    final cardColor = isDark
+        ? Colors.white.withValues(alpha: 0.05)
+        : Colors.white;
+    final statusLower = order.status.toLowerCase();
+    final isPending =
+        statusLower == 'pending' || statusLower == 'await payment';
     final statusText = isPending ? "Await Payment".tr : "Already Paid".tr;
     final statusColor = isPending ? Colors.orange : AppColor.successGreen;
+
+    // Convert OrderModel to Map for Detail and Tracking screens (compatibility)
+    final orderMap = {
+      "id": order.id,
+      "date": DateFormat('yyyy-MM-dd HH:mm:ss').format(order.createdAt),
+      "status": order.status,
+      "total": "${order.totalAmount.toStringAsFixed(2)} USD",
+      "items": order.items.length.toString(),
+      "discount": "${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
+      "totalAmount": "${order.totalAmount.toStringAsFixed(2)} USD",
+      "rawItems": order.items,
+      "rawAddress": order.address,
+      "promoCode": order.promoCode,
+      "discountAmount": order.discountAmount ?? 0.0,
+      "paymentMethod": order.paymentMethod,
+      "deliveryMethod": order.deliveryMethod,
+    };
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -152,13 +210,16 @@ class _OrderScreenState extends State<OrderScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextWidget(
-                order['id'],
+                order.id ?? 'Unknown',
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
                 color: isDark ? Colors.white : Colors.black,
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: statusColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
@@ -174,20 +235,33 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
           const SizedBox(height: 4),
           TextWidget(
-            order['date'],
+            DateFormat('yyyy-MM-dd HH:mm:ss').format(order.createdAt),
             color: isDark ? Colors.white54 : Colors.grey,
             fontSize: 13,
           ),
           const SizedBox(height: 16),
           const Divider(height: 1, thickness: 0.5),
           const SizedBox(height: 16),
-          _buildInfoRow("Total".tr, order['total'], isDark),
+          _buildInfoRow(
+            "Total".tr,
+            "${order.totalAmount.toStringAsFixed(2)} USD",
+            isDark,
+          ),
           const SizedBox(height: 10),
-          _buildInfoRow("Total Item".tr, order['items'], isDark),
+          _buildInfoRow("Total Item".tr, order.items.length.toString(), isDark),
           const SizedBox(height: 10),
-          _buildInfoRow("Discount".tr, order['discount'], isDark),
+          _buildInfoRow(
+            "Discount".tr,
+            "${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
+            isDark,
+          ),
           const SizedBox(height: 10),
-          _buildInfoRow("Total Amount".tr, order['totalAmount'], isDark, isBold: true),
+          _buildInfoRow(
+            "Total Amount".tr,
+            "${order.totalAmount.toStringAsFixed(2)} USD",
+            isDark,
+            isBold: true,
+          ),
           const SizedBox(height: 20),
           Row(
             children: [
@@ -198,7 +272,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TrackOrderScreen(order: order),
+                        builder: (context) => TrackOrderScreen(order: orderMap),
                       ),
                     );
                   },
@@ -215,15 +289,20 @@ class _OrderScreenState extends State<OrderScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PaymentHistory(order: order),
+                              builder: (context) =>
+                                  PaymentHistory(order: orderMap),
                             ),
                           );
                         }
                       : () {},
                   isDark,
-                  backgroundColor: isPending ? null : (isDark ? Colors.white10 : Colors.grey[100]),
+                  backgroundColor: isPending
+                      ? null
+                      : (isDark ? Colors.white10 : Colors.grey[100]),
                   textColor: isPending ? null : Colors.grey,
-                  borderColor: isPending ? (isDark ? Colors.white24 : Colors.grey.shade300) : Colors.transparent,
+                  borderColor: isPending
+                      ? (isDark ? Colors.white24 : Colors.grey.shade300)
+                      : Colors.transparent,
                 ),
               ),
               const SizedBox(width: 8),
@@ -234,7 +313,8 @@ class _OrderScreenState extends State<OrderScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OrderDetailScreen(order: order),
+                        builder: (context) =>
+                            OrderDetailScreen(order: orderMap),
                       ),
                     );
                   },
@@ -250,7 +330,12 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildInfoRow(String label, String value, bool isDark, {bool isBold = false}) {
+  Widget _buildInfoRow(
+    String label,
+    String value,
+    bool isDark, {
+    bool isBold = false,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -263,7 +348,9 @@ class _OrderScreenState extends State<OrderScreen> {
           value,
           fontSize: 14,
           fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
-          color: isBold ? (isDark ? Colors.white : Colors.black) : (isDark ? Colors.white70 : Colors.black87),
+          color: isBold
+              ? (isDark ? Colors.white : Colors.black)
+              : (isDark ? Colors.white70 : Colors.black87),
         ),
       ],
     );
@@ -283,7 +370,9 @@ class _OrderScreenState extends State<OrderScreen> {
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
           backgroundColor: backgroundColor ?? Colors.transparent,
-          side: borderColor != null ? BorderSide(color: borderColor) : BorderSide.none,
+          side: borderColor != null
+              ? BorderSide(color: borderColor)
+              : BorderSide.none,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
