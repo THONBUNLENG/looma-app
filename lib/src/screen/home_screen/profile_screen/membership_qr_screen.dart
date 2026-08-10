@@ -4,6 +4,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../../constants/string_extension.dart';
 import 'qr_scanner_screen.dart';
+import '../../../network/datastor/membership_service.dart';
+import '../../../model/order_model.dart';
 
 class MembershipQRScreen extends StatefulWidget {
   const MembershipQRScreen({super.key});
@@ -83,101 +85,114 @@ class _MembershipQRScreenState extends State<MembershipQRScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            TextWidget(
-              "ONLINE",
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : Colors.black,
-            ),
-            const SizedBox(height: 10),
-            Center(
-              child: QrImageView(
-                data: "USER_MEMBERSHIP_ID_PLACEHOLDER",
-                version: QrVersions.auto,
-                size: 250.0,
-                eyeStyle: QrEyeStyle(
-                  eyeShape: QrEyeShape.square,
-                  color: isDark ? Colors.white : Colors.black,
-                ),
-                dataModuleStyle: QrDataModuleStyle(
-                  dataModuleShape: QrDataModuleShape.square,
-                  color: isDark ? Colors.white : Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextWidget(
-              "Expire in",
-              fontSize: 16,
-              color: isDark ? Colors.white70 : Colors.black54,
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: 180,
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: TextWidget(
-                  _formatTime(_secondsRemaining),
-                  fontSize: 20,
+      body: StreamBuilder<List<OrderModel>>(
+        stream: MembershipService.getOrdersStream(),
+        builder: (context, snapshot) {
+          final orders = snapshot.data ?? [];
+          final totalSpent = MembershipService.calculateTotalSpent(orders);
+          final level = MembershipService.getLevel(totalSpent);
+          final membershipId = MembershipService.getMembershipId();
+
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                TextWidget(
+                  level.label,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: isDark ? Colors.white : Colors.black,
                 ),
-              ),
+                const SizedBox(height: 10),
+                TextWidget(
+                  "ID: $membershipId",
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: level.color,
+                ),
+                const SizedBox(height: 10),
+                Center(
+                  child: QrImageView(
+                    data: membershipId,
+                    version: QrVersions.auto,
+                    size: 250.0,
+                    eyeStyle: QrEyeStyle(
+                      eyeShape: QrEyeShape.square,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
+                    dataModuleStyle: QrDataModuleStyle(
+                      dataModuleShape: QrDataModuleShape.square,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextWidget(
+                  "Expire in",
+                  fontSize: 16,
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  width: 180,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: TextWidget(
+                      _formatTime(_secondsRemaining),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        "Membership Benefits",
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(height: 15),
+                      TextWidget(
+                        "You can now become LOOMA member without extra charge when you make your purchase in one receipt from:",
+                        fontSize: 14,
+                        lineHeight: 1.4,
+                      ),
+                      const SizedBox(height: 10),
+                      _buildBulletPoint("USD5000: SILVER Card (10% Discount)"),
+                      _buildBulletPoint("USD10000: GOLD Card (15% Discount)"),
+                      _buildBulletPoint("USD100000: PLATINUM Card (20% Discount)"),
+                      const SizedBox(height: 20),
+                      TextWidget(
+                        "All LOOMA members can earn 1 Point with every USD10 purchase. All saved points can be used to upgrade your membership card without point deduction.",
+                        fontSize: 14,
+                        lineHeight: 1.4,
+                      ),
+                      const SizedBox(height: 10),
+                      _buildBulletPoint("500 Points: Upgrade from ONLINE to SILVER Card"),
+                      _buildBulletPoint("1000 Points: Upgrade from SILVER to GOLD Card"),
+                      _buildBulletPoint("10000 Points: Upgrade from GOLD to PLATINUM Card"),
+                      const SizedBox(height: 20),
+                      TextWidget(
+                        "point Redemption: 17 Points = USD5 Coupon to spend in store  ",
+                        fontSize: 14,
+                      ),
+                      const SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextWidget(
-                    "Membership Benefits",
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const SizedBox(height: 15),
-                  TextWidget(
-                    "You can now become LOOMA member without extra charge when you make your purchase in one receipt from:",
-                    fontSize: 14,
-                    lineHeight: 1.4,
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint("USD50: SILVER Card (10% Discount)"),
-                  _buildBulletPoint("USD100: GOLD Card (15% Discount)"),
-                  _buildBulletPoint("USD200: PLATINUM Card (20% Discount)"),
-                  const SizedBox(height: 20),
-                  TextWidget(
-                    "All LOOMA members can earn 1 Point with every USD10 purchase. All saved points can be used to upgrade your membership card without point deduction.",
-                    fontSize: 14,
-                    lineHeight: 1.4,
-                  ),
-                  const SizedBox(height: 10),
-                  _buildBulletPoint("10 Points: Upgrade from ONLINE to SILVER Card"),
-                  _buildBulletPoint("20 Points: Upgrade from SILVER to GOLD Card"),
-                  const SizedBox(height: 10),
-                  TextWidget(
-                    " Card ",
-                    fontSize: 14,
-                  ),
-                  const SizedBox(height: 20),
-                  TextWidget(
-                    "point Redemption: 17 Points = USD5 Coupon to spend in store  ",
-                    fontSize: 14,
-                  ),
-                  const SizedBox(height: 40),
-                ],
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

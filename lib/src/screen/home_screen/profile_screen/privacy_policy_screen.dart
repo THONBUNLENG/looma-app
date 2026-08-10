@@ -48,7 +48,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const Icon(Icons.security_outlined, size: 50, color: Colors.blue),
+                  const Icon(Icons.security_outlined, size: 50, color: Colors.black38),
                   const SizedBox(height: 15),
                   TextWidget(
                     "Your privacy is important to us".tr,

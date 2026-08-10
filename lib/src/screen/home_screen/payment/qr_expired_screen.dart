@@ -66,15 +66,12 @@ class QrExpiredScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 48),
-              const Text(
-                'Remember to scan your Healthy\n365 QR code within the same\nday of purchase.',
+             TextWidget(
+                'Ensure you have a stable internet connection and try again.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF212121),
-                  height: 1.4,
-                ),
+               fontSize: 18,
+               fontWeight: FontWeight.w500,
+               color: Color(0xFF212121),
               ),
               const Spacer(flex: 3),
               ButtonCus(

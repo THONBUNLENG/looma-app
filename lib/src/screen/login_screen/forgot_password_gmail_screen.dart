@@ -3,6 +3,7 @@ import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
 import '../../network/datastor/auth_login_service.dart';
+import '../../utils/firebase_error_handler.dart';
 import '../../widget/button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -31,10 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       }
     } catch (e) {
       if (mounted) {
-        String errorMessage = e.toString();
-        if (errorMessage.contains("] ")) {
-          errorMessage = errorMessage.split("] ").last;
-        }
+        String errorMessage = FirebaseErrorHandler.getErrorMessage(e);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: TextWidget(errorMessage, color: Colors.white, fontSize: 14),

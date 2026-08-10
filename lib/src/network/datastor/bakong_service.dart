@@ -6,47 +6,77 @@ class BakongService {
   static const String _baseUrl = 'https://api-bakong.nbc.gov.kh/v1';
 
   /// Verify transaction status by MD5 hash
-  /// Returns a map with 'success' (bool) and 'message' (String)
+  /// Returns a map with 'success' (bool), 'message' (String),
+  /// 'responseCode' (the API's response code, or the HTTP status code
+  /// as a fallback), and 'data' (raw payload, if any).
   static Future<Map<String, dynamic>> checkTransactionByMd5({
     required String md5,
     required String token,
   }) async {
+    http.Response response;
+
+    // --- Network call ---
     try {
-      final response = await http.post(
+      response = await http
+          .post(
         Uri.parse('$_baseUrl/check_transaction_by_md5'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode({'md5': md5}),
-      ).timeout(const Duration(seconds: 10));
-
-      final data = jsonDecode(response.body);
-      
-      if (response.statusCode == 200) {
-        final bool isSuccess = (data['responseCode'] == 0 || data['responseCode'] == '0') && 
-                                data['data'] != null;
-        return {
-          'success': isSuccess,
-          'message': isSuccess ? 'Success' : (data['responseMessage'] ?? 'Transaction not found'),
-          'data': data['data'],
-        };
-      } else {
-        return {
-          'success': false,
-          'message': 'Error ${response.statusCode}: ${data['responseMessage'] ?? 'Server error'}',
-        };
-      }
+      )
+          .timeout(const Duration(seconds: 10));
     } on TimeoutException {
       return {
         'success': false,
         'message': 'Connection timeout. Please check your internet.',
+        'responseCode': 'timeout',
       };
     } catch (e) {
+      // DNS failure, socket error, etc. — no HTTP response at all.
       return {
         'success': false,
-        'message': 'Exception: $e',
+        'message': 'Network error: $e',
+        'responseCode': 'network_error',
       };
     }
+
+    // --- Body parsing (kept separate so a bad body never masks the
+    // real HTTP status code, e.g. a 401 that returns an HTML page) ---
+    Map<String, dynamic>? data;
+    try {
+      final decoded = jsonDecode(response.body);
+      if (decoded is Map<String, dynamic>) {
+        data = decoded;
+      }
+    } catch (_) {
+      // Non-JSON body (HTML error page, empty body, etc). We still
+      // have response.statusCode below, so nothing is lost.
+      data = null;
+    }
+
+    if (response.statusCode == 200 && data != null) {
+      final bool isSuccess =
+          (data['responseCode'] == 0 || data['responseCode'] == '0') &&
+              data['data'] != null;
+      return {
+        'success': isSuccess,
+        'message': isSuccess
+            ? 'Success'
+            : (data['responseMessage'] ?? 'Transaction not found'),
+        'responseCode': data['responseCode'] ?? response.statusCode,
+        'data': data['data'],
+      };
+    }
+
+    // Non-200, or 200 with an unparseable/unexpected body.
+    return {
+      'success': false,
+      'message': data != null
+          ? 'Error ${response.statusCode}: ${data['responseMessage'] ?? 'Server error'}'
+          : 'Error ${response.statusCode}: Unexpected response from server',
+      'responseCode': data?['responseCode'] ?? response.statusCode,
+    };
   }
 }

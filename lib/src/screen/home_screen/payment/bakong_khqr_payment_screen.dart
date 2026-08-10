@@ -48,7 +48,8 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
   bool _isExpired = false;
   bool _isPaid = false;
   bool _isSaving = false;
-  bool _hasError = false;
+  String? _errorTitle;
+  String? _errorMessage;
   bool _isCheckingStatus = false;
 
   static const Color khqrRed = Color(0xFFE31B23);
@@ -64,7 +65,10 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
     _countdownTimer?.cancel();
 
     if (widget.bakongToken.isEmpty) {
-      setState(() => _hasError = true);
+      setState(() {
+        _errorTitle = "Missing Token";
+        _errorMessage = "The Bakong API token is missing. Please contact support.";
+      });
       return;
     }
 
@@ -73,7 +77,8 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
       _md5Hash = null;
       _isExpired = false;
       _isPaid = false;
-      _hasError = false;
+      _errorTitle = null;
+      _errorMessage = null;
       _remainingSeconds = 300;
     });
 
@@ -83,12 +88,12 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
           .millisecondsSinceEpoch;
 
       final bool isUsd = widget.currency == 'USD';
-      final String accountId = isUsd ? '007276456' : '007276457';
+
 
       final merchantInfo = MerchantInfo(
-        bakongAccountId: '$accountId@aba',
+        bakongAccountId: 'bunleng_thon@bkrt',
         acquiringBank: 'ABA Bank',
-        merchantId: accountId,
+        merchantId: 'YOUR_REAL_MERCHANT_ID',
         merchantName: 'LOOMA SHOP',
         currency: isUsd ? KhqrCurrency.usd : KhqrCurrency.khr,
         amount: widget.amount,
@@ -112,10 +117,16 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
         _startTimer();
         _startPolling();
       } else {
-        setState(() => _hasError = true);
+        setState(() {
+          _errorTitle = "QR Generation Failed";
+          _errorMessage = response.status.message;
+        });
       }
     } catch (e) {
-      setState(() => _hasError = true);
+      setState(() {
+        _errorTitle = "Unexpected Error";
+        _errorMessage = e.toString();
+      });
     }
   }
 
@@ -153,7 +164,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
     _pollingTimer?.cancel();
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted || _isExpired || _isPaid) return;
-      
+
       _pollingTimer = Timer.periodic(const Duration(seconds: 3), (timer) async {
         if (_md5Hash == null || _isExpired || _isPaid || _isCheckingStatus) return;
 
@@ -174,6 +185,14 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
           _countdownTimer?.cancel();
           setState(() => _isPaid = true);
           _onPaymentSuccess();
+        } else if (result['responseCode'] == 401 || result['message']?.toString().contains('401') == true) {
+          // Token expired or unauthorized
+          timer.cancel();
+          _countdownTimer?.cancel();
+          setState(() {
+            _errorTitle = "Session Expired";
+            _errorMessage = "The payment session has expired (401). Please try again.";
+          });
         }
       });
     });
@@ -400,7 +419,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                               textBaseline: TextBaseline.alphabetic,
                               children: [
                                 TextWidget(
-                                  widget.currency == 'KHR' 
+                                  widget.currency == 'KHR'
                                     ? widget.amount.toStringAsFixed(0)
                                     : widget.amount.toStringAsFixed(2),
                                   fontSize: 26,
@@ -452,13 +471,11 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (_hasError)
+                              if (_errorTitle != null)
                                 Positioned.fill(
                                   child: _StatusOverlay(
-                                    title: "QR code could not be generated".tr,
-                                    message:
-                                        "Ensure you have a stable internet connection and try again."
-                                            .tr,
+                                    title: _errorTitle!.tr,
+                                    message: _errorMessage ?? "Ensure you have a stable internet connection and try again.".tr,
                                     buttonLabel: "Try Again".tr,
                                     onPressed: _generateKhqr,
                                   ),
@@ -507,7 +524,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
 
               const SizedBox(height: 24),
               // Action Buttons Section
-              if (_qrPayload != null && !_isExpired && !_hasError)
+              if (_qrPayload != null && !_isExpired && _errorTitle == null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -653,7 +670,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
               ),
 
               const SizedBox(height: 20),
-              if (!_isExpired && !_isPaid && !_hasError)
+              if (!_isExpired && !_isPaid && _errorTitle == null)
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -713,7 +730,7 @@ class _StatusOverlay extends StatelessWidget {
       child: BackdropFilter(
         filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          decoration: BoxDecoration( 
+          decoration: BoxDecoration(
             color: isDark
                 ? const Color(0xFF1E1E1E).withValues(alpha: 0.98)
                 : Colors.white.withValues(alpha: 0.98),
@@ -749,7 +766,7 @@ class _StatusOverlay extends StatelessWidget {
               TextWidget(
                 message,
                 fontSize: 12,
-                textAlign: TextAlign.center, 
+                textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
                 maxLines: 2,
               ),

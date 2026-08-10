@@ -61,6 +61,8 @@ dependencies:
   khqr_sdk: ^3.0.0
   qr_flutter: ^4.1.0
   gal: ^2.3.3
+  google_generative_ai: ^0.4.0
+  mobile_scanner: ^5.1.1
 
 
 dev_dependencies:

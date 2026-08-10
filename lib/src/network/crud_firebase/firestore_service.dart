@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import '../../model/order_model.dart';
 import '../../model/product_model.dart';
+import '../../model/user.dart';
+import '../../telegarm_bot/bot_manager.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -53,8 +55,19 @@ class FirestoreService {
       // Use the generated ID as the document ID for consistency
       final docId = order.id ?? _db.collection('orders').doc().id;
       await _db.collection('orders').doc(docId).set(order.toFirestore());
+      
+      // Send Telegram notification
+      await BotManager().sendOrderNotification(order);
     } else if (order is Map<String, dynamic>) {
-      await _db.collection('orders').add(order);
+      final docRef = await _db.collection('orders').add(order);
+      
+      // Attempt to send notification from Map if possible
+      try {
+        final orderObj = OrderModel.fromJson({...order, 'id': docRef.id});
+        await BotManager().sendOrderNotification(orderObj);
+      } catch (e) {
+        debugPrint("Could not send Telegram notification for Map order: $e");
+      }
     } else {
       // Fallback for other objects that might have toMap or toJson
       try {
@@ -121,6 +134,61 @@ class FirestoreService {
     }
   }
 
+  /// Update user's profile info in Firestore
+  Future<void> updateUserInfo({
+    required String uid,
+    required String name,
+    required String email,
+    required String phone,
+    required String address,
+    String? gender,
+    String? dateOfBirth,
+    String? picture,
+  }) async {
+    try {
+      await _db.collection('user').doc(uid).set({
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'address': address,
+        'gender': gender,
+        'dateOfBirth': dateOfBirth,
+        'photoUrl': picture, // Consistent with AuthLoginService
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      debugPrint("✅ Profile info synced to Firestore for user $uid");
+    } catch (e) {
+      debugPrint("❌ Error syncing profile info to Firestore: $e");
+    }
+  }
+
+  /// Update user's addresses in Firestore
+  Future<void> updateUserAddresses(String uid, List<Map<String, dynamic>> addresses) async {
+    try {
+      await _db.collection('user').doc(uid).set({
+        'addresses': addresses,
+        'addressesUpdatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      debugPrint("✅ Addresses synced to Firestore for user $uid");
+    } catch (e) {
+      debugPrint("❌ Error syncing addresses to Firestore: $e");
+    }
+  }
+
+  /// Get user's profile data from Firestore
+  Future<UserModel?> getUserProfile(String uid) async {
+    try {
+      final doc = await _db.collection('user').doc(uid).get();
+      if (doc.exists && doc.data() != null) {
+        return UserModel.fromJson(doc.id, doc.data()!);
+      }
+      return null;
+    } catch (e) {
+      debugPrint("❌ Error fetching user profile from Firestore: $e");
+      return null;
+    }
+  }
+
   /// Get user's wallet cards from Firestore
   Future<List<Map<String, dynamic>>> getUserCards(String uid) async {
     try {
@@ -135,6 +203,32 @@ class FirestoreService {
     } catch (e) {
       debugPrint("❌ Error fetching cards from Firestore: $e");
       return [];
+    }
+  }
+
+  /// Get Telegram Admin Chat ID
+  Future<int?> getTelegramAdminChatId() async {
+    try {
+      final doc = await _db.collection('configs').doc('telegram').get();
+      if (doc.exists && doc.data() != null) {
+        return doc.data()!['adminChatId'] as int?;
+      }
+    } catch (e) {
+      debugPrint("❌ Error fetching Telegram Admin ID: $e");
+    }
+    return null;
+  }
+
+  /// Save Telegram Admin Chat ID
+  Future<void> saveTelegramAdminChatId(int chatId) async {
+    try {
+      await _db.collection('configs').doc('telegram').set({
+        'adminChatId': chatId,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      debugPrint("✅ Telegram Admin ID saved: $chatId");
+    } catch (e) {
+      debugPrint("❌ Error saving Telegram Admin ID: $e");
     }
   }
 }

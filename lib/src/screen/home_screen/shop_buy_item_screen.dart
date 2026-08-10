@@ -30,6 +30,61 @@ class ShopBuyItemScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Promotion Banner
+        Container(
+          width: double.infinity,
+          height: 160,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: isDark ? Colors.grey[900] : const Color(0xFFE0F7FA),
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 25,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextWidget(
+                      'FREE DELIVERY\nON ORDERS\nOVER \$160+'.tr.toUpperCase(),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
+                    const SizedBox(height: 8),
+                    TextWidget(
+                      'T&Cs APPLY'.tr.toUpperCase(),
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white38 : Colors.black45,
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                right: -10,
+                bottom: 0,
+                child: Image.asset(
+                  'assets/image/delivery.png',
+                  height: 180,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) => const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Icon(
+                      Icons.local_shipping,
+                      size: 60,
+                      color: Colors.black12,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
           child: Row(
@@ -119,62 +174,6 @@ class ShopBuyItemScreen extends StatelessWidget {
           },
         ),
 
-        // Promotion Banner
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 20),
-          height: 160,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: isDark ? Colors.grey[900] : const Color(0xFFE0F7FA),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 25,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextWidget(
-                      'FREE DELIVERY\nON ORDERS\nOVER \$160+'.tr.toUpperCase(),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: isDark ? Colors.white : Colors.black,
-                    ),
-                    const SizedBox(height: 8),
-                    TextWidget(
-                      'T&Cs APPLY'.tr.toUpperCase(),
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white38 : Colors.black45,
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                right: -10,
-                bottom: 0,
-                child: Image.asset(
-                  'assets/image/delivery.png',
-                  height: 180,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) => const Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Icon(
-                      Icons.local_shipping,
-                      size: 60,
-                      color: Colors.black12,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         const SizedBox(height: 20),
       ],
     );

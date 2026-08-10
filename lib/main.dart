@@ -11,6 +11,7 @@ import 'manager/cart_manager.dart';
 import 'manager/profile_manager.dart';
 import 'manager/review_manager.dart';
 import 'manager/wishlist_manager.dart';
+import 'src/telegarm_bot/bot_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
 import 'localization/locale_en.dart';
@@ -52,6 +53,11 @@ Future<void> main() async {
       ProfileManager().init(),
       ReviewManager().init(),
     ]);
+
+    // Start Bot in background so it doesn't block app startup
+    BotManager().start().catchError((e) {
+      debugPrint("Telegram Bot background start error: $e");
+    });
   } catch (e) {
     debugPrint("Manager initialization error: $e");
   }

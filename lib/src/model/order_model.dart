@@ -12,6 +12,7 @@ class OrderModel {
   final DateTime createdAt;
   final String? promoCode;
   final double? discountAmount;
+  final int? pointsRedeemed;
 
   OrderModel({
     this.id,
@@ -25,6 +26,7 @@ class OrderModel {
     required this.createdAt,
     this.promoCode,
     this.discountAmount,
+    this.pointsRedeemed,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot doc) {
@@ -41,6 +43,7 @@ class OrderModel {
       createdAt: (data['createdAt'] as Timestamp).toDate(),
       promoCode: data['promoCode'],
       discountAmount: (data['discountAmount'] ?? 0.0).toDouble(),
+      pointsRedeemed: data['pointsRedeemed'],
     );
   }
 
@@ -56,6 +59,7 @@ class OrderModel {
       'createdAt': Timestamp.fromDate(createdAt),
       'promoCode': promoCode,
       'discountAmount': discountAmount,
+      'pointsRedeemed': pointsRedeemed,
     };
   }
 
@@ -72,6 +76,7 @@ class OrderModel {
       createdAt: DateTime.parse(json['createdAt']),
       promoCode: json['promoCode'],
       discountAmount: (json['discountAmount'] ?? 0.0).toDouble(),
+      pointsRedeemed: json['pointsRedeemed'],
     );
   }
 
@@ -88,6 +93,7 @@ class OrderModel {
       'createdAt': createdAt.toIso8601String(),
       'promoCode': promoCode,
       'discountAmount': discountAmount,
+      'pointsRedeemed': pointsRedeemed,
     };
   }
 

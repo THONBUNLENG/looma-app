@@ -8235,7 +8235,7 @@ final List<Map<String, dynamic>> polos = [
     'name': 'polo',
     'id': 2,
     'title': 'LV Classic Leather Wallet',
-    'price': '\$28.00',
+    'price': '\$0.01',
     'size': 'One Size',
     'color': 'tan',
     'gender':'man',

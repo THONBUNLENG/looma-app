@@ -15,19 +15,24 @@ import '../order/order_screen.dart';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:share_plus/share_plus.dart';
+import 'ai_chat_screen.dart';
+import 'change_password_screen.dart';
+import 'change_pin_screen.dart';
 import 'edit_profile.dart';
-
-import 'help_center/help_center.dart';
 import 'gift_card_screen.dart';
 import 'membership_qr_screen.dart';
 
 import 'membership_screen.dart';
+import 'souvenir_redemption_screen.dart';
 
 import 'privacy_policy_screen.dart';
 import 'country_selection_screen.dart';
 import 'language_selection_screen.dart';
 import 'contact_us_screen.dart';
 import '../../../../manager/preferences_manager.dart';
+import '../../../network/datastor/membership_service.dart';
+import '../../../model/order_model.dart';
+import '../../../widget/membership_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -175,62 +180,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
 
-            // Membership Banner
+            // Membership Card
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color:  Color(0xFFD9904D),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          "ONLINE",
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+              child: StreamBuilder<List<OrderModel>>(
+                stream: MembershipService.getOrdersStream(),
+                builder: (context, snapshot) {
+                  final orders = snapshot.data ?? [];
+                  final totalSpent = MembershipService.calculateTotalSpent(
+                    orders,
+                  );
+                  final level = MembershipService.getLevel(totalSpent);
+                  final membershipId = MembershipService.getMembershipId();
+
+                  return MembershipCard(
+                    level: level,
+                    membershipId: membershipId,
+                    totalSpent: totalSpent,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MembershipScreen(),
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MembershipScreen(),
-                              ),
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              TextWidget(
-                                "Explore more",
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                              const Icon(
-                                Icons.chevron_right,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    TextWidget(
-                      "You haven't made any success purchase yet.",
-                      fontSize: 14,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
 
@@ -274,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: _buildGridItem(
                       context,
-                      'assets/icon/gift_card.png',
+                      'assets/icon/i_color/gift.png',
                       "Gift Card",
                       onTap: () {
                         Navigator.push(
@@ -291,8 +267,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       context,
                       'assets/icon/store.png',
                       "Find a Store",
+                      onTap: () {},
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildGridItem(
+                      context,
+                      'assets/icon/souvenir.png',
+                      "Souvenirs",
                       onTap: () {
-        
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const SouvenirRedemptionScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -331,7 +321,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildSelectionItem(
               context,
               "Language/ភាសា",
-              translator.currentLocale?.languageCode == 'en' ? "English" : (translator.currentLocale?.languageCode == 'km' ? "ខ្មែរ" : "中文"),
+              translator.currentLocale?.languageCode == 'en'
+                  ? "English"
+                  : (translator.currentLocale?.languageCode == 'km'
+                        ? "ខ្មែរ"
+                        : "中文"),
               onTap: () async {
                 final result = await Navigator.push(
                   context,
@@ -378,9 +372,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const HelpCenterScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const AiChatScreen()),
                 );
               },
               showLeading: false,
@@ -438,6 +430,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onTap: () => _showClearCacheDialog(context),
               showLeading: false,
             ),
+            _buildProfileItem(
+              context,
+              null,
+              "ChangePassword".tr,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangePasswordScreen(),
+                  ),
+                );
+              },
+              showLeading: true,
+            ),
+            _buildProfileItem(
+              context,
+              null,
+              "Change PIN".tr,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangePinScreen(),
+                  ),
+                );
+              },
+              showLeading: true,
+            ),
 
             const SizedBox(height: 16),
             Padding(
@@ -451,7 +471,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 30),
 
-            // Account deletion Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextWidget(
@@ -467,6 +486,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               "Delete account".tr,
               onTap: () => _showDeleteAccountDialog(context),
               showLeading: false,
+            ),
+            const SizedBox(height: 30),
+            Center(
+              child: Column(
+                children: [
+                  TextWidget(
+                    "Version 1.0.0",
+                    fontSize: 12,
+                    color: isDark ? Colors.white38 : Colors.grey,
+                  ),
+                  const SizedBox(height: 4),
+                  TextWidget(
+                    "Develop By Thon Bunleng",
+                    fontSize: 12,
+                    color: isDark ? Colors.white38 : Colors.grey,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 40),
           ],
@@ -519,9 +556,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: isDark ? Colors.white10 : Colors.grey[100],
                 shape: BoxShape.circle,
               ),
-              child: Center(
-                child: TextWidget(flag, fontSize: 22),
-              ),
+              child: Center(child: TextWidget(flag, fontSize: 22)),
             )
           : Container(
               width: 40,
@@ -627,7 +662,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _recommendApp() {
-    const String appLink = "https://play.google.com/store/apps/details?id=com.loomakh.app";
+    const String appLink =
+        "https://play.google.com/store/apps/details?id=com.loomakh.app";
     Share.share(
       "Check out this amazing shopping app! Download it now: $appLink".tr,
       subject: "Recommend Looma App".tr,
@@ -639,7 +675,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) => StatusDialog(
         title: "Clear cache".tr,
-        message: "Are you sure you want to clear the app cache? This will free up space but might make images load slower temporarily.".tr,
+        message:
+            "Are you sure you want to clear the app cache? This will free up space but might make images load slower temporarily."
+                .tr,
         btn1Text: "Cancel".tr,
         btn2Text: "Clear".tr,
         imagePath: 'assets/icon/i_color/Information.png',
@@ -651,7 +689,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: TextWidget("Cache cleared successfully".tr, color: Colors.white),
+                content: TextWidget(
+                  "Cache cleared successfully".tr,
+                  color: Colors.white,
+                ),
                 backgroundColor: Colors.green,
               ),
             );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../../constants/string_extension.dart';
 
@@ -10,8 +12,29 @@ class QRScannerScreen extends StatefulWidget {
 }
 
 class _QRScannerScreenState extends State<QRScannerScreen> {
+  final MobileScannerController controller = MobileScannerController();
   bool _isFlashOn = false;
   bool _isFrontCamera = false;
+  bool _isScanned = false;
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  void _onDetect(BarcodeCapture capture) {
+    if (_isScanned) return;
+    final List<Barcode> barcodes = capture.barcodes;
+    for (final barcode in barcodes) {
+      final String? code = barcode.rawValue;
+      if (code != null) {
+        setState(() => _isScanned = true);
+        Navigator.pop(context, code);
+        break;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +45,10 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Camera Placeholder (In real implementation, MobileScanner goes here)
-          Container(
-            color: Colors.black,
-            child: const Center(
-              child: Icon(
-                Icons.camera_alt,
-                color: Colors.white24,
-                size: 100,
-              ),
-            ),
+          // Camera Implementation
+          MobileScanner(
+            controller: controller,
+            onDetect: _onDetect,
           ),
 
           // Custom Scanner Overlay
@@ -134,19 +151,46 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       children: [
         _buildActionButton(
           icon: _isFlashOn ? Icons.flash_on : Icons.flash_off,
-          onPressed: () => setState(() => _isFlashOn = !_isFlashOn),
+          onPressed: () {
+            controller.toggleTorch();
+            setState(() => _isFlashOn = !_isFlashOn);
+          },
         ),
         const SizedBox(width: 40),
         _buildActionButton(
           icon: Icons.image_outlined,
-          onPressed: () {
-            // Pick from gallery logic
+          onPressed: () async {
+            final ImagePicker picker = ImagePicker();
+            final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+            if (image != null && mounted) {
+              final BarcodeCapture? capture = await controller.analyzeImage(image.path);
+              if (capture != null && capture.barcodes.isNotEmpty) {
+                final String? code = capture.barcodes.first.rawValue;
+                if (code != null && mounted) {
+                  setState(() => _isScanned = true);
+                  Navigator.pop(context, code);
+                }
+              } else if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: TextWidget(
+                      'No QR code found in image'.tr,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
+            }
           },
         ),
         const SizedBox(width: 40),
         _buildActionButton(
           icon: _isFrontCamera ? Icons.camera_front : Icons.camera_rear,
-          onPressed: () => setState(() => _isFrontCamera = !_isFrontCamera),
+          onPressed: () {
+            controller.switchCamera();
+            setState(() => _isFrontCamera = !_isFrontCamera);
+          },
         ),
       ],
     );

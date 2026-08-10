@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../src/network/crud_firebase/firestore_service.dart';
 
 class ProfileManager extends ChangeNotifier {
   static final ProfileManager _instance = ProfileManager._internal();
@@ -49,6 +52,30 @@ class ProfileManager extends ChangeNotifier {
     if (addrData != null) {
       _addresses = List<Map<String, dynamic>>.from(jsonDecode(addrData));
     }
+
+    // Attempt to sync from Firestore on startup
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final firestoreService = FirestoreService();
+      final profile = await firestoreService.getUserProfile(user.uid);
+      if (profile != null) {
+        _name = profile.name.isNotEmpty ? profile.name : _name;
+        _phone = profile.phone.isNotEmpty ? profile.phone : _phone;
+        _email = profile.email.isNotEmpty ? profile.email : _email;
+        _picture = profile.picture.isNotEmpty ? profile.picture : _picture;
+        _gender = profile.gender.isNotEmpty ? profile.gender : _gender;
+        _dateOfBirth = profile.age.isNotEmpty ? profile.age : _dateOfBirth; // age field used for DOB in UserModel
+      }
+
+      // Fetch specific addresses collection/field
+      final doc = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
+      if (doc.exists && doc.data()?['addresses'] != null) {
+        _addresses = List<Map<String, dynamic>>.from(doc.data()!['addresses']);
+        // Cache back to prefs
+        await prefs.setString('user_addresses', jsonEncode(_addresses));
+      }
+    }
+
     notifyListeners();
   }
 
@@ -85,6 +112,7 @@ class ProfileManager extends ChangeNotifier {
       _dateOfBirth = dateOfBirth;
       await prefs.setString('user_dob', dateOfBirth);
     }
+    await _syncToFirestore();
     notifyListeners();
   }
 
@@ -92,7 +120,36 @@ class ProfileManager extends ChangeNotifier {
     _addresses = addresses;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('user_addresses', jsonEncode(_addresses));
+    await _syncToFirestore(syncAddresses: true);
     notifyListeners();
+  }
+
+  Future<void> _syncToFirestore({bool syncAddresses = false}) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final firestoreService = FirestoreService();
+      
+      // Default address text for main profile record
+      String currentAddress = "";
+      if (defaultAddress != null) {
+        currentAddress = defaultAddress!['address'] ?? "";
+      }
+
+      await firestoreService.updateUserInfo(
+        uid: user.uid,
+        name: _name,
+        email: _email,
+        phone: _phone,
+        address: currentAddress,
+        gender: _gender,
+        dateOfBirth: _dateOfBirth,
+        picture: _picture,
+      );
+
+      if (syncAddresses) {
+        await firestoreService.updateUserAddresses(user.uid, _addresses);
+      }
+    }
   }
 
 }

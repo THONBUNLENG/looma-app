@@ -10,6 +10,7 @@ class StatusDialog extends StatelessWidget {
   final IconData icon;
   final String? imagePath;
   final Color iconColor;
+  final Color? btn2Color;
   final VoidCallback onBtn1Pressed;
   final VoidCallback onBtn2Pressed;
 
@@ -22,12 +23,14 @@ class StatusDialog extends StatelessWidget {
     this.icon = Icons.priority_high,
     this.imagePath,
     this.iconColor = AppColor.mutedRed,
+    this.btn2Color,
     required this.onBtn1Pressed,
     required this.onBtn2Pressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBtn2Color = btn2Color ?? AppColor.mutedRed;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 0,
@@ -82,7 +85,7 @@ class StatusDialog extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.mutedRed,
+                          backgroundColor: effectiveBtn2Color,
                           foregroundColor: AppColor.white,
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(vertical: 15),

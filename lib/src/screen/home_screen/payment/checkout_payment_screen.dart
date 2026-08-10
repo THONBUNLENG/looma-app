@@ -108,7 +108,9 @@ class _CheckoutPaymentViewState extends State<CheckoutPaymentView> {
     return BlocListener<PaymentBloc, PaymentState>(
       listener: (context, state) {
         if (state is PaymentInitiated) {
+          debugPrint('Payment Initiated: ${state.transaction.method}');
           if (state.transaction.method == PaymentMethod.khqr) {
+            debugPrint('Navigating to Bakong KHQR Screen with token: ${state.transaction.amount}');
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -116,7 +118,7 @@ class _CheckoutPaymentViewState extends State<CheckoutPaymentView> {
                   amount: state.transaction.amount,
                   currency: state.transaction.currency,
                   orderId: state.transaction.orderId,
-                  bakongToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiMTM1YmJiNTUyYmYwNDIyNiJ9LCJpYXQiOjE3Nzk3Nzc3NjIsImV4cCI6MTc4NzU1Mzc2Mn0.mcbViUl6l9JRAsWMAiv0nj5J_E0',
+                  bakongToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjYwZmM4NDc5ZTM5NGY1OSJ9LCJpYXQiOjE3ODYzMjgyMDAsImV4cCI6MTc5NDEwNDIwMH0.-TJ19ZMPiwncuToURKW6DwgfzsFgnGYBF002jssYTkM',
                 ),
               ),
             );

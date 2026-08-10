@@ -5,6 +5,7 @@ import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
 import '../../network/datastor/auth_login_service.dart';
 import '../../network/datastor/auth_service.dart';
+import '../../utils/firebase_error_handler.dart';
 import '../../widget/button.dart';
 import '../main_screen/main_holder.dart';
 import 'create_account/create_account_screen.dart';
@@ -23,6 +24,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isObscured = true;
   bool _isLoading = false;
+  String? _errorMessage;
 
   Future<void> _handleLogin() async {
     if (!_formKey.currentState!.validate()) return;
@@ -30,7 +32,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
-    setState(() => _isLoading = true);
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
 
     try {
       final userCredential = await AuthLoginService().signInWithEmailAndPassword(
@@ -57,8 +62,11 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       }
     } catch (e) {
       if (mounted) {
+        setState(() {
+          _errorMessage = FirebaseErrorHandler.getErrorMessage(e);
+        });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login failed: $e")),
+          SnackBar(content: Text(_errorMessage!)),
         );
       }
     } finally {
@@ -178,6 +186,16 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                         ),
 
                         const SizedBox(height: 16),
+                        if (_errorMessage != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: TextWidget(
+                              _errorMessage!,
+                              color: Colors.red,
+                              fontSize: 14,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         MyCustomButton(
                           text: "Login".tr,
                           width: double.infinity,

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import '../../../network/datastor/auth_login_service.dart';
 import '../../../network/datastor/auth_service.dart';
+import '../../../utils/firebase_error_handler.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -51,7 +52,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -103,7 +104,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginSuccess(event.name));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -152,7 +153,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure("OTP verification failed."));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -203,7 +204,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure("Account creation failed."));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -227,7 +228,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure("Google Sign-In canceled or failed."));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -251,7 +252,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure("Apple Sign-In canceled or failed."));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 
@@ -275,7 +276,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure("Facebook Sign-In canceled or failed."));
       }
     } catch (e) {
-      emit(LoginFailure(e.toString()));
+      emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
     }
   }
 }

@@ -8,7 +8,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-
 class AuthLoginService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
@@ -23,6 +22,7 @@ class AuthLoginService {
     String? phone,
     String? photoUrl,
     String? password,
+    String? address,
   }) async {
     try {
       await _firestore.collection('user').doc(uid).set({
@@ -31,7 +31,8 @@ class AuthLoginService {
         'email': email,
         'phone': phone,
         'photoUrl': photoUrl,
-        'password': password, // Note: In a production app, never store plain text passwords
+        'address': address,
+        'password': password,
         'createdAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
     } catch (e) {
@@ -58,7 +59,8 @@ class AuthLoginService {
 
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
-      final authorization = await googleUser.authorizationClient.authorizeScopes([]);
+      final authorization = await googleUser.authorizationClient
+          .authorizeScopes([]);
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: authorization.accessToken,
@@ -90,10 +92,16 @@ class AuthLoginService {
       return await _auth.signInWithCredential(credential);
     } catch (e) {
       debugPrint("Apple Sign-In Error: $e");
-      if (e.toString().contains('com.apple.AuthenticationServices.AuthorizationError')) {
-        debugPrint("CRITICAL: Apple Sign-In is likely not configured in Xcode. Please add the 'Sign In with Apple' capability.");
+      if (e.toString().contains(
+        'com.apple.AuthenticationServices.AuthorizationError',
+      )) {
+        debugPrint(
+          "CRITICAL: Apple Sign-In is likely not configured in Xcode. Please add the 'Sign In with Apple' capability.",
+        );
       } else if (e.toString().contains('Firebase/Core')) {
-        debugPrint("CRITICAL: GoogleService-Info.plist might be missing from your ios/Runner directory.");
+        debugPrint(
+          "CRITICAL: GoogleService-Info.plist might be missing from your ios/Runner directory.",
+        );
       }
       return null;
     }
@@ -105,7 +113,9 @@ class AuthLoginService {
       final LoginResult result = await FacebookAuth.instance.login();
 
       if (result.status == LoginStatus.success) {
-        final AuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.tokenString);
+        final AuthCredential credential = FacebookAuthProvider.credential(
+          result.accessToken!.tokenString,
+        );
         return await _auth.signInWithCredential(credential);
       }
       return null;
@@ -126,9 +136,12 @@ class AuthLoginService {
         password: password,
       );
     } on FirebaseAuthException catch (e) {
-      debugPrint("Registration Firebase Auth Error [${e.code}]: ${e.message}");
-      if (e.code == 'api-key-not-valid' || e.message?.contains('API key not valid') == true) {
-        debugPrint("CRITICAL ERROR: Firebase API Key is not valid. Please regenerate your google-services.json file and ensure it is not restricted in Google Cloud Console.");
+      debugPrint("Registration  Error [${e.code}]: ${e.message}");
+      if (e.code == 'api-key-not-valid' ||
+          e.message?.contains('API key not valid') == true) {
+        debugPrint(
+          "CRITICAL ERROR: Firebase API Key is not valid. Please regenerate your google-services.json file and ensure it is not restricted in Google Cloud Console.",
+        );
       }
       rethrow;
     } catch (e) {
@@ -179,6 +192,35 @@ class AuthLoginService {
       debugPrint("Update Password Error: $e");
       rethrow;
     }
+  }
+
+  // 3.3 Re-authenticate with Password
+  Future<void> reauthenticate(String password) async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null && user.email != null) {
+        final credential = EmailAuthProvider.credential(
+          email: user.email!,
+          password: password,
+        );
+        await user.reauthenticateWithCredential(credential);
+      } else {
+        throw "User not logged in with email";
+      }
+    } catch (e) {
+      debugPrint("Re-authentication Error: $e");
+      rethrow;
+    }
+  }
+
+  // 3.4 Check if user is using email/password
+  bool isEmailUser() {
+    final user = _auth.currentUser;
+    if (user == null) return false;
+    for (final info in user.providerData) {
+      if (info.providerId == 'password') return true;
+    }
+    return false;
   }
 
   // 4. verifyPhoneNumber
