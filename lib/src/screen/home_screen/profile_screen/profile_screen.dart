@@ -7,6 +7,7 @@ import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../../constants/string_extension.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import '../../../../main.dart';
+import '../../../../manager/profile_manager.dart';
 import '../../../network/datastor/auth_service.dart';
 import '../../../widget/show_dialog.dart';
 import '../../login_screen/login_screen.dart';
@@ -44,8 +45,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoading = true;
   bool _isLoggedIn = false;
-  String _username = "User";
-  String _phone = "";
   String _selectedCountry = "";
   String _selectedFlag = "";
 
@@ -85,14 +84,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _checkAuth() async {
     final loggedIn = await AuthService.isLoggedIn();
     if (loggedIn) {
-      final name = await AuthService.getUsername() ?? "User";
-      final phone = await AuthService.getPhone() ?? "";
+      // Ensure ProfileManager is initialized
+      await ProfileManager().init();
       if (mounted) {
         setState(() {
           _isLoading = false;
           _isLoggedIn = true;
-          _username = name;
-          _phone = phone;
         });
       }
     } else {
@@ -121,394 +118,408 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return _buildLoginRequiredView(context, isDark);
     }
 
-    return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: TextWidget(
-          'Me'.tr,
-          style: theme.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: isDark ? Colors.white : Colors.black,
-          ),
-        ),
-        actions: [const CartBadge()],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // User Info Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EditProfileScreen(),
-                    ),
-                  ).then((_) => _checkAuth());
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextWidget(
-                            _username.toUpperCase(),
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          const SizedBox(height: 8),
-                          TextWidget(
-                            _phone.isEmpty ? "No email or phone" : _phone,
-                            fontSize: 16,
-                            color: isDark ? Colors.white70 : Colors.black87,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Icon(Icons.chevron_right, size: 30),
-                  ],
-                ),
+    return ListenableBuilder(
+      listenable: ProfileManager(),
+      builder: (context, child) {
+        final profile = ProfileManager();
+        return Scaffold(
+          backgroundColor: theme.scaffoldBackgroundColor,
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            title: TextWidget(
+              'Me'.tr,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: isDark ? Colors.white : Colors.black,
               ),
             ),
-
-            // Membership Card
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: StreamBuilder<List<OrderModel>>(
-                stream: MembershipService.getOrdersStream(),
-                builder: (context, snapshot) {
-                  final orders = snapshot.data ?? [];
-                  final totalSpent = MembershipService.calculateTotalSpent(
-                    orders,
-                  );
-                  final level = MembershipService.getLevel(totalSpent);
-                  final membershipId = MembershipService.getMembershipId();
-
-                  return MembershipCard(
-                    level: level,
-                    membershipId: membershipId,
-                    totalSpent: totalSpent,
+            actions: [const CartBadge()],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // User Info Section
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MembershipScreen(),
+                          builder: (context) => const EditProfileScreen(),
+                        ),
+                      ).then((_) => _checkAuth());
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                profile.name.isEmpty
+                                    ? "User".toUpperCase()
+                                    : profile.name.toUpperCase(),
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              const SizedBox(height: 8),
+                              TextWidget(
+                                profile.phone.isEmpty
+                                    ? (profile.email.isEmpty
+                                        ? "No email or phone"
+                                        : profile.email)
+                                    : profile.phone,
+                                fontSize: 16,
+                                color: isDark ? Colors.white70 : Colors.black87,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.chevron_right, size: 30),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Membership Card
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: StreamBuilder<List<OrderModel>>(
+                    stream: MembershipService.getOrdersStream(),
+                    builder: (context, snapshot) {
+                      final orders = snapshot.data ?? [];
+                      final totalSpent = MembershipService.calculateTotalSpent(
+                        orders,
+                      );
+                      final level = MembershipService.getLevel(totalSpent);
+                      final membershipId = MembershipService.getMembershipId();
+
+                      return MembershipCard(
+                        level: level,
+                        membershipId: membershipId,
+                        totalSpent: totalSpent,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MembershipScreen(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+
+                // Action Grid
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildGridItem(
+                          context,
+                          'assets/icon/order.png',
+                          "My Orders",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const OrderScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildGridItem(
+                          context,
+                          'assets/image/qr.png',
+                          "My QR",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const MembershipQRScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildGridItem(
+                          context,
+                          'assets/icon/i_color/gift.png',
+                          "Gift Card",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const GiftCardScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildGridItem(
+                          context,
+                          'assets/icon/store.png',
+                          "Find a Store",
+                          onTap: () {},
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildGridItem(
+                          context,
+                          'assets/icon/souvenir.png',
+                          "Souvenirs",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const SouvenirRedemptionScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 40),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextWidget(
+                    "Country and Language".tr,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildSelectionItem(
+                  context,
+                  "Country".tr,
+                  _selectedCountry,
+                  flag: _selectedFlag,
+                  onTap: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CountrySelectionScreen(),
+                      ),
+                    );
+                    if (result == true) {
+                      _loadCountry();
+                    }
+                  },
+                ),
+                _buildSelectionItem(
+                  context,
+                  "Language/ភាសា",
+                  translator.currentLocale?.languageCode == 'en'
+                      ? "English"
+                      : (translator.currentLocale?.languageCode == 'km'
+                          ? "ខ្មែរ"
+                          : "中文"),
+                  onTap: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LanguageSelectionScreen(),
+                      ),
+                    );
+                    if (result == true) {
+                      setState(() {});
+                    }
+                  },
+                ),
+
+                const SizedBox(height: 40),
+
+                // Support Section
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextWidget(
+                    "Support",
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildProfileItem(
+                  context,
+                  'assets/icon/privacy_policy.png',
+                  "Privacy policy".tr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyScreen(),
+                      ),
+                    );
+                  },
+                  showLeading: false,
+                ),
+                _buildProfileItem(
+                  context,
+                  'assets/icon/help_center.png',
+                  "FAQs & guides".tr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AiChatScreen()),
+                    );
+                  },
+                  showLeading: false,
+                ),
+                _buildProfileItem(
+                  context,
+                  'assets/icon/star.png',
+                  "Rate this app".tr,
+                  onTap: () {
+                    // Rate this app action
+                  },
+                  showLeading: false,
+                ),
+                _buildProfileItem(
+                  context,
+                  'assets/icon/recommend.png',
+                  "Recommend this app".tr,
+                  onTap: () => _recommendApp(),
+                  showLeading: false,
+                ),
+
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: _buildWideButton(
+                    context,
+                    "Contact us".tr,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ContactUsScreen(),
                         ),
                       );
                     },
-                  );
-                },
-              ),
-            ),
+                  ),
+                ),
 
-            const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-            // Action Grid
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _buildGridItem(
-                      context,
-                      'assets/icon/order.png',
-                      "My Orders",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const OrderScreen(),
-                          ),
-                        );
-                      },
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextWidget(
+                    "Settings",
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Expanded(
-                    child: _buildGridItem(
-                      context,
-                      'assets/image/qr.png',
-                      "My QR",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MembershipQRScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: _buildGridItem(
-                      context,
-                      'assets/icon/i_color/gift.png',
-                      "Gift Card",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const GiftCardScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: _buildGridItem(
-                      context,
-                      'assets/icon/store.png',
-                      "Find a Store",
-                      onTap: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: _buildGridItem(
-                      context,
-                      'assets/icon/souvenir.png',
-                      "Souvenirs",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const SouvenirRedemptionScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 40),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextWidget(
-                "Country and Language".tr,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildSelectionItem(
-              context,
-              "Country".tr,
-              _selectedCountry,
-              flag: _selectedFlag,
-              onTap: () async {
-                final result = await Navigator.push(
+                ),
+                const SizedBox(height: 10),
+                _buildProfileItem(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const CountrySelectionScreen(),
-                  ),
-                );
-                if (result == true) {
-                  _loadCountry();
-                }
-              },
-            ),
-            _buildSelectionItem(
-              context,
-              "Language/ភាសា",
-              translator.currentLocale?.languageCode == 'en'
-                  ? "English"
-                  : (translator.currentLocale?.languageCode == 'km'
-                        ? "ខ្មែរ"
-                        : "中文"),
-              onTap: () async {
-                final result = await Navigator.push(
+                  'assets/icon/cache.png',
+                  "Clear cache".tr,
+                  onTap: () => _showClearCacheDialog(context),
+                  showLeading: false,
+                ),
+                _buildProfileItem(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const LanguageSelectionScreen(),
-                  ),
-                );
-                if (result == true) {
-                  setState(() {});
-                }
-              },
-            ),
-
-            const SizedBox(height: 40),
-
-            // Support Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextWidget(
-                "Support",
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildProfileItem(
-              context,
-              'assets/icon/privacy_policy.png',
-              "Privacy policy".tr,
-              onTap: () {
-                Navigator.push(
+                  null,
+                  "ChangePassword".tr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangePasswordScreen(),
+                      ),
+                    );
+                  },
+                  showLeading: true,
+                ),
+                _buildProfileItem(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const PrivacyPolicyScreen(),
-                  ),
-                );
-              },
-              showLeading: false,
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/help_center.png',
-              "FAQs & guides".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AiChatScreen()),
-                );
-              },
-              showLeading: false,
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/star.png',
-              "Rate this app".tr,
-              onTap: () {
-                // Rate this app action
-              },
-              showLeading: false,
-            ),
-            _buildProfileItem(
-              context,
-              'assets/icon/recommend.png',
-              "Recommend this app".tr,
-              onTap: () => _recommendApp(),
-              showLeading: false,
-            ),
+                  null,
+                  "Change PIN".tr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangePinScreen(),
+                      ),
+                    );
+                  },
+                  showLeading: true,
+                ),
 
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildWideButton(
-                context,
-                "Contact us".tr,
-                onPressed: () {
-                  Navigator.push(
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: _buildWideButton(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const ContactUsScreen(),
-                    ),
-                  );
-                },
-              ),
-            ),
+                    "LOG OUT".tr,
+                    onPressed: () => _showLogoutDialog(context),
+                  ),
+                ),
 
-            const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-            // Settings Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextWidget(
-                "Settings",
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildProfileItem(
-              context,
-              'assets/icon/cache.png',
-              "Clear cache".tr,
-              onTap: () => _showClearCacheDialog(context),
-              showLeading: false,
-            ),
-            _buildProfileItem(
-              context,
-              null,
-              "ChangePassword".tr,
-              onTap: () {
-                Navigator.push(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextWidget(
+                    "Account deletion",
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildProfileItem(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChangePasswordScreen(),
+                  'assets/icon/delete.png',
+                  "Delete account".tr,
+                  onTap: () => _showDeleteAccountDialog(context),
+                  showLeading: false,
+                ),
+                const SizedBox(height: 30),
+                Center(
+                  child: Column(
+                    children: [
+                      TextWidget(
+                        " Version 1.0.0 @LOOMA",
+                        fontSize: 12,
+                        color: isDark ? Colors.white38 : Colors.grey,
+                      ),
+                      const SizedBox(height: 4),
+                      TextWidget(
+                        "Develop By Thon Bunleng",
+                        fontSize: 12,
+                        color: isDark ? Colors.white38 : Colors.grey,
+                      ),
+                    ],
                   ),
-                );
-              },
-              showLeading: true,
+                ),
+                const SizedBox(height: 40),
+              ],
             ),
-            _buildProfileItem(
-              context,
-              null,
-              "Change PIN".tr,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChangePinScreen(),
-                  ),
-                );
-              },
-              showLeading: true,
-            ),
-
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildWideButton(
-                context,
-                "LOG OUT".tr,
-                onPressed: () => _showLogoutDialog(context),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextWidget(
-                "Account deletion",
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildProfileItem(
-              context,
-              'assets/icon/delete.png',
-              "Delete account".tr,
-              onTap: () => _showDeleteAccountDialog(context),
-              showLeading: false,
-            ),
-            const SizedBox(height: 30),
-            Center(
-              child: Column(
-                children: [
-                  TextWidget(
-                    "Version 1.0.0",
-                    fontSize: 12,
-                    color: isDark ? Colors.white38 : Colors.grey,
-                  ),
-                  const SizedBox(height: 4),
-                  TextWidget(
-                    "Develop By Thon Bunleng",
-                    fontSize: 12,
-                    color: isDark ? Colors.white38 : Colors.grey,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -715,6 +726,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         onBtn1Pressed: () => Navigator.pop(context),
         onBtn2Pressed: () async {
           await AuthService.logout();
+          ProfileManager().clear();
           if (context.mounted) {
             Navigator.pushAndRemoveUntil(
               context,

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+import '../../../../manager/profile_manager.dart';
 import '../../../network/datastor/auth_login_service.dart';
 import '../../../network/datastor/auth_service.dart';
 import '../../../utils/firebase_error_handler.dart';
@@ -99,7 +100,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           phone: event.phone,
           picture: photoUrl,
           token: await user.getIdToken(),
+          // Password is provided in event, but we don't save it to prefs for security, 
+          // but we could if needed for session persistence
         );
+
+        await ProfileManager().init();
 
         emit(LoginSuccess(event.name));
       }
@@ -146,7 +151,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           phone: event.phone,
           picture: photoUrl,
           token: await user.getIdToken(),
+          // Password is provided in event, but we don't save it to prefs for security, 
+          // but we could if needed for session persistence
         );
+
+        await ProfileManager().init();
 
         emit(LoginSuccess(event.name));
       } else {
@@ -194,10 +203,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         await AuthService.saveLoginData(
           username: event.name,
+          email: event.email,
           phone: event.phone ?? "",
           picture: photoUrl,
           token: await user.getIdToken(),
         );
+
+        await ProfileManager().init();
 
         emit(LoginSuccess(event.name));
       } else {
@@ -219,13 +231,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final User user = userCredential.user!;
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
+          email: user.email,
           phone: user.phoneNumber ?? "",
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
+        
+        await ProfileManager().init();
+
         emit(LoginSuccess(user.displayName ?? "User"));
       } else {
-        emit(LoginFailure("Google Sign-In canceled or failed."));
+        emit(LoginInitial());
       }
     } catch (e) {
       emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
@@ -243,10 +259,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final User user = userCredential.user!;
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
+          email: user.email,
           phone: user.phoneNumber ?? "",
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
+        
+        await ProfileManager().init();
+
         emit(LoginSuccess(user.displayName ?? "User"));
       } else {
         emit(LoginFailure("Apple Sign-In canceled or failed."));
@@ -262,18 +282,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      final UserCredential? userCredential = await _authLoginService.signInWithFacebook();
+      final result = await _authLoginService.signInWithFacebook();
+      final UserCredential? userCredential = result['userCredential'];
+      final String? error = result['error'];
+
       if (userCredential != null && userCredential.user != null) {
         final User user = userCredential.user!;
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
+          email: user.email,
           phone: user.phoneNumber ?? "",
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
+        
+        await ProfileManager().init();
+
         emit(LoginSuccess(user.displayName ?? "User"));
+      } else if (error != null) {
+        emit(LoginFailure("Facebook Error: $error"));
       } else {
-        emit(LoginFailure("Facebook Sign-In canceled or failed."));
+        emit(LoginInitial());
       }
     } catch (e) {
       emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));

@@ -30,7 +30,7 @@ enum MemberLevel {
       case MemberLevel.silver:
         return const Color(0xFF8E8E93);
       case MemberLevel.gold:
-        return const Color(0xFFFBC02D); // Colors.yellow[700]
+        return const Color(0xFFFBC02D);
       case MemberLevel.platinum:
         return Colors.black;
     }
@@ -76,15 +76,54 @@ class MembershipService {
   }
 
   static int calculatePoints(double totalSpent) {
-    // 1 Point for every $25 spent
     return (totalSpent / 25).floor();
   }
 
   static int calculateAvailablePoints(List<OrderModel> orders) {
     final totalSpent = calculateTotalSpent(orders);
     final earnedPoints = calculatePoints(totalSpent);
-    final redeemedPoints = orders.fold(0, (previousRedeemed, order) => previousRedeemed + (order.pointsRedeemed ?? 0));
-    return earnedPoints - redeemedPoints;
+    final redeemedPoints = orders.fold(0, (total, order) => total + (order.pointsRedeemed ?? 0));
+    final rewardedPoints = orders.fold(0, (total, order) => total + (order.pointsRewarded ?? 0));
+    final balance = earnedPoints - redeemedPoints + rewardedPoints;
+    return balance < 0 ? 0 : balance;
+  }
+
+  static int calculatePendingPoints(List<OrderModel> orders) {
+    final pendingTotal = orders
+        .where((order) =>
+            order.status.toLowerCase() == 'pending' ||
+            order.status.toLowerCase() == 'await payment')
+        .fold(0.0, (previousValue, order) => previousValue + order.totalAmount);
+    return calculatePoints(pendingTotal);
+  }
+
+  static Future<void> redeemSouvenir(OrderModel order) async {
+    await _firestore.collection('orders').add(order.toFirestore());
+  }
+
+  static Future<void> grantPoints(int amount) async {
+    final user = _auth.currentUser;
+    if (user == null) throw "User not logged in";
+
+    final orderId = "REWARD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
+
+    await _firestore.collection('orders').doc(orderId).set({
+      'userId': user.uid,
+      'items': [
+        {
+          'name': 'Point Reward',
+          'type': 'reward',
+          'points': amount,
+        }
+      ],
+      'totalAmount': 0.0,
+      'status': 'Completed',
+      'paymentMethod': 'System Reward',
+      'deliveryMethod': 'Direct Grant',
+      'address': {},
+      'createdAt': FieldValue.serverTimestamp(),
+      'pointsRewarded': amount,
+    });
   }
 
   static MemberLevel getLevel(double totalSpent) {
@@ -92,6 +131,30 @@ class MembershipService {
     if (totalSpent >= 10000) return MemberLevel.gold;
     if (totalSpent >= 5000) return MemberLevel.silver;
     return MemberLevel.online;
+  }
+
+  static double getNextLevelRequirement(MemberLevel currentLevel) {
+    switch (currentLevel) {
+      case MemberLevel.online:
+        return 5000.0;
+      case MemberLevel.silver:
+        return 10000.0;
+      case MemberLevel.gold:
+        return 100000.0;
+      case MemberLevel.platinum:
+        return 0.0;
+    }
+  }
+
+  static int getPointsToNextLevel(double totalSpent) {
+    final level = getLevel(totalSpent);
+    if (level == MemberLevel.platinum) return 0;
+
+    final nextReq = getNextLevelRequirement(level);
+    final remainingSpend = nextReq - totalSpent;
+    if (remainingSpend <= 0) return 0;
+
+    return calculatePoints(remainingSpend);
   }
   
   static String getUserId() {

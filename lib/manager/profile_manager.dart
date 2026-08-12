@@ -41,6 +41,22 @@ class ProfileManager extends ChangeNotifier {
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
+    
+    // Clear first to ensure fresh state if called multiple times
+    _name = "";
+    _phone = "";
+    _email = "";
+    _picture = "";
+    _gender = "";
+    _dateOfBirth = "";
+    _addresses = [
+      {
+        "title": "",
+        "address": "",
+        "isDefault": true,
+      },
+    ];
+
     _name = prefs.getString('user_name') ?? _name;
     _phone = prefs.getString('user_phone') ?? _phone;
     _email = prefs.getString('user_email') ?? _email;
@@ -64,7 +80,7 @@ class ProfileManager extends ChangeNotifier {
         _email = profile.email.isNotEmpty ? profile.email : _email;
         _picture = profile.picture.isNotEmpty ? profile.picture : _picture;
         _gender = profile.gender.isNotEmpty ? profile.gender : _gender;
-        _dateOfBirth = profile.age.isNotEmpty ? profile.age : _dateOfBirth; // age field used for DOB in UserModel
+        _dateOfBirth = profile.age.isNotEmpty ? profile.age : _dateOfBirth;
       }
 
       // Fetch specific addresses collection/field
@@ -128,8 +144,6 @@ class ProfileManager extends ChangeNotifier {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final firestoreService = FirestoreService();
-      
-      // Default address text for main profile record
       String currentAddress = "";
       if (defaultAddress != null) {
         currentAddress = defaultAddress!['address'] ?? "";
@@ -152,4 +166,20 @@ class ProfileManager extends ChangeNotifier {
     }
   }
 
+  void clear() {
+    _name = "";
+    _phone = "";
+    _email = "";
+    _picture = "";
+    _gender = "";
+    _dateOfBirth = "";
+    _addresses = [
+      {
+        "title": "",
+        "address": "",
+        "isDefault": true,
+      },
+    ];
+    notifyListeners();
+  }
 }

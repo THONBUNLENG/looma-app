@@ -41,7 +41,7 @@ class _NetworkWrapperState extends State<NetworkWrapper> {
   Future<void> _manualCheck() async {
     if (!mounted) return;
     setState(() => _isChecking = true);
-    await Future.delayed(const Duration(seconds: 8));
+    await Future.delayed(const Duration(seconds: 2));
     final results = await Connectivity().checkConnectivity();
     if (!mounted) return;
     _updateConnectionStatus(results);

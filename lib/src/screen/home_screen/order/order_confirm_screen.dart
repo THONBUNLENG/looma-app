@@ -34,7 +34,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   double _discountAmount = 0.0;
   String? _appliedPromoCode;
   int _pointsToRedeem = 0;
-  
+
   List<OrderModel> _orders = [];
 
   @override
@@ -75,19 +75,19 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   double _calculateMembershipDiscount(MemberLevel level) {
     return _subtotal * level.discountPercentage;
   }
-  
+
   double get _maxDiscountAllowed => _subtotal * 0.9;
 
   int get _availablePoints =>
       MembershipService.calculateAvailablePoints(_orders);
-  
-  int get _maxPointsBySubtotal {   
+
+  int get _maxPointsBySubtotal {
     // Shared cap: Promo Discount + Points Discount <= 90% of subtotal
     final double sharedMaxDiscount = _subtotal * 0.9;
     final double remainingDiscountLimit = (sharedMaxDiscount - _discountAmount).clamp(0.0, double.infinity);
     return (remainingDiscountLimit / 0.15).floor();
   }
-  
+
   int get _effectiveMaxPoints {
     final int byBalance = _availablePoints;
     final int byLimit = _maxPointsBySubtotal;
@@ -360,11 +360,11 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   Widget _buildDeliveryStatusItem(
-    String title,
-    bool isApplied,
-    bool isDark, {
-    String? subtitle,
-  }) {
+      String title,
+      bool isApplied,
+      bool isDark, {
+        String? subtitle,
+      }) {
     return Row(
       children: [
         Expanded(
@@ -412,7 +412,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white, 
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

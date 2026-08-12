@@ -67,7 +67,7 @@ class MembershipScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextWidget(  
+                        TextWidget(
                           level.label,
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

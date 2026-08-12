@@ -108,7 +108,10 @@ class _MyAppState extends State<MyApp> {
           themeMode: ThemeMode.light,
           localizationsDelegates: translator.localizationsDelegates,
           supportedLocales: translator.supportedLocales,
-          home: const NetworkWrapper(child: SplashScreen()),
+          builder: (context, child) {
+            return NetworkWrapper(child: child!);
+          },
+          home: const SplashScreen(),
         );
       },
     );

@@ -13,6 +13,7 @@ class OrderModel {
   final String? promoCode;
   final double? discountAmount;
   final int? pointsRedeemed;
+  final int? pointsRewarded;
 
   OrderModel({
     this.id,
@@ -27,10 +28,24 @@ class OrderModel {
     this.promoCode,
     this.discountAmount,
     this.pointsRedeemed,
+    this.pointsRewarded,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    DateTime safeCreatedAt;
+    try {
+      if (data['createdAt'] is Timestamp) {
+        safeCreatedAt = (data['createdAt'] as Timestamp).toDate();
+      } else if (data['createdAt'] is String) {
+        safeCreatedAt = DateTime.parse(data['createdAt']);
+      } else {
+        safeCreatedAt = DateTime.now();
+      }
+    } catch (_) {
+      safeCreatedAt = DateTime.now();
+    }
+
     return OrderModel(
       id: doc.id,
       userId: data['userId'] ?? '',
@@ -40,10 +55,11 @@ class OrderModel {
       paymentMethod: data['paymentMethod'] ?? '',
       deliveryMethod: data['deliveryMethod'] ?? '',
       address: Map<String, dynamic>.from(data['address'] ?? {}),
-      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      createdAt: safeCreatedAt,
       promoCode: data['promoCode'],
       discountAmount: (data['discountAmount'] ?? 0.0).toDouble(),
       pointsRedeemed: data['pointsRedeemed'],
+      pointsRewarded: data['pointsRewarded'],
     );
   }
 
@@ -60,6 +76,7 @@ class OrderModel {
       'promoCode': promoCode,
       'discountAmount': discountAmount,
       'pointsRedeemed': pointsRedeemed,
+      'pointsRewarded': pointsRewarded,
     };
   }
 
@@ -77,6 +94,7 @@ class OrderModel {
       promoCode: json['promoCode'],
       discountAmount: (json['discountAmount'] ?? 0.0).toDouble(),
       pointsRedeemed: json['pointsRedeemed'],
+      pointsRewarded: json['pointsRewarded'],
     );
   }
 
@@ -94,6 +112,7 @@ class OrderModel {
       'promoCode': promoCode,
       'discountAmount': discountAmount,
       'pointsRedeemed': pointsRedeemed,
+      'pointsRewarded': pointsRewarded,
     };
   }
 

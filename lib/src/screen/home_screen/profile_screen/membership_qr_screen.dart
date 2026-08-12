@@ -1,11 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+import 'package:shopping_app/constants/string_extension.dart';
+import 'package:shopping_app/src/model/order_model.dart';
+import 'package:shopping_app/src/network/datastor/membership_service.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-import '../../../../constants/string_extension.dart';
+
 import 'qr_scanner_screen.dart';
-import '../../../network/datastor/membership_service.dart';
-import '../../../model/order_model.dart';
 
 class MembershipQRScreen extends StatefulWidget {
   const MembershipQRScreen({super.key});
@@ -15,7 +18,7 @@ class MembershipQRScreen extends StatefulWidget {
 }
 
 class _MembershipQRScreenState extends State<MembershipQRScreen> {
-  int _secondsRemaining = 120; // 2 minutes
+  int _secondsRemaining = 120;
   Timer? _timer;
 
   @override
@@ -25,6 +28,7 @@ class _MembershipQRScreenState extends State<MembershipQRScreen> {
   }
 
   void _startTimer() {
+    _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining > 0) {
         setState(() {
@@ -34,6 +38,13 @@ class _MembershipQRScreenState extends State<MembershipQRScreen> {
         _timer?.cancel();
       }
     });
+  }
+
+  void _resetTimer() {
+    setState(() {
+      _secondsRemaining = 120;
+    });
+    _startTimer();
   }
 
   @override
@@ -141,12 +152,29 @@ class _MembershipQRScreenState extends State<MembershipQRScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
-                    child: TextWidget(
-                      _formatTime(_secondsRemaining),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    child: _secondsRemaining > 0
+                        ? TextWidget(
+                            _formatTime(_secondsRemaining),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                        : GestureDetector(
+                            onTap: _resetTimer,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.refresh, color: Colors.white, size: 20),
+                                const SizedBox(width: 5),
+                                TextWidget(
+                                  "Refresh",
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 40),

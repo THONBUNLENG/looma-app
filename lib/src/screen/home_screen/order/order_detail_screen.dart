@@ -277,6 +277,24 @@ class OrderDetailScreen extends StatelessWidget {
             isDark,
             valueColor: Colors.red,
           ),
+          if (order['pointsRedeemed'] != null && order['pointsRedeemed'] > 0) ...[
+            const SizedBox(height: 10),
+            _buildSummaryRow(
+              "Points Redeemed".tr,
+              "${order['pointsRedeemed']} pts",
+              isDark,
+              valueColor: Colors.green,
+            ),
+          ],
+          if (order['pointsRewarded'] != null && order['pointsRewarded'] > 0) ...[
+            const SizedBox(height: 10),
+            _buildSummaryRow(
+              "Points Received".tr,
+              "+${order['pointsRewarded']} pts",
+              isDark,
+              valueColor: Colors.blue,
+            ),
+          ],
           const Divider(height: 30),
           _buildSummaryRow(
             "Total Amount".tr,

@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping_app/src/model/order_model.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_detail_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/order/payment_history.dart';
+import 'package:shopping_app/src/screen/home_screen/order/payment_details.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import '../../../../constants/app_color.dart';
 import '../../../widget/text_widget.dart';
+import 'package:lottie/lottie.dart';
 
-import 'track_order_screen.dart';
+import 'track_order_screen.dart'; 
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -138,7 +139,12 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.assignment_outlined, size: 80, color: Colors.grey[300]),
+            Lottie.asset(
+              'assets/lottie/no_connection.json',
+              width: 180,
+              height: 180,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 16),
             TextWidget(
               "No data available".tr,
@@ -146,7 +152,7 @@ class _OrderScreenState extends State<OrderScreen> {
               color: Colors.grey,
               fontWeight: FontWeight.w500,
             ),
-          ],
+          ], 
         ),
       );
     }
@@ -160,7 +166,7 @@ class _OrderScreenState extends State<OrderScreen> {
       },
     );
   }
-
+  
   Widget _buildOrderCard(OrderModel order, bool isDark) {
     final cardColor = isDark
         ? Colors.white.withValues(alpha: 0.05)
@@ -186,6 +192,8 @@ class _OrderScreenState extends State<OrderScreen> {
       "discountAmount": order.discountAmount ?? 0.0,
       "paymentMethod": order.paymentMethod,
       "deliveryMethod": order.deliveryMethod,
+      "pointsRedeemed": order.pointsRedeemed,
+      "pointsRewarded": order.pointsRewarded,
     };
 
     return Container(
@@ -255,6 +263,24 @@ class _OrderScreenState extends State<OrderScreen> {
             "${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
             isDark,
           ),
+          if (order.pointsRedeemed != null && order.pointsRedeemed! > 0) ...[
+            const SizedBox(height: 10),
+            _buildInfoRow(
+              "Points Redeemed".tr,
+              "${order.pointsRedeemed} pts",
+              isDark,
+              valueColor: Colors.green,
+            ),
+          ],
+          if (order.pointsRewarded != null && order.pointsRewarded! > 0) ...[
+            const SizedBox(height: 10),
+            _buildInfoRow(
+              "Points Received".tr,
+              "+${order.pointsRewarded} pts",
+              isDark,
+              valueColor: Colors.blue,
+            ),
+          ],
           const SizedBox(height: 10),
           _buildInfoRow(
             "Total Amount".tr,
@@ -290,7 +316,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  PaymentHistory(order: orderMap),
+                                  PaymentDetails(order: orderMap),
                             ),
                           );
                         }
@@ -335,6 +361,7 @@ class _OrderScreenState extends State<OrderScreen> {
     String value,
     bool isDark, {
     bool isBold = false,
+    Color? valueColor,
   }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -348,9 +375,10 @@ class _OrderScreenState extends State<OrderScreen> {
           value,
           fontSize: 14,
           fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
-          color: isBold
-              ? (isDark ? Colors.white : Colors.black)
-              : (isDark ? Colors.white70 : Colors.black87),
+          color: valueColor ??
+              (isBold
+                  ? (isDark ? Colors.white : Colors.black)
+                  : (isDark ? Colors.white70 : Colors.black87)),
         ),
       ],
     );

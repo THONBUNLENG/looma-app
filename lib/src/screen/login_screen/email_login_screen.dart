@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
@@ -47,10 +48,13 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         final user = userCredential.user!;
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
+          email: email, // Use the login email
           phone: user.phoneNumber ?? "",
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
+
+        await ProfileManager().init();
 
         if (mounted) {
           Navigator.pushAndRemoveUntil(

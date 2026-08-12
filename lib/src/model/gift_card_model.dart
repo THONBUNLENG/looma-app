@@ -19,6 +19,30 @@ class GiftCardModel {
     this.isActive = true,
   });
 
+  factory GiftCardModel.fromJson(Map<String, dynamic> json) {
+    return GiftCardModel(
+      title: json['title'] as String,
+      amount: (json['amount'] as num).toDouble(),
+      validFrom: DateTime.parse(json['validFrom'] as String),
+      validUntil: DateTime.parse(json['validUntil'] as String),
+      claimCode: json['claimCode'] as String,
+      description: json['description'] as String,
+      terms: List<String>.from(json['terms'] as List),
+      isActive: json['isActive'] as bool? ?? true,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'amount': amount,
+        'validFrom': validFrom.toIso8601String(),
+        'validUntil': validUntil.toIso8601String(),
+        'claimCode': claimCode,
+        'description': description,
+        'terms': terms,
+        'isActive': isActive,
+      };
+
   // Sample data for development
   static List<GiftCardModel> get sampleData => [
     GiftCardModel(
@@ -26,7 +50,7 @@ class GiftCardModel {
       amount: 5.0,
       validFrom: DateTime(2026, 7, 29),
       validUntil: DateTime(2026, 8, 28),
-      claimCode: "37057213",
+      claimCode: "LOOMA-xx05",
       description: "\$5 Welcome Gift to start your shopping journey!",
       terms: [
         "\$5 voucher just for you! As a thank you for registering.",

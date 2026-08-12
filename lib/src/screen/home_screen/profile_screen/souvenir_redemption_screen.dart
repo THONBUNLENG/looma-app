@@ -58,6 +58,23 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
         body: StreamBuilder<List<OrderModel>>(
           stream: MembershipService.getOrdersStream(),
           builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline, color: Colors.red, size: 48),
+                      const SizedBox(height: 16),
+                      TextWidget("Failed to load point balance".tr, fontSize: 16, fontWeight: FontWeight.bold),
+                      TextWidget(snapshot.error.toString(), fontSize: 12, color: Colors.grey),
+                    ],
+                  ),
+                ),
+              );
+            }
+
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }

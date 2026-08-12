@@ -28,7 +28,7 @@ class FirebaseErrorHandler {
         case 'network-request-failed':
           return 'Network error. Please check your internet connection.'.tr;
         default:
-          return error.message ?? 'An error occurred. Please try again.'.tr;
+          return '${error.code}: ${error.message ?? "An error occurred."}'.tr;
       }
     }
     return error.toString();

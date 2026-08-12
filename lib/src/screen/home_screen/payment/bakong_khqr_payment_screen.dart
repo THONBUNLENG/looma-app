@@ -16,7 +16,6 @@ import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../network/datastor/bakong_service.dart';
 import '../../../widget/button_cus.dart';
-import 'qr_expired_screen.dart';
 
 class KhqrPaymentScreen extends StatefulWidget {
   final double amount;
@@ -52,6 +51,9 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
   String? _errorMessage;
   bool _isCheckingStatus = false;
 
+  int _consecutivePollFailures = 0;
+  static const int _maxConsecutivePollFailures = 4;
+
   static const Color khqrRed = Color(0xFFE31B23);
 
   @override
@@ -80,30 +82,24 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
       _errorTitle = null;
       _errorMessage = null;
       _remainingSeconds = 300;
+      _consecutivePollFailures = 0;
     });
 
     try {
-      final expireTimestamp = DateTime.now()
-          .add(const Duration(seconds: 300))
-          .millisecondsSinceEpoch;
-
       final bool isUsd = widget.currency == 'USD';
-
-
-      final merchantInfo = MerchantInfo(
-        bakongAccountId: 'bunleng_thon@bkrt',
-        acquiringBank: 'ABA Bank',
-        merchantId: 'YOUR_REAL_MERCHANT_ID',
+      final individualInfo = IndividualInfo(
+        bakongAccountId: 'abaakhppxxx@abaa',
         merchantName: 'LOOMA SHOP',
+        accountInformation: '007276456',
+        acquiringBank: 'ABA Bank',
         currency: isUsd ? KhqrCurrency.usd : KhqrCurrency.khr,
         amount: widget.amount,
-        expirationTimestamp: expireTimestamp,
         billNumber: widget.orderId,
         storeLabel: 'Looma Shop',
         terminalLabel: 'Mobile App',
       );
 
-      final response = KhqrSdk.generateMerchant(merchantInfo);
+      final response = KhqrSdk.generateIndividual(individualInfo);
 
       if (response.status.code == 0 && response.data != null) {
         final qrString = response.data!.qr;
@@ -137,27 +133,20 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
         timer.cancel();
         return;
       }
+      // Guard against a race with a payment success that lands right as
+      // the timer hits zero.
+      if (_isPaid) {
+        timer.cancel();
+        return;
+      }
       if (_remainingSeconds <= 0) {
         timer.cancel();
         _pollingTimer?.cancel();
         setState(() => _isExpired = true);
-        _navigateToExpiredScreen();
       } else {
         setState(() => _remainingSeconds--);
       }
     });
-  }
-
-  void _navigateToExpiredScreen() {
-    if (!mounted) return;
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => QrExpiredScreen(
-          onRefresh: _generateKhqr,
-        ),
-      ),
-    );
   }
 
   void _startPolling() {
@@ -166,39 +155,63 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
       if (!mounted || _isExpired || _isPaid) return;
 
       _pollingTimer = Timer.periodic(const Duration(seconds: 3), (timer) async {
-        if (_md5Hash == null || _isExpired || _isPaid || _isCheckingStatus) return;
+        if (_md5Hash == null || _isExpired || _isPaid || _isCheckingStatus) {
+          return;
+        }
 
         _isCheckingStatus = true;
-        final result = await BakongService.checkTransactionByMd5(
-          md5: _md5Hash!,
-          token: widget.bakongToken,
-        );
-        _isCheckingStatus = false;
+        Map<String, dynamic> result;
+        try {
+          result = await BakongService.checkTransactionByMd5(
+            md5: _md5Hash!,
+            token: widget.bakongToken,
+          );
+        } catch (e) {
+          result = {'success': false, 'message': e.toString()};
+        } finally {
+          _isCheckingStatus = false;
+        }
 
         if (!mounted) {
           timer.cancel();
           return;
         }
 
+        final bool isUnauthorized = result['responseCode'] == 401 ||
+            result['message']?.toString().contains('401') == true;
+
         if (result['success'] == true) {
+          _consecutivePollFailures = 0;
           timer.cancel();
           _countdownTimer?.cancel();
           setState(() => _isPaid = true);
           _onPaymentSuccess();
-        } else if (result['responseCode'] == 401 || result['message']?.toString().contains('401') == true) {
-          // Token expired or unauthorized
+        } else if (isUnauthorized) {
           timer.cancel();
           _countdownTimer?.cancel();
           setState(() {
             _errorTitle = "Session Expired";
-            _errorMessage = "The payment session has expired (401). Please try again.";
+            _errorMessage = "QR Code បានផុតសុពលភាព";
           });
+        } else {
+
+          _consecutivePollFailures++;
+          if (_consecutivePollFailures >= _maxConsecutivePollFailures) {
+            timer.cancel();
+            _countdownTimer?.cancel();
+            setState(() {
+              _errorTitle = "Connection Problem";
+              _errorMessage = (result['message'] as String?) ??
+                  "We couldn't verify your payment status. Please check your connection and try again.";
+            });
+          }
         }
       });
     });
   }
 
   void _onPaymentSuccess() {
+    if (!mounted) return;
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -248,7 +261,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
   Future<Uint8List?> _capturePngBytes() async {
     try {
       final boundary =
-          _qrCardKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      _qrCardKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
       if (boundary == null) return null;
       final image = await boundary.toImage(pixelRatio: 3.0);
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
@@ -304,13 +317,13 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
 
       final tempDir = await getTemporaryDirectory();
       final file =
-          await File('${tempDir.path}/khqr_${widget.orderId}.png').create();
+      await File('${tempDir.path}/khqr_${widget.orderId}.png').create();
       await file.writeAsBytes(bytes);
 
       await Share.shareXFiles(
         [XFile(file.path)],
         text:
-            'Scan this KHQR to pay ${widget.amount.toStringAsFixed(2)} ${widget.currency} for Order #${widget.orderId}',
+        'Scan this KHQR to pay ${widget.amount.toStringAsFixed(2)} ${widget.currency} for Order #${widget.orderId}',
       );
     } catch (e) {
       _showSnack("Could not share QR Code", isError: true);
@@ -343,7 +356,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
 
     return Scaffold(
       backgroundColor:
-          isDark ? theme.colorScheme.surface : const Color(0xFFF8F9FA),
+      isDark ? theme.colorScheme.surface : const Color(0xFFF8F9FA),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -386,7 +399,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                         decoration: const BoxDecoration(
                           color: khqrRed,
                           borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(24)),
+                          BorderRadius.vertical(top: Radius.circular(24)),
                         ),
                         child: const Center(
                           child: Text(
@@ -420,8 +433,8 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                               children: [
                                 TextWidget(
                                   widget.currency == 'KHR'
-                                    ? widget.amount.toStringAsFixed(0)
-                                    : widget.amount.toStringAsFixed(2),
+                                      ? widget.amount.toStringAsFixed(0)
+                                      : widget.amount.toStringAsFixed(2),
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -445,7 +458,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                         child: Row(
                           children: List.generate(
                             30,
-                            (index) => Expanded(
+                                (index) => Expanded(
                               child: Container(
                                 color: index % 2 == 0
                                     ? Colors.transparent
@@ -459,7 +472,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
 
                       // QR Code
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+                        padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
                         child: Container(
                           width: 220,
                           height: 220,
@@ -471,13 +484,24 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (_errorTitle != null)
+                              if (_isExpired)
+                                Positioned.fill(
+                                  child: _StatusOverlay(
+                                    title: "Session Expired".tr,
+                                    message: "QR Code បានផុតសុពលភាព",
+                                    buttonLabel: "Try Again".tr,
+                                    onPressed: _generateKhqr,
+                                    isSessionExpired: true,
+                                  ),
+                                )
+                              else if (_errorTitle != null)
                                 Positioned.fill(
                                   child: _StatusOverlay(
                                     title: _errorTitle!.tr,
                                     message: _errorMessage ?? "Ensure you have a stable internet connection and try again.".tr,
                                     buttonLabel: "Try Again".tr,
                                     onPressed: _generateKhqr,
+                                    isSessionExpired: _errorTitle == "Session Expired",
                                   ),
                                 )
                               else if (_qrPayload != null)
@@ -486,7 +510,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                                   version: QrVersions.auto,
                                   size: 200.0,
                                   embeddedImage:
-                                      const AssetImage('assets/icon/bakong.png'),
+                                  const AssetImage('assets/icon/bakong.png'),
                                   embeddedImageStyle: const QrEmbeddedImageStyle(
                                     size: Size(36, 36),
                                   ),
@@ -502,12 +526,44 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                               else
                                 const Center(
                                   child:
-                                      CircularProgressIndicator(color: khqrRed),
+                                  CircularProgressIndicator(color: khqrRed),
                                 ),
                             ],
                           ),
                         ),
                       ),
+
+                      if (!_isExpired && !_isPaid && _errorTitle == null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: khqrRed.withValues(alpha: 0.08),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const SizedBox(
+                                  width: 14,
+                                  height: 14,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: khqrRed,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                TextWidget(
+                                  "${"Expires in".tr}: ${_formatTime(_remainingSeconds)}",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: khqrRed,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -567,14 +623,14 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                             ),
                             child: _isSaving
                                 ? const SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: CircularProgressIndicator(
-                                        strokeWidth: 2, color: khqrRed),
-                                  )
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                  strokeWidth: 2, color: khqrRed),
+                            )
                                 : Icon(Icons.download_rounded,
-                                    color: theme.colorScheme.onSurface,
-                                    size: 28),
+                                color: theme.colorScheme.onSurface,
+                                size: 28),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -629,7 +685,7 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color:
-                      isDark ? theme.colorScheme.surfaceContainer : Colors.white,
+                  isDark ? theme.colorScheme.surfaceContainer : Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
                 ),
@@ -641,10 +697,10 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                         TextWidget("Amount".tr,
                             color: theme.colorScheme.onSurfaceVariant),
                         TextWidget(
-                          widget.currency == 'KHR'
-                            ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
-                            : "\$${widget.amount.toStringAsFixed(2)}",
-                          fontWeight: FontWeight.bold),
+                            widget.currency == 'KHR'
+                                ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
+                                : "\$${widget.amount.toStringAsFixed(2)}",
+                            fontWeight: FontWeight.bold),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -658,8 +714,8 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
                         ),
                         TextWidget(
                           widget.currency == 'KHR'
-                            ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
-                            : "\$${widget.amount.toStringAsFixed(2)}",
+                              ? "${widget.amount.toStringAsFixed(0)} ${widget.currency}"
+                              : "\$${widget.amount.toStringAsFixed(2)}",
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
                         ),
@@ -670,35 +726,6 @@ class _KhqrPaymentScreenState extends State<KhqrPaymentScreen> {
               ),
 
               const SizedBox(height: 20),
-              if (!_isExpired && !_isPaid && _errorTitle == null)
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: khqrRed.withValues(alpha: 0.08),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(
-                        width: 14,
-                        height: 14,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: khqrRed,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      TextWidget(
-                        "${"Expires in".tr}: ${_formatTime(_remainingSeconds)}",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                        color: khqrRed,
-                      ),
-                    ],
-                  ),
-                ),
             ],
           ),
         ),
@@ -713,12 +740,14 @@ class _StatusOverlay extends StatelessWidget {
   final String message;
   final String buttonLabel;
   final VoidCallback onPressed;
+  final bool isSessionExpired;
 
   const _StatusOverlay({
     required this.title,
     required this.message,
     required this.buttonLabel,
     required this.onPressed,
+    this.isSessionExpired = false,
   });
 
   @override
@@ -736,51 +765,62 @@ class _StatusOverlay extends StatelessWidget {
                 : Colors.white.withValues(alpha: 0.98),
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.qr_code_2_rounded,
-                    size: 44,
-                    color: isDark ? Colors.white10 : Colors.black12,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        Icons.qr_code_2_rounded,
+                        size: 24,
+                        color: isDark ? Colors.white10 : Colors.black12,
+                      ),
+                      Icon(
+                        isSessionExpired
+                            ? Icons.error_outline_rounded
+                            : Icons.block_flipped,
+                        size: isSessionExpired ? 40 : 32,
+                        color: isSessionExpired
+                            ? const Color(0xFF1B4168)
+                            : _KhqrPaymentScreenState.khqrRed,
+                      ),
+                    ],
                   ),
-                  const Icon(
-                    Icons.block_flipped,
-                    size: 56,
-                    color: _KhqrPaymentScreenState.khqrRed,
+                  const SizedBox(height: 6),
+                  TextWidget(
+                    isSessionExpired ? "" : title,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    textAlign: TextAlign.center,
+                  ),
+                  if (isSessionExpired) const SizedBox(height: 0) else const SizedBox(height: 2),
+                  TextWidget(
+                    message,
+                    fontSize: isSessionExpired ? 16 : 10,
+                    textAlign: TextAlign.center,
+                    color: isSessionExpired
+                        ? (isDark ? Colors.white : Colors.black87)
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                    maxLines: 3,
+                  ),
+                  const SizedBox(height: 12),
+                  ButtonCus(
+                    buttonName: isSessionExpired ? "យល់ព្រម".tr : buttonLabel,
+                    onPressed: onPressed,
+                    bgColor: isSessionExpired
+                        ? const Color(0xFF1B4168)
+                        : _KhqrPaymentScreenState.khqrRed,
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              TextWidget(
-                title,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              TextWidget(
-                message,
-                fontSize: 12,
-                textAlign: TextAlign.center,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-                maxLines: 2,
-              ),
-              const SizedBox(height: 16),
-              ButtonCus(
-                buttonName: buttonLabel,
-                onPressed: onPressed,
-                bgColor: _KhqrPaymentScreenState.khqrRed,
-              ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-

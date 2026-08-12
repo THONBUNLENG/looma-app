@@ -164,7 +164,7 @@ class TrackOrderScreen extends StatelessWidget {
   Widget _buildOrderDetails(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final discount = order['discountAmount'] ?? 0.0;
-    
+
     return _buildInfoCard(
       context,
       child: Column(
@@ -219,12 +219,12 @@ class TrackOrderScreen extends StatelessWidget {
   }
 
   Widget _buildRow(
-    BuildContext context,
-    String label,
-    String value, {
-    bool isBold = false,
-    Color? valueColor,
-  }) {
+      BuildContext context,
+      String label,
+      String value, {
+        bool isBold = false,
+        Color? valueColor,
+      }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

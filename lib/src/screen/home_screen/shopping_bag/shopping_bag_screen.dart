@@ -55,6 +55,31 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
     });
   }
 
+  void _deleteSelected() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: TextWidget("Remove Items".tr, fontWeight: FontWeight.bold),
+        content: TextWidget("Are you sure you want to remove all selected items?".tr),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: TextWidget("Cancel".tr, color: Colors.grey),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                CartManager().removeSelected();
+              });
+              Navigator.pop(context);
+            },
+            child: TextWidget("Remove".tr, color: Colors.red),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -73,7 +98,9 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : Colors.black,
         ),
-        actions: [const CartBadge()],
+        actions: [
+          const CartBadge(),
+        ],
       ),
       body: _cartItems.isEmpty
           ? _buildEmptyState(isDark)
@@ -123,7 +150,7 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                   ),
                   elevation: 0,
                 ),
-                child: TextWidget(
+                child: TextWidget( 
                   "Start Shopping".tr,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -163,6 +190,14 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
+                const Spacer(),
+                if (_cartItems.any((item) => item['isSelected'] == true))
+                  IconButton(
+                    onPressed: _deleteSelected,
+                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
               ],
             ),
           ),
@@ -318,8 +353,9 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
 
   String _getDetails(Map<String, dynamic> item) {
     List<String> details = [];
-    if (item['selectedSize'] != null)
+    if (item['selectedSize'] != null) {
       details.add("${'Size'.tr}: ${item['selectedSize']}");
+    }
     if (item['selectedColor'] != null) {
       details.add("${'Color'.tr}: ${item['selectedColor']}");
     } else if (item['selectedColorIndex'] != null) {

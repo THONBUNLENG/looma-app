@@ -12,6 +12,8 @@ class BakongService {
   static Future<Map<String, dynamic>> checkTransactionByMd5({
     required String md5,
     required String token,
+    double? amount,
+    String? currency,
   }) async {
     http.Response response;
 
@@ -34,16 +36,12 @@ class BakongService {
         'responseCode': 'timeout',
       };
     } catch (e) {
-      // DNS failure, socket error, etc. — no HTTP response at all.
       return {
         'success': false,
         'message': 'Network error: $e',
         'responseCode': 'network_error',
       };
     }
-
-    // --- Body parsing (kept separate so a bad body never masks the
-    // real HTTP status code, e.g. a 401 that returns an HTML page) ---
     Map<String, dynamic>? data;
     try {
       final decoded = jsonDecode(response.body);
@@ -51,8 +49,6 @@ class BakongService {
         data = decoded;
       }
     } catch (_) {
-      // Non-JSON body (HTML error page, empty body, etc). We still
-      // have response.statusCode below, so nothing is lost.
       data = null;
     }
 
@@ -70,7 +66,6 @@ class BakongService {
       };
     }
 
-    // Non-200, or 200 with an unparseable/unexpected body.
     return {
       'success': false,
       'message': data != null

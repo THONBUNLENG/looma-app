@@ -59,18 +59,20 @@ class AuthLoginService {
 
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
-      final authorization = await googleUser.authorizationClient
-          .authorizeScopes([]);
-
       final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: authorization.accessToken,
         idToken: googleAuth.idToken,
       );
 
       return await _auth.signInWithCredential(credential);
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        debugPrint("Google Sign-In: User canceled.");
+        return null;
+      }
+      rethrow;
     } catch (e) {
       debugPrint("Google Sign-In Error: $e");
-      return null;
+      rethrow;
     }
   }
 
@@ -108,7 +110,7 @@ class AuthLoginService {
   }
 
   // 1.2 Facebook Login
-  Future<UserCredential?> signInWithFacebook() async {
+  Future<Map<String, dynamic>> signInWithFacebook() async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
 
@@ -116,12 +118,15 @@ class AuthLoginService {
         final AuthCredential credential = FacebookAuthProvider.credential(
           result.accessToken!.tokenString,
         );
-        return await _auth.signInWithCredential(credential);
+        final userCredential = await _auth.signInWithCredential(credential);
+        return {'userCredential': userCredential, 'error': null};
+      } else if (result.status == LoginStatus.cancelled) {
+        return {'userCredential': null, 'error': 'Canceled by user'};
       }
-      return null;
+      return {'userCredential': null, 'error': result.message ?? 'Unknown error'};
     } catch (e) {
       debugPrint("Facebook Sign-In Error: $e");
-      return null;
+      return {'userCredential': null, 'error': e.toString()};
     }
   }
 

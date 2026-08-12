@@ -19,6 +19,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController dateController;
   late TextEditingController phoneController;
 
+  late Map<String, String> selectedCountry;
   String? selectedGender;
   String? _picture;
 
@@ -27,12 +28,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.initState();
     final profile = ProfileManager();
 
-    // Split full name into first and last name
     String fullName = profile.name;
     List<String> nameParts = fullName.split(' ');
     if (nameParts.length > 1) {
       firstNameController = TextEditingController(
-          text: nameParts.sublist(0, nameParts.length - 1).join(' '));
+        text: nameParts.sublist(0, nameParts.length - 1).join(' '),
+      );
       lastNameController = TextEditingController(text: nameParts.last);
     } else {
       firstNameController = TextEditingController(text: fullName);
@@ -45,15 +46,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _picture = profile.picture;
 
     String rawPhone = profile.phone;
-    Map<String, String> selectedCountry = countries.firstWhere(
+    selectedCountry = countries.firstWhere(
       (c) => rawPhone.startsWith(c['code']!),
       orElse: () => countries[0],
     );
 
     String phoneWithoutCode = rawPhone;
     if (rawPhone.startsWith(selectedCountry['code']!)) {
-      phoneWithoutCode =
-          rawPhone.substring(selectedCountry['code']!.length).trim();
+      phoneWithoutCode = rawPhone
+          .substring(selectedCountry['code']!.length)
+          .trim();
     }
     phoneController = TextEditingController(text: phoneWithoutCode);
   }
@@ -76,7 +78,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       final parts = dateController.text.split('/');
       if (parts.length == 3) {
         initialDate = DateTime(
-            int.parse(parts[2]), int.parse(parts[1]), int.parse(parts[0]));
+          int.parse(parts[2]),
+          int.parse(parts[1]),
+          int.parse(parts[0]),
+        );
       }
     } catch (_) {}
 
@@ -131,11 +136,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Gender Section
-            TextWidget(
-              "Gender".tr,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
+            TextWidget("Gender".tr, fontSize: 16, fontWeight: FontWeight.w500),
             const SizedBox(height: 8),
             Row(
               children: [
@@ -167,7 +168,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Email Section
             _buildInputField(
               label: 'Email'.tr,
               controller: emailController,
@@ -175,16 +175,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Mobile Number Section
-            _buildInputField(
-              label: 'Mobile number'.tr,
-              controller: phoneController,
-              hint: 'Add contact number'.tr,
-              hintStyle: const TextStyle(color: Color(0xFF0055FF)),
-            ),
+            _buildPhoneInputField(),
             const SizedBox(height: 20),
 
-            // Date of Birth Section
             _buildInputField(
               label: 'Date of birth (DD/MM/YYYY)'.tr,
               controller: dateController,
@@ -198,7 +191,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const SizedBox(height: 30),
 
-            // Your Address Section
             TextWidget(
               "Your address".tr,
               fontSize: 18,
@@ -209,7 +201,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AddressScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const AddressScreen(),
+                  ),
                 );
               },
               child: Column(
@@ -240,6 +234,123 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  Widget _buildPhoneInputField() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final borderColor = isDark ? Colors.white24 : Colors.black;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextWidget(
+          'Mobile number'.tr,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: isDark ? Colors.white70 : Colors.black87,
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            InkWell(
+              onTap: () => _showCountryPicker(),
+              child: Container(
+                height: 55,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: borderColor, width: 1),
+                ),
+                child: Row(
+                  children: [
+                    TextWidget(selectedCountry['flag']!, fontSize: 20),
+                    const SizedBox(width: 8),
+                    TextWidget(
+                      selectedCountry['code']!,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    const Icon(Icons.arrow_drop_down),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                controller: phoneController,
+                keyboardType: TextInputType.phone,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Add contact number'.tr,
+                  hintStyle: const TextStyle(color: Color(0xFF0055FF)),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 16,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: borderColor, width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: borderColor, width: 1.5),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  void _showCountryPicker() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextWidget(
+                "Select Country".tr,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: countries.length,
+                  itemBuilder: (context, index) {
+                    final country = countries[index];
+                    return ListTile(
+                      leading: TextWidget(country['flag']!, fontSize: 24),
+                      title: TextWidget(country['name']!.tr),
+                      trailing: TextWidget(country['code']!),
+                      onTap: () {
+                        setState(() {
+                          selectedCountry = country;
+                        });
+                        Navigator.pop(context);
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildGenderRadio(String gender) {
     final isSelected = selectedGender == gender;
     return InkWell(
@@ -252,10 +363,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             height: 24,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.grey.shade400,
-                width: 1,
-              ),
+              border: Border.all(color: Colors.grey.shade400, width: 1),
             ),
             child: isSelected
                 ? Center(
@@ -271,10 +379,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 : null,
           ),
           const SizedBox(width: 8),
-          TextWidget(
-            gender.tr,
-            fontSize: 16,
-          ),
+          TextWidget(gender.tr, fontSize: 16),
         ],
       ),
     );
@@ -305,18 +410,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           controller: controller,
           readOnly: onTap != null,
           onTap: onTap,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: hintStyle ??
-                TextStyle(
-                  color: isDark ? Colors.white54 : Colors.black54,
-                ),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+            hintStyle:
+                hintStyle ??
+                TextStyle(color: isDark ? Colors.white54 : Colors.black54),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 16,
+            ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(color: borderColor, width: 1),
@@ -333,8 +436,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.green, width: 1),
                       ),
-                      child:
-                          const Icon(Icons.check, size: 12, color: Colors.green),
+                      child: const Icon(
+                        Icons.check,
+                        size: 12,
+                        color: Colors.green,
+                      ),
                     ),
                   )
                 : null,
@@ -352,10 +458,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         onPressed: () {
           String fullName =
               "${firstNameController.text} ${lastNameController.text}".trim();
+          String fullPhone =
+              "${selectedCountry['code']}${phoneController.text.trim()}";
           ProfileManager().updateProfile(
             name: fullName,
             email: emailController.text,
-            phone: phoneController.text,
+            phone: fullPhone,
             gender: selectedGender,
             dateOfBirth: dateController.text,
             picture: _picture,
@@ -366,15 +474,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: TextWidget(
-          'Save'.tr,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
+        child: TextWidget('Save'.tr, fontWeight: FontWeight.bold, fontSize: 16),
       ),
     );
   }

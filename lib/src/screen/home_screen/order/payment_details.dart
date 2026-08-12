@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-class PaymentHistory extends StatefulWidget {
+class PaymentDetails extends StatefulWidget {
   final Map<String, dynamic> order;
-  const PaymentHistory({super.key, required this.order});
+  const PaymentDetails({super.key, required this.order});
 
   @override
-  State<PaymentHistory> createState() => _PaymentHistoryState();
+  State<PaymentDetails> createState() => _PaymentDetailsState();
 }
 
-class _PaymentHistoryState extends State<PaymentHistory>
+class _PaymentDetailsState extends State<PaymentDetails>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -225,12 +225,12 @@ class _PaymentHistoryState extends State<PaymentHistory>
   }
 
   Widget _buildActionTile(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
+      BuildContext context, {
+        required IconData icon,
+        required String title,
+        required String subtitle,
+        required VoidCallback onTap,
+      }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
       onTap: onTap,

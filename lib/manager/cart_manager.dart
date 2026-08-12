@@ -64,6 +64,12 @@ class CartManager extends ChangeNotifier {
     }
   }
 
+  Future<void> removeSelected() async {
+    _cartItems.removeWhere((item) => item['isSelected'] == true);
+    await _saveToPrefs();
+    notifyListeners();
+  }
+
   Future<void> updateQuantity(int index, int delta) async {
     if (index >= 0 && index < _cartItems.length) {
       final newQuantity = (_cartItems[index]['quantity'] ?? 1) + delta;
