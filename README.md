@@ -8,11 +8,14 @@ A modern and feature-rich E-commerce application built with Flutter.
 
 - **Multi-language Support**: Fully localized in English and Khmer.
 - **Dynamic Theming**: Support for Light and Dark modes.
+- **AI Customer Support**: Integrated **Gemini AI** via Telegram bot for automated FAQ responses.
+- **Birthday Reward System**: Custom birthday celebration dialog with reward vouchers.
 - **State Management**: Robust state management using the **BLoC** pattern.
 - **Firebase Integration**: Powered by Firebase Core, Cloud Firestore, and Firebase Storage.
 - **Authentication**: 
   - Secure login with OTP support.
   - Social Auth: Google, Apple, and Facebook sign-in.
+  - Email/Password login with password recovery.
   - Session management via `shared_preferences` and `flutter_secure_storage`.
 - **Payments & Billing**:
   - Integrated **ABA PayWay** and **Bakong (KHQR)** for seamless transactions.
@@ -29,11 +32,12 @@ A modern and feature-rich E-commerce application built with Flutter.
 
 - **Framework**: [Flutter](https://flutter.dev) (SDK ^3.10.3)
 - **State Management**: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- **AI Integration**: [google_generative_ai](https://pub.dev/packages/google_generative_ai)
 - **Backend**: [Firebase](https://firebase.google.com/) (Auth, Firestore, Storage)
 - **Payments**: `khqr_sdk`, `aba_payway_service` (Custom)
 - **Networking**: [Dio](https://pub.dev/packages/dio), [http](https://pub.dev/packages/http)
 - **Local Storage**: `shared_preferences`, `flutter_secure_storage`
-- **Other Key Packages**: `televerse`, `google_maps_flutter`, `geolocator`, `pinput`, `image_picker`
+- **Other Key Packages**: `televerse`, `google_maps_flutter`, `geolocator`, `pinput`, `image_picker`, `mobile_scanner`
 
 ## 📁 Project Structure
 
@@ -47,10 +51,10 @@ lib/
 └── src/
     ├── logic/            # BLoC state management
     ├── model/            # Data models
-    ├── screen/           # UI Screens (Home, Main, Login, Splash)
-    ├── widget/           # Reusable UI components
+    ├── screen/           # UI Screens (Home, Main, Login, Splash, Wallet, Flash Sale)
+    ├── widget/           # Reusable UI components (Birthday Dialog, Vouchers)
     ├── network/          # API, Firestore, & Payment services
-    └── telegarm_bot/     # Telegram integration logic
+    └── telegarm_bot/     # Telegram integration & AI logic
 ```
 
 ## 🚀 Getting Started
@@ -85,9 +89,11 @@ lib/
 
 កម្មវិធីទិញទំនិញទំនើបដែលបង្កើតឡើងដោយប្រើប្រាស់ Flutter ជាមួយនឹងមុខងារពេញលេញ៖
 - **គាំទ្រច្រើនភាសា**: អង់គ្លេស និង ខ្មែរ។
+- **ជំនួយការ AI**: បញ្ចូលជាមួយ Gemini AI តាមរយៈ Telegram Bot។
+- **ប្រព័ន្ធរង្វាន់ថ្ងៃកំណើត**: កម្មវិធីផ្ដល់រង្វាន់ Voucher ក្នុងថ្ងៃកំណើត។
 - **មុខងារពន្លឺ (Dark/Light Mode)**: អាចប្ដូរតាមតម្រូវការ។
 - **ការទូទាត់ប្រាក់**: បញ្ចូលជាមួយ ABA PayWay និង Bakong (KHQR)។
-- **ការចូលប្រើប្រាស់**: គាំទ្រ Google, Apple, Facebook និង លេខទូរស័ព្ទ (OTP)។
+- **ការចូលប្រើប្រាស់**: គាំទ្រ Google, Apple, Facebook, Email និង លេខទូរស័ព្ទ (OTP)។
 - **ទីតាំង**: មានបញ្ចូលជាមួយ Google Maps។
 - **សុវត្ថិភាព**: ការពារដោយការប្រើប្រាស់ Secure Storage។
 - **តេឡេក្រាម**: មានបញ្ចូលជាមួយ Telegram Bot។
