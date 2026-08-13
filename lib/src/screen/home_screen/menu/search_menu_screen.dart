@@ -142,7 +142,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NotificationScreen()),
+              MaterialPageRoute(builder: (context) => NotificationPageScreen()),
             );
           },
         ),

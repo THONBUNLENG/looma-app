@@ -126,13 +126,11 @@ class AddressView extends StatelessWidget {
           children: [
             Radio<bool>(
               value: true,
-              // ignore: deprecated_member_use
               groupValue: isDefault,
-              // ignore: deprecated_member_use
               onChanged: (val) {
                 context.read<AddressBloc>().add(SetDefaultAddress(index));
               },
-              activeColor: isDark ? Colors.white : Colors.black,
+              activeColor: AppColor.pink100Color,
               visualDensity: VisualDensity.compact,
             ),
             const SizedBox(width: 8),
@@ -140,17 +138,32 @@ class AddressView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
-                    (item['title'] as String).tr,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: isDark ? Colors.white : Colors.black,
+                  Row(
+                    children: [
+                      TextWidget(
+                        (item['label'] ?? "Address").toString().tr,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: isDark ? Colors.white : Colors.black,
+                      ),
+                      if (isDefault) ...[
+                        const SizedBox(width: 8),
+                        _buildDefaultBadge(context),
+                      ],
+                    ],
                   ),
                   const SizedBox(height: 4),
                   TextWidget(
-                    item['address'],
-                    color: isDark ? Colors.white60 : Colors.black87,
+                    item['title'] ?? "",
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
+                    color: isDark ? Colors.white70 : Colors.black87,
+                  ),
+                  const SizedBox(height: 2),
+                  TextWidget(
+                    item['address'],
+                    color: isDark ? Colors.white60 : Colors.black54,
+                    fontSize: 13,
                   ),
                 ],
               ),
@@ -158,8 +171,6 @@ class AddressView extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                if (isDefault) _buildDefaultBadge(context),
-                const SizedBox(height: 12),
                 InkWell(
                   onTap: () async {
                     final result = await Navigator.push(
@@ -231,21 +242,18 @@ class AddressView extends StatelessWidget {
   }
 
   Widget _buildAddButton(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: double.infinity,
-      height: 50,
+      height: 54,
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: isDark ? Colors.white10 : Colors.grey.shade200),
+        color: AppColor.pink100Color,
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
-          if (!isDark)
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
+          BoxShadow(
+            color: AppColor.pink100Color.withValues(alpha: 0.2),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
         ],
       ),
       child: InkWell(
@@ -261,13 +269,20 @@ class AddressView extends StatelessWidget {
             context.read<AddressBloc>().add(AddAddress(result));
           }
         },
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         child: Center(
-          child: TextWidget(
-            'Add new address'.tr,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white : Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.add_location_alt_outlined, color: Colors.white, size: 20),
+              const SizedBox(width: 8),
+              TextWidget(
+                'Add new address'.tr,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ],
           ),
         ),
       ),

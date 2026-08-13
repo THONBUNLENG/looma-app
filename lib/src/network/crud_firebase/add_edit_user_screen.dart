@@ -45,14 +45,14 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
   void initData() {
     if (widget.user == null) return;
     userController.text = widget.user?.name ?? "";
-    ageController.text = widget.user?.age ?? "";
+    ageController.text = widget.user?.dateOfBirth ?? "";
     addressController.text = widget.user?.address ?? "";
     selectedGender = genders.contains(widget.user?.gender) 
         ? widget.user?.gender 
         : 'Male';
     
-    if (widget.user?.picture != null && widget.user!.picture.isNotEmpty) {
-      final file = File(widget.user!.picture);
+    if (widget.user?.photoUrl != null && widget.user!.photoUrl.isNotEmpty) {
+      final file = File(widget.user!.photoUrl);
       if (file.existsSync()) {
         _imageFile = file;
       }
@@ -79,10 +79,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
     try {
       final data = {
         "name": userController.text,
-        "age": ageController.text,
+        "dateOfBirth": ageController.text,
         "address": addressController.text,
         "gender": selectedGender ?? "",
-        "picture": _imageFile?.path ?? "",
+        "photoUrl": _imageFile?.path ?? "",
       };
 
       if ((widget.user?.id ?? "").isEmpty) {

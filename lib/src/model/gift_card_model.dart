@@ -32,6 +32,25 @@ class GiftCardModel {
     );
   }
 
+  static GiftCardModel birthdayVoucher(String userIdentifier, {String? userName}) =>
+      GiftCardModel(
+        title: "Birthday Cash Voucher",
+        amount: 25.0,
+        validFrom: DateTime.now(),
+        validUntil: DateTime.now().add(const Duration(days: 30)),
+        claimCode: "BDAY-$userIdentifier-25",
+        description: userName != null && userName.isNotEmpty
+            ? "Happy Birthday $userName! Enjoy \$25 off your next purchase."
+            : "Happy Birthday! Enjoy \$25 off your next purchase.",
+        terms: [
+          "\$25 voucher for your special day!",
+          "No minimum spend required.",
+          "Valid for 30 days from your birthday.",
+          "Online purchase only."
+        ],
+        isActive: true,
+      );
+
   Map<String, dynamic> toJson() => {
         'title': title,
         'amount': amount,
@@ -43,112 +62,111 @@ class GiftCardModel {
         'isActive': isActive,
       };
 
-  // Sample data for development
-  static List<GiftCardModel> get sampleData => [
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 5.0,
-      validFrom: DateTime(2026, 7, 29),
-      validUntil: DateTime(2026, 8, 28),
-      claimCode: "LOOMA-xx05",
-      description: "\$5 Welcome Gift to start your shopping journey!",
-      terms: [
-        "\$5 voucher just for you! As a thank you for registering.",
-        "\$5 Voucher on min spend of \$15 only.",
-        "Valid 30 days after registered.",
-        "Online purchase only and other terms may apply."
-      ],
-      isActive: true,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 8.0,
-      validFrom: DateTime(2026, 8, 1),
-      validUntil: DateTime(2026, 8, 5),
-      claimCode: "AUGXTRA8",
-      description: "\$8 voucher discount for \$100 purchase and above.",
-      terms: [
-        "\$8 voucher for August extra!",
-        "Min spend of \$100.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 8.0,
-      validFrom: DateTime(2026, 7, 26),
-      validUntil: DateTime(2026, 7, 31),
-      claimCode: "JULYXTRA8",
-      description: "\$8 voucher discount for \$50 purchase and above.",
-      terms: [
-        "\$8 voucher for July extra!",
-        "Min spend of \$50.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 5.0,
-      validFrom: DateTime(2026, 7, 26),
-      validUntil: DateTime(2026, 7, 31),
-      claimCode: "JULYXTRA5",
-      description: "\$5 voucher discount for \$35 purchase and above.",
-      terms: [
-        "\$5 voucher for July extra!",
-        "Min spend of \$35.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 6.0,
-      validFrom: DateTime(2026, 7, 21),
-      validUntil: DateTime(2026, 7, 25),
-      claimCode: "JULYXTRA6",
-      description: "\$6 voucher discount for \$50 purchase and above.",
-      terms: [
-        "\$6 voucher for July extra!",
-        "Min spend of \$50.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 4.0,
-      validFrom: DateTime(2026, 7, 21),
-      validUntil: DateTime(2026, 7, 25),
-      claimCode: "JULYXTRA4",
-      description: "\$4 voucher discount for \$35 purchase and above.",
-      terms: [
-        "\$4 voucher for July extra!",
-        "Min spend of \$35.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-    GiftCardModel(
-      title: "Cash Voucher",
-      amount: 9.0,
-      validFrom: DateTime(2026, 7, 11),
-      validUntil: DateTime(2026, 7, 15),
-      claimCode: "MYJULY9",
-      description: "\$9 voucher discount for \$50 purchase.",
-      terms: [
-        "\$9 voucher for My July!",
-        "Min spend of \$50.",
-        "Valid for limited time.",
-        "Online purchase only."
-      ],
-      isActive: false,
-    ),
-  ];
+  static List<GiftCardModel> getSampleData(String userIdentifier) => [
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 5.0,
+          validFrom: DateTime(2026, 7, 29),
+          validUntil: DateTime(2026, 8, 28),
+          claimCode: "LOOMA-$userIdentifier-05",
+          description: "\$5 Welcome Gift to start your shopping journey!",
+          terms: [
+            "\$5 voucher just for you! As a thank you for registering.",
+            "\$5 Voucher on min spend of \$15 only.",
+            "Valid 30 days after registered.",
+            "Online purchase only and other terms may apply."
+          ],
+          isActive: true,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 8.0,
+          validFrom: DateTime(2026, 8, 1),
+          validUntil: DateTime(2026, 8, 5),
+          claimCode: "AUGXTRA8-$userIdentifier",
+          description: "\$8 voucher discount for \$100 purchase and above.",
+          terms: [
+            "\$8 voucher for August extra!",
+            "Min spend of \$100.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 8.0,
+          validFrom: DateTime(2026, 7, 26),
+          validUntil: DateTime(2026, 7, 31),
+          claimCode: "JULYXTRA8-$userIdentifier",
+          description: "\$8 voucher discount for \$50 purchase and above.",
+          terms: [
+            "\$8 voucher for July extra!",
+            "Min spend of \$50.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 5.0,
+          validFrom: DateTime(2026, 7, 26),
+          validUntil: DateTime(2026, 7, 31),
+          claimCode: "JULYXTRA5-$userIdentifier",
+          description: "\$5 voucher discount for \$35 purchase and above.",
+          terms: [
+            "\$5 voucher for July extra!",
+            "Min spend of \$35.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 6.0,
+          validFrom: DateTime(2026, 7, 21),
+          validUntil: DateTime(2026, 7, 25),
+          claimCode: "JULYXTRA6-$userIdentifier",
+          description: "\$6 voucher discount for \$50 purchase and above.",
+          terms: [
+            "\$6 voucher for July extra!",
+            "Min spend of \$50.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 4.0,
+          validFrom: DateTime(2026, 7, 21),
+          validUntil: DateTime(2026, 7, 25),
+          claimCode: "JULYXTRA4-$userIdentifier",
+          description: "\$4 voucher discount for \$35 purchase and above.",
+          terms: [
+            "\$4 voucher for July extra!",
+            "Min spend of \$35.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+        GiftCardModel(
+          title: "Cash Voucher",
+          amount: 9.0,
+          validFrom: DateTime(2026, 7, 11),
+          validUntil: DateTime(2026, 7, 15),
+          claimCode: "MYJULY9-$userIdentifier",
+          description: "\$9 voucher discount for \$50 purchase.",
+          terms: [
+            "\$9 voucher for My July!",
+            "Min spend of \$50.",
+            "Valid for limited time.",
+            "Online purchase only."
+          ],
+          isActive: false,
+        ),
+      ];
 }

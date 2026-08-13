@@ -7,18 +7,19 @@ class PreferencesManager {
 
   static final PreferencesManager _instance = PreferencesManager._();
 
-  Future<String> setGetString(PrefKey key, [String? data]) async {
+  Future<String> setGetString(dynamic key, [String? data]) async {
     final pref = await SharedPreferences.getInstance();
+    final String keyString = key.toString();
     if (data != null) {
-      pref.setString(key.toString(), data);
+      pref.setString(keyString, data);
       return data;
     } else {
-      final value = pref.getString(key.toString()) ?? '';
+      final value = pref.getString(keyString) ?? '';
       return value;
     }
   }
 
-  Future<bool> remove(PrefKey key) async {
+  Future<bool> remove(dynamic key) async {
     final pref = await SharedPreferences.getInstance();
     return pref.remove(key.toString());
   }
@@ -44,4 +45,4 @@ class SharedPrefUtil {
     return await _prefs?.clear() ?? false;
   }
 }
-enum PrefKey { token, fbToken, deviceId, country, pin }
+enum PrefKey { token, fbToken, deviceId, country, pin, birthdayRewardYear }

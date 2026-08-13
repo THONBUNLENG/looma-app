@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/manager/callback_manager.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
@@ -154,6 +155,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     label: 'First name'.tr,
                     controller: firstNameController,
                     showCheck: firstNameController.text.isNotEmpty,
+                    onChanged: (v) => setState(() {}),
                   ),
                 ),
                 const SizedBox(width: 15),
@@ -162,6 +164,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     label: 'Last name'.tr,
                     controller: lastNameController,
                     showCheck: lastNameController.text.isNotEmpty,
+                    onChanged: (v) => setState(() {}),
                   ),
                 ),
               ],
@@ -172,6 +175,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               label: 'Email'.tr,
               controller: emailController,
               showCheck: emailController.text.isNotEmpty,
+              keyboardType: TextInputType.emailAddress,
+              onChanged: (v) => setState(() {}),
             ),
             const SizedBox(height: 20),
 
@@ -392,6 +397,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     TextStyle? hintStyle,
     VoidCallback? onTap,
     bool showCheck = false,
+    TextInputType? keyboardType,
+    ValueChanged<String>? onChanged,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final borderColor = isDark ? Colors.white24 : Colors.black;
@@ -410,6 +417,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           controller: controller,
           readOnly: onTap != null,
           onTap: onTap,
+          onChanged: onChanged,
+          keyboardType: keyboardType,
           style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           decoration: InputDecoration(
             hintText: hint,
@@ -455,18 +464,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       width: double.infinity,
       height: 55,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           String fullName =
               "${firstNameController.text} ${lastNameController.text}".trim();
           String fullPhone =
               "${selectedCountry['code']}${phoneController.text.trim()}";
-          ProfileManager().updateProfile(
+          
+          await ProfileManager().updateProfile(
             name: fullName,
             email: emailController.text,
             phone: fullPhone,
             gender: selectedGender,
             dateOfBirth: dateController.text,
             picture: _picture,
+          );
+          
+          // Trigger birthday check immediately after saving
+          CallbackManager().checkBirthdayReward?.call();
+          
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: TextWidget("Profile updated successfully".tr)),
           );
           Navigator.pop(context);
         },

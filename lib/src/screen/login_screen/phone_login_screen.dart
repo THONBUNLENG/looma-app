@@ -4,6 +4,7 @@ import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../constants/string_extension.dart';
 import '../../network/datastor/auth_login_service.dart';
+import '../../utils/firebase_error_handler.dart';
 import '../../widget/button.dart';
 import 'create_account/create_account_screen.dart';
 import 'forgot_password_phone_screen.dart';
@@ -51,7 +52,7 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
           if (mounted) {
             setState(() => _isLoading = false);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: TextWidget("Verification failed: ${e.message}")),
+              SnackBar(content: TextWidget(FirebaseErrorHandler.getErrorMessage(e))),
             );
           }
         },
@@ -60,7 +61,7 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
       if (mounted) {
         setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: TextWidget("An error occurred: $e")),
+          SnackBar(content: TextWidget(FirebaseErrorHandler.getErrorMessage(e))),
         );
       }
     }

@@ -847,12 +847,24 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       return;
     }
 
-    final giftCard = GiftCardModel.sampleData.firstWhereOrNull(
+    final profile = ProfileManager();
+
+    String userIdentifier = "USER";
+    if (profile.name.isNotEmpty) {
+      userIdentifier = profile.name.split(' ').first.toUpperCase();
+    } else if (profile.phone.isNotEmpty) {
+      userIdentifier = profile.phone.length >= 4
+          ? profile.phone.substring(profile.phone.length - 4) 
+          : profile.phone;
+    }
+    userIdentifier = userIdentifier.replaceAll(RegExp(r'[^A-Z0-9]'), '');
+    if (userIdentifier.isEmpty) userIdentifier = "USER";
+
+    final giftCard = GiftCardModel.getSampleData(userIdentifier).firstWhereOrNull(
           (c) => c.claimCode.toUpperCase() == code.toUpperCase(),
     );
 
     if (giftCard != null) {
-      // Cap the promo discount itself at 90% of subtotal.
       double appliedDiscount = giftCard.amount;
       final maxAllowed = _maxDiscountAllowed;
       final bool wasClamped = appliedDiscount > maxAllowed;
@@ -863,8 +875,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       setState(() {
         _discountAmount = appliedDiscount;
         _appliedPromoCode = giftCard.claimCode;
-        // Promo discount may have shrunk the remaining 90% headroom —
-        // pull previously-selected points down if they no longer fit.
         if (_pointsToRedeem > _effectiveMaxPoints) {
           _pointsToRedeem = _effectiveMaxPoints;
         }
@@ -999,8 +1009,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     final orderId =
         "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
 
-    // Make sure the points we save reflect the enforced cap, not
-    // whatever was last in the field before a promo code shrank it.
     final int redeemedPoints =
     _pointsToRedeem > _effectiveMaxPoints ? _effectiveMaxPoints : _pointsToRedeem;
 

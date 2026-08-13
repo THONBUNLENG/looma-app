@@ -27,10 +27,31 @@ class FirebaseErrorHandler {
           return 'An account already exists with the same email address but different sign-in credentials.'.tr;
         case 'network-request-failed':
           return 'Network error. Please check your internet connection.'.tr;
+        case 'invalid-verification-code':
+          return 'The verification code is invalid. Please try again.'.tr;
+        case 'invalid-verification-id':
+          return 'Verification ID is invalid. Please request a new code.'.tr;
+        case 'session-expired':
+          return 'The session has expired. Please try again.'.tr;
+        case 'quota-exceeded':
+          return 'SMS quota exceeded. Please try again later.'.tr;
         default:
-          return '${error.code}: ${error.message ?? "An error occurred."}'.tr;
+          return 'An error occurred. Please try again.'.tr;
+      }
+    } else if (error is FirebaseException) {
+      switch (error.code) {
+        case 'permission-denied':
+          return 'You do not have permission to perform this action.'.tr;
+        case 'unavailable':
+          return 'The service is currently unavailable. Please try again later.'.tr;
+        case 'not-found':
+          return 'The requested resource was not found.'.tr;
+        case 'already-exists':
+          return 'The resource already exists.'.tr;
+        default:
+          return 'An error occurred. Please try again.'.tr;
       }
     }
-    return error.toString();
+    return 'An error occurred. Please try again.'.tr;
   }
 }

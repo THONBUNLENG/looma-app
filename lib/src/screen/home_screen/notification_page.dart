@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/screen/home_screen/profile_screen/notification_screen.dart';
+import 'package:shopping_app/src/widget/birthday_reward_dialog.dart';
 import '../../widget/text_widget.dart';
 
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class NotificationPageScreen extends StatelessWidget {
+  const NotificationPageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +45,25 @@ class NotificationScreen extends StatelessWidget {
         children: [
           _buildSectionHeader('Today'.tr, isDark),
           _buildNotificationCard(
+            icon: Icons.cake_rounded,
+            title: 'Happy Birthday Reward!'.tr,
+            subtitle: 'Tap to claim your special birthday gift'.tr,
+            isDark: isDark,
+            iconColor: const Color(0xFFE85D75),
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => const BirthdayRewardDialog(),
+              );
+            },
+          ),
+          _buildNotificationCard(
             icon: Icons.percent,
             title: '30% Special Discount!'.tr,
             subtitle: 'Special promotion only valid today'.tr,
             isDark: isDark,
-            onPressed: () {},
+            onPressed: () => _showNotificationDetail(context, '30% Special Discount!'.tr),
           ),
 
           _buildSectionHeader('Yesterday'.tr, isDark),
@@ -57,14 +72,14 @@ class NotificationScreen extends StatelessWidget {
             title: 'Top Up E-Wallet Successful!'.tr,
             subtitle: 'You have to top up your e-wallet'.tr,
             isDark: isDark,
-            onPressed: () {},
+            onPressed: () => _showNotificationDetail(context, 'Top Up E-Wallet Successful!'.tr),
           ),
           _buildNotificationCard(
             icon: Icons.location_on,
             title: 'New Services Available!'.tr,
             subtitle: 'Now you can track orders in real time'.tr,
             isDark: isDark,
-            onPressed: () {},
+            onPressed: () => _showNotificationDetail(context, 'New Services Available!'.tr),
           ),
 
           _buildSectionHeader('December 22, 2026'.tr, isDark),
@@ -73,17 +88,30 @@ class NotificationScreen extends StatelessWidget {
             title: 'Credit Card Connected!'.tr,
             subtitle: 'Credit Card has been linked!'.tr,
             isDark: isDark,
-            onPressed: () {},
+            onPressed: () => _showNotificationDetail(context, 'Credit Card Connected!'.tr),
           ),
           _buildNotificationCard(
             icon: Icons.person,
             title: 'Account Setup Successful!'.tr,
             subtitle: 'Your account has been created!'.tr,
             isDark: isDark,
-            onPressed: () {},
+            onPressed: () => _showNotificationDetail(context, 'Account Setup Successful!'.tr),
           ),
           const SizedBox(height: 30),
         ],
+      ),
+    );
+  }
+
+  void _showNotificationDetail(BuildContext context, String title) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: TextWidget(
+          "Detail for: $title".tr,
+          color: Colors.white,
+        ),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
@@ -106,6 +134,7 @@ class NotificationScreen extends StatelessWidget {
     required String subtitle,
     required bool isDark,
     required VoidCallback onPressed,
+    Color? iconColor,
   }) {
     return InkWell(
       onTap: onPressed,
@@ -131,10 +160,16 @@ class NotificationScreen extends StatelessWidget {
               height: 55,
               width: 55,
               decoration: BoxDecoration(
-                color: isDark ? Colors.white10 : const Color(0xFF262626),
+                color: iconColor != null
+                    ? iconColor.withValues(alpha: 0.1)
+                    : (isDark ? Colors.white10 : const Color(0xFF262626)),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: Colors.white, size: 26),
+              child: Icon(
+                icon,
+                color: iconColor ?? Colors.white,
+                size: 26,
+              ),
             ),
             const SizedBox(width: 16),
 

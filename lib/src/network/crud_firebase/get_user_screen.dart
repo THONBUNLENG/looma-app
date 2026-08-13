@@ -80,14 +80,14 @@ class _GetUserScreenState extends State<GetUserScreen> {
         onTap: () => pushToAddEdit(user: user),
         leading: CircleAvatar(
           radius: 28,
-          backgroundImage: FileImage(File(user?.picture ?? "")),
+          backgroundImage: FileImage(File(user?.photoUrl ?? "")),
         ),
         title: TextWidget(user?.name.toString() ?? ""),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextWidget("Address ${user?.address.toString() ?? ""}"),
-            TextWidget("Age :  ${user?.age.toString() ?? ""}"),
+            TextWidget("Age :  ${user?.dateOfBirth.toString() ?? ""}"),
             TextWidget("Gender :  ${user?.gender.toString() ?? ""}"),
           ],
         ),

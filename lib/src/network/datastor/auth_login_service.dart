@@ -279,4 +279,18 @@ class AuthLoginService {
     }
     await _auth.signOut();
   }
+
+  // Delete Account
+  Future<void> deleteAccount() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        await user.delete();
+      }
+      await signOut();
+    } catch (e) {
+      debugPrint("Error deleting account: $e");
+      rethrow;
+    }
+  }
 }

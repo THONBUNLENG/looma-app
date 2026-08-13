@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:shopping_app/constants/address_data.dart';
+import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
@@ -252,6 +253,8 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
             ),
             const SizedBox(height: 25),
             _buildDefaultCheckbox(),
+            const SizedBox(height: 30),
+            _buildDeleteButton(),
             const SizedBox(height: 10),
           ],
         ),
@@ -311,11 +314,11 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
               Navigator.pop(context, updatedData);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
+              backgroundColor: AppColor.pink100Color,
               foregroundColor: Colors.white,
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
             child: TextWidget(
@@ -324,6 +327,37 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
               fontSize: 16,
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeleteButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: OutlinedButton(
+        onPressed: () {
+          Navigator.pop(context, "deleted");
+        },
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: Colors.redAccent),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.delete_outline, color: Colors.redAccent, size: 20),
+            const SizedBox(width: 8),
+            TextWidget(
+              "Delete Address".tr,
+              color: Colors.redAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ],
         ),
       ),
     );

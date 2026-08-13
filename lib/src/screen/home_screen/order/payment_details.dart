@@ -82,9 +82,12 @@ class _PaymentDetailsState extends State<PaymentDetails>
   Widget _buildBankHeader(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final totalAmount = widget.order['totalAmount'] ?? '0.00 USD';
+    final paymentMethod = widget.order['paymentMethod'] ?? 'Unknown';
     final amountParts = totalAmount.split(' ');
     final amountValue = amountParts[0];
     final currency = amountParts.length > 1 ? amountParts[1] : 'USD';
+
+    final bool isBank = paymentMethod.toString().toLowerCase().contains('bank');
 
     return Column(
       children: [
@@ -93,18 +96,24 @@ class _PaymentDetailsState extends State<PaymentDetails>
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: Colors.redAccent.withValues(alpha: 0.5),
+              color: isBank
+                  ? Colors.redAccent.withValues(alpha: 0.5)
+                  : Colors.greenAccent.withValues(alpha: 0.5),
               width: 1.5,
             ),
           ),
-          child: const Icon(Icons.call_made_rounded, color: Colors.redAccent, size: 30),
+          child: Icon(
+            isBank ? Icons.call_made_rounded : Icons.check_circle_outline,
+            color: isBank ? Colors.redAccent : Colors.greenAccent,
+            size: 30,
+          ),
         ),
         const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextWidget(
-              '-$amountValue',
+              isBank ? '-$amountValue' : amountValue,
               fontSize: 28,
               fontWeight: FontWeight.bold,
               color: isDark ? Colors.white : Colors.black87,
@@ -120,7 +129,7 @@ class _PaymentDetailsState extends State<PaymentDetails>
         ),
         const SizedBox(height: 8),
         TextWidget(
-          "Transfer to PHEAP NIY SEAN",
+          isBank ? "Transfer to PHEAP NIY SEAN" : paymentMethod.toString().tr,
           fontSize: 14,
           color: Colors.grey,
           fontWeight: FontWeight.w500,
@@ -143,16 +152,30 @@ class _PaymentDetailsState extends State<PaymentDetails>
   }
 
   Widget _buildBankDetails(BuildContext context) {
+    final paymentMethod = widget.order['paymentMethod'] ?? 'N/A';
+    final bool isBank = paymentMethod.toString().toLowerCase().contains('bank');
+    final pointsRedeemed = widget.order['pointsRedeemed'];
+    final pointsRewarded = widget.order['pointsRewarded'];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           _buildBankDetailRow("Trx. ID:", widget.order['id'] ?? 'N/A'),
+          _buildBankDetailRow("Payment Method:", paymentMethod.toString().tr),
+          _buildBankDetailRow("Delivery Method:", (widget.order['deliveryMethod'] ?? 'Standard').toString().tr),
+          if (pointsRedeemed != null && pointsRedeemed > 0)
+            _buildBankDetailRow("Points Redeemed:", "$pointsRedeemed pts"),
+          if (pointsRewarded != null && pointsRewarded > 0)
+            _buildBankDetailRow("Points Received:", "+$pointsRewarded pts"),
+          
           _buildBankDetailRow("Original amount:", widget.order['total'] ?? 'N/A'),
-          _buildBankDetailRow("From account:", "PHEAP NIY SEAN (000 536 181)"),
-          _buildBankDetailRow("Reference #:", "100FT30591363035"),
-          _buildBankDetailRow("Transaction date:", widget.order['date'] ?? 'N/A'),
-          _buildBankDetailRow("To account:", "001212518", isLast: true),
+          if (isBank) ...[
+            _buildBankDetailRow("From account:", "PHEAP NIY SEAN (000 536 181)"),
+            _buildBankDetailRow("Reference #:", "100FT30591363035"),
+            _buildBankDetailRow("To account:", "001212518"),
+          ],
+          _buildBankDetailRow("Transaction date:", widget.order['date'] ?? 'N/A', isLast: true),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/src/model/order_model.dart';
 import 'package:shopping_app/src/model/souvenir_model.dart';
@@ -8,19 +9,20 @@ import 'package:shopping_app/src/network/datastor/membership_service.dart';
 import 'package:shopping_app/src/screen/home_screen/order/bloc/order_bloc.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_success_screen.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
-import 'package:shopping_app/src/widget/show_dialog.dart';
 import '../../../../constants/string_extension.dart';
+import '../address/address_screen.dart';
 
 class SouvenirRedemptionScreen extends StatefulWidget {
   const SouvenirRedemptionScreen({super.key});
 
   @override
-  State<SouvenirRedemptionScreen> createState() => _SouvenirRedemptionScreenState();
+  State<SouvenirRedemptionScreen> createState() =>
+      _SouvenirRedemptionScreenState();
 }
 
 class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
   final TextEditingController _searchController = TextEditingController();
-  final String _searchQuery = "";
+  String _searchQuery = "";
 
   @override
   void dispose() {
@@ -42,8 +44,11 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios,
-                color: isDark ? Colors.white : Colors.black, size: 20),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: isDark ? Colors.white : Colors.black,
+              size: 20,
+            ),
             onPressed: () => Navigator.pop(context),
           ),
           title: TextWidget(
@@ -55,93 +60,255 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
             ),
           ),
         ),
-        body: StreamBuilder<List<OrderModel>>(
-          stream: MembershipService.getOrdersStream(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.error_outline, color: Colors.red, size: 48),
-                      const SizedBox(height: 16),
-                      TextWidget("Failed to load point balance".tr, fontSize: 16, fontWeight: FontWeight.bold),
-                      TextWidget(snapshot.error.toString(), fontSize: 12, color: Colors.grey),
-                    ],
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[100],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: (value) {
+                    setState(() {
+                      _searchQuery = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Search souvenirs...".tr,
+                    hintStyle: TextStyle(
+                      color: isDark ? Colors.white38 : Colors.grey,
+                      fontSize: 14,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: isDark ? Colors.white38 : Colors.grey,
+                      size: 20,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 12,
+                    ),
                   ),
                 ),
-              );
-            }
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final orders = snapshot.data ?? [];
-            final points = MembershipService.calculateAvailablePoints(orders);
-            final filteredSouvenirs = sampleSouvenirs.where((souvenir) {
-              return souvenir.title
-                  .toLowerCase()
-                  .contains(_searchQuery.toLowerCase());
-            }).toList();
-
-            return BlocListener<OrderBloc, OrderState>(
-              listener: (context, state) {
-                if (state is OrderSuccess &&
-                    state.order?.items.first['type'] == 'souvenir') {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OrderSuccessScreen(
-                        orderId: state.order?.id ?? "N/A",
-                        totalAmount: 0.0,
-                        paymentMethod: 'Points'.tr,
-                      ),
-                    ),
-                  );
-                } else if (state is OrderFailure) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: TextWidget(
-                          "Redemption failed: ${state.error}".tr,
-                          color: Colors.white),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                }
-              },
-              child: Column(
-                children: [
-                  _buildPointsCard(points, isDark),
-                  const SizedBox(height: 6),
-                  Expanded(
-                    child: filteredSouvenirs.isEmpty
-                        ? _buildEmptyState(isDark)
-                        : GridView.builder(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.65,
-                              crossAxisSpacing: 15,
-                              mainAxisSpacing: 15,
+              ),
+            ),
+            Expanded(
+              child: StreamBuilder<List<OrderModel>>(
+                stream: MembershipService.getOrdersStream(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 48,
                             ),
-                            itemCount: filteredSouvenirs.length,
-                            itemBuilder: (context, index) {
-                              final souvenir = filteredSouvenirs[index];
-                              return _buildSouvenirCard(
-                                  context, souvenir, points, isDark);
-                            },
+                            const SizedBox(height: 16),
+                            TextWidget(
+                              "Failed to load point balance".tr,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            TextWidget(
+                              snapshot.error.toString(),
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final orders = snapshot.data ?? [];
+                  final points = MembershipService.calculateAvailablePoints(orders);
+                  final filteredSouvenirs = sampleSouvenirs.where((souvenir) {
+                    return souvenir.title.toLowerCase().contains(
+                          _searchQuery.toLowerCase(),
+                        );
+                  }).toList();
+
+                  return BlocListener<OrderBloc, OrderState>(
+                    listener: (context, state) {
+                      if (state is OrderSuccess &&
+                          state.order?.items.first['type'] == 'souvenir') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderSuccessScreen(
+                              orderId: state.order?.id ?? "N/A",
+                              totalAmount: 0.0,
+                              paymentMethod: 'Points'.tr,
+                            ),
                           ),
+                        );
+                      } else if (state is OrderFailure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: TextWidget(
+                              "Redemption failed: ${state.error}".tr,
+                              color: Colors.white,
+                            ),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    },
+                    child: ListenableBuilder(
+                      listenable: ProfileManager(),
+                      builder: (context, _) {
+                        final profile = ProfileManager();
+                        final defaultAddress = profile.defaultAddress;
+
+                        return CustomScrollView(
+                          slivers: [
+                            SliverToBoxAdapter(
+                              child: Column(
+                                children: [
+                                  _buildPointsCard(points, isDark),
+                                  const SizedBox(height: 6),
+                                  _buildAddressSection(defaultAddress, isDark),
+                                  const SizedBox(height: 6),
+                                ],
+                              ),
+                            ),
+                            if (filteredSouvenirs.isEmpty)
+                              SliverFillRemaining(
+                                hasScrollBody: false,
+                                child: _buildEmptyState(isDark),
+                              )
+                            else
+                              SliverPadding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 10,
+                                ),
+                                sliver: SliverGrid(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.65,
+                                    crossAxisSpacing: 15,
+                                    mainAxisSpacing: 15,
+                                  ),
+                                  delegate: SliverChildBuilderDelegate(
+                                    (context, index) {
+                                      final souvenir = filteredSouvenirs[index];
+                                      return _buildSouvenirCard(
+                                        context,
+                                        souvenir,
+                                        points,
+                                        isDark,
+                                      );
+                                    },
+                                    childCount: filteredSouvenirs.length,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddressSection(Map<String, dynamic>? address, bool isDark) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isDark ? Colors.white10 : Colors.grey.shade200,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.location_on_outlined,
+                    size: 18,
+                    color: isDark ? Colors.white70 : Colors.black54,
+                  ),
+                  const SizedBox(width: 8),
+                  TextWidget(
+                    "Shipping Address".tr,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ],
               ),
-            );
-          },
-        ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddressScreen(),
+                    ),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: TextWidget(
+                  (address == null ? "Add" : "Change").tr,
+                  fontSize: 14,
+                  color: AppColor.pink100Color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          if (address != null) ...[
+            const SizedBox(height: 12),
+            TextWidget(
+              "${address['label'] ?? 'Address'}: ${address['title'] ?? ''}",
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+            const SizedBox(height: 4),
+            TextWidget(
+              address['address'] ?? "",
+              fontSize: 12,
+              color: isDark ? Colors.white60 : Colors.black54,
+            ),
+          ] else ...[
+            const SizedBox(height: 12),
+            TextWidget(
+              "No shipping address added yet.".tr,
+              fontSize: 13,
+              color: isDark ? Colors.white38 : Colors.grey,
+            ),
+          ],
+        ],
       ),
     );
   }
@@ -234,13 +401,17 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
       ),
     );
   }
+
   Widget _buildEmptyState(bool isDark) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.search_off,
-              size: 80, color: isDark ? Colors.white12 : Colors.grey[300]),
+          Icon(
+            Icons.search_off,
+            size: 80,
+            color: isDark ? Colors.white12 : Colors.grey[300],
+          ),
           const SizedBox(height: 16),
           TextWidget(
             "No souvenirs found".tr,
@@ -252,8 +423,12 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
     );
   }
 
-  Widget _buildSouvenirCard(BuildContext context, SouvenirModel souvenir,
-      int availablePoints, bool isDark) {
+  Widget _buildSouvenirCard(
+    BuildContext context,
+    SouvenirModel souvenir,
+    int availablePoints,
+    bool isDark,
+  ) {
     final canAfford = availablePoints >= souvenir.pointCost;
     final pointsNeeded = souvenir.pointCost - availablePoints;
 
@@ -280,13 +455,17 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[50],
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(20)),
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.05)
+                        : Colors.grey[50],
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                   ),
                   child: ClipRRect(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(12),
                       child: CachedNetworkImage(
@@ -313,12 +492,15 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.3),
                         borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(20)),
+                          top: Radius.circular(20),
+                        ),
                       ),
                       child: Center(
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 4),
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.black.withValues(alpha: 0.7),
                             borderRadius: BorderRadius.circular(10),
@@ -366,26 +548,24 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
                   width: double.infinity,
                   height: 36,
                   child: ElevatedButton(
-                    onPressed: canAfford
-                        ? () => _confirmRedemption(context, souvenir)
-                        : null,
+                    onPressed: canAfford ? () => _handleRedeem(context, souvenir) : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isDark ? Colors.white : Colors.black,
-                      foregroundColor: isDark ? Colors.black : Colors.white,
-                      disabledBackgroundColor:
-                          isDark ? Colors.white12 : Colors.grey[200],
-                      disabledForegroundColor:
-                          isDark ? Colors.white24 : Colors.grey[400],
-                      padding: EdgeInsets.zero,
+                      backgroundColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black,
+                      foregroundColor: Colors.white,
+                      disabledBackgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[300],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 0,
+                      padding: EdgeInsets.zero,
                     ),
                     child: TextWidget(
                       "Redeem".tr,
                       fontSize: 12,
                       fontWeight: FontWeight.w900,
+                      color: canAfford 
+                          ? Colors.white 
+                          : (isDark ? Colors.white24 : Colors.grey),
                     ),
                   ),
                 ),
@@ -396,38 +576,26 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
       ),
     );
   }
-
-  void _confirmRedemption(BuildContext context, SouvenirModel souvenir) {
-    showDialog(
-      context: context,
-      builder: (context) => StatusDialog(
-        title: "Confirm Redemption".tr,
-        message: "Are you sure you want to redeem ${souvenir.title} for ${souvenir.pointCost} points?".tr,
-        btn1Text: "Cancel".tr,
-        btn2Text: "Confirm".tr,
-        imagePath: 'assets/icon/i_color/Information.png',
-        iconColor: Colors.amber,
-        btn2Color: Colors.amber,
-        onBtn1Pressed: () => Navigator.pop(context),
-        onBtn2Pressed: () {
-          Navigator.pop(context);
-          _handleRedeem(context, souvenir);
-        },
-      ),
-    );
-  }
-
   void _handleRedeem(BuildContext context, SouvenirModel souvenir) {
     final userId = MembershipService.getUserId();
     if (userId == "GUEST") {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: TextWidget("Please login to redeem souvenirs.".tr))
+        SnackBar(content: TextWidget("Please login to redeem souvenirs.".tr)),
       );
       return;
     }
 
-    final defaultAddress = ProfileManager().defaultAddress ?? {};
-
+    final defaultAddress = ProfileManager().defaultAddress;
+    if (defaultAddress == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Please add a shipping address first.".tr),
+          backgroundColor: AppColor.mutedRed,
+        ),
+      );
+      return;
+    }
+ 
     final order = OrderModel(
       userId: userId,
       items: [
@@ -437,12 +605,12 @@ class _SouvenirRedemptionScreenState extends State<SouvenirRedemptionScreen> {
           'pointCost': souvenir.pointCost,
           'type': 'souvenir',
           'quantity': 1,
-        }
+        },
       ],
       totalAmount: 0.0,
       status: 'Completed',
       paymentMethod: 'Points',
-      deliveryMethod: 'Self-Pickup',
+      deliveryMethod: 'Delivery',
       address: defaultAddress,
       createdAt: DateTime.now(),
       pointsRedeemed: souvenir.pointCost,

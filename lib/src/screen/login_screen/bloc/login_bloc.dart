@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+import '../../../../constants/string_extension.dart';
 import '../../../../manager/profile_manager.dart';
 import '../../../network/datastor/auth_login_service.dart';
 import '../../../network/datastor/auth_service.dart';
@@ -38,7 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           if (!isClosed) add(_InternalOtpSent(verificationId));
         },
         onVerificationFailed: (e) {
-          if (!isClosed) add(_InternalLoginFailure(e.message ?? "Verification failed"));
+          if (!isClosed) add(_InternalLoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
         },
         onVerificationCompleted: (credential) {
           if (!isClosed) {
@@ -269,7 +270,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         emit(LoginSuccess(user.displayName ?? "User"));
       } else {
-        emit(LoginFailure("Apple Sign-In canceled or failed."));
+        emit(LoginFailure("Apple Sign-In canceled or failed.".tr));
       }
     } catch (e) {
       emit(LoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
@@ -300,7 +301,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         emit(LoginSuccess(user.displayName ?? "User"));
       } else if (error != null) {
-        emit(LoginFailure("Facebook Error: $error"));
+        emit(LoginFailure("${"Facebook Error".tr}: $error"));
       } else {
         emit(LoginInitial());
       }

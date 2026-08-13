@@ -313,15 +313,17 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
                                   ),
                                   const SizedBox(height: 12),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      TextWidget(
-                                        "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColor.primaryColor,
+                                      Expanded(
+                                        child: TextWidget(
+                                          "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.primaryColor,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
+                                      const SizedBox(width: 8),
                                       _buildQuantityController(index, isDark),
                                     ],
                                   ),

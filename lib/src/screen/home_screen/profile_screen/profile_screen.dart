@@ -753,13 +753,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
         iconColor: Colors.red,
         onBtn1Pressed: () => Navigator.pop(context),
         onBtn2Pressed: () async {
-          await AuthService.deleteAccountPermanent();
-          if (context.mounted) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const MainHolder()),
-              (route) => false,
-            );
+          // Show loading
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => LoadingWidget.loadingCenterWidget(),
+          );
+
+          try {
+            await AuthService.deleteAccountPermanent();
+            if (context.mounted) {
+              Navigator.pop(context); // Pop loading
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainHolder()),
+                (route) => false,
+              );
+            }
+          } catch (e) {
+            if (context.mounted) {
+              Navigator.pop(context); // Pop loading
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: TextWidget(
+                    "Error deleting account. You may need to log in again first."
+                        .tr,
+                    color: Colors.white,
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
           }
         },
       ),

@@ -115,16 +115,44 @@ class MembershipScreen extends StatelessWidget {
                 _buildInfoSection(context, isDark),
 
                 const SizedBox(height: 30),
-                TextWidget(
-                  "Terms & Conditions:",
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                _buildTermsSection(context, isDark),
                 const SizedBox(height: 40),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildTermsSection(BuildContext context, bool isDark) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextWidget(
+          "Terms & Conditions:".tr,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: isDark ? Colors.white : Colors.black,
+        ),
+        const SizedBox(height: 12),
+        _buildTermItem("1. Membership is non-transferable and for personal use only."),
+        _buildTermItem("2. Benefits and discounts apply to LOOMA Group brands."),
+        _buildTermItem("3. Points cannot be exchanged for cash directly."),
+        _buildTermItem("4. LOOMA Group reserves the right to modify terms at any time."),
+        _buildTermItem("5. Membership level is calculated based on successful purchases."),
+      ],
+    );
+  }
+
+  Widget _buildTermItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: TextWidget(
+        text.tr,
+        fontSize: 13,
+        color: Colors.grey,
+        lineHeight: 1.5,
       ),
     );
   }

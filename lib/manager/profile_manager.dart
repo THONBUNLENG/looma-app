@@ -15,13 +15,7 @@ class ProfileManager extends ChangeNotifier {
   String _picture = "";
   String _gender = "";
   String _dateOfBirth = "";
-  List<Map<String, dynamic>> _addresses = [
-    {
-      "title": "",
-      "address": "",
-      "isDefault": true,
-    },
-  ];
+  List<Map<String, dynamic>> _addresses = [];
 
   String get name => _name;
   String get phone => _phone;
@@ -49,13 +43,7 @@ class ProfileManager extends ChangeNotifier {
     _picture = "";
     _gender = "";
     _dateOfBirth = "";
-    _addresses = [
-      {
-        "title": "",
-        "address": "",
-        "isDefault": true,
-      },
-    ];
+    _addresses = [];
 
     _name = prefs.getString('user_name') ?? _name;
     _phone = prefs.getString('user_phone') ?? _phone;
@@ -78,9 +66,9 @@ class ProfileManager extends ChangeNotifier {
         _name = profile.name.isNotEmpty ? profile.name : _name;
         _phone = profile.phone.isNotEmpty ? profile.phone : _phone;
         _email = profile.email.isNotEmpty ? profile.email : _email;
-        _picture = profile.picture.isNotEmpty ? profile.picture : _picture;
+        _picture = profile.photoUrl.isNotEmpty ? profile.photoUrl : _picture;
         _gender = profile.gender.isNotEmpty ? profile.gender : _gender;
-        _dateOfBirth = profile.age.isNotEmpty ? profile.age : _dateOfBirth;
+        _dateOfBirth = profile.dateOfBirth.isNotEmpty ? profile.dateOfBirth : _dateOfBirth;
       }
 
       // Fetch specific addresses collection/field
@@ -173,13 +161,7 @@ class ProfileManager extends ChangeNotifier {
     _picture = "";
     _gender = "";
     _dateOfBirth = "";
-    _addresses = [
-      {
-        "title": "",
-        "address": "",
-        "isDefault": true,
-      },
-    ];
+    _addresses = [];
     notifyListeners();
   }
 }

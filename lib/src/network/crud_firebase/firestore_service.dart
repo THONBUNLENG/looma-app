@@ -206,6 +206,17 @@ class FirestoreService {
     }
   }
 
+  /// Delete user account from Firestore
+  Future<void> deleteUserAccount(String uid) async {
+    try {
+      await _db.collection('user').doc(uid).delete();
+      debugPrint("✅ User data deleted from Firestore for user $uid");
+    } catch (e) {
+      debugPrint("❌ Error deleting user data from Firestore: $e");
+      rethrow;
+    }
+  }
+
   /// Get Telegram Admin Chat ID
   Future<int?> getTelegramAdminChatId() async {
     try {

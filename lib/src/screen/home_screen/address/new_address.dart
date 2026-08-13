@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:shopping_app/constants/address_data.dart';
+import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
@@ -18,7 +19,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   final TextEditingController _streetController = TextEditingController();
 
   String? selectedCountry = "Cambodia";
-  String? selectedCity; // Now used for Province
+  String? selectedCity;
   String? selectedDistrict;
   String? selectedCommune;
   String? selectedLabel = "Home";
@@ -57,8 +58,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           .firstWhereOrNull((p) => p['en'] == enName);
       return province != null ? province['km'] : enName;
     } else {
-      // This part handles districts and communes
-      // For districts
+
       final province = (cambodiaAdministrativeData['provinces'] as List)
           .firstWhereOrNull((p) => p['en'] == selectedCity);
       if (province != null) {
@@ -66,7 +66,6 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
             .firstWhereOrNull((d) => d['en'] == enName);
         if (district != null) return district['km'];
 
-        // If not a district, check if it's a commune in the selected district
         if (selectedDistrict != null) {
           final selDistrict = (province['districts'] as List)
               .firstWhereOrNull((d) => d['en'] == selectedDistrict);
@@ -282,11 +281,11 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
               Navigator.pop(context, updatedData);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
+              backgroundColor: AppColor.pink100Color,
               foregroundColor: Colors.white,
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
             child: TextWidget(

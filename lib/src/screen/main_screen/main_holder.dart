@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/callback_manager.dart';
+import 'package:shopping_app/manager/preferences_manager.dart';
+import 'package:shopping_app/manager/profile_manager.dart';
+import 'package:shopping_app/src/widget/birthday_reward_dialog.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import '../../../constants/app_color.dart';
 
@@ -38,7 +42,6 @@ class MainHolderState extends State<MainHolder> {
       setState(() {
         _selectedIndex = index;
       });
-      // If switching to Wishlist tab (index 3), trigger refresh
       if (index == 3) {
         CallbackManager().refreshWishlist?.call();
       }
@@ -55,6 +58,7 @@ class MainHolderState extends State<MainHolder> {
   void initState() {
     super.initState();
     CallbackManager().refreshIndexStack = refreshIndexStack;
+    CallbackManager().checkBirthdayReward = _checkBirthdayReward;
     _pages = [
       const HomeScreen(),
       const SearchMenuScreen(),
@@ -71,6 +75,71 @@ class MainHolderState extends State<MainHolder> {
     setState(() {
       _loadingLoginStatus = false;
     });
+
+    _checkBirthdayReward();
+  }
+
+  Future<void> _checkBirthdayReward() async {
+    final profile = ProfileManager();
+    await Future.delayed(const Duration(milliseconds: 200));
+    
+    if (profile.dateOfBirth.isEmpty) {
+      debugPrint("MainHolder: Profile DOB is empty.");
+      return;
+    }
+
+    try {
+      final parts = profile.dateOfBirth.split('/');
+      if (parts.length != 3) {
+        debugPrint("MainHolder: Invalid DOB format: ${profile.dateOfBirth}");
+        return;
+      }
+
+      final day = int.parse(parts[0]);
+      final month = int.parse(parts[1]);
+
+      final now = DateTime.now();
+      debugPrint(
+        "MainHolder: Checking birthday reward - User: $day/$month, Today: ${now.day}/${now.month}",
+      );
+
+      // STRICT DAY AND MONTH MATCH
+      if (now.day == day && now.month == month) {
+        final prefs = PreferencesManager();
+        final uid = FirebaseAuth.instance.currentUser?.uid ?? "guest";
+        final rewardKey = "${PrefKey.birthdayRewardYear}_$uid";
+        
+        final lastRewardedYear = await prefs.setGetString(
+          rewardKey,
+        );
+        final currentYear = now.year.toString();
+
+        debugPrint(
+          "MainHolder: Birthday match! UID: $uid, LastRewardedYear: $lastRewardedYear, CurrentYear: $currentYear",
+        );
+
+        if (lastRewardedYear != currentYear) {
+          if (!mounted) return;
+
+
+          await prefs.setGetString(rewardKey, currentYear);
+          
+          if (!mounted) return;
+          debugPrint("MainHolder: Showing BirthdayRewardDialog");
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => const BirthdayRewardDialog(),
+          );
+        } else {
+          debugPrint("MainHolder: Already rewarded for this year ($currentYear).");
+        }
+      } else {
+        debugPrint("MainHolder: Not birthday today. User: $day/$month, Now: ${now.day}/${now.month}");
+      }
+    } catch (e) {
+      debugPrint("Error checking birthday reward: $e");
+    }
   }
 
   @override
@@ -86,10 +155,7 @@ class MainHolderState extends State<MainHolder> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: CustomCurvedNavigationBar(
         selectedIndex: _selectedIndex,
         navItems: _navItems,
@@ -136,10 +202,14 @@ class CustomCurvedNavigationBar extends StatelessWidget {
 
     // Theme Colors
     final Color barBgColor = isDark
-        ? (theme.cardColor != Colors.white ? theme.cardColor : const Color(0xFF1E1E1E))
+        ? (theme.cardColor != Colors.white
+              ? theme.cardColor
+              : const Color(0xFF1E1E1E))
         : Colors.white;
     final Color activeCircleColor = isDark ? Colors.white : AppColor.black;
-    final Color inactiveIconColor = isDark ? Colors.grey.shade500 : Colors.grey.shade600;
+    final Color inactiveIconColor = isDark
+        ? Colors.grey.shade500
+        : Colors.grey.shade600;
 
     return Container(
       height: 78 + bottomPadding,
@@ -162,7 +232,7 @@ class CustomCurvedNavigationBar extends StatelessWidget {
               curve: kNavCurve,
             ),
           ),
-          
+
           // 2. Active Indicator Circle (Floating Icon)
           AnimatedPositioned(
             duration: kNavDuration,
@@ -243,9 +313,13 @@ class CustomCurvedNavigationBar extends StatelessWidget {
                             duration: const Duration(milliseconds: 250),
                             style: TextStyle(
                               fontSize: 10,
-                              fontFamily: 'Roboto', // Fallback
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                              color: isSelected ? activeCircleColor : inactiveIconColor,
+                              fontFamily: 'Roboto',
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.w500,
+                              color: isSelected
+                                  ? activeCircleColor
+                                  : inactiveIconColor,
                             ),
                             child: Text(item.label.tr),
                           ),
@@ -294,7 +368,9 @@ class AnimatedPositionedCustomPaint extends StatelessWidget {
           painter: CurvedDipPainter(
             dipOffsetX: leftOffset + (itemWidth / 2),
             color: color,
-            shadowColor: isDark ? Colors.black.withValues(alpha: 0.4) : Colors.black.withValues(alpha: 0.12),
+            shadowColor: isDark
+                ? Colors.black.withValues(alpha: 0.4)
+                : Colors.black.withValues(alpha: 0.12),
           ),
         );
       },
@@ -329,7 +405,7 @@ class CurvedDipPainter extends CustomPainter {
     final path = Path();
     path.moveTo(0, 0);
     path.lineTo(dipOffsetX - (dipWidth / 2), 0);
-    
+
     // Left curve
     path.cubicTo(
       dipOffsetX - (dipWidth * 0.35),
@@ -339,7 +415,7 @@ class CurvedDipPainter extends CustomPainter {
       dipOffsetX,
       dipDepth,
     );
-    
+
     // Right curve
     path.cubicTo(
       dipOffsetX + (dipWidth * 0.3),
@@ -363,8 +439,8 @@ class CurvedDipPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CurvedDipPainter oldDelegate) {
-    return oldDelegate.dipOffsetX != dipOffsetX || 
-           oldDelegate.color != color || 
-           oldDelegate.shadowColor != shadowColor;
+    return oldDelegate.dipOffsetX != dipOffsetX ||
+        oldDelegate.color != color ||
+        oldDelegate.shadowColor != shadowColor;
   }
 }

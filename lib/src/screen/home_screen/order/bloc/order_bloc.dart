@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import '../../../../model/order_model.dart';
 import '../../../../network/crud_firebase/firestore_service.dart';
+import '../../../../utils/firebase_error_handler.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
@@ -16,7 +17,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         await _firestoreService.createOrder(event.order);
         emit(OrderSuccess(order: event.order));
       } catch (e) {
-        emit(OrderFailure(e.toString()));
+        emit(OrderFailure(FirebaseErrorHandler.getErrorMessage(e)));
       }
     });
 
@@ -26,7 +27,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         emit(OrderSuccess(orders: []));
       } catch (e) {
-        emit(OrderFailure(e.toString()));
+        emit(OrderFailure(FirebaseErrorHandler.getErrorMessage(e)));
       }
     });
   }

@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../manager/profile_manager.dart';
+import '../crud_firebase/firestore_service.dart';
+import 'auth_login_service.dart';
 
 class AuthService {
   static const String _isLoggedInKey = 'isLoggedIn';
@@ -111,7 +116,20 @@ class AuthService {
 
   /// Full Account Deletion
   static Future<void> deleteAccountPermanent() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final uid = user.uid;
+      // 1. Delete from Firestore
+      await FirestoreService().deleteUserAccount(uid);
+      // 2. Delete from Firebase Auth
+      await AuthLoginService().deleteAccount();
+    }
+
+    // 3. Clear local storage
     final p = await _prefs;
     await p.clear();
+
+    // 4. Clear ProfileManager
+    ProfileManager().clear();
   }
 }

@@ -111,7 +111,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             }
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Verification failed: ${state.error}")),
+              SnackBar(content: Text("${"Verification failed".tr}: ${state.error}")),
             );
           }
         },

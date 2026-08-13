@@ -177,14 +177,17 @@ class _OrderScreenState extends State<OrderScreen> {
     final statusText = isPending ? "Await Payment".tr : "Already Paid".tr;
     final statusColor = isPending ? Colors.orange : AppColor.successGreen;
 
+    // Calculate subtotal from total and discount for display purposes
+    final subtotalAmount = order.totalAmount + (order.discountAmount ?? 0.0);
+
     // Convert OrderModel to Map for Detail and Tracking screens (compatibility)
     final orderMap = {
       "id": order.id,
       "date": DateFormat('yyyy-MM-dd HH:mm:ss').format(order.createdAt),
       "status": order.status,
-      "total": "${order.totalAmount.toStringAsFixed(2)} USD",
+      "total": "${subtotalAmount.toStringAsFixed(2)} USD",
       "items": order.items.length.toString(),
-      "discount": "${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
+      "discount": "-${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
       "totalAmount": "${order.totalAmount.toStringAsFixed(2)} USD",
       "rawItems": order.items,
       "rawAddress": order.address,
@@ -251,18 +254,22 @@ class _OrderScreenState extends State<OrderScreen> {
           const Divider(height: 1, thickness: 0.5),
           const SizedBox(height: 16),
           _buildInfoRow(
-            "Total".tr,
-            "${order.totalAmount.toStringAsFixed(2)} USD",
+            "Subtotal".tr,
+            "${subtotalAmount.toStringAsFixed(2)} USD",
             isDark,
           ),
           const SizedBox(height: 10),
           _buildInfoRow("Total Item".tr, order.items.length.toString(), isDark),
           const SizedBox(height: 10),
-          _buildInfoRow(
-            "Discount".tr,
-            "${(order.discountAmount ?? 0.0).toStringAsFixed(2)} USD",
-            isDark,
-          ),
+          if (order.discountAmount != null && order.discountAmount! > 0) ...[
+            _buildInfoRow(
+              "Discount".tr,
+              "-\$${order.discountAmount!.toStringAsFixed(2)} USD",
+              isDark,
+              valueColor: Colors.redAccent,
+            ),
+            const SizedBox(height: 10),
+          ],
           if (order.pointsRedeemed != null && order.pointsRedeemed! > 0) ...[
             const SizedBox(height: 10),
             _buildInfoRow(

@@ -2,9 +2,9 @@ class UserModel {
   String id;
   String name;
   String gender;
-  String age;
+  String dateOfBirth;
   String address;
-  String picture;
+  String photoUrl;
   String email;
   String phone;
 
@@ -12,20 +12,20 @@ class UserModel {
     required this.id,
     required this.name,
     required this.gender,
-    required this.age,
+    required this.dateOfBirth,
     required this.address,
-    required this.picture,
+    required this.photoUrl,
     this.email = "",
     this.phone = "",
   });
 
-  factory UserModel.fromJson(String id,Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(String id, Map<String, dynamic> json) => UserModel(
     id: id,
     name: json["name"] ?? "",
     gender: json["gender"] ?? "",
-    age: json["age"] ?? "",
+    dateOfBirth: json["dateOfBirth"] ?? json["age"] ?? "",
     address: json["address"] ?? "",
-    picture: json["picture"] ?? "",
+    photoUrl: json["photoUrl"] ?? json["picture"] ?? "",
     email: json["email"] ?? "",
     phone: json["phone"] ?? "",
   );
@@ -33,9 +33,9 @@ class UserModel {
   Map<String, dynamic> toJson() => {
     "name": name,
     "gender": gender,
-    "age": age,
+    "dateOfBirth": dateOfBirth,
     "address": address,
-    "picture": picture,
+    "photoUrl": photoUrl,
     "email": email,
     "phone": phone,
   };
