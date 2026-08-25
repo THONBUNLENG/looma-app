@@ -10,8 +10,6 @@ class EcommerceAPIEndPoint {
 
   static const String _domain = 'http://127.0.0.1:8000';
 
-  ///-----------------------------------------------------
-
   final String _basePath = '/api/payment_repository-gateway/v1/payments';
 
   String get purchase => '$_domain$_basePath/purchase';

@@ -79,7 +79,7 @@ class _NewItemsSectionState extends State<NewItemsSection> {
           ),
         ),
         SizedBox(
-          height: 315,
+          height: 350,
           child: StreamBuilder<List<ProductModel>>(
             stream: _productStream,
             builder: (context, snapshot) {
@@ -87,10 +87,7 @@ class _NewItemsSectionState extends State<NewItemsSection> {
                 return LoadingWidget.loadingCenterWidget();
               }
               var products = snapshot.data ?? [];
-              
-              // Fallback to local data if Firestore is empty
               if (products.isEmpty) {
-                // Mix of clothes, shoes, and bags
                 final List<Map<String, dynamic>> mixedItems = [
                   if (clothes.isNotEmpty) clothes[0],
                   if (shoes.isNotEmpty) shoes[0],
@@ -112,7 +109,7 @@ class _NewItemsSectionState extends State<NewItemsSection> {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 20, right: 10),
                 physics: const BouncingScrollPhysics(),
-                itemCount: products.length,
+                itemCount: products.length > 6 ? 6 : products.length,
                 itemBuilder: (context, index) {
                   return NewItemCard(product: products[index], index: index);
                 },
@@ -141,12 +138,12 @@ class NewItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: product.toMap()),
+            builder: (context) => ProductDetailScreen(product: product.toMap()),
           ),
         );
       },
       child: Container(
-        width: 190,
+        width: 170,
         margin: const EdgeInsets.only(right: 18, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +174,7 @@ class NewItemCard extends StatelessWidget {
                                 tag: 'new_item_$index',
                                 child: CachedNetworkImage(
                                   imageUrl: imageUrl,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                   placeholder: (context, url) => Center(
                                     child: CircularProgressIndicator(
                                       strokeWidth: 2,

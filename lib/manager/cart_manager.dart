@@ -18,6 +18,7 @@ class CartManager extends ChangeNotifier {
         final List<dynamic> decoded = jsonDecode(cartData);
         _cartItems.clear();
         _cartItems.addAll(decoded.map((item) => Map<String, dynamic>.from(item)));
+        notifyListeners();
       } catch (e) {
         debugPrint("Error decoding cart data: $e");
       }
@@ -81,6 +82,14 @@ class CartManager extends ChangeNotifier {
     }
   }
 
+  Future<void> updateItem(int index, Map<String, dynamic> updatedItem) async {
+    if (index >= 0 && index < _cartItems.length) {
+      _cartItems[index] = Map<String, dynamic>.from(updatedItem);
+      await _saveToPrefs();
+      notifyListeners();
+    }
+  }
+
   Future<void> clearCart() async {
     _cartItems.clear();
     await _saveToPrefs();
@@ -97,7 +106,6 @@ class CartManager extends ChangeNotifier {
   int get totalQuantity => _cartItems.fold(0, (sum, item) => sum + (item['quantity'] as int? ?? 1));
 
   double get subtotal => _cartItems.fold(0.0, (sum, item) {
-        if (item['isSelected'] == false) return sum;
         final price = _parsePrice(item['price']);
         final quantity = item['quantity'] ?? 1;
         return sum + (price * quantity);

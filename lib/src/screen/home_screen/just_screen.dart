@@ -64,8 +64,7 @@ class _JustForYouSectionState extends State<JustForYouSection> {
               }
               
               var products = snapshot.data ?? [];
-              
-              // Fallback to local data if Firestore is empty or has error
+
               if (products.isEmpty) {
                 products = justForYouData.take(10).map((m) => ProductModel.fromMap(m)).toList();
               }
@@ -116,7 +115,7 @@ class JustForYouCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: product.toMap()),
+            builder: (context) => ProductDetailScreen(product: product.toMap()),
           ),
         );
       },

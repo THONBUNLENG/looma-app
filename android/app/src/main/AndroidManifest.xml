@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:label="LOOMA"
@@ -14,6 +16,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBTo4uSu6r1CcLlpPCg2oooMqnrxWdluBo"/>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="default_channel" />
 
         <!-- Facebook SDK -->
         <meta-data

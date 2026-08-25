@@ -97,6 +97,5 @@ void main() {
   final File file = File('all_data.json');
   file.writeAsStringSync(jsonString);
 
-  print('Successfully exported all data to all_data.json');
 }
 

@@ -6,11 +6,12 @@ import 'src/network/crud_firebase/firebase_options.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/manager/network_wrapper.dart';
 import 'package:shopping_app/src/screen/splash_screen.dart';
-import 'manager/preferences_manager.dart';
+import 'package:shopping_app/src/network/shared_preferences/shared_preferences.dart';
 import 'manager/cart_manager.dart';
 import 'manager/profile_manager.dart';
 import 'manager/review_manager.dart';
 import 'manager/wishlist_manager.dart';
+import 'manager/notification_service.dart';
 import 'src/telegarm_bot/bot_manager.dart';
 import 'constants/navigator_extension.dart';
 import 'light_dark_theme/theme.dart';
@@ -22,8 +23,7 @@ final FlutterLocalization translator = FlutterLocalization.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize the localization library
+
   await FlutterLocalization.instance.ensureInitialized();
 
   try {
@@ -47,14 +47,11 @@ Future<void> main() async {
 
   try {
     await SharedPrefUtil.init();
-    await Future.wait([
-      CartManager().init(),
-      WishlistManager().init(),
-      ProfileManager().init(),
-      ReviewManager().init(),
-    ]);
-
-    // Start Bot in background so it doesn't block app startup
+    await NotificationService.initialize();
+    await CartManager().init();
+    await WishlistManager().init();
+    await ProfileManager().init();
+    await ReviewManager().init();
     BotManager().start().catchError((e) {
       debugPrint("Telegram Bot background start error: $e");
     });

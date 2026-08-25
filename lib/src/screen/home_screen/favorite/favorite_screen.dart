@@ -24,7 +24,8 @@ class WishlistScreen extends StatefulWidget {
 class _WishlistScreenState extends State<WishlistScreen> {
   bool _isLoading = true;
   bool _isLoggedIn = false;
-  int _selectedTab = 0; // 0: All items, 1: Boards
+  int _selectedTab = 0;
+  String? _selectedCategory;
   List<Map<String, dynamic>> get _wishlistItems => WishlistManager().wishlistItems;
 
   @override
@@ -142,7 +143,14 @@ class _WishlistScreenState extends State<WishlistScreen> {
     final isSelected = _selectedTab == index;
     return Expanded(
       child: GestureDetector(
-        onTap: () => setState(() => _selectedTab = index),
+        onTap: () {
+          setState(() {
+            _selectedTab = index;
+            if (index == 1) {
+              _selectedCategory = null;
+            }
+          });
+        },
         child: Container(
           alignment: Alignment.center,
           color: isSelected ? (isDark ? Colors.white : Colors.black) : Colors.transparent,
@@ -211,26 +219,183 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
   Widget _buildWishlist(bool isDark) {
     if (_selectedTab == 1) {
-      return Center(
-        child: TextWidget(
-          "Boards Coming Soon".tr,
-          color: isDark ? Colors.white54 : Colors.black54,
-          fontSize: 16,
-        ),
+      return _buildBoardsView(isDark);
+    }
+
+    final filteredItems = _selectedCategory == null
+        ? _wishlistItems
+        : _wishlistItems.where((item) {
+      final cat = (item['subCategory'] ?? item['category'] ?? 'General').toString();
+      return cat == _selectedCategory;
+    }).toList();
+
+    if (filteredItems.isEmpty && _selectedCategory != null) {
+      return Column(
+        children: [
+          _buildFilterHeader(isDark),
+          Expanded(
+            child: Center(
+              child: TextWidget(
+                "No items in this category".tr,
+                color: isDark ? Colors.white54 : Colors.black54,
+              ),
+            ),
+          ),
+        ],
       );
     }
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      itemCount: _wishlistItems.length,
-      separatorBuilder: (_, _) => Divider(
-        height: 1,
-        thickness: 0.5,
-        color: isDark ? Colors.white12 : Colors.black12,
+
+    return Column(
+      children: [
+        if (_selectedCategory != null) _buildFilterHeader(isDark),
+        Expanded(
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            itemCount: filteredItems.length,
+            separatorBuilder: (context, index) => Divider(
+              height: 1,
+              thickness: 0.5,
+              color: isDark ? Colors.white12 : Colors.black12,
+            ),
+            itemBuilder: (context, index) {
+              final item = filteredItems[index];
+              final originalIndex = _wishlistItems.indexWhere(
+                    (i) => identical(i, item),
+              );
+              return _buildWishlistItem(item, originalIndex, isDark);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFilterHeader(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[50],
+      child: Row(
+        children: [
+          TextWidget(
+            "Filtering: ".tr,
+            fontSize: 12,
+            color: isDark ? Colors.white54 : Colors.black54,
+          ),
+          TextWidget(
+            _selectedCategory!.tr.toUpperCase(),
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: isDark ? Colors.white : Colors.black,
+          ),
+          const Spacer(),
+          TextButton(
+            onPressed: () => setState(() => _selectedCategory = null),
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: TextWidget(
+              "Clear".tr,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildBoardsView(bool isDark) {
+    final groupedItems = <String, List<Map<String, dynamic>>>{};
+    for (var item in _wishlistItems) {
+      final category = (item['subCategory'] ?? item['category'] ?? 'General').toString();
+      groupedItems.putIfAbsent(category, () => []).add(item);
+    }
+
+    final categories = groupedItems.keys.toList();
+
+    return GridView.builder(
+      padding: const EdgeInsets.all(20),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.8,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+      ),
+      itemCount: categories.length,
       itemBuilder: (context, index) {
-        final item = _wishlistItems[index];
-        return _buildWishlistItem(item, index, isDark);
+        final category = categories[index];
+        final items = groupedItems[category]!;
+        return _buildBoardCard(category, items, isDark);
       },
+    );
+  }
+
+  Widget _buildBoardCard(String category, List<Map<String, dynamic>> items, bool isDark) {
+    final previewItem = items.first;
+    final String imageUrl = _getImage(previewItem);
+    final primaryTextColor = isDark ? Colors.white : Colors.black;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedCategory = category;
+          _selectedTab = 0;
+        });
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white10 : Colors.grey[100],
+                border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+              ),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: imageUrl.isNotEmpty
+                        ? CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(color: Colors.transparent),
+                      errorWidget: (context, url, error) => const Icon(Icons.broken_image, size: 30),
+                    )
+                        : const Icon(Icons.image_not_supported, size: 30),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      color: Colors.black54,
+                      child: TextWidget(
+                        "${items.length} ${items.length == 1 ? 'item' : 'items'}".tr,
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          TextWidget(
+            category.tr.toUpperCase(),
+            fontSize: 13,
+            fontWeight: FontWeight.w900,
+            color: primaryTextColor,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 
@@ -252,7 +417,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductClothesScreen(product: item),
+                    builder: (context) => ProductDetailScreen(product: item),
                   ),
                 );
               },
@@ -260,19 +425,19 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 borderRadius: BorderRadius.zero,
                 child: imageUrl.isNotEmpty
                     ? CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        width: 100,
-                        height: 130,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(color: Colors.grey[100]),
-                        errorWidget: (context, url, error) => const Icon(Icons.broken_image),
-                      )
+                  imageUrl: imageUrl,
+                  width: 100,
+                  height: 130,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(color: Colors.grey[100]),
+                  errorWidget: (context, url, error) => const Icon(Icons.broken_image),
+                )
                     : Container(
-                        width: 100,
-                        height: 130,
-                        color: Colors.grey[100],
-                        child: const Icon(Icons.image_not_supported),
-                      ),
+                  width: 100,
+                  height: 130,
+                  color: Colors.grey[100],
+                  child: const Icon(Icons.image_not_supported),
+                ),
               ),
             ),
             const SizedBox(width: 16),

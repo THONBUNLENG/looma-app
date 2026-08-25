@@ -1,11 +1,13 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 class WriteReviewBottomSheet extends StatefulWidget {
-  final Function(double rating, String comment) onSubmit;
+  final Function(double rating, String comment, List<XFile> images) onSubmit;
 
   const WriteReviewBottomSheet({super.key, required this.onSubmit});
 
@@ -16,6 +18,23 @@ class WriteReviewBottomSheet extends StatefulWidget {
 class _WriteReviewBottomSheetState extends State<WriteReviewBottomSheet> {
   double _rating = 0;
   final TextEditingController _commentController = TextEditingController();
+  final List<XFile> _selectedImages = [];
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final List<XFile> images = await _picker.pickMultiImage();
+    if (images.isNotEmpty) {
+      setState(() {
+        _selectedImages.addAll(images);
+      });
+    }
+  }
+
+  void _removeImage(int index) {
+    setState(() {
+      _selectedImages.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +108,8 @@ class _WriteReviewBottomSheetState extends State<WriteReviewBottomSheet> {
             ),
           ),
           const SizedBox(height: 24),
+          _buildImagePicker(isDark),
+          const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
             child: CupertinoButton(
@@ -97,7 +118,7 @@ class _WriteReviewBottomSheetState extends State<WriteReviewBottomSheet> {
               onPressed: _rating == 0
                   ? null
                   : () {
-                      widget.onSubmit(_rating, _commentController.text);
+                      widget.onSubmit(_rating, _commentController.text, _selectedImages);
                       Navigator.pop(context);
                     },
               child: TextWidget(
@@ -109,6 +130,91 @@ class _WriteReviewBottomSheetState extends State<WriteReviewBottomSheet> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildImagePicker(bool isDark) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.camera_alt_outlined, color: Colors.orange, size: 20),
+            const SizedBox(width: 8),
+            TextWidget(
+              "Add Photos".tr,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white : Colors.black,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 80,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: _selectedImages.length + 1,
+            itemBuilder: (context, index) {
+              if (index == _selectedImages.length) {
+                return GestureDetector(
+                  onTap: _pickImage,
+                  child: Container(
+                    width: 80,
+                    margin: const EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                      color: isDark ? Colors.white10 : Colors.grey[100],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: isDark ? Colors.white24 : Colors.black12,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.add_photo_alternate_outlined,
+                      color: isDark ? Colors.white54 : Colors.black54,
+                    ),
+                  ),
+                );
+              }
+              return Stack(
+                children: [
+                  Container(
+                    width: 80,
+                    margin: const EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: FileImage(File(_selectedImages[index].path)),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 4,
+                    right: 12,
+                    child: GestureDetector(
+                      onTap: () => _removeImage(index),
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: Colors.black54,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

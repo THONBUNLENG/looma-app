@@ -1,27 +1,39 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
 import 'package:shopping_app/src/model/order_model.dart';
-import 'package:shopping_app/src/model/gift_card_model.dart';
+import 'package:shopping_app/src/model/payment_model.dart';
 import 'package:shopping_app/src/screen/home_screen/order/bloc/order_bloc.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_success_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/payment/checkout_payment_screen.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../network/datastor/membership_service.dart';
+import '../../../widget/show_dialog.dart';
 
 import '../address/address_screen.dart';
+import '../address/bloc/address_bloc.dart';
+import '../address/edit_address.dart';
+import '../address/new_address.dart';
+import 'select_payment_screen.dart';
 
 class OrderConfirmScreen extends StatefulWidget {
   final List<Map<String, dynamic>> items;
+  final double appliedDiscount;
+  final String? appliedCode;
 
-  const OrderConfirmScreen({super.key, required this.items});
+  const OrderConfirmScreen({
+    super.key,
+    required this.items,
+    this.appliedDiscount = 0.0,
+    this.appliedCode,
+  });
 
   @override
   State<OrderConfirmScreen> createState() => _OrderConfirmScreenState();
@@ -29,46 +41,79 @@ class OrderConfirmScreen extends StatefulWidget {
 
 class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     with LoadingWidget {
-  final TextEditingController _promoController = TextEditingController();
+  final TextEditingController _voucherController = TextEditingController();
+
+  final TextEditingController _contactLineController = TextEditingController();
+
+  final TextEditingController _noteController = TextEditingController();
+
   int _selectedPayment = 0;
+
   double _discountAmount = 0.0;
-  String? _appliedPromoCode;
+
+  String? _appliedVoucherCode;
+
   int _pointsToRedeem = 0;
+
+  int _contactMethod = 0;
+
+  bool _isPriceExpanded = false;
 
   List<OrderModel> _orders = [];
 
   @override
+  void initState() {
+    super.initState();
+    _discountAmount = widget.appliedDiscount;
+    _appliedVoucherCode = widget.appliedCode;
+  }
+
+  @override
   void dispose() {
-    _promoController.dispose();
+    _voucherController.dispose();
+    _contactLineController.dispose();
+    _noteController.dispose();
     super.dispose();
   }
 
   double get _subtotal {
     double total = 0.0;
+
     for (var item in widget.items) {
       final price = _parsePrice(item['price']);
       final quantity = item['quantity'] ?? 1;
+
       total += price * quantity;
     }
+
     return total;
   }
 
   double get _deliveryFee {
     final profile = ProfileManager();
     final address = profile.defaultAddress;
-    final String fullAddress = (address?['address'] ?? "").toString().toLowerCase();
+
+    final String fullAddress = (address?['address'] ?? '')
+        .toString()
+        .toLowerCase();
+
     final bool isPhnomPenh = fullAddress.contains("phnom penh");
 
-    if (isPhnomPenh) return 0.0;
-    if (_subtotal >= 16000.0) return 0.0;
+    if (isPhnomPenh) {
+      return 0.0;
+    }
 
-    return 1.0;
+    if (_subtotal >= 16000.0) {
+      return 0.0;
+    }
+    return 2.00;
   }
 
   double get _automaticDiscount {
     if (_subtotal >= 16000.0) {
       return _subtotal * 0.10;
     }
+
     return 0.0;
   }
 
@@ -76,15 +121,16 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     return _subtotal * level.discountPercentage;
   }
 
-  double get _maxDiscountAllowed => _subtotal * 0.9;
-
-  int get _availablePoints =>
-      MembershipService.calculateAvailablePoints(_orders);
+  int get _availablePoints {
+    return MembershipService.calculateAvailablePoints(_orders);
+  }
 
   int get _maxPointsBySubtotal {
-    // Shared cap: Promo Discount + Points Discount <= 90% of subtotal
     final double sharedMaxDiscount = _subtotal * 0.9;
-    final double remainingDiscountLimit = (sharedMaxDiscount - _discountAmount).clamp(0.0, double.infinity);
+
+    final double remainingDiscountLimit = (sharedMaxDiscount - _discountAmount)
+        .clamp(0.0, double.infinity);
+
     return (remainingDiscountLimit / 0.15).floor();
   }
 
@@ -95,43 +141,49 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   double _calculatePointsDiscount() {
-    final points =
-    _pointsToRedeem > _effectiveMaxPoints ? _effectiveMaxPoints : _pointsToRedeem;
+    final points = _pointsToRedeem > _effectiveMaxPoints
+        ? _effectiveMaxPoints
+        : _pointsToRedeem;
     return points * 0.15;
   }
 
   double _totalAmount(MemberLevel level) {
     double calculated =
         _subtotal +
-            _deliveryFee -
-            _discountAmount -
-            _automaticDiscount -
-            _calculateMembershipDiscount(level) -
-            _calculatePointsDiscount();
+        _deliveryFee -
+        _discountAmount -
+        _automaticDiscount -
+        _calculateMembershipDiscount(level) -
+        _calculatePointsDiscount();
     return calculated.clamp(0.01, double.infinity);
   }
 
   double _parsePrice(dynamic price) {
-    if (price == null) return 0.0;
-    if (price is num) return price.toDouble();
+    if (price == null) {
+      return 0.0;
+    }
+    if (price is num) {
+      return price.toDouble();
+    }
     return double.tryParse(
-      price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
-    ) ??
+          price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
+        ) ??
         0.0;
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return BlocProvider(
-      create: (context) => OrderBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => OrderBloc()),
+        BlocProvider(create: (context) => AddressBloc()..add(LoadAddresses())),
+      ],
       child: BlocListener<OrderBloc, OrderState>(
         listener: (context, state) {
           if (state is OrderSuccess) {
             final order = state.order!;
             CartManager().clearCart();
-
             if (order.paymentMethod == 'Bank transfer') {
               Navigator.push(
                 context,
@@ -164,6 +216,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
             );
           }
         },
+
         child: StreamBuilder<List<OrderModel>>(
           stream: MembershipService.getOrdersStream(),
           builder: (context, membershipSnapshot) {
@@ -171,9 +224,9 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
             _orders = orders;
             final totalSpent = MembershipService.calculateTotalSpent(orders);
             final level = MembershipService.getLevel(totalSpent);
-
             return BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
+                final orderBloc = context.read<OrderBloc>();
                 return Stack(
                   children: [
                     Scaffold(
@@ -194,33 +247,62 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                           color: isDark ? Colors.white : Colors.black,
                         ),
                       ),
+
                       body: SingleChildScrollView(
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildSectionTitle("Receive Address", isDark),
-                            _buildAddressCard(isDark),
+                            _buildSectionTitle(
+                              "My shopping bag (${widget.items.length})",
+                              isDark,
+                            ),
+                            _buildShoppingBagSection(isDark),
                             const SizedBox(height: 24),
-                            _buildSectionTitle("Delivery Methods", isDark),
-                            _buildDeliveryMethods(isDark),
+                            _buildSectionTitle(
+                              "Delivery address",
+                              isDark,
+                              isRequired: true,
+                            ),
+                            BlocBuilder<AddressBloc, AddressState>(
+                              builder: (context, addressState) {
+                                if (addressState is AddressLoaded) {
+                                  return _buildAddressSection(
+                                    isDark,
+                                    addressState.addresses,
+                                  );
+                                }
+                                return _buildAddressCard(isDark);
+                              },
+                            ),
+                            const SizedBox(height: 12),
+                            _buildShippingMethod(isDark),
                             const SizedBox(height: 24),
-                            _buildSectionTitle("Payment Methods", isDark),
+                            _buildSectionTitle(
+                              "Preferred contact line",
+                              isDark,
+                              isRequired: true,
+                            ),
+                            _buildContactLineSection(isDark),
+                            const SizedBox(height: 24),
+                            _buildSectionTitle("Payment", isDark),
                             _buildPaymentMethods(isDark),
-                            const SizedBox(height: 24),
-                            _buildSectionTitle("Promo Code", isDark),
-                            _buildPromoCodeSection(isDark),
                             const SizedBox(height: 24),
                             _buildSectionTitle("Redeem Points", isDark),
                             _buildPointsRedemptionSection(isDark, orders),
                             const SizedBox(height: 24),
-                            _buildSectionTitle("Item summary", isDark),
-                            _buildItemSummary(isDark, level),
-                            const SizedBox(height: 100),
+                            _buildSectionTitle("Note", isDark),
+                            _buildNoteSection(isDark),
+                            const SizedBox(height: 120),
                           ],
                         ),
                       ),
-                      bottomSheet: _buildBottomBar(isDark, state, level),
+                      bottomNavigationBar: _buildBottomBar(
+                        isDark,
+                        state,
+                        level,
+                        orderBloc,
+                      ),
                     ),
                     if (state is OrderLoading)
                       Container(
@@ -237,48 +319,136 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     );
   }
 
-  Widget _buildSectionTitle(String title, bool isDark) {
+  Widget _buildSectionTitle(
+    String title,
+    bool isDark, {
+    bool isRequired = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: TextWidget(
-        title.tr,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: isDark ? Colors.white : Colors.black,
+
+      child: Row(
+        children: [
+          TextWidget(
+            title.tr,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: isDark ? Colors.white : Colors.black,
+          ),
+          if (isRequired)
+            TextWidget(
+              " *",
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.redAccent,
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildShoppingBagSection(bool isDark) {
+    return SizedBox(
+      height: 156,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.items.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 12),
+        itemBuilder: (context, index) {
+          final item = widget.items[index];
+          String imageUrl = '';
+          if (item['image'] != null) {
+            imageUrl = item['image'].toString();
+          } else if (item['images'] is List &&
+              (item['images'] as List).isNotEmpty) {
+            imageUrl = item['images'][0].toString();
+          }
+
+          return SizedBox(
+            width: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => Container(
+                      color: isDark ? Colors.white10 : Colors.grey.shade100,
+                      child: const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      color: isDark ? Colors.white10 : Colors.grey.shade100,
+                      child: const Icon(
+                        Icons.image_not_supported_outlined,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 4),
+                Flexible(
+                  child: TextWidget(
+                    "${item['title'] ?? ''}",
+                    fontSize: 12,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    color: isDark ? Colors.white70 : Colors.black87,
+                  ),
+                ),
+
+                Flexible(
+                  child: TextWidget(
+                    "Quantity ${item['quantity'] ?? 1} / \$${_parsePrice(item['price']).toStringAsFixed(2)}",
+                    fontSize: 10,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 
   Widget _buildAddressCard(bool isDark) {
     final profile = ProfileManager();
+
     final address = profile.defaultAddress;
 
     if (address == null) {
-      return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-          borderRadius: BorderRadius.circular(12),
+      return InkWell(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AddNewAddressScreen()),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextWidget(
-              "Receive Address not found".tr,
-              color: Colors.redAccent,
-              fontWeight: FontWeight.bold,
-            ),
-            IconButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AddressScreen()),
-              ).then((_) => setState(() {})),
-              icon: Icon(
-                Icons.add_location_alt_outlined,
-                color: AppColor.pink100Color,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.add_location_alt_outlined, color: Colors.grey),
+              const SizedBox(width: 12),
+              TextWidget(
+                "Add Delivery Address".tr,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
               ),
-            ),
-          ],
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+            ],
+          ),
         ),
       );
     }
@@ -287,275 +457,536 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Icon(Icons.check_circle, color: Colors.green, size: 24),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
-                  address['title'] ?? profile.name,
+                  (address['title'] ?? profile.name).toString().toUpperCase(),
                   fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 4),
-                TextWidget(
-                  address['phone'] ?? profile.phone,
-                  color: Colors.grey,
                   fontSize: 14,
                 ),
-                const SizedBox(height: 4),
                 TextWidget(
                   address['address'],
                   color: Colors.grey,
-                  fontSize: 14,
+                  fontSize: 13,
                 ),
               ],
             ),
           ),
-          IconButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddressScreen()),
-            ).then((_) => setState(() {})),
-            icon: Icon(Icons.edit_note_rounded, color: Colors.grey),
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildDeliveryMethods(bool isDark) {
+  Widget _buildAddressSection(
+    bool isDark,
+    List<Map<String, dynamic>> addresses,
+  ) {
+    final profile = ProfileManager();
+    final address = profile.defaultAddress ??
+        (addresses.isNotEmpty ? addresses.first : null);
+    return Column(
+      children: [
+        if (address != null) ...[
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.05)
+                  : Colors.white,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.check_circle, color: Colors.green, size: 24),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        (address['label'] ?? address['title'] ?? profile.name)
+                            .toString()
+                            .toUpperCase(),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                      TextWidget(
+                        address['address'],
+                        color: Colors.grey,
+                        fontSize: 13,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                _buildAddressActions(isDark, address, addresses),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildSmallActionButton(
+              icon: Icons.add,
+              label: "Add",
+              isDark: isDark,
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddNewAddressScreen(),
+                  ),
+                );
+                if (result != null &&
+                    result is Map<String, dynamic> &&
+                    mounted) {
+                  context.read<AddressBloc>().add(AddAddress(result));
+                }
+              },
+            ),
+            _buildSmallActionButton(
+              icon: Icons.list,
+              label: "Show",
+              isDark: isDark,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddressScreen(),
+                  ),
+                ).then((_) => setState(() {}));
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAddressActions(
+    bool isDark,
+    Map<String, dynamic> item,
+    List<Map<String, dynamic>> addresses,
+  ) {
+    int resolveIndex() {
+      final id = item['id'];
+      if (id != null) {
+        final byId = addresses.indexWhere((a) => a['id'] == id);
+        if (byId != -1) return byId;
+      }
+      final byFields = addresses.indexWhere(
+        (a) =>
+            a['address'] == item['address'] &&
+            (a['label'] ?? a['title']) == (item['label'] ?? item['title']),
+      );
+      return byFields;
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          icon: Icon(
+            Icons.edit_outlined,
+            size: 20,
+            color: isDark ? Colors.white70 : Colors.black54,
+          ),
+          onPressed: () async {
+            final index = resolveIndex();
+            if (index == -1) return;
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditAddressScreen(addressData: item),
+              ),
+            );
+            if (result != null && mounted) {
+              if (result == "deleted") {
+                context.read<AddressBloc>().add(DeleteAddress(index));
+              } else if (result is Map<String, dynamic>) {
+                context.read<AddressBloc>().add(UpdateAddress(index, result));
+              }
+            }
+          },
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.delete_outline,
+            size: 20,
+            color: Colors.redAccent,
+          ),
+          onPressed: () async {
+            final index = resolveIndex();
+            if (index == -1) return;
+            final confirm = await showDialog<bool>(
+              context: context,
+              builder: (dialogContext) => StatusDialog(
+                title: "Delete Address".tr,
+                message:
+                    "${"Are you sure you want to delete".tr} '${item['label'] ?? item['title']}'?",
+                btn1Text: "Cancel".tr,
+                btn2Text: "Delete".tr,
+                icon: Icons.delete_sweep_rounded,
+                iconColor: AppColor.mutedRed,
+                onBtn1Pressed: () => Navigator.of(dialogContext).pop(false),
+                onBtn2Pressed: () => Navigator.of(dialogContext).pop(true),
+              ),
+            );
+            if (confirm == true && mounted) {
+              context.read<AddressBloc>().add(DeleteAddress(index));
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSmallActionButton({
+    required IconData icon,
+    required String label,
+    required bool isDark,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 16,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+            const SizedBox(width: 4),
+            TextWidget(
+              label.tr,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildShippingMethod(bool isDark) {
     final profile = ProfileManager();
     final address = profile.defaultAddress;
-    final String fullAddress = (address?['address'] ?? "").toString().toLowerCase();
-    final bool isPhnomPenh = fullAddress.contains("phnom penh");
-    final bool isBulk = _subtotal >= 10000.0;
-
+    final String fullAddress = (address?['address'] ?? '')
+        .toString()
+        .toLowerCase();
+    final bool isPhnomPenh = fullAddress.contains('phnom penh');
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: TextWidget(
+                "LOOMA",
+                color: Colors.white,
+                fontSize: 8,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextWidget(
+                  "Standard Shipping | \$${_deliveryFee.toStringAsFixed(2)}",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+                TextWidget(
+                  isPhnomPenh
+                      ? "Free delivery in Phnom Penh".tr
+                      : "Reliable delivery in 1 to 3 days.".tr,
+                  color: Colors.grey,
+                  fontSize: 13,
+                ),
+              ],
+            ),
+          ),
+          TextWidget("More", color: Colors.grey, fontSize: 12),
+          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactLineSection(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
         children: [
-          _buildDeliveryStatusItem(
-            "Free delivery for customers in Phnom Penh.".tr,
-            isPhnomPenh,
-            isDark,
-            subtitle: !isPhnomPenh ? "Available in Phnom Penh only".tr : null,
+          Row(
+            children: [
+              Flexible(
+                child: _buildContactRadio(
+                  0,
+                  Icons.phone_outlined,
+                  "Phone call",
+                  isDark,
+                ),
+              ),
+              Flexible(
+                child: _buildContactRadio(
+                  1,
+                  FontAwesomeIcons.telegram,
+                  "Telegram",
+                  isDark,
+                ),
+              ),
+              Flexible(
+                child: _buildContactRadio(
+                  2,
+                  FontAwesomeIcons.whatsapp,
+                  "WhatsApp",
+                  isDark,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
-          _buildDeliveryStatusItem(
-            "Free shipping for orders over \$16000 and 10% discount.".tr,
-            isBulk,
-            isDark,
+          Container(
+            height: 48,
+            decoration: BoxDecoration(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.05)
+                  : Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: isDark ? Colors.white10 : Colors.grey.shade300,
+              ),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 12),
+                TextWidget("+855", fontWeight: FontWeight.bold),
+                const Icon(Icons.keyboard_arrow_down, size: 16),
+                const VerticalDivider(width: 20, indent: 12, endIndent: 12),
+                Expanded(
+                  child: TextField(
+                    controller: _contactLineController,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      hintText: "Enter your contact line".tr,
+                      hintStyle: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildDeliveryStatusItem(
-      String title,
-      bool isApplied,
-      bool isDark, {
-        String? subtitle,
-      }) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextWidget(
-                title,
-                fontSize: 14,
-                color: isApplied
-                    ? (isDark ? Colors.white : Colors.black87)
-                    : Colors.grey,
-                fontWeight: isApplied ? FontWeight.w500 : FontWeight.normal,
-              ),
-              if (subtitle != null)
-                TextWidget(
-                  subtitle,
-                  fontSize: 12,
-                  color: Colors.redAccent.withValues(alpha: 0.8),
+  Widget _buildContactRadio(
+    int value,
+    dynamic icon,
+    String label,
+    bool isDark,
+  ) {
+    final isSelected = _contactMethod == value;
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _contactMethod = value;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isSelected ? Icons.check_circle : Icons.radio_button_off,
+              color: isSelected ? Colors.green : Colors.grey,
+              size: 18,
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: isDark ? Colors.white10 : Colors.grey.shade300,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-            ],
-          ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    icon is IconData
+                        ? Icon(
+                            icon,
+                            size: 14,
+                            color: isDark ? Colors.white : Colors.black,
+                          )
+                        : FaIcon(
+                            icon,
+                            size: 14,
+                            color: isDark ? Colors.white : Colors.black,
+                          ),
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: TextWidget(
+                        label.tr,
+                        fontSize: 11,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-        Icon(
-          isApplied ? Icons.radio_button_checked : Icons.radio_button_off,
-          color: isApplied
-              ? AppColor.pink100Color
-              : Colors.grey.withValues(alpha: 0.3),
-          size: 22,
-        ),
-      ],
+      ),
     );
   }
 
   Widget _buildPaymentMethods(bool isDark) {
     final profile = ProfileManager();
     final address = profile.defaultAddress;
-    final String fullAddress = (address?['address'] ?? "")
+    final String fullAddress = (address?['address'] ?? '')
         .toString()
         .toLowerCase();
-    // Check if the address contains "Phnom Penh"
-    final bool isPhnomPenh = fullAddress.contains("phnom penh");
+    final bool isPhnomPenh = fullAddress.contains('phnom penh');
 
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: [
-          _buildRadioOption(
-            "Cash On Delivery".tr,
-            0,
-            _selectedPayment,
-            isPhnomPenh
-                ? (v) => setState(() => _selectedPayment = v!)
-                : null, // Disable if not Phnom Penh
-            isDark,
-            subtitle: !isPhnomPenh ? "Available in Phnom Penh only".tr : null,
+    final method =
+        kPaymentMethods[_selectedPayment < kPaymentMethods.length
+            ? _selectedPayment
+            : 0];
+    return InkWell(
+      onTap: () async {
+        final result = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SelectPaymentScreen(
+              selectedIndex: _selectedPayment,
+              isPhnomPenh: isPhnomPenh,
+            ),
           ),
-          _buildRadioOption(
-            "Bank transfer".tr,
-            1,
-            _selectedPayment,
-                (v) => setState(() => _selectedPayment = v!),
-            isDark,
-          ),
-        ],
-      ),
-    );
-  }
+        );
+        if (result != null && result is int) {
+          setState(() {
+            _selectedPayment = result;
+          });
+        }
+      },
 
-  Widget _buildPromoCodeSection(bool isDark) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  height: 48,
-                  child: TextField(
-                    controller: _promoController,
-                    style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black87,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Enter Promo Code".tr,
-                      hintStyle: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          color: isDark ? Colors.white24 : Colors.grey.shade300,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          color: isDark ? Colors.white54 : Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.check_circle, color: Colors.green, size: 24),
+            const SizedBox(width: 16),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: AssetImage(method.icon),
+                  fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(width: 12),
-              SizedBox(
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: _applyPromoCode,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF003F),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    elevation: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                  ),
-                  child: TextWidget(
-                    "Apply".tr,
-                    color: Colors.white,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextWidget(
+                    method.title.tr,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
-                ),
+                  TextWidget(
+                    method.subtitle.tr,
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+            const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildRadioOption(
-      String title,
-      int value,
-      int groupValue,
-      ValueChanged<int?>? onChanged,
-      bool isDark, {
-        String? subtitle,
-      }) {
-    return RadioListTile<int>(
-      value: value,
-      // ignore: deprecated_member_use
-      groupValue: groupValue,
-      // ignore: deprecated_member_use
-      onChanged: onChanged,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextWidget(
-            title,
-            fontSize: 14,
-            color: (onChanged == null)
-                ? Colors.grey
-                : (isDark ? Colors.white : Colors.black87),
-          ),
-          if (subtitle != null)
-            TextWidget(
-              subtitle,
-              fontSize: 12,
-              color: Colors.redAccent.withValues(alpha: 0.8),
-            ),
-        ],
+  Widget _buildNoteSection(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+        borderRadius: BorderRadius.circular(4),
       ),
-      activeColor: AppColor.pink100Color,
-      controlAffinity: ListTileControlAffinity.trailing,
+      child: TextField(
+        controller: _noteController,
+        maxLines: 3,
+        decoration: InputDecoration(
+          hintText: "Write something...".tr,
+          hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+          border: InputBorder.none,
+        ),
+      ),
     );
   }
 
   Widget _buildPointsRedemptionSection(bool isDark, List<OrderModel> orders) {
-    // Single source of truth: `_availablePoints` / `_effectiveMaxPoints`
-    // getters, which already account for the promo code discount eating
-    // into the shared 90% cap.
     final availablePoints = _availablePoints;
     final int effectiveMaxPoints = _effectiveMaxPoints;
-
     if (availablePoints <= 0) {
       return Container(
         width: double.infinity,
@@ -587,19 +1018,26 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextWidget(
-                "${"Available:".tr} $availablePoints ${"Points".tr}",
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
+              Flexible(
+                child: TextWidget(
+                  "${"Available:".tr} $availablePoints ${"Points".tr}",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
               ),
-              TextWidget(
-                "${"Limit:".tr} $effectiveMaxPoints ${"Points".tr} (90%)",
-                color: Colors.orange,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+              const SizedBox(width: 8),
+              Flexible(
+                child: TextWidget(
+                  "${"Limit:".tr} $effectiveMaxPoints ${"Points".tr} (90%)",
+                  color: Colors.orange,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  textAlign: TextAlign.right,
+                ),
               ),
             ],
           ),
+
           const SizedBox(height: 12),
           Row(
             children: [
@@ -608,7 +1046,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                   data: SliderTheme.of(context).copyWith(
                     activeTrackColor: AppColor.pink100Color,
                     inactiveTrackColor: AppColor.pink100Color.withValues(
-                      alpha: 0.1,
+                      alpha: 0.2,
                     ),
                     thumbColor: AppColor.pink100Color,
                     overlayColor: AppColor.pink100Color.withValues(alpha: 0.2),
@@ -629,10 +1067,10 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                     divisions: effectiveMaxPoints > 0 ? effectiveMaxPoints : 1,
                     onChanged: effectiveMaxPoints > 0
                         ? (value) {
-                      setState(() {
-                        _pointsToRedeem = value.toInt();
-                      });
-                    }
+                            setState(() {
+                              _pointsToRedeem = value.toInt();
+                            });
+                          }
                         : null,
                   ),
                 ),
@@ -657,23 +1095,29 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextWidget(
-                "${"Points used:".tr} - \$${_calculatePointsDiscount().toStringAsFixed(2)}",
-                fontSize: 12,
-                color: Colors.grey,
+              Flexible(
+                child: TextWidget(
+                  "${"Points used:".tr} - \$${_calculatePointsDiscount().toStringAsFixed(2)}",
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
               ),
-              TextWidget(
-                "${"Value:".tr} \$${(availablePoints * 0.15).toStringAsFixed(2)}",
-                color: Colors.green,
-                fontSize: 12,
+              const SizedBox(width: 8),
+              Flexible(
+                child: TextWidget(
+                  "${"Value:".tr} \$${(availablePoints * 0.15).toStringAsFixed(2)}",
+                  color: Colors.green,
+                  fontSize: 12,
+                  textAlign: TextAlign.right,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
           TextWidget(
-            "* ${"Promo code and points discount together can cover up to 90% of the item total price.".tr}",
+            "* ${"Voucher code and points discount together can cover up to 90% of the item total price.".tr}",
             fontSize: 10,
-            color: Colors.grey.withValues(alpha: 0.6),
+            color: isDark ? Colors.white60 : Colors.black54,
             fontStyle: FontStyle.italic,
           ),
         ],
@@ -681,235 +1125,12 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     );
   }
 
-  Widget _buildItemSummary(bool isDark, MemberLevel level) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: [
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.items.length,
-            separatorBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Divider(
-                color: isDark ? Colors.white10 : Colors.grey.shade100,
-                height: 1,
-              ),
-            ),
-            itemBuilder: (context, index) {
-              final item = widget.items[index];
-              String imageUrl = '';
-              if (item['image'] != null) {
-                imageUrl = item['image'].toString();
-              } else if (item['images'] is List &&
-                  (item['images'] as List).isNotEmpty) {
-                imageUrl = item['images'][0].toString();
-              }
-
-              return Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      width: 70,
-                      height: 70,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(
-                        color: isDark ? Colors.white10 : Colors.grey.shade100,
-                        child: const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Container(
-                        color: isDark ? Colors.white10 : Colors.grey.shade100,
-                        child: const Icon(
-                          Icons.image_not_supported_outlined,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextWidget(
-                          (item['title'] ?? 'Product').toString().tr,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 6),
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 2,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isDark
-                                    ? Colors.white10
-                                    : Colors.grey.shade100,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: TextWidget(
-                                "Qty: ${item['quantity'] ?? 1}",
-                                color: isDark ? Colors.white70 : Colors.black54,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  TextWidget(
-                    "\$${_parsePrice(item['price']).toStringAsFixed(2)}",
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16,
-                    color: AppColor.pink100Color,
-                  ),
-                ],
-              );
-            },
-          ),
-          const SizedBox(height: 24),
-          Divider(color: isDark ? Colors.white10 : Colors.grey.shade200),
-          const SizedBox(height: 16),
-          _summaryRow("Item:", "${widget.items.length}", isDark),
-          const SizedBox(height: 12),
-          _summaryRow(
-            "Subtotal Amount:",
-            "\$${_subtotal.toStringAsFixed(2)}",
-            isDark,
-          ),
-          if (_discountAmount > 0) ...[
-            const SizedBox(height: 12),
-            _summaryRow(
-              "Promo Discount:",
-              "-\$${_discountAmount.toStringAsFixed(2)}",
-              isDark,
-              valueColor: Colors.redAccent,
-            ),
-          ],
-          if (_automaticDiscount > 0) ...[
-            const SizedBox(height: 12),
-            _summaryRow(
-              "Bulk Order Discount (10%):",
-              "-\$${_automaticDiscount.toStringAsFixed(2)}",
-              isDark,
-              valueColor: Colors.redAccent,
-            ),
-          ],
-          if (level.discountPercentage > 0) ...[
-            const SizedBox(height: 12),
-            _summaryRow(
-              "Membership Discount (${(level.discountPercentage * 100).toInt()}%):",
-              "-\$${_calculateMembershipDiscount(level).toStringAsFixed(2)}",
-              isDark,
-              valueColor: level.color,
-            ),
-          ],
-          if (_pointsToRedeem > 0) ...[
-            const SizedBox(height: 12),
-            _summaryRow(
-              "Points Redeemed (${_pointsToRedeem > _effectiveMaxPoints ? _effectiveMaxPoints : _pointsToRedeem}):",
-              "-\$${_calculatePointsDiscount().toStringAsFixed(2)}",
-              isDark,
-              valueColor: Colors.green,
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  void _applyPromoCode() {
-    final code = _promoController.text.trim();
-    if (code.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget("Please enter a promo code".tr),
-          backgroundColor: Colors.orange,
-        ),
-      );
-      return;
-    }
-
-    final profile = ProfileManager();
-
-    String userIdentifier = "USER";
-    if (profile.name.isNotEmpty) {
-      userIdentifier = profile.name.split(' ').first.toUpperCase();
-    } else if (profile.phone.isNotEmpty) {
-      userIdentifier = profile.phone.length >= 4
-          ? profile.phone.substring(profile.phone.length - 4) 
-          : profile.phone;
-    }
-    userIdentifier = userIdentifier.replaceAll(RegExp(r'[^A-Z0-9]'), '');
-    if (userIdentifier.isEmpty) userIdentifier = "USER";
-
-    final giftCard = GiftCardModel.getSampleData(userIdentifier).firstWhereOrNull(
-          (c) => c.claimCode.toUpperCase() == code.toUpperCase(),
-    );
-
-    if (giftCard != null) {
-      double appliedDiscount = giftCard.amount;
-      final maxAllowed = _maxDiscountAllowed;
-      final bool wasClamped = appliedDiscount > maxAllowed;
-      if (wasClamped) {
-        appliedDiscount = maxAllowed;
-      }
-
-      setState(() {
-        _discountAmount = appliedDiscount;
-        _appliedPromoCode = giftCard.claimCode;
-        if (_pointsToRedeem > _effectiveMaxPoints) {
-          _pointsToRedeem = _effectiveMaxPoints;
-        }
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget(
-            wasClamped
-                ? "${"Promo code applied (capped at 90% of item total):".tr} \$${appliedDiscount.toStringAsFixed(2)}"
-                : "${"Promo code applied:".tr} \$${appliedDiscount.toStringAsFixed(2)}",
-          ),
-          backgroundColor: Colors.green,
-        ),
-      );
-    } else {
-      setState(() {
-        _discountAmount = 0.0;
-        _appliedPromoCode = null;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget("Invalid or expired promo code".tr),
-          backgroundColor: Colors.redAccent,
-        ),
-      );
-    }
-  }
-
   Widget _summaryRow(
-      String label,
-      String value,
-      bool isDark, {
-        Color? valueColor,
-      }) {
+    String label,
+    String value,
+    bool isDark, {
+    Color? valueColor,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -919,82 +1140,191 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     );
   }
 
-  Widget _buildBottomBar(bool isDark, OrderState state, MemberLevel level) {
+  Widget _buildBottomBar(
+    bool isDark,
+    OrderState state,
+    MemberLevel level,
+    OrderBloc orderBloc,
+  ) {
+    final double total = _totalAmount(level);
+    final double savings =
+        _discountAmount +
+        _automaticDiscount +
+        _calculateMembershipDiscount(level) +
+        _calculatePointsDiscount();
+    final textColor = isDark ? Colors.white : Colors.black;
     return Container(
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         border: Border(
-          top: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
+          top: BorderSide(
+            color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
+          ),
         ),
       ),
       child: SafeArea(
         top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextWidget(
-                    "Total amount:".tr,
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
-                  TextWidget(
-                    "\$${_totalAmount(level).toStringAsFixed(2)}",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ],
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: SizedBox(
-                  height: 56,
-                  child: Builder(
-                    builder: (context) {
-                      return ElevatedButton(
-                        onPressed: state is OrderLoading
-                            ? null
-                            : () async {
-                          await _placeOrder(context, level);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.pink100Color,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: TextWidget(
-                            "Order Now".tr,
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _isPriceExpanded = !_isPriceExpanded;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextWidget(
+                      "${"Amount to pay".tr} \$${total.toStringAsFixed(2)}",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                    const SizedBox(width: 6),
+                    // FIX #1: chevron direction was inverted. Collapsed state
+                    // now shows "down" (tap to expand downward), expanded
+                    // state shows "up" (tap to collapse) — matches standard
+                    // expand/collapse convention.
+                    Icon(
+                      _isPriceExpanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                      size: 20,
+                      color: textColor,
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              child: _isPriceExpanded
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Divider(
+                            color: isDark
+                                ? Colors.grey.shade800
+                                : Colors.grey.shade300,
+                            height: 1,
+                          ),
+                          const SizedBox(height: 12),
+                          _summaryRow(
+                            "Total".tr,
+                            "\$${_subtotal.toStringAsFixed(2)}",
+                            isDark,
+                          ),
+                          const SizedBox(height: 10),
+                          _summaryRow(
+                            "Save".tr,
+                            "-\$${savings.toStringAsFixed(2)}",
+                            isDark,
+                          ),
+                          const SizedBox(height: 10),
+                          if (_discountAmount > 0) ...[
+                            _summaryRow(
+                              "Voucher Discount".tr,
+                              "-\$${_discountAmount.toStringAsFixed(2)}",
+                              isDark,
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                          if (_calculateMembershipDiscount(level) > 0) ...[
+                            _summaryRow(
+                              "Membership Discount".tr,
+                              "-\$${_calculateMembershipDiscount(level).toStringAsFixed(2)}",
+                              isDark,
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                          if (_automaticDiscount > 0) ...[
+                            _summaryRow(
+                              "Auto Discount".tr,
+                              "-\$${_automaticDiscount.toStringAsFixed(2)}",
+                              isDark,
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                          if (_pointsToRedeem > 0) ...[
+                            _summaryRow(
+                              "Points Used".tr,
+                              "-\$${_calculatePointsDiscount().toStringAsFixed(2)}",
+                              isDark,
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                          _summaryRow(
+                            "Delivery Fee".tr,
+                            "\$${_deliveryFee.toStringAsFixed(2)}",
+                            isDark,
+                          ),
+                          const SizedBox(height: 12),
+                          _summaryRow(
+                            "Amount to pay".tr,
+                            "\$${total.toStringAsFixed(2)}",
+                            isDark,
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: ElevatedButton(
+                  onPressed: state is OrderLoading
+                      ? null
+                      : () async {
+                          await _placeOrder(orderBloc, level);
+                        },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isDark ? Colors.white : Colors.black,
+                    disabledBackgroundColor: isDark
+                        ? Colors.grey.shade800
+                        : Colors.grey.shade300,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: state is OrderLoading
+                      ? SizedBox(
+                          height: 22,
+                          width: 22,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: isDark ? Colors.black : Colors.white,
+                          ),
+                        )
+                      : TextWidget(
+                          "Place Order (Final)".tr,
+                          color: isDark ? Colors.black : Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Future<void> _placeOrder(BuildContext context, MemberLevel level) async {
+  Future<void> _placeOrder(OrderBloc orderBloc, MemberLevel level) async {
     final profile = ProfileManager();
     final address = profile.defaultAddress;
-
     if (address == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -1005,34 +1335,66 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       return;
     }
 
+    if (_contactLineController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget("Please enter your contact line".tr),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
+
     final userId = FirebaseAuth.instance.currentUser?.uid ?? 'guest_user';
+
     final orderId =
         "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
+    final int redeemedPoints = _pointsToRedeem > _effectiveMaxPoints
+        ? _effectiveMaxPoints
+        : _pointsToRedeem;
 
-    final int redeemedPoints =
-    _pointsToRedeem > _effectiveMaxPoints ? _effectiveMaxPoints : _pointsToRedeem;
+    final String paymentMethodName =
+        kPaymentMethods[_selectedPayment < kPaymentMethods.length
+                ? _selectedPayment
+                : 0]
+            .title;
 
     final order = OrderModel(
       id: orderId,
+
       userId: userId,
+
       items: widget.items,
+
       totalAmount: _totalAmount(level),
+
       status: 'Processing',
-      paymentMethod: _selectedPayment == 0
-          ? 'Cash On Delivery'
-          : 'Bank transfer',
+
+      paymentMethod: paymentMethodName,
+
       deliveryMethod: 'Automatic Benefits',
+
       address: address,
+
       createdAt: DateTime.now(),
-      promoCode: _appliedPromoCode,
+
+      promoCode: _appliedVoucherCode,
+
       discountAmount:
-      _discountAmount +
+          _discountAmount +
           _automaticDiscount +
           _calculateMembershipDiscount(level) +
           _calculatePointsDiscount(),
+
       pointsRedeemed: redeemedPoints,
+
+      note: _noteController.text,
+
+      contactLine: _contactLineController.text,
+
+      contactMethod: _contactMethod,
     );
 
-    context.read<OrderBloc>().add(PlaceOrder(order));
+    orderBloc.add(PlaceOrder(order));
   }
 }

@@ -13,7 +13,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0001',
-    'description': 'A stylish two-tone buckle belt crafted from genuine leather.',
+    'description':
+        'A stylish two-tone buckle belt crafted from genuine leather.',
     'image_color': [],
     'images': ['https://example.com/belt1.jpg'],
   },
@@ -31,7 +32,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 2,
     'sku': 'SKU-0002',
-    'description': 'Timeless classic leather belt suitable for formal and casual wear.',
+    'description':
+        'Timeless classic leather belt suitable for formal and casual wear.',
     'image_color': [],
     'images': ['https://example.com/belt2.jpg'],
   },
@@ -49,7 +51,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0003',
-    'description': 'Versatile reversible belt featuring black on one side and brown on the other.',
+    'description':
+        'Versatile reversible belt featuring black on one side and brown on the other.',
     'image_color': [],
     'images': ['https://example.com/belt3.jpg'],
   },
@@ -67,7 +70,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0004',
-    'description': 'Flexible woven stretch belt ideal for outdoor and casual activities.',
+    'description':
+        'Flexible woven stretch belt ideal for outdoor and casual activities.',
     'image_color': ['Navy', 'Beige', 'Black'],
     'images': ['https://example.com/belt4.jpg'],
   },
@@ -81,11 +85,12 @@ final List<Map<String, dynamic>> belts = [
     'rating': '4.7',
     'sold': '320',
     'reviews': '88',
-    'stock_status':'in_stock',
+    'stock_status': 'in_stock',
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0005',
-    'description': 'Western-style leather belt featuring a detailed antique silver buckle.',
+    'description':
+        'Western-style leather belt featuring a detailed antique silver buckle.',
     'image_color': ['Dark Brown'],
     'images': ['https://example.com/belt5.jpg'],
   },
@@ -103,7 +108,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 2,
     'sku': 'SKU-0006',
-    'description': 'Micro-adjustable ratchet belt for a custom comfortable fit.',
+    'description':
+        'Micro-adjustable ratchet belt for a custom comfortable fit.',
     'image_color': ['Black', 'Coffee'],
     'images': ['https://example.com/belt6.jpg'],
   },
@@ -121,7 +127,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0007',
-    'description': 'Durable quick-release military style belt made from thick nylon.',
+    'description':
+        'Durable quick-release military style belt made from thick nylon.',
     'image_color': ['Olive Green', 'Black', 'Khaki'],
     'images': ['https://example.com/belt7.jpg'],
   },
@@ -139,7 +146,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0008',
-    'description': 'Elegant slim suede leather belt perfect for smart-casual outfits.',
+    'description':
+        'Elegant slim suede leather belt perfect for smart-casual outfits.',
     'image_color': ['Grey', 'Camel'],
     'images': ['https://example.com/belt8.jpg'],
   },
@@ -157,7 +165,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0009',
-    'description': 'Casual D-ring webbed belt with a light, comfortable design.',
+    'description':
+        'Casual D-ring webbed belt with a light, comfortable design.',
     'image_color': ['Red/Navy Striped', 'Black'],
     'images': ['https://example.com/belt9.jpg'],
   },
@@ -175,7 +184,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 6,
     'sku': 'SKU-0010',
-    'description': 'Premium designer leather belt featuring an embossed subtle pattern.',
+    'description':
+        'Premium designer leather belt featuring an embossed subtle pattern.',
     'image_color': ['Black'],
     'images': ['https://example.com/belt10.jpg'],
   },
@@ -193,7 +203,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0011',
-    'description': 'Rugged full-grain leather belt that ages beautifully with time.',
+    'description':
+        'Rugged full-grain leather belt that ages beautifully with time.',
     'image_color': ['Rustic Brown'],
     'images': ['https://example.com/belt11.jpg'],
   },
@@ -211,7 +222,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0012',
-    'description': 'Chic skinny belt designed to cinch dresses and coats at the waist.',
+    'description':
+        'Chic skinny belt designed to cinch dresses and coats at the waist.',
     'image_color': ['White', 'Black', 'Red'],
     'images': ['https://example.com/belt12.jpg'],
   },
@@ -229,7 +241,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0013',
-    'description': 'Modern waist belt featuring an eye-catching circular gold-tone hardware.',
+    'description':
+        'Modern waist belt featuring an eye-catching circular gold-tone hardware.',
     'image_color': ['Cream', 'Black'],
     'images': ['https://example.com/belt13.jpg'],
   },
@@ -247,7 +260,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0014',
-    'description': 'Lightweight golf belt offering full stretch mobility on the course.',
+    'description':
+        'Lightweight golf belt offering full stretch mobility on the course.',
     'image_color': ['Grey', 'White', 'Navy'],
     'images': ['https://example.com/belt14.jpg'],
   },
@@ -265,7 +279,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0015',
-    'description': 'Edgy genuine leather belt detailed with metallic pyramid studs.',
+    'description':
+        'Edgy genuine leather belt detailed with metallic pyramid studs.',
     'image_color': ['Black'],
     'images': ['https://example.com/belt15.jpg'],
   },
@@ -283,7 +298,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 2,
     'sku': 'SKU-0016',
-    'description': 'Hand-woven braided belt that allows buckling at any precise position.',
+    'description':
+        'Hand-woven braided belt that allows buckling at any precise position.',
     'image_color': ['Brown', 'Dark Tan'],
     'images': ['https://example.com/belt16.jpg'],
   },
@@ -301,7 +317,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0017',
-    'description': 'Sleek patent leather dress belt with a brilliant high-gloss finish.',
+    'description':
+        'Sleek patent leather dress belt with a brilliant high-gloss finish.',
     'image_color': ['Black', 'Burgundy'],
     'images': ['https://example.com/belt17.jpg'],
   },
@@ -319,7 +336,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0018',
-    'description': 'Wide elastic corset belt designed to accentuate the waistline.',
+    'description':
+        'Wide elastic corset belt designed to accentuate the waistline.',
     'image_color': ['Black'],
     'images': ['https://example.com/belt18.jpg'],
   },
@@ -337,7 +355,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0019',
-    'description': 'Extra thick leather construction built to hold up work trousers and tools.',
+    'description':
+        'Extra thick leather construction built to hold up work trousers and tools.',
     'image_color': ['Dark Brown', 'Black'],
     'images': ['https://example.com/belt19.jpg'],
   },
@@ -355,7 +374,8 @@ final List<Map<String, dynamic>> belts = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0020',
-    'description': 'Soft satin tie belt designed to accent evening dresses and blouses.',
+    'description':
+        'Soft satin tie belt designed to accent evening dresses and blouses.',
     'image_color': ['Champagne', 'Black', 'Emerald'],
     'images': ['https://example.com/belt20.jpg'],
   },
@@ -375,7 +395,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0101',
-    'description': 'Warm fleece-lined winter gloves with conductive fingertips for touchscreen use.',
+    'description':
+        'Warm fleece-lined winter gloves with conductive fingertips for touchscreen use.',
     'image_color': ['Black', 'Dark Grey'],
     'images': ['https://example.com/glove1.jpg'],
   },
@@ -393,7 +414,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 2,
     'sku': 'SKU-0102',
-    'description': 'Soft and elegant lambskin leather dress gloves lined with cashmere.',
+    'description':
+        'Soft and elegant lambskin leather dress gloves lined with cashmere.',
     'image_color': ['Black', 'Brown'],
     'images': ['https://example.com/glove2.jpg'],
   },
@@ -411,7 +433,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0103',
-    'description': 'Breathable half-finger cycling gloves with shock-absorbing gel padding.',
+    'description':
+        'Breathable half-finger cycling gloves with shock-absorbing gel padding.',
     'image_color': ['Red/Black', 'Blue/Black', 'Full Black'],
     'images': ['https://example.com/glove3.jpg'],
   },
@@ -429,7 +452,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0104',
-    'description': 'Reinforced hard knuckle gloves designed for airsoft, outdoor work, and shooting.',
+    'description':
+        'Reinforced hard knuckle gloves designed for airsoft, outdoor work, and shooting.',
     'image_color': ['Tan', 'Olive Green', 'Black'],
     'images': ['https://example.com/glove4.jpg'],
   },
@@ -447,7 +471,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0105',
-    'description': 'Fitness gloves with built-in wrist support wraps and anti-slip silicone grip.',
+    'description':
+        'Fitness gloves with built-in wrist support wraps and anti-slip silicone grip.',
     'image_color': ['Black', 'Pink'],
     'images': ['https://example.com/glove5.jpg'],
   },
@@ -465,7 +490,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0106',
-    'description': 'Windproof and waterproof snow gloves for skiing and snowboarding.',
+    'description':
+        'Windproof and waterproof snow gloves for skiing and snowboarding.',
     'image_color': ['Black/White', 'Navy/Orange'],
     'images': ['https://example.com/glove6.jpg'],
   },
@@ -483,7 +509,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0107',
-    'description': 'Cozy long wrist warmers perfect for typing and cold indoor days.',
+    'description':
+        'Cozy long wrist warmers perfect for typing and cold indoor days.',
     'image_color': ['Beige', 'Light Grey', 'Black'],
     'images': ['https://example.com/glove7.jpg'],
   },
@@ -501,7 +528,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 6,
     'sku': 'SKU-0108',
-    'description': 'Level 5 cut protection gloves for mechanics, glass handling, and construction.',
+    'description':
+        'Level 5 cut protection gloves for mechanics, glass handling, and construction.',
     'image_color': ['Grey/Black'],
     'images': ['https://example.com/glove8.jpg'],
   },
@@ -519,7 +547,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 2,
     'sku': 'SKU-0109',
-    'description': 'Perforated leather driving gloves with snap closure and classic knuckle holes.',
+    'description':
+        'Perforated leather driving gloves with snap closure and classic knuckle holes.',
     'image_color': ['Cognac', 'Black'],
     'images': ['https://example.com/glove9.jpg'],
   },
@@ -537,7 +566,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 7,
     'sku': 'SKU-0110',
-    'description': 'Open-finger cotton compression gloves designed to soothe joint and hand pain.',
+    'description':
+        'Open-finger cotton compression gloves designed to soothe joint and hand pain.',
     'image_color': ['Heather Grey'],
     'images': ['https://example.com/glove10.jpg'],
   },
@@ -555,7 +585,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0111',
-    'description': 'Lightweight wind-resistant liners ideal for cool weather running.',
+    'description':
+        'Lightweight wind-resistant liners ideal for cool weather running.',
     'image_color': ['Reflective Black', 'Neon Yellow'],
     'images': ['https://example.com/glove11.jpg'],
   },
@@ -573,7 +604,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 6,
     'sku': 'SKU-0112',
-    'description': 'Thorn-proof gauntlet gloves with extended forearms for rose pruning.',
+    'description':
+        'Thorn-proof gauntlet gloves with extended forearms for rose pruning.',
     'image_color': ['Yellow Leather'],
     'images': ['https://example.com/glove12.jpg'],
   },
@@ -591,7 +623,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0113',
-    'description': 'Ultra-warm faux fur cuff suede mittens for extreme cold weather.',
+    'description':
+        'Ultra-warm faux fur cuff suede mittens for extreme cold weather.',
     'image_color': ['Camel', 'Dusty Pink'],
     'images': ['https://example.com/glove13.jpg'],
   },
@@ -609,7 +642,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 8,
     'sku': 'SKU-0114',
-    'description': 'Multi-layered foam padding boxing gloves for heavy bag and sparring sessions.',
+    'description':
+        'Multi-layered foam padding boxing gloves for heavy bag and sparring sessions.',
     'image_color': ['Matte Black', 'Red/Gold'],
     'images': ['https://example.com/glove14.jpg'],
   },
@@ -627,7 +661,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0115',
-    'description': 'Elbow-length stretch satin gloves for evening parties, weddings, and formal galas.',
+    'description':
+        'Elbow-length stretch satin gloves for evening parties, weddings, and formal galas.',
     'image_color': ['White', 'Black', 'Red'],
     'images': ['https://example.com/glove15.jpg'],
   },
@@ -645,7 +680,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 3,
     'sku': 'SKU-0116',
-    'description': 'Durable trail gloves with silicone fingertip prints for extra brake lever grip.',
+    'description':
+        'Durable trail gloves with silicone fingertip prints for extra brake lever grip.',
     'image_color': ['Camouflage', 'Black/Cyan'],
     'images': ['https://example.com/glove16.jpg'],
   },
@@ -663,7 +699,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0117',
-    'description': 'Cold water fishing gloves with 2 fold-back index and thumb caps for tying hooks.',
+    'description':
+        'Cold water fishing gloves with 2 fold-back index and thumb caps for tying hooks.',
     'image_color': ['Dark Green'],
     'images': ['https://example.com/glove17.jpg'],
   },
@@ -681,7 +718,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 5,
     'sku': 'SKU-0118',
-    'description': 'Rechargeable battery-powered heated gloves with 3 adjustable temperature levels.',
+    'description':
+        'Rechargeable battery-powered heated gloves with 3 adjustable temperature levels.',
     'image_color': ['Black'],
     'images': ['https://example.com/glove18.jpg'],
   },
@@ -699,7 +737,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0119',
-    'description': 'Luxurious, lightweight wool-cashmere gloves with elastic ribbed cuffs.',
+    'description':
+        'Luxurious, lightweight wool-cashmere gloves with elastic ribbed cuffs.',
     'image_color': ['Charcoal', 'Oatmeal'],
     'images': ['https://example.com/glove19.jpg'],
   },
@@ -717,7 +756,8 @@ final List<Map<String, dynamic>> gloves = [
     'is_favorite': 'false',
     'brand_id': 4,
     'sku': 'SKU-0120',
-    'description': 'Gothic fingerless faux-leather gloves detailed with metallic silver studs.',
+    'description':
+        'Gothic fingerless faux-leather gloves detailed with metallic silver studs.',
     'image_color': ['Black'],
     'images': ['https://example.com/glove20.jpg'],
   },
@@ -738,7 +778,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0201',
     'description':
-    'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.',
+        'Elegant headband adorned with high-quality pearls. Perfect for weddings, parties, or adding a touch of class to your daily look.',
     'image_color': ['Pearl White', 'Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-safari-bow-hairclip--M03607_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -762,7 +802,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0202',
     'description':
-    'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.',
+        'A set of three premium crystal clips that catch the light beautifully. Secure grip design for all hair types.',
     'image_color': ['Silver', 'Crystal Clear'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-resin-hair-cubes--M03559_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -786,7 +826,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 2,
     'sku': 'SKU-0203',
     'description':
-    'Charming hand-crafted silk flower fascinator designed to complement high-fashion gala and tea party attires.',
+        'Charming hand-crafted silk flower fascinator designed to complement high-fashion gala and tea party attires.',
     'image_color': ['Blush Pink', 'Champagne'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-flat-clips-set--M03540_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -810,7 +850,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 3,
     'sku': 'SKU-0204',
     'description':
-    'Soft velvet fabric hair elastics that prevent breakage and leave no creases on your hair.',
+        'Soft velvet fabric hair elastics that prevent breakage and leave no creases on your hair.',
     'image_color': ['Multicolor', 'Emerald Green', 'Burgundy'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-monogram-multicolor-headband--M03718_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -836,7 +876,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 2,
     'sku': 'SKU-0205',
     'description':
-    'Flexible golden foliage vine hairpiece that can be woven gently into braids or formal updos.',
+        'Flexible golden foliage vine hairpiece that can be woven gently into braids or formal updos.',
     'image_color': ['Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-outline-silk-headband--M97813_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -861,7 +901,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 4,
     'sku': 'SKU-0206',
     'description':
-    'Rustic artificial floral headband handcrafted for outdoor music festivals, photoshoots, and weddings.',
+        'Rustic artificial floral headband handcrafted for outdoor music festivals, photoshoots, and weddings.',
     'image_color': ['Rose Red', 'Cream White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-fleur-ronde-scrunchy--M96840_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -886,7 +926,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0207',
     'description':
-    'Sleek geometric metallic hair clasp designed for clean, modern everyday hairstyles.',
+        'Sleek geometric metallic hair clasp designed for clean, modern everyday hairstyles.',
     'image_color': ['Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-fleur-pique-scrunchy--M96838_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -911,7 +951,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 5,
     'sku': 'SKU-0208',
     'description':
-    'Sparkling alloy tiara with intricate rhinestone craftwork, perfect for birthday crowns or formal galas.',
+        'Sparkling alloy tiara with intricate rhinestone craftwork, perfect for birthday crowns or formal galas.',
     'image_color': ['Silver Crystal'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-monogram-multicolor-bow-barrette--M02482_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -935,7 +975,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 3,
     'sku': 'SKU-0209',
     'description':
-    'Classic large French ribbon bow clip crafted from smooth premium satin ribbon.',
+        'Classic large French ribbon bow clip crafted from smooth premium satin ribbon.',
     'image_color': ['Cherry Red', 'Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-cerise-hair-cubes--M02901_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -959,7 +999,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0210',
     'description':
-    'Set of ornamental hairpin slides with delicate details to elevate simple hairstyles.',
+        'Set of ornamental hairpin slides with delicate details to elevate simple hairstyles.',
     'image_color': ['Gold', 'Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-backstage-hair-clips--M03715_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -984,7 +1024,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0211',
     'description':
-    'Hand-strung glass bead flexible headband designed to stay comfortably snug all day long.',
+        'Hand-strung glass bead flexible headband designed to stay comfortably snug all day long.',
     'image_color': ['Multicolor', 'Amber'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-resin-claw-clip--M03546_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1009,7 +1049,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 5,
     'sku': 'SKU-0212',
     'description':
-    'Soft cathedral-length lace-trimmed bridal veil with an integrated comb for easy placement.',
+        'Soft cathedral-length lace-trimmed bridal veil with an integrated comb for easy placement.',
     'image_color': ['Ivory', 'Pure White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-resin-headband--M03539_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1034,7 +1074,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 3,
     'sku': 'SKU-0213',
     'description':
-    'Trendy animal-patterned fabric hair tie adding an edgy touch to casual ponytails.',
+        'Trendy animal-patterned fabric hair tie adding an edgy touch to casual ponytails.',
     'image_color': ['Leopard Pattern'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-monogram-multicolor-bow-barrette--M03722_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1059,7 +1099,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0214',
     'description':
-    'Sturdy hollow-out metal claw clip engineered to hold thick hair firmly without slipping.',
+        'Sturdy hollow-out metal claw clip engineered to hold thick hair firmly without slipping.',
     'image_color': ['Gold', 'Matte Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-shinsegae-barrette--M03439_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1083,7 +1123,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 4,
     'sku': 'SKU-0215',
     'description':
-    'Enchanting moving-wing butterfly hairpin pair with iridescent accents.',
+        'Enchanting moving-wing butterfly hairpin pair with iridescent accents.',
     'image_color': ['Pastel Blue', 'Lilac'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mix-pearls-barrette--M03249_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1107,7 +1147,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 6,
     'sku': 'SKU-0216',
     'description':
-    'Non-slip silicone-lined stretchy athletic headbands built for workouts, running, and tennis.',
+        'Non-slip silicone-lined stretchy athletic headbands built for workouts, running, and tennis.',
     'image_color': ['Black', 'Grey', 'White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mix-pearls-elastic--M03238_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1128,7 +1168,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 2,
     'sku': 'SKU-0217',
     'description':
-    'Hand-wired jeweled hair side-comb embedded with shimmering rhinestones and faux pearls.',
+        'Hand-wired jeweled hair side-comb embedded with shimmering rhinestones and faux pearls.',
     'image_color': ['Silver', 'Rose Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-iconic-strass-pin--M03252_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1153,7 +1193,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 4,
     'sku': 'SKU-0218',
     'description':
-    'Heat-resistant glitter hair extension tinsel strands for festival and fairy core styling.',
+        'Heat-resistant glitter hair extension tinsel strands for festival and fairy core styling.',
     'image_color': ['Rainbow Holographic'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-silhouette-bow--M03314_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1178,7 +1218,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 3,
     'sku': 'SKU-0219',
     'description':
-    'Coastal-themed resin starfish hair clip ideal for beach holidays and resort wear.',
+        'Coastal-themed resin starfish hair clip ideal for beach holidays and resort wear.',
     'image_color': ['Ocean Blue', 'Coral Pink'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-bloom-scrunchie--M98490_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1202,7 +1242,7 @@ final List<Map<String, dynamic>> hairAccessories = [
     'brand_id': 1,
     'sku': 'SKU-0220',
     'description':
-    'Minimalist pastel claw clip made from soft-touch matte resin with a strong metal spring.',
+        'Minimalist pastel claw clip made from soft-touch matte resin with a strong metal spring.',
     'image_color': ['Nude', 'Sage Green', 'Taupe'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mink-monogram-scrunchie--M97194_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1226,7 +1266,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 1,
     'sku': 'SKU-0301',
     'description':
-    'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.',
+        'Handcrafted summer Panama hat made from breathable straw. Perfect for beach vacations and sunny outdoor events, providing both shade and style.',
     'image_color': ['Natural Straw', 'Beige'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-league-bucket-hat--M5516S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1252,7 +1292,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 2,
     'sku': 'SKU-0302',
     'description':
-    'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.',
+        'A timeless wool-felt fedora featuring a classic ribbon band. Ideal for formal occasions or adding a sophisticated touch to your casual outfit.',
     'image_color': ['Black', 'Dark Brown'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-silhouette-capeline--M5528S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1278,7 +1318,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 3,
     'sku': 'SKU-0303',
     'description':
-    'Classic 6-panel cotton baseball cap with an adjustable strap closure for street style utility.',
+        'Classic 6-panel cotton baseball cap with an adjustable strap closure for street style utility.',
     'image_color': ['Navy Blue', 'Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-bike-reversible-bucket-hat--M5457S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1304,7 +1344,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 2,
     'sku': 'SKU-0304',
     'description':
-    'Dramatic floppy sun hat with extended brim to deliver maximum UPF 50+ UV defense.',
+        'Dramatic floppy sun hat with extended brim to deliver maximum UPF 50+ UV defense.',
     'image_color': ['Cream', 'White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-safari-bucket-hat--M5388S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1328,7 +1368,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 3,
     'sku': 'SKU-0305',
     'description':
-    'Soft stretchable acrylic knit skull cap offering versatile warmth and slouched fit style.',
+        'Soft stretchable acrylic knit skull cap offering versatile warmth and slouched fit style.',
     'image_color': ['Grey', 'Charcoal', 'Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-script-cloud-bob--M5308S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1353,7 +1393,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 1,
     'sku': 'SKU-0306',
     'description':
-    'Trend-setting cotton canvas bucket hat tailored for festival fashion and casual city walks.',
+        'Trend-setting cotton canvas bucket hat tailored for festival fashion and casual city walks.',
     'image_color': ['Khaki', 'Olive Green'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-beret-lv-in-paris--M5305A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1378,7 +1418,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 4,
     'sku': 'SKU-0307',
     'description':
-    'Packable woven sun hat built with an interior adjustable sweatband for optimal outdoor comfort.',
+        'Packable woven sun hat built with an interior adjustable sweatband for optimal outdoor comfort.',
     'image_color': ['Tan', 'Sand'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-denim-cap--M5367M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1403,7 +1443,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 5,
     'sku': 'SKU-0308',
     'description':
-    'Authentic western cattleman shape hat complete with leather decorative band.',
+        'Authentic western cattleman shape hat complete with leather decorative band.',
     'image_color': ['Brown Leather'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-safari-cap--M5393M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1429,7 +1469,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 2,
     'sku': 'SKU-0309',
     'description':
-    'Traditional 8-panel newsboy flat cap made from warm wool-blend tweed fabric.',
+        'Traditional 8-panel newsboy flat cap made from warm wool-blend tweed fabric.',
     'image_color': ['Herringbone Grey', 'Brown Tweed'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-script-cap--M5449M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1454,7 +1494,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 1,
     'sku': 'SKU-0310',
     'description':
-    'Classic Parisian wool beret designed for artist and vintage-inspired wardrobe aesthetics.',
+        'Classic Parisian wool beret designed for artist and vintage-inspired wardrobe aesthetics.',
     'image_color': ['Red', 'Black', 'Off White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-knitted-squared-cap--M5433M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1478,7 +1518,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 3,
     'sku': 'SKU-0311',
     'description':
-    'Flat-brim structured snapback cap featuring embroidered front eyelets and durable twill.',
+        'Flat-brim structured snapback cap featuring embroidered front eyelets and durable twill.',
     'image_color': ['Black/Red', 'Full Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-holiday-beanie--M97258_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1503,7 +1543,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 4,
     'sku': 'SKU-0312',
     'description':
-    'Lightweight wide-brim straw hat featuring a floral ribbon tie accent.',
+        'Lightweight wide-brim straw hat featuring a floral ribbon tie accent.',
     'image_color': ['Natural Floral'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-script-hat--M5189S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1528,7 +1568,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 3,
     'sku': 'SKU-0313',
     'description':
-    'Flat-top fatigue style cadet cap crafted from durable ripstop cotton.',
+        'Flat-top fatigue style cadet cap crafted from durable ripstop cotton.',
     'image_color': ['Camouflage', 'Olive Green'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-league-visor--M5204M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1554,7 +1594,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 5,
     'sku': 'SKU-0314',
     'description':
-    'Wide brim outdoor boonie hat featuring an adjustable chin drawstring and side vents.',
+        'Wide brim outdoor boonie hat featuring an adjustable chin drawstring and side vents.',
     'image_color': ['Khaki', 'Desert Sand'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-mng-my-heart-hat--M5193S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1579,7 +1619,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 6,
     'sku': 'SKU-0315',
     'description':
-    'Formal tall crown top hat constructed from firm satin wool felt for evening galas.',
+        'Formal tall crown top hat constructed from firm satin wool felt for evening galas.',
     'image_color': ['Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-denim-cerise-bucket-hat--M5032S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1604,7 +1644,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 1,
     'sku': 'SKU-0316',
     'description':
-    'Chunky ribbed cuff beanie knit from warm acrylic fabric for essential winter protection.',
+        'Chunky ribbed cuff beanie knit from warm acrylic fabric for essential winter protection.',
     'image_color': ['Mustard Yellow', 'Black', 'Navy'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--lv-x-tm-cerise-charms-hat--M5086S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1629,7 +1669,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 2,
     'sku': 'SKU-0317',
     'description':
-    'Semi-formal flat-crowned summer hat crafted from natural straw with a grosgrain ribbon.',
+        'Semi-formal flat-crowned summer hat crafted from natural straw with a grosgrain ribbon.',
     'image_color': ['Natural/Black Ribbon'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-get-ready-cap--M76504_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1656,7 +1696,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 3,
     'sku': 'SKU-0318',
     'description':
-    'Breathable rear-mesh panel cap designed for hot summer days and outdoor wear.',
+        'Breathable rear-mesh panel cap designed for hot summer days and outdoor wear.',
     'image_color': ['Black/White Mesh'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-first-cap--M7088M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1684,7 +1724,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 2,
     'sku': 'SKU-0319',
     'description':
-    'Supple genuine leather Ivy cap offering a sophisticated vintage driving silhouette.',
+        'Supple genuine leather Ivy cap offering a sophisticated vintage driving silhouette.',
     'image_color': ['Black', 'Dark Brown'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-move-cap--M7927M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1709,7 +1749,7 @@ final List<Map<String, dynamic>> hats = [
     'brand_id': 6,
     'sku': 'SKU-0320',
     'description':
-    'Classic rigid felt derby bowler hat with curved brim and contrast ribbon trim.',
+        'Classic rigid felt derby bowler hat with curved brim and contrast ribbon trim.',
     'image_color': ['Black'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-league-cap--M5276M_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1733,13 +1773,15 @@ final List<Map<String, dynamic>> jewelry = [
     'sold': '150',
     'reviews': '45',
     'stock_status': 'in_stock',
-    'gender':'',
+    'gender': '',
     'is_favorite': 'false',
     'brand_id': 1,
     'sku': 'SKU-0401',
     'description':
-    'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.',
-    'image_color': [ 'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearl-constellations-bracelet--M03498_PM2_Front%20view.png?wid=1090&hei=1090',],
+        'A stunning 18k white gold engagement ring featuring a brilliant-cut center diamond. A timeless symbol of love and commitment.',
+    'image_color': [
+      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearl-constellations-bracelet--M03498_PM2_Front%20view.png?wid=1090&hei=1090',
+    ],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearl-constellations-bracelet--M03498_PM2_Front%20view.png?wid=1090&hei=1090',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearl-constellations-bracelet--M03498_PM1_Detail%20view.png?wid=1090&hei=1090',
@@ -1753,7 +1795,7 @@ final List<Map<String, dynamic>> jewelry = [
     'size': '18 inch,20 inch',
     'discount': '10%',
     'rating': '4.8',
-    'gender':'',
+    'gender': '',
     'sold': '1100',
     'reviews': '320',
     'stock_status': 'in_stock',
@@ -1761,8 +1803,10 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 2,
     'sku': 'SKU-0402',
     'description':
-    'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.',
-    'image_color': [  'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-confetti-bracelet--M1864A_PM2_Front%20view.png?wid=1090&hei=1090',],
+        'Elegant 14k yellow gold chain necklace, perfect for daily wear or layering with other pieces. Durable and stylish.',
+    'image_color': [
+      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-confetti-bracelet--M1864A_PM2_Front%20view.png?wid=1090&hei=1090',
+    ],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-confetti-bracelet--M1864A_PM2_Front%20view.png?wid=1090&hei=1090',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-confetti-bracelet--M1864A_PM1_Worn%20view.png?wid=1090&hei=1090',
@@ -1786,7 +1830,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 1,
     'sku': 'SKU-0403',
     'description':
-    'Deep blue sapphire gemstones set in delicate white gold teardrop mountings.',
+        'Deep blue sapphire gemstones set in delicate white gold teardrop mountings.',
     'image_color': ['Sapphire Blue', 'Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-script-bracelet--M1860A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1811,7 +1855,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 3,
     'sku': 'SKU-0404',
     'description':
-    'Lustrous freshwater pearl double-strand bracelet with sterling silver lobster clasp.',
+        'Lustrous freshwater pearl double-strand bracelet with sterling silver lobster clasp.',
     'image_color': ['Pearl White'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-crown-cuff--M1744S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1834,7 +1878,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 2,
     'sku': 'SKU-0405',
     'description':
-    'Vibrant square-cut emerald studs framed in 18k solid yellow gold basket settings.',
+        'Vibrant square-cut emerald studs framed in 18k solid yellow gold basket settings.',
     'image_color': ['Emerald Green', 'Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-floragram-bracelet--M1738A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1856,7 +1900,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 4,
     'sku': 'SKU-0406',
     'description':
-    'Antique-inspired brass brooch embellished with sparkling crystals and filigree detailing.',
+        'Antique-inspired brass brooch embellished with sparkling crystals and filigree detailing.',
     'image_color': ['Antique Brass', 'Bronze'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-cerise-bracelet--M1691A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1880,7 +1924,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 5,
     'sku': 'SKU-0407',
     'description':
-    'Sleek analog dial wristwatch styled within a polished sterling silver open bangle bracelet.',
+        'Sleek analog dial wristwatch styled within a polished sterling silver open bangle bracelet.',
     'image_color': ['Silver Dial', 'Rose Gold Dial'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearl-river-bracelet--M1685A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1904,7 +1948,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 2,
     'sku': 'SKU-0408',
     'description':
-    'Lightweight hollow rose gold classic click-top hoop earrings for daily polish.',
+        'Lightweight hollow rose gold classic click-top hoop earrings for daily polish.',
     'image_color': ['Rose Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-recycled-monogram-beads-bracelet--M1666A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1928,7 +1972,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 1,
     'sku': 'SKU-0409',
     'description':
-    'Oval natural crimson ruby pendant suspended from a fine 18k yellow gold chain.',
+        'Oval natural crimson ruby pendant suspended from a fine 18k yellow gold chain.',
     'image_color': ['Crimson Red', 'Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-candy-bracelet--M02573_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1952,7 +1996,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 6,
     'sku': 'SKU-0410',
     'description':
-    'Intricate bridal choker necklace and matching stud earrings studded with zircon stones.',
+        'Intricate bridal choker necklace and matching stud earrings studded with zircon stones.',
     'image_color': ['Silver Crystal'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-blooming-pearls-bracelet--M1684A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1974,7 +2018,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 3,
     'sku': 'SKU-0411',
     'description':
-    'Clean, high-polish 925 sterling silver band designed for effortless daily stacking.',
+        'Clean, high-polish 925 sterling silver band designed for effortless daily stacking.',
     'image_color': ['Sterling Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lady-lv-bracelet--M1582A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -1998,7 +2042,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 3,
     'sku': 'SKU-0412',
     'description':
-    'Crescent moon charm featuring pave cubic zirconia stones along its curve.',
+        'Crescent moon charm featuring pave cubic zirconia stones along its curve.',
     'image_color': ['Silver', 'Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-initiales-silk-bracelet--M1958S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2022,7 +2066,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 1,
     'sku': 'SKU-0413',
     'description':
-    'Continuous line of round brilliant lab-created diamonds set in white gold prong mountings.',
+        'Continuous line of round brilliant lab-created diamonds set in white gold prong mountings.',
     'image_color': ['White Gold'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-initiales-silk-bracelet--M1938S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2047,7 +2091,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 4,
     'sku': 'SKU-0414',
     'description':
-    'Multi-colored natural stone seed beads layered with a brushed gold charm.',
+        'Multi-colored natural stone seed beads layered with a brushed gold charm.',
     'image_color': ['Multicolor', 'Earth Tones'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-cube-bracelet--MA024A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2070,7 +2114,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 2,
     'sku': 'SKU-0415',
     'description':
-    'Pear-cut deep purple amethyst stones hanging gracefully on sterling leverback hooks.',
+        'Pear-cut deep purple amethyst stones hanging gracefully on sterling leverback hooks.',
     'image_color': ['Purple', 'Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-initiales-bracelet--M1914S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2094,7 +2138,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 3,
     'sku': 'SKU-0416',
     'description':
-    'Heart-shaped opening locket with floral engravings, holding two small photos.',
+        'Heart-shaped opening locket with floral engravings, holding two small photos.',
     'image_color': ['Gold', 'Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-pearly-flower-bracelet--M1855S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2119,7 +2163,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 1,
     'sku': 'SKU-0417',
     'description':
-    'Classic 4mm comfort-fit solid platinum ring with high polished interior bevels.',
+        'Classic 4mm comfort-fit solid platinum ring with high polished interior bevels.',
     'image_color': ['Platinum Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-initiales-bracelet--M1854S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2143,7 +2187,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 4,
     'sku': 'SKU-0418',
     'description':
-    'Southwestern style open cuff studded with raw turquoise cabs and engraved patterns.',
+        'Southwestern style open cuff studded with raw turquoise cabs and engraved patterns.',
     'image_color': ['Turquoise Blue', 'Antique Silver'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-tm-monogram-multicolor-bracelet--M1916A_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2167,7 +2211,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 6,
     'sku': 'SKU-0419',
     'description':
-    'Glamorous multi-tiered chandelier earrings cascading with brilliant pave diamonds.',
+        'Glamorous multi-tiered chandelier earrings cascading with brilliant pave diamonds.',
     'image_color': ['White Gold Crystal'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-flower-comet-cuff--M1865S_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2192,7 +2236,7 @@ final List<Map<String, dynamic>> jewelry = [
     'brand_id': 2,
     'sku': 'SKU-0420',
     'description':
-    'Large emerald-cut natural bi-color ametrine gemstone set on a heavy sterling bezel.',
+        'Large emerald-cut natural bi-color ametrine gemstone set on a heavy sterling bezel.',
     'image_color': ['Purple/Yellow Gem'],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-sweetheart-bracelet--M4611Z_PM2_Front%20view.png?wid=1090&hei=1090',
@@ -2216,7 +2260,7 @@ final List<Map<String, dynamic>> scarves = [
     'sold': '1.5k',
     'reviews': '420',
     'description':
-    'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
+        'Luxurious 100% pure silk scarf with a vibrant floral pattern. Smooth, elegant, and perfect for any formal or casual occasion.',
   },
   {
     'images': [
@@ -2232,7 +2276,7 @@ final List<Map<String, dynamic>> scarves = [
     'sold': '950',
     'reviews': '215',
     'description':
-    'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
+        'Stay cozy with this soft cashmere blend wrap. Lightweight yet incredibly warm for those chilly winter days.',
   },
   {
     'images': [
@@ -2387,7 +2431,7 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) => 'https://www.pngall.com/wp-content/uploads/2016/05/Scarf.png',
+      (index) => 'https://www.pngall.com/wp-content/uploads/2016/05/Scarf.png',
     ),
     'title': 'Designer Wool Scarf',
     'price': '\$65.00',
@@ -2398,8 +2442,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-File.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-File.png',
     ),
     'title': 'Polka Dot Neckerchief',
     'price': '\$11.00',
@@ -2410,8 +2454,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Image.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Image.png',
     ),
     'title': 'Embroidered Shawl',
     'price': '\$55.00',
@@ -2422,8 +2466,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-HD.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-HD.png',
     ),
     'title': 'Fringe Pashmina',
     'price': '\$24.00',
@@ -2434,8 +2478,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-Free-PNG-Image.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-Free-PNG-Image.png',
     ),
     'title': 'Tie-Dye Cotton Scarf',
     'price': '\$14.00',
@@ -2446,8 +2490,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Transparent.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Transparent.png',
     ),
     'title': 'Oversized Blanket Scarf',
     'price': '\$30.00',
@@ -2458,8 +2502,8 @@ final List<Map<String, dynamic>> scarves = [
   {
     'images': List.generate(
       4,
-          (index) =>
-      'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Pic.png',
+      (index) =>
+          'https://www.pngall.com/wp-content/uploads/2016/05/Scarf-PNG-Pic.png',
     ),
     'title': 'Leopard Print Wrap',
     'price': '\$20.00',
@@ -2484,7 +2528,7 @@ final List<Map<String, dynamic>> sunglasses = [
     'sold': '2.1k',
     'reviews': '540',
     'description':
-    'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.',
+        'Timeless aviator design with polarized lenses for 100% UV protection. Lightweight metal frame for all-day comfort.',
   },
   {
     'images': [
@@ -2502,7 +2546,7 @@ final List<Map<String, dynamic>> sunglasses = [
     'sold': '4.5k',
     'reviews': '1.2k',
     'description':
-    'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.',
+        'Modern wayfarer frames in matte black finish. Durable polycarbonate material with high-definition clarity.',
   },
   {
     'images': [
@@ -2763,7 +2807,7 @@ final List<Map<String, dynamic>> sunglasses = [
     'sold': '1.1k',
     'reviews': '210',
     'description':
-    'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.',
+        'Specialized yellow-tinted lenses designed to reduce glare and improve clarity during night driving or low-light conditions.',
   },
   {
     'images': [
@@ -2779,7 +2823,7 @@ final List<Map<String, dynamic>> sunglasses = [
     'sold': '640',
     'reviews': '125',
     'description':
-    'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.',
+        'A bold, single-lens wrap-around design that offers a futuristic look and maximum wind protection for outdoor activities.',
   },
   {
     'images': [
@@ -2911,7 +2955,7 @@ final List<Map<String, dynamic>> watches = [
     'sold': '45',
     'reviews': '12',
     'description':
-    'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
+        'The quintessential divers watch, the Submariner set the standard for the genre. A perfect blend of luxury and utility with 18k gold finish.',
   },
   {
     'images': [
@@ -2926,7 +2970,7 @@ final List<Map<String, dynamic>> watches = [
     'sold': '1.2k',
     'reviews': '340',
     'description':
-    'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
+        'Minimalist design featuring a genuine brown leather strap and reliable Japanese quartz movement. Perfect for daily office wear.',
   },
   {
     'images': [
@@ -3279,7 +3323,7 @@ final List<Map<String, dynamic>> watches = [
     'sold': '320',
     'reviews': '85',
     'description':
-    'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.',
+        'A sophisticated all-black stainless steel watch with a sapphire crystal face. Designed for the modern executive who values stealth and style.',
   },
   {
     'images': [
@@ -3296,7 +3340,7 @@ final List<Map<String, dynamic>> watches = [
     'sold': '1.1k',
     'reviews': '240',
     'description':
-    'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.',
+        'Elegant ladies watch featuring a mother-of-pearl dial and a rose gold plated mesh strap. A perfect accessory for evening events.',
   },
   {
     'images': [
@@ -3442,7 +3486,7 @@ final List<Map<String, dynamic>> backpacks = [
     'sold': '1.5k',
     'reviews': '450',
     'description':
-    'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.',
+        'A high-performance backpack designed for urban commuters and outdoor enthusiasts, featuring a water-resistant shell and a 15-inch laptop sleeve.',
   },
   {
     'images': [
@@ -3459,7 +3503,7 @@ final List<Map<String, dynamic>> backpacks = [
     'sold': '3.2k',
     'reviews': '1.1k',
     'description':
-    'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.',
+        'Simple, durable, and spacious. Perfect for students and everyday use with reinforced straps and multiple zip pockets.',
   },
   {
     'images': [
@@ -3748,7 +3792,7 @@ final List<Map<String, dynamic>> clutches = [
     'sold': '1.2k',
     'reviews': '340',
     'description':
-    'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.',
+        'A stunning glitter clutch perfect for evening parties and weddings. Includes a detachable chain strap and a compact interior for essentials.',
   },
   {
     'images': [
@@ -3765,7 +3809,7 @@ final List<Map<String, dynamic>> clutches = [
     'sold': '2.1k',
     'reviews': '520',
     'description':
-    'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.',
+        'Elegant satin finish with a smooth touch. This evening bag adds a sophisticated look to any formal gown.',
   },
   {
     'images': [
@@ -4049,7 +4093,7 @@ final List<Map<String, dynamic>> handbags = [
     'sold': '2.4k',
     'reviews': '850',
     'description':
-    'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.',
+        'Elegant and high-quality leather satchel with multiple compartments for organized storage. Perfect for formal and casual outings.',
   },
   {
     'images': [
@@ -4065,7 +4109,7 @@ final List<Map<String, dynamic>> handbags = [
     'sold': '1.1k',
     'reviews': '420',
     'description':
-    'A sophisticated evening clutch designed with premium materials to complement your best outfits.',
+        'A sophisticated evening clutch designed with premium materials to complement your best outfits.',
   },
   {
     'images': [
@@ -4363,7 +4407,7 @@ final List<Map<String, dynamic>> messengerBags = [
     'sold': '1.2k',
     'reviews': '540',
     'description':
-    'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.',
+        'A timeless leather messenger bag featuring a padded laptop compartment and adjustable shoulder strap for maximum comfort.',
   },
   {
     'images': [
@@ -4380,7 +4424,7 @@ final List<Map<String, dynamic>> messengerBags = [
     'sold': '2.5k',
     'reviews': '920',
     'description':
-    'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.',
+        'Lightweight and durable, this canvas satchel is ideal for students and daily commuters who value style and function.',
   },
   {
     'images': [
@@ -4670,7 +4714,7 @@ final List<Map<String, dynamic>> toteBags = [
     'sold': '5.2k',
     'reviews': '1.1k',
     'description':
-    'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.',
+        'Simple, durable, and sustainable. This 100% organic cotton tote is perfect for daily grocery shopping or beach trips.',
   },
   {
     'images': [
@@ -4688,7 +4732,7 @@ final List<Map<String, dynamic>> toteBags = [
     'sold': '3.8k',
     'reviews': '950',
     'description':
-    'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.',
+        'A versatile canvas tote with reinforced stitching and a spacious interior for your laptop and books.',
   },
   {
     'images': [
@@ -4970,7 +5014,7 @@ final List<Map<String, dynamic>> travelBags = [
     'sold': '1.5k',
     'reviews': '640',
     'description':
-    'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.',
+        'Durable and lightweight, this hard-shell suitcase features 360-degree spinner wheels for effortless travel.',
   },
   {
     'images': [
@@ -4988,7 +5032,7 @@ final List<Map<String, dynamic>> travelBags = [
     'sold': '2.1k',
     'reviews': '850',
     'description':
-    'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.',
+        'A stylish and spacious duffel bag crafted from high-quality leather, perfect for weekend getaways.',
   },
   {
     'images': [
@@ -5270,7 +5314,7 @@ final List<Map<String, dynamic>> wallets = [
     'sold': '1.2k',
     'reviews': '540',
     'description':
-    'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.',
+        'Handcrafted from genuine cowhide leather, this classic bifold wallet offers durability and timeless style.',
   },
   {
     'images': [
@@ -5284,7 +5328,7 @@ final List<Map<String, dynamic>> wallets = [
     'sold': '3.5k',
     'reviews': '1.1k',
     'description':
-    'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.',
+        'Perfect for the modern minimalist, this slim holder keeps your essential cards organized without the bulk.',
   },
   {
     'images': [
@@ -5554,7 +5598,7 @@ final List<Map<String, dynamic>> activewear = [
     'sold': '1.2k',
     'reviews': '210',
     'description':
-    'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
+        'High-performance moisture-wicking fabric designed to keep you cool and dry during intense workouts. Features 4-way stretch for maximum mobility.',
   },
   {
     'images': [
@@ -5569,7 +5613,7 @@ final List<Map<String, dynamic>> activewear = [
     'sold': '3.5k',
     'reviews': '840',
     'description':
-    'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
+        'Squat-proof, non-see-through fabric with a hidden waistband pocket. Perfect for yoga, gym sessions, or casual athleisure.',
   },
   {
     'images': [
@@ -5609,7 +5653,7 @@ final List<Map<String, dynamic>> blouses = [
     'sold': '1.2k',
     'reviews': '210',
     'description':
-    'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.',
+        'Elegant silk-satin blouse with a clean V-neckline, perfect for professional office wear.',
   },
   {
     'images': [
@@ -5882,7 +5926,7 @@ final List<Map<String, dynamic>> cardigans = [
     'sold': '120',
     'reviews': '45',
     'description':
-    'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
+        'Luxuriously soft 100% cashmere cardigan featuring a classic button-down front and ribbed trims.',
   },
   {
     'images': [
@@ -6162,7 +6206,7 @@ final List<Map<String, dynamic>> coats = [
     'sold': '120',
     'reviews': '45',
     'description':
-    'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.',
+        'A masterpiece of Italian tailoring, blending premium wool and cashmere for ultimate warmth and luxury.',
   },
   {
     'images': [
@@ -6449,7 +6493,7 @@ final List<Map<String, dynamic>> dresses = [
     'sold': '450',
     'reviews': '112',
     'description':
-    'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
+        'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
   },
   {
     'images': [
@@ -6727,7 +6771,7 @@ final List<Map<String, dynamic>> girlCollection = [
     'sold': '450',
     'reviews': '112',
     'description':
-    'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
+        'A luxurious satin evening gown in emerald green, featuring a high-slit and elegant draping.',
   },
   {
     'images': [
@@ -6935,7 +6979,7 @@ final List<Map<String, dynamic>> hoodies = [
     'sold': '1.8k',
     'reviews': '340',
     'description':
-    'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.',
+        'A premium heavyweight cotton hoodie with a relaxed oversized fit, perfect for everyday comfort.',
   },
   {
     'images': [
@@ -7204,7 +7248,7 @@ final List<Map<String, dynamic>> jackets = [
     'sold': '920',
     'reviews': '180',
     'description':
-    'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
+        'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
   },
   {
     'images': [
@@ -7463,7 +7507,7 @@ final List<Map<String, dynamic>> jeans = [
     'sold': '1.1k',
     'reviews': '210',
     'description':
-    'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
+        'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
   },
   {
     'images': [
@@ -7680,7 +7724,7 @@ final List<Map<String, dynamic>> joggers = [
     'sold': '1.1k',
     'reviews': '210',
     'description':
-    'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
+        'Ultra-soft fleece joggers in a crisp arctic white, perfect for lounging or winter runs.',
   },
   {
     'images': [
@@ -7983,7 +8027,7 @@ final List<Map<String, dynamic>> pants = [
     'sold': '1.2k',
     'reviews': '240',
     'description':
-    'Classic stonewashed denim with a comfortable straight-leg fit.',
+        'Classic stonewashed denim with a comfortable straight-leg fit.',
   },
   {
     'images': [
@@ -8230,15 +8274,856 @@ final List<Map<String, dynamic>> pants = [
     'reviews': '840',
   },
 ];
-final List<Map<String, dynamic>> polos = [
+final List<Map<String, dynamic>> onTrend = [
   {
-    'name': 'polo',
+    'name': 'Classic Cotton T-Shirt',
+    'id': 1,
+    'gender': 'Men',
+    'title': 'Classic Cotton Crew Neck Tee',
+    'price': '\$18.00',
+    'size': 'S,M,L,XL',
+    'color': 'Black ,White ',
+    'discount': '0%',
+    'rating': '4.3',
+    'sold': '260',
+    'reviews': '48',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 1,
+    'sku': 'OT-0001',
+    'description':
+        'A soft, breathable cotton t-shirt perfect for everyday wear.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7741.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7866.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/cache/catalog/products/2026-07-II/21226021735/STU_7867-cr-450x672.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7745.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7746.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7865.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7864.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/21226021735/STU_7867.jpg',
+    ],
+  },
+  {
+    'name': 'Floral Summer Dress',
     'id': 2,
-    'title': 'LV Classic Leather Wallet',
-    'price': '\$0.01',
+    'gender': 'Women',
+    'title': 'Cropped Halter Top',
+    'price': '\$52.00',
+    'size': 'XS,S,M,L',
+    'color': 'Multicolor',
+    'discount': '15%',
+    'rating': '4.7',
+    'sold': '325',
+    'reviews': '77',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'OT-0003',
+    'description': 'Lightweight floral dress ideal for warm weather occasions.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0186%20copy.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0188.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0197.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0192.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0187.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022135/PTAK0186%20copy.jpg',
+    ],
+  },
+  {
+    'name': 'Slim Fit Denim Jeans',
+    'id': 3,
+    'gender': 'Women',
+    'title': 'Slim Fit Stretch Denim Jeans',
+    'price': '\$45.00',
+    'size': '30,32,34,36',
+    'color': 'white,Brown,pink,black',
+    'discount': '10%',
+    'rating': '4.5',
+    'sold': '412',
+    'reviews': '96',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'OT-0002',
+    'description': 'Slim fit jeans with a hint of stretch for all-day comfort.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6733.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6628.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6796.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6773.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6733.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6735.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6729.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6727.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07-II/12226052942/STU_6726.jpg',
+    ],
+  },
+  {
+    'name': 'Oversized Hoodie',
+    'id': 4,
+    'gender': 'Unisex',
+    'title': 'LABLE FAUX SUEDE ZIP BOMBER JACKET',
+    'price': '\$42.00',
+    'size': 'S,M,L,XL,XXL',
+    'color': 'Beige',
+    'discount': '12%',
+    'rating': '4.6',
+    'sold': '389',
+    'reviews': '91',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 8,
+    'sku': 'OT-0008',
+    'description': 'Cozy oversized hoodie made from brushed fleece fabric.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608342/wwyn%20(1).jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608342/wwyn%20(9).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608342/wwyn%20(10).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608342/wwyn%20(8).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608342/wwyn%20(1).jpg',
+    ],
+  },
+  {
+    'name': 'Leather Biker Jacket',
+    'id': 5,
+    'gender': 'Women',
+    'title': 'Layered Lace Halter Asymmetric Top',
+    'price': '\$89.00',
+    'size': 'S,M,L',
+    'color': 'Black',
+    'discount': '0%',
+    'rating': '4.6',
+    'sold': '198',
+    'reviews': '54',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'OT-0004',
+    'description': 'Edgy faux leather jacket with silver hardware detailing.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0025.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0025.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0026.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0020.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0019.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/22226022212/PTAK0018.jpg',
+    ],
+  },
+  {
+    'name': 'Running Sneakers',
+    'id': 6,
+    'gender': 'Unisex',
+    'title': 'Lightweight Mesh Running Sneakers',
+    'price': '\$65.00',
+    'size': '38,39,40,41,42,43',
+    'color': 'Grey',
+    'discount': '20%',
+    'rating': '4.4',
+    'sold': '540',
+    'reviews': '132',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'OT-0005',
+    'description':
+        'Breathable mesh sneakers designed for daily running and training.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041894/STU_9216.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041894/STU_9219.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041894/STU_9229.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041894/STU_9215.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041894/STU_9214.jpg',
+    ],
+  },
+  {
+    'name': 'Wool Blend Overcoat',
+    'id': 7,
+    'gender': 'Women',
+    'title': 'Wool Blend Long Overcoat',
+    'price': '\$120.00',
+    'size': 'M,L,XL',
+    'color': 'Charcoal ',
+    'discount': '5%',
+    'rating': '4.8',
+    'sold': '87',
+    'reviews': '23',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 6,
+    'sku': 'OT-0006',
+    'description': 'A tailored wool blend overcoat for a sharp winter look.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_1008.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_1008.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_0996.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_0998.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_0999.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022046/STU_1007.jpg',
+    ],
+  },
+  {
+    'name': 'High Waist Leggings',
+    'id': 8,
+    'gender': 'Women',
+    'title': 'High Waist Yoga Leggings',
+    'price': '\$28.00',
+    'size': 'XS,S,M,L,XL',
+    'color': 'Black',
+    'discount': '0%',
+    'rating': '4.5',
+    'sold': '610',
+    'reviews': '150',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 7,
+    'sku': 'OT-0007',
+    'description': 'Squat-proof leggings with a comfortable high waistband.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(8).jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608345/wwyn%20(6).jpg',
+    ],
+  },
+  {
+    'name': 'Pleated Midi Skirt',
+    'id': 9,
+    'gender': 'Women',
+    'title': 'Pleated A-Line Midi Skirt',
+    'price': '\$36.00',
+    'size': 'S,M,L',
+    'color': 'Pink',
+    'discount': '0%',
+    'rating': '4.2',
+    'sold': '145',
+    'reviews': '38',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 3,
+    'sku': 'OT-0009',
+    'description': 'A flowing pleated skirt that pairs well with any top.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0353.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0353.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0347.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0349.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0352.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-06/22226022210/PTAK0354.jpg',
+    ],
+  },
+  {
+    'name': 'Jeans',
+    'id': 10,
+    'gender': 'Men',
+    'title': 'Baggy Paneled Grunge Jeans',
+    'price': '\$34.00',
+    'size': 'S,M,L,XL',
+    'color': 'Light Blue',
+    'discount': '0%',
+    'rating': '4.4',
+    'sold': '278',
+    'reviews': '64',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 1,
+    'sku': 'OT-0010',
+    'description':
+        'Crisp oxford shirt suitable for office and formal occasions.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1352.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1352.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1357.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1354.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1349.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/21226021792/STU_1348.jpg',
+    ],
+  },
+  {
+    'name': 'Pinstripe Polo Mini Dress',
+    'id': 11,
+    'gender': 'Women',
+    'title': 'Pinstripe Polo Mini Dress',
+    'price': '\$48.00',
+    'size': 'S,M,L',
+    'color': 'Cream',
+    'discount': '18%',
+    'rating': '4.7',
+    'sold': '203',
+    'reviews': '58',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 9,
+    'sku': 'OT-0011',
+    'description': 'Warm chunky knit sweater with a classic cable pattern.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0803.jpg',
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0803.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0804.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0802.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0798.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226022065/STU_0797.jpg',
+    ],
+  },
+  {
+    'name': 'Cargo Utility Shorts',
+    'id': 12,
+    'gender': 'Men',
+    'title': 'Cotton Cargo Utility Shorts',
+    'price': '\$32.00',
+    'size': '30,32,34,36,38',
+    'color': ' gray ,black',
+    'discount': '0%',
+    'rating': '4.1',
+    'sold': '166',
+    'reviews': '41',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'OT-0012',
+    'description': 'Durable cargo shorts with multiple functional pockets.',
+    'image_color': [
+     'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(5).jpg',
+    ],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(11).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(10).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(8).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608341/wwyn%20(9).jpg'
+    ],
+  },
+  {
+    'name': 'Satin Slip Dress',
+    'id': 13,
+    'gender': 'Women',
+    'title': 'Silky Satin Slip Dress',
+    'price': '\$58.00',
+    'size': 'XS,S,M,L',
+    'color': 'Champagne',
+    'discount': '10%',
+    'rating': '4.6',
+    'sold': '289',
+    'reviews': '73',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'OT-0013',
+    'description': 'Elegant satin slip dress with a smooth, flowing drape.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/ZD__0023.jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/VSAL1820-Edit.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/VSAL1815-Edit%20copy.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/VSAL1859-Edit.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/ZD__0025.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/ZD__0032.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/ZD__0028.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2025-12/5232505083/ZD__0024.jpg',
+    ],
+  },
+  {
+    'name': 'Sleeveless Crop Top',
+    'id': 14,
+    'gender': 'Woman',
+    'title': 'Sleeveless Crop Top',
+    'price': '\$55.00',
+    'size': 'S,M,L,XL',
+    'color': 'Navy , rad',
+    'discount': '0%',
+    'rating': '4.3',
+    'sold': '134',
+    'reviews': '29',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 8,
+    'sku': 'OT-0014',
+    'description': 'Lightweight insulated vest for layering in cool weather.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5889.jpg', 'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5918.jpg'],
+    'images': [
+     'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5895.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5901.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5891.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5890.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5923.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5929.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5921.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042534/STU_5919.jpg'
+    ],
+  },
+  {
+    'name': 'Athletic Track Pants',
+    'id': 15,
+    'gender': 'Men',
+    'title': 'Tapered Athletic Track Pants',
+    'price': '\$38.00',
+    'size': 'S,M,L,XL',
+    'color': 'White,Black,Gray,Beige,Blue',
+    'discount': '0%',
+    'rating': '4.4',
+    'sold': '312',
+    'reviews': '85',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 5,
+    'sku': 'OT-0015',
+    'description': 'Tapered track pants with side stripes and zip pockets.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1010.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1337.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1314.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1056.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1094.jpg'
+    ],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1018.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1342.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1317.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1062.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/2112604935/STU_1097.jpg'
+    ],
+  },
+  {
+    'name': 'Linen Button-Up Shirt',
+    'id': 16,
+    'gender': 'Men',
+    'title': 'Breathable Linen Button-Up Shirt',
+    'price': '\$40.00',
+    'size': 'M,L,XL',
+    'color': 'White',
+    'discount': '8%',
+    'rating': '4.5',
+    'sold': '221',
+    'reviews': '55',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 1,
+    'sku': 'OT-0016',
+    'description': 'Relaxed linen shirt that keeps you cool in summer heat.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(3).jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(6).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(9).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112608340/wwyn%20(4).jpg',
+    ],
+  },
+  {
+    'name': 'Ribbed Bodycon Dress',
+    'id': 17,
+    'gender': 'Women',
+    'title': 'DREAMY LACE DETAIL EYELET CROPPED TOP',
+    'price': '\$44.00',
+    'size': 'XS,S,M,L',
+    'color': 'Red',
+    'discount': '0%',
+    'rating': '4.3',
+    'sold': '198',
+    'reviews': '47',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 9,
+    'sku': 'OT-0017',
+    'description': 'Figure-hugging ribbed dress perfect for evening outings.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(2).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(6).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608016/the-fance%20(8).jpg'
+    ],
+  },
+  {
+    'name': 'Long Sleeve Oxford Shirt',
+    'id': 18,
+    'gender': 'Unisex',
+    'title': 'Long Sleeve Oxford Shirt',
+    'price': '\$62.00',
+    'size': 'S,M,L,XL',
+    'color': 'Light Wash ,blu',
+    'discount': '0%',
+    'rating': '4.6',
+    'sold': '356',
+    'reviews': '88',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'OT-0018',
+    'description': 'Timeless denim jacket with a classic button-front design.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(1).jpg', 'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/ROU05225.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122606610/10S24SHL002C_BLUE_ao-so-mi-nam%20(6).jpg'
+    ],
+  },
+  {
+    'name': 'Wide Leg Trousers',
+    'id': 19,
+    'gender': 'Women',
+    'title': 'High Waist Wide Leg Trousers',
+    'price': '\$46.00',
+    'size': 'XS,S,M,L,XL',
+    'color': 'Blue,Yellow',
+    'discount': '15%',
+    'rating': '4.5',
+    'sold': '267',
+    'reviews': '62',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 3,
+    'sku': 'OT-0019',
+    'description': 'Flowy wide leg trousers for a comfortable, elegant fit.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(5).jpg','https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(2).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(2)%20-%20Copy.jpg',
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10212608014/the-fance%20(4).jpg'
+    ],
+  },
+  {
+    'name': 'Fitted Long-Sleeve Jacket',
+    'id': 20,
+    'gender': 'Woman',
+    'title': 'Fitted Long-Sleeve Jacket',
+    'price': '\$22.00',
+    'size': 'S,M,L,XL',
+    'color': 'Black',
+    'discount': '0%',
+    'rating': '4.2',
+    'sold': '445',
+    'reviews': '110',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'OT-0020',
+    'description': 'Trendy tee featuring a bold retro graphic print.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0747.jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0747.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0743.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0745.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0751.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226022720/STU_0753.jpg',
+
+    ],
+  },
+  {
+    'name': 'Plaid Peplum Cami Top',
+    'id': 21,
+    'gender': 'Women',
+    'title': 'Plaid Peplum Cami Top',
+    'price': '\$95.00',
+    'size': 'S,M,L',
+    'color': 'Camel',
+    'discount': '10%',
+    'rating': '4.8',
+    'sold': '112',
+    'reviews': '31',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 6,
+    'sku': 'OT-0021',
+    'description': 'Classic belted trench coat for a polished silhouette.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6184.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6184.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6187.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6177.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6176.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226042488/STU_6175.jpg'
+    ],
+  },
+  {
+    'name': 'Polo Shirt',
+    'id': 22,
+    'gender': 'Men',
+    'title': 'Classic Pique Polo Shirt',
+    'price': '\$29.00',
+    'size': 'S,M,L,XL,XXL',
+    'color': 'black ,Navy',
+    'discount': '0%',
+    'rating': '4.4',
+    'sold': '390',
+    'reviews': '97',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 1,
+    'sku': 'OT-0022',
+    'description': 'Breathable pique polo shirt for a smart-casual look.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0689.jpg', 'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0715.jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0689.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0697.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0688.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0687.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226061995/STU_0686.jpg'
+    ],
+  },
+  {
+    'name': 'Cropped Cardigan',
+    'id': 23,
+    'gender': 'Women',
+    'title': 'Button-Front Cropped Cardigan',
+    'price': '\$33.00',
+    'size': 'XS,S,M,L',
+    'color': 'Lavender',
+    'discount': '0%',
+    'rating': '4.3',
+    'sold': '176',
+    'reviews': '44',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 9,
+    'sku': 'OT-0023',
+    'description': 'Soft cropped cardigan that layers easily over any outfit.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0819.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0819.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0821.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0817.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0813.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042782/STU_0812.jpg'
+    ],
+  },
+  {
+    'name': 'Relaxed Fit Short-Sleeve Shirt',
+    'id': 24,
+    'gender': 'Men',
+    'title': 'Relaxed Fit Short-Sleeve Shirt',
+    'price': '\$42.00',
+    'size': '30,32,34,36,38',
+    'color': 'Khaki',
+    'discount': '5%',
+    'rating': '4.5',
+    'sold': '298',
+    'reviews': '69',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'OT-0024',
+    'description':
+        'Versatile chino pants suited for both office and casual wear.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6770.jpg'],
+    'images': [
+     'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6770.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6772.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6764.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6763.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226052036/STU_6762.jpg'
+    ],
+  },
+  {
+    'name': 'Off-Shoulder Blouse',
+    'id': 25,
+    'gender': 'Women',
+    'title': 'Off-Shoulder Ruffle Blouse',
+    'price': '\$37.00',
+    'size': 'XS,S,M,L',
+    'color': 'Yellow',
+    'discount': '20%',
+    'rating': '4.4',
+    'sold': '154',
+    'reviews': '36',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'OT-0025',
+    'description': 'Feminine off-shoulder blouse with delicate ruffle trim.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6985.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6985.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6987.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6980.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6982.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/22226052386/STU_6978.jpg'
+    ],
+  },
+  {
+    'name': 'Zip-Up Track Jacket',
+    'id': 26,
+    'gender': 'Unisex',
+    'title': 'Retro Zip-Up Track Jacket',
+    'price': '\$50.00',
+    'size': 'S,M,L,XL',
+    'color': 'Green',
+    'discount': '0%',
+    'rating': '4.5',
+    'sold': '231',
+    'reviews': '59',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 5,
+    'sku': 'OT-0026',
+    'description': 'Sporty track jacket with contrast side stripes.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(1).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/4122605626/10S26DPS014_L-Indigo-(6).jpg'
+    ],
+  },
+  {
+    'name': 'Asymmetric Drape Side-Tie Blouse',
+    'id': 27,
+    'gender': 'Women',
+    'title': 'Asymmetric Drape Side-Tie Blouse',
+    'price': '\$30.00',
+    'size': 'XS,S,M,L',
+    'color': 'Blue',
+    'discount': '0%',
+    'rating': '4.2',
+    'sold': '187',
+    'reviews': '42',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'OT-0027',
+    'description': 'Classic denim mini skirt with a flattering A-line cut.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0497.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0497.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0499.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0493.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0492.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042788/STU_0490.jpg'
+    ],
+  },
+  {
+    'name': 'Long Sleeve Striped Knit Polo Shirt',
+    'id': 28,
+    'gender': 'Men',
+    'title': 'Long Sleeve Striped Knit Polo Shirt',
+    'price': '\$47.00',
+    'size': 'S,M,L,XL',
+    'color': 'Burgundy',
+    'discount': '0%',
+    'rating': '4.6',
+    'sold': '142',
+    'reviews': '33',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 6,
+    'sku': 'OT-0028',
+    'description': 'Warm ribbed turtleneck perfect for layering in winter.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9818.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9818.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9827.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9817.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9816.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/11226041851/STU_9815.jpg'
+    ],
+  },
+  {
+    'name': 'Jumpsuit',
+    'id': 29,
+    'gender': 'Women',
+    'title': 'Sleeveless Wide Leg Jumpsuit',
+    'price': '\$60.00',
+    'size': 'XS,S,M,L',
+    'color': 'Black,gray',
+    'discount': '12%',
+    'rating': '4.7',
+    'sold': '176',
+    'reviews': '45',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 9,
+    'sku': 'OT-0029',
+    'description': 'Chic sleeveless jumpsuit with a flattering wide-leg cut.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0077.jpg','https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0109.jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0077.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0081.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0075.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0073.jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/12226042942/STU_0072.jpg'
+    ],
+  },
+  {
+    'name': 'DEVOTUS ASHEN GRAPHIC HOODIE',
+    'id': 30,
+    'gender': 'Unisex',
+    'title': 'DEVOTUS ASHEN GRAPHIC HOODIE',
+    'price': '\$15.00',
     'size': 'One Size',
-    'color': 'tan',
-    'gender':'man',
+    'color': 'Black,gray',
+    'discount': '0%',
+    'rating': '4.1',
+    'sold': '520',
+    'reviews': '128',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 5,
+    'sku': 'OT-0030',
+    'description':
+        'Adjustable cotton cap with a curved brim and embroidered logo.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112607278/DEVOTUS%20(1).jpg', 'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112607278/DEVOTUS%20(5).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112607278/DEVOTUS%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-08/10112607278/DEVOTUS%20(5).jpg',
+    ],
+  },
+];
+final List<Map<String, dynamic>> littlePrincess = [
+  {
+    'name': 'Dream Tulle Princess Dress',
+    'id': 2,
+    'title': 'Dream Tulle Princess Dress',
+    'price': '\$50.0',
+    'size': '1Y,2Y,3Y,4Y,5Y,6Y',
+    'color': 'White',
+    'gender': 'girl',
     'discount': '5%',
     'rating': '4.6',
     'sold': '1.9k',
@@ -8247,10 +9132,1059 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0002',
-    'description': 'A slim bifold wallet crafted from genuine leather with multiple card slots.',
+    'description':
+    'A slim bifold wallet crafted from genuine leather with multiple card slots.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607068/HHH%20(3).jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607068/HHH%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607068/HHH%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607068/HHH%20(1).jpg'
+    ],
+  },
+  {
+    'name': 'Floral Bubble Hem Party Dress',
+    'id': 3,
+    'title': 'Floral Bubble Hem Party Dress',
+    'price': '\$100.8',
+    'size': '4Y,5Y,6Y',
+    'color': 'Black',
+    'gender': 'BEAUTY',
+    'discount': '5%',
+    'rating': '4.7',
+    'sold': '742',
+    'reviews': '614',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 1,
+    'sku': 'SKU-0003',
+    'description':
+    'A spacious tote bag made from durable canvas, perfect for everyday use.',
     'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(6).jpg'
+    ],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607064/HHH%20(3).jpg',
 
     ],
+  },
+  {
+    'name': 'Fluffy Tulle Party Tutu Dress',
+    'id': 4,
+    'title': 'Fluffy Tulle Party Tutu Dress ',
+    'price': '\$205.2',
+    'size': 'One Size',
+    'color': 'Navy',
+    'gender': 'man',
+    'discount': '25%',
+    'rating': '4.6',
+    'sold': '4.7k',
+    'reviews': '613',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'SKU-0004',
+    'description':
+    'An elegant clutch purse with a magnetic snap closure.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(11).jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(8).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(9).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(10).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607054/HHH%20(2).jpg'
+    ],
+  },
+  {
+    'name': 'Sequin Fringe Party Dress',
+    'id': 5,
+    'title': 'Sequin Fringe Party Dress',
+    'price': '\$91.04',
+    'size': 'Small',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '3.9',
+    'sold': '1.9k',
+    'reviews': '628',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 8,
+    'sku': 'SKU-0005',
+    'description':
+    'A hard-shell sunglasses case with a soft interior lining.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607056/HHH%20(2).jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607056/HHH%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607056/HHH%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607056/HHH%20(3).jpg'
+    ],
+  },
+  {
+    'name': 'Girls Fashion Party Dress',
+    'id': 6,
+    'title': 'Girls Fashion Party Dress',
+    'price': '\$293.69',
+    'size': '3-4Y,5-6Y',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '20%',
+    'rating': '4.9',
+    'sold': '420',
+    'reviews': '56',
+    'stock_status': 'out_of_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'SKU-0006',
+    'description':
+        'A beautiful and stylish party dress for girls, featuring elegant design and comfortable fabric for special occasions.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(5).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(6).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607004/tutupetti%20(3).jpg'
+    ],
+  },
+  {
+    'name': 'Girls Soft Princess Dress',
+    'id': 7,
+    'title': 'Girls Soft Princess Dress',
+    'price': '\$111.72',
+    'size': 'Medium',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.8',
+    'sold': '216',
+    'reviews': '696',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'SKU-0007',
+    'description':
+    'A rugged messenger bag with a flap closure and adjustable strap.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607001/tutupetti%20(2).jpg'],
+    'images': [
+  'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607001/tutupetti%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607001/tutupetti%20(1).jpg'
+    ],
+  },
+  {
+    'name': 'White Backpack',
+    'id': 8,
+    'title': 'Backpack - White',
+    'price': '\$109.07',
+    'size': 'Large',
+    'color': 'White',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.6',
+    'sold': '274',
+    'reviews': '244',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 7,
+    'sku': 'SKU-0008',
+    'description':
+    'A lightweight backpack with padded straps and multiple compartments.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607016/tutu%20(1).jpg'],
+    'images': [
+     'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607016/tutu%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607016/tutu%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607016/tutu%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607016/tutu%20(4).jpg'
+    ],
+  },
+  {
+    'name': 'Navy Leather Belt',
+    'id': 9,
+    'title': 'Leather Belt - Navy',
+    'price': '\$90.16',
+    'size': 'One Size',
+    'color': 'Navy',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '4.3',
+    'sold': '986',
+    'reviews': '281',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'SKU-0009',
+    'description':
+    'A classic leather belt with a polished metal buckle.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(2).jpg'
+    ],
+    'images': [
+     'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607014/tutupetti%20(3).jpg',
+    ],
+  },
+  {
+    'name': 'Grey Fanny Pack',
+    'id': 10,
+    'title': 'Fanny Pack - Grey',
+    'price': '\$92.37',
+    'size': 'Small',
+    'color': 'Grey',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '4.4',
+    'sold': '143',
+    'reviews': '166',
+    'stock_status': 'out_of_stock',
+    'is_favorite': true,
+    'brand_id': 7,
+    'sku': 'SKU-0010',
+    'description':
+    'An adjustable fanny pack with a front zip pocket.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607010/tutu%20(2).jpg'],
+    'images': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607010/tutu%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607010/tutu%20(1).jpg'
+    ],
+  },
+  {
+    'name': 'Grey Keychain Pouch',
+    'id': 11,
+    'title': 'Keychain Pouch - Grey',
+    'price': '\$194.6',
+    'size': 'Small',
+    'color': 'SkyBlue,White',
+    'gender': 'girl',
+    'discount': '20%',
+    'rating': '4.8',
+    'sold': '61',
+    'reviews': '708',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 6,
+    'sku': 'SKU-0011',
+    'description':
+    'A compact keychain pouch with a sturdy clip.',
+    'image_color': [
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(6).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutu%20(4).jpg'
+    ],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(6).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(1).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(3).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(5).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(7).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(4).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(8).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutubl%20(2).jpg',
+      'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607009/tutu%20(5).jpg'
+    ],
+  },
+  {
+    'name': 'Grey Travel Duffel',
+    'id': 12,
+    'title': 'Travel Duffel - Grey',
+    'price': '\$169.72',
+    'size': 'Medium',
+    'color': 'Grey',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.9',
+    'sold': '319',
+    'reviews': '529',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'SKU-0012',
+    'description':
+    'A roomy travel duffel bag with reinforced handles.',
+    'image_color': ['https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607017/tutu.jpg'],
+    'images': [
+    'https://zand.sgp1.cdn.digitaloceanspaces.com/catalog/products/2026-07/12412607017/tutu.jpg'
+    ],
+  },
+  {
+    'name': 'Tan Watch Strap',
+    'id': 13,
+    'title': 'Watch Strap - Tan',
+    'price': '\$217.64',
+    'size': 'Small',
+    'color': 'Tan',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '3.8',
+    'sold': '8.8k',
+    'reviews': '255',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 2,
+    'sku': 'SKU-0013',
+    'description':
+    'A genuine leather watch strap with quick-release pins.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product13a/800/800',
+      'https://picsum.photos/seed/product13b/800/800',
+      'https://picsum.photos/seed/product13c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Makeup Bag',
+    'id': 14,
+    'title': 'Makeup Bag - Brown',
+    'price': '\$62.36',
+    'size': 'One Size',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '4.9',
+    'sold': '3.4k',
+    'reviews': '997',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'SKU-0014',
+    'description':
+    'A roomy makeup bag with a wipeable interior lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product14a/800/800',
+      'https://picsum.photos/seed/product14b/800/800',
+      'https://picsum.photos/seed/product14c/800/800',
+    ],
+  },
+  {
+    'name': 'White Watch Strap',
+    'id': 15,
+    'title': 'Watch Strap - White',
+    'price': '\$59.92',
+    'size': 'Small',
+    'color': 'White',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '3.9',
+    'sold': '71',
+    'reviews': '612',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 2,
+    'sku': 'SKU-0015',
+    'description':
+    'A genuine leather watch strap with quick-release pins.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product15a/800/800',
+      'https://picsum.photos/seed/product15b/800/800',
+      'https://picsum.photos/seed/product15c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Messenger Bag',
+    'id': 16,
+    'title': 'Messenger Bag - Brown',
+    'price': '\$303.67',
+    'size': 'One Size',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '4.4',
+    'sold': '335',
+    'reviews': '562',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'SKU-0016',
+    'description':
+    'A rugged messenger bag with a flap closure and adjustable strap.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product16a/800/800',
+      'https://picsum.photos/seed/product16b/800/800',
+      'https://picsum.photos/seed/product16c/800/800',
+    ],
+  },
+  {
+    'name': 'Navy Laptop Sleeve',
+    'id': 17,
+    'title': 'Laptop Sleeve - Navy',
+    'price': '\$51.98',
+    'size': 'One Size',
+    'color': 'Navy',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '4.2',
+    'sold': '470',
+    'reviews': '699',
+    'stock_status': 'out_of_stock',
+    'is_favorite': true,
+    'brand_id': 1,
+    'sku': 'SKU-0017',
+    'description':
+    'A padded laptop sleeve with a soft interior and slim exterior.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product17a/800/800',
+      'https://picsum.photos/seed/product17b/800/800',
+      'https://picsum.photos/seed/product17c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Sunglasses Case',
+    'id': 18,
+    'title': 'Sunglasses Case - Brown',
+    'price': '\$83.21',
+    'size': 'Small',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '20%',
+    'rating': '4.3',
+    'sold': '2.6k',
+    'reviews': '265',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 2,
+    'sku': 'SKU-0018',
+    'description':
+    'A hard-shell sunglasses case with a soft interior lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product18a/800/800',
+      'https://picsum.photos/seed/product18b/800/800',
+      'https://picsum.photos/seed/product18c/800/800',
+    ],
+  },
+  {
+    'name': 'Black Shoulder Bag',
+    'id': 19,
+    'title': 'Shoulder Bag - Black',
+    'price': '\$325.69',
+    'size': 'Small',
+    'color': 'Black',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '4.0',
+    'sold': '5.3k',
+    'reviews': '934',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 7,
+    'sku': 'SKU-0019',
+    'description':
+    'A structured shoulder bag with a detachable chain strap.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product19a/800/800',
+      'https://picsum.photos/seed/product19b/800/800',
+      'https://picsum.photos/seed/product19c/800/800',
+    ],
+  },
+  {
+    'name': 'Beige Keychain Pouch',
+    'id': 20,
+    'title': 'Keychain Pouch - Beige',
+    'price': '\$114.12',
+    'size': 'Small',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.9',
+    'sold': '5.9k',
+    'reviews': '168',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'SKU-0020',
+    'description':
+    'A compact keychain pouch with a sturdy clip.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product20a/800/800',
+      'https://picsum.photos/seed/product20b/800/800',
+      'https://picsum.photos/seed/product20c/800/800',
+    ],
+  },
+  {
+    'name': 'Olive Fanny Pack',
+    'id': 21,
+    'title': 'Fanny Pack - Olive',
+    'price': '\$266.82',
+    'size': 'Small',
+    'color': 'Olive',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '3.9',
+    'sold': '538',
+    'reviews': '68',
+    'stock_status': 'out_of_stock',
+    'is_favorite': true,
+    'brand_id': 3,
+    'sku': 'SKU-0021',
+    'description':
+    'An adjustable fanny pack with a front zip pocket.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product21a/800/800',
+      'https://picsum.photos/seed/product21b/800/800',
+      'https://picsum.photos/seed/product21c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Briefcase',
+    'id': 22,
+    'title': 'Briefcase - Brown',
+    'price': '\$153.24',
+    'size': 'Medium',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '20%',
+    'rating': '4.1',
+    'sold': '658',
+    'reviews': '439',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 5,
+    'sku': 'SKU-0022',
+    'description':
+    'A professional briefcase with a padded laptop compartment.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product22a/800/800',
+      'https://picsum.photos/seed/product22b/800/800',
+      'https://picsum.photos/seed/product22c/800/800',
+    ],
+  },
+  {
+    'name': 'Navy Sunglasses Case',
+    'id': 23,
+    'title': 'Sunglasses Case - Navy',
+    'price': '\$150.6',
+    'size': 'Medium',
+    'color': 'Navy',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.6',
+    'sold': '518',
+    'reviews': '19',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 2,
+    'sku': 'SKU-0023',
+    'description':
+    'A hard-shell sunglasses case with a soft interior lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product23a/800/800',
+      'https://picsum.photos/seed/product23b/800/800',
+      'https://picsum.photos/seed/product23c/800/800',
+    ],
+  },
+  {
+    'name': 'Beige Phone Wallet',
+    'id': 24,
+    'title': 'Phone Wallet - Beige',
+    'price': '\$327.97',
+    'size': 'Large',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '4.9',
+    'sold': '3.5k',
+    'reviews': '863',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 1,
+    'sku': 'SKU-0024',
+    'description':
+    'A slim phone wallet case with card storage on the back.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product24a/800/800',
+      'https://picsum.photos/seed/product24b/800/800',
+      'https://picsum.photos/seed/product24c/800/800',
+    ],
+  },
+  {
+    'name': 'Tan Tote Bag',
+    'id': 25,
+    'title': 'Tote Bag - Tan',
+    'price': '\$58.08',
+    'size': 'One Size',
+    'color': 'Tan',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '4.7',
+    'sold': '209',
+    'reviews': '744',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'SKU-0025',
+    'description':
+    'A spacious tote bag made from durable canvas, perfect for everyday use.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product25a/800/800',
+      'https://picsum.photos/seed/product25b/800/800',
+      'https://picsum.photos/seed/product25c/800/800',
+    ],
+  },
+  {
+    'name': 'Black Coin Purse',
+    'id': 26,
+    'title': 'Coin Purse - Black',
+    'price': '\$229.3',
+    'size': 'Small',
+    'color': 'Black',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '3.9',
+    'sold': '7.9k',
+    'reviews': '175',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 7,
+    'sku': 'SKU-0026',
+    'description':
+    'A small coin purse with a zip top and soft lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product26a/800/800',
+      'https://picsum.photos/seed/product26b/800/800',
+      'https://picsum.photos/seed/product26c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Tote Bag',
+    'id': 27,
+    'title': 'Tote Bag - Brown',
+    'price': '\$200.03',
+    'size': 'Medium',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '4.5',
+    'sold': '201',
+    'reviews': '325',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 6,
+    'sku': 'SKU-0027',
+    'description':
+    'A spacious tote bag made from durable canvas, perfect for everyday use.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product27a/800/800',
+      'https://picsum.photos/seed/product27b/800/800',
+      'https://picsum.photos/seed/product27c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Messenger Bag',
+    'id': 28,
+    'title': 'Messenger Bag - Brown',
+    'price': '\$277.43',
+    'size': 'Small',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '5.0',
+    'sold': '817',
+    'reviews': '895',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 7,
+    'sku': 'SKU-0028',
+    'description':
+    'A rugged messenger bag with a flap closure and adjustable strap.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product28a/800/800',
+      'https://picsum.photos/seed/product28b/800/800',
+      'https://picsum.photos/seed/product28c/800/800',
+    ],
+  },
+  {
+    'name': 'Burgundy Backpack',
+    'id': 29,
+    'title': 'Backpack - Burgundy',
+    'price': '\$284.73',
+    'size': 'Medium',
+    'color': 'Burgundy',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.8',
+    'sold': '323',
+    'reviews': '401',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'SKU-0029',
+    'description':
+    'A lightweight backpack with padded straps and multiple compartments.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product29a/800/800',
+      'https://picsum.photos/seed/product29b/800/800',
+      'https://picsum.photos/seed/product29c/800/800',
+    ],
+  },
+  {
+    'name': 'Burgundy Passport Holder',
+    'id': 30,
+    'title': 'Passport Holder - Burgundy',
+    'price': '\$290.77',
+    'size': 'One Size',
+    'color': 'Burgundy',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '4.1',
+    'sold': '2.7k',
+    'reviews': '295',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 6,
+    'sku': 'SKU-0030',
+    'description':
+    'A travel passport holder with card slots and pen loop.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product30a/800/800',
+      'https://picsum.photos/seed/product30b/800/800',
+      'https://picsum.photos/seed/product30c/800/800',
+    ],
+  },
+  {
+    'name': 'Burgundy Shoulder Bag',
+    'id': 31,
+    'title': 'Shoulder Bag - Burgundy',
+    'price': '\$58.05',
+    'size': 'Small',
+    'color': 'Burgundy',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '4.0',
+    'sold': '1.3k',
+    'reviews': '363',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 7,
+    'sku': 'SKU-0031',
+    'description':
+    'A structured shoulder bag with a detachable chain strap.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product31a/800/800',
+      'https://picsum.photos/seed/product31b/800/800',
+      'https://picsum.photos/seed/product31c/800/800',
+    ],
+  },
+  {
+    'name': 'Pink Keychain Pouch',
+    'id': 32,
+    'title': 'Keychain Pouch - Pink',
+    'price': '\$104.05',
+    'size': 'Large',
+    'color': 'Pink',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.3',
+    'sold': '582',
+    'reviews': '382',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 6,
+    'sku': 'SKU-0032',
+    'description':
+    'A compact keychain pouch with a sturdy clip.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product32a/800/800',
+      'https://picsum.photos/seed/product32b/800/800',
+      'https://picsum.photos/seed/product32c/800/800',
+    ],
+  },
+  {
+    'name': 'Beige Tote Bag',
+    'id': 33,
+    'title': 'Tote Bag - Beige',
+    'price': '\$240.06',
+    'size': 'Large',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '4.3',
+    'sold': '352',
+    'reviews': '440',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 3,
+    'sku': 'SKU-0033',
+    'description':
+    'A spacious tote bag made from durable canvas, perfect for everyday use.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product33a/800/800',
+      'https://picsum.photos/seed/product33b/800/800',
+      'https://picsum.photos/seed/product33c/800/800',
+    ],
+  },
+  {
+    'name': 'Olive Keychain Pouch',
+    'id': 34,
+    'title': 'Keychain Pouch - Olive',
+    'price': '\$120.27',
+    'size': 'One Size',
+    'color': 'Olive',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '4.3',
+    'sold': '6.4k',
+    'reviews': '486',
+    'stock_status': 'low_stock',
+    'is_favorite': false,
+    'brand_id': 4,
+    'sku': 'SKU-0034',
+    'description':
+    'A compact keychain pouch with a sturdy clip.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product34a/800/800',
+      'https://picsum.photos/seed/product34b/800/800',
+      'https://picsum.photos/seed/product34c/800/800',
+    ],
+  },
+  {
+    'name': 'Brown Backpack',
+    'id': 35,
+    'title': 'Backpack - Brown',
+    'price': '\$190.09',
+    'size': 'Medium',
+    'color': 'Brown',
+    'gender': 'girl',
+    'discount': '25%',
+    'rating': '4.5',
+    'sold': '145',
+    'reviews': '698',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 4,
+    'sku': 'SKU-0035',
+    'description':
+    'A lightweight backpack with padded straps and multiple compartments.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product35a/800/800',
+      'https://picsum.photos/seed/product35b/800/800',
+      'https://picsum.photos/seed/product35c/800/800',
+    ],
+  },
+  {
+    'name': 'Black Bifold Wallet',
+    'id': 36,
+    'title': 'Bifold Wallet - Black',
+    'price': '\$344.69',
+    'size': 'One Size',
+    'color': 'Black',
+    'gender': 'girl',
+    'discount': '20%',
+    'rating': '4.8',
+    'sold': '124',
+    'reviews': '745',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 8,
+    'sku': 'SKU-0036',
+    'description':
+    'A slim bifold wallet crafted from genuine leather with multiple card slots.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product36a/800/800',
+      'https://picsum.photos/seed/product36b/800/800',
+      'https://picsum.photos/seed/product36c/800/800',
+    ],
+  },
+  {
+    'name': 'Tan Messenger Bag',
+    'id': 37,
+    'title': 'Messenger Bag - Tan',
+    'price': '\$314.57',
+    'size': 'One Size',
+    'color': 'Tan',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '4.7',
+    'sold': '2.6k',
+    'reviews': '61',
+    'stock_status': 'out_of_stock',
+    'is_favorite': true,
+    'brand_id': 2,
+    'sku': 'SKU-0037',
+    'description':
+    'A rugged messenger bag with a flap closure and adjustable strap.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product37a/800/800',
+      'https://picsum.photos/seed/product37b/800/800',
+      'https://picsum.photos/seed/product37c/800/800',
+    ],
+  },
+  {
+    'name': 'White Card Holder',
+    'id': 38,
+    'title': 'Card Holder - White',
+    'price': '\$333.5',
+    'size': 'One Size',
+    'color': 'White',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '4.5',
+    'sold': '8.9k',
+    'reviews': '860',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 3,
+    'sku': 'SKU-0038',
+    'description':
+    'A minimalist card holder with slim profile and RFID protection.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product38a/800/800',
+      'https://picsum.photos/seed/product38b/800/800',
+      'https://picsum.photos/seed/product38c/800/800',
+    ],
+  },
+  {
+    'name': 'Beige Passport Holder',
+    'id': 39,
+    'title': 'Passport Holder - Beige',
+    'price': '\$297.14',
+    'size': 'Medium',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '10%',
+    'rating': '4.7',
+    'sold': '583',
+    'reviews': '291',
+    'stock_status': 'low_stock',
+    'is_favorite': true,
+    'brand_id': 5,
+    'sku': 'SKU-0039',
+    'description':
+    'A travel passport holder with card slots and pen loop.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product39a/800/800',
+      'https://picsum.photos/seed/product39b/800/800',
+      'https://picsum.photos/seed/product39c/800/800',
+    ],
+  },
+  {
+    'name': 'Burgundy Coin Purse',
+    'id': 40,
+    'title': 'Coin Purse - Burgundy',
+    'price': '\$314.69',
+    'size': 'One Size',
+    'color': 'Burgundy',
+    'gender': 'girl',
+    'discount': '0%',
+    'rating': '4.0',
+    'sold': '286',
+    'reviews': '733',
+    'stock_status': 'in_stock',
+    'is_favorite': true,
+    'brand_id': 7,
+    'sku': 'SKU-0040',
+    'description':
+    'A small coin purse with a zip top and soft lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product40a/800/800',
+      'https://picsum.photos/seed/product40b/800/800',
+      'https://picsum.photos/seed/product40c/800/800',
+    ],
+  },
+  {
+    'name': 'Olive Sunglasses Case',
+    'id': 41,
+    'title': 'Sunglasses Case - Olive',
+    'price': '\$157.2',
+    'size': 'Small',
+    'color': 'Olive',
+    'gender': 'girl',
+    'discount': '5%',
+    'rating': '4.8',
+    'sold': '448',
+    'reviews': '887',
+    'stock_status': 'out_of_stock',
+    'is_favorite': false,
+    'brand_id': 8,
+    'sku': 'SKU-0041',
+    'description':
+    'A hard-shell sunglasses case with a soft interior lining.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product41a/800/800',
+      'https://picsum.photos/seed/product41b/800/800',
+      'https://picsum.photos/seed/product41c/800/800',
+    ],
+  },
+  {
+    'name': 'Beige Watch Strap',
+    'id': 42,
+    'title': 'Watch Strap - Beige',
+    'price': '\$301.63',
+    'size': 'One Size',
+    'color': 'Beige',
+    'gender': 'girl',
+    'discount': '15%',
+    'rating': '4.4',
+    'sold': '802',
+    'reviews': '509',
+    'stock_status': 'in_stock',
+    'is_favorite': false,
+    'brand_id': 7,
+    'sku': 'SKU-0042',
+    'description':
+    'A genuine leather watch strap with quick-release pins.',
+    'image_color': [],
+    'images': [
+      'https://picsum.photos/seed/product42a/800/800',
+      'https://picsum.photos/seed/product42b/800/800',
+      'https://picsum.photos/seed/product42c/800/800',
+    ],
+  },
+];
+final List<Map<String, dynamic>> polos = [
+  {
+    'name': 'polo',
+    'id': 2,
+    'title': 'LV Classic Leather Wallet',
+    'price': '\$0.01',
+    'size': 'One Size',
+    'color': 'tan',
+    'gender': 'man',
+    'discount': '5%',
+    'rating': '4.6',
+    'sold': '1.9k',
+    'reviews': '320',
+    'stock_status': 'in_stock',
+    'is_favorite': '',
+    'brand_id': 1,
+    'sku': 'SKU-0002',
+    'description':
+        'A slim bifold wallet crafted from genuine leather with multiple card slots.',
+    'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-wool-knit-polo-shirt--HUN80WNOM367_PM2_Front%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-wool-knit-polo-shirt--HUN80WNOM367_PM1_Side%20view.png?wid=1300&hei=1300',
@@ -8267,13 +10201,14 @@ final List<Map<String, dynamic>> polos = [
     'discount': '0%',
     'rating': '4.4',
     'sold': '860',
-    'gender':'man',
+    'gender': 'man',
     'reviews': '140',
     'stock_status': 'in_stock',
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0003',
-    'description': 'This refined polo shirt is crafted from pale blue cotton piqué with contrasting horizontal brown and white bands across the torso. A gold-stamped Louis Vuitton Paris signature adds a sophisticated accent to the chest while a leather Marque L.Vuitton Déposée patch signs the back of this preppy style.',
+    'description':
+        'This refined polo shirt is crafted from pale blue cotton piqué with contrasting horizontal brown and white bands across the torso. A gold-stamped Louis Vuitton Paris signature adds a sophisticated accent to the chest while a leather Marque L.Vuitton Déposée patch signs the back of this preppy style.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-polo-shirt--HUY79WX1662U_PM1_Cropped%20view.png?wid=1300&hei=1300',
@@ -8290,7 +10225,7 @@ final List<Map<String, dynamic>> polos = [
     'price': '\$40.00',
     'size': 'S,M,L,XL',
     'color': 'brown',
-    'gender':'man',
+    'gender': 'man',
     'discount': '15%',
     'rating': '4.8',
     'sold': '2.1k',
@@ -8299,14 +10234,15 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0004',
-    'description': 'A textured mesh knit distinguishes this elegant polo shirt from the Spring-Summer 2026 collection. The light cotton in speckled beige and coffee tones is accented with a VVN-colored leather Marque L.Vuitton Déposée patch on the chest and pearly buttons on the placket. This refined piece brings a dapper twist to this season’s relaxed silhouettes.',
+    'description':
+        'A textured mesh knit distinguishes this elegant polo shirt from the Spring-Summer 2026 collection. The light cotton in speckled beige and coffee tones is accented with a VVN-colored leather Marque L.Vuitton Déposée patch on the chest and pearly buttons on the placket. This refined piece brings a dapper twist to this season’s relaxed silhouettes.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-knitted-mesh-polo--HUN73WXC105C_PM1_Cropped%20view.png?wid=1300&hei=1300',
-     'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-knitted-mesh-polo--HUN73WXC105C_PM1_Worn%20view.png?wid=1300&hei=1300',
+      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-knitted-mesh-polo--HUN73WXC105C_PM1_Worn%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-knitted-mesh-polo--HUN73WXC105C_PM2_Front%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-short-sleeved-knitted-mesh-polo--HUN73WXC105C_PM1_Cropped%20worn%20view.png?wid=1300&hei=1300',
-      'https://pl.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-koszulka-polo-z-krotkim-rekawem-z-dzianiny-siateczkowej--HUN73WXC105C_PM1_Look%20view.jpg?wid=4096'
+      'https://pl.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-koszulka-polo-z-krotkim-rekawem-z-dzianiny-siateczkowej--HUN73WXC105C_PM1_Look%20view.jpg?wid=4096',
     ],
   },
   {
@@ -8314,7 +10250,7 @@ final List<Map<String, dynamic>> polos = [
     'id': 5,
     'title': 'LV Damier Jacquard Short-Sleeved Polo Shirt',
     'price': '\$33.00',
-    'gender':'man',
+    'gender': 'man',
     'size': 'M,L,XL',
     'color': 'white',
     'discount': '10%',
@@ -8325,18 +10261,19 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0005',
-    'description': 'This refined polo shirt is crafted from cotton piqué in milky white with a textured allover Damier and tonal L.V.M. embroidery on the chest. Contrasting burgundy and brown stripes distinguish the knitted collar and five-button placket, while mother-of-pearl effect buttons in golden metal settings lend a Dandy finishing touch to this preppy style.',
+    'description':
+        'This refined polo shirt is crafted from cotton piqué in milky white with a textured allover Damier and tonal L.V.M. embroidery on the chest. Contrasting burgundy and brown stripes distinguish the knitted collar and five-button placket, while mother-of-pearl effect buttons in golden metal settings lend a Dandy finishing touch to this preppy style.',
 
     'image_color': [],
     'images': [
-      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-damier-jacquard-short-sleeved-polo-shirt---HUY66WSIO002_PM2_Front%20view.png?wid=1300&hei=1300'
+      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-damier-jacquard-short-sleeved-polo-shirt---HUY66WSIO002_PM2_Front%20view.png?wid=1300&hei=1300',
     ],
   },
   {
     'name': 'polo',
     'id': 6,
     'title': 'LV Flower Pique Polo',
-  'gender':'man',
+    'gender': 'man',
     'price': '\$18.00',
     'size': 'One Size',
     'color': 'black',
@@ -8348,7 +10285,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0006',
-    'description': 'This timeless black polo shirt brings a smart and preppy accent to any look. It is crafted from durable and breathable cotton piqué and signed on the chest with a discreet LV Flower symbol, which is embroidered with a slight 3D effect. Three tone-on-tone buttons in metal settings on the placket add an elegant finishing touch.',
+    'description':
+        'This timeless black polo shirt brings a smart and preppy accent to any look. It is crafted from durable and breathable cotton piqué and signed on the chest with a discreet LV Flower symbol, which is embroidered with a slight 3D effect. Three tone-on-tone buttons in metal settings on the placket add an elegant finishing touch.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-flower-pique-polo--HTY45WUQM900_PM2_Front%20view.png?wid=4096&hei=4096',
@@ -8359,7 +10297,7 @@ final List<Map<String, dynamic>> polos = [
   },
   {
     'name': 'polo',
-    'gender':'man',
+    'gender': 'man',
     'id': 7,
     'title': 'LV Striped Short-Sleeved Polo Shirt',
     'price': '\$45.00',
@@ -8373,19 +10311,20 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0007',
-    'description': 'This graphic striped polo shirt in classic emerald and navy tones draws on this season’s college sports team inspiration. The cotton jersey knit features a contrasting woven Monogram jacquard collar and a textured LV patch on the chest inspired by university insignia. A contrasting white intarsia rowing boat motif is integrated on the back, completing this fresh and preppy style.',
+    'description':
+        'This graphic striped polo shirt in classic emerald and navy tones draws on this season’s college sports team inspiration. The cotton jersey knit features a contrasting woven Monogram jacquard collar and a textured LV patch on the chest inspired by university insignia. A contrasting white intarsia rowing boat motif is integrated on the back, completing this fresh and preppy style.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-striped-short-sleeved-polo-shirt---HUY04WWMR632_PM2_Front%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-striped-short-sleeved-polo-shirt---HUY04WWMR632_PM1_Worn%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-striped-short-sleeved-polo-shirt---HUY04WWMR632_PM1_Cropped%20view.png?wid=1300&hei=1300',
-      'https://pl.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-striped-short-sleeved-polo-shirt---HUY04WWMR632_PM1_Look%20view.jpg?wid=4096'
+      'https://pl.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-striped-short-sleeved-polo-shirt---HUY04WWMR632_PM1_Look%20view.jpg?wid=4096',
     ],
   },
   {
     'name': 'polo',
     'id': 8,
-    'gender':'man',
+    'gender': 'man',
     'title': 'LV Suede Finish Belt',
     'price': '\$38.00',
     'size': 'M,L',
@@ -8409,7 +10348,7 @@ final List<Map<String, dynamic>> polos = [
   {
     'name': 'polo',
     'id': 9,
-    'gender':'man',
+    'gender': 'man',
     'title': 'LV Signature Silk-Blend Short-Sleeved Polo Shirt',
     'price': '\$15.00',
     'size': 'S,M,L,XL',
@@ -8422,7 +10361,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0009',
-    'description': 'Crafted in a refined wool-silk knit, this short-sleeved polo shirt adds a preppy twist to an office ensemble. Subtle embroidery signs the bottom left, while a leather signature patch adorns the back. This chic navy blue iteration of a timeless style is easy to mix and match. It can lend a contemporary twist to tailoring, or elevate smart chinos on less formal days.',
+    'description':
+        'Crafted in a refined wool-silk knit, this short-sleeved polo shirt adds a preppy twist to an office ensemble. Subtle embroidery signs the bottom left, while a leather signature patch adorns the back. This chic navy blue iteration of a timeless style is easy to mix and match. It can lend a contemporary twist to tailoring, or elevate smart chinos on less formal days.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-signature-silk-blend-short-sleeved--polo-shirt--HUFN5WUTX6C3_PM2_Front%20view.png?wid=1300&hei=1300',
@@ -8434,7 +10374,7 @@ final List<Map<String, dynamic>> polos = [
   {
     'name': 'polo',
     'id': 10,
-    'gender':'woman',
+    'gender': 'woman',
     'title': 'LV Striped Knit Drawstring Top',
     'price': '\$52.00',
     'size': 'S,M,L,XL',
@@ -8474,23 +10414,23 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 1,
     'sku': 'SKU-0011',
-    'description': 'Slim profile belt designed to pair with chinos and casual trousers.',
+    'description':
+        'Slim profile belt designed to pair with chinos and casual trousers.',
     'image_color': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A900_PM2_Front%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A002_PM2_Front%20view.png?wid=1300&hei=1300',
-
     ],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A002_PM1_Cropped%20view.png?wid=1300&hei=1300',
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A002_PM2_Front%20view.png?wid=1300&hei=1300',
-      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A002_PM1_Cropped%20worn%20view.png?wid=1300&hei=1300'
+      'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embroidered-signature-knit-top--FVKS48C7A002_PM1_Cropped%20worn%20view.png?wid=1300&hei=1300',
     ],
   },
   {
     'name': 'polo',
     'id': 12,
     'title': 'LV Vintage Distressed Belt',
-    'gender':'woman',
+    'gender': 'woman',
     'price': '\$41.00',
     'size': 'M,L,XL',
     'color': 'tan',
@@ -8502,7 +10442,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0012',
-    'description': 'Distressed leather belt with a weathered, vintage character.',
+    'description':
+        'Distressed leather belt with a weathered, vintage character.',
     'image_color': [],
     'images': [
       'https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-toweling-knit-top--FVKS22775567_PM2_Front%20view.png?wid=1300&hei=1300',
@@ -8513,12 +10454,12 @@ final List<Map<String, dynamic>> polos = [
     ],
   },
   {
-    'name': '',
+    'name': 'polo',
     'id': 13,
     'title': 'Two-Tone Buckle Belt',
     'price': '\$36.00',
     'size': 'S,M,L,XL',
-    'color': 'black,white,red',
+    'color': '',
     'discount': '10%',
     'rating': '4.5',
     'sold': '580',
@@ -8527,7 +10468,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0013',
-    'description': 'Belt featuring a contrasting two-tone strap and buckle detail.',
+    'description':
+        'Belt featuring a contrasting two-tone strap and buckle detail.',
     'image_color': [],
     'images': [],
   },
@@ -8546,7 +10488,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0014',
-    'description': 'Zip-around wallet offering secure storage for cards and cash.',
+    'description':
+        'Zip-around wallet offering secure storage for cards and cash.',
     'image_color': [],
     'images': [],
   },
@@ -8622,7 +10565,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0018',
-    'description': 'Belt with an embossed snake-print texture for a bold accent.',
+    'description':
+        'Belt with an embossed snake-print texture for a bold accent.',
     'image_color': [],
     'images': [],
   },
@@ -8660,7 +10604,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0020',
-    'description': 'Edgy belt adorned with metal studs for a punk-inspired look.',
+    'description':
+        'Edgy belt adorned with metal studs for a punk-inspired look.',
     'image_color': [],
     'images': [],
   },
@@ -8698,7 +10643,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0022',
-    'description': 'Hidden pocket travel belt for securely stashing cash and cards.',
+    'description':
+        'Hidden pocket travel belt for securely stashing cash and cards.',
     'image_color': [],
     'images': [],
   },
@@ -8774,7 +10720,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0026',
-    'description': 'Small zippered coin purse for loose change and small items.',
+    'description':
+        'Small zippered coin purse for loose change and small items.',
     'image_color': [],
     'images': [],
   },
@@ -8850,7 +10797,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0030',
-    'description': 'Belt featuring an embossed crocodile-pattern leather finish.',
+    'description':
+        'Belt featuring an embossed crocodile-pattern leather finish.',
     'image_color': [],
     'images': [],
   },
@@ -8869,7 +10817,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0031',
-    'description': 'Ratchet buckle belt allowing precise, tool-free size adjustment.',
+    'description':
+        'Ratchet buckle belt allowing precise, tool-free size adjustment.',
     'image_color': [],
     'images': [],
   },
@@ -8926,7 +10875,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0034',
-    'description': 'Ultra-slim sleeve for carrying a handful of essential cards.',
+    'description':
+        'Ultra-slim sleeve for carrying a handful of essential cards.',
     'image_color': [],
     'images': [],
   },
@@ -9059,7 +11009,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0041',
-    'description': 'Belt with a quick-release buckle mechanism for convenience.',
+    'description':
+        'Belt with a quick-release buckle mechanism for convenience.',
     'image_color': [],
     'images': [],
   },
@@ -9116,7 +11067,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0044',
-    'description': 'Compact wallet designed with organized slots for travel documents.',
+    'description':
+        'Compact wallet designed with organized slots for travel documents.',
     'image_color': [],
     'images': [],
   },
@@ -9173,7 +11125,8 @@ final List<Map<String, dynamic>> polos = [
     'is_favorite': '',
     'brand_id': 0,
     'sku': 'SKU-0047',
-    'description': 'Belt with decorative contrast stitching for a heritage look.',
+    'description':
+        'Belt with decorative contrast stitching for a heritage look.',
     'image_color': [],
     'images': [],
   },
@@ -9269,7 +11222,7 @@ final List<Map<String, dynamic>> shirts = [
     'sold': '1.2k',
     'reviews': '250',
     'description':
-    'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.',
+        'A timeless Oxford shirt crafted from premium cotton with a clean button-down collar.',
   },
   {
     'images': [
@@ -9283,7 +11236,7 @@ final List<Map<String, dynamic>> shirts = [
     'sold': '850',
     'reviews': '140',
     'description':
-    'Breathable linen blend shirt, perfect for warm weather and beach outings.',
+        'Breathable linen blend shirt, perfect for warm weather and beach outings.',
   },
   {
     'images': [
@@ -9543,7 +11496,7 @@ final List<Map<String, dynamic>> shorts = [
     'sold': '2.1k',
     'reviews': '450',
     'description':
-    'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.',
+        'Comfortable high-waisted denim shorts with a classic five-pocket design and raw hem.',
   },
   {
     'images': [
@@ -9559,7 +11512,7 @@ final List<Map<String, dynamic>> shorts = [
     'sold': '3.5k',
     'reviews': '820',
     'description':
-    'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
+        'Lightweight, breathable swim shorts featuring a mesh lining and secure zip pockets.',
   },
   {
     'images': [
@@ -9820,7 +11773,7 @@ final List<Map<String, dynamic>> skirt = [
     'sold': '1.1k',
     'reviews': '210',
     'description':
-    'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.',
+        'Elegant pleated midi skirt with an elastic waistband. Lightweight and perfect for both office and casual outings.',
   },
   {
     'images': [
@@ -9834,7 +11787,7 @@ final List<Map<String, dynamic>> skirt = [
     'sold': '2.5k',
     'reviews': '480',
     'description':
-    'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.',
+        'Classic denim skirt with a high-waisted fit and slightly frayed hem for a modern look.',
   },
   {
     'images': [
@@ -10105,7 +12058,7 @@ final List<Map<String, dynamic>> suits = [
     'sold': '120',
     'reviews': '45',
     'description':
-    'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.',
+        'A versatile charcoal grey suit in a modern slim fit. Perfect for business meetings, weddings, and formal events.',
   },
   {
     'images': [
@@ -10123,7 +12076,7 @@ final List<Map<String, dynamic>> suits = [
     'sold': '85',
     'reviews': '30',
     'description':
-    'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.',
+        'Elegant midnight navy tuxedo with satin lapels. The ultimate choice for black-tie occasions.',
   },
   {
     'images': [
@@ -10194,7 +12147,7 @@ final List<Map<String, dynamic>> suits = [
     'sold': '85',
     'reviews': '32',
     'description':
-    'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.',
+        'A pinnacle of evening elegance, crafted from premium Italian velvet with satin peak lapels.',
   },
   {
     'images': [
@@ -10484,7 +12437,7 @@ final List<Map<String, dynamic>> sweatshirts = [
     'sold': '1.5k',
     'reviews': '310',
     'description':
-    'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.',
+        'A classic crew neck sweatshirt crafted from heavy cotton fleece for ultimate comfort and warmth.',
   },
   {
     'images': [
@@ -10502,7 +12455,7 @@ final List<Map<String, dynamic>> sweatshirts = [
     'sold': '820',
     'reviews': '145',
     'description':
-    'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
+        'Trend-focused oversized fit with dropped shoulders. Perfect for a cozy, stylish look.',
   },
   {
     'images': [
@@ -10767,7 +12720,7 @@ final List<Map<String, dynamic>> tShirts = [
     'sold': '5.2k',
     'reviews': '1.1k',
     'description':
-    'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.',
+        'Essential white crew neck t-shirt made from 100% premium cotton. Soft, breathable, and durable for everyday wear.',
   },
   {
     'images': [
@@ -10783,7 +12736,7 @@ final List<Map<String, dynamic>> tShirts = [
     'sold': '2.4k',
     'reviews': '530',
     'description':
-    'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
+        'Streetwear-inspired graphic tee featuring a vintage wash and high-quality screen print.',
   },
   {
     'images': [
@@ -12683,7 +14636,7 @@ final List<Map<String, dynamic>> sneakers = [
     'sold': '2.5k',
     'reviews': '1.2k',
     'description':
-    'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.',
+        'Experience ultimate comfort with the Nike Air Max Pro, featuring advanced cushioning and breathable mesh.',
   },
   {
     'images': [
@@ -12701,7 +14654,7 @@ final List<Map<String, dynamic>> sneakers = [
     'sold': '4.1k',
     'reviews': '950',
     'description':
-    'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.',
+        'A timeless design for everyday wear, these white urban sneakers match perfectly with any outfit.',
   },
   {
     'images': [
@@ -12716,7 +14669,7 @@ final List<Map<String, dynamic>> sneakers = [
     'sold': '1.8k',
     'reviews': '640',
     'description':
-    'Designed for performance, these runners provide excellent grip and stability for all terrains.',
+        'Designed for performance, these runners provide excellent grip and stability for all terrains.',
   },
   {
     'images': [
@@ -12734,7 +14687,7 @@ final List<Map<String, dynamic>> sneakers = [
     'sold': '3.2k',
     'reviews': '1.5k',
     'description':
-    'Sleep and powerful, the Stealth Black series is made for those who move in style.',
+        'Sleep and powerful, the Stealth Black series is made for those who move in style.',
   },
   {
     'images': [
@@ -12750,7 +14703,7 @@ final List<Map<String, dynamic>> sneakers = [
     'sold': '890',
     'reviews': '420',
     'description':
-    'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
+        'Stand out from the crowd with the Neon Speedster, optimized for high-speed training.',
   },
   {
     'images': [
@@ -12987,7 +14940,7 @@ final List<Map<String, dynamic>> sportsShoes = [
     'sold': '3.4k',
     'reviews': '1.5k',
     'description':
-    'Lightweight and responsive, perfect for marathon runners and speed training.',
+        'Lightweight and responsive, perfect for marathon runners and speed training.',
   },
   {
     'images': [
@@ -13003,7 +14956,7 @@ final List<Map<String, dynamic>> sportsShoes = [
     'sold': '2.1k',
     'reviews': '850',
     'description':
-    'Versatile shoes designed for high-intensity interval training and gym workouts.',
+        'Versatile shoes designed for high-intensity interval training and gym workouts.',
   },
   {
     'images': [
@@ -13926,7 +15879,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "1.2k",
     'reviews': '200',
     "description":
-    "The essence of femininity. A powdery floral bouquet housed in an iconic bottle.",
+        "The essence of femininity. A powdery floral bouquet housed in an iconic bottle.",
   },
   {
     "images": [
@@ -13940,7 +15893,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "2.5k",
     'reviews': '1200',
     "description":
-    "Luminous and sophisticated, it lays on the skin like an amber, floral, and woody breeze.",
+        "Luminous and sophisticated, it lays on the skin like an amber, floral, and woody breeze.",
   },
   {
     "images": [
@@ -13954,7 +15907,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "3.1k",
     'reviews': '20',
     "description":
-    "An extraordinary concentration of lavender, spices, and rich woods for a powerful trail.",
+        "An extraordinary concentration of lavender, spices, and rich woods for a powerful trail.",
   },
   {
     "images": [
@@ -13969,7 +15922,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "1.8k",
     'reviews': '100',
     "description":
-    "The fragrance of freedom. A grand floral scent with lavender, orange blossom, and musk.",
+        "The fragrance of freedom. A grand floral scent with lavender, orange blossom, and musk.",
   },
   {
     "images": [
@@ -13985,7 +15938,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "850",
     'reviews': '99',
     "description":
-    "A full-bodied journey into the once-forbidden; a contrasting scent that reveals a tempting candy-like gleam.",
+        "A full-bodied journey into the once-forbidden; a contrasting scent that reveals a tempting candy-like gleam.",
   },
   {
     "images": [
@@ -13999,7 +15952,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "1.1k",
     'reviews': '22',
     "description":
-    "An ode to the beauty of Romani culture, its unique customs, intimate beliefs and distinguished way of living.",
+        "An ode to the beauty of Romani culture, its unique customs, intimate beliefs and distinguished way of living.",
   },
   {
     "images": [
@@ -14013,7 +15966,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "2.2k",
     'reviews': '199',
     "description":
-    "Notes of natural tuberose and Jasmine leave a surprisingly rich white floral scent on the skin.",
+        "Notes of natural tuberose and Jasmine leave a surprisingly rich white floral scent on the skin.",
   },
   {
     "images": [
@@ -14030,7 +15983,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "4.5k",
     'reviews': '198',
     "description":
-    "An intoxicating blend of cardamom, iris, violet, and ambrox which crackle in the formula.",
+        "An intoxicating blend of cardamom, iris, violet, and ambrox which crackle in the formula.",
   },
   {
     "images": [
@@ -14045,7 +15998,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "sold": "1.9k",
     'reviews': '10',
     "description":
-    "Escape the everyday along the windswept shore. Waves breaking white, the air fresh with sea salt and spray.",
+        "Escape the everyday along the windswept shore. Waves breaking white, the air fresh with sea salt and spray.",
   },
   {
     "images": [
@@ -14060,7 +16013,7 @@ final List<Map<String, dynamic>> perfumesData = [
     'reviews': '8',
     "sold": "5.0k",
     "description":
-    "An aromatic-woody fragrance that unites the invigorating zest of citrus and the strength of an accord.",
+        "An aromatic-woody fragrance that unites the invigorating zest of citrus and the strength of an accord.",
   },
   {
     "images": [
@@ -14075,7 +16028,7 @@ final List<Map<String, dynamic>> perfumesData = [
     'reviews': '80',
     "sold": "1.3k",
     "description":
-    "Sensual, audacious and contemporary, this rich and iconic Eau de Parfum is perfect for the bold.",
+        "Sensual, audacious and contemporary, this rich and iconic Eau de Parfum is perfect for the bold.",
   },
   {
     "images": [
@@ -14089,7 +16042,7 @@ final List<Map<String, dynamic>> perfumesData = [
     'reviews': '570',
     "sold": "980",
     "description":
-    "The tradition of generations, the chin-stroking spirit of a jazz club, captured in a bottle.",
+        "The tradition of generations, the chin-stroking spirit of a jazz club, captured in a bottle.",
   },
   {
     "images": [
@@ -14104,7 +16057,7 @@ final List<Map<String, dynamic>> perfumesData = [
     'reviews': '180',
     "sold": "2.7k",
     "description":
-    "An explosive floral bouquet. Unexpected. The opulence of thousands of flowers, giving rise to an ultra-feminine scent.",
+        "An explosive floral bouquet. Unexpected. The opulence of thousands of flowers, giving rise to an ultra-feminine scent.",
   },
   {
     "images": [
@@ -14119,7 +16072,7 @@ final List<Map<String, dynamic>> perfumesData = [
     'reviews': '2180',
     "sold": "600",
     "description":
-    "A floral explosion of Turkish rose, lily of the valley and peony mixed with lychee and rhubarb.",
+        "A floral explosion of Turkish rose, lily of the valley and peony mixed with lychee and rhubarb.",
   },
   {
     "images": [
@@ -14133,7 +16086,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.5",
     "sold": "450",
     "description":
-    "A memory from childhood in Indochina. The sea breeze carries with it the heady, spicy scent of tuberoses.",
+        "A memory from childhood in Indochina. The sea breeze carries with it the heady, spicy scent of tuberoses.",
   },
   {
     "images": [
@@ -14147,7 +16100,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.8",
     "sold": "1.5k",
     "description":
-    "A floral ambery fragrance that embraces the paradoxes of iconic ingredients to reveal new scented sensations.",
+        "A floral ambery fragrance that embraces the paradoxes of iconic ingredients to reveal new scented sensations.",
   },
   {
     "images": [
@@ -14159,7 +16112,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.7",
     "sold": "2.1k",
     "description":
-    "A tribute to modern femininity, an irresistible combination of grace, strength, and independent spirit.",
+        "A tribute to modern femininity, an irresistible combination of grace, strength, and independent spirit.",
   },
   {
     "images": [
@@ -14173,7 +16126,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.9",
     "sold": "1.2k",
     "description":
-    "Vast and driven, the floral leather and cool spices reveal a scent for men and women that is untethered.",
+        "Vast and driven, the floral leather and cool spices reveal a scent for men and women that is untethered.",
   },
   {
     "images": [
@@ -14188,7 +16141,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "5.0",
     "sold": "720",
     "description":
-    "The liquor of the Gods. Containing cognac oil, oak absolute, cinnamon essence and Tonka bean.",
+        "The liquor of the Gods. Containing cognac oil, oak absolute, cinnamon essence and Tonka bean.",
   },
   {
     "images": [
@@ -14203,7 +16156,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.8",
     "sold": "3.8k",
     "description":
-    "A symbolic narrative exploration of the raw material and its metamorphosis. A novel that expresses the alchemical power of the elements.",
+        "A symbolic narrative exploration of the raw material and its metamorphosis. A novel that expresses the alchemical power of the elements.",
   },
   {
     "images": [
@@ -14219,7 +16172,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.7",
     "sold": "1.6k",
     "description":
-    "A couture floral oriental. A celebration of self-expression, luxury and the streets of Rome.",
+        "A couture floral oriental. A celebration of self-expression, luxury and the streets of Rome.",
   },
   {
     "images": [
@@ -14236,7 +16189,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.8",
     "sold": "950",
     "description":
-    "A woody composition inspired by the soulful beauty of the Mojave Desert.",
+        "A woody composition inspired by the soulful beauty of the Mojave Desert.",
   },
   {
     "images": [
@@ -14251,7 +16204,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "5.0",
     "sold": "430",
     "description":
-    "An opulent dose of Turkish rose—no less than 400 flowers per 100ml bottle.",
+        "An opulent dose of Turkish rose—no less than 400 flowers per 100ml bottle.",
   },
   {
     "images": [
@@ -14266,7 +16219,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.6",
     "sold": "1.4k",
     "description":
-    "A bold and adventurous scent with dark red berries, jasmine, and sensual vanilla.",
+        "A bold and adventurous scent with dark red berries, jasmine, and sensual vanilla.",
   },
   {
     "images": [
@@ -14278,7 +16231,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.7",
     "sold": "2.1k",
     "description":
-    "The hallmark of Italian style. A fresh, luminous, and refined citrus scent.",
+        "The hallmark of Italian style. A fresh, luminous, and refined citrus scent.",
   },
   {
     "images": [
@@ -14290,7 +16243,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.9",
     "sold": "1.1k",
     "description":
-    "An addictive dirty potion composed of ambroxan, jasmine petals, and moss.",
+        "An addictive dirty potion composed of ambroxan, jasmine petals, and moss.",
   },
 
   {
@@ -14304,7 +16257,7 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "4.8",
     "sold": "2.8k",
     "description":
-    "Peonies in voluptuous bloom, exquisite and fragile. Flirtatious with the bite of red apple.",
+        "Peonies in voluptuous bloom, exquisite and fragile. Flirtatious with the bite of red apple.",
   },
 
   {
@@ -14319,163 +16272,163 @@ final List<Map<String, dynamic>> perfumesData = [
     "rating": "5.0",
     "sold": "2k",
     "description":
-    "Peonies in voluptuous bloom, exquisite and fragile. Flirtatious with the bite of red apple.",
+        "Peonies in voluptuous bloom, exquisite and fragile. Flirtatious with the bite of red apple.",
   },
 ];
 final List<Map<String, String>> nightwearProducts = [
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/1a/1a4491ffd854c0e210689c6620e953fdec754d7e.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/1a/1a4491ffd854c0e210689c6620e953fdec754d7e.jpg',
     'title': 'Satin Cami & Short Set',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/35/353b411ddfc80ced1118e5339f6185283d02124a.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/35/353b411ddfc80ced1118e5339f6185283d02124a.png',
     'title': 'Modal Ribbed Sleep Dress',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/0b/0ba96aff24581d1067a6ff3018fcd298873e26f1.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/0b/0ba96aff24581d1067a6ff3018fcd298873e26f1.jpg',
     'title': 'Lace-Trimmed Silk Slip',
     'price': '\$85.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/9d/9d17712048aa97fb79d5f3a1a5a18ac53ff10ffb.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/9d/9d17712048aa97fb79d5f3a1a5a18ac53ff10ffb.jpg',
     'title': 'Classic Button-Down PJ Top',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7QMFGPMf2HwSCbeCCxdxsUXmKfqJABc-vBg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7QMFGPMf2HwSCbeCCxdxsUXmKfqJABc-vBg&s',
     'title': 'Cloud-Soft Jogger Pants',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrkwoNyzN7y5j1BkrOwSGkWUa5iFncxb93Pw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrkwoNyzN7y5j1BkrOwSGkWUa5iFncxb93Pw&s',
     'title': 'Sheer Chiffon Robe',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl9TAmEztabWVynPBb16fm0lKOrxlz8vQ6eA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl9TAmEztabWVynPBb16fm0lKOrxlz8vQ6eA&s',
     'title': 'Bamboo Cooling Chemise',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdxSbs49jXtI2EypFnecDQnZbPa_7TA6qiw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdxSbs49jXtI2EypFnecDQnZbPa_7TA6qiw&s',
     'title': 'Velvet Trim Nightgown',
     'price': '\$62.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI64-Lh98g4M6uwoud2Joc9OV6xzrRUCPZwA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI64-Lh98g4M6uwoud2Joc9OV6xzrRUCPZwA&s',
     'title': 'Organic Cotton Sleep Tee',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPXvemPcDk3YOlAPZxw6JqSntaWeahnjLkMA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPXvemPcDk3YOlAPZxw6JqSntaWeahnjLkMA&s',
     'title': 'Midnight Satin Kimono',
     'price': '\$75.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX9hGtCulwZdK47IrNbKlzO4jMWfiZknVs6A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX9hGtCulwZdK47IrNbKlzO4jMWfiZknVs6A&s',
     'title': 'Floral Print Lounge Set',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBUglW0wRi0kTsYBs_LLOW8G8y9wOH028Wzg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBUglW0wRi0kTsYBs_LLOW8G8y9wOH028Wzg&s',
     'title': 'Oversized Knit Sleep Shirt',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsDCMuifjPZvVPFRCdkN5B6v6GsYt5KZKh-g&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsDCMuifjPZvVPFRCdkN5B6v6GsYt5KZKh-g&s',
     'title': 'High-Waist Modal Shorts',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDToO8iqa_o5XwaWBOL-KU77_POHUlqipocQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDToO8iqa_o5XwaWBOL-KU77_POHUlqipocQ&s',
     'title': 'Embroidered Tulle Slip',
     'price': '\$92.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPWU0IfC7YOlj5YedFBdHcIKID7fXCz3Tj_w&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPWU0IfC7YOlj5YedFBdHcIKID7fXCz3Tj_w&s',
     'title': 'Cashmere-Blend Sleep Socks',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPSNmpo1_6X-Bgzn4_kHLFbX35Goiry8q-tA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPSNmpo1_6X-Bgzn4_kHLFbX35Goiry8q-tA&s',
     'title': 'Pleated Satin Romper',
     'price': '\$49.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCSMhNje2AL-aYqW4wfUD19AvhhqPmeAI2rg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCSMhNje2AL-aYqW4wfUD19AvhhqPmeAI2rg&s',
     'title': 'Breathable Mesh Babydoll',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpaOhaVby3HxUxhP3NROYJPJ0AJQF-LBhmHw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpaOhaVby3HxUxhP3NROYJPJ0AJQF-LBhmHw&s',
     'title': 'Waffle-Knit Spa Robe',
     'price': '\$68.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL3wO0KtGHufuUYzJ0n4Up5HQlyS08VTBgMg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL3wO0KtGHufuUYzJ0n4Up5HQlyS08VTBgMg&s',
     'title': 'Striped Piped Pajama Set',
     'price': '\$88.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr56oLqUb0dcItxJCheToL10Csx0o79ZfcXg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr56oLqUb0dcItxJCheToL10Csx0o79ZfcXg&s',
     'title': 'Soft-Cup Lace Teddy',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgusB_h9RV4Y3e05J67n5gsjJ8Z_OAHgUPQg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgusB_h9RV4Y3e05J67n5gsjJ8Z_OAHgUPQg&s',
     'title': 'Lightweight Linen Sleepers',
     'price': '\$39.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F3Usth2DJI83gDTz0gz5gW-6asXERZXlxw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F3Usth2DJI83gDTz0gz5gW-6asXERZXlxw&s',
     'title': 'Star-Print Mesh Chemise',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tbuNDMwqqeoD2fNyuEItHES8KfOaprZtOw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tbuNDMwqqeoD2fNyuEItHES8KfOaprZtOw&s',
     'title': 'Premium Micro-Modal Robe',
     'price': '\$95.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8XIMHkApb5FT3rEmhBtRCpqK8P87AGr38g&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8XIMHkApb5FT3rEmhBtRCpqK8P87AGr38g&s',
     'title': 'Side-Slit Silk Skirt',
     'price': '\$78.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETzjRqdUM--7RrzRbgLTy8VV-g5vRYpkDgg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETzjRqdUM--7RrzRbgLTy8VV-g5vRYpkDgg&s',
     'title': 'Ribbed Tank & Pant Duo',
     'price': '\$56.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsw6YFL1gzAF7PWNDiTHDsl12umsosxKNjkg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsw6YFL1gzAF7PWNDiTHDsl12umsosxKNjkg&s',
     'title': 'Eyelet Lace Sleep Shorts',
     'price': '\$26.00',
   },
@@ -14483,157 +16436,157 @@ final List<Map<String, String>> nightwearProducts = [
 final List<Map<String, String>> braProducts = [
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/7d/7d3e767fc48b02ecb421147264b111091b95c515.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/7d/7d3e767fc48b02ecb421147264b111091b95c515.jpg',
     'title': 'Essential Seamless Bralette',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a7/a7bd050fccca04dc326321061752539219ffa69e.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a7/a7bd050fccca04dc326321061752539219ffa69e.jpg',
     'title': 'Lace Trim Balconette',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/87/87ba1fecb0532635cf06e40c0fa962cfed259fef.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/87/87ba1fecb0532635cf06e40c0fa962cfed259fef.jpg',
     'title': 'Deep-V Plunge Microfiber',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/5d/5df20d0f62434973516a81259cca3ddf55adebb7.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/5d/5df20d0f62434973516a81259cca3ddf55adebb7.png',
     'title': 'Silk-Lined Wireless Bra',
     'price': '\$65.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/f4/f4031c232f531d96837d9c118e624bc3146eb8b7.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/f4/f4031c232f531d96837d9c118e624bc3146eb8b7.png',
     'title': 'High-Impact Sport Sculpt',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a2/a25ce610d1464e75c34e1cefe4a207e5c5240f32.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a2/a25ce610d1464e75c34e1cefe4a207e5c5240f32.png',
     'title': 'Floral Embroidery Demi',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/1f/1f92338f4773c172fe1d04c48a44ef5fd564b95e.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/1f/1f92338f4773c172fe1d04c48a44ef5fd564b95e.jpg',
     'title': 'Everyday T-Shirt Contour',
     'price': '\$34.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c5707563f9ba567e34771d708e743a64076ed515.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c5707563f9ba567e34771d708e743a64076ed515.png',
     'title': 'Sheer Mesh Underwire',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://s6.kh1.co/__image/w=300,h=300,fit=contain/50/50988d8b792ba41df0cd0d6b058e8026b5ba4f6b.jpg',
+        'https://s6.kh1.co/__image/w=300,h=300,fit=contain/50/50988d8b792ba41df0cd0d6b058e8026b5ba4f6b.jpg',
     'title': 'Satin Strapless Multi-way',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/51/5142ca54491b726565319619cb10b1183cefecc3.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/51/5142ca54491b726565319619cb10b1183cefecc3.png',
     'title': 'Bamboo Breathable Soft-cup',
     'price': '\$30.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/dc/dcbb2cb085769aa7ebea14521170d812eab45814.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/dc/dcbb2cb085769aa7ebea14521170d812eab45814.png',
     'title': 'Luxe Velvet Trim Triangle',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/e4/e4fd30016c9771fb5da0f737bd5e60fe24b47bc0.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/e4/e4fd30016c9771fb5da0f737bd5e60fe24b47bc0.jpg',
     'title': 'Racerback Ribbed Bralette',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/74/74ccf74871d2047a4ddbe852d40d7b0da9914c67.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/74/74ccf74871d2047a4ddbe852d40d7b0da9914c67.png',
     'title': 'Front-Close Lace Racer',
     'price': '\$46.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/95/95ba33f6a261ebdb9aa33c2faa2ed16ce972ce56.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/95/95ba33f6a261ebdb9aa33c2faa2ed16ce972ce56.jpg',
     'title': 'Minimalist Bonded Edge',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/8e/8e5d1a2beb7bdbe3b291d8cab93f091b124186f3.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/8e/8e5d1a2beb7bdbe3b291d8cab93f091b124186f3.jpg',
     'title': 'Full-Coverage Power Mesh',
     'price': '\$62.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/90/9099ec60db9607f8fb5d5c1f910a79c06a504f21.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/90/9099ec60db9607f8fb5d5c1f910a79c06a504f21.jpg',
     'title': 'Cotton-Stretch Daily Pack',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/79/79cbc7aaa41ef1a9e4084fdca7566e66c6117c9d.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/79/79cbc7aaa41ef1a9e4084fdca7566e66c6117c9d.jpg',
     'title': 'Sweetheart Neckline Push-Up',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/5a/5a8c5adc4b12f73b189e98d20df4e00d8d866852.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/5a/5a8c5adc4b12f73b189e98d20df4e00d8d866852.png',
     'title': 'Geometric Lace Longline',
     'price': '\$72.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/3d/3d8d4dbb95437bfc1b8b3ba6ebf0a67cfc7016ee.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/3d/3d8d4dbb95437bfc1b8b3ba6ebf0a67cfc7016ee.jpg',
     'title': 'Yoga Flow Light Support',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/23/2389a249985d5dcef53e695ded1066c2758cf7d4.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/23/2389a249985d5dcef53e695ded1066c2758cf7d4.jpg',
     'title': 'Premium Silk Triangle',
     'price': '\$85.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/40/406478e2e89c69683d72258a4b5ad3fdf3b72839.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/40/406478e2e89c69683d72258a4b5ad3fdf3b72839.png',
     'title': 'Scalloped Edge Unlined',
     'price': '\$40.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/4e/4eb85f5defa802b0dc7600369739042e040a83b9.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/4e/4eb85f5defa802b0dc7600369739042e040a83b9.jpg',
     'title': 'Double-Layer Smoothing',
     'price': '\$49.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/12/129db466d372f5423d54426d98e7948382e3385e.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/12/129db466d372f5423d54426d98e7948382e3385e.png',
     'title': 'Crystal Detail Evening Bra',
     'price': '\$95.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/d8/d868aac788ae7f38045025a5ada80a830b267273.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/d8/d868aac788ae7f38045025a5ada80a830b267273.png',
     'title': 'Recycled Nylon Athleisure',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://s6.kh1.co/__image/w=300,h=300,fit=contain/da/da778a344fc29426dc0d21cca6aeca09305dafaf.jpg',
+        'https://s6.kh1.co/__image/w=300,h=300,fit=contain/da/da778a344fc29426dc0d21cca6aeca09305dafaf.jpg',
     'title': 'Vintage Rose Appliqué',
     'price': '\$68.00',
   },
   {
     'image':
-    'https://s5.kh1.co/__image/w=300,h=300,fit=contain/92/92c0d820e339b8803f6d3ab5071cc9fe64155c19.jpg',
+        'https://s5.kh1.co/__image/w=300,h=300,fit=contain/92/92c0d820e339b8803f6d3ab5071cc9fe64155c19.jpg',
     'title': 'Tech-Knit Compression Bra',
     'price': '\$88.00',
   },
@@ -14641,157 +16594,157 @@ final List<Map<String, String>> braProducts = [
 final List<Map<String, String>> pantyProducts = [
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/39/395761fa85073fa3642eb121e54696f052c11476.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/39/395761fa85073fa3642eb121e54696f052c11476.png',
     'title': 'Seamless Invisible Thong',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9wNZfulmf_2cracaSnj_pxMjjZJwTF_Hdg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9wNZfulmf_2cracaSnj_pxMjjZJwTF_Hdg&s',
     'title': 'Lace-Trimmed Brazilian',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBq2Cmi36ii6FEYSmkonexvsXmICOuvu2ALA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBq2Cmi36ii6FEYSmkonexvsXmICOuvu2ALA&s',
     'title': 'High-Waist Mesh Brief',
     'price': '\$34.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZhmP11I56HfT50h_-tKyk_0gwnFZNQar2ZA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZhmP11I56HfT50h_-tKyk_0gwnFZNQar2ZA&s',
     'title': 'Silk Satin Bikini Cut',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkrmllwCD01wgIlxR45qdj_m2jsp_KrajMJQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkrmllwCD01wgIlxR45qdj_m2jsp_KrajMJQ&s',
     'title': 'Cotton Stretch Hipster Pack',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ8lj3C_1skISVxJoLpzWXlpL2TxXgM2NFcg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ8lj3C_1skISVxJoLpzWXlpL2TxXgM2NFcg&s',
     'title': 'Floral Embroidery Cheeky',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbo2dHAJ-kp2JLYCqGNG1pkeJfE9zbYfD0_A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbo2dHAJ-kp2JLYCqGNG1pkeJfE9zbYfD0_A&s',
     'title': 'Scalloped Edge Unlined Thong',
     'price': '\$26.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Vmt6YR_F_yPMxpSQYwBaNUw7VaYbtDNcog&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Vmt6YR_F_yPMxpSQYwBaNUw7VaYbtDNcog&s',
     'title': 'Modal Ribbed Boyshort',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEmuLI6ShjwtbpyoVAx1OLhsUUwJV7uMHHg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEmuLI6ShjwtbpyoVAx1OLhsUUwJV7uMHHg&s',
     'title': 'Sheer Tulle String Bikini',
     'price': '\$29.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXzQRWYB1jPSb99L2RUu2mh7-htRzy-4xWeg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXzQRWYB1jPSb99L2RUu2mh7-htRzy-4xWeg&s',
     'title': 'Bamboo Comfort Seamless',
     'price': '\$25.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDkzMZ4kw-VbMu3AMkEY_uXqJpvAtywL-LrA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDkzMZ4kw-VbMu3AMkEY_uXqJpvAtywL-LrA&s',
     'title': 'Velvet Trim Luxury Brief',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfnRM9WGXcyAufR0fGDHHI9jBuGnOEU0eTGQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfnRM9WGXcyAufR0fGDHHI9jBuGnOEU0eTGQ&s',
     'title': 'Microfiber Laser-Cut Thong',
     'price': '\$20.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmdqEFFcW96pALVQj5f-a7-ljMyGxfX56EcQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmdqEFFcW96pALVQj5f-a7-ljMyGxfX56EcQ&s',
     'title': 'Geometric Lace High-Cut',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUvpIwgOncXzi1Mh9PoxxIBQRaTFFskVhzbg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUvpIwgOncXzi1Mh9PoxxIBQRaTFFskVhzbg&s',
     'title': 'Satin Bow Detail Bikini',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY8rPuAa1ZTeGIVrOeBFiFilmVYAez_XYpcw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY8rPuAa1ZTeGIVrOeBFiFilmVYAez_XYpcw&s',
     'title': 'Bonded Edge Sport Brief',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1XczKC3HDJzGaI0QK2m5UyeWj_ohx7o_LGQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1XczKC3HDJzGaI0QK2m5UyeWj_ohx7o_LGQ&s',
     'title': 'Premium French Lace Thong',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK2r0HfJtveWMCUbtLNo3Cbw2SEGTdEZGZVg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK2r0HfJtveWMCUbtLNo3Cbw2SEGTdEZGZVg&s',
     'title': 'Organic Cotton Lounge Panty',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmxpocxR973agtITZikA5nNpBwGLboaiuUUw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmxpocxR973agtITZikA5nNpBwGLboaiuUUw&s',
     'title': 'Chantilly Lace Brazilian',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH-Bcgx9Q6yH53Su74eEA1NMGukMG1uLgKmg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH-Bcgx9Q6yH53Su74eEA1NMGukMG1uLgKmg&s',
     'title': 'Double-Lined Sculpting Brief',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0OFs0hMGbE1XCzB3D-6X9hV4PQY5mkDmrZQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0OFs0hMGbE1XCzB3D-6X9hV4PQY5mkDmrZQ&s',
     'title': 'Silk-Blend Embroidered Cut',
     'price': '\$65.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdLmiHOKvGYX4N-8MIVEBxW1ip6Urvd3i6Zg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdLmiHOKvGYX4N-8MIVEBxW1ip6Urvd3i6Zg&s',
     'title': 'Minimalist Tech-Mesh Thong',
     'price': '\$30.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlvds0D018iDClDG2lQrWFRnLPH9Oqo6impA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlvds0D018iDClDG2lQrWFRnLPH9Oqo6impA&s',
     'title': 'Ribbed Cotton High-Waist',
     'price': '\$26.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ-SKnQIComrs7uZDugQI0LOEL7u_sBYXB5A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ-SKnQIComrs7uZDugQI0LOEL7u_sBYXB5A&s',
     'title': 'Crystal Detail Evening G-String',
     'price': '\$75.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdvB9CQa34Fq0hdOskvCZjADWPVMTpPZ0Zw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdvB9CQa34Fq0hdOskvCZjADWPVMTpPZ0Zw&s',
     'title': 'Seamless Compression Shaper',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCcYpRzuLg-JR9t_wx7NWfzkXFPi5vAjBLiA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCcYpRzuLg-JR9t_wx7NWfzkXFPi5vAjBLiA&s',
     'title': 'Vintage Satin Tap Panty',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rGnAPbn65y9nMARauKm6ySjbrA5yxgb_rw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rGnAPbn65y9nMARauKm6ySjbrA5yxgb_rw&s',
     'title': 'Luxury Tulle Hipster Bloom',
     'price': '\$40.00',
   },
@@ -14799,157 +16752,157 @@ final List<Map<String, String>> pantyProducts = [
 final List<Map<String, String>> shapewearProducts = [
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLpInL9HT5PxGsnxIHXrvErr582XvdovwRQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLpInL9HT5PxGsnxIHXrvErr582XvdovwRQ&s',
     'title': 'High-Waist Thong Shaper',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/8f/8f0810db644b8fc89788b9eceeef46e829b532fb.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/8f/8f0810db644b8fc89788b9eceeef46e829b532fb.jpg',
     'title': 'Seamless Mid-Thigh Short',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://s5.kh1.co/__image/w=300,h=300,fit=contain/9d/9d69ec966100ffa58d2301983d209a7968228b21.png',
+        'https://s5.kh1.co/__image/w=300,h=300,fit=contain/9d/9d69ec966100ffa58d2301983d209a7968228b21.png',
     'title': 'Core Sculpting Bodysuit',
     'price': '\$68.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5waTArbpbVnXmGX7eTUOY8rSqUX84DbA8Rw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5waTArbpbVnXmGX7eTUOY8rSqUX84DbA8Rw&s',
     'title': 'Open-Bust Camisole Shaper',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH72wk6uhLUQQHR7DIQy5rAx7PVdIOR8BxoA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH72wk6uhLUQQHR7DIQy5rAx7PVdIOR8BxoA&s',
     'title': 'Invisible Control Slip',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkXFedvticLlfp6--8Zdw49oqXnGoLod4DEw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkXFedvticLlfp6--8Zdw49oqXnGoLod4DEw&s',
     'title': 'Tummy-Taming Brief',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLitpemXQOGgjgznLqXg3exLu0em1u2Bl9Q&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLitpemXQOGgjgznLqXg3exLu0em1u2Bl9Q&s',
     'title': 'Waist-Cinched Mesh Corset',
     'price': '\$75.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmcDaHqpi9v3cYVVxADxChBqRTW5vE95GwyQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmcDaHqpi9v3cYVVxADxChBqRTW5vE95GwyQ&s',
     'title': 'Smoothing Plunge Bodice',
     'price': '\$82.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDs5E9YGqzcSGMFk-ffZFYTtq9g7wXLZTsdA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDs5E9YGqzcSGMFk-ffZFYTtq9g7wXLZTsdA&s',
     'title': 'Power-Mesh Waist Trainer',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR5zFLQH_pusvZvCHf3ac4O1k1mWC3C5IBjQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR5zFLQH_pusvZvCHf3ac4O1k1mWC3C5IBjQ&s',
     'title': 'Lift-and-Sculpt Booty Short',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUHTw2NaA7zYfLD-JiQ0nwUwLRKhOUQRZ02Q&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUHTw2NaA7zYfLD-JiQ0nwUwLRKhOUQRZ02Q&s',
     'title': 'Ultra-Light Cooling Slip',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1aKdg-SpAYWSJ6GV9tnSUf4XczDAPokukGg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1aKdg-SpAYWSJ6GV9tnSUf4XczDAPokukGg&s',
     'title': 'Silicone-Grip Thigh Shaper',
     'price': '\$39.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbuTdxTgjHH-65iFcXqWLg6OP-GB6hLxxjqw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbuTdxTgjHH-65iFcXqWLg6OP-GB6hLxxjqw&s',
     'title': 'Back-Smoothing Bralette',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0A6EtxxDlk3hJYn4_6HA7XfiLfIlo_2n0tg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0A6EtxxDlk3hJYn4_6HA7XfiLfIlo_2n0tg&s',
     'title': 'Post-Op Compression Short',
     'price': '\$95.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4chjJpG7_ZoA33hyuUIjnzUnw8knmqsaOQQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4chjJpG7_ZoA33hyuUIjnzUnw8knmqsaOQQ&s',
     'title': 'Targeted Tummy Control Band',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtPkDMasgFqBkZHEPo71iq0eZO-OSUFKnAnQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtPkDMasgFqBkZHEPo71iq0eZO-OSUFKnAnQ&s',
     'title': 'Full-Body Invisible Suit',
     'price': '\$88.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGD4DXtMiE5yXJzjDlfnQEw8LphQvoi0Kc_g&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGD4DXtMiE5yXJzjDlfnQEw8LphQvoi0Kc_g&s',
     'title': 'High-Leg Sculpting Panty',
     'price': '\$26.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbP7IPU5_f_8XMYLZmNglZ2kkxC5LGfiT5bA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbP7IPU5_f_8XMYLZmNglZ2kkxC5LGfiT5bA&s',
     'title': 'Ribbed Compression Tank',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrclvYVxTdx14HrZSKYv6vzVLdOE0_PIHJrQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrclvYVxTdx14HrZSKYv6vzVLdOE0_PIHJrQ&s',
     'title': 'Anti-Chafe Comfort Short',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcmxne2vmeOslJ_cspjYJASV4CsCdfIM2ciQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcmxne2vmeOslJ_cspjYJASV4CsCdfIM2ciQ&s',
     'title': 'Floral Lace Shaping Brief',
     'price': '\$40.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hm582U__2kZ5rx3fy6_sIGkcrbbQ3ykdHg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hm582U__2kZ5rx3fy6_sIGkcrbbQ3ykdHg&s',
     'title': 'Under-Bust Waist Nipper',
     'price': '\$62.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwg3--xiBRwQKlSsRl1aihvDbndXoluZ9Haw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwg3--xiBRwQKlSsRl1aihvDbndXoluZ9Haw&s',
     'title': 'Seamless Maternity Shaper',
     'price': '\$46.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRx-KhurXDDyA8UPm9jRi9sBo_GvWwS6pnQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRx-KhurXDDyA8UPm9jRi9sBo_GvWwS6pnQ&s',
     'title': 'Glute-Enhancing Tech Short',
     'price': '\$54.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBS65sZ0AL5B0usi5HlkH1BYzRhHpMBm8-fA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBS65sZ0AL5B0usi5HlkH1BYzRhHpMBm8-fA&s',
     'title': 'Strapless Shaping Slip',
     'price': '\$72.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSn-QCGeyEC2I4Rv7NW9OnVi8nofQZz2WDcg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSn-QCGeyEC2I4Rv7NW9OnVi8nofQZz2WDcg&s',
     'title': 'Micro-Modal Soft Shaper',
     'price': '\$34.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaLDPw1jVq0dTyacuKCLx-o1i_4pT9LUi94g&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaLDPw1jVq0dTyacuKCLx-o1i_4pT9LUi94g&s',
     'title': 'Double-Layer Firm Bodice',
     'price': '\$98.00',
   },
@@ -14957,157 +16910,157 @@ final List<Map<String, String>> shapewearProducts = [
 final List<Map<String, String>> sockProducts = [
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThE59Be12F9Nv3zcgNH4BRmLcUIqH4p7riPA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThE59Be12F9Nv3zcgNH4BRmLcUIqH4p7riPA&s',
     'title': 'Seamless Bamboo No-Show',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c58c3a437b435708a7f2d673650b7f182bc3a92f.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c58c3a437b435708a7f2d673650b7f182bc3a92f.jpg',
     'title': 'Ribbed Cashmere Lounge Sock',
     'price': '\$65.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUjqDr2Rxuxwbj1aEzbPdxc1K6YSI6LcXLtQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUjqDr2Rxuxwbj1aEzbPdxc1K6YSI6LcXLtQ&s',
     'title': 'Egyptian Cotton Crew Pack',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcnvYfahh0vsKQoE2v0bXQXKla4wYVZ-EvNg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcnvYfahh0vsKQoE2v0bXQXKla4wYVZ-EvNg&s',
     'title': 'Sheer Tulle Ankle Sock',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://s4.kh1.co/__image/w=300,h=300,fit=contain/01/014b7e0691b158ce4ef218c229fc1850d53d1d04.jpg',
+        'https://s4.kh1.co/__image/w=300,h=300,fit=contain/01/014b7e0691b158ce4ef218c229fc1850d53d1d04.jpg',
     'title': 'High-Impact Performance Run',
     'price': '\$34.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/62/62d8292a784315c44b7fbd299efe280774681875.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/62/62d8292a784315c44b7fbd299efe280774681875.png',
     'title': 'Velvet Trim Sleep Sock',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/3f/3f22a83c84dae9730030f35a8912a39c73b48598.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/3f/3f22a83c84dae9730030f35a8912a39c73b48598.jpg',
     'title': 'Lace-Edge Victorian Frill',
     'price': '\$26.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c56d57a362d8838ce45cfd1056e0ffa98907fc38.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c5/c56d57a362d8838ce45cfd1056e0ffa98907fc38.jpg',
     'title': 'Compression Travel Tech',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK-DkoQKZ5aq0lKucojJ9KQ5_TbUaX2RXHzA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK-DkoQKZ5aq0lKucojJ9KQ5_TbUaX2RXHzA&s',
     'title': 'Glitter Mesh Party Sock',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdMjumt1FL2YwHpA4T2c7v_vWC-_qobeI5Iw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdMjumt1FL2YwHpA4T2c7v_vWC-_qobeI5Iw&s',
     'title': 'Organic Hemp Daily Crew',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt5LfQiGEKD0xvGnhzFd8sx2hh7wc_QPuLRA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt5LfQiGEKD0xvGnhzFd8sx2hh7wc_QPuLRA&s',
     'title': 'Anti-Odor Copper Blend',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPMgVPS8dlvu_n6PA8tOR3RbwQqRFa_Gx8pQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPMgVPS8dlvu_n6PA8tOR3RbwQqRFa_Gx8pQ&s',
     'title': 'Polka Dot Silk Sheer',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSY5nsBbXNR4-7fpl4HxsOjPpWrJ_V0rIY1A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSY5nsBbXNR4-7fpl4HxsOjPpWrJ_V0rIY1A&s',
     'title': 'Merino Wool Hiking Sock',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaWi1OzZwkZawqIIsZm3tJl-Ku-V4X0OzWCA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaWi1OzZwkZawqIIsZm3tJl-Ku-V4X0OzWCA&s',
     'title': 'Striped Retro Athletic',
     'price': '\$20.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf16xc8nCAQI5j_haGS0kaoXVcfVyHvImOag&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf16xc8nCAQI5j_haGS0kaoXVcfVyHvImOag&s',
     'title': 'Floral Embroidery Knit',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQCnlYFbBvAFcssaQukiTdaH7n1hl5MW6Uw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQCnlYFbBvAFcssaQukiTdaH7n1hl5MW6Uw&s',
     'title': 'Soft-Touch Chenille Slipper',
     'price': '\$29.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUt-JVy_SyOoMLRO1OXFiuW6IOFmNHMMRO0g&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUt-JVy_SyOoMLRO1OXFiuW6IOFmNHMMRO0g&s',
     'title': 'Over-the-Knee Ribbed Knit',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlfW0psAfSuTSzqpcwTeZ0Gr9_Xs6GryeMg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlfW0psAfSuTSzqpcwTeZ0Gr9_Xs6GryeMg&s',
     'title': 'Geometric Pattern Dress Sock',
     'price': '\$30.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn1XiXhZmotBtaYeZzv0-TvWO367YDex4OCA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn1XiXhZmotBtaYeZzv0-TvWO367YDex4OCA&s',
     'title': 'Gold-Thread Evening Sock',
     'price': '\$72.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzWyfxx3QyREe1Evu8WQul5uD388XHqrsS6A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzWyfxx3QyREe1Evu8WQul5uD388XHqrsS6A&s',
     'title': 'Breathable Mesh Padded Tech',
     'price': '\$40.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5avRGLV5TtP7GRkRyi1jXMDjJPrShtHutMg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5avRGLV5TtP7GRkRyi1jXMDjJPrShtHutMg&s',
     'title': 'Pastel Ombre Cotton Blend',
     'price': '\$25.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBN7q9f2bAp4Y7SiM9-xSM7GZcnhTdApjyw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBN7q9f2bAp4Y7SiM9-xSM7GZcnhTdApjyw&s',
     'title': 'Chunky Cable-Knit Boot Sock',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF8rZCheDDk1g53YPaQUh8z4H7JU7O3vkfvw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF8rZCheDDk1g53YPaQUh8z4H7JU7O3vkfvw&s',
     'title': 'Moisture-Wicking Yoga Grip',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb8ijxR97Rsp80a55LdC01GLJ59oJs-CekpQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb8ijxR97Rsp80a55LdC01GLJ59oJs-CekpQ&s',
     'title': 'Luxury Silk-Blend Trouser',
     'price': '\$85.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzGd-UwnKNEjyQqdJCKCxGkCZcLvxQRR3AJA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzGd-UwnKNEjyQqdJCKCxGkCZcLvxQRR3AJA&s',
     'title': 'Reflective Night-Run Crew',
     'price': '\$49.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPQkMngt9yvoAsUJ0o7UwZoPcpoQ3y-QjD1w&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPQkMngt9yvoAsUJ0o7UwZoPcpoQ3y-QjD1w&s',
     'title': 'Ultra-Thick Fleece Cabin',
     'price': '\$62.00',
   },
@@ -15115,157 +17068,157 @@ final List<Map<String, String>> sockProducts = [
 final List<Map<String, String>> tightsProducts = [
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeX-huX_uUfs1Jndit_FcWvYvXN1cEkLoEvA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeX-huX_uUfs1Jndit_FcWvYvXN1cEkLoEvA&s',
     'title': 'Ultra-Sheer 15D Glossy',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIX_ryEXk9IDs0c5gI-7JnGLrO9u5D98qAOQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIX_ryEXk9IDs0c5gI-7JnGLrO9u5D98qAOQ&s',
     'title': 'Opaque 80D Matte Sculpt',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjfomcmgpUBA54_ntY6NRG9JzDfa79r2OqVw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjfomcmgpUBA54_ntY6NRG9JzDfa79r2OqVw&s',
     'title': 'Italian Micro-Net Fishnet',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrHQKbZiKbYxjV1pJygHeBjaSVuc3aB9vz2A&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrHQKbZiKbYxjV1pJygHeBjaSVuc3aB9vz2A&s',
     'title': 'High-Waist Control Top',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHY4js7DWDWQWdM8yR3Wkn7P-hDAiObYTslg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHY4js7DWDWQWdM8yR3Wkn7P-hDAiObYTslg&s',
     'title': 'Floral Lace Pattern Tights',
     'price': '\$55.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbZgwOgPYztkj-xua9Vz2b3qqz7JTFWJw4OQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbZgwOgPYztkj-xua9Vz2b3qqz7JTFWJw4OQ&s',
     'title': 'Silk-Blend Luxury Sheer',
     'price': '\$85.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ08jCZ0lwtDUP4OoWWmyVRBkdsoIwtIv4cHw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ08jCZ0lwtDUP4OoWWmyVRBkdsoIwtIv4cHw&s',
     'title': 'Back-Seam Vintage Classic',
     'price': '\$42.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB_2zWiA8rnIELvQg47nnMzsFa8QeTMpiFpw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB_2zWiA8rnIELvQg47nnMzsFa8QeTMpiFpw&s',
     'title': 'Polka Dot Sheer Tights',
     'price': '\$36.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGDWZHLh_1xNWoepN4oY0wN5miX2W2nrITng&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGDWZHLh_1xNWoepN4oY0wN5miX2W2nrITng&s',
     'title': 'Thermal Fleece-Lined Winter',
     'price': '\$62.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOPw6hsYryzc29qoGRg56e6ln4w4daWzotQQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOPw6hsYryzc29qoGRg56e6ln4w4daWzotQQ&s',
     'title': 'Seamless 360 Comfort Fit',
     'price': '\$48.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0I9ALJw3w8RgNGWZ_60e1ZPG2KgPavQeYgg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0I9ALJw3w8RgNGWZ_60e1ZPG2KgPavQeYgg&s',
     'title': 'Diamond Lattice Pattern',
     'price': '\$44.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&s',
     'title': 'Stay-Up Lace Top Hold-Ups',
     'price': '\$58.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0lC7kb_xY0XyImxcZ7jiln0nUz29xOXwObQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0lC7kb_xY0XyImxcZ7jiln0nUz29xOXwObQ&s',
     'title': 'Anti-Ladder Tech Sheer',
     'price': '\$39.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYU11D6LkppViueXA_p8Te7H3MXWRkoTzBw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyYU11D6LkppViueXA_p8Te7H3MXWRkoTzBw&s',
     'title': 'Cashmere-Blend Opaque',
     'price': '\$95.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn2UAV4p_i3SfesWzc3xk5CslMyTSvUSitDA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn2UAV4p_i3SfesWzc3xk5CslMyTSvUSitDA&s',
     'title': 'Sheer-to-Waist Invisible',
     'price': '\$28.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUgmNcG54zukxGmvdB94FAhv5eXlUYjLDpQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUgmNcG54zukxGmvdB94FAhv5eXlUYjLDpQ&s',
     'title': 'Glitter Lurex Party Tights',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE3PWyGb9EcGokGnmX3tQSflFaFA3Acj29OA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE3PWyGb9EcGokGnmX3tQSflFaFA3Acj29OA&s',
     'title': 'Velvet Touch Soft Opaque',
     'price': '\$40.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCS3RYPyWsaVzFg41E3LlPZlyYW0Fo7UXGjA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCS3RYPyWsaVzFg41E3LlPZlyYW0Fo7UXGjA&s',
     'title': 'Compression Energizing 40D',
     'price': '\$65.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDr7BW93rSgN1ax44nf2CT-qPpo34c6RPIKw&s',
     'title': 'Open-Toe Sandal Tights',
     'price': '\$34.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHlK0crDuV8tXFTqmoqCBWfO90WBRDLv5Ttg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHlK0crDuV8tXFTqmoqCBWfO90WBRDLv5Ttg&s',
     'title': 'Geometric Jacquard Knit',
     'price': '\$72.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTORawDbPGzTL8ZJ7Rtsci9MBwyinhg_ifRJg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTORawDbPGzTL8ZJ7Rtsci9MBwyinhg_ifRJg&s',
     'title': 'Maternity Over-Belly Support',
     'price': '\$46.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR3Aq79R6L9vQLvcLd8Tp6Z7CxoLJUOpht2Q&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR3Aq79R6L9vQLvcLd8Tp6Z7CxoLJUOpht2Q&s',
     'title': 'Vertical Stripe Slimming',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRia7_LqlJRMoo2P5mMvTuSDN4rDuTbCN0YjQ&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRia7_LqlJRMoo2P5mMvTuSDN4rDuTbCN0YjQ&s',
     'title': 'Leopard Print Sheer Mesh',
     'price': '\$49.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP_DshElDeVpbPEtoorfWNrbDacCaXVy5tWg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP_DshElDeVpbPEtoorfWNrbDacCaXVy5tWg&s',
     'title': 'Supportive Shaping Tights',
     'price': '\$54.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA_NQH4AoxFHrSaQgsbVS4nCp6F4eCZq7t1Q&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA_NQH4AoxFHrSaQgsbVS4nCp6F4eCZq7t1Q&s',
     'title': 'Star Motif Mesh Hosiery',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuaHyFGJAwfpfVjmwf3nWid1fHU78uBYddCg&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuaHyFGJAwfpfVjmwf3nWid1fHU78uBYddCg&s',
     'title': 'Luxury Ribbed Wool Tights',
     'price': '\$88.00',
   },
@@ -15273,43 +17226,43 @@ final List<Map<String, String>> tightsProducts = [
 final List<Map<String, String>> discoverProducts = [
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/ec/ecf7e1a79f4558e5f4b8092fa1dfd68e77bfe748.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/ec/ecf7e1a79f4558e5f4b8092fa1dfd68e77bfe748.jpg',
     'title': 'Premium Cotton Set',
     'price': '\$125.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/eb/eb691971411ce2437ef6073eb145ddf926fbf583.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/eb/eb691971411ce2437ef6073eb145ddf926fbf583.jpg',
     'title': 'Minimalist Accessories',
     'price': '\$32.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/db/db8630ab87f0920df970ae0224c46c36388b80a5.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/db/db8630ab87f0920df970ae0224c46c36388b80a5.jpg',
     'title': 'Wedding Party Team Bride Robe',
     'price': '\$17.00',
   },
   {
     'image':
-    'https://s5.kh1.co/__image/w=300,h=300,fit=contain/fe/fe23e8811e1c2ae557265f17cbe27df37da97de5.jpeg',
+        'https://s5.kh1.co/__image/w=300,h=300,fit=contain/fe/fe23e8811e1c2ae557265f17cbe27df37da97de5.jpeg',
     'title': 'Silver Skeleton Mechanical',
     'price': '\$1,200.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/86/86eac7ba5aa077111de7738d482680c5dc613ee4.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/86/86eac7ba5aa077111de7738d482680c5dc613ee4.jpg',
     'title': 'Minimalist Slate Gray Knit Runner',
     'price': '\$195.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJCYk-F0PLX4-k78LJk-KTuysRhgl356ZnmA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJCYk-F0PLX4-k78LJk-KTuysRhgl356ZnmA&s',
     'title': '18K Gold Zip Compression Jacket',
     'price': '\$245.00',
   },
   {
     'image':
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuoQk7uISGDXDTMkUjhuq5xk8tWSpcKfqlHA&s',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuoQk7uISGDXDTMkUjhuq5xk8tWSpcKfqlHA&s',
     'title': 'Champagne Gold Metallic Espadrille',
     'price': '\$165.00',
   },
@@ -15924,7 +17877,7 @@ final List<String> recentlyViewedImages = [
 final List<Map<String, String?>> wishlistItems = [
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S1a869742d52243dfa4dbf7f4e603fae5h.png',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S1a869742d52243dfa4dbf7f4e603fae5h.png',
     'title': 'Wedding Party Team Bride Robe',
     'price': '\$17.00',
     'oldPrice': null,
@@ -15933,7 +17886,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/87/87d47a0e3b5c6ea5cbd94181c7a15655344e595a.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/87/87d47a0e3b5c6ea5cbd94181c7a15655344e595a.jpg',
     'title': 'Casual Charcoal Hoodie - Premium',
     'price': '\$12.00',
     'oldPrice': '\$17.00',
@@ -15942,7 +17895,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/af/afff7840be964605c15b9d48c9200076df5b99f3.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/af/afff7840be964605c15b9d48c9200076df5b99f3.jpg',
     'title': 'Vintage Leather Square Bag',
     'price': '\$27.00',
     'oldPrice': null,
@@ -15951,7 +17904,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s4.kh1.co/__image/w=300,h=300,fit=contain/28/28de42d0d85feea0627f8753f50963e72d20b35f.jpg',
+        'https://s4.kh1.co/__image/w=300,h=300,fit=contain/28/28de42d0d85feea0627f8753f50963e72d20b35f.jpg',
     'title': 'Chain Strap Crossbody Bag',
     'price': '\$19.00',
     'oldPrice': '\$25.00',
@@ -15960,7 +17913,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/d5/d56601a3359bfb8c944f8dd66b83253afb247e81.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/d5/d56601a3359bfb8c944f8dd66b83253afb247e81.jpg',
     'title': 'Essential Black Joggers',
     'price': '\$36.45',
     'oldPrice': null,
@@ -15969,7 +17922,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/21/21008c04a2e9081b538392aceaabc80fad63bcba.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/21/21008c04a2e9081b538392aceaabc80fad63bcba.jpg',
     'title': 'Cotton Cargo Shorts',
     'price': '\$25.10',
     'oldPrice': '\$29.00',
@@ -15978,7 +17931,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/f3/f360a2e86a8978589e896285d816bcd0f2e8a1ff.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/f3/f360a2e86a8978589e896285d816bcd0f2e8a1ff.jpg',
     'title': 'Minimalist Gold Watch',
     'price': '\$45.00',
     'oldPrice': '\$60.00',
@@ -15987,7 +17940,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a6/a623be1d08e6dec490b7f46ec959202010ac401e.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/a6/a623be1d08e6dec490b7f46ec959202010ac401e.jpg',
     'title': 'Oversized Red Graphic Tee',
     'price': '\$20.00',
     'oldPrice': null,
@@ -15996,7 +17949,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/4c/4c60e1688450b99c730cf3b151d68da74e8c34c9.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/4c/4c60e1688450b99c730cf3b151d68da74e8c34c9.jpg',
     'title': 'Techwear Messenger Bag',
     'price': '\$32.50',
     'oldPrice': '\$45.00',
@@ -16005,7 +17958,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/73/73b351578f94f096d86bfc00e4e32947814e18dd.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/73/73b351578f94f096d86bfc00e4e32947814e18dd.jpg',
     'title': 'Urban High-Top Sneakers',
     'price': '\$55.00',
     'oldPrice': '\$80.00',
@@ -16014,7 +17967,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sdb9911a5d7504306af11de77788562f7k.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sdb9911a5d7504306af11de77788562f7k.jpg',
     'title': 'High-Waisted Bootcut Leggings',
     'price': '\$14.60',
     'oldPrice': null,
@@ -16023,7 +17976,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c0/c0047daa96ef21ce47110d5e6f80ad24f485d625.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c0/c0047daa96ef21ce47110d5e6f80ad24f485d625.jpg',
     'title': 'Puffer Winter Vest',
     'price': '\$38.00',
     'oldPrice': '\$55.00',
@@ -16032,7 +17985,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/13/13f886b85adc20171b125260a9a5dfa0a3ad9b2f.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/13/13f886b85adc20171b125260a9a5dfa0a3ad9b2f.png',
     'title': 'Matte Finish Shoulder Bag',
     'price': '\$22.00',
     'oldPrice': null,
@@ -16041,7 +17994,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S0c3acb43cd114629a09d36959d86c4f7s.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S0c3acb43cd114629a09d36959d86c4f7s.jpg',
     'title': 'Seamless Push Up Bralette',
     'price': '\$10.50',
     'oldPrice': '\$15.00',
@@ -16050,7 +18003,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/76/764e11f27034363517f1066cbaad6492f241215d.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/76/764e11f27034363517f1066cbaad6492f241215d.png',
     'title': 'Active Sport Waist Pack',
     'price': '\$15.00',
     'oldPrice': null,
@@ -16059,7 +18012,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/db/db081455a07d20f6edab5d5547b42d8bd809334d.png',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/db/db081455a07d20f6edab5d5547b42d8bd809334d.png',
     'title': 'Transparent Jelly Handbag',
     'price': '\$12.40',
     'oldPrice': '\$20.00',
@@ -16068,7 +18021,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S1d31e48be0ea48a195a58912b4f7dd738.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S1d31e48be0ea48a195a58912b4f7dd738.jpg',
     'title': 'Hip Hop Embroidered Jeans',
     'price': '\$42.00',
     'oldPrice': '\$60.00',
@@ -16077,7 +18030,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s6.kh1.co/__image/w=300,h=300,fit=contain/4a/4aed5f86d1881735758ded1874e17a5dc41edafd.jpg',
+        'https://s6.kh1.co/__image/w=300,h=300,fit=contain/4a/4aed5f86d1881735758ded1874e17a5dc41edafd.jpg',
     'title': 'Chic Office Leather Briefcase',
     'price': '\$65.00',
     'oldPrice': null,
@@ -16086,7 +18039,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S590b794c142b463b8af0442ad261ac52m.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S590b794c142b463b8af0442ad261ac52m.jpg',
     'title': 'V-Neck Chiffon Blouse',
     'price': '\$18.50',
     'oldPrice': '\$24.00',
@@ -16095,7 +18048,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c4/c4d1b1e986eb0c73b7cd793eb2adb909e548f410.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/c4/c4d1b1e986eb0c73b7cd793eb2adb909e548f410.jpg',
     'title': 'Envelope Style Evening Clutch',
     'price': '\$14.00',
     'oldPrice': null,
@@ -16104,7 +18057,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S312a45d225774c309eb6b9624f852648q.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S312a45d225774c309eb6b9624f852648q.jpg',
     'title': 'Velvet Tracksuit Set',
     'price': '\$48.00',
     'oldPrice': '\$70.00',
@@ -16113,7 +18066,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=300,h=300,fit=contain/0f/0f6387f143767888f45e7c034d3dc0b9cfe3ebc8.jpg',
+        'https://s9.kh1.co/__image/w=300,h=300,fit=contain/0f/0f6387f143767888f45e7c034d3dc0b9cfe3ebc8.jpg',
     'title': 'Classic Black Leather Clutch',
     'price': '\$20.00',
     'oldPrice': null,
@@ -16122,7 +18075,7 @@ final List<Map<String, String?>> wishlistItems = [
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sef81a1a576814a259575a3a77b482b80E.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sef81a1a576814a259575a3a77b482b80E.jpg',
     'title': 'Gothic Skeleton Print Shirt',
     'price': '\$26.00',
     'oldPrice': '\$35.00',
@@ -16133,181 +18086,181 @@ final List<Map<String, String?>> wishlistItems = [
 final List<Map<String, String>> products = [
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/87/87d47a0e3b5c6ea5cbd94181c7a15655344e595a.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/87/87d47a0e3b5c6ea5cbd94181c7a15655344e595a.jpg',
     'title': 'Casual Charcoal Hoodie - Premium Cotton',
     'price': '\$18.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/f3/f360a2e86a8978589e896285d816bcd0f2e8a1ff.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/f3/f360a2e86a8978589e896285d816bcd0f2e8a1ff.jpg',
     'title': 'Minimalist Gold Watch with Leather Strap',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://s4.kh1.co/__image/w=600,h=600,fit=cover/28/28de42d0d85feea0627f8753f50963e72d20b35f.jpg',
+        'https://s4.kh1.co/__image/w=600,h=600,fit=cover/28/28de42d0d85feea0627f8753f50963e72d20b35f.jpg',
     'title': 'Chain Strap Crossbody Bag - Pink Edition',
     'price': '\$19.50',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/af/afff7840be964605c15b9d48c9200076df5b99f3.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/af/afff7840be964605c15b9d48c9200076df5b99f3.jpg',
     'title': 'Vintage Leather Square Satchel',
     'price': '\$27.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/d5/d56601a3359bfb8c944f8dd66b83253afb247e81.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/d5/d56601a3359bfb8c944f8dd66b83253afb247e81.jpg',
     'title': 'Urban Essential Joggers in Matte Black',
     'price': '\$36.45',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/21/21008c04a2e9081b538392aceaabc80fad63bcba.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/21/21008c04a2e9081b538392aceaabc80fad63bcba.jpg',
     'title': 'Summer Cotton Cargo Shorts',
     'price': '\$25.10',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/a6/a623be1d08e6dec490b7f46ec959202010ac401e.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/a6/a623be1d08e6dec490b7f46ec959202010ac401e.jpg',
     'title': 'Oversized Graphic Tee - Streetwear Collection',
     'price': '\$20.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/4c/4c60e1688450b99c730cf3b151d68da74e8c34c9.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/4c/4c60e1688450b99c730cf3b151d68da74e8c34c9.jpg',
     'title': 'Mini Travel Messenger Pouch',
     'price': '\$12.50',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/0f/0f6387f143767888f45e7c034d3dc0b9cfe3ebc8.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/0f/0f6387f143767888f45e7c034d3dc0b9cfe3ebc8.jpg',
     'title': 'Classic Evening Clutch Bag',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/61/6158c277519ff40c66ac51458bf1fba8b66db39b.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/61/6158c277519ff40c66ac51458bf1fba8b66db39b.jpg',
     'title': 'Retro Shoulder Bag with Gold Chain',
     'price': '\$18.00',
   },
   {
     'image':
-    'https://s4.kh1.co/__image/w=600,h=600,fit=cover/b1/b12d44ef57addd48f3e5c8d2d3e6e02286ab35ae.jpg',
+        'https://s4.kh1.co/__image/w=600,h=600,fit=cover/b1/b12d44ef57addd48f3e5c8d2d3e6e02286ab35ae.jpg',
     'title': 'Quilted Designer Handbag',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/6f/6f12718f87a36476f702d3598f6f402ed0a1c9fc.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/6f/6f12718f87a36476f702d3598f6f402ed0a1c9fc.jpg',
     'title': 'Soft Suede Square Messenger',
     'price': '\$29.90',
   },
   {
     'image':
-    'https://s9.kh1.co/__image/w=600,h=600,fit=cover/21/21b47b4f2d8f203659fe614c575c79c785cc7160.jpg',
+        'https://s9.kh1.co/__image/w=600,h=600,fit=cover/21/21b47b4f2d8f203659fe614c575c79c785cc7160.jpg',
     'title': 'Minimalist Cotton Tote Bag',
     'price': '\$14.00',
   },
   {
     'image':
-    'https://s5.kh1.co/__image/w=600,h=600,fit=cover/44/4464a3d985133eb5446b1e55c70554447fa29e92.jpg',
+        'https://s5.kh1.co/__image/w=600,h=600,fit=cover/44/4464a3d985133eb5446b1e55c70554447fa29e92.jpg',
     'title': 'Urban Commuter Laptop Bag',
     'price': '\$45.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sdb9911a5d7504306af11de77788562f7k.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sdb9911a5d7504306af11de77788562f7k.jpg',
     'title': 'High-Waist Comfort Leggings',
     'price': '\$15.60',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S1a869742d52243dfa4dbf7f4e603fae5h.png',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S1a869742d52243dfa4dbf7f4e603fae5h.png',
     'title': 'Silk Satin Kimono Robe',
     'price': '\$24.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S0c3acb43cd114629a09d36959d86c4f7s.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S0c3acb43cd114629a09d36959d86c4f7s.jpg',
     'title': 'Seamless Comfort Wireless Bra',
     'price': '\$11.20',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sc004bde2b5c44a76aafd03cab7b34c8bN.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sc004bde2b5c44a76aafd03cab7b34c8bN.jpg',
     'title': 'Baggy Fit Hip-Hop Jeans',
     'price': '\$38.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S1d31e48be0ea48a195a58912b4f7dd738.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S1d31e48be0ea48a195a58912b4f7dd738.jpg',
     'title': 'Streetwear Letter Embroidered Jeans',
     'price': '\$42.50',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S590b794c142b463b8af0442ad261ac52m.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S590b794c142b463b8af0442ad261ac52m.jpg',
     'title': 'Deep V-Neck Chiffon Blouse',
     'price': '\$19.80',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S312a45d225774c309eb6b9624f852648q.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S312a45d225774c309eb6b9624f852648q.jpg',
     'title': 'Velvet Two-Piece Tracksuit Set',
     'price': '\$52.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S9d3501271ef64f4388ea8e8bfc3c41e5m.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S9d3501271ef64f4388ea8e8bfc3c41e5m.jpg',
     'title': 'Casual Bomber Baseball Jacket',
     'price': '\$48.30',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Se3e03ed2380a46e3818efcae336d1f3bN.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Se3e03ed2380a46e3818efcae336d1f3bN.jpg',
     'title': 'Vintage Fashion Cotton Tee',
     'price': '\$14.50',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S790bec3ca5a746448c16167773c594e9d.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S790bec3ca5a746448c16167773c594e9d.jpg',
     'title': 'Retro Loose Fit Windbreaker',
     'price': '\$35.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sef81a1a576814a259575a3a77b482b80E.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sef81a1a576814a259575a3a77b482b80E.jpg',
     'title': 'Gothic Style Skull Printed Shirt',
     'price': '\$22.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S9f6436f2f47f4e2ca7fe8a7620e53276O.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S9f6436f2f47f4e2ca7fe8a7620e53276O.jpg',
     'title': 'American Flag Splicing Hoodie',
     'price': '\$26.40',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sba787f6f4707478c892d692415605f80Q.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sba787f6f4707478c892d692415605f80Q.jpg',
     'title': 'Sexy Boho Maxi Skirt',
     'price': '\$21.00',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/S824b58ab7b31466e83d3dac2427fb17fl.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/S824b58ab7b31466e83d3dac2427fb17fl.jpg',
     'title': 'Summer Holiday Cropped Vest',
     'price': '\$13.20',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Sf6f99f33ef1747759fbcb1608b22a122K.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Sf6f99f33ef1747759fbcb1608b22a122K.jpg',
     'title': 'Lolita Style Plaid Mini Skirt',
     'price': '\$18.50',
   },
   {
     'image':
-    'https://ae-pic-a1.aliexpress-media.com/kf/Scade083ab1be48feafc1e9be91257075a.jpg',
+        'https://ae-pic-a1.aliexpress-media.com/kf/Scade083ab1be48feafc1e9be91257075a.jpg',
     'title': 'Harajuku Hip Hop Letter Jeans',
     'price': '\$39.00',
   },
@@ -16328,7 +18281,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '12',
     'reviews': '5',
     'description':
-    'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.',
+        'A high-performance dive watch with a bold aesthetic, combining Swiss craftsmanship with contemporary design.',
   },
   {
     'images': [
@@ -16344,7 +18297,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '28',
     'reviews': '15',
     'description':
-    'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
+        'Timeless elegance meets precision engineering. Features a stainless steel case and sapphire crystal.',
   },
   {
     'images': [
@@ -16358,7 +18311,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '45',
     'reviews': '20',
     'description':
-    'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
+        'Sleek and stealthy. This all-black watch is perfect for both formal events and everyday luxury.',
   },
 
   {
@@ -16373,7 +18326,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '104',
     'reviews': '42',
     'description':
-    'Handcrafted from full-grain Italian leather, designed for the modern professional.',
+        'Handcrafted from full-grain Italian leather, designed for the modern professional.',
   },
   {
     'images': [
@@ -16389,7 +18342,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '312',
     'reviews': '88',
     'description':
-    'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
+        'Polarized lenses with a premium gold-toned frame. Elevate your summer style.',
   },
   {
     'images': [
@@ -16403,7 +18356,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '850',
     'reviews': '156',
     'description':
-    'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
+        'Ultra-lightweight and RFID blocking. The ultimate minimalist accessory.',
   },
 
   {
@@ -16418,7 +18371,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '15',
     'reviews': '4',
     'description':
-    'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
+        'Unparalleled warmth and softness. Made from 100% pure Himalayan cashmere.',
   },
   {
     'images': [
@@ -16432,7 +18385,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '8',
     'reviews': '2',
     'description':
-    'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
+        'Tailored to perfection. A masterpiece of sartorial elegance for gala events.',
   },
   {
     'images': [
@@ -16446,7 +18399,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '34',
     'reviews': '12',
     'description':
-    'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
+        'Striking color and luxurious texture. Features a comfortable 85mm stiletto heel.',
   },
   {
     'images': [
@@ -16460,7 +18413,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '56',
     'reviews': '24',
     'description':
-    'Studio-grade sound quality with genuine leather earcups and gold accents.',
+        'Studio-grade sound quality with genuine leather earcups and gold accents.',
   },
   {
     'images': [
@@ -16474,7 +18427,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '210',
     'reviews': '45',
     'description':
-    'Infused with rare essential oils of sandalwood and jasmine.',
+        'Infused with rare essential oils of sandalwood and jasmine.',
   },
   {
     'images': [
@@ -16488,7 +18441,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '180',
     'reviews': '62',
     'description':
-    'Precision switches with customizable RGB lighting and premium aluminum body.',
+        'Precision switches with customizable RGB lighting and premium aluminum body.',
   },
   {
     'images': [
@@ -16503,7 +18456,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '420',
     'reviews': '95',
     'description':
-    'Health tracking meets high fashion. Water-resistant with a 5-day battery life.',
+        'Health tracking meets high fashion. Water-resistant with a 5-day battery life.',
   },
   {
     'images': [
@@ -16518,7 +18471,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '540',
     'reviews': '112',
     'description':
-    'Lightweight and breathable. Perfect for the stylish city dweller.',
+        'Lightweight and breathable. Perfect for the stylish city dweller.',
   },
   {
     'images': [
@@ -16535,7 +18488,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '89',
     'reviews': '31',
     'description':
-    'Crafted with a 14k gold nib for an exceptionally smooth writing experience.',
+        'Crafted with a 14k gold nib for an exceptionally smooth writing experience.',
   },
   {
     'images': [
@@ -16551,7 +18504,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '63',
     'reviews': '18',
     'description':
-    'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
+        'Store up to 6 watches in style. Soft velvet lining to prevent scratches.',
   },
   {
     'images': [
@@ -16566,7 +18519,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '230',
     'reviews': '55',
     'description':
-    'Non-slip grip with high-density cushioning for ultimate joint support.',
+        'Non-slip grip with high-density cushioning for ultimate joint support.',
   },
   {
     'images': [
@@ -16582,7 +18535,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '41',
     'reviews': '14',
     'description':
-    'A unique piece of home decor, individually signed by the artist.',
+        'A unique piece of home decor, individually signed by the artist.',
   },
   {
     'images': [
@@ -16597,7 +18550,7 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '612',
     'reviews': '145',
     'description':
-    'The icon of eyewear. Always in style, no matter the decade.',
+        'The icon of eyewear. Always in style, no matter the decade.',
   },
   {
     'images': [
@@ -16610,85 +18563,85 @@ final List<Map<String, dynamic>> justForYouData = [
     'sold': '1.2k',
     'reviews': '340',
     'description':
-    'Beauty sleep starts here. Reduces hair frizz and skin irritation.',
+        'Beauty sleep starts here. Reduces hair frizz and skin irritation.',
   },
 ];
 final List<Map<String, String>> popularItems = [
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1767032145/852456_XKFCZ_9232_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1767032145/852456_XKFCZ_9232_001_100_0000_Light.jpg',
     'likes': '1340',
     'tag': 'New',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1768842906/846682_ZARWY_1000_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1768842906/846682_ZARWY_1000_001_100_0000_Light.jpg',
     'likes': '180',
     'tag': 'Sale',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1766079955/855764_ZAUDP_2206_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1766079955/855764_ZAUDP_2206_001_100_0000_Light.jpg',
     'likes': '19980',
     'tag': 'Hot',
   },
   {
     'image':
-    'https://media.gucci.com/style/White_Center_0_0_150x150/1758188707/793883_XKFA8_4215_001_100_0000_Light-extra-fine-wool-polo-top.jpg',
+        'https://media.gucci.com/style/White_Center_0_0_150x150/1758188707/793883_XKFA8_4215_001_100_0000_Light-extra-fine-wool-polo-top.jpg',
     'likes': '4780',
     'tag': 'New',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1774634437/875482_ZAPE4_1000_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1774634437/875482_ZAPE4_1000_001_100_0000_Light.jpg',
     'likes': '2105',
     'tag': 'Hot',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1633472110/546551_HVKI0_9765_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1633472110/546551_HVKI0_9765_001_100_0000_Light.jpg',
     'likes': '940',
     'tag': 'Sale',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1751905834/838999_FAD6L_9758_001_066_0064_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1751905834/838999_FAD6L_9758_001_066_0064_Light.jpg',
     'likes': '3200',
     'tag': 'New',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1768587304/855879_ZAUGG_9669_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1768587304/855879_ZAUGG_9669_001_100_0000_Light.jpg',
     'likes': '15600',
     'tag': 'Hot',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1760978772/854520_ZAUO0_4031_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1760978772/854520_ZAUO0_4031_001_100_0000_Light.jpg',
     'likes': '430',
     'tag': 'Sale',
   },
   {
     'image':
-    'https://media.gucci.com/style/White_Center_0_0_150x150/1763660711/847946_XJHK0_1043_001_100_0000_Light-heavy-cotton-rib-tank-top.jpg',
+        'https://media.gucci.com/style/White_Center_0_0_150x150/1763660711/847946_XJHK0_1043_001_100_0000_Light-heavy-cotton-rib-tank-top.jpg',
     'likes': '890',
     'tag': 'New',
   },
   {
     'image':
-    'https://media.gucci.com/style/White_Center_0_0_150x150/1758643213/770072_XKEBC_3035_001_100_0000_Light-wool-top-with-gucci-intarsia.jpg',
+        'https://media.gucci.com/style/White_Center_0_0_150x150/1758643213/770072_XKEBC_3035_001_100_0000_Light-wool-top-with-gucci-intarsia.jpg',
     'likes': '3300',
     'tag': 'New',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1761552017/828685_XKEVK_1043_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1761552017/828685_XKEVK_1043_001_100_0000_Light.jpg',
     'likes': '1450',
     'tag': 'Sale',
   },
   {
     'image':
-    'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1758094207/820703_XKEO6_4335_001_100_0000_Light.jpg',
+        'https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1758094207/820703_XKEO6_4335_001_100_0000_Light.jpg',
     'likes': '22000',
     'tag': 'Hot',
   },
@@ -16707,7 +18660,7 @@ final List<String> flashSaleImages = [
 final List<Map<String, String>> bannerData = [
   {
     "image":
-    "https://s.yimg.com/os/en/techcrunch_for_finance_733/64a705a38c5682a102e5ab03f81ddc06",
+        "https://s.yimg.com/os/en/techcrunch_for_finance_733/64a705a38c5682a102e5ab03f81ddc06",
     "title": "Big Sale",
     "subtitle": "Up to 50%",
     "desc": "Happening\nNow",
@@ -16720,84 +18673,84 @@ final List<Map<String, String>> bannerData = [
   },
   {
     "image":
-    "https://imageio.forbes.com/specials-images/imageserve/6836e5c7af8d00262e9d0c86/Virtual-try-on-app-Doji-recently-announced-a--14-million-investment/0x0.png?height=460&width=480&fit=bounds",
+        "https://imageio.forbes.com/specials-images/imageserve/6836e5c7af8d00262e9d0c86/Virtual-try-on-app-Doji-recently-announced-a--14-million-investment/0x0.png?height=460&width=480&fit=bounds",
     "title": "New Arrival",
     "subtitle": "Spring Collection",
     "desc": "Check\nOut",
   },
   {
     "image":
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiW9fuhDU2MPSwyadzQm0S_jn0pd1dbQrZ4g&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiW9fuhDU2MPSwyadzQm0S_jn0pd1dbQrZ4g&s",
     "title": "Office Gear",
     "subtitle": "Get Organized",
     "desc": "Shop\nEssentials",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/1020760808/photo/woman-holding-fancy-shopping-bags-on-purple-background-with-copy-space.jpg?s=612x612&w=0&k=20&c=29ZRlynTKhV1tJdP9tS5vRyLrcIFiPnK4OiOvWDO074=",
+        "https://media.gettyimages.com/id/1020760808/photo/woman-holding-fancy-shopping-bags-on-purple-background-with-copy-space.jpg?s=612x612&w=0&k=20&c=29ZRlynTKhV1tJdP9tS5vRyLrcIFiPnK4OiOvWDO074=",
     "title": "FLASH SALE",
     "subtitle": "Up to 70% Off",
     "desc": "Limited\nTime",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/108273455/photo/envy.jpg?s=612x612&w=0&k=20&c=UDQpcGpALEvUpVvK3KaElnUya1PNDNkhrOJ0WS-2t5g=",
+        "https://media.gettyimages.com/id/108273455/photo/envy.jpg?s=612x612&w=0&k=20&c=UDQpcGpALEvUpVvK3KaElnUya1PNDNkhrOJ0WS-2t5g=",
     "title": "NEW ARRIVALS",
     "subtitle": "Summer Collection",
     "desc": "Shop\nNow",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/453468627/photo/street-style-fashion.jpg?s=612x612&w=0&k=20&c=VU_wIgJel3F03tsaKgPQo1ahzAu4EWRQQys28z8eJpU=",
+        "https://media.gettyimages.com/id/453468627/photo/street-style-fashion.jpg?s=612x612&w=0&k=20&c=VU_wIgJel3F03tsaKgPQo1ahzAu4EWRQQys28z8eJpU=",
     "title": "WEEKEND DEAL",
     "subtitle": "All Accessories",
     "desc": "Save\nBig",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/2218967505/photo/fashion-model-trying-on-clothes-summer-wardrobe.jpg?s=612x612&w=0&k=20&c=QyjhObUy__yJXhw8RBD_ZBA6l-Rn3d2AIhY84A-mVFA=",
+        "https://media.gettyimages.com/id/2218967505/photo/fashion-model-trying-on-clothes-summer-wardrobe.jpg?s=612x612&w=0&k=20&c=QyjhObUy__yJXhw8RBD_ZBA6l-Rn3d2AIhY84A-mVFA=",
     "title": "STYLE WEEK",
     "subtitle": "Men's Urban Wear",
     "desc": "Trend\nAlert",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/136939782/photo/fashion-dummies.jpg?s=612x612&w=0&k=20&c=oDICWr76Eg0LFzWj4bSZQ8bluk4nDnLA9CmHPUK9Qt8=",
+        "https://media.gettyimages.com/id/136939782/photo/fashion-dummies.jpg?s=612x612&w=0&k=20&c=oDICWr76Eg0LFzWj4bSZQ8bluk4nDnLA9CmHPUK9Qt8=",
     "title": "UP TO 50%",
     "subtitle": "Bags & Shoes",
     "desc": "Exclusive\nOffer",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/1744124538/photo/woman-purchasing-clothes-on-a-mobile-app.jpg?s=612x612&w=0&k=20&c=C-ccL9y2EXjccqQDSnYrCP56qtm0c9dbxCo1C-Gp3cM=",
+        "https://media.gettyimages.com/id/1744124538/photo/woman-purchasing-clothes-on-a-mobile-app.jpg?s=612x612&w=0&k=20&c=C-ccL9y2EXjccqQDSnYrCP56qtm0c9dbxCo1C-Gp3cM=",
     "title": "TECH DEALS",
     "subtitle": "Phones & Gadgets",
     "desc": "Best\nPrice",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/2166504753/photo/mom-helping-her-child-put-on-the-shoes-of-her-choice-back-to-school.jpg?s=612x612&w=0&k=20&c=Q4CeN5A7D_IYv27gW9uha0IfY7nKsRx5fZumeeaXg2c=",
+        "https://media.gettyimages.com/id/2166504753/photo/mom-helping-her-child-put-on-the-shoes-of-her-choice-back-to-school.jpg?s=612x612&w=0&k=20&c=Q4CeN5A7D_IYv27gW9uha0IfY7nKsRx5fZumeeaXg2c=",
     "title": "KIDS WORLD",
     "subtitle": "Back to School",
     "desc": "Early\nAccess",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/1387702890/photo/senior-customer-choosing-expensive-wristwatch.jpg?s=612x612&w=0&k=20&c=kp58KCpcQxGPdNOYDRFNkC94qaSemyxm-bUp7Z7oWdc=",
+        "https://media.gettyimages.com/id/1387702890/photo/senior-customer-choosing-expensive-wristwatch.jpg?s=612x612&w=0&k=20&c=kp58KCpcQxGPdNOYDRFNkC94qaSemyxm-bUp7Z7oWdc=",
     "title": "LUXURY",
     "subtitle": "Jewelry & Watches",
     "desc": "Precious\nGift",
   },
   {
     "image":
-    "https://media.gettyimages.com/id/2240427065/photo/a-young-makeup-artist-puts-lipstick-on-her-lips-and-chooses-cosmetics-at-a-cosmetics-store-in.jpg?s=612x612&w=0&k=20&c=qKGrJlTd0IOrZ2cgDLFfRxK73NmOX5fRRsAJVNonWQQ=",
+        "https://media.gettyimages.com/id/2240427065/photo/a-young-makeup-artist-puts-lipstick-on-her-lips-and-chooses-cosmetics-at-a-cosmetics-store-in.jpg?s=612x612&w=0&k=20&c=qKGrJlTd0IOrZ2cgDLFfRxK73NmOX5fRRsAJVNonWQQ=",
     "title": "BEAUTY",
     "subtitle": "Makeup & Skincare",
     "desc": "Glow\nToday",
   },
   {
     "image":
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnmmm-HsTCGV9eYMotx9BHdf8YB-qfLI58AQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnmmm-HsTCGV9eYMotx9BHdf8YB-qfLI58AQ&s",
     "title": "HOME DECOR",
     "subtitle": "Modern Interior",
     "desc": "Upgrade\nLife",
@@ -16828,7 +18781,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "5.2k",
     "description":
-    "The 1st Dior lip balm formulated with 97% natural-origin ingredients that subtly revives the natural color of lips.",
+        "The 1st Dior lip balm formulated with 97% natural-origin ingredients that subtly revives the natural color of lips.",
   },
   {
     "images": [
@@ -16845,7 +18798,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.8",
     "sold": "2.1k",
     "description":
-    "A fresh, lightweight formula that creates a natural-looking healthy glow by providing a revitalized feeling.",
+        "A fresh, lightweight formula that creates a natural-looking healthy glow by providing a revitalized feeling.",
   },
   {
     "images": [
@@ -16864,7 +18817,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "5.0",
     "sold": "10k+",
     "description":
-    "Our #1 serum to help skin maximize its natural rhythm of repair and protection.",
+        "Our #1 serum to help skin maximize its natural rhythm of repair and protection.",
   },
   {
     "images": [
@@ -16877,7 +18830,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.7",
     "sold": "3.8k",
     "description":
-    "The iconic gold pen concealer that instantly brightens, smooths and perfects your complexion.",
+        "The iconic gold pen concealer that instantly brightens, smooths and perfects your complexion.",
   },
   {
     "images": [
@@ -16895,7 +18848,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "4.5k",
     "description":
-    "An award-winning moisturizer that floods your skin with moisture for a glowing, plumper-looking canvas.",
+        "An award-winning moisturizer that floods your skin with moisture for a glowing, plumper-looking canvas.",
   },
   {
     "images": [
@@ -16911,7 +18864,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.6",
     "sold": "1.5k",
     "description":
-    "The moisturizer that started it all. This luxuriously rich cream helps heal dryness.",
+        "The moisturizer that started it all. This luxuriously rich cream helps heal dryness.",
   },
   {
     "images": [
@@ -16927,7 +18880,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.8",
     "sold": "950",
     "description":
-    "The centerpiece of the Tom Ford Color collection. Four opulent, coordinating shades.",
+        "The centerpiece of the Tom Ford Color collection. Four opulent, coordinating shades.",
   },
   {
     "images": [
@@ -16944,7 +18897,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.7",
     "sold": "1.2k",
     "description":
-    "Stardust technology transforms light invisible to the naked eye into a pure, ideal glow on the skin.",
+        "Stardust technology transforms light invisible to the naked eye into a pure, ideal glow on the skin.",
   },
   {
     "images": [
@@ -16959,7 +18912,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "2.8k",
     "description":
-    "Our #1 anti-aging serum gets even stronger with an innovative double anti-aging technology.",
+        "Our #1 anti-aging serum gets even stronger with an innovative double anti-aging technology.",
   },
   {
     "images": [
@@ -16972,7 +18925,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "6.5k",
     "description":
-    "An award-winning oil-free foundation that delivers buildable medium coverage and a luminous finish.",
+        "An award-winning oil-free foundation that delivers buildable medium coverage and a luminous finish.",
   },
   {
     "images": [
@@ -16988,7 +18941,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.8",
     "sold": "8.1k",
     "description":
-    "The #1 concealer in the U.S. Coveted by artists for its luxurious texture and luminous finish.",
+        "The #1 concealer in the U.S. Coveted by artists for its luxurious texture and luminous finish.",
   },
   {
     "images": [
@@ -17004,7 +18957,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.7",
     "sold": "1.9k",
     "description":
-    "The only loose powder that combines four complementary colors to finish and set makeup.",
+        "The only loose powder that combines four complementary colors to finish and set makeup.",
   },
   {
     "images": [
@@ -17020,7 +18973,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.5",
     "sold": "500",
     "description":
-    "A comfortable, hydrating matte lipstick with a second-skin effect.",
+        "A comfortable, hydrating matte lipstick with a second-skin effect.",
   },
   {
     "images": [
@@ -17036,7 +18989,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.6",
     "sold": "4.2k",
     "description":
-    "A big volume mascara that delivers up to 12x more volume for your boldest lashes yet.",
+        "A big volume mascara that delivers up to 12x more volume for your boldest lashes yet.",
   },
   {
     "images": [
@@ -17049,7 +19002,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "300",
     "description":
-    "Sisley's first facial skin care oil for dry or mature skin to nourish and anti-age.",
+        "Sisley's first facial skin care oil for dry or mature skin to nourish and anti-age.",
   },
   {
     "images": [
@@ -17064,7 +19017,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "5.0",
     "sold": "7.5k",
     "description":
-    "Essentially unchanged for 40 years, our bestseller is essentially a miracle for your skin.",
+        "Essentially unchanged for 40 years, our bestseller is essentially a miracle for your skin.",
   },
   {
     "images": [
@@ -17076,7 +19029,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.8",
     "sold": "2.6k",
     "description":
-    "Multi-functional BB cream with sunscreen for medium coverage and excellent blendability.",
+        "Multi-functional BB cream with sunscreen for medium coverage and excellent blendability.",
   },
   {
     "images": [
@@ -17091,7 +19044,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.7",
     "sold": "1.1k",
     "description":
-    "A richly pigmented lipstick that adorns lips in a lightweight veil of opaque color.",
+        "A richly pigmented lipstick that adorns lips in a lightweight veil of opaque color.",
   },
   {
     "images": [
@@ -17107,7 +19060,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.9",
     "sold": "1.4k",
     "description":
-    "A perennial favorite of makeup artists, this concealer delivers high coverage and a seamless finish.",
+        "A perennial favorite of makeup artists, this concealer delivers high coverage and a seamless finish.",
   },
   {
     "images": [
@@ -17120,7 +19073,7 @@ final List<Map<String, dynamic>> cosmeticsData = [
     "rating": "4.6",
     "sold": "800",
     "description":
-    "A luxurious treatment to keep skin feeling soft and supple while protecting against environmental damage.",
+        "A luxurious treatment to keep skin feeling soft and supple while protecting against environmental damage.",
   },
 ];
 final List<Map<String, dynamic>> birthdayGift = [
@@ -18600,7 +20553,7 @@ List<Map<String, dynamic>> beautyTools = [
     'images': [
       'https://seekbamboo.com/cdn/shop/files/Rose-Quartz-Roller-And-Gua-Sha_9290eb32-b61f-4865-8930-2f47d60eccf1.webp?v=1767801215&width=2048',
       'https://www.getmecraft.com/cdn/shop/files/433c571GETME00000160_1_1436x.jpg?v=1716382819',
-      'https://shopskingear.com/wp-content/uploads/2020/11/model_gua_sha5.jpeg'
+      'https://shopskingear.com/wp-content/uploads/2020/11/model_gua_sha5.jpeg',
     ],
     'title': 'Rose Quartz Gua Sha',
     'price': '\$45',
@@ -18612,7 +20565,7 @@ List<Map<String, dynamic>> beautyTools = [
     'images': [
       'https://img.drz.lazcdn.com/static/bd/p/d64a8890c1fb0a862117ff41e4354c30.jpg_720x720q80.jpg',
       'https://m.media-amazon.com/images/I/61OZkObfsjL._AC_UF1000,1000_QL80_.jpg',
-      'https://m.media-amazon.com/images/I/71byv-hAWZL._AC_UF1000,1000_QL80_.jpg'
+      'https://m.media-amazon.com/images/I/71byv-hAWZL._AC_UF1000,1000_QL80_.jpg',
     ],
     'title': 'Jade Facial Roller',
     'price': '\$38',
@@ -18623,7 +20576,7 @@ List<Map<String, dynamic>> beautyTools = [
   {
     'images': [
       'https://m.media-amazon.com/images/I/71q2h4lA25L._AC_UF894,1000_QL80_.jpg',
-      'https://www.gosupps.com/media/catalog/product/cache/25/image/1500x/040ec09b1e35df139433887a97daa66f/7/1/717yqGwDEvL._AC_SL1500_.jpg'
+      'https://www.gosupps.com/media/catalog/product/cache/25/image/1500x/040ec09b1e35df139433887a97daa66f/7/1/717yqGwDEvL._AC_SL1500_.jpg',
     ],
     'title': 'Ionic Nano Steamer',
     'price': '\$120',
@@ -18635,7 +20588,7 @@ List<Map<String, dynamic>> beautyTools = [
     'images': [
       'https://www.facelandy.com/cdn/shop/products/2AABatterypoweredreplaceablesonicsiliconefacialcleansing_1200x1200.jpg?v=1626944160',
       'https://m.media-amazon.com/images/I/61SRg3rzh5L._AC_UF894,1000_QL80_.jpg',
-      'https://img.drz.lazcdn.com/static/pk/p/d20da44e0fe0cf485d7625273d9b01c6.jpg_720x720q80.jpg'
+      'https://img.drz.lazcdn.com/static/pk/p/d20da44e0fe0cf485d7625273d9b01c6.jpg_720x720q80.jpg',
     ],
     'title': 'Sonic Silicone Cleanser',
     'price': '\$150',
@@ -18647,7 +20600,7 @@ List<Map<String, dynamic>> beautyTools = [
     'images': [
       'https://www.shanidarden.com/cdn/shop/products/SW-PDP-5_900x.jpg?v=1663885428',
       'https://m.media-amazon.com/images/I/81r8sambaDL._AC_UF1000,1000_QL80_.jpg',
-      'https://m.media-amazon.com/images/I/81nA49fxXVL.jpg'
+      'https://m.media-amazon.com/images/I/81nA49fxXVL.jpg',
     ],
     'title': 'Sculpting Face Wand',
     'price': '\$195',
@@ -18659,7 +20612,7 @@ List<Map<String, dynamic>> beautyTools = [
     'images': [
       'https://www.beautypro.com/cdn/shop/files/BEAUTYPRO-PHOTONLEDLIGHTTHERAPYFACIALMASK-GREY-981200-1-Render_1_460x@2x.jpg?v=1764258416',
       'https://m.media-amazon.com/images/I/71p3b-Xgw5L.jpg',
-      'https://m.media-amazon.com/images/I/71NeesBDOwL._AC_UF350,350_QL80_.jpg'
+      'https://m.media-amazon.com/images/I/71NeesBDOwL._AC_UF350,350_QL80_.jpg',
     ],
     'title': 'LED Light Therapy Mask',
     'price': '\$350',

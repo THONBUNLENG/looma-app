@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:shopping_app/constants/app_color.dart';
 import '../../../../main.dart';
 import '../../../../manager/profile_manager.dart';
 import '../../../network/datastor/auth_service.dart';
+import '../../../network/shared_preferences/shared_preferences.dart';
 import '../../../widget/show_dialog.dart';
 import '../../login_screen/login_screen.dart';
 import '../../main_screen/main_holder.dart';
@@ -17,6 +19,7 @@ import '../order/order_screen.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:share_plus/share_plus.dart';
 import 'ai_chat_screen.dart';
+import 'bloc/profile_bloc.dart';
 import 'change_password_screen.dart';
 import 'change_pin_screen.dart';
 import 'edit_profile.dart';
@@ -24,7 +27,6 @@ import 'gift_card_screen.dart';
 import 'membership_qr_screen.dart';
 
 import 'membership_screen.dart';
-import 'souvenir_redemption_screen.dart';
 
 import 'privacy_policy_screen.dart';
 import 'country_selection_screen.dart';
@@ -35,15 +37,27 @@ import '../../../network/datastor/membership_service.dart';
 import '../../../model/order_model.dart';
 import '../../../widget/membership_card.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProfileBloc()..add(LoadProfile()),
+      child: const ProfileView(),
+    );
+  }
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  bool _isLoading = true;
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  bool _isLoadingAuth = true;
   bool _isLoggedIn = false;
   String _selectedCountry = "";
   String _selectedFlag = "";
@@ -56,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _loadCountry() async {
-    final country = await PreferencesManager().setGetString(PrefKey.country);
+    final country = await PreferencesManager().setGetString(PrefKey.country);  
     if (country.isNotEmpty) {
       final List<Map<String, String>> countries = [
         {'name': 'Cambodia', 'flag': '🇰🇭'},
@@ -84,18 +98,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _checkAuth() async {
     final loggedIn = await AuthService.isLoggedIn();
     if (loggedIn) {
-      // Ensure ProfileManager is initialized
       await ProfileManager().init();
       if (mounted) {
         setState(() {
-          _isLoading = false;
+          _isLoadingAuth = false;
           _isLoggedIn = true;
         });
       }
     } else {
       if (mounted) {
         setState(() {
-          _isLoading = false;
+          _isLoadingAuth = false;
           _isLoggedIn = false;
         });
       }
@@ -107,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    if (_isLoading) {
+    if (_isLoadingAuth) {
       return Scaffold(
         backgroundColor: theme.scaffoldBackgroundColor,
         body: LoadingWidget.loadingCenterWidget(),
@@ -118,10 +131,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return _buildLoginRequiredView(context, isDark);
     }
 
-    return ListenableBuilder(
-      listenable: ProfileManager(),
-      builder: (context, child) {
-        final profile = ProfileManager();
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        String name = "User";
+        String contactInfo = "No email or phone";
+        String picture = "";
+
+        if (state is ProfileLoaded) {
+          name = state.name.isEmpty ? "User" : state.name;
+          contactInfo = state.phone.isEmpty
+              ? (state.email.isEmpty ? contactInfo : state.email)
+              : state.phone;
+          picture = state.picture;
+        }
+
         return Scaffold(
           backgroundColor: theme.scaffoldBackgroundColor,
           appBar: AppBar(
@@ -143,10 +166,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // User Info Section
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -154,28 +178,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         MaterialPageRoute(
                           builder: (context) => const EditProfileScreen(),
                         ),
-                      ).then((_) => _checkAuth());
+                      ).then((_) {
+                        if (!context.mounted) return;
+                        context.read<ProfileBloc>().add(LoadProfile());
+                        _checkAuth();
+                      });
                     },
                     child: Row(
                       children: [
+                        Container(
+                          width: 70,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: isDark ? Colors.white24 : Colors.black12,
+                              width: 1,
+                            ),
+                          ),
+                          child: CircleAvatar(
+                            radius: 35,
+                            backgroundColor:
+                                isDark ? Colors.white10 : Colors.grey[100],
+                            backgroundImage: picture.isNotEmpty
+                                ? NetworkImage(picture)
+                                : null,
+                            child: picture.isEmpty
+                                ? Icon(
+                                    Icons.person,
+                                    size: 40,
+                                    color:
+                                        isDark ? Colors.white54 : Colors.grey,
+                                  )
+                                : null,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextWidget(
-                                profile.name.isEmpty
-                                    ? "User".toUpperCase()
-                                    : profile.name.toUpperCase(),
+                                name.toUpperCase(),
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                               const SizedBox(height: 8),
                               TextWidget(
-                                profile.phone.isEmpty
-                                    ? (profile.email.isEmpty
-                                        ? "No email or phone"
-                                        : profile.email)
-                                    : profile.phone,
+                                contactInfo,
                                 fontSize: 16,
                                 color: isDark ? Colors.white70 : Colors.black87,
                               ),
@@ -188,7 +238,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
 
-                // Membership Card
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: StreamBuilder<List<OrderModel>>(
@@ -220,7 +269,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(height: 30),
 
-                // Action Grid
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -279,22 +327,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onTap: () {},
                         ),
                       ),
-                      Expanded(
-                        child: _buildGridItem(
-                          context,
-                          'assets/icon/souvenir.png',
-                          "Souvenirs",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const SouvenirRedemptionScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -322,6 +354,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         builder: (context) => const CountrySelectionScreen(),
                       ),
                     );
+                    if (!mounted) return;
                     if (result == true) {
                       _loadCountry();
                     }
@@ -333,8 +366,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   translator.currentLocale?.languageCode == 'en'
                       ? "English"
                       : (translator.currentLocale?.languageCode == 'km'
-                          ? "ខ្មែរ"
-                          : "中文"),
+                            ? "ខ្មែរ"
+                            : "中文"),
                   onTap: () async {
                     final result = await Navigator.push(
                       context,
@@ -342,6 +375,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         builder: (context) => const LanguageSelectionScreen(),
                       ),
                     );
+                    if (!mounted) return;
                     if (result == true) {
                       setState(() {});
                     }
@@ -382,7 +416,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AiChatScreen()),
+                        builder: (context) => const AiChatScreen(),
+                      ),
                     );
                   },
                   showLeading: false,
@@ -501,13 +536,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     children: [
                       TextWidget(
-                        " Version 1.0.0 @LOOMA",
+                        " Version 1.0.0 @LOOMA ",
                         fontSize: 12,
                         color: isDark ? Colors.white38 : Colors.grey,
                       ),
                       const SizedBox(height: 4),
                       TextWidget(
-                        "Develop By Thon Bunleng",
+                        "Develop By Thon Bunleng ",
                         fontSize: 12,
                         color: isDark ? Colors.white38 : Colors.grey,
                       ),
@@ -515,6 +550,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
+                if (state is ProfileLoading)
+                  Container(
+                    color: Colors.black12,
+                    child: LoadingWidget.loadingCenterWidget(),
+                  ),
               ],
             ),
           ),
@@ -753,7 +793,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         iconColor: Colors.red,
         onBtn1Pressed: () => Navigator.pop(context),
         onBtn2Pressed: () async {
-          // Show loading
           showDialog(
             context: context,
             barrierDismissible: false,
@@ -763,7 +802,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           try {
             await AuthService.deleteAccountPermanent();
             if (context.mounted) {
-              Navigator.pop(context); // Pop loading
+              Navigator.pop(context);
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const MainHolder()),
@@ -772,7 +811,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             }
           } catch (e) {
             if (context.mounted) {
-              Navigator.pop(context); // Pop loading
+              Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: TextWidget(

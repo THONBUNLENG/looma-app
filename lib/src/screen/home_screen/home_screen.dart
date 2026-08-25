@@ -4,14 +4,18 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
-import 'package:shopping_app/src/screen/home_screen/notification_page.dart';
-import 'package:shopping_app/src/screen/home_screen/pick_up_your_style.dart';
+import 'package:shopping_app/src/screen/home_screen/setting/notification_page.dart';
 import 'package:shopping_app/src/screen/home_screen/shop_buy_item_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/brand/brands_screen.dart';
 import 'package:shopping_app/src/screen/home_screen/top_sale_screen.dart';
 import 'package:shopping_app/src/widget/cart_badge.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
+import '../../../manager/notification_service.dart';
+import '../../model/notification_model.dart';
 import 'categories_screen.dart';
+import 'everyday_accessories.dart';
+import 'little_princess_collection.dart';
+import 'on_trend_styles.dart';
 import 'just_screen.dart';
 import 'most_popular_screen.dart';
 import 'new_item_screen.dart';
@@ -40,17 +44,29 @@ class _HomeScreenState extends State<HomeScreen> {
         leadingWidth: 70,
         leading: Padding(
           padding: const EdgeInsets.only(left: 14),
-          child: IconButton(
-            splashRadius: 24,
-            icon: ImageIcon(
-              const AssetImage('assets/icon/notification.png'),
-              color: isDark ? Colors.white : Colors.black,
-              size: 26,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationPageScreen()),
+          child: ValueListenableBuilder<List<NotificationModel>>(
+            valueListenable: NotificationService.notificationsNotifier,
+            builder: (context, notifications, child) {
+              return Badge(
+                label: Text(notifications.length.toString()),
+                isLabelVisible: notifications.isNotEmpty,
+                backgroundColor: Colors.red,
+                child: IconButton(
+                  splashRadius: 24,
+                  icon: ImageIcon(
+                    const AssetImage('assets/icon/notification.png'),
+                    color: isDark ? Colors.white : Colors.black,
+                    size: 26,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationPageScreen(),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ),
@@ -107,14 +123,18 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 8),
               const BrandsScreen(),
               const SizedBox(height: 20),
+              const OnTrendStylesSection(),
+              const SizedBox(height: 20),
+              const LittlePrincessSection(),
+              const SizedBox(height: 20),
               const NewItemsSection(),
+              const SizedBox(height: 20),
+              const EverydayAccessoriesSection(),
               const SizedBox(height: 12),
               const ShopBuyItemScreen(categoryName: ''),
               const SizedBox(height: 20),
               CategorySection(),
               const SizedBox(height: 25),
-              PickStyleSection(),
-              const SizedBox(height: 18),
               const TopSaleScreen(),
               const SizedBox(height: 25),
               const MostPopularSection(),

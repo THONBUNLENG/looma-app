@@ -160,87 +160,123 @@ class _GiftCardScreenState extends State<GiftCardScreen>
       );
     }
 
-    return ListView.separated(
+    return ListView.builder(
       padding: const EdgeInsets.all(20),
       itemCount: cards.length,
-      separatorBuilder: (context, index) => const Divider(height: 32),
       itemBuilder: (context, index) {
-        return _buildGiftCardItem(cards[index], isDark);
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: _buildGiftCardItem(cards[index], isDark),
+        );
       },
     );
   }
 
   Widget _buildGiftCardItem(GiftCardModel card, bool isDark) {
     final dateFormat = DateFormat('dd/MM/yyyy');
-    final dateRange =
-        "${dateFormat.format(card.validFrom)} - ${dateFormat.format(card.validUntil)}";
 
     return InkWell(
       onTap: () => _showGiftCardDetail(card, isDark),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Column(
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isDark ? Colors.grey[900] : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? Colors.white12 : Colors.grey.shade200,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        card.title,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : Colors.black87,
+                      ),
+                      const SizedBox(height: 4),
+                      TextWidget(
+                        card.description,
+                        fontSize: 13,
+                        color: isDark ? Colors.white54 : Colors.black54,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                TextWidget(
+                  "\$${card.amount.toInt()}",
+                  fontSize: 28,
+                  fontWeight: FontWeight.w900,
+                  color: isDark ? Colors.white : Colors.black,
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            const Divider(height: 1),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextWidget(
+                      "Valid until".tr,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(height: 4),
+                    TextWidget(
+                      dateFormat.format(card.validUntil),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white70 : Colors.black87,
+                    ),
+                  ],
+                ),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     TextWidget(
-                      card.title,
-                      fontSize: 18,
+                      "Claim code".tr,
+                      fontSize: 11,
                       fontWeight: FontWeight.w500,
-                      color: isDark ? Colors.white70 : Colors.black54,
+                      color: Colors.grey,
                     ),
-                    TextWidget("Valid from:", fontSize: 12, color: Colors.grey),
+                    const SizedBox(height: 4),
+                    TextWidget(
+                      card.claimCode,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(width: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextWidget(
-                    "\$${card.amount.toInt()}",
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : Colors.black,
-                  ),
-                  TextWidget("Claim code:", fontSize: 12, color: Colors.grey),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: TextWidget(
-                  dateRange,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  textAlign: TextAlign.right,
-                  color: isDark ? Colors.white70 : Colors.black87,
-                ),
-              ),
-              const SizedBox(width: 20),
-              TextWidget(
-                card.claimCode,
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: isDark ? Colors.white70 : Colors.black87,
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          TextWidget(
-            card.description,
-            fontSize: 12,
-            color: isDark ? Colors.white54 : Colors.black54,
-            maxLines: 2,
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

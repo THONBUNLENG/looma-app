@@ -14,6 +14,9 @@ class OrderModel {
   final double? discountAmount;
   final int? pointsRedeemed;
   final int? pointsRewarded;
+  final String? note;
+  final String? contactLine;
+  final int? contactMethod; // 0: Phone, 1: Telegram, 2: WhatsApp
 
   OrderModel({
     this.id,
@@ -29,6 +32,9 @@ class OrderModel {
     this.discountAmount,
     this.pointsRedeemed,
     this.pointsRewarded,
+    this.note,
+    this.contactLine,
+    this.contactMethod,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot doc) {
@@ -60,6 +66,9 @@ class OrderModel {
       discountAmount: (data['discountAmount'] ?? 0.0).toDouble(),
       pointsRedeemed: data['pointsRedeemed'],
       pointsRewarded: data['pointsRewarded'],
+      note: data['note'],
+      contactLine: data['contactLine'],
+      contactMethod: data['contactMethod'],
     );
   }
 
@@ -77,6 +86,9 @@ class OrderModel {
       'discountAmount': discountAmount,
       'pointsRedeemed': pointsRedeemed,
       'pointsRewarded': pointsRewarded,
+      'note': note,
+      'contactLine': contactLine,
+      'contactMethod': contactMethod,
     };
   }
 
@@ -95,6 +107,9 @@ class OrderModel {
       discountAmount: (json['discountAmount'] ?? 0.0).toDouble(),
       pointsRedeemed: json['pointsRedeemed'],
       pointsRewarded: json['pointsRewarded'],
+      note: json['note'],
+      contactLine: json['contactLine'],
+      contactMethod: json['contactMethod'],
     );
   }
 
@@ -113,6 +128,9 @@ class OrderModel {
       'discountAmount': discountAmount,
       'pointsRedeemed': pointsRedeemed,
       'pointsRewarded': pointsRewarded,
+      'note': note,
+      'contactLine': contactLine,
+      'contactMethod': contactMethod,
     };
   }
 

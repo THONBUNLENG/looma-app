@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import '../../../widget/cart_badge.dart';
 import '../../../widget/text_widget.dart';
-import '../notification_page.dart';
+import '../setting/notification_page.dart';
 
 class SearchMenuScreen extends StatefulWidget {
   const SearchMenuScreen({super.key});

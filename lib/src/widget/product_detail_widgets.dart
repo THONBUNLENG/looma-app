@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/constants/app_color.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +11,6 @@ class DeliveryReturnsInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final textColor = isDark ? Colors.white : Colors.black;
     final subColor = isDark ? Colors.white70 : Colors.black54;
-
     return Row(
       children: [
         Expanded(
@@ -22,6 +20,7 @@ class DeliveryReturnsInfo extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextWidget(
@@ -40,6 +39,7 @@ class DeliveryReturnsInfo extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(width: 12),
         Container(
           width: 1,
           height: 40,
@@ -57,6 +57,7 @@ class DeliveryReturnsInfo extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextWidget(
@@ -85,7 +86,6 @@ class QuantityStepper extends StatelessWidget {
   final bool isDark;
   final VoidCallback onIncrement;
   final VoidCallback onDecrement;
-
   const QuantityStepper({
     super.key,
     required this.quantity,
@@ -102,25 +102,6 @@ class QuantityStepper extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDark ? Colors.white10 : Colors.grey[100],
         borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: onDecrement,
-            icon: Icon(Icons.remove, size: 20, color: isDark ? Colors.white : Colors.black),
-          ),
-          TextWidget(
-            "$quantity",
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white : Colors.black,
-          ),
-          IconButton(
-            onPressed: onIncrement,
-            icon: Icon(Icons.add, size: 20, color: isDark ? Colors.white : Colors.black),
-          ),
-        ],
       ),
     );
   }
@@ -142,52 +123,6 @@ class ProductFooter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSectionTitle("LOYALTY", isDark),
-                  _buildFooterItem(
-                    Icons.favorite_outline,
-                    "Membership & Benefits",
-                    isDark,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSectionTitle("FOLLOW US", isDark),
-                  _buildFooterItem(Icons.facebook, "Facebook", isDark),
-                  _buildFooterItem(
-                    Icons.camera_alt_outlined,
-                    "Instagram",
-                    isDark,
-                  ),
-                  _buildFooterItem(Icons.music_note, "TikTok", isDark),
-                  _buildFooterItem(
-                    Icons.play_circle_outline,
-                    "Youtube",
-                    isDark,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
-        _buildSectionTitle("CUSTOMER SERVICES", isDark),
-        _buildFooterItem(Icons.help_outline, "Online exchange policy", isDark),
-        _buildFooterItem(Icons.security, "Privacy Policy", isDark),
-        _buildFooterItem(Icons.chat_bubble_outline, "FAQs & guides", isDark),
-        _buildFooterItem(Icons.location_on_outlined, "Find a store", isDark),
-        const SizedBox(height: 30),
         _buildSectionTitle("CONTACT US", isDark),
         _buildFooterItem(
           Icons.email_outlined,
@@ -255,17 +190,13 @@ class PaymentMethodsGrid extends StatelessWidget {
       runSpacing: 12,
       children: [
         _buildPaymentBox("ABA", const Color(0xFF005A9C), isDark, imagePath: 'assets/icon/i_color/aba.png'),
+        _buildPaymentBox("Acleda Bank", Colors.pinkAccent, isDark, imagePath: 'assets/icon/i_color/ac.png'),
+        _buildPaymentBox("Wing", const Color(0xFF8DC63F), isDark, imagePath: 'assets/icon/i_color/wing.png'),
+        _buildPaymentBox("Chip Mong", const Color(0xFF00833E), isDark, imagePath: 'assets/icon/i_color/chip_mong.png'),
+        _buildPaymentBox("Bank Transfer", Colors.grey, isDark, imagePath: 'assets/icon/bakong.png'),
         _buildPaymentBox("VISA", const Color(0xFF1A1F71), isDark, imagePath: 'assets/icon/i_color/visa.png'),
         _buildPaymentBox("MasterCard", const Color(0xFFEB001B), isDark, imagePath: 'assets/icon/i_color/mastercard.png'),
-        _buildPaymentBox("Wing", const Color(0xFF8DC63F), isDark, imagePath: 'assets/icon/i_color/wing.png'),
-        _buildPaymentBox("UnionPay", const Color(0xFF00334E), isDark, imagePath: 'assets/icon/i_color/union_pay.png'),
-        _buildPaymentBox("JCB", const Color(0xFF00338D), isDark, imagePath: 'assets/icon/i_color/jcb.png'),
-        _buildPaymentBox("Chip Mong", const Color(0xFF00833E), isDark, imagePath: 'assets/icon/i_color/chip_mong.png'),
-        _buildPaymentBox("Bank Transfer", Colors.grey, isDark, imagePath: 'assets/icon/i_color/bank_transfer.png'),
-        _buildPaymentBox("Cash on Delivery", Colors.brown, isDark, imagePath: 'assets/icon/i_color/cash_on_delivery.png'),
-        _buildPaymentBox("PayPal", Colors.amber, isDark, imagePath: 'assets/icon/i_color/paypal.png'),
-        _buildPaymentBox("Acleda Bank", Colors.pinkAccent, isDark, imagePath: 'assets/icon/i_color/ac.png'),
-        _buildPaymentBox("Google Pay", AppColor.accentLightBlue, isDark, imagePath: 'assets/icon/i_color/google_pay.png'),
+        _buildPaymentBox("Cash on Delivery", Colors.brown, isDark, imagePath: 'assets/icon/delivery.png'),
       ],
     );
   }

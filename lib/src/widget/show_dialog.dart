@@ -59,7 +59,7 @@ class StatusDialog extends StatelessWidget {
                 TextWidget(
                   message,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 15, color: AppColor.black),
+                  fontSize: 15, color: AppColor.black,
                 ),
                 const SizedBox(height: 30),
                 Row(

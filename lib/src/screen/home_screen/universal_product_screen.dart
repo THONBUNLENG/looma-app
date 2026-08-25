@@ -74,12 +74,16 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
       appBar: AppBar(
         leading: BackButton(color: isDark ? Colors.white : Colors.black),
         toolbarHeight: 90,
-        backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFF9F9F9),
+        backgroundColor: isDark
+            ? const Color(0xFF121212)
+            : const Color(0xFFF9F9F9),
         elevation: 0,
         centerTitle: true,
         title: ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
-            colors: isDark ? [Colors.white, Colors.white70] : [Colors.black, Colors.black54],
+            colors: isDark
+                ? [Colors.white, Colors.white70]
+                : [Colors.black, Colors.black54],
           ).createShader(bounds),
           child: TextWidget(
             'LOOMA',
@@ -124,9 +128,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                
-                final isPermissionDenied = snapshot.hasError && snapshot.error.toString().contains("permission-denied");
-                
+
+                final isPermissionDenied =
+                    snapshot.hasError &&
+                    snapshot.error.toString().contains("permission-denied");
+
                 if (snapshot.hasError && !isPermissionDenied) {
                   return Center(
                     child: Padding(
@@ -156,7 +162,10 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                             const SizedBox(height: 16),
                             Text(
                               snapshot.error.toString(),
-                              style: const TextStyle(fontSize: 10, color: Colors.grey),
+                              style: const TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey,
+                              ),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -165,7 +174,7 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                     ),
                   );
                 }
-                
+
                 var products = snapshot.data ?? [];
                 if (isPermissionDenied || products.isEmpty) {
                   products = _getLocalProducts();
@@ -173,23 +182,37 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
 
                 // Apply Gender Filter
                 if (_selectedGenderFilter != "All") {
-                  products = products.where((p) => 
-                    p.gender?.toLowerCase() == _selectedGenderFilter.toLowerCase()
-                  ).toList();
+                  products = products
+                      .where(
+                        (p) =>
+                            p.gender?.toLowerCase() ==
+                            _selectedGenderFilter.toLowerCase(),
+                      )
+                      .toList();
                 }
 
                 // Apply Brand Filter
                 if (_selectedBrandFilter != null) {
-                  products = products.where((p) => 
-                    (p.brandName?.toLowerCase() == _selectedBrandFilter!.toLowerCase()) ||
-                    (p.title.toLowerCase().contains(_selectedBrandFilter!.toLowerCase()))
-                  ).toList();
+                  products = products
+                      .where(
+                        (p) =>
+                            (p.brandName?.toLowerCase() ==
+                                _selectedBrandFilter!.toLowerCase()) ||
+                            (p.title.toLowerCase().contains(
+                              _selectedBrandFilter!.toLowerCase(),
+                            )),
+                      )
+                      .toList();
                 }
-                
+
                 if (_searchQuery.isNotEmpty) {
-                  products = products.where((p) => 
-                    p.title.toLowerCase().contains(_searchQuery.toLowerCase())
-                  ).toList();
+                  products = products
+                      .where(
+                        (p) => p.title.toLowerCase().contains(
+                          _searchQuery.toLowerCase(),
+                        ),
+                      )
+                      .toList();
                 }
 
                 if (products.isEmpty) {
@@ -197,7 +220,10 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                 }
 
                 return GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
                   physics: const BouncingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -207,7 +233,12 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                   ),
                   itemCount: products.length,
                   itemBuilder: (context, index) {
-                    return _buildProductCard(context, products[index], isDark, index);
+                    return _buildProductCard(
+                      context,
+                      products[index],
+                      isDark,
+                      index,
+                    );
                   },
                 );
               },
@@ -220,9 +251,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
 
   List<ProductModel> _getLocalProducts() {
     List<Map<String, dynamic>> localData = [];
-    
+
     final cat = widget.category?.toUpperCase();
-    final subCat = _selectedSubCategory?.toUpperCase() ?? widget.subCategory?.toUpperCase();
+    final subCat =
+        _selectedSubCategory?.toUpperCase() ??
+        widget.subCategory?.toUpperCase();
 
     if (subCat == 'POLOS') {
       localData = polos;
@@ -240,7 +273,9 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
       localData = shorts;
     } else if (subCat == 'HOODIES') {
       localData = hoodies;
-    } else if (subCat == 'T-SHIRTS' || subCat == 'TSHIRTS' || subCat == 'TSHIRT') {
+    } else if (subCat == 'T-SHIRTS' ||
+        subCat == 'TSHIRTS' ||
+        subCat == 'TSHIRT') {
       localData = tShirts;
     } else if (subCat == 'SWEATSHIRTS') {
       localData = sweatshirts;
@@ -282,7 +317,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
       localData = messengerBags;
     } else if (subCat == 'TRAVELBAGS') {
       localData = travelBags;
-    } else if (subCat == 'BRAS' || subCat == 'PANTIES' || subCat == 'NIGHTWEAR' || subCat == 'BODYSUIT' || subCat == 'SHAPEWEAR') {
+    } else if (subCat == 'BRAS' ||
+        subCat == 'PANTIES' ||
+        subCat == 'NIGHTWEAR' ||
+        subCat == 'BODYSUIT' ||
+        subCat == 'SHAPEWEAR') {
       localData = lingerie;
     } else if (subCat == 'JEWELRY') {
       localData = jewelry;
@@ -303,7 +342,6 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
     } else if (subCat == 'TOYS') {
       localData = toys;
     }
-    
 
     if (localData.isEmpty) {
       if (cat == 'CLOTHING') {
@@ -318,6 +356,8 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
         localData = beauty;
       } else if (cat == 'GIFTS') {
         localData = gift;
+      } else if (cat == 'TRENDING') {
+        localData = onTrend;
       } else {
         localData = allItems;
       }
@@ -329,7 +369,7 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
   Widget _buildQuickFilters(bool isDark) {
     final List<String> brandNames = brandData.map((b) => b['name']!).toList();
     final filters = ["All", "Man", "Woman", ...brandNames];
-    
+
     return Container(
       height: 40,
       margin: const EdgeInsets.symmetric(vertical: 8),
@@ -340,12 +380,14 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
         itemBuilder: (context, index) {
           final filter = filters[index];
           final isBrand = index >= 3;
-          
+
           bool isSelected;
           if (isBrand) {
             isSelected = _selectedBrandFilter == filter;
           } else {
-            isSelected = (_selectedGenderFilter == filter && _selectedBrandFilter == null);
+            isSelected =
+                (_selectedGenderFilter == filter &&
+                _selectedBrandFilter == null);
           }
 
           return Padding(
@@ -368,18 +410,23 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                       return;
                     }
                     _selectedGenderFilter = filter;
-                    _selectedBrandFilter = null; // Clear brand when selecting gender
+                    _selectedBrandFilter =
+                        null; // Clear brand when selecting gender
                   }
                 });
               },
               selectedColor: AppColor.primaryColor,
               labelStyle: TextStyle(
-                color: isSelected ? Colors.white : (isDark ? Colors.white70 : Colors.black87),
+                color: isSelected
+                    ? Colors.white
+                    : (isDark ? Colors.white70 : Colors.black87),
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               backgroundColor: isDark ? Colors.white10 : Colors.grey[100],
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
               side: BorderSide.none,
               showCheckmark: false,
             ),
@@ -408,8 +455,9 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
             itemCount: subCategories.length,
             itemBuilder: (context, index) {
               final name = subCategories[index];
-              final isSelected = (name == "All" && _selectedSubCategory == null) || 
-                                (_selectedSubCategory == name);
+              final isSelected =
+                  (name == "All" && _selectedSubCategory == null) ||
+                  (_selectedSubCategory == name);
 
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
@@ -424,12 +472,18 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                   },
                   selectedColor: AppColor.primaryColor,
                   labelStyle: TextStyle(
-                    color: isSelected ? Colors.white : (isDark ? Colors.white70 : Colors.black87),
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    color: isSelected
+                        ? Colors.white
+                        : (isDark ? Colors.white70 : Colors.black87),
+                    fontWeight: isSelected
+                        ? FontWeight.bold
+                        : FontWeight.normal,
                   ),
                   backgroundColor: isDark ? Colors.white10 : Colors.grey[100],
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   side: BorderSide.none,
                   showCheckmark: false,
                 ),
@@ -443,7 +497,9 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
 
   Widget _buildSearchBar(BuildContext context, bool isDark) {
     final textColor = isDark ? Colors.white : Colors.black;
-    final searchBg = isDark ? Colors.white.withValues(alpha: 0.1) : AppColor.grey100;
+    final searchBg = isDark
+        ? Colors.white.withValues(alpha: 0.1)
+        : AppColor.grey100;
     final hintColor = isDark ? Colors.white60 : Colors.black45;
 
     return Padding(
@@ -456,19 +512,33 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
               decoration: BoxDecoration(
                 color: searchBg,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: isDark ? Colors.white10 : Colors.transparent),
+                border: Border.all(
+                  color: isDark ? Colors.white10 : Colors.transparent,
+                ),
               ),
               child: TextField(
                 controller: _searchController,
                 onChanged: (val) => setState(() => _searchQuery = val),
-                style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
                 decoration: InputDecoration(
                   hintText: "Search in %a...".trArgs([widget.title]),
                   hintStyle: TextStyle(color: hintColor, fontSize: 14),
-                  prefixIcon: Icon(Icons.search_rounded, size: 22, color: hintColor),
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    size: 22,
+                    color: hintColor,
+                  ),
                   suffixIcon: _searchQuery.isNotEmpty
                       ? IconButton(
-                          icon: Icon(Icons.cancel_rounded, size: 20, color: hintColor),
+                          icon: Icon(
+                            Icons.cancel_rounded,
+                            size: 20,
+                            color: hintColor,
+                          ),
                           onPressed: () {
                             _searchController.clear();
                             setState(() => _searchQuery = "");
@@ -493,7 +563,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 children: [
-                  Icon(Icons.tune_rounded, size: 20, color: isDark ? Colors.white : Colors.black),
+                  Icon(
+                    Icons.tune_rounded,
+                    size: 20,
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
                   const SizedBox(width: 4),
                   TextWidget(
                     "filter".tr,
@@ -510,7 +584,12 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
     );
   }
 
-  Widget _buildProductCard(BuildContext context, ProductModel product, bool isDark, int index) {
+  Widget _buildProductCard(
+    BuildContext context,
+    ProductModel product,
+    bool isDark,
+    int index,
+  ) {
     final subTextColor = isDark ? Colors.white70 : Colors.black54;
     final imageUrl = product.images.isNotEmpty ? product.images[0] : '';
 
@@ -519,7 +598,8 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: product.toMap()),
+            builder: (context) =>
+                ProductDetailScreen(product: product.toMap()),
           ),
         ).then((_) => setState(() {}));
       },
@@ -530,7 +610,9 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: isDark ? Colors.white.withValues(alpha: 0.05) : AppColor.grey100,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : AppColor.grey100,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -538,27 +620,26 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                   children: [
                     Positioned.fill(
                       child: Hero(
-                        tag: imageUrl + index.toString() + (widget.subCategory ?? widget.category ?? ''),
+                        tag:
+                            'product_${product.id ?? product.title}_${index}_${widget.category ?? ""}',
                         child: CachedNetworkImage(
                           imageUrl: imageUrl,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           placeholder: (context, url) => Center(
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
                               color: isDark ? Colors.white24 : Colors.grey[300],
                             ),
                           ),
-                          errorWidget: (context, url, error) => const Icon(Icons.broken_image_outlined),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.broken_image_outlined),
                         ),
                       ),
                     ),
                     Positioned(
                       bottom: 12,
                       right: 12,
-                      child: FavoriteButton(
-                        product: product.toMap(),
-                        size: 24,
-                      ),
+                      child: FavoriteButton(product: product.toMap(), size: 24),
                     ),
                   ],
                 ),
@@ -590,7 +671,11 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const Icon(Icons.star_rounded, color: Colors.orange, size: 16),
+                    const Icon(
+                      Icons.star_rounded,
+                      color: Colors.orange,
+                      size: 16,
+                    ),
                     const SizedBox(width: 4),
                     TextWidget(
                       product.rating.toString(),
@@ -600,7 +685,10 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: TextWidget("|", color: subTextColor.withValues(alpha: 0.3)),
+                      child: TextWidget(
+                        "|",
+                        color: subTextColor.withValues(alpha: 0.3),
+                      ),
                     ),
                     Expanded(
                       child: TextWidget(
@@ -633,13 +721,17 @@ class _UniversalProductScreenState extends State<UniversalProductScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            _searchQuery.isEmpty ? Icons.inventory_2_outlined : Icons.search_off_rounded,
+            _searchQuery.isEmpty
+                ? Icons.inventory_2_outlined
+                : Icons.search_off_rounded,
             size: 70,
             color: isDark ? Colors.white10 : Colors.grey[300],
           ),
           const SizedBox(height: 16),
           TextWidget(
-            _searchQuery.isEmpty ? "No products found".tr : "No results found for '%a'".trArgs([_searchQuery]),
+            _searchQuery.isEmpty
+                ? "No products found".tr
+                : "No results found for '%a'".trArgs([_searchQuery]),
             color: isDark ? Colors.white38 : Colors.grey,
             fontSize: 16,
           ),

@@ -1378,7 +1378,13 @@ const Map<String, String> khmer = {
   'Non-Toxic Soy Remover': 'Non-Toxic Soy Remover',
   'Nordic Glass Flower Vase': 'Nordic Glass Flower Vase',
   'Not you?': 'Not you?',
-  'Notification': 'Notification',
+  'Notification': 'ការជូនដំណឹង',
+  'Notifications': 'ការជូនដំណឹង',
+  'Notification deleted': 'បានលុបការជូនដំណឹង',
+  'No notifications yet': 'មិនទាន់មានការជូនដំណឹងនៅឡើយទេ',
+  'Today': 'ថ្ងៃនេះ',
+  'Yesterday': 'ម្សៃលមិញ',
+  'Are you sure you want to clear all notifications?': 'តើអ្នកប្រាកដជាចង់លុបការជូនដំណឹងទាំងអស់មែនទេ?',
   'Now you can track orders in real time':
       'ឥឡូវនេះអ្នកអាចតាមដានការបញ្ជាទិញបានភ្លាមៗ',
   'Ocean Blue Shades': 'វ៉ែនតាកញ្ចក់ពណ៌ខៀវសមុទ្រ Ocean Blue',
@@ -1981,7 +1987,6 @@ const Map<String, String> khmer = {
   'Titanium Lightweight': 'Titanium Lightweight',
   'Titanium Series Carry-On': 'វ៉ាលីយួរឡើងយន្តហោះស៊េរី Titanium',
   'Titanium Ultra-Light': 'វ៉ែនតាស៊ុម Titanium ស្រាលពិសេស Ultra-Light',
-  'Today': 'ថ្ងៃនេះ',
   'Top Sale': 'Top Sale',
   'Top Up': 'បញ្ចូលលុយ',
   'Top Up E-Wallet Successful!': 'ការបញ្ចូលលុយក្នុងកាបូបអេឡិចត្រូនិកបានជោគជ័យ!',
@@ -2165,7 +2170,6 @@ const Map<String, String> khmer = {
   'Yellow': 'ពណ៌លឿង',
   'Yes, downloading and browsing Evira is completely free.':
       'បាទ/ចាស ការទាញយក និងការស្វែងរកផលិតផលក្នុង Evira គឺឥតគិតថ្លៃទាំងស្រុង។',
-  'Yesterday': 'ម្សិលមិញ',
   'Yoga Flow Light Support': 'Yoga Flow Light Support',
   'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.':
       'You can cancel your order from the \'My Orders\' section within 30 minutes of purchase.',
@@ -2188,7 +2192,6 @@ const Map<String, String> khmer = {
       'គិតថ្លៃដឹក 1\$ សម្រាប់ការបញ្ជាទិញក្រោម 10\$',
   'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.':
       'A timeless Harrington jacket featuring a clean silhouette and premium lining, perfect for an "Old Money" look.',
-  // TODO: Translate to Khmer
   'Elegant Women\'': 'Elegant Women\', // TODO: Translate to Khmer',
   'Hand-Operated Mini Drone (UFO)': 'Hand-Operated Mini Drone (UFO)',
   'Magic Chemistry Set (50 Experiments)':
@@ -2197,7 +2200,6 @@ const Map<String, String> khmer = {
   'Premium Yoga Mat (Pro)': 'Premium Yoga Mat (Pro)',
   'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.':
       'Premium raw denim with a classic straight cut, perfect for an "Old Money" aesthetic.',
-  // TODO: Translate to Khmer
   'Squishy Foam "Donut" Squeeze Set': 'Squishy Foam "Donut" Squeeze Set',
   'OR': 'ឬ',
   'Phone Number': 'លេខទូរសព្ទ',

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
@@ -10,6 +11,7 @@ import '../../../network/datastor/auth_service.dart';
 import '../../../utils/firebase_error_handler.dart';
 
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -39,17 +41,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           if (!isClosed) add(_InternalOtpSent(verificationId));
         },
         onVerificationFailed: (e) {
-          if (!isClosed) add(_InternalLoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
+          if (!isClosed) {
+            add(_InternalLoginFailure(FirebaseErrorHandler.getErrorMessage(e)));
+          }
         },
         onVerificationCompleted: (credential) {
           if (!isClosed) {
-            add(_InternalVerificationCompleted(
-              credential: credential,
-              name: event.name,
-              password: event.password,
-              phone: event.phone,
-              imageFile: event.imageFile,
-            ));
+            add(
+              _InternalVerificationCompleted(
+                credential: credential,
+                name: event.name,
+                password: event.password,
+                phone: event.phone,
+                imageFile: event.imageFile,
+              ),
+            );
           }
         },
       );
@@ -59,11 +65,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   // Internal events to bridge callbacks to bloc stream
-  Future<void> _onInternalOtpSent(_InternalOtpSent event, Emitter<LoginState> emit) async {
+  Future<void> _onInternalOtpSent(
+    _InternalOtpSent event,
+    Emitter<LoginState> emit,
+  ) async {
     emit(OtpSentState(event.verificationId));
   }
 
-  Future<void> _onInternalLoginFailure(_InternalLoginFailure event, Emitter<LoginState> emit) async {
+  Future<void> _onInternalLoginFailure(
+    _InternalLoginFailure event,
+    Emitter<LoginState> emit,
+  ) async {
     emit(LoginFailure(event.error));
   }
 
@@ -73,13 +85,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(event.credential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        event.credential,
+      );
       if (userCredential.user != null) {
         final user = userCredential.user!;
         String? photoUrl;
 
         if (event.imageFile != null) {
-          photoUrl = await _authLoginService.uploadProfilePicture(user.uid, event.imageFile!);
+          photoUrl = await _authLoginService.uploadProfilePicture(
+            user.uid,
+            event.imageFile!,
+          );
         }
 
         await user.updateDisplayName(event.name);
@@ -101,7 +118,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           phone: event.phone,
           picture: photoUrl,
           token: await user.getIdToken(),
-          // Password is provided in event, but we don't save it to prefs for security, 
+          // Password is provided in event, but we don't save it to prefs for security,
           // but we could if needed for session persistence
         );
 
@@ -130,7 +147,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         String? photoUrl;
 
         if (event.imageFile != null) {
-          photoUrl = await _authLoginService.uploadProfilePicture(user.uid, event.imageFile!);
+          photoUrl = await _authLoginService.uploadProfilePicture(
+            user.uid,
+            event.imageFile!,
+          );
         }
 
         await user.updateDisplayName(event.name);
@@ -152,7 +172,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           phone: event.phone,
           picture: photoUrl,
           token: await user.getIdToken(),
-          // Password is provided in event, but we don't save it to prefs for security, 
+          // Password is provided in event, but we don't save it to prefs for security,
           // but we could if needed for session persistence
         );
 
@@ -173,17 +193,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      final userCredential = await _authLoginService.createUserWithEmailAndPassword(
-        email: event.email,
-        password: event.password,
-      );
+      final userCredential = await _authLoginService
+          .createUserWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
 
       if (userCredential != null && userCredential.user != null) {
         final user = userCredential.user!;
         String? photoUrl;
 
         if (event.imageFile != null) {
-          photoUrl = await _authLoginService.uploadProfilePicture(user.uid, event.imageFile!);
+          photoUrl = await _authLoginService.uploadProfilePicture(
+            user.uid,
+            event.imageFile!,
+          );
         }
 
         await user.updateDisplayName(event.name);
@@ -227,9 +251,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      final UserCredential? userCredential = await _authLoginService.signInWithGoogle();
+      final UserCredential? userCredential = await _authLoginService
+          .signInWithGoogle();
       if (userCredential != null && userCredential.user != null) {
         final User user = userCredential.user!;
+
+        // Save to Firestore
+        await _authLoginService.saveUserData(
+          uid: user.uid,
+          name: user.displayName ?? "User",
+          email: user.email,
+          photoUrl: user.photoURL,
+        );
+
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
           email: user.email,
@@ -237,7 +271,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
-        
+
         await ProfileManager().init();
 
         emit(LoginSuccess(user.displayName ?? "User"));
@@ -255,9 +289,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      final UserCredential? userCredential = await _authLoginService.signInWithApple();
+      final UserCredential? userCredential = await _authLoginService
+          .signInWithApple();
       if (userCredential != null && userCredential.user != null) {
         final User user = userCredential.user!;
+
+        // Save to Firestore
+        await _authLoginService.saveUserData(
+          uid: user.uid,
+          name: user.displayName ?? "User",
+          email: user.email,
+          photoUrl: user.photoURL,
+        );
+
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
           email: user.email,
@@ -265,7 +309,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
-        
+
         await ProfileManager().init();
 
         emit(LoginSuccess(user.displayName ?? "User"));
@@ -289,6 +333,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       if (userCredential != null && userCredential.user != null) {
         final User user = userCredential.user!;
+
+
+        await _authLoginService.saveUserData(
+          uid: user.uid,
+          name: user.displayName ?? "User",
+          email: user.email,
+          photoUrl: user.photoURL,
+        );
+
         await AuthService.saveLoginData(
           username: user.displayName ?? "User",
           email: user.email,
@@ -296,9 +349,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           picture: user.photoURL,
           token: await user.getIdToken(),
         );
-        
-        await ProfileManager().init();
 
+        await ProfileManager().init();
         emit(LoginSuccess(user.displayName ?? "User"));
       } else if (error != null) {
         emit(LoginFailure("${"Facebook Error".tr}: $error"));

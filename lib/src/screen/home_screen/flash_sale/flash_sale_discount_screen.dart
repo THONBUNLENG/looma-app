@@ -323,7 +323,7 @@ class DiscountProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ProductClothesScreen(product: product),
+            builder: (_) => ProductDetailScreen(product: product),
           ),
         );
       },

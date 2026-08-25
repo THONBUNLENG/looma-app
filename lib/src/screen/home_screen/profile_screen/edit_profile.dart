@@ -1,6 +1,12 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopping_app/manager/callback_manager.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
+import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
 import '../../../../constants/string_extension.dart';
@@ -23,6 +29,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late Map<String, String> selectedCountry;
   String? selectedGender;
   String? _picture;
+  bool _isUploading = false;
 
   @override
   void initState() {
@@ -110,6 +117,68 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 70,
+    );
+
+    if (image != null) {
+      _uploadImage(File(image.path));
+    }
+  }
+
+  Future<void> _uploadImage(File imageFile) async {
+    if (!imageFile.existsSync()) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Selected file no longer exists.")),
+        );
+      }
+      return;
+    }
+
+    setState(() {
+      _isUploading = true;
+    });
+
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw "User not authenticated";
+
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_images')
+          .child('${user.uid}.jpg');
+
+      final uploadTask = storageRef.putFile(
+        imageFile,
+        SettableMetadata(contentType: 'image/jpeg'),
+      );
+
+      await uploadTask.whenComplete(() => null);
+
+      final downloadUrl = await storageRef.getDownloadURL();
+
+      if (mounted) {
+        setState(() {
+          _picture = downloadUrl;
+          _isUploading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isUploading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: TextWidget("Failed to upload image: $e")),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -136,7 +205,61 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Gender Section
+            Center(
+              child: Stack(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isDark ? Colors.white24 : Colors.black12,
+                        width: 2,
+                      ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundColor:
+                          isDark ? Colors.white10 : Colors.grey[100],
+                      backgroundImage:
+                          _picture != null && _picture!.isNotEmpty
+                              ? NetworkImage(_picture!)
+                              : null,
+                       child: _isUploading
+                          ? LoadingWidget.loadingCenterWidget()
+                          : (_picture == null || _picture!.isEmpty
+                              ? Icon(
+                                  Icons.person,
+                                  size: 60,
+                                  color: isDark ? Colors.white54 : Colors.grey,
+                                )
+                              : null),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: InkWell(
+                      onTap: _pickImage,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
             TextWidget("Gender".tr, fontSize: 16, fontWeight: FontWeight.w500),
             const SizedBox(height: 8),
             Row(
@@ -170,7 +293,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ],
             ),
             const SizedBox(height: 20),
-
             _buildInputField(
               label: 'Email'.tr,
               controller: emailController,
@@ -195,7 +317,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               fontWeight: FontWeight.w500,
             ),
             const SizedBox(height: 30),
-
             TextWidget(
               "Your address".tr,
               fontSize: 18,
@@ -242,7 +363,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget _buildPhoneInputField() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final borderColor = isDark ? Colors.white24 : Colors.black;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

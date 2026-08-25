@@ -45,13 +45,30 @@ class WishlistManager extends ChangeNotifier {
     if (existingIndex != -1) {
       _wishlistItems.removeAt(existingIndex);
     } else {
-      // Create a fresh copy to avoid modifying the original source
       final itemToAdd = Map<String, dynamic>.from(product);
       itemToAdd['is_favorite'] = true;
       _wishlistItems.add(itemToAdd);
     }
     await _saveToPrefs();
     notifyListeners();
+  }
+
+  Future<void> addToWishlist(Map<String, dynamic> product) async {
+    final productId = product['id']?.toString() ?? product['title']?.toString();
+    if (productId == null) return;
+
+    final exists = _wishlistItems.any(
+      (item) =>
+          (item['id']?.toString() ?? item['title']?.toString()) == productId,
+    );
+
+    if (!exists) {
+      final itemToAdd = Map<String, dynamic>.from(product);
+      itemToAdd['is_favorite'] = true;
+      _wishlistItems.add(itemToAdd);
+      await _saveToPrefs();
+      notifyListeners();
+    }
   }
 
   bool isFavorite(Map<String, dynamic> product) {
@@ -80,8 +97,6 @@ class WishlistManager extends ChangeNotifier {
   Future<void> _saveToPrefs() async {
     final String encoded = jsonEncode(_wishlistItems);
     await SharedPrefUtil.saveString(PrefKey.wishlistItems, encoded);
-
-    // Sync to Firestore if logged in
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await FirestoreService().updateUserWishlist(user.uid, _wishlistItems);

@@ -84,7 +84,9 @@ class _AiChatScreenState extends State<AiChatScreen>
     }
 
     return Scaffold(
-      backgroundColor: isDark ? theme.scaffoldBackgroundColor : AppColor.backgroundColor,
+      backgroundColor: isDark
+          ? theme.scaffoldBackgroundColor
+          : AppColor.backgroundColor,
       appBar: AppBar(
         title: TextWidget(
           "AI Support".tr,
@@ -156,7 +158,9 @@ class _AiChatScreenState extends State<AiChatScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
-        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser) ...[
@@ -198,7 +202,9 @@ class _AiChatScreenState extends State<AiChatScreen>
               ),
               child: TextWidget(
                 text,
-                color: isUser ? Colors.white : (isDark ? Colors.white : Colors.black87),
+                color: isUser
+                    ? Colors.white
+                    : (isDark ? Colors.white : Colors.black87),
                 fontSize: 14,
                 lineHeight: 1.5,
               ),
@@ -279,7 +285,9 @@ class _AiChatScreenState extends State<AiChatScreen>
                     color: isDark ? Colors.white : Colors.black87,
                   ),
                   decoration: InputDecoration(
-                    hintText: _isLoading ? 'Thinking...'.tr : 'Ask me anything...'.tr,
+                    hintText: _isLoading
+                        ? 'Thinking...'.tr
+                        : 'Ask me anything...'.tr,
                     hintStyle: TextStyle(color: Colors.grey[500], fontSize: 14),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
@@ -330,29 +338,35 @@ class _AiChatScreenState extends State<AiChatScreen>
   Widget _buildWelcomeScreen(bool isDark) {
     final theme = Theme.of(context);
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset('assets/lottie/robot.json', width: 250),
-          const SizedBox(height: 20),
-          TextWidget(
-            "Hello! I am your Looma AI Assistant.".tr,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: isDark ? Colors.white : theme.primaryColor,
-            textAlign: TextAlign.center,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset('assets/lottie/robot.json', width: 250),
+              const SizedBox(height: 20),
+              TextWidget(
+                "Hello! I am your Looma AI Assistant.".tr,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: isDark ? Colors.white : theme.primaryColor,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextWidget(
+                  "Ask me about our business hours, delivery fees, or payment options."
+                      .tr,
+                  fontSize: 14,
+                  color: isDark ? Colors.white70 : Colors.black54,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: TextWidget(
-              "Ask me about our business hours, delivery fees, or payment options.".tr,
-              fontSize: 14,
-              color: isDark ? Colors.white70 : Colors.black54,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -44,4 +44,13 @@ const Map<String, String> chinese = {
   'An account already exists with the same email address but different sign-in credentials.': '已存在使用相同电子邮件地址但登录凭据不同的帐户。',
   'Network error. Please check your internet connection.': '网络错误。请检查您的互联网连接。',
   'An error occurred. Please try again.': '发生错误。请重试。',
+  'Notification': '通知',
+  'Notifications': '通知',
+  'Notification deleted': '通知已删除',
+  'No notifications yet': '暂无通知',
+  'Today': '今天',
+  'Yesterday': '昨天',
+  'Are you sure you want to clear all notifications?': '您确定要清除所有通知吗？',
+  'Clear All': '清除所有',
+  'Clear': '清除',
 };

@@ -3,8 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-import '../../../manager/preferences_manager.dart';
+import '../shared_preferences/shared_preferences.dart';
 import 'api_end_point.dart';
 
 mixin EcommerceAPIService {
@@ -22,7 +21,7 @@ mixin EcommerceAPIService {
     }
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    final String? token = SharedPrefUtil.getString(PrefKey.token.toString());
+    final String? token = SharedPrefUtil.getString(PrefKey.token);
 
 
     final dio = Dio(

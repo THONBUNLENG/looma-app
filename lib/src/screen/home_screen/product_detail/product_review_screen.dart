@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/app_color.dart';
@@ -13,40 +14,17 @@ import '../../../widget/write_review_bottom_sheet.dart';
 
 class ProductReviewScreen extends StatefulWidget {
   final Map<String, dynamic> product;
+
   const ProductReviewScreen({super.key, required this.product});
+
   @override
   State<ProductReviewScreen> createState() => _ProductReviewScreenState();
 }
 
 class _ProductReviewScreenState extends State<ProductReviewScreen> {
   int _selectedFilter = 0;
-  final List<ReviewModel> _dummyReviews = [
-    ReviewModel(
-      id: "1",
-      userName: "Sophea Rath",
-      userImage: "https://i.pravatar.cc/150?u=sophea",
-      rating: 5.0,
-      comment: "Absolutely love the quality of this product! It exceeded my expectations. The material feels premium and the fit is perfect.",
-      date: DateTime.now().subtract(const Duration(days: 2)),
-      images: ["https://picsum.photos/200/300?random=1", "https://picsum.photos/200/300?random=2"],
-    ),
-    ReviewModel(
-      id: "2",
-      userName: "Chanlina Kim",
-      userImage: "https://i.pravatar.cc/150?u=lina",
-      rating: 4.0,
-      comment: "Good product, but delivery took a bit longer than expected. Otherwise, I'm happy with the purchase.",
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    ReviewModel(
-      id: "3",
-      userName: "Dara Sovann",
-      userImage: "https://i.pravatar.cc/150?u=dara",
-      rating: 5.0,
-      comment: "The colors are exactly as shown in the pictures. Very comfortable to wear all day long.",
-      date: DateTime.now().subtract(const Duration(days: 10)),
-    ),
-  ];
+  final List<ReviewModel> _dummyReviews = [];
+
   @override
   void initState() {
     super.initState();
@@ -64,7 +42,8 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
   }
 
   List<ReviewModel> get _allReviews {
-    final localReviews = ReviewManager().getReviews(widget.product['id'].toString());
+    final productId = (widget.product['id'] ?? widget.product['title'] ?? '').toString();
+    final localReviews = ReviewManager().getReviews(productId);
     return [...localReviews, ..._dummyReviews];
   }
 
@@ -107,9 +86,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
               child: _buildRatingSummary(isDark),
             ),
           ),
-          SliverToBoxAdapter(
-            child: _buildFilterChips(isDark),
-          ),
+          SliverToBoxAdapter(child: _buildFilterChips(isDark)),
           SliverPadding(
             padding: const EdgeInsets.all(16.0),
             sliver: SliverList(
@@ -202,7 +179,14 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
   }
 
   Widget _buildFilterChips(bool isDark) {
-    final filters = ["All", "5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Stars"];
+    final filters = [
+      "All",
+      "5 Stars",
+      "4 Stars",
+      "3 Stars",
+      "2 Stars",
+      "1 Stars",
+    ];
     return SizedBox(
       height: 40,
       child: ListView.builder(
@@ -215,8 +199,8 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
             padding: const EdgeInsets.only(right: 8),
             child: CupertinoButton(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: isSelected 
-                  ? AppColor.primaryColor 
+              color: isSelected
+                  ? AppColor.primaryColor
                   : (isDark ? Colors.white10 : Colors.grey[100]),
               borderRadius: BorderRadius.circular(20),
               minimumSize: Size.zero,
@@ -225,8 +209,8 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                 filters[index].tr,
                 fontSize: 14,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected 
-                    ? Colors.white 
+                color: isSelected
+                    ? Colors.white
                     : (isDark ? Colors.white70 : Colors.black87),
               ),
             ),
@@ -238,18 +222,24 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
 
   Widget _buildReviewCard(ReviewModel review, bool isDark) {
     final subTextColor = isDark ? Colors.white54 : Colors.black54;
+    final bgColor = isDark
+        ? Colors.white.withValues(alpha: 0.05)
+        : Colors.grey[50];
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: isDark ? Colors.white10 : Colors.grey[200]!),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundImage: NetworkImage(review.userImage),
-              ),
+              _buildUserAvatar(review.userImage, review.userName, isDark),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -257,13 +247,14 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                   children: [
                     TextWidget(
                       review.userName,
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white : Colors.black,
                     ),
+                    const SizedBox(height: 2),
                     TextWidget(
                       "${review.date.day}/${review.date.month}/${review.date.year}",
-                      fontSize: 12,
+                      fontSize: 11,
                       color: subTextColor,
                     ),
                   ],
@@ -274,8 +265,10 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                   5,
                   (index) => Icon(
                     Icons.star_rounded,
-                    color: index < review.rating ? Colors.orange : Colors.grey[300],
-                    size: 16,
+                    color: index < review.rating
+                        ? Colors.orange
+                        : Colors.grey[300],
+                    size: 14,
                   ),
                 ),
               ),
@@ -296,13 +289,17 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: review.images!.length,
                 itemBuilder: (context, index) {
+                  final imagePath = review.images![index];
+                  final isLocal = !imagePath.startsWith('http');
                   return Container(
                     margin: const EdgeInsets.only(right: 8),
                     width: 80,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
-                        image: NetworkImage(review.images![index]),
+                        image: isLocal
+                            ? FileImage(File(imagePath)) as ImageProvider
+                            : NetworkImage(imagePath),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -313,6 +310,25 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
           ],
         ],
       ),
+    );
+  }
+
+  Widget _buildUserAvatar(String url, String name, bool isDark) {
+    final bool hasImage = url.isNotEmpty && url.startsWith('http');
+    return CircleAvatar(
+      radius: 20,
+      backgroundColor: hasImage
+          ? Colors.transparent
+          : (isDark ? Colors.white10 : Colors.grey[200]),
+      backgroundImage: hasImage ? NetworkImage(url) : null,
+      child: !hasImage
+          ? TextWidget(
+              name.isNotEmpty ? name[0].toUpperCase() : "?",
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white70 : Colors.black54,
+            )
+          : null,
     );
   }
 
@@ -352,7 +368,11 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(CupertinoIcons.pencil_outline, color: Colors.white, size: 20),
+            const Icon(
+              CupertinoIcons.pencil_outline,
+              color: Colors.white,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             TextWidget(
               "Write a Review".tr,
@@ -372,7 +392,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => WriteReviewBottomSheet(
-        onSubmit: (rating, comment) {
+        onSubmit: (rating, comment, images) {
           final profile = ProfileManager();
           final newReview = ReviewModel(
             id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -381,9 +401,11 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
             rating: rating,
             comment: comment,
             date: DateTime.now(),
+            images: images.map((e) => e.path).toList(),
           );
-          ReviewManager().addReview(widget.product['id'].toString(), newReview);
-          
+          final productId = (widget.product['id'] ?? widget.product['title'] ?? '').toString();
+          ReviewManager().addReview(productId, newReview);
+
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -402,5 +424,3 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
     );
   }
 }
-
-

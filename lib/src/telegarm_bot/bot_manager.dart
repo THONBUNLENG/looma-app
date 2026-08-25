@@ -1,12 +1,14 @@
 import 'package:televerse/televerse.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 import '../model/order_model.dart';
 import '../network/crud_firebase/firestore_service.dart';
 
 class BotManager {
   static final BotManager _instance = BotManager._internal();
+
   factory BotManager() => _instance;
+
   BotManager._internal();
 
   Bot? _bot;
@@ -14,46 +16,60 @@ class BotManager {
   int? _adminChatId;
   GenerativeModel? _aiModel;
 
-  final String _token = "8752422469:AAEaAtUqs3zJmu-McbPGvxYofBeKwSc11ZI";
-  
-  // Gemini API Key
-  final String _geminiApiKey = "AIzaSyAfJhU1ppprip-KUWGaCanGf6nr1VjdNJs";
+  static const String _token = "8752422469:AAEaAtUqs3zJmu-McbPGvxYofBeKwSc11ZI";
+
+  static const String _geminiModelName = 'gemini-1.5-flash';
 
   bool get isRunning => _isRunning;
 
   Future<void> init() async {
+    if (_token.isEmpty) {
+      debugPrint(
+        "⚠️ Missing TELEGRAM_BOT_TOKEN. Set it in BotManager before running.",
+      );
+    }
+
     _adminChatId = await FirestoreService().getTelegramAdminChatId();
-    
-    // Initialize Gemini AI
-    if (_geminiApiKey != "YOUR_GEMINI_API_KEY") {
-      _aiModel = GenerativeModel(
-        model: 'gemini-1.5-flash',
-        apiKey: _geminiApiKey,
-        systemInstruction: Content.system(r'''
-You are the customer support AI for Looma. 
-Answer customer questions accurately and briefly using ONLY the information below:
+
+    _aiModel = FirebaseAI.googleAI().generativeModel(
+      model: _geminiModelName,
+      systemInstruction: Content.system(r'''
+You are the customer support AI for Looma, a modern E-commerce app in Cambodia.
+Answer customer questions accurately, politely, and briefly using ONLY the information below. 
+If the user greets you, greet them back warmly as Looma AI.
+
+Core Features of Looma App:
+- Multi-language: Supports English and Khmer.
+- Payments: ABA PayWay, KHQR (Bakong), and standard cards.
+- Rewards: Special Birthday Reward system with cash vouchers.
+- Authentication: Login via Google, Apple, Facebook, Email, or Phone (OTP).
+- Delivery: Integrated with Google Maps for precise location.
+- Security: Secure local storage for user data.
 
 Knowledge Base:
 - Business Hours: Monday–Saturday, 8:00 AM – 6:00 PM.
 - Payment Options: ABA PayWay, KHQR, Credit Card.
 - Delivery Fee: $1.50 in Phnom Penh, $2.50 to provinces.
 - Returns: Allowed within 7 days with a valid purchase receipt.
-- App Support: You can get instant answers for common questions directly in the app's AI Support chat. For more complex issues, you can contact us via our Telegram group.
+- App Support: You can get instant answers for common questions directly in the app's AI Support chat. For more complex issues, contact us via this Telegram group.
 
-If a question cannot be answered from the list above, kindly instruct the user to contact human support in this group.
+If a question cannot be answered from the list above, kindly instruct the user to contact human support in this group or via the "Contact Us" screen in the app.
 '''),
-      );
-    }
+    );
   }
 
   Future<void> start() async {
     if (_isRunning) return;
 
+    if (_token.isEmpty) {
+      debugPrint("❌ Cannot start Telegram bot: TELEGRAM_BOT_TOKEN is empty.");
+      return;
+    }
+
     try {
       await init();
       _bot = Bot(_token);
 
-      // Register command - works in both private and groups
       _bot!.command('register', (ctx) async {
         final chatId = ctx.id.id;
         _adminChatId = chatId;
@@ -71,33 +87,49 @@ If a question cannot be answered from the list above, kindly instruct the user t
         );
       });
 
-      // Handle AI Support
       _bot!.onMessage((ctx) async {
         final text = ctx.message?.text;
         if (text == null || text.startsWith('/')) return;
 
         if (_aiModel == null) {
-          // Fallback if AI is not configured
           if (ctx.message?.chat.type == ChatType.private) {
-            await ctx.reply("I'm sorry, my AI brain is currently being configured. Please contact support!");
+            await ctx.reply(
+              "I'm sorry, my AI brain is currently being configured. Please contact support!",
+            );
           }
           return;
         }
 
         try {
-          final response = await _aiModel!.generateContent([Content.text(text)]);
-          final replyText = response.text ?? 'Sorry, I could not process your request.';
+          final response = await _aiModel!.generateContent([
+            Content.text(text),
+          ]);
+          final replyText =
+              response.text ?? 'Sorry, I could not process your request.';
           await ctx.reply(replyText);
         } catch (e) {
           debugPrint('❌ Gemini AI Error: $e');
           if (ctx.message?.chat.type == ChatType.private) {
-            // More helpful error for developers
-            if (e.toString().contains("API key not valid")) {
-              await ctx.reply('⚠️ AI Configuration Error: The API key is invalid. Please check your BotManager configuration.');
-            } else if (e.toString().contains("User location is not supported")) {
-              await ctx.reply('⚠️ AI Region Error: Gemini is not supported in your current region.');
+            final errorStr = e.toString().toLowerCase();
+            if (errorStr.contains("permission") ||
+                errorStr.contains("not enabled")) {
+              await ctx.reply(
+                '⚠️ AI Configuration Error: Enable the Gemini Developer API for this Firebase project in the Firebase console (Build > AI Logic).',
+              );
+            } else if (errorStr.contains("location is not supported") ||
+                errorStr.contains("user location")) {
+              await ctx.reply(
+                '⚠️ AI Region Error: Gemini is not supported in your current region.',
+              );
+            } else if (errorStr.contains("not found") ||
+                errorStr.contains("retired")) {
+              await ctx.reply(
+                '⚠️ AI Configuration Error: The Gemini model name is invalid or has been retired. Please update BotManager._geminiModelName.',
+              );
             } else {
-              await ctx.reply('An error occurred while connecting to AI. Please try again later.');
+              await ctx.reply(
+                'An error occurred while connecting to AI. Please try again later.',
+              );
             }
           }
         }
@@ -113,7 +145,11 @@ If a question cannot be answered from the list above, kindly instruct the user t
   }
 
   Future<void> sendOrderNotification(OrderModel order) async {
-    // Refresh admin ID from Firestore if not set
+    if (_token.isEmpty) {
+      debugPrint("❌ Cannot send notification: TELEGRAM_BOT_TOKEN is empty.");
+      return;
+    }
+
     _adminChatId ??= await FirestoreService().getTelegramAdminChatId();
 
     if (_adminChatId == null) {
@@ -134,17 +170,16 @@ If a question cannot be answered from the list above, kindly instruct the user t
       buffer.writeln("📍 *Address:* ${order.address['address'] ?? 'N/A'}");
       buffer.writeln("━━━━━━━━━━━━━━━");
       buffer.writeln("📦 *Items:*");
-
       for (var item in order.items) {
         final title = item['title'] ?? item['name'] ?? 'Unknown Item';
         final qty = item['quantity'] ?? item['qty'] ?? 1;
         final price = item['price'] ?? 0.0;
-        buffer.writeln("• $title x$qty (\$${(price * qty).toStringAsFixed(2)})");
+        buffer.writeln(
+          "• $title x$qty (\$${(price * qty).toStringAsFixed(2)})",
+        );
       }
-
       buffer.writeln("━━━━━━━━━━━━━━━");
       buffer.writeln("📅 *Date:* ${order.createdAt.toString().split('.')[0]}");
-
       await messageBot.api.sendMessage(
         ChatID(_adminChatId!),
         buffer.toString(),
@@ -157,23 +192,27 @@ If a question cannot be answered from the list above, kindly instruct the user t
     }
   }
 
-  // Public method to get AI response for in-app chat
   Future<String> getAiResponse(String message) async {
-    if (_aiModel == null) await init();
-    if (_aiModel == null) return "I'm sorry, I'm having trouble connecting to my AI brain right now.";
-
     try {
+      if (_aiModel == null) await init();
+      if (_aiModel == null)
+        // ignore: curly_braces_in_flow_control_structures
+        return "I'm sorry, I'm having trouble connecting to my AI brain right now.";
       final response = await _aiModel!.generateContent([Content.text(message)]);
       return response.text ?? "I'm sorry, I couldn't understand that.";
     } catch (e) {
       debugPrint("❌ Gemini AI Response Error: $e");
-      final errorStr = e.toString();
-      if (errorStr.contains("API key not valid")) {
-        return "⚠️ AI Configuration Error: The API key is invalid.";
-      } else if (errorStr.contains("User location is not supported")) {
+      final errorStr = e.toString().toLowerCase();
+      if (errorStr.contains("permission") || errorStr.contains("not enabled")) {
+        return "⚠️ AI Configuration Error: Enable the Gemini Developer API for this Firebase project in the Firebase console.";
+      } else if (errorStr.contains("location is not supported") ||
+          errorStr.contains("user location")) {
         return "⚠️ AI Region Error: Gemini is not supported in your current region.";
+      } else if (errorStr.contains("not found") ||
+          errorStr.contains("retired")) {
+        return "⚠️ AI Configuration Error: The Gemini model name is invalid or has been retired.";
       }
-      return "An error occurred while connecting to AI. Please try again later.";
+      return "An error occurred while connecting to AI. Please check your internet and try again.";
     }
   }
 }

@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shopping_app/src/model/product_model.dart';

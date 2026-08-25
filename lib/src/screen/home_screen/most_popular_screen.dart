@@ -105,7 +105,7 @@ class _MostPopularSectionState extends State<MostPopularSection> {
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 20, right: 4),
-                itemCount: products.length,
+                itemCount: products.length > 6 ? 6 : products.length,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   final product = products[index];
@@ -140,7 +140,7 @@ class PopularCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductClothesScreen(product: product.toMap()),
+            builder: (context) => ProductDetailScreen(product: product.toMap()),
           ),
         );
       },
@@ -180,7 +180,7 @@ class PopularCard extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: imageUrl,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                     width: double.infinity,
                     placeholder: (context, url) => Container(
                       color: isDark ? Colors.white10 : Colors.grey[100],

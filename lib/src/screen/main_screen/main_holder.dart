@@ -8,6 +8,7 @@ import 'package:shopping_app/src/widget/birthday_reward_dialog.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import '../../../constants/app_color.dart';
 
+import '../../network/shared_preferences/shared_preferences.dart';
 import '../home_screen/favorite/favorite_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../home_screen/profile_screen/profile_screen.dart';
@@ -103,7 +104,7 @@ class MainHolderState extends State<MainHolder> {
         "MainHolder: Checking birthday reward - User: $day/$month, Today: ${now.day}/${now.month}",
       );
 
-      // STRICT DAY AND MONTH MATCH
+
       if (now.day == day && now.month == month) {
         final prefs = PreferencesManager();
         final uid = FirebaseAuth.instance.currentUser?.uid ?? "guest";

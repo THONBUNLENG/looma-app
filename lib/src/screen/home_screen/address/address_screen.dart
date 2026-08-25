@@ -11,7 +11,6 @@ import 'new_address.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,7 +27,6 @@ class AddressView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
@@ -104,7 +102,6 @@ class AddressView extends StatelessWidget {
   ) {
     bool isDefault = item['isDefault'] ?? false;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return GestureDetector(
       onTap: () {
         context.read<AddressBloc>().add(SetDefaultAddress(index));
@@ -124,16 +121,12 @@ class AddressView extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Radio<bool>(
-              value: true,
-              groupValue: isDefault,
-              onChanged: (val) {
-                context.read<AddressBloc>().add(SetDefaultAddress(index));
-              },
-              activeColor: AppColor.pink100Color,
-              visualDensity: VisualDensity.compact,
+            Icon(
+              isDefault ? Icons.check_circle : Icons.circle_outlined,
+              color: isDefault ? AppColor.pink100Color : Colors.grey,
+              size: 20,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +281,6 @@ class AddressView extends StatelessWidget {
       ),
     );
   }
-
 
   void _showSuccessSnackBar(BuildContext context, String title) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
