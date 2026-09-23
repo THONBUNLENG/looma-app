@@ -65,13 +65,13 @@ const List<PaymentMethodInfo> kPaymentMethods = [
   ),
   PaymentMethodInfo(
     title: 'Bank transfer',
-    subtitle: 'ទូទាត់តាមភ្នាក់ងារផ្សេងៗ',
+    subtitle: 'Pay through various agents',
     icon: 'assets/icon/i_color/bank_transfer.png',
     method: PaymentMethod.bankTransfer,
   ),
   PaymentMethodInfo(
     title: 'Cash on Delivery',
-    subtitle: 'បង់ប្រាក់នៅពេលដែលអ្នកទទួលបានទំនិញ',
+    subtitle: 'Pay when you receive the items',
     icon: 'assets/icon/i_color/cash_on_delivery.png',
     method: PaymentMethod.cashOnDelivery,
   ),
@@ -94,7 +94,7 @@ class PaymentTransaction {
   final PaymentMethod method;
   final PaymentStatus status;
   final DateTime timestamp;
-  final String? md5Hash; // For Bakong
+  final String? md5Hash;
   final String? payload;
 
   const PaymentTransaction({

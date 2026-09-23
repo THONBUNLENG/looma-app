@@ -8,22 +8,20 @@ import 'api_end_point.dart';
 
 mixin EcommerceAPIService {
   static Future<Response> request(
-      String path,
-      DioMethods method, {
-        Map<String, dynamic>? queryParams,
-        dynamic data,
-        bool isProtected = true,
-      }) async {
-
-    final List<ConnectivityResult> network = await Connectivity().checkConnectivity();
+    String path,
+    DioMethods method, {
+    Map<String, dynamic>? queryParams,
+    dynamic data,
+    bool isProtected = true,
+  }) async {
+    final List<ConnectivityResult> network = await Connectivity()
+        .checkConnectivity();
     if (network.contains(ConnectivityResult.none)) {
       throw 'No internet connection. Please check your network.';
     }
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final String? token = SharedPrefUtil.getString(PrefKey.token);
-
-
     final dio = Dio(
       BaseOptions(
         baseUrl: EcommerceAPIEndPoint.instance.baseUrl,
@@ -37,10 +35,9 @@ mixin EcommerceAPIService {
       ),
     );
 
-    dio.interceptors.add(LogInterceptor(
-      requestBody: kDebugMode,
-      responseBody: kDebugMode,
-    ));
+    dio.interceptors.add(
+      LogInterceptor(requestBody: kDebugMode, responseBody: kDebugMode),
+    );
 
     try {
       Response response;
@@ -61,7 +58,8 @@ mixin EcommerceAPIService {
 
       return response;
     } on DioException catch (e) {
-      final errorMessage = e.response?.data['message'] ?? 'Something went wrong';
+      final errorMessage =
+          e.response?.data['message'] ?? 'Something went wrong';
       throw errorMessage;
     }
   }

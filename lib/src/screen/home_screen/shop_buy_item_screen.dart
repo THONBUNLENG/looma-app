@@ -30,7 +30,6 @@ class ShopBuyItemScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Promotion Banner
         Container(
           width: double.infinity,
           height: 160,

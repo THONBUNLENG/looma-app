@@ -19,7 +19,10 @@ class PickStyleSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xFFE52E2E).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
@@ -111,7 +114,6 @@ class _StyleCard extends StatelessWidget {
                 ),
               ),
             ),
-            // Sophisticated Cinematic Gradient
             Positioned.fill(
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -164,7 +166,6 @@ class _StyleCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  // Glass-morphism styled arrow button
                   Container(
                     width: 44,
                     height: 44,
@@ -193,6 +194,7 @@ class _StyleCard extends StatelessWidget {
     );
   }
 }
+
 final List<Map<String, String>> styleBanners = [
   {
     "title": "TAG SPACE",
@@ -203,54 +205,54 @@ final List<Map<String, String>> styleBanners = [
     "title": "OLD MONEY",
     "subtitle": "LUXURY MINIMAL FASHION",
     "image":
-    "https://media.gettyimages.com/id/2061901079/video/paris-france-a-model-walks-the-runway-during-the-saint-laurent-men-collection-fall-winter.jpg?s=640x640&k=20&c=TRDCy-ioWbl4Z2Uw73iBDuiq_UUMAgDdHmuxPopfmRI=",
+        "https://media.gettyimages.com/id/2061901079/video/paris-france-a-model-walks-the-runway-during-the-saint-laurent-men-collection-fall-winter.jpg?s=640x640&k=20&c=TRDCy-ioWbl4Z2Uw73iBDuiq_UUMAgDdHmuxPopfmRI=",
   },
   {
     "title": "STREETWEAR",
     "subtitle": "URBAN STYLE COLLECTION",
     "image":
-    "https://images.pexels.com/photos/28773269/pexels-photo-28773269/free-photo-of-stylish-urban-fashion-portrait-of-young-adults.jpeg",
+        "https://images.pexels.com/photos/28773269/pexels-photo-28773269/free-photo-of-stylish-urban-fashion-portrait-of-young-adults.jpeg",
   },
   {
     "title": "NORDIC ESSENCE",
     "subtitle": "CLEAN LINES & NEUTRAL TONES",
     "image":
-    "https://static.vecteezy.com/system/resources/thumbnails/047/885/544/small/korean-stylish-young-woman-in-a-casual-outfit-holds-shopping-bags-while-smiling-sale-black-friday-photo.jpg",
+        "https://static.vecteezy.com/system/resources/thumbnails/047/885/544/small/korean-stylish-young-woman-in-a-casual-outfit-holds-shopping-bags-while-smiling-sale-black-friday-photo.jpg",
   },
   {
     "title": "AVANT GARDE",
     "subtitle": "REDEFINING MODERN SILHOUETTES",
     "image":
-    "https://img.freepik.com/free-photo/portrait-young-beautiful-brunette-girl-black-hat_176420-8486.jpg",
+        "https://img.freepik.com/free-photo/portrait-young-beautiful-brunette-girl-black-hat_176420-8486.jpg",
   },
   {
     "title": "CORE CLASSICS",
     "subtitle": "TIMELESS PIECES FOR EVERYDAY",
     "image":
-    "https://p16-capcut-sign-useast5.capcutcdn-us.com/tos-useast5-v-3741c799-tx/ogmX4TEJQJrSKXAlf86qqgR4NeAKfMTqVAQgHC~tplv-4d650qgzx3-1:250:0.webp?lk3s=44acef4b&x-expires=1808466249&x-signature=Wm4kdQwe9t9z60nXHUdM8FlIwQU%3D",
+        "https://p16-capcut-sign-useast5.capcutcdn-us.com/tos-useast5-v-3741c799-tx/ogmX4TEJQJrSKXAlf86qqgR4NeAKfMTqVAQgHC~tplv-4d650qgzx3-1:250:0.webp?lk3s=44acef4b&x-expires=1808466249&x-signature=Wm4kdQwe9t9z60nXHUdM8FlIwQU%3D",
   },
   {
     "title": "RETRO WAVE",
     "subtitle": "VINTAGE INSPIRED STYLES",
     "image":
-    "https://img.freepik.com/free-photo/fashionable-boutique-owner-measures-dress-black-white-studio-generated-by-ai_188544-11428.jpg?semt=ais_hybrid&w=740&q=80",
+        "https://img.freepik.com/free-photo/fashionable-boutique-owner-measures-dress-black-white-studio-generated-by-ai_188544-11428.jpg?semt=ais_hybrid&w=740&q=80",
   },
   {
     "title": "EVENING NOIR",
     "subtitle": "ELEGANT NIGHTLIFE ATTIRE",
     "image":
-    "https://images.pexels.com/photos/8427644/pexels-photo-8427644.jpeg?cs=srgb&dl=pexels-cottonbro-8427644.jpg&fm=jpg",
+        "https://images.pexels.com/photos/8427644/pexels-photo-8427644.jpeg?cs=srgb&dl=pexels-cottonbro-8427644.jpg&fm=jpg",
   },
   {
     "title": "TECHWEAR",
     "subtitle": "FUNCTIONAL MEETS FASHION",
     "image":
-    "https://img.magnific.com/free-photo/graceful-fashion-model-trendy-hat-autumn-white-jacket-posing_273443-3847.jpg?semt=ais_hybrid&w=740&q=80",
+        "https://img.magnific.com/free-photo/graceful-fashion-model-trendy-hat-autumn-white-jacket-posing_273443-3847.jpg?semt=ais_hybrid&w=740&q=80",
   },
   {
     "title": "ZEN MINIMALISM",
     "subtitle": "PEACEFUL & ETHICAL APPAREL",
     "image":
-    "https://www.shutterstock.com/image-photo/fulllength-portrait-glamorous-female-model-600nw-2667737659.jpg",
+        "https://www.shutterstock.com/image-photo/fulllength-portrait-glamorous-female-model-600nw-2667737659.jpg",
   },
 ];

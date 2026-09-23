@@ -56,13 +56,13 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen> {
           final isSelected = _selectedIndex == index;
           final isCod = methodInfo.method == PaymentMethod.cashOnDelivery;
           final bool isEnabled = !isCod || widget.isPhnomPenh;
-
           return InkWell(
             onTap: isEnabled
                 ? () {
                     setState(() => _selectedIndex = index);
                     Future.delayed(const Duration(milliseconds: 200), () {
                       if (mounted) {
+                        // ignore: use_build_context_synchronously
                         Navigator.pop(context, index);
                       }
                     });

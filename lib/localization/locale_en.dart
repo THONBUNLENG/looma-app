@@ -2053,7 +2053,7 @@ const Map<String, String> english = {
   'Add your birthday to unlock additional offering/reward!': 'Add your birthday to unlock additional offering/reward!',
   'Your address': 'Your address',
   'Address book': 'Address book',
-  'Save': 'Save',
+  'Product Discount': 'Product Discount',
   'FAQs & guides': 'FAQs & guides',
   'Rate this app': 'Rate this app',
   'Recommend this app': 'Recommend this app',
@@ -2090,4 +2090,6 @@ const Map<String, String> english = {
   'The service is currently unavailable. Please try again later.': 'The service is currently unavailable. Please try again later.',
   'The requested resource was not found.': 'The requested resource was not found.',
   'The resource already exists.': 'The resource already exists.',
+  'Pay through various agents': 'Pay through various agents',
+  'Pay when you receive the items': 'Pay when you receive the items',
 };

@@ -210,13 +210,11 @@ class _CheckoutPaymentViewState extends State<CheckoutPaymentView> {
                                 height: 18,
                                 color: const Color(0xFFE31B23),
                                 alignment: Alignment.center,
-                                child: const Text(
+                                child:  TextWidget(
                                   "KHQR",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.w900,
-                                  ),
+                                  color: Colors.white,
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                           ],

@@ -14,6 +14,7 @@ import '../../../manager/notification_service.dart';
 import '../../model/notification_model.dart';
 import 'categories_screen.dart';
 import 'everyday_accessories.dart';
+import 'accessorize_save_section.dart';
 import 'little_princess_collection.dart';
 import 'on_trend_styles.dart';
 import 'just_screen.dart';
@@ -71,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
-
         title: ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
             colors: isDark
@@ -124,6 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const BrandsScreen(),
               const SizedBox(height: 20),
               const OnTrendStylesSection(),
+              const SizedBox(height: 20),
+              AccessorizeSaveSection(),
               const SizedBox(height: 20),
               const LittlePrincessSection(),
               const SizedBox(height: 20),
@@ -192,7 +194,6 @@ class _ShopHeaderSectionState extends State<ShopHeaderSection> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final banners = bannerData;
-
     if (banners.isEmpty) {
       return Container(
         height: 180,

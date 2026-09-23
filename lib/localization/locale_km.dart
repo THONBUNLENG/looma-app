@@ -2227,7 +2227,7 @@ const Map<String, String> khmer = {
       'បន្ថែមថ្ងៃកំណើតរបស់អ្នក ដើម្បីទទួលបានរង្វាន់បន្ថែម!',
   'Your address': 'អាសយដ្ឋានរបស់អ្នក',
   'Address book': 'សៀវភៅអាសយដ្ឋាន',
-  'Save': 'រក្សាទុក',
+  'Product Discount': 'ការបញ្ចុះតម្លៃផលិតផល',
   'FAQs & guides': 'សំណួរដែលសួរញឹកញាប់ និងការណែនាំ',
   'Rate this app': 'វាយតម្លៃកម្មវិធីនេះ',
   'Recommend this app': 'ណែនាំកម្មវិធីនេះ',
@@ -2264,4 +2264,6 @@ const Map<String, String> khmer = {
   'The service is currently unavailable. Please try again later.': 'សេវាកម្មនេះមិនអាចប្រើប្រាស់បានទេនៅពេលនេះ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។',
   'The requested resource was not found.': 'រកមិនឃើញធនធានដែលបានស្នើសុំទេ។',
   'The resource already exists.': 'ធនធាននេះមានរួចហើយ។',
+  'Pay through various agents': 'ទូទាត់តាមភ្នាក់ងារផ្សេងៗ',
+  'Pay when you receive the items': 'បង់ប្រាក់នៅពេលដែលអ្នកទទួលបានទំនិញ',
 };

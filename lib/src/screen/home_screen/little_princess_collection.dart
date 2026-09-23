@@ -141,8 +141,7 @@ class PrincessItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                ProductDetailScreen(product: product.toMap()),
+            builder: (context) => ProductDetailScreen(product: product.toMap()),
           ),
         );
       },

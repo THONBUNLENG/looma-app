@@ -16,7 +16,6 @@ class JustForYouSection extends StatefulWidget {
   @override
   State<JustForYouSection> createState() => _JustForYouSectionState();
 }
-
 class _JustForYouSectionState extends State<JustForYouSection> {
   final FirestoreService _firestoreService = FirestoreService();
   late Stream<List<ProductModel>> _productStream;
@@ -62,15 +61,21 @@ class _JustForYouSectionState extends State<JustForYouSection> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return LoadingWidget.loadingCenterWidget();
               }
-              
               var products = snapshot.data ?? [];
-
               if (products.isEmpty) {
-                products = justForYouData.take(10).map((m) => ProductModel.fromMap(m)).toList();
+                products = justForYouData
+                    .take(10)
+                    .map((m) => ProductModel.fromMap(m))
+                    .toList();
               }
 
               if (products.isEmpty) {
-                return Center(child: TextWidget("No recommendations yet".tr, color: isDark ? Colors.white38 : Colors.grey));
+                return Center(
+                  child: TextWidget(
+                    "No recommendations yet".tr,
+                    color: isDark ? Colors.white38 : Colors.grey,
+                  ),
+                );
               }
               return GridView.builder(
                 shrinkWrap: true,
@@ -84,7 +89,10 @@ class _JustForYouSectionState extends State<JustForYouSection> {
                   childAspectRatio: 0.60,
                 ),
                 itemBuilder: (context, index) {
-                  return JustForYouCard(product: products[index], isDark: isDark);
+                  return JustForYouCard(
+                    product: products[index],
+                    isDark: isDark,
+                  );
                 },
               );
             },

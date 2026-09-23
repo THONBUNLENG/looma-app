@@ -82,10 +82,8 @@ class _MostPopularSectionState extends State<MostPopularSection> {
               }
               
               var products = snapshot.data ?? [];
-              
-              // Fallback to local data if Firestore is empty or has error
+
               if (products.isEmpty) {
-                // Mix of popular items from different categories
                 final List<Map<String, dynamic>> mixedPopular = [
                   if (clothes.isNotEmpty) clothes[5],
                   if (shoes.isNotEmpty) shoes[3],

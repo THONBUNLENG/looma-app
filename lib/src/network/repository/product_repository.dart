@@ -6,6 +6,7 @@ class ProductRepository {
 
   Future<List<ProductModel>> getProductsByCategory(String category) async {
     try {
+      // ignore: unawaited_return_in_try_block
       return _firestoreService.getProductsByCategory(category).first;
     } catch (e) {
       throw Exception('Failed to fetch products: $e');

@@ -11,23 +11,23 @@ import 'package:shopping_app/src/screen/home_screen/product_detail/product_detai
 import 'package:shopping_app/src/widget/favorite_button.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 
-class EverydayAccessoriesSection extends StatefulWidget {
-  const EverydayAccessoriesSection({super.key});
+class AccessorizeSaveSection extends StatefulWidget {
+  const AccessorizeSaveSection({super.key});
 
   @override
-  State<EverydayAccessoriesSection> createState() =>
-      _EverydayAccessoriesSectionState();
+  State<AccessorizeSaveSection> createState() =>
+      _AccessorizeSaveSectionState();
 }
 
-class _EverydayAccessoriesSectionState
-    extends State<EverydayAccessoriesSection> {
+class _AccessorizeSaveSectionState extends State<AccessorizeSaveSection> {
   final FirestoreService _firestoreService = FirestoreService();
   late Stream<List<ProductModel>> _productStream;
 
   @override
   void initState() {
     super.initState();
-    _productStream = _firestoreService.getProducts(category: 'ACCESSORIES');
+    _productStream =
+        _firestoreService.getProducts(category: 'ACCESSORIZE_SAVE');
   }
 
   @override
@@ -44,7 +44,7 @@ class _EverydayAccessoriesSectionState
             children: [
               Expanded(
                 child: TextWidget(
-                  "Everyday Accessories".tr,
+                  "Accessorize & Save".tr,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: isDark ? AppColor.white : AppColor.black,
@@ -59,8 +59,8 @@ class _EverydayAccessoriesSectionState
                     context,
                     MaterialPageRoute(
                       builder: (context) => const UniversalProductScreen(
-                        title: 'Everyday Accessories',
-                        category: 'ACCESSORIES',
+                        title: 'Accessorize & Save',
+                        category: 'ACCESSORIZE_SAVE',
                       ),
                     ),
                   );
@@ -81,7 +81,7 @@ class _EverydayAccessoriesSectionState
           ),
         ),
         SizedBox(
-          height: 350,
+          height: 380,
           child: StreamBuilder<List<ProductModel>>(
             stream: _productStream,
             builder: (context, snapshot) {
@@ -90,15 +90,15 @@ class _EverydayAccessoriesSectionState
               }
               var products = snapshot.data ?? [];
               if (products.isEmpty) {
-                products = accessories
+                products = allItems
                     .map((m) => ProductModel.fromMap(m))
+                    .where((p) => p.isDiscounted)
                     .toList();
               }
-
               if (products.isEmpty) {
                 return Center(
                   child: TextWidget(
-                    "No accessories found".tr,
+                    "No items found".tr,
                     color: isDark ? Colors.white38 : Colors.grey,
                   ),
                 );
@@ -107,9 +107,9 @@ class _EverydayAccessoriesSectionState
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 20, right: 10),
                 physics: const BouncingScrollPhysics(),
-                itemCount: products.length > 6 ? 6 : products.length,
+                itemCount: products.length,
                 itemBuilder: (context, index) {
-                  return AccessoryItemCard(
+                  return AccessorizeSaveCard(
                     product: products[index],
                     index: index,
                   );
@@ -123,11 +123,11 @@ class _EverydayAccessoriesSectionState
   }
 }
 
-class AccessoryItemCard extends StatelessWidget {
+class AccessorizeSaveCard extends StatelessWidget {
   final ProductModel product;
   final int index;
 
-  const AccessoryItemCard({
+  const AccessorizeSaveCard({
     super.key,
     required this.product,
     required this.index,
@@ -137,6 +137,7 @@ class AccessoryItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final String imageUrl = product.images.isNotEmpty ? product.images[0] : '';
+    final double? oldPrice = product.effectiveOldPrice;
 
     return GestureDetector(
       onTap: () {
@@ -148,7 +149,7 @@ class AccessoryItemCard extends StatelessWidget {
         );
       },
       child: Container(
-        width: 170,
+        width: 180,
         margin: const EdgeInsets.only(right: 18, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,43 +160,65 @@ class AccessoryItemCard extends StatelessWidget {
                   color: isDark
                       ? Colors.white.withValues(alpha: 0.05)
                       : AppColor.grey100,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.zero,
                   boxShadow: [
                     if (!isDark)
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.08),
-                        blurRadius: 14,
-                        offset: const Offset(0, 8),
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
                       ),
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.zero,
                   child: Stack(
                     children: [
                       Positioned.fill(
                         child: imageUrl.isNotEmpty
                             ? Hero(
-                                tag: 'accessory_item_$index',
-                                child: CachedNetworkImage(
-                                  imageUrl: imageUrl,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) => Center(
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: isDark
-                                          ? Colors.white24
-                                          : Colors.grey[300],
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.broken_image_outlined),
-                                ),
-                              )
+                          tag: 'accessorize_save_$index',
+                          child: CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: isDark
+                                    ? Colors.white24
+                                    : Colors.grey[300],
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                            const Icon(Icons.broken_image_outlined),
+                          ),
+                        )
                             : const Icon(Icons.image_not_supported_outlined),
                       ),
+                      if (product.isDiscounted)
+                        Positioned(
+                          top: 10,
+                          left: 10,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColor.saleRed,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: TextWidget(
+                              product.formattedDiscountLabel,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      // Favorite Button
                       Positioned(
-                        top: 10,
+                        bottom: 10,
                         right: 10,
                         child: FavoriteButton(
                           product: product.toMap(),
@@ -210,7 +233,7 @@ class AccessoryItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             TextWidget(
-              "LOOMA",
+              product.brandName ?? "LOOMA",
               fontSize: 13,
               letterSpacing: 1.2,
               fontWeight: FontWeight.bold,
@@ -225,12 +248,29 @@ class AccessoryItemCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 4),
-            TextWidget(
-              "\$${product.price.toStringAsFixed(2)}",
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppColor.primaryColor,
+            const SizedBox(height: 6),
+            Row(
+              children: [
+                TextWidget(
+                  "\$${product.price.toStringAsFixed(2)}",
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: product.isDiscounted
+                      ? AppColor.saleRed
+                      : (isDark ? Colors.white : Colors.black),
+                ),
+                if (oldPrice != null && oldPrice > product.price) ...[
+                  const SizedBox(width: 8),
+                  Text(
+                    "\$${oldPrice.toStringAsFixed(2)}",
+                    style: TextStyle(
+                      color: isDark ? Colors.white38 : Colors.grey,
+                      decoration: TextDecoration.lineThrough,
+                      fontSize: 13,
+                    ),
+                  ),
+                ],
+              ],
             ),
           ],
         ),

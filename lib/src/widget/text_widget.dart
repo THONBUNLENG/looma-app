@@ -4,29 +4,24 @@ import 'package:flutter_localization/flutter_localization.dart';
 class TextWidget extends Text {
   TextWidget(
       String text, {
-        Key? key,
+        super.key,
         double? fontSize,
         FontWeight? fontWeight,
         Color? color,
-        TextAlign? textAlign,
-        TextOverflow? overflow,
-        int? maxLines,
+        super.textAlign,
+        super.overflow,
+        super.maxLines,
         FontStyle? fontStyle,
         TextDecoration? textDecoration,
         double? lineHeight,
         double? letterSpacing,
-        bool? softWrap,
+        super.softWrap,
         BuildContext? context,
         List<dynamic> args = const [],
         TextStyle? style,
       }) : super(
     context == null ? text : context.formatString(text, args),
-    key: key,
-    textAlign: textAlign,
-    overflow: overflow,
-    maxLines: maxLines,
     textScaler: TextScaler.noScaling,
-    softWrap: softWrap,
     style:
     style ??
         TextStyle(

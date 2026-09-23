@@ -31,7 +31,6 @@ class _NewItemsSectionState extends State<NewItemsSection> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -99,11 +98,18 @@ class _NewItemsSectionState extends State<NewItemsSection> {
                   if (shoes.length > 2) shoes[2],
                   if (bags.length > 2) bags[2],
                 ];
-                products = mixedItems.map((m) => ProductModel.fromMap(m)).toList();
+                products = mixedItems
+                    .map((m) => ProductModel.fromMap(m))
+                    .toList();
               }
 
               if (products.isEmpty) {
-                return Center(child: TextWidget("No new items".tr, color: isDark ? Colors.white38 : Colors.grey));
+                return Center(
+                  child: TextWidget(
+                    "No new items".tr,
+                    color: isDark ? Colors.white38 : Colors.grey,
+                  ),
+                );
               }
               return ListView.builder(
                 scrollDirection: Axis.horizontal,

@@ -262,7 +262,6 @@ class _VisualSearchScreenState extends State<VisualSearchScreen> {
     setState(() => status = SearchStatus.processing);
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        // Mock data logic
         setState(() {
           visualSearchResults = List.generate(
             10,

@@ -16,6 +16,7 @@ class ProductModel {
   final List<String> colors;
   final List<String> imageColor;
   final String? discount;
+  final double? oldPrice;
   final DateTime? createdAt;
   final String? stockStatus;
   final String? sku;
@@ -39,6 +40,7 @@ class ProductModel {
     this.colors = const [],
     this.imageColor = const [],
     this.discount,
+    this.oldPrice,
     this.createdAt,
     this.stockStatus,
     this.sku,
@@ -65,6 +67,7 @@ class ProductModel {
       colors: _parseList(map['colors'] ?? map['color']),
       imageColor: _parseList(map['image_color']),
       discount: map['discount']?.toString(),
+      oldPrice: _parsePrice(map['old_price'] ?? map['oldPrice']),
       createdAt: _parseDateTime(map['createdAt']),
       stockStatus: map['stock_status']?.toString(),
       sku: map['sku']?.toString(),
@@ -91,6 +94,7 @@ class ProductModel {
       'colors': colors,
       'image_color': imageColor,
       'discount': discount,
+      'old_price': oldPrice,
       'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
       'stock_status': stockStatus,
       'sku': sku,
@@ -118,6 +122,7 @@ class ProductModel {
       'colors': colors,
       'image_color': imageColor,
       'discount': discount,
+      'old_price': oldPrice,
       'createdAt': createdAt?.toIso8601String(),
       'stock_status': stockStatus,
       'sku': sku,
@@ -150,6 +155,7 @@ class ProductModel {
     List<String>? colors,
     List<String>? imageColor,
     String? discount,
+    double? oldPrice,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -173,9 +179,40 @@ class ProductModel {
       colors: colors ?? this.colors,
       imageColor: imageColor ?? this.imageColor,
       discount: discount ?? this.discount,
+      oldPrice: oldPrice ?? this.oldPrice,
     );
   }
 
+  /// Getter for calculated or explicit old price
+  double? get effectiveOldPrice {
+    if (oldPrice != null && oldPrice! > price) return oldPrice;
+
+    if (discount != null && discount!.contains('%')) {
+      final discountPercent = double.tryParse(discount!.replaceAll('%', '')) ?? 0;
+      if (discountPercent > 0) {
+        return price / (1 - (discountPercent / 100));
+      }
+    }
+    return null;
+  }
+  /// Returns whether this product is currently discounted
+  bool get isDiscounted {
+    if (oldPrice != null && oldPrice! > price) return true;
+    if (discount != null && discount!.isNotEmpty) return true;
+    return false;
+  }
+
+  /// Returns calculated discount percentage string (e.g., "-20%")
+  String get formattedDiscountLabel {
+    if (discount != null && discount!.isNotEmpty) {
+      return discount!.startsWith('-') ? discount! : '-$discount';
+    }
+    if (effectiveOldPrice != null && effectiveOldPrice! > price) {
+      final percentage = (((effectiveOldPrice! - price) / effectiveOldPrice!) * 100).round();
+      return '-$percentage%';
+    }
+    return '';
+  }
   /// Helper to parse images from 'images' (List) or 'image' (String)
   static List<String> _parseImages(Map<String, dynamic> map) {
     if (map['images'] != null && map['images'] is List) {

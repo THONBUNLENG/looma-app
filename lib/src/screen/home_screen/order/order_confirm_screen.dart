@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopping_app/constants/app_color.dart';
+import 'package:shopping_app/constants/navigator_extension.dart';
 import 'package:shopping_app/constants/string_extension.dart';
 import 'package:shopping_app/manager/profile_manager.dart';
 import 'package:shopping_app/manager/cart_manager.dart';
@@ -11,28 +12,31 @@ import 'package:shopping_app/src/model/order_model.dart';
 import 'package:shopping_app/src/model/payment_model.dart';
 import 'package:shopping_app/src/screen/home_screen/order/bloc/order_bloc.dart';
 import 'package:shopping_app/src/screen/home_screen/order/order_success_screen.dart';
-import 'package:shopping_app/src/screen/home_screen/payment/checkout_payment_screen.dart';
+import 'package:shopping_app/src/screen/home_screen/product_detail/product_detail_screen.dart';
 import 'package:shopping_app/src/widget/loading_widget.dart';
 import 'package:shopping_app/src/widget/text_widget.dart';
 import '../../../network/datastor/membership_service.dart';
 import '../../../widget/show_dialog.dart';
-
 import '../address/address_screen.dart';
 import '../address/bloc/address_bloc.dart';
 import '../address/edit_address.dart';
 import '../address/new_address.dart';
+import '../payment/aba_payment.dart';
+import '../payment/bakong_khqr_payment_screen.dart';
 import 'select_payment_screen.dart';
 
 class OrderConfirmScreen extends StatefulWidget {
   final List<Map<String, dynamic>> items;
   final double appliedDiscount;
   final String? appliedCode;
+  final int pointsRedeemed;
 
   const OrderConfirmScreen({
     super.key,
     required this.items,
     this.appliedDiscount = 0.0,
     this.appliedCode,
+    this.pointsRedeemed = 0,
   });
 
   @override
@@ -42,30 +46,21 @@ class OrderConfirmScreen extends StatefulWidget {
 class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     with LoadingWidget {
   final TextEditingController _voucherController = TextEditingController();
-
   final TextEditingController _contactLineController = TextEditingController();
-
   final TextEditingController _noteController = TextEditingController();
-
   int _selectedPayment = 0;
-
   double _discountAmount = 0.0;
-
   String? _appliedVoucherCode;
-
   int _pointsToRedeem = 0;
-
   int _contactMethod = 0;
-
   bool _isPriceExpanded = false;
-
-  List<OrderModel> _orders = [];
 
   @override
   void initState() {
     super.initState();
     _discountAmount = widget.appliedDiscount;
     _appliedVoucherCode = widget.appliedCode;
+    _pointsToRedeem = widget.pointsRedeemed;
   }
 
   @override
@@ -78,14 +73,11 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
 
   double get _subtotal {
     double total = 0.0;
-
     for (var item in widget.items) {
       final price = _parsePrice(item['price']);
       final quantity = item['quantity'] ?? 1;
-
       total += price * quantity;
     }
-
     return total;
   }
 
@@ -103,58 +95,52 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       return 0.0;
     }
 
-    if (_subtotal >= 16000.0) {
+    if (_subtotal >= 16.0) {
       return 0.0;
     }
     return 2.00;
-  }
-
-  double get _automaticDiscount {
-    if (_subtotal >= 16000.0) {
-      return _subtotal * 0.10;
-    }
-
-    return 0.0;
   }
 
   double _calculateMembershipDiscount(MemberLevel level) {
     return _subtotal * level.discountPercentage;
   }
 
-  int get _availablePoints {
-    return MembershipService.calculateAvailablePoints(_orders);
-  }
-
-  int get _maxPointsBySubtotal {
-    final double sharedMaxDiscount = _subtotal * 0.9;
-
-    final double remainingDiscountLimit = (sharedMaxDiscount - _discountAmount)
-        .clamp(0.0, double.infinity);
-
-    return (remainingDiscountLimit / 0.15).floor();
-  }
-
-  int get _effectiveMaxPoints {
-    final int byBalance = _availablePoints;
-    final int byLimit = _maxPointsBySubtotal;
-    return byBalance < byLimit ? byBalance : byLimit;
-  }
-
   double _calculatePointsDiscount() {
-    final points = _pointsToRedeem > _effectiveMaxPoints
-        ? _effectiveMaxPoints
-        : _pointsToRedeem;
-    return points * 0.15;
+    return _pointsToRedeem * 0.15;
+  }
+
+  double _parseDiscount(dynamic discount) {
+    if (discount == null) return 0.0;
+    if (discount is num) return discount.toDouble();
+    final String d = discount.toString();
+    if (d.contains('%')) {
+      return (double.tryParse(d.replaceAll('%', '')) ?? 0.0) / 100.0;
+    }
+    return double.tryParse(d) ?? 0.0;
+  }
+
+  double get _totalProductDiscount {
+    double totalDiscount = 0.0;
+    for (var item in widget.items) {
+      final price = _parsePrice(item['price']);
+      final quantity = item['quantity'] ?? 1;
+      final discountRate = _parseDiscount(item['discount']);
+
+      if (discountRate > 0) {
+        final originalPrice = price / (1 - discountRate);
+        totalDiscount += (originalPrice - price) * quantity;
+      }
+    }
+    return totalDiscount;
   }
 
   double _totalAmount(MemberLevel level) {
     double calculated =
         _subtotal +
-        _deliveryFee -
-        _discountAmount -
-        _automaticDiscount -
-        _calculateMembershipDiscount(level) -
-        _calculatePointsDiscount();
+            _deliveryFee -
+            _discountAmount -
+            _calculateMembershipDiscount(level) -
+            _calculatePointsDiscount();
     return calculated.clamp(0.01, double.infinity);
   }
 
@@ -166,8 +152,8 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
       return price.toDouble();
     }
     return double.tryParse(
-          price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
-        ) ??
+      price.toString().replaceAll(RegExp(r'[^\d.]'), ''),
+    ) ??
         0.0;
   }
 
@@ -179,52 +165,69 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
         BlocProvider(create: (context) => OrderBloc()),
         BlocProvider(create: (context) => AddressBloc()..add(LoadAddresses())),
       ],
-      child: BlocListener<OrderBloc, OrderState>(
-        listener: (context, state) {
-          if (state is OrderSuccess) {
-            final order = state.order!;
-            CartManager().clearCart();
-            if (order.paymentMethod == 'Bank transfer') {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CheckoutPaymentScreen(
-                    totalAmount: order.totalAmount,
-                    orderId: order.id!,
-                    paymentMethod: order.paymentMethod,
+      child: StreamBuilder<List<OrderModel>>(
+        stream: MembershipService.getOrdersStream(),
+        builder: (context, membershipSnapshot) {
+          final orders = membershipSnapshot.data ?? [];
+          final totalSpent = MembershipService.calculateTotalSpent(orders);
+          final level = MembershipService.getLevel(totalSpent);
+          return BlocListener<OrderBloc, OrderState>(
+            listener: (context, state) {
+              if (state is OrderSuccess) {
+                final order = state.order!;
+                CartManager().clearCart();
+                if (order.paymentMethod == 'Bank transfer') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => KhqrPaymentScreen(
+                        amount: order.totalAmount,
+                        currency: 'USD',
+                        orderId: order.id!,
+                        bakongToken:
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjYwZmM4NDc5ZTM5NGY1OSJ9LCJpYXQiOjE3ODYzMjgyMDAsImV4cCI6MTc5NDEwNDIwMH0.-TJ19ZMPiwncuToURKW6DwgfzsFgnGYBF002jssYTkM',
+                        subtotal: _subtotal + _totalProductDiscount,
+                        discountAmount: _totalProductDiscount +
+                            _discountAmount +
+                            _calculateMembershipDiscount(level) +
+                            _calculatePointsDiscount(),
+                        deliveryFee: _deliveryFee,
+                      ),
+                    ),
+                  );
+                } else if (order.paymentMethod == 'ABA PAY') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => AbaPaymentScreen(
+                        amount: order.totalAmount,
+                        orderId: order.id!,
+                      ),
+                    ),
+                  );
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OrderSuccessScreen(
+                        orderId: order.id!,
+                        totalAmount: order.totalAmount,
+                        paymentMethod: order.paymentMethod,
+                      ),
+                    ),
+                  );
+                }
+              } else if (state is OrderFailure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content:
+                    TextWidget("Failed to place order: ${state.error}".tr),
+                    backgroundColor: Colors.redAccent,
                   ),
-                ),
-              );
-            } else {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => OrderSuccessScreen(
-                    orderId: order.id!,
-                    totalAmount: order.totalAmount,
-                    paymentMethod: order.paymentMethod,
-                  ),
-                ),
-              );
-            }
-          } else if (state is OrderFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: TextWidget("Failed to place order: ${state.error}".tr),
-                backgroundColor: Colors.redAccent,
-              ),
-            );
-          }
-        },
-
-        child: StreamBuilder<List<OrderModel>>(
-          stream: MembershipService.getOrdersStream(),
-          builder: (context, membershipSnapshot) {
-            final orders = membershipSnapshot.data ?? [];
-            _orders = orders;
-            final totalSpent = MembershipService.calculateTotalSpent(orders);
-            final level = MembershipService.getLevel(totalSpent);
-            return BlocBuilder<OrderBloc, OrderState>(
+                );
+              }
+            },
+            child: BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
                 final orderBloc = context.read<OrderBloc>();
                 return Stack(
@@ -247,7 +250,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                           color: isDark ? Colors.white : Colors.black,
                         ),
                       ),
-
                       body: SingleChildScrollView(
                         padding: const EdgeInsets.all(16),
                         child: Column(
@@ -288,9 +290,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                             _buildSectionTitle("Payment", isDark),
                             _buildPaymentMethods(isDark),
                             const SizedBox(height: 24),
-                            _buildSectionTitle("Redeem Points", isDark),
-                            _buildPointsRedemptionSection(isDark, orders),
-                            const SizedBox(height: 24),
                             _buildSectionTitle("Note", isDark),
                             _buildNoteSection(isDark),
                             const SizedBox(height: 120),
@@ -312,21 +311,20 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                   ],
                 );
               },
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 
   Widget _buildSectionTitle(
-    String title,
-    bool isDark, {
-    bool isRequired = false,
-  }) {
+      String title,
+      bool isDark, {
+        bool isRequired = false,
+      }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-
       child: Row(
         children: [
           TextWidget(
@@ -364,54 +362,57 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
             imageUrl = item['images'][0].toString();
           }
 
-          return SizedBox(
-            width: 100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) => Container(
-                      color: isDark ? Colors.white10 : Colors.grey.shade100,
-                      child: const Center(
-                        child: CircularProgressIndicator(strokeWidth: 2),
+          return GestureDetector(
+            onTap: () {
+              Go.to(ProductDetailScreen(product: item));
+            },
+            child: SizedBox(
+              width: 100,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.contain,
+                      placeholder: (context, url) => Container(
+                        color: isDark ? Colors.white10 : Colors.grey.shade100,
+                        child: const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: isDark ? Colors.white10 : Colors.grey.shade100,
+                        child: const Icon(
+                          Icons.image_not_supported_outlined,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
-                    errorWidget: (context, url, error) => Container(
-                      color: isDark ? Colors.white10 : Colors.grey.shade100,
-                      child: const Icon(
-                        Icons.image_not_supported_outlined,
-                        color: Colors.grey,
-                      ),
+                  ),
+                  const SizedBox(height: 4),
+                  Flexible(
+                    child: TextWidget(
+                      "${item['title'] ?? ''}",
+                      fontSize: 12,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      color: isDark ? Colors.white70 : Colors.black87,
                     ),
                   ),
-                ),
-
-                const SizedBox(height: 4),
-                Flexible(
-                  child: TextWidget(
-                    "${item['title'] ?? ''}",
-                    fontSize: 12,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    color: isDark ? Colors.white70 : Colors.black87,
+                  Flexible(
+                    child: TextWidget(
+                      "Quantity ${item['quantity'] ?? 1} / \$${_parsePrice(item['price']).toStringAsFixed(2)}",
+                      fontSize: 10,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-
-                Flexible(
-                  child: TextWidget(
-                    "Quantity ${item['quantity'] ?? 1} / \$${_parsePrice(item['price']).toStringAsFixed(2)}",
-                    fontSize: 10,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -421,7 +422,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
 
   Widget _buildAddressCard(bool isDark) {
     final profile = ProfileManager();
-
     final address = profile.defaultAddress;
 
     if (address == null) {
@@ -486,9 +486,9 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   Widget _buildAddressSection(
-    bool isDark,
-    List<Map<String, dynamic>> addresses,
-  ) {
+      bool isDark,
+      List<Map<String, dynamic>> addresses,
+      ) {
     final profile = ProfileManager();
     final address = profile.defaultAddress ??
         (addresses.isNotEmpty ? addresses.first : null);
@@ -574,10 +574,10 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   Widget _buildAddressActions(
-    bool isDark,
-    Map<String, dynamic> item,
-    List<Map<String, dynamic>> addresses,
-  ) {
+      bool isDark,
+      Map<String, dynamic> item,
+      List<Map<String, dynamic>> addresses,
+      ) {
     int resolveIndex() {
       final id = item['id'];
       if (id != null) {
@@ -585,8 +585,8 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
         if (byId != -1) return byId;
       }
       final byFields = addresses.indexWhere(
-        (a) =>
-            a['address'] == item['address'] &&
+            (a) =>
+        a['address'] == item['address'] &&
             (a['label'] ?? a['title']) == (item['label'] ?? item['title']),
       );
       return byFields;
@@ -633,7 +633,7 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
               builder: (dialogContext) => StatusDialog(
                 title: "Delete Address".tr,
                 message:
-                    "${"Are you sure you want to delete".tr} '${item['label'] ?? item['title']}'?",
+                "Are you sure you want to delete '${item['label'] ?? item['title']}'?",
                 btn1Text: "Cancel".tr,
                 btn2Text: "Delete".tr,
                 icon: Icons.delete_sweep_rounded,
@@ -824,11 +824,11 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   Widget _buildContactRadio(
-    int value,
-    dynamic icon,
-    String label,
-    bool isDark,
-  ) {
+      int value,
+      dynamic icon,
+      String label,
+      bool isDark,
+      ) {
     final isSelected = _contactMethod == value;
     return InkWell(
       onTap: () {
@@ -861,15 +861,15 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                   children: [
                     icon is IconData
                         ? Icon(
-                            icon,
-                            size: 14,
-                            color: isDark ? Colors.white : Colors.black,
-                          )
+                      icon,
+                      size: 14,
+                      color: isDark ? Colors.white : Colors.black,
+                    )
                         : FaIcon(
-                            icon,
-                            size: 14,
-                            color: isDark ? Colors.white : Colors.black,
-                          ),
+                      icon,
+                      size: 14,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
                     const SizedBox(width: 4),
                     Flexible(
                       child: TextWidget(
@@ -898,9 +898,9 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     final bool isPhnomPenh = fullAddress.contains('phnom penh');
 
     final method =
-        kPaymentMethods[_selectedPayment < kPaymentMethods.length
-            ? _selectedPayment
-            : 0];
+    kPaymentMethods[_selectedPayment < kPaymentMethods.length
+        ? _selectedPayment
+        : 0];
     return InkWell(
       onTap: () async {
         final result = await Navigator.push(
@@ -918,7 +918,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
           });
         }
       },
-
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -984,153 +983,12 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     );
   }
 
-  Widget _buildPointsRedemptionSection(bool isDark, List<OrderModel> orders) {
-    final availablePoints = _availablePoints;
-    final int effectiveMaxPoints = _effectiveMaxPoints;
-    if (availablePoints <= 0) {
-      return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: TextWidget(
-          "You have 0 points available for redemption.".tr,
-          color: Colors.grey,
-          fontSize: 14,
-        ),
-      );
-    }
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isDark ? Colors.white10 : Colors.grey.shade100,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: TextWidget(
-                  "${"Available:".tr} $availablePoints ${"Points".tr}",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: TextWidget(
-                  "${"Limit:".tr} $effectiveMaxPoints ${"Points".tr} (90%)",
-                  color: Colors.orange,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: AppColor.pink100Color,
-                    inactiveTrackColor: AppColor.pink100Color.withValues(
-                      alpha: 0.2,
-                    ),
-                    thumbColor: AppColor.pink100Color,
-                    overlayColor: AppColor.pink100Color.withValues(alpha: 0.2),
-                    trackHeight: 4,
-                    thumbShape: const RoundSliderThumbShape(
-                      enabledThumbRadius: 8,
-                    ),
-                  ),
-                  child: Slider(
-                    value: _pointsToRedeem.toDouble().clamp(
-                      0,
-                      effectiveMaxPoints.toDouble(),
-                    ),
-                    min: 0,
-                    max: effectiveMaxPoints.toDouble() > 0
-                        ? effectiveMaxPoints.toDouble()
-                        : 1,
-                    divisions: effectiveMaxPoints > 0 ? effectiveMaxPoints : 1,
-                    onChanged: effectiveMaxPoints > 0
-                        ? (value) {
-                            setState(() {
-                              _pointsToRedeem = value.toInt();
-                            });
-                          }
-                        : null,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              SizedBox(
-                width: 50,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerRight,
-                  child: TextWidget(
-                    "${_pointsToRedeem > effectiveMaxPoints ? effectiveMaxPoints : _pointsToRedeem}",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: AppColor.pink100Color,
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: TextWidget(
-                  "${"Points used:".tr} - \$${_calculatePointsDiscount().toStringAsFixed(2)}",
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: TextWidget(
-                  "${"Value:".tr} \$${(availablePoints * 0.15).toStringAsFixed(2)}",
-                  color: Colors.green,
-                  fontSize: 12,
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          TextWidget(
-            "* ${"Voucher code and points discount together can cover up to 90% of the item total price.".tr}",
-            fontSize: 10,
-            color: isDark ? Colors.white60 : Colors.black54,
-            fontStyle: FontStyle.italic,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _summaryRow(
-    String label,
-    String value,
-    bool isDark, {
-    Color? valueColor,
-  }) {
+      String label,
+      String value,
+      bool isDark, {
+        Color? valueColor,
+      }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -1141,17 +999,13 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
   }
 
   Widget _buildBottomBar(
-    bool isDark,
-    OrderState state,
-    MemberLevel level,
-    OrderBloc orderBloc,
-  ) {
+      bool isDark,
+      OrderState state,
+      MemberLevel level,
+      OrderBloc orderBloc,
+      ) {
     final double total = _totalAmount(level);
-    final double savings =
-        _discountAmount +
-        _automaticDiscount +
-        _calculateMembershipDiscount(level) +
-        _calculatePointsDiscount();
+    final double savings = _totalProductDiscount;
     final textColor = isDark ? Colors.white : Colors.black;
     return Container(
       decoration: BoxDecoration(
@@ -1185,10 +1039,6 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                       color: textColor,
                     ),
                     const SizedBox(width: 6),
-                    // FIX #1: chevron direction was inverted. Collapsed state
-                    // now shows "down" (tap to expand downward), expanded
-                    // state shows "up" (tap to collapse) — matches standard
-                    // expand/collapse convention.
                     Icon(
                       _isPriceExpanded
                           ? Icons.keyboard_arrow_up
@@ -1205,76 +1055,68 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
               curve: Curves.easeInOut,
               child: _isPriceExpanded
                   ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Divider(
-                            color: isDark
-                                ? Colors.grey.shade800
-                                : Colors.grey.shade300,
-                            height: 1,
-                          ),
-                          const SizedBox(height: 12),
-                          _summaryRow(
-                            "Total".tr,
-                            "\$${_subtotal.toStringAsFixed(2)}",
-                            isDark,
-                          ),
-                          const SizedBox(height: 10),
-                          _summaryRow(
-                            "Save".tr,
-                            "-\$${savings.toStringAsFixed(2)}",
-                            isDark,
-                          ),
-                          const SizedBox(height: 10),
-                          if (_discountAmount > 0) ...[
-                            _summaryRow(
-                              "Voucher Discount".tr,
-                              "-\$${_discountAmount.toStringAsFixed(2)}",
-                              isDark,
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                          if (_calculateMembershipDiscount(level) > 0) ...[
-                            _summaryRow(
-                              "Membership Discount".tr,
-                              "-\$${_calculateMembershipDiscount(level).toStringAsFixed(2)}",
-                              isDark,
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                          if (_automaticDiscount > 0) ...[
-                            _summaryRow(
-                              "Auto Discount".tr,
-                              "-\$${_automaticDiscount.toStringAsFixed(2)}",
-                              isDark,
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                          if (_pointsToRedeem > 0) ...[
-                            _summaryRow(
-                              "Points Used".tr,
-                              "-\$${_calculatePointsDiscount().toStringAsFixed(2)}",
-                              isDark,
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                          _summaryRow(
-                            "Delivery Fee".tr,
-                            "\$${_deliveryFee.toStringAsFixed(2)}",
-                            isDark,
-                          ),
-                          const SizedBox(height: 12),
-                          _summaryRow(
-                            "Amount to pay".tr,
-                            "\$${total.toStringAsFixed(2)}",
-                            isDark,
-                          ),
-                          const SizedBox(height: 8),
-                        ],
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Divider(
+                      color: isDark
+                          ? Colors.grey.shade800
+                          : Colors.grey.shade300,
+                      height: 1,
+                    ),
+                    const SizedBox(height: 12),
+                    _summaryRow(
+                      "Total".tr,
+                      "\$${(_subtotal + _totalProductDiscount).toStringAsFixed(2)}",
+                      isDark,
+                    ),
+                    const SizedBox(height: 10),
+                    _summaryRow(
+                      "Product Discount".tr,
+                      "-\$${savings.toStringAsFixed(2)}",
+                      isDark,
+                    ),
+                    const SizedBox(height: 10),
+                    if (_discountAmount > 0) ...[
+                      _summaryRow(
+                        "Voucher Discount".tr,
+                        "-\$${_discountAmount.toStringAsFixed(2)}",
+                        isDark,
                       ),
-                    )
+                      const SizedBox(height: 10),
+                    ],
+                    if (_calculateMembershipDiscount(level) > 0) ...[
+                      _summaryRow(
+                        "Membership Discount".tr,
+                        "-\$${_calculateMembershipDiscount(level).toStringAsFixed(2)}",
+                        isDark,
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                    if (_pointsToRedeem > 0) ...[
+                      _summaryRow(
+                        "Points Used".tr,
+                        "-\$${_calculatePointsDiscount().toStringAsFixed(2)}",
+                        isDark,
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                    _summaryRow(
+                      "Delivery Fee".tr,
+                      "\$${_deliveryFee.toStringAsFixed(2)}",
+                      isDark,
+                    ),
+                    const SizedBox(height: 12),
+                    _summaryRow(
+                      "Amount to pay".tr,
+                      "\$${total.toStringAsFixed(2)}",
+                      isDark,
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              )
                   : const SizedBox.shrink(),
             ),
             Padding(
@@ -1286,8 +1128,8 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                   onPressed: state is OrderLoading
                       ? null
                       : () async {
-                          await _placeOrder(orderBloc, level);
-                        },
+                    await _placeOrder(orderBloc, level);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isDark ? Colors.white : Colors.black,
                     disabledBackgroundColor: isDark
@@ -1300,19 +1142,19 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
                   ),
                   child: state is OrderLoading
                       ? SizedBox(
-                          height: 22,
-                          width: 22,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: isDark ? Colors.black : Colors.white,
-                          ),
-                        )
+                    height: 22,
+                    width: 22,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: isDark ? Colors.black : Colors.white,
+                    ),
+                  )
                       : TextWidget(
-                          "Place Order (Final)".tr,
-                          color: isDark ? Colors.black : Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    "Place Order (Final)".tr,
+                    color: isDark ? Colors.black : Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -1346,52 +1188,32 @@ class _OrderConfirmScreenState extends State<OrderConfirmScreen>
     }
 
     final userId = FirebaseAuth.instance.currentUser?.uid ?? 'guest_user';
-
     final orderId =
         "ORD-${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}";
-    final int redeemedPoints = _pointsToRedeem > _effectiveMaxPoints
-        ? _effectiveMaxPoints
-        : _pointsToRedeem;
 
     final String paymentMethodName =
         kPaymentMethods[_selectedPayment < kPaymentMethods.length
-                ? _selectedPayment
-                : 0]
+            ? _selectedPayment
+            : 0]
             .title;
 
     final order = OrderModel(
       id: orderId,
-
       userId: userId,
-
       items: widget.items,
-
       totalAmount: _totalAmount(level),
-
       status: 'Processing',
-
       paymentMethod: paymentMethodName,
-
       deliveryMethod: 'Automatic Benefits',
-
       address: address,
-
       createdAt: DateTime.now(),
-
       promoCode: _appliedVoucherCode,
-
-      discountAmount:
-          _discountAmount +
-          _automaticDiscount +
+      discountAmount: _discountAmount +
           _calculateMembershipDiscount(level) +
           _calculatePointsDiscount(),
-
-      pointsRedeemed: redeemedPoints,
-
+      pointsRedeemed: _pointsToRedeem,
       note: _noteController.text,
-
       contactLine: _contactLineController.text,
-
       contactMethod: _contactMethod,
     );
 

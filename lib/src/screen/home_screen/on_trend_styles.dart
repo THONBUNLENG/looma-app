@@ -122,6 +122,62 @@ class TrendItemCard extends StatelessWidget {
 
   const TrendItemCard({super.key, required this.product, required this.index});
 
+  Color _parseColor(String colorName) {
+    colorName = colorName.toLowerCase().trim().replaceAll(' ', '');
+    switch (colorName) {
+      case 'pink':
+        return AppColor.pink;
+      case 'salered':
+        return AppColor.saleRed;
+      case 'successgreen':
+        return AppColor.successGreen;
+      case 'white':
+        return Colors.white;
+      case 'black':
+        return Colors.black;
+      case 'blue':
+      case 'skyblue':
+        return Colors.blue;
+      case 'navy':
+      case 'darkblue':
+        return const Color(0xFF000080);
+      case 'red':
+        return Colors.red;
+      case 'green':
+        return Colors.green;
+      case 'yellow':
+        return Colors.yellow;
+      case 'grey':
+      case 'gray':
+        return Colors.grey;
+      case 'orange':
+        return Colors.orange;
+      case 'brown':
+        return Colors.brown;
+      case 'purple':
+        return Colors.purple;
+      case 'tan':
+        return const Color(0xFFD2B48C);
+      case 'beige':
+        return const Color(0xFFF5F5DC);
+      case 'khaki':
+        return const Color(0xFFC3B091);
+      case 'mint':
+        return const Color(0xFF98FF98);
+      case 'silver':
+        return const Color(0xFFC0C0C0);
+      case 'gold':
+        return const Color(0xFFFFD700);
+      default:
+        if (colorName.startsWith('#')) {
+          try {
+            return Color(int.parse(colorName.replaceFirst('#', '0xFF')));
+          } catch (_) {}
+        }
+        return Colors.grey;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -132,8 +188,7 @@ class TrendItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                ProductDetailScreen(product: product.toMap()),
+            builder: (context) => ProductDetailScreen(product: product.toMap()),
           ),
         );
       },
@@ -184,6 +239,29 @@ class TrendItemCard extends StatelessWidget {
                               )
                             : const Icon(Icons.image_not_supported_outlined),
                       ),
+                      if (product.discount != null &&
+                          product.discount!.isNotEmpty &&
+                          product.discount != "0%")
+                        Positioned(
+                          top: 12,
+                          left: 12,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColor.saleRed,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: TextWidget(
+                              product.discount!.tr,
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       Positioned(
                         top: 10,
                         right: 10,
@@ -222,6 +300,28 @@ class TrendItemCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppColor.primaryColor,
             ),
+            if (product.colors.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: product.colors.take(4).map((colorName) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 6),
+                    width: 14,
+                    height: 14,
+                    decoration: BoxDecoration(
+                      color: _parseColor(colorName),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.2)
+                            : Colors.black.withValues(alpha: 0.1),
+                        width: 1,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           ],
         ),
       ),

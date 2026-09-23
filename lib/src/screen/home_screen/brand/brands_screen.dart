@@ -43,7 +43,7 @@ class BrandsView extends StatelessWidget {
               TextWidget(
                 "Featured Brands",
                 fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
                 color: isDark ? Colors.white : const Color(0xFF1A1A1A),
               ),
               GestureDetector(
@@ -57,16 +57,16 @@ class BrandsView extends StatelessWidget {
                 },
                 child: TextWidget(
                   "SEE MORE",
-                  fontSize: 14,
+                      fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white70 : Colors.black54,
+                  color: isDark ? Colors.white70 : Colors.grey,
                 ),
               ),
             ],
           ),
         ),
         SizedBox(
-          height: 125,
+          height: 140,
           child: BlocBuilder<BrandBloc, BrandState>(
             builder: (context, state) {
               if (state is BrandLoading) {
@@ -74,7 +74,7 @@ class BrandsView extends StatelessWidget {
               } else if (state is BrandLoaded) {
                 return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: state.brands.length,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -204,11 +204,9 @@ class BrandsCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: GestureDetector(
         onTap: () => _showBrandDetails(context),
         child: Column(
@@ -219,54 +217,48 @@ class BrandsCircle extends StatelessWidget {
               height: 85,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors
-                    .white,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : const Color(0xFFF9F8F6),
                 border: Border.all(
-                  color: isDark ? Colors.white12 : Colors.grey.shade200,
-                  width: 1.5,
+                  color: isDark ? Colors.white12 : const Color(0xFFE8E6E1),
+                  width: 1.0,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
               ),
               child: ClipOval(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(22.0),
                   child: brand.logo.startsWith('http')
                       ? CachedNetworkImage(
-                    imageUrl: brand.logo,
-                    width: 40,
-                    height: 40,
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1A),
-                    fit: BoxFit.contain,
-                    placeholder: (context,
-                        url) => const CircularProgressIndicator(strokeWidth: 2),
-                    errorWidget: (context, url, error) =>
-                    const Icon(Icons.broken_image, color: Colors.grey),
-                  )
+                          imageUrl: brand.logo,
+                          width: 40,
+                          height: 40,
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+                          fit: BoxFit.contain,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(strokeWidth: 2),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.broken_image, color: Colors.grey),
+                        )
                       : Image.asset(
-                    brand.logo,
-                    width: 40,
-                    height: 40,
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1A),
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.broken_image, color: Colors.grey),
-                  ),
+                          brand.logo,
+                          width: 40,
+                          height: 40,
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.broken_image, color: Colors.grey),
+                        ),
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             SizedBox(
-              width: 75,
+              width: 85,
               child: TextWidget(
                 brand.name,
                 textAlign: TextAlign.center,
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: isDark ? Colors.white70 : Colors.black87,
                 maxLines: 1,

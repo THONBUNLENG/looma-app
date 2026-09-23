@@ -61,11 +61,12 @@ class _TopSaleScreenState extends State<TopSaleScreen> {
       stream: _productStream,
       builder: (context, snapshot) {
         var products = snapshot.data ?? [];
-        
-        if (products.isEmpty && snapshot.connectionState != ConnectionState.waiting) {
-           if (allItems.isNotEmpty) {
-             products = [ProductModel.fromMap(allItems[0])];
-           }
+
+        if (products.isEmpty &&
+            snapshot.connectionState != ConnectionState.waiting) {
+          if (allItems.isNotEmpty) {
+            products = [ProductModel.fromMap(allItems[0])];
+          }
         }
 
         if (products.isEmpty) return const SizedBox.shrink();
@@ -122,9 +123,8 @@ class _TopSaleScreenState extends State<TopSaleScreen> {
                         child: Image.asset(
                           'assets/image/bg_top_sale.png',
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey[900],
-                          ),
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(color: Colors.grey[900]),
                         ),
                       ),
                       Positioned.fill(
@@ -146,7 +146,10 @@ class _TopSaleScreenState extends State<TopSaleScreen> {
                         top: 15,
                         left: 15,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFFF4B4B),
                             borderRadius: BorderRadius.circular(12),
@@ -185,7 +188,10 @@ class _TopSaleScreenState extends State<TopSaleScreen> {
                                   letterSpacing: 1,
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 10,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12),
@@ -199,7 +205,11 @@ class _TopSaleScreenState extends State<TopSaleScreen> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                       const SizedBox(width: 6),
-                                      const Icon(Icons.arrow_forward_ios, size: 10, color: Colors.black),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 10,
+                                        color: Colors.black,
+                                      ),
                                     ],
                                   ),
                                 ),

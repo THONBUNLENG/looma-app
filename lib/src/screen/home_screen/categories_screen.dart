@@ -67,8 +67,7 @@ class CategorySection extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 0.62, // Slightly taller for better proportions
-            crossAxisSpacing: 12,
+            childAspectRatio: 0.62,
             mainAxisSpacing: 12,
           ),
           itemCount: categories.length,
@@ -126,7 +125,6 @@ class CategorySection extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Background Gradient for text readability
                       Positioned.fill(
                         child: Container(
                           decoration: BoxDecoration(
@@ -142,7 +140,6 @@ class CategorySection extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Category Title Overlay (Pill Design)
                       Positioned(
                         bottom: 12,
                         left: 8,

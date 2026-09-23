@@ -24,11 +24,9 @@ class MainHolder extends StatefulWidget {
   static MainHolderState? of(BuildContext context) =>
       context.findAncestorStateOfType<MainHolderState>();
 }
-
 class MainHolderState extends State<MainHolder> {
   int _selectedIndex = 0;
   bool _loadingLoginStatus = true;
-
   late final List<Widget> _pages;
   final List<NavItemData> _navItems = const [
     NavItemData(iconPath: 'assets/icon/home.png', label: 'Home'),
@@ -37,7 +35,6 @@ class MainHolderState extends State<MainHolder> {
     NavItemData(iconPath: 'assets/icon/like.png', label: 'Wishlist'),
     NavItemData(iconPath: 'assets/icon/profile.png', label: 'Me'),
   ];
-
   void setSelectedIndex(int index) {
     if (_selectedIndex != index) {
       setState(() {
@@ -48,7 +45,6 @@ class MainHolderState extends State<MainHolder> {
       }
     }
   }
-
   void refreshIndexStack(int index) {
     setState(() {
       _selectedIndex = index;
@@ -104,7 +100,6 @@ class MainHolderState extends State<MainHolder> {
         "MainHolder: Checking birthday reward - User: $day/$month, Today: ${now.day}/${now.month}",
       );
 
-
       if (now.day == day && now.month == month) {
         final prefs = PreferencesManager();
         final uid = FirebaseAuth.instance.currentUser?.uid ?? "guest";
@@ -114,14 +109,12 @@ class MainHolderState extends State<MainHolder> {
           rewardKey,
         );
         final currentYear = now.year.toString();
-
         debugPrint(
           "MainHolder: Birthday match! UID: $uid, LastRewardedYear: $lastRewardedYear, CurrentYear: $currentYear",
         );
 
         if (lastRewardedYear != currentYear) {
           if (!mounted) return;
-
 
           await prefs.setGetString(rewardKey, currentYear);
           
@@ -146,7 +139,6 @@ class MainHolderState extends State<MainHolder> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     if (_loadingLoginStatus) {
       return Scaffold(
         backgroundColor: theme.scaffoldBackgroundColor,
@@ -166,7 +158,6 @@ class MainHolderState extends State<MainHolder> {
   }
 }
 
-// Data Model សម្រាប់ Nav Item
 class NavItemData {
   final String iconPath;
   final String label;
@@ -174,9 +165,6 @@ class NavItemData {
   const NavItemData({required this.iconPath, required this.label});
 }
 
-// ==========================================
-// CUSTOM CURVED NAVIGATION BAR WIDGET
-// ==========================================
 class CustomCurvedNavigationBar extends StatelessWidget {
   final int selectedIndex;
   final List<NavItemData> navItems;
@@ -189,7 +177,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
     required this.onTabSelected,
   });
 
-  // Global Animation Constants
   static const Duration kNavDuration = Duration(milliseconds: 400);
   static const Curve kNavCurve = Curves.fastOutSlowIn;
 
@@ -201,7 +188,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
     final itemWidth = screenWidth / navItems.length;
     final bottomPadding = MediaQuery.paddingOf(context).bottom;
 
-    // Theme Colors
     final Color barBgColor = isDark
         ? (theme.cardColor != Colors.white
               ? theme.cardColor
@@ -218,7 +204,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          // 1. Curved Background with Custom Paint
           Positioned(
             left: 0,
             right: 0,
@@ -234,7 +219,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
             ),
           ),
 
-          // 2. Active Indicator Circle (Floating Icon)
           AnimatedPositioned(
             duration: kNavDuration,
             curve: kNavCurve,
@@ -279,7 +263,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
             ),
           ),
 
-          // 3. Navigation Items (Icons & Text Labels)
           Positioned(
             left: 0,
             right: 0,
@@ -291,7 +274,6 @@ class CustomCurvedNavigationBar extends StatelessWidget {
                 children: List.generate(navItems.length, (index) {
                   final isSelected = selectedIndex == index;
                   final item = navItems[index];
-
                   return Expanded(
                     child: GestureDetector(
                       behavior: HitTestBehavior.opaque,
@@ -407,7 +389,6 @@ class CurvedDipPainter extends CustomPainter {
     path.moveTo(0, 0);
     path.lineTo(dipOffsetX - (dipWidth / 2), 0);
 
-    // Left curve
     path.cubicTo(
       dipOffsetX - (dipWidth * 0.35),
       0,
@@ -417,7 +398,6 @@ class CurvedDipPainter extends CustomPainter {
       dipDepth,
     );
 
-    // Right curve
     path.cubicTo(
       dipOffsetX + (dipWidth * 0.3),
       dipDepth,
@@ -432,9 +412,7 @@ class CurvedDipPainter extends CustomPainter {
     path.lineTo(0, size.height);
     path.close();
 
-    // Draw shadow first
     canvas.drawPath(path.shift(const Offset(0, -1)), shadowPaint);
-    // Then draw the actual bar
     canvas.drawPath(path, paint);
   }
 
